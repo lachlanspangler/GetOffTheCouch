@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -294,6 +294,16 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `tabc_pending_openings_san_antonio` | san_antonio | Socrata `mxm5-tdpj` (data.texas.gov) / `socrata` | https://data.texas.gov/d/mxm5-tdpj | none | Socrata throttling | as Austin; San Antonio + 12 enclave/inner-ring cities | as Austin | openings · 24h | A | 19 |
 | `tabc_new_licenses_san_antonio` | san_antonio | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as Austin | as Austin (**original_issue_date**) | openings · 24h | A | 31 |
 | `challenge_trivia_san_antonio` | san_antonio | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-san-antonio within 30 km (`max_km`) | recurring · 48h | C+ | 239 |
+| `dcpl_events` | washington_dc | Communico `eeventcaldata` / `communico` | https://dclibrary.libnet.info/eeventcaldata | none | 7 requests/day (one per day of horizon) | **undocumented** front-end JSON; robots disallows only /results* and site search | as `mdpls_events` (branch, tags, registration) | events · 24h | B (official data via an undocumented endpoint) | 207 |
+| `smithsonian_events` | washington_dc | Trumba JSON / `trumba` | https://www.trumba.com/calendars/smithsonian-events.json | none | 1 request/day | trumba.com robots allows all; the Smithsonian's own syndication calendar (si.edu HTML is Cloudflare-challenged; never attempted) | title, offset times, location, Event Type/Topic, Cost | events · 24h | A- (official; museums, zoo, Associates) | 280 |
+| `gwu_events` | washington_dc | Localist / `localist` (`type` = audience "General Public") | https://calendar.gwu.edu/api/2/events | none | ≤3 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events` | events · 24h | B- (public filter: ~70 items/month) | 17 |
+| `mount_vernon_triangle_events` | washington_dc | WP The Events Calendar / `tribe` | https://www.mountvernontriangle.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 17 |
+| `capital_one_arena` | washington_dc | carbonhouse RSS / `rss_events` | https://www.capitalonearena.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (Capitals, Wizards, concerts) | 115 |
+| `songbyrd_dc` | washington_dc | WordPress + Event JSON-LD / `jsonld` (follow) | https://songbyrddc.com/events/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it (Crawl-delay 1) | name, naive local start, venue fallback | concerts · 12h | C+ | 39 |
+| `serve_dc_volunteer` | washington_dc | Galaxy Digital / `galaxydigital` | https://servedc.galaxydigital.com/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title "Opportunities on Serve DC" | volunteer · 24h | B+ (official city volunteer office) | 15 |
+| `montgomery_volunteer` | washington_dc | Galaxy Digital / `galaxydigital` | https://montgomerycountymd.galaxydigital.com/need/rss/ | none | as above | as above | as above; "Opportunities on Montgomery County Volunteer Center" | volunteer · 24h | B+ | 15 |
+| `volo_washington_dc` | washington_dc | Volo discover pages / `volo` | https://www.volosports.com/discover/washington-dc?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 107 |
+| `challenge_trivia_washington_dc` | washington_dc | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-dc-metro-area-{northern-virginia,maryland} within 40 km | recurring · 48h | C+ | 58 |
 
 **Tried and not added (batch A).**
 
@@ -326,3 +336,12 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Majestic & Empire theatres | san_antonio | site redirects to ATG Tickets (no feed) | probe |
 | Tobin Center, Centro San Antonio calendar, Paper Tiger, McNay, SAMA, DoSeum | san_antonio | no Tribe and no Event JSON-LD on listing/detail pages | probe |
 | UTSA, UIW, St. Mary's, Texas A&M–San Antonio | san_antonio | no Localist/LiveWhale/Trumba calendar found (`calendar.*`/`events.*` don't resolve); goutsa.com isn't SIDEARM | probe |
+| DC alcohol licenses (maps2.dcgis.dc.gov `Business_Licensing_and_Grants` layer 5) | washington_dc | No issue/application date (only EXPIRATION_DATE and GIS CREATED/EDITED stamps; 0 rows created in the last 60 days), so no honest newness signal. Idea I-094 (first-seen diff) would fit | layer metadata + count query |
+| Montgomery County ABS licensee data (Socrata `c6rw-fazn`) | washington_dc | no date columns | sample rows |
+| Team Trivia (trivia-in-washington-d-c) | washington_dc | region page lists 0 venues (live run: empty results) | region page |
+| Kennedy Center, 9:30 Club / The Anthem (IMP), si.edu, Strathmore, American University, Arlington Public Library | washington_dc | Cloudflare challenge — not attempted | probe |
+| Downtown DC BID, georgetown.edu | washington_dc | robots.txt answers 403 (disallow-all) | probe |
+| Georgetown University (LiveWhale events.georgetown.edu) | washington_dc | JSON endpoint returned only past items (v2 paging); not pursued | probe |
+| Georgetown BID (Tribe) | washington_dc | Works (157 items/30 days) but nearly all are daily retail promotions (cupcakes, trunk shows, student promos) | category "Community Events" only |
+| Black Cat, DC Improv (SeatEngine), Blues Alley (Wix), Warner Theatre | washington_dc | no Event JSON-LD / feed | probe |
+| EagleBank Arena (carbonhouse RSS works) | washington_dc | George Mason campus in Fairfax is ~25 km out, beyond the 20 km circle | RSS probe |

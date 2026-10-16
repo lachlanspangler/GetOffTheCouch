@@ -1,0 +1,39 @@
+# Official new-resident deadlines for the District of Columbia. Every fact is quoted verbatim from source_url.
+state: DC
+items:
+  - id: dc-drivers-license
+    title: "Get a DC driver license"
+    kind: license
+    days_after_move: 60
+    summary: "Once you've lived in DC for 60 days and drive, you need a DC driver license (students, military and a few other groups can keep their home-state license)."
+    action_url: https://dmv.dc.gov/service/driver-licenses
+    evidence: "If you have lived in the District of Columbia for 60 days or more and you drive a vehicle in public, you must get a driver license from DC DMV"
+    source_url: https://dmv.dc.gov/service/driver-licenses
+    verified_at: 2026-10-16
+  - id: dc-vehicle-registration
+    title: "Register your vehicle in DC"
+    kind: vehicle
+    days_after_move: 60
+    summary: "You have 60 calendar days after moving to DC to register your vehicle, and you must convert your driver license first."
+    action_url: https://dmv.dc.gov/service/registration-new-or-used-vehicle
+    evidence: "If you move to the District, you have 60 calendar days from the date you begin to live in DC to register your vehicle with DC DMV. You must first convert your out-of-state driver license to a District of Columbia driver license or non-driver identification card."
+    source_url: https://dmv.dc.gov/service/registration-new-or-used-vehicle
+    verified_at: 2026-10-16
+  - id: dc-vehicle-inspection
+    title: "Pass a DC vehicle inspection"
+    kind: inspection
+    days_after_move: null
+    summary: "Your vehicle must pass DC inspection before it can be registered (brand-new passenger vehicles are exempt)."
+    action_url: https://dmv.dc.gov/service/registration-new-or-used-vehicle
+    evidence: "The vehicle must pass DC inspection . Brand new passenger class vehicles do not require inspections."
+    source_url: https://dmv.dc.gov/service/registration-new-or-used-vehicle
+    verified_at: 2026-10-16
+  - id: dc-voter-registration
+    title: "Register to vote in DC"
+    kind: voting
+    days_after_move: null
+    summary: "Online and mail registrations must reach the Board of Elections by the 21st day before an election; you can also register in person during early voting or on Election Day."
+    action_url: https://www.dcboe.org/voters/register-to-vote/register-update-voter-registration
+    evidence: "All voter registration applications and updates submitted online and by mail must be received by the Board by no later than the 21 st day before the election in which you wish to vote."
+    source_url: https://www.dcboe.org/voters/register-to-vote/register-update-voter-registration
+    verified_at: 2026-10-16
