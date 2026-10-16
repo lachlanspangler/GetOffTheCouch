@@ -1,48 +1,50 @@
 # Health
 
-_Generated 2026-10-16T05:12:43+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-16T05:17:30+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
-**62 units** — ⚪ disabled: 25 · 🟢 healthy: 37
+**64 units** — ⚪ disabled: 25 · 🟢 healthy: 39
 
 | State | Unit | Last success | Records | Fails | Note |
 |---|---|---|---|---|---|
-| 🟢 healthy | `austin_convention_center_events@austin` | 0.2h | 65 | 0 |  |
-| 🟢 healthy | `bpl_events@boston` | 0.2h | 440 | 0 |  |
-| 🟢 healthy | `chicago_liquor_openings@chicago` | 0.2h | 38 | 0 |  |
-| 🟢 healthy | `chicago_park_events@chicago` | 0.2h | 318 | 0 |  |
-| 🟢 healthy | `chicago_park_permits@chicago` | 0.2h | 127 | 0 |  |
-| 🟢 healthy | `chicago_restaurant_openings@chicago` | 0.2h | 110 | 0 |  |
-| 🟢 healthy | `chipublib_events@chicago` | 0.2h | 969 | 0 |  |
-| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 0.2h | 22 | 0 |  |
-| 🟢 healthy | `curated_minneapolis@minneapolis` | 0.5h | 23 | 0 |  |
-| 🟢 healthy | `denver_liquor_openings@denver` | 0.2h | 10 | 0 |  |
-| 🟢 healthy | `denver_pending_food_openings@denver` | 0.2h | 71 | 0 |  |
-| 🟢 healthy | `downtown_boston_events@boston` | 0.2h | 187 | 0 |  |
-| 🟢 healthy | `downtown_seattle_events@seattle` | 0.2h | 7 | 0 |  |
-| 🟢 healthy | `fiu_events@miami` | 0.2h | 280 | 0 |  |
-| 🟢 healthy | `hclib_events@minneapolis` | 0.2h | 268 | 0 |  |
-| 🟢 healthy | `la_business_openings@los_angeles` | 0.2h | 105 | 0 |  |
-| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.2h | 10 | 0 |  |
-| 🟢 healthy | `mdpls_events@miami` | 0.2h | 490 | 0 |  |
-| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.2h | 110 | 0 |  |
-| 🟢 healthy | `mprb_events@minneapolis` | 1.3h | 53 | 0 |  |
-| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.2h | 14 | 0 |  |
-| 🟢 healthy | `northeastern_events@boston` | 0.2h | 124 | 0 |  |
-| 🟢 healthy | `nyc_parks_events@nyc` | 0.2h | 781 | 0 |  |
-| 🟢 healthy | `nyc_permitted_events@nyc` | 0.2h | 549 | 0 |  |
-| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.2h | 984 | 0 |  |
-| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.2h | 218 | 0 |  |
-| 🟢 healthy | `nyu_events@nyc` | 0.2h | 92 | 0 |  |
-| 🟢 healthy | `seattle_business_openings@seattle` | 0.2h | 33 | 0 |  |
-| 🟢 healthy | `spl_events@seattle` | 0.2h | 189 | 0 |  |
-| 🟢 healthy | `tabc_new_licenses_austin@austin` | 0.2h | 33 | 0 |  |
-| 🟢 healthy | `tabc_pending_openings_austin@austin` | 0.2h | 18 | 0 |  |
-| 🟢 healthy | `uchicago_events@chicago` | 0.2h | 92 | 0 |  |
-| 🟢 healthy | `umn_events@minneapolis` | 0.2h | 54 | 0 |  |
-| 🟢 healthy | `usc_events@los_angeles` | 0.2h | 442 | 0 |  |
-| 🟢 healthy | `utaustin_events@austin` | 0.2h | 600 | 0 |  |
-| 🟢 healthy | `uw_events@seattle` | 0.2h | 115 | 0 |  |
-| 🟢 healthy | `vanderbilt_events@nashville` | 0.2h | 181 | 0 |  |
+| 🟢 healthy | `austin_convention_center_events@austin` | 0.3h | 65 | 0 |  |
+| 🟢 healthy | `bpl_events@boston` | 0.3h | 440 | 0 |  |
+| 🟢 healthy | `chicago_liquor_openings@chicago` | 0.3h | 38 | 0 |  |
+| 🟢 healthy | `chicago_park_adult_classes@chicago` | 0.0h | 87 | 0 |  |
+| 🟢 healthy | `chicago_park_adult_leagues@chicago` | 0.0h | 9 | 0 |  |
+| 🟢 healthy | `chicago_park_events@chicago` | 0.3h | 318 | 0 |  |
+| 🟢 healthy | `chicago_park_permits@chicago` | 0.3h | 127 | 0 |  |
+| 🟢 healthy | `chicago_restaurant_openings@chicago` | 0.3h | 110 | 0 |  |
+| 🟢 healthy | `chipublib_events@chicago` | 0.3h | 969 | 0 |  |
+| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 0.3h | 22 | 0 |  |
+| 🟢 healthy | `curated_minneapolis@minneapolis` | 0.6h | 23 | 0 |  |
+| 🟢 healthy | `denver_liquor_openings@denver` | 0.3h | 10 | 0 |  |
+| 🟢 healthy | `denver_pending_food_openings@denver` | 0.3h | 71 | 0 |  |
+| 🟢 healthy | `downtown_boston_events@boston` | 0.3h | 187 | 0 |  |
+| 🟢 healthy | `downtown_seattle_events@seattle` | 0.3h | 7 | 0 |  |
+| 🟢 healthy | `fiu_events@miami` | 0.3h | 280 | 0 |  |
+| 🟢 healthy | `hclib_events@minneapolis` | 0.3h | 268 | 0 |  |
+| 🟢 healthy | `la_business_openings@los_angeles` | 0.3h | 105 | 0 |  |
+| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.3h | 10 | 0 |  |
+| 🟢 healthy | `mdpls_events@miami` | 0.3h | 490 | 0 |  |
+| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.3h | 110 | 0 |  |
+| 🟢 healthy | `mprb_events@minneapolis` | 1.4h | 53 | 0 |  |
+| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.3h | 14 | 0 |  |
+| 🟢 healthy | `northeastern_events@boston` | 0.3h | 124 | 0 |  |
+| 🟢 healthy | `nyc_parks_events@nyc` | 0.3h | 781 | 0 |  |
+| 🟢 healthy | `nyc_permitted_events@nyc` | 0.3h | 549 | 0 |  |
+| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.3h | 984 | 0 |  |
+| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.3h | 218 | 0 |  |
+| 🟢 healthy | `nyu_events@nyc` | 0.3h | 92 | 0 |  |
+| 🟢 healthy | `seattle_business_openings@seattle` | 0.3h | 33 | 0 |  |
+| 🟢 healthy | `spl_events@seattle` | 0.3h | 189 | 0 |  |
+| 🟢 healthy | `tabc_new_licenses_austin@austin` | 0.3h | 33 | 0 |  |
+| 🟢 healthy | `tabc_pending_openings_austin@austin` | 0.3h | 18 | 0 |  |
+| 🟢 healthy | `uchicago_events@chicago` | 0.3h | 92 | 0 |  |
+| 🟢 healthy | `umn_events@minneapolis` | 0.3h | 54 | 0 |  |
+| 🟢 healthy | `usc_events@los_angeles` | 0.3h | 442 | 0 |  |
+| 🟢 healthy | `utaustin_events@austin` | 0.3h | 600 | 0 |  |
+| 🟢 healthy | `uw_events@seattle` | 0.3h | 115 | 0 |  |
+| 🟢 healthy | `vanderbilt_events@nashville` | 0.3h | 181 | 0 |  |
 | ⚪ disabled | `boston_food_openings@boston` | never | – | 0 | disabled in config |
 | ⚪ disabled | `boston_special_events@boston` | never | – | 0 | disabled in config |
 | ⚪ disabled | `meet_boston_events@boston` | never | – | 0 | disabled in config |
@@ -79,6 +81,10 @@ _Generated 2026-10-16T05:12:43+00:00 by `gotc` (do not edit by hand — regenera
 
 ## Recent health log
 
+- 2026-10-16T05:17:12+00:00 · info · `chicago_park_adult_leagues@chicago` · degraded->healthy: recovered after 0 failure(s)
+- 2026-10-16T05:17:12+00:00 · info · `chicago_park_adult_leagues@chicago` · forget: operator reset: 128 records dropped (filtered to activity_type League*)
+- 2026-10-16T05:16:21+00:00 · info · `chicago_park_adult_leagues@chicago` · healthy->degraded: recovered after 0 failure(s)
+- 2026-10-16T05:16:21+00:00 · warn · `chicago_park_adult_leagues@chicago` · volume_drop: 9 records vs usual ~128; kept data, no deletions
 - 2026-10-16T05:01:38+00:00 · warn · `seatgeek@seattle` · disabled: needs SEATGEEK_CLIENT_ID
 - 2026-10-16T05:01:38+00:00 · warn · `ticketmaster@seattle` · disabled: needs TICKETMASTER_API_KEY
 - 2026-10-16T05:01:21+00:00 · warn · `seatgeek@nyc` · disabled: needs SEATGEEK_CLIENT_ID

@@ -46,6 +46,78 @@ sources:
       default_category: outdoors.park
       organizer: Chicago Park District
 
+  - id: chicago_park_adult_leagues
+    adapter: socrata
+    name: Chicago Park District adult sports leagues
+    data_type: leagues
+    homepage: https://data.cityofchicago.org/d/tn7v-6rnw
+    expect_min_records: 5
+    notes: type='Program', age_range='Adult', sports categories. registration_date is when signup OPENS;
+      no close date is published, so closes_at = season start (derived, confidence 0.5, explained on the card).
+    params:
+      domain: data.cityofchicago.org
+      dataset: tn7v-6rnw
+      horizon_days: 120
+      where: "type='Program' AND age_range='Adult' AND category like 'Sports%' AND start_date >= '{today}' AND start_date < '{horizon}'"
+      order: start_date
+      page_size: 1000
+      max_pages: 2
+      id_includes_start: false
+      kind: season
+      fields: { record_id: activity_id, title: title, start: start_date, end: end_date, venue: location_facility,
+                address: [address, zip], lat: latitude, lon: longitude, category: category, url: information_link,
+                price: fee, recurrence: date_notes, registration_opens: registration_date,
+                registration_url: information_link }
+      registration_closes_at_start: true
+      include_regex: { activity_type: "(?i)^league" }
+      signup_types: [team]
+      category_map:
+        "Sports - Volleyball": sports_league.volleyball
+        "Sports - Basketball": sports_league.basketball
+        "Sports - Soccer": sports_league.soccer
+        "Sports - Pickleball": sports_league.pickleball
+        "Sports - Hockey": sports_league.hockey
+        "Sports - Floor Hockey": sports_league.hockey
+        "Sports - Tennis": sports_league.tennis
+        "Sports - Football": sports_league.flag_football
+        "Sports - Softball": sports_league.softball
+        "Sports - Baseball": sports_league.softball
+        "Sports - Bowling": sports_league.bowling
+        "Sports - Dodgeball": sports_league.dodgeball
+        "Sports - Skating": outdoors.winter
+      default_category: sports_league.other
+      organizer: Chicago Park District
+
+  - id: chicago_park_adult_classes
+    adapter: socrata
+    name: Chicago Park District adult sports classes
+    data_type: leagues
+    homepage: https://data.cityofchicago.org/d/tn7v-6rnw
+    expect_min_records: 3
+    notes: type='Program', age_range='Adult', sports categories. registration_date is when signup OPENS;
+      no close date is published, so closes_at = season start (derived, confidence 0.5, explained on the card).
+    params:
+      domain: data.cityofchicago.org
+      dataset: tn7v-6rnw
+      horizon_days: 120
+      where: "type='Program' AND age_range='Adult' AND category like 'Sports%' AND start_date >= '{today}' AND start_date < '{horizon}'"
+      order: start_date
+      page_size: 1000
+      max_pages: 2
+      id_includes_start: false
+      kind: season
+      fields: { record_id: activity_id, title: title, start: start_date, end: end_date, venue: location_facility,
+                address: [address, zip], lat: latitude, lon: longitude, category: category, url: information_link,
+                price: fee, recurrence: date_notes, registration_opens: registration_date,
+                registration_url: information_link }
+      registration_closes_at_start: true
+      include_regex: { activity_type: "(?i)^instruction$" }
+      signup_types: [individual]
+      category_map: { "Sports - Skating": outdoors.winter }
+      category_rules: [{ match: "(?i)\\b(lessons?|drills|clinic|instruction|skills|cardio|class)\\b", category: fitness.yoga }]
+      default_category: fitness.yoga   # taxonomy label: classes
+      organizer: Chicago Park District
+
   - id: chicago_park_permits
     adapter: socrata
     name: Chicago Park District outdoor event permits

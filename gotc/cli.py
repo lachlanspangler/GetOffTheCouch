@@ -113,6 +113,23 @@ def cmd_replay(a: argparse.Namespace, s: Settings) -> int:
     return 0
 
 
+def cmd_forget(a: argparse.Namespace, s: Settings) -> int:
+    """Operator tool after a deliberate config change: drop a unit's records + learned baseline, refetch next run.
+
+    (Without this, the health system would rightly refuse to delete records after a big volume drop.)
+    """
+    db = _db(s)
+    with db.tx():
+        n = db.execute("DELETE FROM source_records WHERE unit = ?", (a.unit,)).rowcount
+        db.execute("UPDATE unit_health SET baseline_count = NULL, next_due_at = NULL WHERE unit = ?", (a.unit,))
+        db.execute(
+            "INSERT INTO health_log (at, unit, level, kind, message) VALUES (?, ?, 'info', 'forget', ?)",
+            (iso(utcnow()), a.unit, f"operator reset: {n} records dropped ({a.reason})"),
+        )
+    print(f"{a.unit}: dropped {n} records and the volume baseline; it will refetch on the next run")
+    return 0
+
+
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
     from gotc.health.report import render
 
@@ -239,6 +256,11 @@ def main(argv: list[str] | None = None) -> int:
     rp = sub.add_parser("replay", help="re-parse stored raw payloads (after a parser fix)")
     rp.add_argument("unit", nargs="?")
     rp.set_defaults(fn=cmd_replay)
+
+    fg = sub.add_parser("forget", help="drop a unit's records + baseline after a deliberate config change")
+    fg.add_argument("unit")
+    fg.add_argument("--reason", default="config change")
+    fg.set_defaults(fn=cmd_forget)
 
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)

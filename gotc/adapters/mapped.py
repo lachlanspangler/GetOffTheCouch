@@ -21,6 +21,11 @@ and a new dataset needs no code. Every key below is optional except ``fields.tit
         neighborhood: neighborhood
         organizer: agency
         attendance: expected_attendance   # a count the source reports → reported_attendance
+        price: fee                  # a number; 0 → free
+        recurrence: date_notes      # human schedule text
+        registration_opens: registration_date
+        registration_closes: reg_deadline
+        registration_url: registration_link
       title_template: "{title} — new liquor license"   # python format over the row; {title} = resolved title
       description_template: "..."                      # same, plus {date} (human start date)
       category_map: {"Club": nightlife.opening}         # raw category label → taxonomy id
@@ -37,6 +42,8 @@ and a new dataset needs no code. Every key below is optional except ``fields.tit
       all_day: true                    # start is a date; emitted as local midnight with all_day=True
       id_includes_start: true          # default: one permit covering many dates → one record per date
       tags: [outdoor]  free: true  default_url: https://...  extras: {signal: license}
+      registration_closes_at_start: true   # leagues with no published close date → derived deadline (labeled)
+      signup_types: [team]  price_note: "per team"
 
 Privacy: columns that hold personal data (owner, applicant, manager, contact, phone, e-mail, mailing address)
 are dropped from every row *before* mapping, so no config — and no template — can ever emit them.
@@ -293,6 +300,15 @@ def map_rows(rows: Iterable[dict[str, Any]], ctx: ParseContext) -> Iterator[dict
             end = parse_dt(dig(row, f["end"]), tz)
             if end is not None and end < start:
                 end = None
+        price: dict[str, Any] = {"is_free": True} if p.get("free") else {}
+        if "price" in f and not p.get("free"):
+            fee = _num(dig(row, f["price"]))
+            if fee == 0:
+                price = {"is_free": True}
+            elif fee is not None:
+                price = {"min": fee, "max": fee, "note": p.get("price_note")}
+        registration = _registration(row, f, p, start, tz, url)
+        recurrence = clean_text(dig(row, f["recurrence"]), 200) if "recurrence" in f else None
         extras: dict[str, Any] = dict(p.get("extras", {}))
         if raw_cat:
             extras.setdefault("source_label", raw_cat[:120])
@@ -318,12 +334,49 @@ def map_rows(rows: Iterable[dict[str, Any]], ctx: ParseContext) -> Iterator[dict
             },
             organizer=clean_text(dig(row, f["organizer"])) if "organizer" in f else p.get("organizer"),
             reported_attendance=_attendance(dig(row, f["attendance"])) if "attendance" in f else None,
-            price={"is_free": True} if p.get("free") else {},
-            availability="free_no_ticket" if p.get("free") else "unknown",
+            price=price,
+            registration=registration,
+            recurrence=recurrence,
+            availability="registration_open"
+            if registration
+            else ("free_no_ticket" if price.get("is_free") else "unknown"),
             extras=extras,
             # raw description HTML lets normalize.py lift sign-up/ticket links (never for license rows)
             _html=str(dig(row, f["description"], "")) or None if "description" in f and kind != "opening" else None,
         )
+
+
+def _registration(
+    row: dict[str, Any], f: dict[str, Any], p: dict[str, Any], start: datetime, tz: str, url: str | None
+) -> dict[str, Any] | None:
+    """Registration window from mapped columns.
+
+    ``registration_closes_at_start: true`` (opt-in, for league programs with no published close date)
+    sets closes_at = season start, labeled *derived* with low confidence and an explanation.
+    """
+    if not any(k in f for k in ("registration_opens", "registration_closes", "registration_url")) and not p.get(
+        "registration_closes_at_start"
+    ):
+        return None
+    opens = parse_dt(dig(row, f["registration_opens"]), tz) if "registration_opens" in f else None
+    closes = parse_dt(dig(row, f["registration_closes"]), tz) if "registration_closes" in f else None
+    reg_url = dig(row, f["registration_url"]) if "registration_url" in f else None
+    if isinstance(reg_url, dict):
+        reg_url = reg_url.get("url")
+    reg_url = reg_url if isinstance(reg_url, str) and reg_url.startswith(("http://", "https://")) else url
+    method, confidence, evidence = "reported", 1.0, None
+    if closes is None and p.get("registration_closes_at_start"):
+        closes, method, confidence = start, "derived", 0.5
+        evidence = "No close date is published; this is the season start. Register before then (spots can fill sooner)."
+    return {
+        "opens_at": opens,
+        "closes_at": closes,
+        "signup_types": p.get("signup_types", []),
+        "url": reg_url,
+        "evidence": evidence,
+        "method": method,
+        "confidence": confidence,
+    }
 
 
 def _attendance(v: Any) -> int | None:
