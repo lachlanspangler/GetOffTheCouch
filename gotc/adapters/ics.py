@@ -8,6 +8,7 @@ a weekly run club doesn't flood the feed. Conditional GET (ETag/Last-Modified) m
       horizon_days: 90
       max_occurrences: 4
       default_category: community.festival     # when classification finds nothing
+      force_category: sports_watch.game        # every event is this (a team schedule: "Volleyball vs X" ≠ a rec league)
       category_map: {"Volunteer": volunteer.one_off}   # ICS CATEGORIES → taxonomy id
       tags: [outdoor]
       organizer: Minneapolis Park & Recreation Board
@@ -79,7 +80,7 @@ class IcsAdapter(Adapter):
             if location_url:  # Luma & co. put the event page here when the address is hidden until RSVP
                 location = None
             cats = _categories(ev)
-            category = next((cmap[c] for c in cats if c in cmap), None)
+            category = p.get("force_category") or next((cmap[c] for c in cats if c in cmap), None)
             if not category:
                 category = ctx.tax.classify(
                     title, " ".join(cats), desc, default=p.get("default_category", "other.uncategorized")

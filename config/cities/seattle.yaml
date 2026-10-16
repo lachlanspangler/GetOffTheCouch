@@ -302,3 +302,22 @@ sources:
       date_only: true          # stated times are 7 h early ("13:00-07:00" for an 8 PM show); dates are right
       trust_valid_from: false  # offers.validFrom = the event date, not an on-sale date
       exclude_location: '\b(Kerry Hall|Francia Russell Center|Garfield Community Center|Broadway Inclusion Program|Theatre Group Archive|Neptune Tour)\b'   # STG education classes, tours, archive
+  - id: uw_athletics
+    adapter: ics
+    name: Washington Huskies athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gohuskies.com/calendar
+    expect_min_records: 10
+    notes: >-
+      The SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics, all sports; robots allows it).
+      Away and neutral-site games are skipped: exclude_location keeps only events whose LOCATION starts with
+      "Seattle". Exact venues (Husky Stadium, Alaska Airlines Arena) are in LOCATION when the school lists them.
+    params:
+      url: https://gohuskies.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Washington Athletics
+      exclude_location: '^(?!Seattle\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues ("Volleyball vs Rutgers")
+      fallback_point: { lat: 47.6505, lon: -122.3016, label: "UW athletics, Montlake" }

@@ -1,0 +1,116 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SIDEARM Sports//NONSGML SIDEARM//EN
+X-WR-CALNAME:Washington Athletics
+X-PUBLISHED-TTL:PT120M
+BEGIN:VEVENT
+UID:vcal_25475-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+LOCATION:Boise\, Idaho
+SUMMARY:[N] Washington Women's Tennis at Barb Chandler Classic
+DESCRIPTION:[N] Washington Women's Tennis at Barb Chandler Classic\n Completed\nStreaming Video: https://web.track.tennis/#/login\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25475&amp;sport_id=20
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25458-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Men's Tennis vs ITA Northwest Regionals
+DESCRIPTION:Washington Men's Tennis vs ITA Northwest Regionals\nStreaming Video: https://gohuskies.com/feature/watch-tennis/\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25458&amp;sport_id=10
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25293-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T020000Z
+DTEND:20261017T040000Z
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Volleyball vs Rutgers - Denim & Dawgs Night
+DESCRIPTION:Washington Volleyball vs Rutgers - Denim & Dawgs Night\nStreaming Video: https://www.bigtenplus.com/en-int/page/washington\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25293&amp;sport_id=22
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25459-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Men's Tennis vs ITA Northwest Regionals
+DESCRIPTION:Washington Men's Tennis vs ITA Northwest Regionals\nStreaming Video: https://gohuskies.com/feature/watch-tennis/\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25459&amp;sport_id=10
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25451-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T190000Z
+DTEND:20261017T210000Z
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Softball vs Boise State
+DESCRIPTION:Washington Softball vs Boise State\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25451&amp;sport_id=12
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25452-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T210000Z
+DTEND:20261017T230000Z
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Softball vs Mount Hood
+DESCRIPTION:Washington Softball vs Mount Hood\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25452&amp;sport_id=12
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25453-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T230000Z
+DTEND:20261018T010000Z
+LOCATION:Seattle\, Wash.
+SUMMARY:Washington Softball vs Boise State vs. Mount Hood
+DESCRIPTION:Washington Softball vs Boise State vs. Mount Hood\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25453&amp;sport_id=12
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25204-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T000000Z
+DTEND:20261017T030000Z
+LOCATION:West Lafayette\, Ind.
+SUMMARY:Washington Football at Purdue
+DESCRIPTION:Washington Football at Purdue\nTV: FOX\nStreaming Video: https://www.foxsports.com/live\nStreaming Audio: https://gohuskies.com/feature/mobile-app\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25204&amp;sport_id=3
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25331-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261017T030000Z
+DTEND:20261017T050000Z
+LOCATION:Los Angeles\, Calif.
+SUMMARY:Washington Women's Soccer at UCLA
+DESCRIPTION:Washington Women's Soccer at UCLA\nTV: Big Ten Network\nStreaming Video: https://www.foxsports.com/live/btn\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25331&amp;sport_id=19
+PRIORITY:3
+END:VEVENT
+BEGIN:VEVENT
+UID:vcal_25603-admin.gohuskies.com
+DTSTAMP:20261016T075553Z
+DTSTART:20261018T010000Z
+DTEND:20261018T030000Z
+LOCATION:Boise\, Idaho
+SUMMARY:Washington Men's Basketball at Boise State (Exh.)
+DESCRIPTION:Washington Men's Basketball at Boise State (Exh.)\n
+URL:https://admin.gohuskies.com/calendar.aspx?game_id=25603&amp;sport_id=5
+PRIORITY:3
+END:VEVENT
+END:VCALENDAR

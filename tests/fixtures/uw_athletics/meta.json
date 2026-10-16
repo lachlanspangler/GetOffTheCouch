@@ -1,0 +1,9 @@
+{
+  "unit": "uw_athletics@seattle",
+  "adapter": "ics",
+  "recorded_at": "2026-10-16T07:55:52+00:00",
+  "files": {
+    "payload_0.ics": "https://gohuskies.com/calendar.ashx/calendar.ics?sport_id=0"
+  },
+  "note": "real SIDEARM feed fetched live by `gotc run`; kept 1 past, 6 home and 3 away VEVENTs verbatim"
+}
