@@ -4,6 +4,12 @@ import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
 import { count } from "../lib/format";
 import { build } from "../lib/router";
+import type { CitySummary } from "../lib/types";
+
+function citySub(c: CitySummary): string {
+  if (!c.events) return "Coming soon";
+  return `${count(c.upcoming_7d)} this week${c.deadlines ? ` · ${count(c.deadlines)} deadline${c.deadlines === 1 ? "" : "s"}` : ""}`;
+}
 
 export function Home() {
   const { index } = useApp();
@@ -27,18 +33,27 @@ export function Home() {
             <p class="small">{count(total)} upcoming events across {index.cities.length} cities.</p>
           </div>
         </div>
-        <div class="tiles cities">
-          {cities.map((c) => (
-            <div class="tile" key={c.slug}>
-              <CityArt slug={c.slug} ratio="3/1" />
-              <h3><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></h3>
-              <p class="sub">
-                {c.events > 0 ? `${count(c.upcoming_7d)} events this week${c.deadlines ? ` · ${count(c.deadlines)} deadline${c.deadlines === 1 ? "" : "s"}` : ""}` : "Coming soon"}
-              </p>
-              <Icon name="right" size={18} class="chev" />
-            </div>
-          ))}
-        </div>
+        {cities.length <= 12 ? (
+          <div class="tiles cities">
+            {cities.map((c) => (
+              <div class="tile" key={c.slug}>
+                <CityArt slug={c.slug} ratio="3/1" />
+                <h3><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></h3>
+                <p class="sub">{citySub(c)}</p>
+                <Icon name="right" size={18} class="chev" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ul class="city-index">
+            {[...cities].sort((a, b) => a.name.localeCompare(b.name)).map((c) => (
+              <li key={c.slug}>
+                <a href={build({ city: c.slug, view: "feed" })}>{c.name}</a>
+                <span class="sub">{citySub(c)}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
       <section class="section" aria-labelledby="how">
         <h2 id="how" class="sr-only">How it works</h2>

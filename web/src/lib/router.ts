@@ -168,9 +168,11 @@ export function useRoute(initial?: Route): [Route, (r: Partial<Route>, replace?:
       if (a.hash && a.pathname === location.pathname && a.search === location.search) return; // in-page anchor
       ev.preventDefault();
       if (a.pathname.includes("/events/") && !live?.eventId) background = live;
-      if (a.pathname + a.search !== location.pathname + location.search) history.pushState(null, "", a.pathname + a.search);
+      if (a.pathname + a.search !== location.pathname + location.search) history.pushState(null, "", a.pathname + a.search + a.hash);
       setRoute(current());
-      if (!a.pathname.includes("/events/")) scrollTo(0, 0);
+      const id = a.hash.slice(1);
+      if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+      else if (!a.pathname.includes("/events/")) scrollTo(0, 0);
     };
     document.addEventListener("click", click);
     return () => {

@@ -16,7 +16,6 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
   const summary = index.cities.find((c) => c.slug === city);
   const stale = summary ? summary.stale_sources > 0 : index.cities.some((c) => c.stale_sources > 0);
   const tz = feed?.timezone ?? "America/New_York";
-  const cities = [...index.cities].sort((a, b) => a.name.localeCompare(b.name));
   const popular = ["this-weekend", "free", "concerts", "trivia", "beer-leagues", "volunteering"];
   return (
     <footer class="footer">
@@ -29,9 +28,10 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
           <div>
             <h2>Cities</h2>
             <ul>
-              {cities.map((c) => (
+              {[...index.cities].sort((a, b) => b.events - a.events).slice(0, 12).sort((a, b) => a.name.localeCompare(b.name)).map((c) => (
                 <li key={c.slug}><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></li>
               ))}
+              {index.cities.length > 12 && <li><a href={`${url()}#cities`}>All {index.cities.length} cities</a></li>}
             </ul>
           </div>
           <div>
