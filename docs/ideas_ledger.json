@@ -276,12 +276,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "Openings proxy from real government data, keyless",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: openings via socrata/arcgis config (NY SLA pending+new, Chicago, Seattle, TABC x2, LA, Denver x3, Nashville). Minneapolis skipped: no original-issue date (see snapshot-diff idea). NB build.py drops past-dated openings — see diary"
+   ]
   },
   {
    "id": "I-020",
@@ -458,12 +460,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Free classes, clubs, talks — high-quality keyless data",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: bibliocommons adapter; hclib/chipublib/bpl live 2026-10-16 (254/969/440 records)"
+   ]
   },
   {
    "id": "I-032",
@@ -472,13 +476,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.9,
-   "status": "doing",
+   "status": "done",
    "why": "Exactly the 'block party' pitch, keyless",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": [
-    "2026-10-16 doing: worktree agent building NYC config"
+    "2026-10-16 doing: worktree agent building NYC config",
+    "2026-10-16 done: nyc_permitted_events (social event types only), 549 records live 2026-10-16"
    ]
   },
   {
@@ -847,6 +852,132 @@
    "status": "open",
    "why": "auto: the Deadlines view is empty — the core promise",
    "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-058",
+   "title": "Minneapolis new liquor licenses by snapshot-diffing On_Sale_Liquor licenseNumber",
+   "area": "sources",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "The ArcGIS layer's issueDate includes renewals and there is no original-issue date; a licenseNumber not seen in yesterday's full snapshot (654 rows) is a genuinely new place. Needs a small stateful diff step (first-seen date per license).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-059",
+   "title": "Keep openings visible for N days after their license date (build.py window for kind=opening)",
+   "area": "pipeline",
+   "value": 5,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "build.load_live_records drops records whose end < now-2h, so every opening dated in the past (most license signals) never reaches the export: Denver exports 0 events, NYC exports none of its 1,216 opening records. Openings need a display window (e.g. 60 days after start) instead of a fabricated end date.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-060",
+   "title": "Florida DBPR ABT CSV adapter (Miami openings + temporary event alcohol permits)",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "daily.csv (headerless, Last-Modified works) gives Dade 'Issue Permanent License' openings; bd4002lic.csv gives one-day festival permits with dates. robots allows /sto/. Miami currently has no openings source.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-061",
+   "title": "Chicago Park District adult sports registration deadlines (tn7v-6rnw type=Program)",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Program rows include Sports - Volleyball/Basketball/Soccer with fee, age_range and registration_date: real beer-league deadlines from official data. Same Socrata adapter; needs registration.closes_at mapping in mapped.py.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-062",
+   "title": "Ask Simpleview boards (Meet Boston, Visit Austin, Visit Denver) for API access or an allowlisted UA",
+   "area": "sources",
+   "value": 4,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Their event APIs return 403 (CDN bot protection) to our client though robots allows them; adapter + fixtures are done. With permission they add 250-500 curated events/week per city, and Denver has no other events source.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-063",
+   "title": "Boston openings/events via data.boston.gov resource CSV downloads instead of the robots-disallowed CKAN API",
+   "area": "sources",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "robots disallows /api/ and /datastore/* but not /dataset/<slug>/resource/<id>/download/*.csv. A CSV adapter (shared with FL DBPR) would restore special-event licenses and food-license openings — confirm the path is allowed first.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-064",
+   "title": "Communico adapter for more libraries + exhibit handling",
+   "area": "sources",
+   "value": 2,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-065",
+   "title": "Rate-limit-aware Socrata: register a free SOCRATA_APP_TOKEN",
+   "area": "infra",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "17 of our units are Socrata; keyless requests are throttled (503s seen in research). A free app token raises the ceiling; the adapter already sends X-App-Token when set.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-066",
+   "title": "Denver events: find a permitted source (Denver Arts & Venues, RiNo/Cherry Creek calendars, CU Denver)",
+   "area": "cities",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Denver's only events source (Visit Denver) is blocked and DPL's LibCal is robots-disallowed, so Denver has openings but no events. Needs new research.",
+   "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": []

@@ -1,0 +1,109 @@
+# Seattle, WA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Seattle's Socrata domain is cos-data.seattle.gov (data.seattle.gov's catalog API returns nothing).
+# Special Events Permits dm95-f8w5 is dead (last event 2025-10). Sources verified live 2026-10-15/16
+# (see docs/research/city_open_data.md §3.7 and docs/SOURCES.md).
+slug: seattle
+name: Seattle
+state: WA
+timezone: America/Los_Angeles
+center: [47.6062, -122.3321]
+radius_km: 20
+aliases: [SEA, Bellevue, Redmond, Kirkland, Shoreline, Renton, Burien, Tukwila, Mercer Island, Bothell]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 47.6062, lon: -122.3321 }
+  - { name: Pioneer Square, lat: 47.6015, lon: -122.3343 }
+  - { name: Belltown, lat: 47.6145, lon: -122.3470 }
+  - { name: South Lake Union, lat: 47.6256, lon: -122.3344 }
+  - { name: Capitol Hill, lat: 47.6253, lon: -122.3222 }
+  - { name: First Hill, lat: 47.6090, lon: -122.3240 }
+  - { name: Queen Anne, lat: 47.6370, lon: -122.3570 }
+  - { name: Fremont, lat: 47.6510, lon: -122.3500 }
+  - { name: Wallingford, lat: 47.6610, lon: -122.3340 }
+  - { name: University District, lat: 47.6610, lon: -122.3130 }
+  - { name: Ballard, lat: 47.6687, lon: -122.3843 }
+  - { name: Greenwood, lat: 47.6910, lon: -122.3550 }
+  - { name: Columbia City, lat: 47.5600, lon: -122.2860 }
+  - { name: Beacon Hill, lat: 47.5680, lon: -122.3080 }
+  - { name: West Seattle (Alaska Junction), lat: 47.5610, lon: -122.3870 }
+  - { name: Georgetown, lat: 47.5480, lon: -122.3210 }
+sources:
+  - id: spl_events
+    adapter: trumba
+    name: Seattle Public Library events
+    data_type: events
+    homepage: https://www.spl.org/event-calendar
+    expect_min_records: 30
+    params:
+      webname: kalendaro
+      horizon_days: 14
+      venue_label: Seattle Public Library
+      organizer: Seattle Public Library
+      default_category: arts.books
+
+  - id: uw_events
+    adapter: trumba
+    name: University of Washington events (Seattle campus)
+    data_type: events
+    homepage: https://www.washington.edu/calendar/
+    expect_min_records: 20
+    params:
+      webname: sea_campus
+      horizon_days: 14
+      organizer: University of Washington
+      category_fields: [Event Types]
+      category_map:   # "Event Types" values seen in the live feed
+        Exhibits: arts.museum
+        Performances: arts.theater
+        Screenings: arts.film
+        Athletics: sports_watch.game
+        Workshops: arts.workshop
+        Lectures/Seminars: arts.books
+      default_category: learning.networking
+
+  - id: seattle_business_openings
+    adapter: socrata
+    name: Seattle new food & drink business licenses
+    data_type: openings
+    homepage: https://cos-data.seattle.gov/d/wnbq-64tb
+    expect_min_records: 10
+    notes: >-
+      license_start_date (TEXT YYYYMMDD) = when the business registered to start; future dates are
+      pre-registered openings. NAICS 722410 = bars, 7225xx = restaurants. business_phone is dropped.
+    params:
+      domain: cos-data.seattle.gov
+      dataset: wnbq-64tb
+      kind: opening
+      lookback_days: 60
+      horizon_days: 240
+      where: >-
+        (starts_with(naics_code, '722410') OR starts_with(naics_code, '722511') OR starts_with(naics_code, '722513')
+        OR starts_with(naics_code, '722515')) AND license_start_date >= '{today_compact}'
+        AND license_start_date < '{horizon_compact}' AND upper(city) = 'SEATTLE'
+      order: license_start_date DESC
+      max_future_days: 240
+      fields: { record_id: city_account_number, title: [trade_name, business_legal_name], start: license_start_date,
+                category: naics_description,
+                address: [street_address, city, zip] }
+      entity_only_fields: [business_legal_name]
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas station|vending|catering)\\b"]
+      title_template: "{title} — new business license"
+      description_template: >-
+        License signal, not a confirmed opening date. This business ({naics_description}) registered with the
+        City of Seattle with a license start date of {date}.
+      category_map: { "Drinking Places (Alcoholic Beverages)": nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://cos-data.seattle.gov/d/wnbq-64tb
+      extras: { signal: business_license }
+
+  - id: downtown_seattle_events
+    adapter: tribe
+    name: Downtown Seattle Association events
+    data_type: events
+    homepage: https://downtownseattle.org/events/
+    expect_min_records: 1
+    notes: Small calendar (single-digit upcoming events) but high quality (flea markets, park parties).
+    params:
+      base_url: https://downtownseattle.org
+      horizon_days: 60
+      organizer: Downtown Seattle Association
+      default_category: community.festival

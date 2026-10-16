@@ -1,0 +1,68 @@
+# Miami, FL (Miami-Dade). Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Openings: the only verified signal is the Florida DBPR ABT CSV extracts (no CSV adapter yet; see the ideas
+# ledger). Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.9 and docs/SOURCES.md).
+slug: miami
+name: Miami
+state: FL
+timezone: America/New_York
+center: [25.7617, -80.1918]
+radius_km: 30
+aliases: [Miami-Dade, Miami Beach, South Beach, Coral Gables, Hialeah, Doral, North Miami, Key Biscayne, Coconut Grove, Homestead, Aventura]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Brickell, lat: 25.7650, lon: -80.1936 }
+  - { name: Wynwood, lat: 25.8010, lon: -80.1990 }
+  - { name: Edgewater, lat: 25.7990, lon: -80.1880 }
+  - { name: Design District, lat: 25.8130, lon: -80.1930 }
+  - { name: Little Havana, lat: 25.7740, lon: -80.2190 }
+  - { name: Little Haiti, lat: 25.8300, lon: -80.1950 }
+  - { name: Coconut Grove, lat: 25.7280, lon: -80.2420 }
+  - { name: Coral Gables, lat: 25.7215, lon: -80.2684 }
+  - { name: South Beach, lat: 25.7826, lon: -80.1340 }
+  - { name: Mid-Beach / North Beach, lat: 25.8500, lon: -80.1220 }
+  - { name: Allapattah, lat: 25.8130, lon: -80.2230 }
+  - { name: Kendall, lat: 25.6793, lon: -80.3173 }
+  - { name: Doral, lat: 25.8195, lon: -80.3553 }
+  - { name: Hialeah, lat: 25.8576, lon: -80.2781 }
+  - { name: North Miami, lat: 25.8901, lon: -80.1867 }
+sources:
+  - id: mdpls_events
+    adapter: communico
+    name: Miami-Dade Public Library System events
+    data_type: events
+    homepage: https://www.mdpls.org/events
+    expect_min_records: 30
+    notes: Undocumented Communico calendar JSON (robots allows it); one request per day of horizon, daily.
+    params:
+      base_url: https://www.mdpls.org
+      horizon_days: 7
+      venue_label: Miami-Dade Public Library
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Art Exhibition: arts.museum
+        Book Clubs: arts.books
+        Author Event: arts.books
+        Storytime: family.kids
+        Movies: arts.film
+        Music: music.concert
+        "Performances & Presentations": arts.theater
+        Games: trivia_games.board_games
+        Language Learning: learning.language
+        Conversation Circles: learning.language
+        "Computers & Technology": learning.tech
+        "Arts & Crafts": arts.workshop
+        "Health & Wellness": fitness.yoga
+        "Early Childhood (0-5)": family.kids
+        "Children (6-11)": family.kids
+
+  - id: fiu_events
+    adapter: localist
+    name: FIU events
+    data_type: events
+    homepage: https://calendar.fiu.edu/
+    expect_min_records: 10
+    params:
+      base_url: https://calendar.fiu.edu
+      horizon_days: 30
+      max_pages: 5
+      organizer: Florida International University
+      default_category: learning.networking

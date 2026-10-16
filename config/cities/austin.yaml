@@ -1,0 +1,126 @@
+# Austin, TX. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.5 and docs/SOURCES.md).
+slug: austin
+name: Austin
+state: TX
+timezone: America/Chicago
+center: [30.2672, -97.7431]
+radius_km: 25
+aliases: [ATX, Round Rock, Cedar Park, Pflugerville, Georgetown, Buda, Kyle, Lakeway, Bee Cave, Manor]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 30.2672, lon: -97.7431 }
+  - { name: Rainey Street, lat: 30.2590, lon: -97.7390 }
+  - { name: East Austin, lat: 30.2630, lon: -97.7200 }
+  - { name: East Cesar Chavez, lat: 30.2560, lon: -97.7270 }
+  - { name: South Congress (SoCo), lat: 30.2490, lon: -97.7500 }
+  - { name: Zilker / Barton Springs, lat: 30.2620, lon: -97.7700 }
+  - { name: Bouldin Creek, lat: 30.2500, lon: -97.7580 }
+  - { name: South Lamar, lat: 30.2450, lon: -97.7750 }
+  - { name: Hyde Park, lat: 30.3050, lon: -97.7290 }
+  - { name: West Campus / UT, lat: 30.2850, lon: -97.7450 }
+  - { name: Mueller, lat: 30.2990, lon: -97.7050 }
+  - { name: North Loop, lat: 30.3170, lon: -97.7230 }
+  - { name: Clarksville, lat: 30.2820, lon: -97.7600 }
+  - { name: The Domain, lat: 30.4020, lon: -97.7250 }
+  - { name: Montopolis, lat: 30.2330, lon: -97.6990 }
+sources:
+  - id: visit_austin_events
+    adapter: simpleview
+    name: Visit Austin events
+    data_type: events
+    homepage: https://www.austintexas.org/events/
+    expect_min_records: 50
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our PoliteClient on the first live run, although robots.txt allows it and the token endpoint worked. A 403 means the site doesn't want automated clients here; we don't work around it. Re-enable only with the board's permission.
+    params:
+      base_url: https://www.austintexas.org
+      board: Visit Austin
+      horizon_days: 7
+      default_category: community.festival
+
+  - id: austin_convention_center_events
+    adapter: socrata
+    name: Austin Convention Center & Palmer Events Center bookings
+    data_type: conventions
+    homepage: https://datahub.austintexas.gov/d/p9ma-z6y9
+    expect_min_records: 5
+    params:
+      domain: datahub.austintexas.gov
+      dataset: p9ma-z6y9
+      horizon_days: 365
+      where: "arrive_date >= '{today}' AND arrive_date < '{horizon}'"
+      order: arrive_date
+      all_day: true
+      fields: { title: event_name, start: arrive_date, end: depart_date, venue: location, url: website,
+                attendance: attendance }
+      # many bookings are closed industry meetings; keep the public-facing shows, fairs and festivals
+      exclude_title: ["(?i)\\b(meeting|conference|summit|symposium|congress|graduation|commencement|exam|training|board)\\b"]
+      default_category: other.uncategorized
+
+  - id: utaustin_events
+    adapter: localist
+    name: UT Austin events
+    data_type: events
+    homepage: https://calendar.utexas.edu/
+    expect_min_records: 20
+    params:
+      base_url: https://calendar.utexas.edu
+      horizon_days: 30
+      max_pages: 6
+      organizer: The University of Texas at Austin
+      default_category: learning.networking
+
+  - id: tabc_pending_openings_austin
+    adapter: socrata
+    name: TABC pending original on-premises applications (Austin)
+    data_type: openings
+    homepage: https://data.texas.gov/d/mxm5-tdpj
+    expect_min_records: 5
+    notes: >-
+      Original (not renewal) applications. MB = mixed beverage, BG = wine & beer on-premise, BE = beer on-premise.
+      gun_sign RED = 51%+ of revenue from alcohol (a bar). The owner column is dropped (may be a person).
+    params:
+      domain: data.texas.gov
+      dataset: mxm5-tdpj
+      kind: opening
+      lookback_days: 60
+      where: "city='Austin' AND license_type in('MB','BG','BE') AND submission_date >= '{today}'"
+      order: submission_date DESC
+      fields: { record_id: primary_license_id, title: trade_name, start: submission_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission received an original
+        {license_type} on-premises license application for this address on {date} (status: {applicationstatus}).
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/mxm5-tdpj
+      extras: { signal: liquor_license_application }
+
+  - id: tabc_new_licenses_austin
+    adapter: socrata
+    name: TABC newly issued on-premises licenses (Austin)
+    data_type: openings
+    homepage: https://data.texas.gov/d/7hf9-qc9f
+    expect_min_records: 5
+    notes: original_issue_date = first issuance (not current_issued_date, which moves on renewal).
+    params:
+      domain: data.texas.gov
+      dataset: 7hf9-qc9f
+      kind: opening
+      lookback_days: 60
+      where: "upper(city)='AUSTIN' AND license_type in('MB','BG','BE') AND original_issue_date >= '{today}'"
+      order: original_issue_date DESC
+      fields: { record_id: license_id, title: trade_name, start: original_issue_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission first issued a
+        {license_type} on-premises license for this address on {date}.
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/7hf9-qc9f
+      extras: { signal: liquor_license_issued }

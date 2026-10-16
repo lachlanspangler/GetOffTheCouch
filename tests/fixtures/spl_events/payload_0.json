@@ -1,0 +1,445 @@
+[
+ {
+  "eventID": 209046621,
+  "template": "Kalendaro Main Template",
+  "title": "&quot;Battle for Paradise: Puerto Rico, restrictions apply*&quot; Exhibit",
+  "description": "View a photo essay by Artist in Residence, Jo Cosme, that examines the tension between Puerto Rico as a marketed paradise and Puerto Rico as a lived reality.",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://www.spl.org/hours-and-locations/central-library\" target=\"_blank\">Central Library</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:00:00",
+  "endDateTime": "2026-10-17T18:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10am&nbsp;&ndash;&nbsp;6pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every day through December 6, 2026",
+  "seriesID": 209046608,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgAJ-biaAbBdEsIpWEr-I8nG.jpg",
+   "alt": "Two images: On the left side, a photograph of plaintains. On the right side, exterior of library location.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgAJ-biaAbBdEsIpWEr-I8nG.jpg",
+   "alt": "Two images: On the left side, a photograph of plaintains. On the right side, exterior of library location.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 61980,
+    "label": "Location Link",
+    "value": "<a href=\"https://www.spl.org/hours-and-locations/central-library\" target=\"_blank\">Central Library</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28780,
+    "label": "Room Location",
+    "value": "Level 8 - Gallery",
+    "type": 17
+   },
+   {
+    "fieldID": 61320,
+    "label": "Registration Required",
+    "value": "Registration is not required.",
+    "type": 17
+   },
+   {
+    "fieldID": 60857,
+    "label": "Detailed Description",
+    "value": "<img src=\"https://www.trumba.com/i/DgBohZRAtMKeE3LJerr2C-0L.png\" alt=\"Image of a label with the words: About this event\" width=\"147\" style=\"max-width:100%;\" /><br />&quot;Battle for Paradise: Puerto Rico, restrictions apply*&quot; is a photo essay by Jo Cosme that examines the tension between Puerto Rico as a marketed paradise and Puerto Rico as a lived reality.<br /><br />Part of the ongoing project &quot;Welcome to Paradise: &#161;Viva Puerto Rico Libre!&quot;, the work focuses on how tourism, settler colonialism, and disaster-driven policies reshape who can remain on the archipelago and under what conditions.<br /><br />Through photography and video, Cosme highlights the contrast between images designed to attract and the realities often kept out of frame - restricted access to land and beaches to the native population, rising costs of living, and the displacement of local communities. The phrase &#8220;restrictions apply&#8221; points to the fine print behind the promise of paradise, where access is uneven and shaped by power.<br /><br />Rather than presenting Puerto Rico as a distant place, the work asks viewers to consider their proximity to these systems and what it means to move through them, whether as tourists, settlers, investors, or witnesses.<br /><br />Thanks to our sponsor&#160;<a href=\"https://supportspl.org/\" target=\"_blank\" rel=\"noopener\">The Seattle Public Library Foundation</a>.<br /><br />Free and reduced access supported by&#160;<a href=\"https://www.4culture.org/\" target=\"_blank\" rel=\"noopener\">4Culture</a>.<br /><img src=\"https://www.trumba.com/i/DgCMPU7fjf4bRpZl1rfOD36M.png\" alt=\"Information\" width=\"147\" style=\"max-width:100%;\" /><br />Learn about our<a href=\"https://www.spl.org/programs-and-services/arts-and-culture/artist-in-residence\" target=\"_blank\" rel=\"noopener\"> Artist in Residence program</a>.",
+    "type": 1
+   },
+   {
+    "fieldID": 61284,
+    "label": "Contact Us",
+    "value": "<img alt=\"Image of a label with the words: Contact us\" src=\"https://www.trumba.com/i/DgB32CYHnGABZQ0H91yPaGlC.png\" width=\"147\" style=\"max-width:100%;\" /><br />If you have questions about this event, <a href=\"https://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">Ask Us</a> or call 206-386-4636.",
+    "type": 1
+   },
+   {
+    "fieldID": 61283,
+    "label": "ADA Accommodations",
+    "value": "<img alt=\"Image of a label with the word: Accessibility\" src=\"https://www.trumba.com/i/DgDwSTCO4qEMcIjTU7r7EVN4.png\" width=\"147\" style=\"max-width:100%;\" /><br />We can provide accommodations for people with disabilities at Library events. Please <a href=\"https://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">contact&#160;LEAP</a> at least seven days before the event to request accommodations.<br /><br />All Library programs are free and open to the public.&#160;&#160;<br />&#160;",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.spl.org/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D209046621",
+  "eventActionUrl": "https://www.trumba.com/eventactions/kalendaro#/actions/cux788fuxnyfvxn5t4vmsw9m07",
+  "categoryCalendar": "SPL Event Calendar",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 205956788,
+  "template": "",
+  "title": "CANCELLED - La Hora de Cuentos Familiares",
+  "description": "Durante la hora de cuentos, los ni&#241;os de 0 a 5 a&#241;os y sus familias pueden disfrutar de historias, canciones y divertidas actividades de aprendizaje.&#160;<br /><br /><strong>Evento en espa&#241;ol.</strong>",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://www.spl.org/hours-and-locations/south-park-branch\" target=\"_blank\">South Park Branch</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:00:00",
+  "endDateTime": "2026-10-17T10:30:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10&nbsp;&ndash;&nbsp;10:30am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": true,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Saturday through November 28, 2026",
+  "seriesID": 205956784,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgDMr7e1q1DYbsGP2vUyq23U.jpg",
+   "alt": "Dos imágenes. A la izquierda, un niño junto a un adulto que está leyendo. A la derecha, el exterior de la biblioteca.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgDMr7e1q1DYbsGP2vUyq23U.jpg",
+   "alt": "Dos imágenes. A la izquierda, un niño junto a un adulto que está leyendo. A la derecha, el exterior de la biblioteca.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 61980,
+    "label": "Location Link",
+    "value": "<a href=\"https://www.spl.org/hours-and-locations/south-park-branch\" target=\"_blank\">South Park Branch</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28780,
+    "label": "Room Location",
+    "value": "&#193;rea para ni&#241;os",
+    "type": 17
+   },
+   {
+    "fieldID": 61320,
+    "label": "Registration Required",
+    "value": "No se requiere inscripci&#243;n.",
+    "type": 17
+   },
+   {
+    "fieldID": 60857,
+    "label": "Detailed Description",
+    "value": "<img alt=\"Imagen de la etiqueta con el texto: Acerca de este evento\" src=\"https://www.trumba.com/i/DgBPbX28hR40Rvk2azgQodXy.png\" width=\"200\" style=\"max-width:100%;\" /><br />El aprendizaje temprano es una excelente manera para que los ni&#241;os de 0 a 5 a&#241;os y sus familias desarrollen habilidades de aprendizaje, alfabetizaci&#243;n y lenguaje, as&#237; como una comunidad con otras familias.<br /><br />Leemos cuentos, cantamos canciones y tenemos actividades educativas atractivas que ayudan a los ni&#241;os y sus cuidadores a crecer juntos.<br /><br /><strong>-------------------------------------------------------</strong><br /><br />At storytime, kids ages 0-5 and their families can enjoy stories, songs, and fun learning activities.<br /><br />Early Learning is a great way for kids ages 0-5 and their families to develop learning, literacy, and language skills as well as community with other families.<br /><br />We read stories, sing songs, and have engaging, educational activities that help kids and their caregivers grow together.",
+    "type": 1
+   },
+   {
+    "fieldID": 61975,
+    "label": "Event Logistics",
+    "value": "<img alt=\"Imagen de la etiqueta con el texto: Información\" src=\"https://www.trumba.com/i/DgDnDawO74I6Est-4-F7jRU-.png\" width=\"200\" style=\"max-width:100%;\" /><br />Este evento se llevar&#225; a cabo en espa&#241;ol.<br /><br />No se requiere inscripci&#243;n, pero estos programas son muy populares y la capacidad de la sala puede llenarse r&#225;pidamente.<br /><br />Las familias de todas las edades son bienvenidas, aunque este programa de aprendizaje temprano est&#225; dise&#241;ado para ni&#241;os de 0 a 5 a&#241;os, sus cuidadores y familias.<br /><br />Obtenga m&#225;s informaci&#243;n sobre los programas <a href=\"http://www.spl.org/programs-and-services/fun-and-games/story-time\" target=\"_blank\" rel=\"noopener\">Aprendizaje temprano y la hora de cuentos</a>.<br /><br /><strong>-------------------------------------------------------</strong><br /><br />This event will take place in Spanish.<br /><br />Registration is not required but these programs are very popular and the room capacity can fill up quickly.<br /><br />Families of all ages are welcome, though this early learning program is intended for youth aged 0-5, their caregivers and families.<br /><br />Find out more about <a href=\"https://www.spl.org/programs-and-services/fun-and-games/story-time\" target=\"_blank\" rel=\"noopener\">Early Learning &amp; Story Time</a> programs.",
+    "type": 1
+   },
+   {
+    "fieldID": 61284,
+    "label": "Contact Us",
+    "value": "<img alt=\"Imagen de la etiqueta con el texto: Contáctenos\" src=\"https://www.trumba.com/i/DgBXZepz8wnteXlLW%2AnkErrd.png\" width=\"200\" style=\"max-width:100%;\" /><br />Si tiene alguna pregunta sobre este evento,&#160;<a href=\"http://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">preg&#250;ntenos</a>&#160;o llame al 206-386-4636.<br /><br /><strong>-------------------------------------------------------</strong><br /><br />If you have questions about this event, <a href=\"https://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">Ask Us</a> or call 206-386-4636.",
+    "type": 1
+   },
+   {
+    "fieldID": 61283,
+    "label": "ADA Accommodations",
+    "value": "<img alt=\"Imagen de la etiqueta con el texto: Accesibilidad\" src=\"https://www.trumba.com/i/DgALli1cKwEVfhXdD8V52VOh.png\" width=\"200\" style=\"max-width:100%;\" /><br />Podemos ofrecer acomodamiento para personas con discapacidades en los eventos de la biblioteca. P&#243;ngase en&#160;contacto con <a href=\"http://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">LEAP</a>&#160;al menos siete d&#237;as antes del evento para solicitar acomodamiento.<br /><br />Todos los programas de la biblioteca son gratuitos y abiertos al p&#250;blico.<br /><br /><strong>-------------------------------------------------------</strong><br /><br />We can provide accommodations for people with disabilities at Library events. Please <a href=\"https://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">contact&#160;LEAP</a> at least seven days before the event to request accommodations.<br /><br />All Library programs are free and open to the public.",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.spl.org/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D205956788",
+  "eventActionUrl": "https://www.trumba.com/eventactions/kalendaro#/actions/wn18tktmgh2sapy7dbxnvwwfjw",
+  "categoryCalendar": "SPL Event Calendar",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 205959256,
+  "template": "Kalendaro Main Template",
+  "title": "Toddler Play Group",
+  "description": "A drop-in play group for toddlers and their families.",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://www.spl.org/hours-and-locations/ballard-branch\" target=\"_blank\">Ballard Branch</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:00:00",
+  "endDateTime": "2026-10-17T13:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10am&nbsp;&ndash;&nbsp;1pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Saturday through November 28, 2026",
+  "seriesID": 205959249,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgDKRS%2AbLYO-UqAZqH7bsnas.jpg",
+   "alt": "Two images. On the left side, two toddlers sitting on their adult's laps. On the right side, exterior of library.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgDKRS%2AbLYO-UqAZqH7bsnas.jpg",
+   "alt": "Two images. On the left side, two toddlers sitting on their adult's laps. On the right side, exterior of library.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 61980,
+    "label": "Location Link",
+    "value": "<a href=\"https://www.spl.org/hours-and-locations/ballard-branch\" target=\"_blank\">Ballard Branch</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28780,
+    "label": "Room Location",
+    "value": "Meeting Room",
+    "type": 17
+   },
+   {
+    "fieldID": 61320,
+    "label": "Registration Required",
+    "value": "Registration is not required.",
+    "type": 17
+   },
+   {
+    "fieldID": 60857,
+    "label": "Detailed Description",
+    "value": "<img alt=\"Image of a label with the words: About this event.\" src=\"https://www.trumba.com/i/DgBohZRAtMKeE3LJerr2C-0L.png\" width=\"147\" style=\"max-width:100%;\" /><br />Early Learning is a great way for toddlers and their families to develop learning, literacy, and language skills as well as community with other families.<br /><br />We play with toys, share books, socialize, and have engaging, educational activities that help kids and their caregivers grow together.",
+    "type": 1
+   },
+   {
+    "fieldID": 61975,
+    "label": "Event Logistics",
+    "value": "<img alt=\"Image of a label with the words: Information\" src=\"https://www.trumba.com/i/DgCMPU7fjf4bRpZl1rfOD36M.png\" width=\"147\" style=\"max-width:100%;\" /><br />Registration is not required but these programs are very popular and the room capacity can fill up quickly.<br /><br />Families of all ages are welcome, though this early learning program is intended for youth aged 1-3, their caregivers and families.<br /><br />Find out more about <a href=\"https://www.spl.org/programs-and-services/fun-and-games/story-time\" target=\"_blank\" rel=\"noopener\">Early Learning &amp; Story Time</a> programs.",
+    "type": 1
+   },
+   {
+    "fieldID": 61284,
+    "label": "Contact Us",
+    "value": "<img alt=\"Image of a label with the words: Contact us.\" src=\"https://www.trumba.com/i/DgB32CYHnGABZQ0H91yPaGlC.png\" width=\"147\" style=\"max-width:100%;\" /><br />If you have questions about this event, <a href=\"https://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">Ask Us</a> or call 206-386-4636.",
+    "type": 1
+   },
+   {
+    "fieldID": 61283,
+    "label": "ADA Accommodations",
+    "value": "<img alt=\"Image of a label with the word: Accessibility.\" src=\"https://www.trumba.com/i/DgDwSTCO4qEMcIjTU7r7EVN4.png\" width=\"147\" style=\"max-width:100%;\" /><br />We can provide accommodations for people with disabilities at Library events. Please <a href=\"https://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">contact&#160;LEAP</a> at least seven days before the event to request accommodations.<br /><br />All Library programs are free and open to the public.<br />&#160;",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.spl.org/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D205959256",
+  "eventActionUrl": "https://www.trumba.com/eventactions/kalendaro#/actions/w8zxhxs901zbf5gczv23et26c3",
+  "categoryCalendar": "SPL Event Calendar",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 205995537,
+  "template": "Kalendaro Main Template",
+  "title": "Adult Tutoring",
+  "description": "Meet with a volunteer tutor one-on-one or in a small group for help with basic skills for English, writing, math, citizenship interview and exam, and high school completion.",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://www.spl.org/hours-and-locations/broadview-branch\" target=\"_blank\">Broadview Branch</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:30:00",
+  "endDateTime": "2026-10-17T12:30:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10:30am&nbsp;&ndash;&nbsp;12:30pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Saturday through December 19, 2026",
+  "seriesID": 205995530,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgCCl0ovyi9tkt5O4EPj1SHz.jpg",
+   "alt": "Two images. On the left side, two adults sitting and talking at a table. On the right side, exterior of library location.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgCCl0ovyi9tkt5O4EPj1SHz.jpg",
+   "alt": "Two images. On the left side, two adults sitting and talking at a table. On the right side, exterior of library location.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 61980,
+    "label": "Location Link",
+    "value": "<a href=\"https://www.spl.org/hours-and-locations/broadview-branch\" target=\"_blank\">Broadview Branch</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 61320,
+    "label": "Registration Required",
+    "value": "Registration is not required.",
+    "type": 17
+   },
+   {
+    "fieldID": 60857,
+    "label": "Detailed Description",
+    "value": "<img src=\"https://www.trumba.com/i/DgDtDTu7N7pBcaOsVNF9hLJn.png\" alt=\"About this event\" width=\"147\" style=\"max-width:100%;\" /><br />Visit anytime between 10:30 am - 12:30 pm on Saturdays to practice with a volunteer tutor.<ul><li value=\"1\">Learn basic skills: English language (including ESOL), reading, writing, and math.</li><li value=\"2\">Work towards educational goals: high school diploma, GED, college application essay and placement tests, and college degree.</li><li value=\"3\">Prepare for US citizenship: interview and 100 civics questions.</li></ul>Thanks to our sponsor&#160;<a href=\"https://supportspl.org/\" target=\"_blank\" rel=\"noopener\">The Seattle Public Library Foundation</a>.",
+    "type": 1
+   },
+   {
+    "fieldID": 61975,
+    "label": "Event Logistics",
+    "value": "<img alt=\"Information\" src=\"https://www.trumba.com/i/DgCWCAQO5xP6Jx8TWnvfv87I.png\" width=\"147\" style=\"max-width:100%;\" /><br />Books &amp; materials provided.<br /><br />This is a drop-in program (pre-registration is not required) but space is limited by the number of tutors available.<br /><br />Learners will be assigned a tutor on a first-come, first-served basis and the duration of tutoring sessions may be limited to serve as many learners as possible.",
+    "type": 1
+   },
+   {
+    "fieldID": 61284,
+    "label": "Contact Us",
+    "value": "<img alt=\"Contact us\" src=\"https://www.trumba.com/i/DgCiudtVMpHLhPdSQYOyxqep.png\" width=\"147\" style=\"max-width:100%;\" /><br />If you have questions about this event, <a href=\"https://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">Ask Us</a> or call 206-386-4636.",
+    "type": 1
+   },
+   {
+    "fieldID": 61283,
+    "label": "ADA Accommodations",
+    "value": "<img alt=\"Accessibility\" src=\"https://www.trumba.com/i/DgBQP4tzWw%2ASXm2KLrhcf5o4.png\" width=\"147\" style=\"max-width:100%;\" /><br />We can provide accommodations for people with disabilities at Library events. Please <a href=\"https://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">contact&#160;LEAP</a> at least seven days before the event to request accommodations.<br /><br />All Library programs are free and open to the public.<br />&#160;",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.spl.org/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D205995537",
+  "eventActionUrl": "https://www.trumba.com/eventactions/kalendaro#/actions/czekekvt4cggnbmwumbmkt7334",
+  "categoryCalendar": "SPL Event Calendar",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 205759899,
+  "template": "Kalendaro Main Template",
+  "title": "Arabic Story Time / &#1608;&#1602;&#1578; &#1575;&#1604;&#1602;&#1589;&#1589; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;",
+  "description": "At storytime, children from birth through elementary school and their families&#160;can enjoy stories, songs, and fun learning activities.<br /><br />Event in <strong>English </strong>and<strong> Arabic</strong>.<br /><br /><strong>---------------------------------------------------------------------------------------------</strong><p align=\"right\">&#1601;&#1610; &#1608;&#1602;&#1578; &#1575;&#1604;&#1602;&#1589;&#1589;&#1548; &#1610;&#1605;&#1603;&#1606; &#1604;&#1604;&#1571;&#1591;&#1601;&#1575;&#1604; &#1575;&#1604;&#1584;&#1610;&#1606; &#1578;&#1578;&#1585;&#1575;&#1608;&#1581; &#1571;&#1593;&#1605;&#1575;&#1585;&#1607;&#1605; &#1605;&#1606; &#1581;&#1583;&#1610;&#1579;&#1610; &#1575;&#1604;&#1608;&#1604;&#1575;&#1583;&#1577; &#1608;&#1581;&#1578;&#1609; &#1587;&#1606; &#1575;&#1604;&#1582;&#1575;&#1605;&#1587;&#1577; &#1608;&#1593;&#1575;&#1574;&#1604;&#1575;&#1578;&#1607;&#1605; &#1575;&#1604;&#1575;&#1587;&#1578;&#1605;&#1578;&#1575;&#1593; &#1576;&#1575;&#1604;&#1602;&#1589;&#1589; &#1608;&#1575;&#1604;&#1571;&#1594;&#1575;&#1606;&#1610; &#1608;&#1571;&#1606;&#1588;&#1591;&#1577; &#1575;&#1604;&#1578;&#1593;&#1604;&#1617;&#1615;&#1605; &#1575;&#1604;&#1605;&#1585;&#1581;&#1577;.</p><p align=\"right\">&#1606;&#1585;&#1581;&#1576; &#1576;&#1575;&#1604;&#1593;&#1575;&#1574;&#1604;&#1575;&#1578; &#1605;&#1606; &#1580;&#1605;&#1610;&#1593; &#1575;&#1604;&#1571;&#1593;&#1605;&#1575;&#1585;.</p><p align=\"right\">&#1610;&#1615;&#1593;&#1602;&#1583; &#1575;&#1604;&#1581;&#1583;&#1579; &#1576;&#1575;&#1604;&#1604;&#1594;&#1577; <strong>&#1575;&#1604;&#1573;&#1606;&#1580;&#1604;&#1610;&#1586;&#1610;&#1577; </strong>&#1608;<strong>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</strong></p>",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://www.spl.org/hours-and-locations/lake-city-branch\" target=\"_blank\">Lake City Branch</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:30:00",
+  "endDateTime": "2026-10-17T11:30:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10:30&nbsp;&ndash;&nbsp;11:30am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Saturday through November 28, 2026",
+  "seriesID": 205759893,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgApudeMAbz68UhRB94XWzXn.jpg",
+   "alt": "Two images. On the left side, an adult reading a book with a child. On the right side, exterior of library location/ صورتان. على الجانب الأيسر، شخص بالغ يقرأ كتابًا بصحبة طفل. على الجانب الأيمن، واجهة مبنى المكتبة.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgApudeMAbz68UhRB94XWzXn.jpg",
+   "alt": "Two images. On the left side, an adult reading a book with a child. On the right side, exterior of library location/ صورتان. على الجانب الأيسر، شخص بالغ يقرأ كتابًا بصحبة طفل. على الجانب الأيمن، واجهة مبنى المكتبة.",
+   "size": {
+    "width": 1196,
+    "height": 836
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 61980,
+    "label": "Location Link",
+    "value": "<a href=\"https://www.spl.org/hours-and-locations/lake-city-branch\" target=\"_blank\">Lake City Branch</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28780,
+    "label": "Room Location",
+    "value": "Meeting Room",
+    "type": 17
+   },
+   {
+    "fieldID": 61320,
+    "label": "Registration Required",
+    "value": "Registration is not required.",
+    "type": 17
+   },
+   {
+    "fieldID": 60857,
+    "label": "Detailed Description",
+    "value": "<img src=\"https://www.trumba.com/i/DgB6Eqpt9vtJ3VsK9xRn8cUI.png?ver=1779920094388\" alt=\"صورة للملصق تحمل العبارة: معلومات حول هذا الحدث / Image of the label with the words: About this event\" width=\"347\" style=\"max-width:100%;\" /><br />Early Learning is a great way for kids ages 0-5 and their families to develop learning, literacy, and language skills as well as community with other families.<br /><br />We read stories, sing songs, and have engaging, educational activities that help kids and their caregivers grow together.<br /><br /><strong><strong>------------------------------------------------------------------------------------------</strong></strong><p><strong><strong>&#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578; &#1593;&#1606; &#1607;&#1584;&#1575; &#1575;&#1604;&#1581;&#1583;&#1579;</strong></strong></p><p><strong><strong>&#1608;&#1602;&#1578; &#1575;&#1604;&#1602;&#1589;&#1589; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; &#1601;&#1610; &#1601;&#1585;&#1593; &#1604;&#1610;&#1603; &#1587;&#1610;&#1578;&#1610;</strong></strong></p><p>&#1610;&#1615;&#1593;&#1583;&#1617;&#1614; &#1575;&#1604;&#1578;&#1593;&#1604;&#1617;&#1615;&#1605; &#1575;&#1604;&#1605;&#1576;&#1603;&#1585; &#1591;&#1585;&#1610;&#1602;&#1577; &#1585;&#1575;&#1574;&#1593;&#1577; &#1604;&#1604;&#1571;&#1591;&#1601;&#1575;&#1604; &#1575;&#1604;&#1584;&#1610;&#1606; &#1578;&#1578;&#1585;&#1575;&#1608;&#1581; &#1571;&#1593;&#1605;&#1575;&#1585;&#1607;&#1605; &#1605;&#1606; &#1581;&#1583;&#1610;&#1579;&#1610; &#1575;&#1604;&#1608;&#1604;&#1575;&#1583;&#1577; &#1608;&#1581;&#1578;&#1609; &#1587;&#1606; &#1575;&#1604;&#1582;&#1575;&#1605;&#1587;&#1577; &#1608;&#1593;&#1575;&#1574;&#1604;&#1575;&#1578;&#1607;&#1605; &#1604;&#1578;&#1591;&#1608;&#1610;&#1585; &#1605;&#1607;&#1575;&#1585;&#1575;&#1578; &#1575;&#1604;&#1578;&#1593;&#1604;&#1617;&#1615;&#1605; &#1608;&#1575;&#1604;&#1602;&#1585;&#1575;&#1569;&#1577; &#1608;&#1575;&#1604;&#1603;&#1578;&#1575;&#1576;&#1577; &#1608;&#1575;&#1604;&#1605;&#1607;&#1575;&#1585;&#1575;&#1578; &#1575;&#1604;&#1604;&#1594;&#1608;&#1610;&#1577;&#1548; &#1576;&#1575;&#1604;&#1573;&#1590;&#1575;&#1601;&#1577; &#1573;&#1604;&#1609; &#1575;&#1604;&#1605;&#1607;&#1575;&#1585;&#1575;&#1578; &#1575;&#1604;&#1575;&#1580;&#1578;&#1605;&#1575;&#1593;&#1610;&#1577; &#1605;&#1593; &#1575;&#1604;&#1593;&#1575;&#1574;&#1604;&#1575;&#1578; &#1575;&#1604;&#1571;&#1582;&#1585;&#1609;.</p><p>&#1606;&#1602;&#1585;&#1571; &#1575;&#1604;&#1602;&#1589;&#1589; &#1608;&#1606;&#1594;&#1606;&#1610; &#1575;&#1604;&#1571;&#1594;&#1575;&#1606;&#1610; &#1608;&#1606;&#1615;&#1606;&#1601;&#1584; &#1571;&#1606;&#1588;&#1591;&#1577; &#1578;&#1593;&#1604;&#1610;&#1605;&#1610;&#1577; &#1580;&#1584;&#1617;&#1575;&#1576;&#1577; &#1578;&#1587;&#1575;&#1593;&#1583; &#1575;&#1604;&#1571;&#1591;&#1601;&#1575;&#1604; &#1608;&#1605;&#1606; &#1610;&#1585;&#1593;&#1575;&#1607;&#1605; &#1593;&#1604;&#1609; &#1575;&#1604;&#1606;&#1605;&#1608; &#1605;&#1593;&#1611;&#1575;</p>",
+    "type": 1
+   },
+   {
+    "fieldID": 61975,
+    "label": "Event Logistics",
+    "value": "<img src=\"https://www.trumba.com/i/DgBAmbRnsIK0JwQX1CBKfnAQ.png?ver=1779920105858\" alt=\"صورة للملصق تحمل العبارة: معلومات / Image of the label with the words: Information\" width=\"347\" style=\"max-width:100%;\" /><br />Registration is not required but these programs are very popular and the room capacity can fill up quickly.&#160;&#160;<br /><br />Doors to the meeting room will open at 10:25 am.<br /><br />Families of all ages are welcome.<br /><br />Event in<strong><strong> English</strong></strong> and <strong><strong>Arabic</strong></strong>.<br /><br /><strong><strong>------------------------------------------------------------------------------------------</strong></strong><p><strong><strong>&#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578;</strong></strong></p><p>&#1604;&#1575; &#1610;&#1604;&#1586;&#1605; &#1575;&#1604;&#1578;&#1587;&#1580;&#1610;&#1604;&#1548; &#1573;&#1604;&#1575; &#1571;&#1606; &#1607;&#1584;&#1607; &#1575;&#1604;&#1576;&#1585;&#1575;&#1605;&#1580; &#1585;&#1575;&#1574;&#1580;&#1577; &#1580;&#1583;&#1611;&#1575; &#1608;&#1602;&#1583; &#1578;&#1605;&#1578;&#1604;&#1574; &#1575;&#1604;&#1587;&#1593;&#1577; &#1575;&#1604;&#1605;&#1582;&#1589;&#1589;&#1577; &#1604;&#1604;&#1594;&#1585;&#1601;&#1577; &#1576;&#1587;&#1585;&#1593;&#1577;.</p><p>&#1610;&#1587;&#1593;&#1583;&#1606;&#1575; &#1575;&#1587;&#1578;&#1602;&#1576;&#1575;&#1604; &#1575;&#1604;&#1593;&#1575;&#1574;&#1604;&#1575;&#1578; &#1605;&#1606; &#1580;&#1605;&#1610;&#1593; &#1575;&#1604;&#1571;&#1593;&#1605;&#1575;&#1585;&#1548; &#1593;&#1604;&#1609; &#1575;&#1604;&#1585;&#1594;&#1605; &#1605;&#1606; &#1571;&#1606; &#1576;&#1585;&#1606;&#1575;&#1605;&#1580; &#1575;&#1604;&#1578;&#1593;&#1604;&#1617;&#1615;&#1605; &#1575;&#1604;&#1605;&#1576;&#1603;&#1585; &#1607;&#1584;&#1575; &#1605;&#1582;&#1589;&#1617;&#1614;&#1589; &#1604;&#1604;&#1571;&#1591;&#1601;&#1575;&#1604; &#1575;&#1604;&#1584;&#1610;&#1606; &#1578;&#1578;&#1585;&#1575;&#1608;&#1581; &#1571;&#1593;&#1605;&#1575;&#1585;&#1607;&#1605; &#1605;&#1606; &#1581;&#1583;&#1610;&#1579;&#1610; &#1575;&#1604;&#1608;&#1604;&#1575;&#1583;&#1577; &#1608;&#1581;&#1578;&#1609; &#1587;&#1606; &#1575;&#1604;&#1582;&#1575;&#1605;&#1587;&#1577; &#1608;&#1605;&#1602;&#1583;&#1617;&#1616;&#1605;&#1610; &#1575;&#1604;&#1585;&#1593;&#1575;&#1610;&#1577; &#1604;&#1607;&#1605; &#1608;&#1571;&#1587;&#1585;&#1607;&#1605;.</p><p>&#1587;&#1578;&#1601;&#1578;&#1581; &#1594;&#1585;&#1601;&#1577; &#1575;&#1604;&#1575;&#1580;&#1578;&#1605;&#1575;&#1593;&#1575;&#1578; &#1571;&#1576;&#1608;&#1575;&#1576;&#1607;&#1575; &#1601;&#1610; &#1575;&#1604;&#1587;&#1575;&#1593;&#1577; 10:25 &#1589;&#1576;&#1575;&#1581;&#1575;<br />&#160;</p>",
+    "type": 1
+   },
+   {
+    "fieldID": 61284,
+    "label": "Contact Us",
+    "value": "<img src=\"https://www.trumba.com/i/DgBPX59Mjj3uj34lQXr6yoo1.png?ver=1779920111955\" alt=\"صورة للملصق تحمل العبارة: تواصل معنا / Image of the label with the words: Contact Us\" width=\"347\" style=\"max-width:100%;\" /><br />If you have questions about this event, <a href=\"https://www.spl.org/ask\" target=\"_blank\" rel=\"noopener\">Ask Us</a> or call 206-386-4636.",
+    "type": 1
+   },
+   {
+    "fieldID": 61283,
+    "label": "ADA Accommodations",
+    "value": "<img src=\"https://www.trumba.com/i/DgBLPxkHtFm5FfV1kYPOa7PD.png?ver=1779920118518\" alt=\"صورة للملصق تحمل العبارة: إمكانية الوصول / Image of the label with the words: Accessibility\" width=\"347\" style=\"max-width:100%;\" /><br />We can provide accommodations for people with disabilities at Library events. Please <a href=\"https://www.spl.org/using-the-library/accessibility/americans-with-disabilities-act/ada-accommodation-request\" target=\"_blank\" rel=\"noopener\">contact&#160;LEAP</a> at least seven days before the event to request accommodations.<br /><br />&#160;All Library programs are free and open to the public.",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.spl.org/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D205759899",
+  "eventActionUrl": "https://www.trumba.com/eventactions/kalendaro#/actions/wefmjcmw4sxn29bdem7xafy0hk",
+  "categoryCalendar": "SPL Event Calendar",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ }
+]

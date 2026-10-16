@@ -1,0 +1,6 @@
+{
+  "unit": "boston_food_openings@boston",
+  "source": "docs/research/samples/boston_food_establishment_licenses_new.json",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}

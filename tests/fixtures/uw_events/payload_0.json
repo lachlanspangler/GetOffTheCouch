@@ -1,0 +1,336 @@
+[
+ {
+  "eventID": 206158236,
+  "template": "Generic UW Event",
+  "title": "I will carry you over on my back: 2026 Fall MFA Show",
+  "description": "<em><em>I will carry you over on my back</em></em>, this year&#8217;s iteration of our annual fall MFA show, meditates on accumulation, the underground, labor &amp; capacity, and the movement of systems and objects toward loss, disrepair, and failure. Spanning performance, installation, sound art, and found object sculpture, we look forward to sharing all that Jayden Dukes, Gaeun Kim, Cameron McGaff, and Skye Amber O&#8217;Brien have been working on.<br /><br /><br />Paired with the exhibition, the cohort has produced a publication featured a commissioned essay by Troy Sherman. The publication will printed in an edition of 300 and will be available for free in the gallery.",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://maps.google.com/maps?q=47.658392,-122.306461&amp;t=k&amp;z=18\" target=\"_blank\">Art Building (ART)</a>",
+  "webLink": "",
+  "startDateTime": "2026-09-30T00:00:00",
+  "endDateTime": "2026-11-08T00:00:00",
+  "dateTimeFormatted": "Ongoing through Saturday, November 7, 2026",
+  "allDay": true,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0800",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": true,
+  "pastCancelDeadline": true,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 30051,
+    "label": "Event interval",
+    "value": "Ongoing event",
+    "type": 17
+   },
+   {
+    "fieldID": 30032,
+    "label": "Campus location",
+    "value": "<a href=\"https://maps.google.com/maps?q=47.658392,-122.306461&amp;t=k&amp;z=18\" target=\"_blank\">Art Building (ART)</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28429,
+    "label": "Campus room",
+    "value": "Jacob Lawrence Gallery",
+    "type": 0
+   },
+   {
+    "fieldID": 62969,
+    "label": "Accessibility Contact",
+    "value": "<a href=\"mailto:jacoblawrencegallery@uw.edu\" target=\"_blank\" rel=\"noopener\">jacoblawrencegallery@uw.edu</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 30073,
+    "label": "Event Types",
+    "value": "Exhibits",
+    "type": 17
+   }
+  ],
+  "permaLinkUrl": "https://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D206158236",
+  "eventActionUrl": "https://www.trumba.com/eventactions/sea_campus#/actions/ce34dygw2m5nfhczb8gvwedpzh",
+  "categoryCalendar": "UW Seattle Campus Events",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 209063433,
+  "template": "Generic UW Event",
+  "title": "[EXHIBIT] Treasures of the Tateuchi East Asia Library: Preserving the Past, Inspiring the Future",
+  "description": "In celebration of the Tateuchi East Asia Library&#8217;s 90th Anniversary in 2027, this exhibition showcases remarkable treasures from TEAL&#8217;s collections, including rare books, manuscripts, maps, woodblocks, musical scores, and newly acquired materials. Discover the rich histories and cultures of East Asia and the story of TEAL&#8217;s nearly nine decades of collecting and preserving knowledge.<br /><br />**<strong><strong> There will be a hands-on workshop led by the Tateuchi East Asia Librarians on February 10, 2027</strong></strong>. If you are interested in attending, please register via <a href=\"https://lib.uw.edu/about/news-events/calendar/?trumbaEmbed=view%3Devent%26eventid%3D209063558\" target=\"_blank\" rel=\"noopener\">this page</a>.",
+  "locationType": "In-Person",
+  "location": "<a href=\"https://maps.google.com/maps?q=47.6563719998,-122.307748&amp;t=k&amp;z=18\" target=\"_blank\">Gowen Hall (GWN)</a>",
+  "webLink": "",
+  "startDateTime": "2026-09-30T00:00:00",
+  "endDateTime": "2027-06-12T00:00:00",
+  "dateTimeFormatted": "Ongoing through Friday, June 11, 2027",
+  "allDay": true,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": true,
+  "pastCancelDeadline": true,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgCqsU2ApFeCbibxgpGeW%2AkA.jpg",
+   "alt": "Image of the poster with a title of Treasures of the Tateuchi East Asia Library",
+   "size": {
+    "width": 929,
+    "height": 1076
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgCqsU2ApFeCbibxgpGeW%2AkA.jpg",
+   "alt": "Image of the poster with a title of Treasures of the Tateuchi East Asia Library",
+   "size": {
+    "width": 929,
+    "height": 1076
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 30051,
+    "label": "Event interval",
+    "value": "Ongoing event",
+    "type": 17
+   },
+   {
+    "fieldID": 30032,
+    "label": "Campus location",
+    "value": "<a href=\"https://maps.google.com/maps?q=47.6563719998,-122.307748&amp;t=k&amp;z=18\" target=\"_blank\">Gowen Hall (GWN)</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 28429,
+    "label": "Campus room",
+    "value": "Tateuchi East Asia Library&#39;s George M. Beckmann Reading Room (Gowen 3rd)",
+    "type": 0
+   },
+   {
+    "fieldID": 62969,
+    "label": "Accessibility Contact",
+    "value": "<a href=\"mailto:hkyi@uw.edu\" target=\"_blank\" rel=\"noopener\">hkyi@uw.edu</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 30073,
+    "label": "Event Types",
+    "value": "Exhibits",
+    "type": 17
+   },
+   {
+    "fieldID": 30383,
+    "label": "Event sponsors",
+    "value": "Tateuchi East Asia Library",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D209063433",
+  "eventActionUrl": "https://www.trumba.com/eventactions/sea_campus#/actions/chxr7mssr4bd8tu586azugvegu",
+  "categoryCalendar": "UW Seattle Campus Events",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 210012235,
+  "template": "Generic UW Event",
+  "title": "UWCFD Holiday Evergreen Sale",
+  "description": "The UWCFD is delighted to once again offer our holiday evergreen sale, benefiting our 2026 featured nonprofit, <a href=\"https://hr.uw.edu/cfd/annual-campaign/2026-featured-nonprofit-american-cancer-society/\" target=\"_blank\" rel=\"noopener\">American Cancer Society.</a><br /><br />Show your support this season with the purchase of a beautiful evergreen wreath or door swag. Choose one or more of these beauties and your order will help make the world a little brighter for a neighbor in need. Items will be available for pick up on campus the first full week of December or can be shipped directly to your home.<br /><br />Place your order by November 8, 2026:",
+  "locationType": "In-Person",
+  "location": "",
+  "webLink": "<a href=\"https://hr.uw.edu/cfd/2026/09/25/our-annual-holiday-evergreen-sale-is-back-for-2026/\" target=\"_blank\" rel=\"noopener\" title=\"https://hr.uw.edu/cfd/2026/09/25/our-annual-holiday-evergreen-sale-is-back-for-2026/\">hr.uw.edu&#8230;</a>",
+  "startDateTime": "2026-10-01T00:00:00",
+  "endDateTime": "2026-11-09T00:00:00",
+  "dateTimeFormatted": "Ongoing through Sunday, November 8, 2026",
+  "allDay": true,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0800",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": true,
+  "pastCancelDeadline": true,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgC3A-uXBEPvE2iRAO9moqHZ.jpg",
+   "alt": "",
+   "size": {
+    "width": 300,
+    "height": 300
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgC3A-uXBEPvE2iRAO9moqHZ.jpg",
+   "alt": "",
+   "size": {
+    "width": 300,
+    "height": 300
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 30051,
+    "label": "Event interval",
+    "value": "Ongoing event",
+    "type": 17
+   },
+   {
+    "fieldID": 62969,
+    "label": "Accessibility Contact",
+    "value": "<a href=\"mailto:uwcfd@uw.edu\" target=\"_blank\" rel=\"noopener\">uwcfd@uw.edu</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 30073,
+    "label": "Event Types",
+    "value": "Not Specified",
+    "type": 17
+   }
+  ],
+  "permaLinkUrl": "https://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D210012235",
+  "eventActionUrl": "https://www.trumba.com/eventactions/sea_campus#/actions/8rdb02a4zkccpn0emndwda8sem",
+  "categoryCalendar": "UW Seattle Campus Events",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 209774148,
+  "template": "Generic UW Event",
+  "title": "UWCFD Coffee Card Kickoff 2026",
+  "description": "Pledge $5 or more, increase an existing gift by $5 or more or log one hour of volunteer time to a CFD member nonprofit and you are eligible to receive a $5 Starbucks gift card compliments of WSECU.<br /><br /><br /><br /><br />Limit of one card per donor",
+  "locationType": "In-Person",
+  "location": "",
+  "webLink": "<a href=\"https://hr.uw.edu/cfd/2026/09/25/give-a-little-get-a-latte-first-week-to-give-is-here/\" target=\"_blank\" rel=\"noopener\" title=\"https://hr.uw.edu/cfd/2026/09/25/give-a-little-get-a-latte-first-week-to-give-is-here/\">hr.uw.edu&#8230;</a>",
+  "startDateTime": "2026-10-13T00:00:00",
+  "endDateTime": "2026-10-21T00:00:00",
+  "dateTimeFormatted": "Ongoing through Tuesday, October 20, 2026",
+  "allDay": true,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": true,
+  "pastCancelDeadline": true,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgByIqhldkcIHfOOM2noXX2r.jpg",
+   "alt": "",
+   "size": {
+    "width": 1225,
+    "height": 816
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgByIqhldkcIHfOOM2noXX2r.jpg",
+   "alt": "",
+   "size": {
+    "width": 1225,
+    "height": 816
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 30051,
+    "label": "Event interval",
+    "value": "Single day event",
+    "type": 17
+   },
+   {
+    "fieldID": 62969,
+    "label": "Accessibility Contact",
+    "value": "Disability Services Office",
+    "type": 0
+   },
+   {
+    "fieldID": 30073,
+    "label": "Event Types",
+    "value": "Not Specified",
+    "type": 17
+   }
+  ],
+  "permaLinkUrl": "https://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D209774148",
+  "eventActionUrl": "https://www.trumba.com/eventactions/sea_campus#/actions/08t1cpfux4ku0ezcbs1zgd369a",
+  "categoryCalendar": "UW Seattle Campus Events",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 209774146,
+  "template": "Generic UW Event",
+  "title": "UWCFD Online Auction",
+  "description": "Get a jump on your holiday shopping while supporting a great cause. Bid on some fantastic items and help and support this year&#39;s featured nonprofit, <a href=\"https://hr.uw.edu/cfd/annual-campaign/2026-featured-nonprofit-american-cancer-society/\" target=\"_blank\" rel=\"noopener\">American Cancer Society</a> at the same time. That&#39;s a win-win.",
+  "locationType": "In-Person",
+  "location": "",
+  "webLink": "",
+  "startDateTime": "2026-10-13T08:00:00",
+  "endDateTime": "2026-10-20T17:00:00",
+  "dateTimeFormatted": "Ongoing through Tuesday, October 20, 2026, 5pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": true,
+  "pastCancelDeadline": true,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgCGQ1csncL2HTDfbUZy9Q2j.jpg",
+   "alt": "",
+   "size": {
+    "width": 550,
+    "height": 550
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgCGQ1csncL2HTDfbUZy9Q2j.jpg",
+   "alt": "",
+   "size": {
+    "width": 550,
+    "height": 550
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 30051,
+    "label": "Event interval",
+    "value": "Single day event",
+    "type": 17
+   },
+   {
+    "fieldID": 62969,
+    "label": "Accessibility Contact",
+    "value": "<a href=\"mailto:uwcfd@uw.edu\" target=\"_blank\" rel=\"noopener\">uwcfd@uw.edu</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 30073,
+    "label": "Event Types",
+    "value": "Not Specified",
+    "type": 17
+   }
+  ],
+  "permaLinkUrl": "https://www.washington.edu/calendar/?trumbaEmbed=view%3Devent%26eventid%3D209774146",
+  "eventActionUrl": "https://www.trumba.com/eventactions/sea_campus#/actions/43p8v5jekzwat3sj3xkggmja9s",
+  "categoryCalendar": "UW Seattle Campus Events",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ }
+]

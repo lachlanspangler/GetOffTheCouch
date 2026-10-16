@@ -1,0 +1,174 @@
+{
+  "docs": {
+    "count": 318,
+    "docs": [
+      {
+        "_id": "6aced161e73a019242a2ec39",
+        "recid": "90375",
+        "title": "Boston Asian American Film Festival",
+        "date": "2026-10-17T03:59:59.000Z",
+        "startDate": "2026-10-15T04:00:00.000Z",
+        "endDate": "2026-10-26T03:59:59.000Z",
+        "location": "Various Locations",
+        "address1": "Various Boston Locations",
+        "city": "Boston",
+        "latitude": 42.3555076,
+        "longitude": -71.0565364,
+        "url": "/event/boston-asian-american-film-festival/90375/",
+        "categories": [
+          {
+            "catName": "Festivals, Fairs & Special Events",
+            "catId": "86"
+          },
+          {
+            "catName": "Cross Cultural",
+            "catId": "135"
+          },
+          {
+            "catName": "Asian Culture",
+            "catId": "183"
+          },
+          {
+            "catName": "Seasonal Picks",
+            "catId": "215"
+          },
+          {
+            "catName": "Films/Movies",
+            "catId": "216"
+          }
+        ],
+        "linkUrl": "https://baaff.org/",
+        "recurType": 99,
+        "nextDate": "2026-10-16T03:59:59.000Z"
+      },
+      {
+        "_id": "6accf30aa9aea6f65a1e61ad",
+        "recid": "93400",
+        "title": "Cityside Pumpkin Patch",
+        "date": "2026-10-17T03:59:59.000Z",
+        "startDate": "2026-10-03T04:00:00.000Z",
+        "endDate": "2026-10-28T03:59:59.000Z",
+        "location": "The Raw Bar at Island Creek Oysters, Seaport",
+        "address1": "99 Autumn Lane",
+        "city": "Boston",
+        "latitude": 42.3506986,
+        "longitude": -71.0458605,
+        "url": "/event/cityside-pumpkin-patch/93400/",
+        "categories": [
+          {
+            "catName": "Festivals, Fairs & Special Events",
+            "catId": "86"
+          },
+          {
+            "catName": "Farmer's Markets",
+            "catId": "178"
+          }
+        ],
+        "admission": "Starting at $14",
+        "linkUrl": "https://www.bostonseaport.xyz/event/cityside-pumpkin-patch",
+        "recurType": 99,
+        "nextDate": "2026-10-15T03:59:59.000Z",
+        "listing": {
+          "title": "The Raw Bar at Island Creek Oysters"
+        }
+      },
+      {
+        "_id": "6acac032a9aea6f65ac02191",
+        "recid": "93621",
+        "title": "Oktoberfest",
+        "date": "2026-10-17T03:59:59.000Z",
+        "startDate": "2026-10-02T04:00:00.000Z",
+        "endDate": "2026-10-19T03:59:59.000Z",
+        "location": "Dockside Beer Garden",
+        "address1": "New England Aquarium",
+        "city": "Boston",
+        "zip": "02110",
+        "latitude": 42.3592478,
+        "longitude": -71.0491475,
+        "url": "/event/oktoberfest/93621/",
+        "categories": [
+          {
+            "catName": "Festivals, Fairs & Special Events",
+            "catId": "86"
+          },
+          {
+            "catName": "Craft Beer",
+            "catId": "132"
+          }
+        ],
+        "linkUrl": "https://www.neaq.org/visit/dining-and-shopping/",
+        "startTime": "12:00:00",
+        "endTime": "19:00:00",
+        "recurType": 99,
+        "nextDate": "2026-10-11T03:59:59.000Z",
+        "listing": {
+          "title": "New England Aquarium"
+        }
+      },
+      {
+        "_id": "6aceed0ee73a019242a81cb4",
+        "recid": "92867",
+        "title": "The Head Of The Charles Regatta",
+        "date": "2026-10-17T03:59:59.000Z",
+        "startDate": "2026-10-16T04:00:00.000Z",
+        "endDate": "2026-10-19T03:59:59.000Z",
+        "location": "Charles River, Cambridge",
+        "address1": "Charles River",
+        "city": "Cambridge",
+        "latitude": 42.35325,
+        "longitude": -71.10777,
+        "url": "/event/the-head-of-the-charles-regatta/92867/",
+        "categories": [
+          {
+            "catName": "Festivals, Fairs & Special Events",
+            "catId": "86"
+          },
+          {
+            "catName": "Free",
+            "catId": "90"
+          },
+          {
+            "catName": "Sports & Recreation",
+            "catId": "93"
+          },
+          {
+            "catName": "Seasonal Picks",
+            "catId": "215"
+          }
+        ],
+        "linkUrl": "https://www.meetboston.com/events/festivals-and-special-events/head-of-the-charles/",
+        "recurType": 99,
+        "nextDate": "2026-10-17T03:59:59.000Z"
+      },
+      {
+        "_id": "6ac92866a9aea6f65a791749",
+        "recid": "93561",
+        "title": "French Market Rotisserie Night 🇫🇷",
+        "date": "2026-10-17T03:59:59.000Z",
+        "startDate": "2026-10-16T04:00:00.000Z",
+        "endDate": "2026-10-17T03:59:59.000Z",
+        "location": "Batifol",
+        "address1": "Batifol",
+        "city": "Cambridge",
+        "zip": "02142",
+        "latitude": 42.3648049,
+        "longitude": -71.0831961,
+        "url": "/event/french-market-rotisserie-night-%f0%9f%87%ab%f0%9f%87%b7/93561/",
+        "categories": [
+          {
+            "catName": "Food & Wine",
+            "catId": "89"
+          }
+        ],
+        "linkUrl": "https://www.opentable.com/booking/experiences-availability?rid=1257181&restref=1257181&experienceId=816570&utm_source=external&utm_medium=referral&utm_campaign=shared",
+        "startTime": "16:00:00",
+        "endTime": "22:00:00",
+        "recurType": 0,
+        "nextDate": "2026-10-17T03:59:59.000Z",
+        "listing": {
+          "title": "Batifol"
+        }
+      }
+    ]
+  }
+}

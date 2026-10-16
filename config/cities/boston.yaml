@@ -1,0 +1,143 @@
+# Boston, MA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.4 and docs/SOURCES.md).
+slug: boston
+name: Boston
+state: MA
+timezone: America/New_York
+center: [42.3601, -71.0589]
+radius_km: 20
+aliases: [Cambridge, Somerville, Brookline, Allston, Brighton, Dorchester, Roxbury, Jamaica Plain, Charlestown, Quincy, Medford, Newton, Chelsea, East Boston]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Financial District, lat: 42.3555, lon: -71.0565 }
+  - { name: Back Bay, lat: 42.3503, lon: -71.0810 }
+  - { name: Beacon Hill, lat: 42.3588, lon: -71.0707 }
+  - { name: North End, lat: 42.3647, lon: -71.0542 }
+  - { name: Seaport, lat: 42.3480, lon: -71.0400 }
+  - { name: South End, lat: 42.3388, lon: -71.0765 }
+  - { name: Fenway / Kenmore, lat: 42.3450, lon: -71.0990 }
+  - { name: Jamaica Plain, lat: 42.3097, lon: -71.1151 }
+  - { name: Allston / Brighton, lat: 42.3539, lon: -71.1337 }
+  - { name: South Boston, lat: 42.3381, lon: -71.0476 }
+  - { name: Dorchester, lat: 42.3016, lon: -71.0676 }
+  - { name: Charlestown, lat: 42.3782, lon: -71.0602 }
+  - { name: East Boston, lat: 42.3702, lon: -71.0389 }
+  - { name: Cambridge (Harvard / Central), lat: 42.3700, lon: -71.1100 }
+  - { name: Somerville (Davis / Union), lat: 42.3876, lon: -71.0995 }
+sources:
+  - id: meet_boston_events
+    adapter: simpleview
+    name: Meet Boston events
+    data_type: events
+    homepage: https://www.meetboston.com/events/
+    expect_min_records: 50
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our PoliteClient on the first live run, although robots.txt allows it and the token endpoint worked. A 403 means the site doesn't want automated clients here; we don't work around it. Re-enable only with the board's permission.
+    params:
+      base_url: https://www.meetboston.com
+      board: Meet Boston
+      horizon_days: 7
+      default_category: community.festival
+      category_map:   # labels seen in the recorded response; checked in this order (specific first)
+        Craft Beer: food_drink.tasting
+        "Food & Wine": food_drink.tasting
+        "Farmer's Markets": community.market
+        Films/Movies: arts.film
+        "Festivals, Fairs & Special Events": community.festival
+
+  - id: downtown_boston_events
+    adapter: tribe
+    name: Downtown Boston BID events
+    data_type: events
+    homepage: https://www.downtownboston.org/events/
+    expect_min_records: 10
+    params:
+      base_url: https://www.downtownboston.org
+      horizon_days: 30
+      per_page: 50
+      max_pages: 10
+      organizer: Downtown Boston BID
+      default_category: community.festival
+
+  - id: bpl_events
+    adapter: bibliocommons
+    name: Boston Public Library events
+    data_type: events
+    homepage: https://bpl.bibliocommons.com/v2/events
+    expect_min_records: 50
+    params:
+      library: bpl
+      horizon_days: 10
+      max_pages: 40
+      venue_label: Boston Public Library
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        "Games / Gaming": trivia_games.board_games
+        Book Sale: community.market
+        "English for Speakers of Other Languages (ESOL)": learning.language
+        "Health / Fitness": fitness.yoga
+        "Workshops & Classes": arts.workshop
+        "Children (Ages 6-12)": family.kids
+
+  - id: boston_special_events
+    adapter: ckan
+    name: Boston special event license applications
+    data_type: events
+    homepage: https://data.boston.gov/
+    expect_min_records: 5
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: data.boston.gov robots.txt has `User-agent: * / Disallow: /api/` (and /datastore/*), so the CKAN API is off-limits to us. Fixture tests keep the adapter covered; see the ideas ledger for the resource CSV download route.
+    params:
+      base_url: https://data.boston.gov
+      resource_id: fb05bfda-a57e-4d97-948b-4f1949ba3c8a
+      horizon_days: 60
+      where: >-
+        "Start Date and Time" >= '{today_date}' AND "Start Date and Time" < '{horizon_date}'
+        AND "Status" <> 'Closed'
+      order: '"Start Date and Time"'
+      all_day: true
+      fields: { record_id: App Number, title: App Name, start: Start Date and Time, end: End Date and Time,
+                venue: Location Description, address: [Street Number, Street Name, Street Suffix, City, Zip Code] }
+      exclude_title: ["(?i)\\b(filming|film shoot|photo shoot|construction|private|wedding)\\b"]
+      default_category: community.festival
+
+  - id: boston_food_openings
+    adapter: ckan
+    name: Boston new food establishment licenses (eating & drinking)
+    data_type: openings
+    homepage: https://data.boston.gov/
+    expect_min_records: 5
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: data.boston.gov robots.txt has `User-agent: * / Disallow: /api/` (and /datastore/*), so the CKAN API is off-limits to us. Fixture tests keep the adapter covered; see the ideas ledger for the resource CSV download route.
+    params:
+      base_url: https://data.boston.gov
+      resource_id: f1e13724-284d-478c-b8bc-ef042aa5b70b
+      kind: opening
+      lookback_days: 60
+      where: "descript = 'Eating & Drinking' AND license_add_dt_tm >= '{today_date}'"
+      order: license_add_dt_tm DESC
+      fields: { record_id: property_id, title: [dbaname, businessname], start: license_add_dt_tm,
+                category: descript, address: [address, city, zip], lat: latitude, lon: longitude }
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas|cvs|walgreens|7-eleven)\\b"]
+      title_template: "{title} — new food license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Boston added an "Eating & Drinking" food
+        establishment license for this address on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.boston.gov/
+      extras: { signal: food_license_issued }
+
+  - id: northeastern_events
+    adapter: localist
+    name: Northeastern University events
+    data_type: events
+    homepage: https://calendar.northeastern.edu/
+    expect_min_records: 10
+    params:
+      base_url: https://calendar.northeastern.edu
+      horizon_days: 30
+      max_pages: 5
+      organizer: Northeastern University
+      default_category: learning.networking

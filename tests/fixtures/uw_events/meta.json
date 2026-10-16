@@ -1,0 +1,6 @@
+{
+  "unit": "uw_events@seattle",
+  "source": "docs/research/samples/uw_seattle_trumba_events.json",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}

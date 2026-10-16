@@ -1,0 +1,95 @@
+# Los Angeles, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# LA is thin on open event data (city events dataset dead, LAPL/LA Parks have no feed, laparks.org 403s).
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.10 and docs/SOURCES.md).
+slug: los_angeles
+name: Los Angeles
+state: CA
+timezone: America/Los_Angeles
+center: [34.0522, -118.2437]
+radius_km: 30
+aliases: [LA, L.A., Hollywood, Santa Monica, West Hollywood, Culver City, Pasadena, Glendale, Burbank, Venice, Long Beach, Inglewood, Beverly Hills]
+neighborhoods:  # approximate centroids
+  - { name: Downtown LA, lat: 34.0407, lon: -118.2468 }
+  - { name: Arts District, lat: 34.0400, lon: -118.2330 }
+  - { name: Echo Park, lat: 34.0782, lon: -118.2606 }
+  - { name: Silver Lake, lat: 34.0869, lon: -118.2702 }
+  - { name: Los Feliz, lat: 34.1063, lon: -118.2848 }
+  - { name: Hollywood, lat: 34.0928, lon: -118.3287 }
+  - { name: West Hollywood, lat: 34.0900, lon: -118.3617 }
+  - { name: Koreatown, lat: 34.0618, lon: -118.3004 }
+  - { name: Highland Park, lat: 34.1115, lon: -118.1923 }
+  - { name: Santa Monica, lat: 34.0195, lon: -118.4912 }
+  - { name: Venice, lat: 33.9850, lon: -118.4695 }
+  - { name: Culver City, lat: 34.0211, lon: -118.3965 }
+  - { name: Westwood, lat: 34.0635, lon: -118.4455 }
+  - { name: Pasadena, lat: 34.1478, lon: -118.1445 }
+  - { name: University Park / USC, lat: 34.0224, lon: -118.2851 }
+sources:
+  - id: usc_events
+    adapter: localist
+    name: USC events
+    data_type: events
+    homepage: https://calendar.usc.edu/
+    expect_min_records: 10
+    params:
+      base_url: https://calendar.usc.edu
+      horizon_days: 30
+      max_pages: 5
+      organizer: University of Southern California
+      default_category: learning.networking
+
+  - id: la_business_openings
+    adapter: socrata
+    name: LA new food & drink business locations (Office of Finance)
+    data_type: openings
+    homepage: https://data.lacity.org/d/6rrh-rzua
+    expect_min_records: 10
+    notes: >-
+      location_start_date = when the business location started (new registrations, often future-dated =
+      pre-registered openings). NAICS 7224 = drinking places, 7225 = restaurants. location_1 is often 0,0.
+    params:
+      domain: data.lacity.org
+      dataset: 6rrh-rzua
+      kind: opening
+      lookback_days: 60
+      horizon_days: 240
+      where: >-
+        (starts_with(naics, '7224') OR starts_with(naics, '7225')) AND location_start_date >= '{today}'
+        AND location_start_date < '{horizon}'
+      order: location_start_date DESC
+      page_size: 1000
+      max_pages: 3
+      max_future_days: 240
+      fields: { record_id: location_account, title: [dba_name, business_name], start: location_start_date,
+                category: primary_naics_description, address: [street_address, city, zip_code],
+                lat: location_1.latitude, lon: location_1.longitude }
+      entity_only_fields: [business_name]
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas station|vending|catering)\\b"]
+      title_template: "{title} — new business registration"
+      description_template: >-
+        License signal, not a confirmed opening date. This {primary_naics_description} location was registered
+        with the LA Office of Finance with a start date of {date}.
+      category_map:
+        "Drinking Places (Alcoholic Beverages)": nightlife.opening
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.lacity.org/d/6rrh-rzua
+      extras: { signal: business_registration }
+
+  - id: ladbs_special_events
+    adapter: socrata
+    name: LADBS temporary special event permits
+    data_type: events
+    homepage: https://data.lacity.org/d/8spw-3fhx
+    expect_min_records: 1
+    notes: Thin (about a dozen future rows); structure permits for big branded events. Bogus far-future dates are rejected.
+    params:
+      domain: data.lacity.org
+      dataset: 8spw-3fhx
+      horizon_days: 180
+      where: "event_start_date >= '{today}' AND event_start_date < '{horizon}'"
+      order: event_start_date
+      max_future_days: 400
+      all_day: true
+      fields: { record_id: permitno, title: event_name, start: event_start_date, end: event_end_date, address: location,
+                lat: lat_lon.latitude, lon: lat_lon.longitude }
+      default_category: community.festival

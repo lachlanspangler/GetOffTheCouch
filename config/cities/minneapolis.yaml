@@ -47,3 +47,54 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/minneapolis.yaml — evidence-quoted entries; page-watch checks the quotes still exist
+
+  - id: mpls_downtown_events
+    adapter: tribe
+    name: Minneapolis Downtown Council events
+    data_type: events
+    homepage: https://www.mplsdowntown.com/events/
+    expect_min_records: 20
+    notes: robots disallows only HTML Tribe permutations; the REST API is allowed.
+    params:
+      base_url: https://www.mplsdowntown.com
+      horizon_days: 30
+      per_page: 50
+      max_pages: 12
+      organizer: Minneapolis Downtown Council
+      default_category: community.festival
+
+  - id: hclib_events
+    adapter: bibliocommons
+    name: Hennepin County Library events
+    data_type: events
+    homepage: https://hclib.bibliocommons.com/v2/events
+    expect_min_records: 50
+    notes: Countywide system; keep branches in Minneapolis and the inner-ring suburbs only.
+    params:
+      library: hclib
+      horizon_days: 14
+      venue_label: Hennepin County Library
+      cities: [Minneapolis, Edina, St. Louis Park, Saint Louis Park, Richfield, Golden Valley, Robbinsdale,
+               Brooklyn Center, Bloomington, Hopkins, Roseville, Columbia Heights, New Hope, Crystal]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Early Learning and Storytimes: family.kids
+        Arts and Crafts: arts.workshop
+        Performances and Movies: arts.film
+        Writing: arts.books
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        Kids: family.kids
+
+  - id: umn_events
+    adapter: livewhale
+    name: University of Minnesota events
+    data_type: events
+    homepage: https://events.tc.umn.edu/
+    expect_min_records: 20
+    params:
+      base_url: https://events.tc.umn.edu
+      max: 200
+      organizer: University of Minnesota
+      default_category: learning.networking

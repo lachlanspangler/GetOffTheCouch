@@ -1,0 +1,6 @@
+{
+  "unit": "bpl_events@boston",
+  "source": "docs/research/samples/bpl_boston_bibliocommons_events.rss.xml",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}

@@ -1,0 +1,167 @@
+# Chicago, IL. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.3 and docs/SOURCES.md).
+slug: chicago
+name: Chicago
+state: IL
+timezone: America/Chicago
+center: [41.8781, -87.6298]
+radius_km: 25
+aliases: [Chi, Chicagoland, Evanston, Oak Park, Cicero, Skokie, Berwyn, Forest Park]
+neighborhoods:  # approximate centroids
+  - { name: The Loop, lat: 41.8837, lon: -87.6289 }
+  - { name: River North, lat: 41.8924, lon: -87.6341 }
+  - { name: West Loop, lat: 41.8826, lon: -87.6513 }
+  - { name: South Loop, lat: 41.8569, lon: -87.6247 }
+  - { name: Gold Coast / Streeterville, lat: 41.8996, lon: -87.6252 }
+  - { name: Lincoln Park, lat: 41.9214, lon: -87.6513 }
+  - { name: Lakeview / Wrigleyville, lat: 41.9434, lon: -87.6553 }
+  - { name: Andersonville, lat: 41.9800, lon: -87.6680 }
+  - { name: Logan Square, lat: 41.9231, lon: -87.7093 }
+  - { name: Wicker Park / Bucktown, lat: 41.9088, lon: -87.6796 }
+  - { name: Pilsen, lat: 41.8525, lon: -87.6614 }
+  - { name: Hyde Park, lat: 41.7943, lon: -87.5907 }
+  - { name: Bronzeville, lat: 41.8169, lon: -87.6179 }
+  - { name: Rogers Park, lat: 42.0106, lon: -87.6696 }
+  - { name: Uptown, lat: 41.9665, lon: -87.6533 }
+sources:
+  - id: chicago_park_events
+    adapter: socrata
+    name: Chicago Park District events
+    data_type: events
+    homepage: https://data.cityofchicago.org/d/tn7v-6rnw
+    expect_min_records: 20
+    notes: type='Event' only; type='Program' (adult sports leagues with registration_date) is a separate idea.
+    params:
+      domain: data.cityofchicago.org
+      dataset: tn7v-6rnw
+      horizon_days: 60
+      where: "type='Event' AND start_date >= '{today}' AND start_date < '{horizon}'"
+      order: start_date
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: activity_id, title: title, start: start_date, end: end_date, venue: location_facility,
+                address: [address, zip], lat: latitude, lon: longitude, category: category,
+                description: description, url: information_link }
+      exclude: { event_cancelled: ["true", "True", "Y", "Yes"] }
+      default_category: outdoors.park
+      organizer: Chicago Park District
+
+  - id: chicago_park_permits
+    adapter: socrata
+    name: Chicago Park District outdoor event permits
+    data_type: events
+    homepage: https://data.cityofchicago.org/d/pk66-w54g
+    expect_min_records: 5
+    notes: event_type encodes a size tier (e.g. "Permit - Event 6/10,000+"). requestor_ (a person) is dropped.
+    params:
+      domain: data.cityofchicago.org
+      dataset: pk66-w54g
+      horizon_days: 60
+      where: >-
+        starts_with(event_type, 'Permit - Event') AND reservation_start_date >= '{today}'
+        AND reservation_start_date < '{horizon}'
+      order: reservation_start_date
+      page_size: 1000
+      max_pages: 3
+      all_day: true
+      fields: { title: event_description, start: reservation_start_date, end: reservation_end_date,
+                venue: park_facility_name, category: event_type, organizer: organization }
+      exclude_regex: { permit_status: "(?i)cancel|denied|withdrawn" }
+      exclude_title: ["(?i)\\b(wedding|private|staff|administrative)\\b"]
+      default_category: community.festival
+      tags: [outdoor]
+
+  - id: chicago_liquor_openings
+    adapter: socrata
+    name: Chicago new liquor licenses (taverns, consumption on premises)
+    data_type: openings
+    homepage: https://data.cityofchicago.org/d/r5kz-chrr
+    expect_min_records: 5
+    notes: application_type='ISSUE' = a brand-new license (renewals are 'RENEW'); start = license_start_date.
+    params:
+      domain: data.cityofchicago.org
+      dataset: r5kz-chrr
+      kind: opening
+      lookback_days: 60
+      where: >-
+        application_type='ISSUE' AND license_start_date >= '{today}'
+        AND license_description in('Tavern','Consumption on Premises - Incidental Activity','Late Hour')
+      order: license_start_date DESC
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: license_id, title: [doing_business_as_name, legal_name], start: license_start_date,
+                category: license_description, address: [address, city, zip_code], neighborhood: neighborhood,
+                lat: latitude, lon: longitude }
+      entity_only_fields: [legal_name]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Chicago issued a new "{license_description}"
+        license ({business_activity}) for this address, starting {date}.
+      category_map: { Tavern: nightlife.opening, Late Hour: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.cityofchicago.org/d/r5kz-chrr
+      extras: { signal: liquor_license_issued }
+
+  - id: chicago_restaurant_openings
+    adapter: socrata
+    name: Chicago new restaurant licenses (retail food with on-site prep)
+    data_type: openings
+    homepage: https://data.cityofchicago.org/d/r5kz-chrr
+    expect_min_records: 5
+    params:
+      domain: data.cityofchicago.org
+      dataset: r5kz-chrr
+      kind: opening
+      lookback_days: 60
+      where: >-
+        application_type='ISSUE' AND license_start_date >= '{today}'
+        AND license_description='Retail Food Establishment'
+      order: license_start_date DESC
+      page_size: 1000
+      max_pages: 3
+      include_regex: { business_activity: "(?i)prepared onsite|dining on premises|preparation and sale of coffee" }
+      fields: { record_id: license_id, title: [doing_business_as_name, legal_name], start: license_start_date,
+                category: business_activity, address: [address, city, zip_code], neighborhood: neighborhood,
+                lat: latitude, lon: longitude }
+      entity_only_fields: [legal_name]
+      exclude_title: ["(?i)\\b(grocery|groceries|mini ?mart|food mart|convenience|supermarket|gas|smoke shop|pharmacy)\\b"]
+      title_template: "{title} — new restaurant license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Chicago issued a new Retail Food Establishment
+        license ({business_activity}) for this address, starting {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.cityofchicago.org/d/r5kz-chrr
+      extras: { signal: business_license_issued }
+
+  - id: chipublib_events
+    adapter: bibliocommons
+    name: Chicago Public Library events
+    data_type: events
+    homepage: https://chipublib.bibliocommons.com/v2/events
+    expect_min_records: 50
+    params:
+      library: chipublib
+      horizon_days: 14
+      venue_label: Chicago Public Library
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order
+        "Babies: 0 to 18 months": family.kids
+        "Toddlers: 18 to 36 months": family.kids
+        "Preschoolers: 3 to 5 years": family.kids
+        "Kids: 6 to 13 years": family.kids
+        Story Time: family.kids
+        "One Book, One Chicago": arts.books
+        "Crafts, Games and Play": arts.workshop
+
+  - id: uchicago_events
+    adapter: livewhale
+    name: University of Chicago events
+    data_type: events
+    homepage: https://events.uchicago.edu/
+    expect_min_records: 10
+    params:
+      base_url: https://events.uchicago.edu
+      path: "/live/json/events/max/{max}/response_fields/location,description,event_types,tags,group_title"
+      max: 200
+      organizer: University of Chicago
+      default_category: learning.networking

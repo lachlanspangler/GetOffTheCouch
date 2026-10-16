@@ -1,0 +1,130 @@
+# Denver, CO. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Denver Public Library (LibCal) is robots-disallowed (User-agent: * / Disallow: /), so there is no library source.
+# No Localist/LiveWhale university calendar was found (CU Denver, MSU Denver, DU).
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.6 and docs/SOURCES.md).
+slug: denver
+name: Denver
+state: CO
+timezone: America/Denver
+center: [39.7392, -104.9903]
+radius_km: 25
+aliases: [Mile High City, Aurora, Lakewood, Englewood, Littleton, Arvada, Westminster, Wheat Ridge, Golden, Boulder, Commerce City, Glendale]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / LoDo, lat: 39.7525, lon: -104.9995 }
+  - { name: RiNo, lat: 39.7690, lon: -104.9820 }
+  - { name: Five Points, lat: 39.7570, lon: -104.9760 }
+  - { name: Capitol Hill, lat: 39.7310, lon: -104.9800 }
+  - { name: Cheesman Park, lat: 39.7330, lon: -104.9670 }
+  - { name: Highlands (LoHi), lat: 39.7590, lon: -105.0110 }
+  - { name: Sloan's Lake, lat: 39.7480, lon: -105.0450 }
+  - { name: Baker, lat: 39.7160, lon: -104.9930 }
+  - { name: Washington Park, lat: 39.7000, lon: -104.9700 }
+  - { name: Cherry Creek, lat: 39.7170, lon: -104.9530 }
+  - { name: City Park, lat: 39.7470, lon: -104.9500 }
+  - { name: Park Hill, lat: 39.7550, lon: -104.9200 }
+  - { name: Berkeley / Tennyson, lat: 39.7760, lon: -105.0440 }
+  - { name: Stapleton / Central Park, lat: 39.7600, lon: -104.8800 }
+  - { name: University (DU), lat: 39.6780, lon: -104.9620 }
+sources:
+  - id: visit_denver_events
+    adapter: simpleview
+    name: Visit Denver events
+    data_type: events
+    homepage: https://www.denver.org/events/
+    expect_min_records: 50
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our PoliteClient on the first live run, although robots.txt allows it and the token endpoint worked. A 403 means the site doesn't want automated clients here; we don't work around it. Re-enable only with the board's permission.
+    params:
+      base_url: https://visitdenver.com
+      board: Visit Denver
+      horizon_days: 7
+      default_category: community.festival
+
+  - id: denver_liquor_openings
+    adapter: arcgis
+    name: Denver newly issued liquor licenses (on-premises)
+    data_type: openings
+    homepage: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_BUSN_LIQUORLICENSES_P/FeatureServer/27
+    expect_min_records: 1
+    notes: >-
+      ORIGINAL_ISSUE_DATE = first issuance. Excludes special-event, tasting, store and grocery (3.2 beer) licenses.
+      Rows without an address carry placeholder geometry in the California desert; mapped.sane_coords drops it.
+    params:
+      service_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_BUSN_LIQUORLICENSES_P/FeatureServer/27
+      kind: opening
+      lookback_days: 60
+      where: >-
+        ORIGINAL_ISSUE_DATE >= DATE '{today_date}' AND LICENSES NOT IN ('LIQUOR - SPECIAL EVENTS',
+        'LIQUOR - TASTINGS', 'LIQUOR - STORE', 'LIQUOR - FERMENTED MALT BEVERAGE', 'LIQUOR - LIQUOR LICENSED DRUGSTORE')
+      order_by: ORIGINAL_ISSUE_DATE DESC
+      fields: { record_id: BFN, title: BUS_PROF_NAME, start: ORIGINAL_ISSUE_DATE, category: LICENSES,
+                address: [FULL_ADDRESS, CITY], neighborhood: NEIGHBORHOOD }
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Denver Excise & Licenses first issued a "{LICENSES}" license
+        for this address on {date}.
+      category_rules:
+        - { match: "(?i)tavern|cabaret|brew ?pub|distillery pub|lodging", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_BUSN_LIQUORLICENSES_P/FeatureServer/27
+      extras: { signal: liquor_license_issued }
+
+  - id: denver_pending_food_openings
+    adapter: arcgis
+    name: Denver pending retail food licenses
+    data_type: openings
+    homepage: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_pending_business_licenses/FeatureServer/46
+    expect_min_records: 5
+    notes: >-
+      Pending = applied, not yet issued: an early pre-opening signal. geometry is null (State Plane X/Y only), so
+      these are geocoded from ADDRESS. Entity_Name (legal entity, may be a person) is never used as a title.
+    params:
+      service_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_pending_business_licenses/FeatureServer/46
+      kind: opening
+      lookback_days: 60
+      where: "License_Type = 'Retail Food' AND TRADE_NAME IS NOT NULL AND APPLICATION_DATE >= DATE '{today_date}'"
+      order_by: APPLICATION_DATE DESC
+      fields: { record_id: RECORD_ID, title: TRADE_NAME, start: APPLICATION_DATE, category: License_Type,
+                address: [ADDRESS, ZIP] }
+      exclude_title: ["(?i)\\b(catering|grocery|grocers?|mini ?mart|food mart|convenience|supermarket|gas|vending|commissary)\\b"]
+      title_template: "{title} — new restaurant license application"
+      description_template: >-
+        License signal, not a confirmed opening date. Denver Excise & Licenses received a Retail Food license
+        application for this address on {date} (status: {License_Status}).
+      default_category: food_drink.restaurant_opening
+      default_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_pending_business_licenses/FeatureServer/46
+      extras: { signal: business_license_application }
+
+  - id: colorado_liquor_openings_denver
+    adapter: socrata
+    name: Colorado recently approved liquor licenses (Denver)
+    data_type: openings
+    homepage: https://data.colorado.gov/d/htyp-tqzh
+    expect_min_records: 3
+    notes: >-
+      Known data-quality bug: some rows have issue_date and license_number swapped (issue_date in the 2200s,
+      license_number like "2025-05-21"). Those are rejected by `validate` + `reject_future_start`, never shown.
+      In this dataset licensee_name holds the trade name and doing_business_as the legal entity (columns swapped).
+    params:
+      domain: data.colorado.gov
+      dataset: htyp-tqzh
+      kind: opening
+      lookback_days: 60
+      where: "upper(city)='DENVER' AND issue_date >= '{today}'"
+      order: issue_date DESC
+      validate: { license_number: "^\\d{2}-\\d+$" }
+      reject_future_start: true
+      fields: { record_id: license_number, title: licensee_name, start: issue_date, category: license_type,
+                address: [street_address, city] }
+      exclude_regex: { license_type: "(?i)tobacco|retail liquor store|liquor-licensed drugstore|fermented malt beverage|wholesale|takeout|delivery|special event|art gallery" }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas|liquor store|wine & spirits|liquors)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The Colorado Liquor Enforcement Division approved a
+        "{license_type}" license for this address on {date}.
+      category_rules:
+        - { match: "(?i)tavern|brew ?pub|distillery|lodging", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.colorado.gov/d/htyp-tqzh
+      extras: { signal: liquor_license_issued }

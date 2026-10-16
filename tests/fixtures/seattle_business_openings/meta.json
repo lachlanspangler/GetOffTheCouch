@@ -1,0 +1,6 @@
+{
+  "unit": "seattle_business_openings@seattle",
+  "source": "docs/research/samples/seattle_business_license_new_food_drink.json",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}
