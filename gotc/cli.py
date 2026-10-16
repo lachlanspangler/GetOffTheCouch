@@ -34,6 +34,7 @@ def cmd_run(a: argparse.Namespace, s: Settings) -> int:
         cities=[x.strip() for x in a.cities.split(",") if x.strip()] if a.cities else None,
         force_build=a.force_build,
         build=not a.no_build,
+        fetch=not a.no_fetch,
         trigger=a.trigger,
     )
     print(rep.summary())
@@ -396,6 +397,47 @@ def _events_for(db: Database, city: str) -> list[Any]:
     return out
 
 
+def cmd_state(a: argparse.Namespace, s: Settings) -> int:
+    """Sharded CI plumbing (gotc/storage/delta.py): mark | delta | merge."""
+    from pathlib import Path
+
+    from gotc.storage import delta
+
+    if a.state_cmd == "mark":
+        print(json.dumps(delta.mark(_db(s))))
+        return 0
+    if a.state_cmd == "delta":
+        base = json.loads(Path(a.base).read_text())
+        cities = [c for c in a.cities.split(",") if c]
+        counts = delta.export_delta(s.db_path, base, cities, Path(a.out))
+        print(f"delta {a.out}: {counts}")
+        return 0
+    db = _db(s)
+    expect = delta.mark(db)
+    status = 0
+    for p in a.deltas:
+        try:
+            print(f"merged {p}: {delta.merge_delta(db, Path(p), expect)}")
+        except delta.DeltaMismatch as e:
+            print(f"REFUSED {e}", file=sys.stderr)
+            status = 1
+    return status
+
+
+def cmd_shards(a: argparse.Namespace, s: Settings) -> int:
+    """GitHub Actions matrix JSON: enabled cities packed into shards of ~size, balanced by unit count."""
+    from gotc.storage.delta import plan_shards
+
+    reg = load_registry()
+    load: dict[str, int] = {}
+    for u in reg.units():
+        if u.source.enabled:
+            load[u.city.slug] = load.get(u.city.slug, 0) + 1
+    shards = plan_shards(load, a.size)
+    print(json.dumps({"include": [{"shard": i, "cities": ",".join(c)} for i, c in enumerate(shards)]}))
+    return 0
+
+
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
     from gotc.health.report import render
 
@@ -515,6 +557,7 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--no-geocode", action="store_true")
     r.add_argument("--cities", help="comma list: only these cities' units (a CI shard)")
     r.add_argument("--no-build", action="store_true", help="fetch only (CI shards; the publish job builds)")
+    r.add_argument("--no-fetch", action="store_true", help="build + export only (the CI publish job)")
     r.add_argument("--force-build", action="store_true", help="rebuild every city even if its inputs didn't change")
     r.add_argument("--strict", action="store_true", help="exit 1 if any unit failed")
     r.add_argument("--trigger", default="cli")
@@ -562,6 +605,21 @@ def main(argv: list[str] | None = None) -> int:
     cr = cy_sub.add_parser("recenter", help="re-derive config/metros.yaml centers via the Census geocoder (live)")
     cr.add_argument("--slug")
     cr.set_defaults(fn=cmd_city_recenter)
+
+    stp = sub.add_parser("state", help="sharded CI: mark / delta / merge pipeline state")
+    st_sub = stp.add_subparsers(dest="state_cmd", required=True)
+    st_sub.add_parser("mark", help="print the DB's max ids + time (JSON) before a shard runs")
+    sd = st_sub.add_parser("delta", help="export a shard's changes since --base")
+    sd.add_argument("--base", required=True)
+    sd.add_argument("--cities", required=True)
+    sd.add_argument("--out", required=True)
+    sm = st_sub.add_parser("merge", help="merge shard deltas into the DB")
+    sm.add_argument("deltas", nargs="*")
+    stp.set_defaults(fn=cmd_state)
+
+    sh = sub.add_parser("shards", help="print the CI shard matrix (JSON)")
+    sh.add_argument("--size", type=int, default=4, help="cities per shard (≈)")
+    sh.set_defaults(fn=cmd_shards)
 
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)

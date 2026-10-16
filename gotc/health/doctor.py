@@ -180,7 +180,10 @@ def _rebuild(db: Database, settings: Settings) -> None:
 
     reg = load_registry()
     now = utcnow()
+    from gotc.pipeline.incremental import inputs_hash, mark_built
+
     for c in reg.cities.values():
         if c.enabled:
             build_city(db, reg, c, now)
+            mark_built(db, c.slug, inputs_hash(db, reg, c), now)  # the run right after won't rebuild it again
     export_all(db, reg, settings.web_data_dir, now)

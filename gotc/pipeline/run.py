@@ -65,6 +65,7 @@ def run(
     include_demo: bool = False,
     client: PoliteClient | None = None,
     cities: list[str] | None = None,
+    fetch: bool = True,
     force_build: bool = False,
 ) -> RunReport:
     started = now or utcnow()
@@ -78,7 +79,7 @@ def run(
     # most overdue first, so a time-boxed run spends its budget where freshness matters most
     units.sort(key=lambda u: iso(load_health(db, u.key).next_due_at or started.replace(year=2000)))
     try:
-        for unit in units:
+        for unit in units if fetch else []:  # fetch=False: the CI publish job (shards already fetched)
             if max_seconds and time.monotonic() - t0 > max_seconds:
                 log.warning("time budget reached; remaining units stay due for the next run")
                 break
