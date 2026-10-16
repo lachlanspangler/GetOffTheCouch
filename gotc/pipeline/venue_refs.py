@@ -1,51 +1,47 @@
-"""Venue capacities from Wikidata (P1083 "maximum capacity"), keyless SPARQL, cached a week per city.
+"""Reference venue capacities (Wikidata P1083 "maximum capacity") — **live sync disabled 2026-10-16**.
 
-Demolished/closed venues (P576 dissolved, P3999 closure date) are excluded. Multiple capacity statements →
-the largest (configurations vary; the fill-rate band absorbs the difference). Each venue keeps its QID so the
-UI can link the source of the number.
+Why disabled: ``query.wikidata.org/robots.txt`` is ``User-agent: *`` / ``Disallow: /sparql`` (and
+``/bigdata``), and the allowed-looking alternatives are disallowed too: ``www.wikidata.org/robots.txt``
+disallows ``/w/`` (so ``/w/api.php`` wbsearchentities/wbgetentities), ``/api/`` and ``/wiki/Special:``
+(so ``Special:EntityData``). Both were re-read with our UA on 2026-10-16. Our rule is "if robots disallows
+us, disable the source; never work around it", so nothing here touches the network any more.
+
+What still works:
+  * curated capacities in ``config/venues/<slug>.yaml`` (each with a ``capacity_source`` URL) — the primary path
+  * rows already in ``venue_refs`` (fetched before 2026-10-16; Wikidata data is CC0) keep serving with their
+    QID as the source, and are never refreshed. ``store_bindings`` is kept so a future allowed bulk path
+    (e.g. an operator-imported dump extract) can reuse the same validation.
+
+See docs/SOURCES.md "Robots exceptions and API usage policies".
 """
 
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
+from typing import Any
 
 from gotc.config import CityConfig
-from gotc.http.client import FetchError, PoliteClient
-from gotc.storage.db import Database, iso, parse_iso
+from gotc.http.client import PoliteClient
+from gotc.storage.db import Database, iso
 
 log = logging.getLogger(__name__)
-TTL = timedelta(days=7)
-ENDPOINT = "https://query.wikidata.org/sparql"
-QUERY = """
-SELECT ?v ?vLabel (MAX(?cap) AS ?capacity) (SAMPLE(?coord) AS ?c) WHERE {{
-  SERVICE wikibase:around {{ ?v wdt:P625 ?coord . bd:serviceParam wikibase:center "Point({lon} {lat})"^^geo:wktLiteral ;
-                                                    wikibase:radius "{radius}" . }}
-  ?v wdt:P1083 ?cap .
-  FILTER NOT EXISTS {{ ?v wdt:P576 ?gone }}
-  FILTER NOT EXISTS {{ ?v wdt:P3999 ?closed }}
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
-}} GROUP BY ?v ?vLabel LIMIT 1000
-"""
+LIVE_SYNC = False  # robots.txt disallows every Wikidata query path for crawlers (see module docstring)
+DISABLED_REASON = "query.wikidata.org robots.txt disallows /sparql; www.wikidata.org disallows /w/ and /api/"
 
 
 def sync(db: Database, http: PoliteClient | None, city: CityConfig, now: datetime) -> int:
-    row = db.one("SELECT MAX(fetched_at) t FROM venue_refs WHERE city = ?", (city.slug,))
-    last = parse_iso(row["t"]) if row and row["t"] else None
-    if http is None or (last and now - last < TTL):
-        return 0
-    lat, lon = city.center
-    q = QUERY.format(lat=lat, lon=lon, radius=int(city.radius_km * 1.25))
-    try:
-        data = http.get_json(
-            ENDPOINT,
-            params={"query": q, "format": "json"},
-            respect_robots=False,
-            headers={"Accept": "application/sparql-results+json"},
-        )
-    except (FetchError, ValueError) as e:
-        log.warning("wikidata venue sync failed for %s: %s", city.slug, e)
-        return 0
+    """No-op (returns 0): the live Wikidata sync is disabled. Existing rows are left untouched."""
+    if http is not None and not LIVE_SYNC:
+        log.debug("wikidata venue sync disabled for %s: %s", city.slug, DISABLED_REASON)
+    return 0
+
+
+def store_bindings(db: Database, city: CityConfig, data: dict[str, Any], now: datetime) -> int:
+    """Replace a city's reference venues from SPARQL-JSON-shaped bindings (v, vLabel, capacity, c).
+
+    Unlabeled items and implausible capacities (< 20) are dropped. Returns rows stored.
+    """
     rows = data.get("results", {}).get("bindings", [])
     with db.tx():
         db.execute("DELETE FROM venue_refs WHERE city = ?", (city.slug,))
@@ -58,14 +54,15 @@ def sync(db: Database, http: PoliteClient | None, city: CityConfig, now: datetim
             except (KeyError, ValueError):
                 continue
             if name == qid or cap < 20:
-                continue  # unlabeled items / implausible capacities
+                continue
             coord = (b.get("c") or {}).get("value", "")
             plat = plon = None
             if coord.startswith("Point("):
                 xs = coord[6:-1].split()
                 plon, plat = float(xs[0]), float(xs[1])
             db.execute(
-                "INSERT OR REPLACE INTO venue_refs (city, ref_id, name, capacity, lat, lon, fetched_at) VALUES (?,?,?,?,?,?,?)",
+                "INSERT OR REPLACE INTO venue_refs (city, ref_id, name, capacity, lat, lon, fetched_at)"
+                " VALUES (?,?,?,?,?,?,?)",
                 (city.slug, f"wikidata:{qid}", name, cap, plat, plon, iso(now)),
             )
             n += 1

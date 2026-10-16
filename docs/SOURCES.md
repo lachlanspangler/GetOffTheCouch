@@ -93,7 +93,16 @@ operator's own policy discourages our kind of use, the source is off.
 | `geocoding.geo.census.gov` | 404 (no file) | public geocoder, batch ≤ 10,000 rows | batch first, then single-line (per-city budget `GOTC_GEOCODE_BUDGET`) | ✅ allowed (no robots file) |
 | `nominatim.openstreetmap.org/search` | **`User-agent: *` `Disallow: /search`** (also /reverse, /lookup, /details) | [OSMF Nominatim policy](https://operations.osmfoundation.org/policies/nominatim/): "an absolute maximum of 1 request per second"; "Scripts running longer than a day and scripts that are run at regular intervals are restricted to 4 requests per minute"; single thread, one machine, "no distributed scripts"; "Results must be cached on your side"; repeated identical queries "may be classified as faulty and blocked"; "periodic requests from apps are considered bulk geocoding and as such are strongly discouraged"; attribution required | **was:** fallback for every place name at 1.1 s, up to 150/city/run (≈55 req/min bursts, a policy violation). **now:** off by default. `GOTC_NOMINATIM=1` opts one process (never a CI shard) into a compliant lane: ≥ 15 s between requests, hard per-run budget `GOTC_NOMINATIM_BUDGET` (default 20) shared by all cities, every answer (hit or miss) cached forever and never re-sent, Census tried first | ⛔ **off** (robots disallows `/search` and the policy discourages periodic app use). Previously cached Nominatim results keep serving; they are © OpenStreetMap contributors (ODbL), so the dashboard must show "Geocoding © OpenStreetMap contributors" wherever coordinates are shown (web/ change pending, see STATUS). |
 | `api.weather.gov` | **`User-agent: *` `Disallow: /`** | NWS API docs ask apps for a UA with contact info; no published rate limit | 1 forecast/city per 3 h (`gotc/pipeline/weather.py`) | ⚠ exception kept: documented public API that explicitly expects application clients; flagged for the user to confirm |
+| `query.wikidata.org/sparql` (WDQS) | **`User-agent: *` `Disallow: /sparql`**, `Disallow: /bigdata` | WDQS limits (60 s query time/min per UA+IP, UA policy) | **was:** 1 SPARQL/city/week with `respect_robots=False` for venue capacities (`gotc/pipeline/venue_refs.py`), not listed here | ⛔ **stopped** 2026-10-16 |
+| `www.wikidata.org/w/api.php` (wbsearchentities / wbgetentities), `/wiki/Special:EntityData` | **`Disallow: /w/`**, `Disallow: /api/`, `Disallow: /wiki/Special:` for `*` (only `api.php?action=mobileview&` is allowed) | MediaWiki API etiquette (maxlag, UA) | considered as the replacement for SPARQL | ⛔ not used: robots disallows it too |
 | `app.ticketmaster.com`, `api.seatgeek.com` | — | keyed developer APIs with ToS | key-gated adapters | ✅ exception (unchanged) |
+
+**Venue capacities after the Wikidata stop:** curated `config/venues/<slug>.yaml` entries (each with a
+`capacity_source` URL and a verbatim `evidence` quote) are now the only live source. Rows already in the
+`venue_refs` table (fetched before 2026-10-16; Wikidata is CC0) keep serving with their QID as the cited source and
+are never refreshed. Attendance bands for venues without a capacity fall back to category priors, as before.
+`gotc discover` therefore cannot seed venues from Wikidata (SCALING.md §2.5); it fingerprints operator-supplied
+seed URLs instead.
 
 ## Rejected, blocked and dead sources
 
