@@ -248,3 +248,48 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 | "aurora" BiblioCommons library | DEN | It is Aurora, **Ontario** | feed `bc:state` |
 | Levitt Pavilion Denver | DEN | Squarespace, season over (0 upcoming); revisit in spring | probe |
 | Westminster / Lakewood / Littleton city calendars (CivicPlus, Granicus OpenCities) | DEN | Usable (CivicPlus iCalendar), but tiny (≤ 10 events each) | probe |
+
+## Batch B cities
+
+Onboarded 2026-10-16: phoenix, las_vegas, salt_lake_city, san_diego, san_francisco, san_jose, sacramento,
+portland, riverside, fresno. **Verified** = valid records from one live `gotc run --city <slug> --no-geocode` (isolated
+data dir, robots enforced by `PoliteClient`, ≥ 2 s per host during discovery). Same columns and grades as above.
+Simpleview CVB event APIs answered HTTP 403 "Access Denied" for six more boards (Phoenix, Scottsdale, Salt Lake,
+Sacramento, Riverside, Fresno; Oakland's answered), so those units are disabled. CA ABC licensing reports
+(abc.ca.gov) serve a Cloudflare challenge, so no California city has state liquor-license openings.
+
+### Phoenix
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `phoenix_public_library_events` | phoenix | LibCal iCal / `ics` | https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15413 (+16 branch cids) | none | 17 requests/day at Crawl-delay 10 | robots `*` Crawl-delay 10; only named crawlers disallowed | SUMMARY, DTSTART (UTC), LOCATION "room, branch", CATEGORIES, DESCRIPTION | events · 24h | A- (official library) | 422 |
+| `chandler_library_events` | phoenix | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/chandler/rss/events | none | ≤10 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 138 |
+| `mim_events` | phoenix | WP The Events Calendar / `tribe` | https://mim.org/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 123 |
+| `desert_botanical_garden_events` | phoenix | WP The Events Calendar / `tribe` | https://dbg.org/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as above; 14-day horizon (daily exhibits) | events · 24h | B | 107 |
+| `mesa_arts_center` | phoenix | Event JSON-LD ItemList / `jsonld` | https://www.mesaartscenter.com/performances | none | 1 page/day, Crawl-delay 10 | robots allows; terms have no automated-access clause; city-owned | name, date, room, price range; subscriptions skipped | concerts · 24h | B (dates mostly without times) | 64 |
+| `standup_live_phoenix` | phoenix | Event JSON-LD / `jsonld` | https://phoenix.standuplive.com/ | none | 1 page/day | robots allows; no automated-access clause | name, start (UTC) | events · 24h | C+ | 89 |
+| `scottsdale_city_events` | phoenix | Event JSON-LD on the city homepage / `jsonld` | https://www.scottsdaleaz.gov/ | none | 1 page/day | robots allows | name, start (offset), place; civic meetings skipped | events · 24h | B- (featured events only) | 8 |
+| `state_farm_stadium` | phoenix | carbonhouse RSS / `rss_events` | https://www.statefarmstadium.com/events/rss | none | 1 request/day | robots allows | title, link, ev:startdate | events · 24h | B+ | 15 |
+| `gcu_athletics` | phoenix | SIDEARM ICS / `ics` | https://gculopes.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = "Phoenix…") | events · 24h | B | 38 |
+| `scottsdale_food_openings` | phoenix | ArcGIS Server MapServer table / `arcgis` | https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/6 | none | 1 request/day | self-hosted, robots.txt 404 (no policy) | AcctNum, Company (food/drink names only), BusinessStartDate, service address | openings · 24h | B- (no industry code; name filter) | 5 |
+| `handson_phoenix` | phoenix | HandsOn Connect / `handsonconnect` | https://www.handsonphoenix.org/calendar | none | few POSTs/day, 3 s apart | robots.txt 404 | as `boston_cares` (block 373) | volunteer · 24h | A- | 46 |
+| `volo_phoenix` | phoenix | Volo discover HTML / `volo` | https://www.volosports.com/discover/phoenix?category=leagues | none | ≤6 pages/day | robots allows | as `volo_denver` | leagues · 24h | B (0 programs on 2026-10-16, between seasons) | 0 |
+| `teamtrivia_phoenix` | phoenix | Team Trivia venue JSON-LD / `teamtrivia` | https://www.teamtrivia.com/trivia-in-phoenix-tempe/ | none | 1 + ≤60 pages/48h | robots allows; in the site's sitemap | as `teamtrivia_denver` | recurring · 48h | B | 251 |
+| `challenge_trivia_phoenix` | phoenix | Challenge national JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows | metro-phoenix within radius | recurring · 48h | B | 17 |
+| `visit_phoenix_events` | phoenix | Simpleview / `simpleview` (disabled) | https://www.visitphoenix.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+| `experience_scottsdale_events` | phoenix | Simpleview / `simpleview` (disabled) | https://www.experiencescottsdale.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Phoenix):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| phoenixopendata.com (CKAN) | PHX | robots disallows /api/ | SCALING §2.10 |
+| azliquor.gov, tempe.gov, chandleraz.gov, gilbertaz.gov, mesalibrary.org, tempecenterforthearts.com, azdot.gov, azsos.gov | PHX | robots.txt answers 403 | probe 2026-10-16 |
+| Crescent Ballroom, Valley Bar, Marquee Theatre, Phoenix Zoo | PHX | Cloudflare challenge, not attempted | probe |
+| Rebel Lounge | PHX | HTTP 403 | probe |
+| Maricopa County Library District (events.mcldaz.org) | PHX | custom "Events & Reservations" app, no feed or JSON-LD | probe |
+| Scottsdale community calendar, Scottsdale Public Library (withapps.io) | PHX | JS app, no feed | probe |
+| phoenix.gov calendar | PHX | Adobe AEM, no feed or JSON-LD | probe |
+| Mortgage Matchup Center, Desert Diamond Arena, Chandler Center, ASU Gammage, Phoenix Symphony, The Nash, Herberger, Last Exit Live, Celebrity Theatre | PHX | no RSS, Tribe or Event JSON-LD | probe |
+| calendar.asu.edu / asuevents.asu.edu | PHX | HTTP 522 (origin down); the Drupal site has no feed | probe |
+| Tempe liquor licenses (ArcGIS) | PHX | static location list, no dates | ArcGIS search |

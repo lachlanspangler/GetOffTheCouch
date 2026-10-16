@@ -1,0 +1,33 @@
+# Official new-resident deadlines for Arizona. Every fact is quoted verbatim from source_url.
+# Note: azdot.gov (ADOT MVD) and azsos.gov answer 403 to our UA (robots.txt and pages, also to a web fetch tool),
+# so every item quotes the Arizona Revised Statutes on azleg.gov (official; robots allows, Crawl-delay 120).
+# None of these statutes states a day count for new residents, so days_after_move is null throughout.
+state: AZ
+items:
+  - id: az-drivers-license
+    title: "Get an Arizona driver license"
+    kind: license
+    days_after_move: null
+    summary: "Arizona exempts drivers with an out-of-state license only while they are nonresidents; once you live in Arizona you need an Arizona driver license."
+    action_url: https://azmvdnow.gov/
+    evidence: "A person who is a nonresident, who is at least sixteen years of age and who has in the person's immediate possession a valid driver license issued to the person in the person's home state or country while the person is operating a motor vehicle requiring a class D license."
+    source_url: https://www.azleg.gov/ars/28/03152.htm
+    verified_at: 2026-10-16
+  - id: az-vehicle-registration
+    title: "Register your vehicle in Arizona"
+    kind: vehicle
+    days_after_move: null
+    summary: "A vehicle on Arizona roads must be registered with ADOT, or properly registered by the state where its owner is a resident, so an Arizona resident's vehicle needs Arizona registration."
+    action_url: https://azmvdnow.gov/
+    evidence: "A person shall not operate, move or leave standing on a highway a motor vehicle, trailer or semitrailer unless the motor vehicle, trailer or semitrailer has been registered with the department for the current registration year or is properly registered for the current registration year by the state or country of which the owner or lessee is a resident."
+    source_url: https://www.azleg.gov/ars/28/02153.htm
+    verified_at: 2026-10-16
+  - id: az-voter-registration
+    title: "Register to vote in Arizona"
+    kind: voting
+    days_after_move: null
+    summary: "Your registration must be received by the county recorder before midnight of the 29th day before an election to vote in it."
+    action_url: https://azmvdnow.gov/
+    evidence: "the registration has been received by the county recorder or the recorder's designee pursuant to section 16-134 before midnight of the twenty-ninth day preceding the date of the election."
+    source_url: https://www.azleg.gov/ars/16/00120.htm
+    verified_at: 2026-10-16

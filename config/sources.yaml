@@ -99,3 +99,5 @@ sources:
         nashville: "37201"
         nyc: "10007"
         seattle: "98101"
+        # batch B (2026-10-16): downtown / city-hall ZIPs
+        phoenix: "85003"
