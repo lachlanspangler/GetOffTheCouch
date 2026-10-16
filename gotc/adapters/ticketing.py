@@ -148,6 +148,24 @@ class TicketmasterAdapter(Adapter):
         sale_start = parse_dt(dig(ev, "sales.public.startDateTime"), tz)
         if status == "on_sale" and sale_start and sale_start > ctx.fetched_at:
             status = "not_yet_on_sale"
+        presales = [
+            (clean_text(p.get("name")) or "Presale", parse_dt(p.get("startDateTime"), tz))
+            for p in dig(ev, "sales.presales", []) or []
+        ]
+        next_presale = min((t for _, t in presales if t and t > ctx.fetched_at), default=None)
+        registration = None
+        if sale_start and sale_start > ctx.fetched_at:
+            # "tickets go on sale Fri 10am" is a deadline newcomers miss — reported by Ticketmaster
+            evidence = f"Public on-sale {sale_start:%a %b %-d, %-I:%M %p}"
+            if next_presale and next_presale < sale_start:
+                evidence += f"; presale from {next_presale:%a %b %-d, %-I:%M %p}"
+            registration = {
+                "opens_at": sale_start,
+                "url": ev.get("url"),
+                "evidence": evidence,
+                "method": "reported",
+                "confidence": 1.0,
+            }
         lat = _f(dig(venue, "location.latitude"))
         lon = _f(dig(venue, "location.longitude"))
         url = ev.get("url")
@@ -190,7 +208,9 @@ class TicketmasterAdapter(Adapter):
             price={"min": pmin, "max": pmax, "note": "face value, before fees"} if pmin is not None else {},
             offers=offers,
             availability=status,
+            registration=registration,
             extras={
+                "presales": "; ".join(f"{n} {t:%b %-d %-I:%M %p}" for n, t in presales if t)[:300] or None,
                 "tm_venue_id": venue.get("id"),
                 "ticket_limit": dig(ev, "ticketLimit.info"),
                 "onsale_at": dig(ev, "sales.public.startDateTime"),

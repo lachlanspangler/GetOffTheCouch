@@ -36,6 +36,9 @@ def test_ticketmaster_fields_status_and_rejects():
     assert evs["vvTEST2"].category == "nightlife.comedy"
     assert evs["vvTEST2"].availability == "not_yet_on_sale"  # public onsale is after the fetch
     assert evs["vvTEST2"].price.min is None  # priceRanges absent → we don't guess
+    reg = evs["vvTEST2"].registration
+    assert reg and reg.opens_at and reg.method == "reported" and "Public on-sale" in (reg.evidence or "")
+    assert evs["vvTEST1"].registration is None  # already on sale → no on-sale deadline
     assert evs["vvTEST3"].availability == "cancelled"
 
 

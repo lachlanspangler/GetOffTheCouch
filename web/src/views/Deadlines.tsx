@@ -18,6 +18,11 @@ const SECTION = {
 
 const KIND = { closes: "Registration closes", early_bird: "Early-bird pricing ends", opens: "Registration opens" };
 
+function kindLabel(kind: keyof typeof KIND, e: { category: string }): string {
+  if (kind === "opens" && /^(music|nightlife\.comedy|arts\.theater|sports_watch)/.test(e.category)) return "Tickets go on sale";
+  return KIND[kind];
+}
+
 function countdown(hours: number): string {
   if (hours < 1) return `${Math.max(1, Math.round(hours * 60))}m`;
   if (hours < 48) return `${Math.round(hours)}h`;
@@ -76,7 +81,7 @@ export function Deadlines({ events }: { events: Event[] }) {
                   <li key={`${i.event.id}-${i.kind}`} class="dl-row" style={{ "--h": hue(i.event.category) }}>
                     <span class="dl-count" aria-label={`${Math.round(i.hours)} hours left`}>{countdown(i.hours)}</span>
                     <div class="dl-body">
-                      <span class="dl-kind">{KIND[i.kind]} · {fmtDay(i.at, feed.timezone)} {fmtTime(i.at, feed.timezone)}</span>
+                      <span class="dl-kind">{kindLabel(i.kind, i.event)} · {fmtDay(i.at, feed.timezone)} {fmtTime(i.at, feed.timezone)}</span>
                       <button class="dl-title" onClick={() => go({ city: feed.city, eventId: i.event.id })}>{i.event.title}</button>
                       <span class="cat small">
                         <Icon name={catIcon(i.event.category, index.taxonomy)} size={13} /> {catLabel(i.event.category, index.taxonomy)}

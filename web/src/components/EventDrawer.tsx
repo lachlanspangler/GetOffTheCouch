@@ -183,7 +183,7 @@ export function EventDrawer({ e }: { e: Event }) {
           <section class="panel">
             <h3>Deadlines</h3>
             <ul class="facts">
-              {e.registration.opens_at && <li><span>Registration opens</span><strong>{fmtDay(e.registration.opens_at, tz)} · {relative(e.registration.opens_at, now)}</strong></li>}
+              {e.registration.opens_at && <li><span>{/^(music|nightlife\.comedy|arts\.theater|sports_watch)/.test(e.category) ? "Tickets on sale" : "Registration opens"}</span><strong>{fmtDay(e.registration.opens_at, tz)} · {relative(e.registration.opens_at, now)}</strong></li>}
               {e.registration.closes_at && <li><span>{e.registration.method === "derived" ? "Register before" : "Register by"}</span><strong>{fmtDay(e.registration.closes_at, tz)} {fmtTime(e.registration.closes_at, tz)} · <DeadlineBadge e={e} compact /></strong></li>}
               {e.registration.early_bird_ends_at && <li><span>Early-bird ends</span><strong>{fmtDay(e.registration.early_bird_ends_at, tz)}</strong></li>}
               {!!e.registration.signup_types?.length && <li><span>Sign up as</span><strong>{e.registration.signup_types.map((s) => s.replace("_", " ")).join(", ")}</strong></li>}
