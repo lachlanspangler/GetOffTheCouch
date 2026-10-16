@@ -415,3 +415,5 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .vibes { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
 .vibe { display: grid; gap: 2px; text-align: left; padding: 10px 12px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface-2); cursor: pointer; }
 .vibe.on { border-color: var(--btn); background: var(--accent-soft); }
+.highlights { background: linear-gradient(180deg, var(--accent-soft), transparent 70%); border-radius: var(--r); padding: 4px 12px 12px; margin: 0 -12px 28px; }
+.highlights .day-head { background: none; position: static; }

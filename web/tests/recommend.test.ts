@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPlan, DEFAULT_PROFILE, rank, scoreEvent } from "../src/lib/recommend";
+import { buildPlan, DEFAULT_PROFILE, highlights, rank, scoreEvent } from "../src/lib/recommend";
 import { ev, NOW } from "./helpers";
 
 const labels = { "trivia_games.trivia": "Trivia nights", trivia_games: "Trivia & games", music: "Music" };
@@ -60,5 +60,24 @@ describe("weather", () => {
     const sd = scoreEvent(dry, p, labels, {}, NOW)!;
     expect(sw.score).toBeLessThan(sd.score);
     expect(sw.reasons.some((r) => r.text.includes("80% chance of rain"))).toBe(true);
+  });
+});
+
+describe("highlights", () => {
+  it("picks soon, located, social things across different families", () => {
+    const loc = { venue_name: "Somewhere" };
+    const evs = [
+      ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-18T00:00:00Z" }),
+      ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-19T00:00:00Z" }),
+      ev({ category: "sports_league.kickball", social: { score: 0.9 }, location: loc, start: "2026-10-20T00:00:00Z" }),
+      ev({ category: "music.concert", social: { score: 0.4 }, location: loc, start: "2026-10-21T00:00:00Z" }),
+      ev({ category: "volunteer.one_off", social: { score: 0.85 }, location: {}, start: "2026-10-21T00:00:00Z" }), // no place
+      ev({ category: "arts.museum", social: { score: 0.5 }, location: loc, start: "2026-11-30T00:00:00Z" }), // too far out
+    ];
+    const h = highlights(evs, {}, NOW, 3);
+    const fams = h.map((s) => s.event.category.split(".")[0]);
+    expect(new Set(fams).size).toBe(3);
+    expect(fams).not.toContain("volunteer");
+    expect(fams).not.toContain("arts");
   });
 });

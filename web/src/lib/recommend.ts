@@ -238,3 +238,30 @@ export function buildPlan(
   const openings = ranked.filter((s) => s.event.kind === "opening").slice(0, 5);
   return { weeks, deadlines, openings };
 }
+
+/** Default highlights for someone who hasn't set preferences: social, concrete, soon, diverse. */
+export function highlights(events: Event[], labels: Record<string, string>, now: Date = new Date(), n = 6): Scored[] {
+  const week = now.getTime() + 7 * 86_400_000;
+  const pool = events.filter(
+    (e) =>
+      e.kind !== "opening" &&
+      !e.all_day &&
+      new Date(e.start).getTime() >= now.getTime() &&
+      new Date(e.start).getTime() <= week &&
+      !!(e.location.venue_name || e.location.address),
+  );
+  const ranked = rank(pool, { ...DEFAULT_PROFILE, interests: [] }, labels, {}, now);
+  const out: Scored[] = [];
+  const fams = new Map<string, number>();
+  const series = new Set<string>();
+  for (const s of ranked) {
+    const f = family(s.event.category);
+    if ((fams.get(f) ?? 0) >= 1 && out.length < n - 1) continue; // one per family until the last slot
+    if (s.event.series_id && series.has(s.event.series_id)) continue;
+    out.push(s);
+    fams.set(f, (fams.get(f) ?? 0) + 1);
+    if (s.event.series_id) series.add(s.event.series_id);
+    if (out.length >= n) break;
+  }
+  return out;
+}

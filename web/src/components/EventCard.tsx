@@ -161,7 +161,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
             </button>
             {primary && (
               <a class="btn btn-small" href={primary.url} target="_blank" rel="noopener noreferrer">
-                {primary.kind === "registration" ? "Register" : primary.kind === "rsvp" ? "RSVP" : "Tickets"}
+                {{ registration: "Register", rsvp: "RSVP", info: "Details", primary: "Tickets", resale: "Tickets" }[primary.kind] ?? "Details"}
                 <Icon name="external" size={13} />
               </a>
             )}

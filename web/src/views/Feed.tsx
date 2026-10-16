@@ -2,14 +2,15 @@ import { useEffect, useState } from "preact/hooks";
 import { EventCard } from "../components/EventCard";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
-import { collapseSeries, isOngoing } from "../lib/filters";
+import { collapseSeries, DEFAULT_FILTERS, isOngoing } from "../lib/filters";
+import { highlights } from "../lib/recommend";
 import { dayKey, fmtDateLong } from "../lib/time";
 import type { Event } from "../lib/types";
 
 const PAGE = 60;
 
 export function Feed({ events }: { events: Event[] }) {
-  const { feed, now, route } = useApp();
+  const { feed, now, route, labels } = useApp();
   const [limit, setLimit] = useState(PAGE);
   useEffect(() => setLimit(PAGE), [route.filters, feed?.city]);
   if (!feed) return null;
@@ -36,8 +37,21 @@ export function Feed({ events }: { events: Event[] }) {
   for (const gs of byDay.values()) gs.sort((a, b) => Number(!!a.event.all_day) - Number(!!b.event.all_day) || a.event.start.localeCompare(b.event.start));
   const today = dayKey(now, tz);
   const tomorrow = dayKey(new Date(now.getTime() + 86_400_000), tz);
+  const f = route.filters;
+  const unfiltered = !f.q && !f.cats.length && !f.tags.length && !f.free && !f.social && !f.near && f.size === "any" && f.maxPrice == null && f.when === DEFAULT_FILTERS.when;
+  const tops = unfiltered ? highlights(feed.events, labels, now) : [];
   return (
     <div class="feed">
+      {tops.length >= 3 && (
+        <section class="day highlights">
+          <h2 class="day-head">Worth getting off the couch for this week</h2>
+          <div class="grid">
+            {tops.map((s) => (
+              <EventCard key={s.event.id} e={s.event} why={s.reasons.filter((r) => r.weight > 0).map((r) => r.text)} />
+            ))}
+          </div>
+        </section>
+      )}
       {[...byDay.entries()].map(([day, gs]) => (
         <section key={day} class="day">
           <h2 class="day-head">
