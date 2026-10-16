@@ -62,6 +62,7 @@ class BuildStats:
     venues: int = 0
     deadlines_extracted: int = 0
     stale: int = 0
+    weather: int = 0
 
 
 def load_live_records(db: Database, city: str, now: datetime) -> list[SourceEvent]:
@@ -171,6 +172,12 @@ def build_city(
         stats.merged += len(cl.members) - 1
         stats.stale += int(ev.stale)
         events.append((ev, cl))
+
+    if geocoder is not None:
+        from gotc.pipeline.weather import attach, hourly
+
+        periods, wx_at = hourly(db, geocoder.http if not geocoder.offline else None, city, now)
+        stats.weather = attach([ev for ev, _ in events], periods, wx_at, tax)
 
     with db.tx():
         db.execute("DELETE FROM event_members WHERE city = ?", (city.slug,))

@@ -12,6 +12,7 @@ import {
   offerPrice,
   priceLabel,
   sourceName,
+  weatherLabel,
 } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
 import { age, fmtDateLong, fmtDay, fmtTime, relative } from "../lib/time";
@@ -109,6 +110,18 @@ export function EventDrawer({ e }: { e: Event }) {
                   {" "}open map
                 </a>
               )}
+            </span>
+          </p>
+        )}
+
+        {e.weather && (
+          <p class="where">
+            <span aria-hidden="true">{weatherLabel(e.weather)?.slice(0, 2)}</span>
+            <span>
+              {e.weather.short}
+              {e.weather.temp_f != null && `, ${Math.round(e.weather.temp_f)}°F`}
+              {e.weather.precip_pct != null && ` · ${Math.round(e.weather.precip_pct)}% chance of precipitation`}
+              <span class="muted small"> · National Weather Service forecast, {age(e.weather.fetched_at, now)}</span>
             </span>
           </p>
         )}

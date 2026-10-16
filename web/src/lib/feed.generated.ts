@@ -147,6 +147,11 @@ export type Timezone = string;
 export type Title = string;
 export type Url3 = string | null;
 export type VenueId = string | null;
+export type FetchedAt3 = string;
+export type PrecipPct = number | null;
+export type Short = string;
+export type Source1 = "nws";
+export type TempF = number | null;
 export type Events = Event[];
 export type GeneratedAt = string;
 export type IsDemo1 = boolean;
@@ -253,6 +258,7 @@ export interface Event {
   title: Title;
   url?: Url3;
   venue_id?: VenueId;
+  weather?: Weather | null;
 }
 /**
  * A modeled number. Always a band; ``mid`` is the point estimate shown with a '~'.
@@ -400,6 +406,19 @@ export interface TicketSignal {
   pct_left?: Estimate | null;
   selling_fast?: SellingFast;
   signal?: Signal;
+}
+/**
+ * NWS hourly forecast for the event's start hour (outdoor events, ≤ ~6 days out).
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "Weather".
+ */
+export interface Weather {
+  fetched_at: FetchedAt3;
+  precip_pct?: PrecipPct;
+  short: Short;
+  source?: Source1;
+  temp_f?: TempF;
 }
 /**
  * This interface was referenced by `CityFeed`'s JSON-Schema

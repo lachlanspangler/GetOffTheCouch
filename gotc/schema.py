@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -237,6 +237,16 @@ class PriceTrend(Strict):
     points: list[PricePoint] = Field(default_factory=list)
 
 
+class Weather(Strict):
+    """NWS hourly forecast for the event's start hour (outdoor events, ≤ ~6 days out)."""
+
+    short: str
+    temp_f: float | None = None
+    precip_pct: Annotated[float, Field(ge=0, le=100)] | None = None
+    source: Literal["nws"] = "nws"
+    fetched_at: AwareDatetime
+
+
 class SocialScore(Strict):
     """How good an event is for meeting people (0–1), with reasons the UI shows."""
 
@@ -328,6 +338,7 @@ class Event(Strict):
     tickets: TicketSignal = Field(default_factory=TicketSignal)
     price_trend: PriceTrend | None = None
     social: SocialScore | None = None
+    weather: Weather | None = None
     sources: list[SourceRef]
     provenance: dict[str, FieldProvenance] = Field(default_factory=dict)
     first_seen: AwareDatetime

@@ -3,7 +3,8 @@ PY  := .venv/bin/python
 UV  ?= uv
 NPM := npm --prefix web
 
-.PHONY: help setup check lint fmt typecheck test test-py test-web e2e pipeline build dev preview doctor heal loop schema ideas status sources clean
+
+.PHONY: demo help setup check lint fmt typecheck test test-py test-web e2e pipeline build dev preview doctor heal loop schema ideas status sources clean
 
 help:          ## list targets
 	@grep -E '^[a-z0-9-]+:.*##' Makefile | awk -F':.*## ' '{printf "  make %-10s %s\n", $$1, $$2}'
@@ -34,7 +35,8 @@ test-py:       ## Python tests (unit, adapters/fixtures, contract, integration) 
 test-web:      ## dashboard unit tests (vitest)
 	$(NPM) test
 
-e2e:           ## dashboard smoke tests in a real browser (Playwright)
+e2e:           ## dashboard smoke tests in a real browser (Playwright, frozen-clock demo data)
+	$(PY) -m gotc demo --anchor 2026-10-16T15:00:00+00:00
 	$(NPM) run e2e
 
 test: test-py test-web  ## all tests
@@ -61,6 +63,9 @@ heal:          ## health checks + safe automatic repairs
 
 loop:          ## one unattended iteration of the self-healing loop
 	bash scripts/loop.sh
+
+demo:          ## (re)build the fictional demo dataset → web/public/demo (use ?demo=1)
+	$(PY) -m gotc demo
 
 schema:        ## regenerate JSON Schema + TypeScript types from gotc/schema.py
 	$(PY) -m gotc schema

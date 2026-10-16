@@ -19,3 +19,4 @@ web/test-results/
 web/playwright-report/
 .playwright-mcp/
 .claude/
+web/public/demo/

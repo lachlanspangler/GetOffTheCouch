@@ -333,6 +333,17 @@
           ],
           "default": null,
           "title": "Venue Id"
+        },
+        "weather": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Weather"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [
@@ -1251,9 +1262,62 @@
       ],
       "title": "Venue",
       "type": "object"
+    },
+    "Weather": {
+      "additionalProperties": false,
+      "description": "NWS hourly forecast for the event's start hour (outdoor events, \u2264 ~6 days out).",
+      "properties": {
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "precip_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Precip Pct"
+        },
+        "short": {
+          "title": "Short",
+          "type": "string"
+        },
+        "source": {
+          "const": "nws",
+          "default": "nws",
+          "title": "Source",
+          "type": "string"
+        },
+        "temp_f": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temp F"
+        }
+      },
+      "required": [
+        "short",
+        "fetched_at"
+      ],
+      "title": "Weather",
+      "type": "object"
     }
   },
-  "$id": "https://getoffthecouch.app/schema/cityfeed-1.0.0.json",
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.1.0.json",
   "additionalProperties": false,
   "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
   "properties": {
@@ -1304,7 +1368,7 @@
       "type": "array"
     },
     "schema_version": {
-      "default": "1.0.0",
+      "default": "1.1.0",
       "title": "Schema Version",
       "type": "string"
     },

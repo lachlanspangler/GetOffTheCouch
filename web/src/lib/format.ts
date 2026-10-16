@@ -73,3 +73,13 @@ export function availabilityLabel(a: string | undefined): string | null {
 export function sourceName(id: string, names: Record<string, string>): string {
   return names[id] ?? id.replace(/_/g, " ");
 }
+
+/** "☀ 60°F" / "🌧 45°F · 70%" — compact NWS forecast label. */
+export function weatherLabel(w: { short: string; temp_f?: number | null; precip_pct?: number | null } | null | undefined): string | null {
+  if (!w) return null;
+  const s = w.short.toLowerCase();
+  const icon = /thunder/.test(s) ? "⛈" : /snow|flurr|sleet/.test(s) ? "🌨" : /rain|shower|drizzle/.test(s) ? "🌧" : /cloud|overcast/.test(s) ? "⛅" : /fog/.test(s) ? "🌫" : "☀";
+  const t = w.temp_f != null ? ` ${Math.round(w.temp_f)}°F` : "";
+  const p = w.precip_pct != null && w.precip_pct >= 30 ? ` · ${Math.round(w.precip_pct)}%` : "";
+  return `${icon}${t}${p}`;
+}

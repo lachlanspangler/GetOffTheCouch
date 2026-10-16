@@ -1,7 +1,7 @@
 import type { Event } from "../lib/types";
 import { useApp } from "../lib/ctx";
 import { catIcon, catLabel, hue } from "../lib/categories";
-import { availabilityLabel, estimateLabel, priceLabel, sourceName } from "../lib/format";
+import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel } from "../lib/format";
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
 import { Icon } from "./Icon";
 
@@ -95,6 +95,11 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
           {(e.social?.score ?? 0) >= 0.75 && (
             <span class="badge badge-social" title={e.social?.reasons?.join(" · ")}>
               Meet people
+            </span>
+          )}
+          {e.weather && (
+            <span class="badge badge-ghost" title={`NWS forecast: ${e.weather.short}`}>
+              {weatherLabel(e.weather)}
             </span>
           )}
           {more > 0 && <span class="badge badge-ghost">+{more} more date{more > 1 ? "s" : ""}</span>}
