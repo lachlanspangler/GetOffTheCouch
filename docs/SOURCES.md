@@ -98,7 +98,7 @@ their reasons are in `docs/research/ticketing_and_events_apis.md` §0.
 | Austin ACE permits `teth-r7k8` | Austin | past permits only (every 2026 row "Expired"); enrichment only | research |
 | Minneapolis On-Sale Liquor (ArcGIS) | Minneapolis | `issueDate` includes renewals and there is no original-issue date, so it can't signal newness by itself (snapshot-diff idea in the ledger) | research §3.1 |
 | WA LCB Local Authority Letters `vgcw-qfjm` | Seattle | only ~18 rows statewide, 0 for Seattle | research |
-| Florida DBPR ABT CSV extracts | Miami | usable (robots allows `/sto/`) but needs a CSV adapter — idea in the ledger | research §3.9 |
+| Florida DBPR ABT CSV extracts | Miami | now used: `fl_dbpr_openings_miami` (csvfile, `bd4006lic.csv`). See "Races, openings, trivia (session 2)" | research §3.9 |
 | Walker Art Center, artsmia.org | Minneapolis | feeds disabled / 429 | research |
 
 ## How to add a source
@@ -161,3 +161,34 @@ agent's city header; their entries live in `config/pending_sources/<city>.yaml`.
 **Not added:** Volo has no Minneapolis, Chicago, Seattle, Austin or Nashville market (sitemap, 2026-10-16). Luma calendars
 that span several cities (ALO, Claude Community, Longevity Cities) were skipped because the ICS has no per-city filter;
 calendars whose events mostly hide the address (ATX Writing Club, City Folk Seattle) were skipped too.
+
+## Races, openings, trivia (session 2)
+
+Added 2026-10-16. Every robots.txt and terms page below was fetched live that day with the project UA. "Live" means
+valid records on the first `gotc run --city X --source Y --force --no-geocode`, with 0 rejects unless noted.
+
+| Source id | City | Adapter | Endpoint | Auth | robots.txt | ToS | Cadence | Live (2026-10-16) | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+| `runsignup` | all cities (global) | runsignup | `GET runsignup.com/Rest/races?format=json&events=T&zipcode=Z&radius=R&start_date&end_date&sort=date ASC` | **free API caller registration** (`RUNSIGNUP_API_REG` + `RUNSIGNUP_API_REG_SECRET`) | `runsignup.com`: `/Rest/` allowed. `api.runsignup.com/robots.txt` is `Disallow: /`, so that host is never called | API Terms of Use (runsignup.com/About-Us/APIDeveloper-Contract): "You must register and agree to these Terms before accessing the RunSignup API"; max 2 concurrent calls; no competing apps; no bulk extraction beyond the app's ordinary function | 24 h, ≥2 s/req | **disabled: needs caller registration** (STATUS "Keys needed"). Recorded Chicago response: 45 races, 0 rejects, **42 with a reported close date**, 15 early-bird price steps | Registration times are Eastern Time (per the docs), race start times use the race's zone. Price = cheapest paid entry among periods still open. Private, draft, virtual-only and already-started (add-on store) races are skipped. `postponed_cancelled_text` marks cancellations |
+| `fl_dbpr_openings_miami` | miami | csvfile | `GET www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv` (14 MB, header row, UTF-8 today; cp1252 fallback) | none | allows `/sto/` (blocks only WordPress internals) | official Public Records download page | 24 h, conditional GET (`Last-Modified`) | **66** | Newness = `Original Licensure Date` (never Effective Date). County 23 (Dade), on-premises series (`*COP`); package stores, caterers and inactive quota licenses held in escrow ("NO CITY CODE") are filtered out. `Owner Name` and `Mail Address *` are dropped by the PII scrub (headers are snake_cased first so `PII_KEY` sees them). A DBA that just repeats the owner's legal name is used only if it looks like an organisation |
+| `boston_food_openings_csv` | boston | csvfile (`link_regex`) | `GET data.boston.gov/dataset/active-food-establishment-licenses`, then the page's `/dataset/…/resource/f1e13724-…/download/<tmp>.csv` link (302 to S3) | none | `/dataset/<slug>` pages and resource downloads are not disallowed. `/api/` and `/datastore/*` are, and we never call them. Crawl-delay 10 honoured | Analyze Boston open data | 24 h, ≥10 s/req | **21** | Newness = `license_add_dt_tm` (UTC timestamp → local date). `dayphn_cleaned` is dropped. The download file name changes when the city re-publishes, so the link is re-read from the dataset page every run. The stored URL is the data.boston.gov link, not the pre-signed S3 URL |
+| `teamtrivia_denver` | denver | teamtrivia | `GET teamtrivia.com/trivia-in-denver/` → `GET teamtrivia.com/venue/<slug>` (29 venues) | none | region and venue pages allowed, and listed in the site's own sitemaps. The zip-code gate (`/enter-site.php`) and finder (`/getlocation.php`) are disallowed and never used | `/terms` sits behind the zip gate (every gated URL returns the gate to a cookieless client), so it couldn't be read. Nothing on the public pages restricts reuse | 48 h, ≥3 s/req | **120** (29 venues). Replay after the guard below: 119 + 1 reject | Dates come from schema.org `Event` JSON-LD on each venue page (the next 4 games, correct DST offsets). If a page had a schedule table but no JSON-LD, the weekly rows would be expanded to 4 dates (labeled derived). Guard: a JSON-LD date whose weekday isn't on the posted schedule is rejected. Seen live: a Thursday game stamped with Friday's date |
+| `challenge_trivia_nashville` | nashville | challenge | `GET challengeentertainment.com/wp-json/ce/v1/shows` (one ~0.9 MB array, 937 shows nationwide) | none | Yoast `User-agent: * / Disallow:` (everything allowed) | no terms page exists (page sitemap: privacy policy only; no automation clause) | 48 h | **172** (35 venues) | Undocumented show-finder JSON (grade C). `day` 1 = Sunday. Weekly shows get 4 dates and bi-weekly 4 fortnights (next_date reported, the rest derived and labeled). Monthly / n×-per-month shows get next_date only. If `day` disagrees with `next_date`, next_date is trusted and not expanded. City filter = `metro-<slug>` and ≤ 2× city radius. Xtreme/Ballistic bar bingo → `trivia_games.bingo` |
+| `challenge_trivia_austin` | austin | challenge | same | none | same | same | 48 h | **56** (14 venues) | Killeen/Bastrop-range shows beyond 50 km are filtered |
+| `challenge_trivia_denver` | denver | challenge | same | none | same | same | 48 h | **41** (9 venues) | mostly suburbs (Thornton, Commerce City, Aurora) |
+
+**Rejected or not added (this session)**
+
+| Source | Why | Evidence |
+|---|---|---|
+| Race Roster (raceroster.com) | Registrant ToS: "post any Site Content on any other web site … strictly prohibited without the express prior written permission of Race Roster". robots allows event pages; ToS does not | raceroster.com/legal/tos-for-event-registrants |
+| CARA race calendar (cararuns.org) | Wix site; no feed or REST API to read | `/wp-json/` → 404 |
+| Boston liquor licenses (CSV download) | robots allows the file, but `issued` is re-stamped in bulk (1,057 of 1,535 rows dated 2013-11; existing breweries re-issued 2026-09), so it isn't a newness date. Idea I-094 (first-seen diff) | download of `aab353c1-…` 2026-10-16 |
+| FL DBPR `daily.csv` (as the Miami openings source) | Only one day of transactions per file and no original-licensure column. `bd4006lic.csv`'s `Original Licensure Date` is the real newness date and backfills 60 days. `csvfile` still supports headerless files (`columns:`), tested on the research sample | research §3.9 |
+| Team Trivia: Chicagoland, Miami, Nashville | region pages list **0 venues** today | trivia-in-{chicagoland,miami,nashville} |
+| Challenge Entertainment: south-florida, chicagoland, southern-california | no shows inside our cities (Broward, Chicago suburbs/Peoria, Long Beach only) | wp-json/ce/v1/shows 2026-10-16 |
+| TriviaPalooza (triviapalooza.com) | Orlando private-events company; no public venue schedule | Wix home page |
+| Quizmasters (quizmasters.biz) | UK quiz-content seller, not a venue host | home page |
+| Pub Geeks (pubgeeks.com) | only NH/VT venues | static location list |
+| OpenAir Trivia, Trivia Time Live, Brainstorm Trivia, Riddlers Trivia | no official domain found (every likely domain fails to resolve or redirects elsewhere; no web search available this session). Not assessed | DNS checks 2026-10-16 |
+| District Trivia | DC only (skipped by design) | — |

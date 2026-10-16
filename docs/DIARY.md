@@ -179,3 +179,31 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 ## 2026-10-16 08:45 UTC: wrap-up (requested by the user)
 **Did:** Stopped the two running agents. The concert jsonld adapter is left on its own branch, unmerged, and the trivia research found no clean host. Ran all gates: validate, ruff, mypy, 294 pytest, 18 vitest, 24 Playwright including axe. Updated STATUS.md with what's done and what I need from the user (keys, Pages setup, push, outreach).
 **Next session:** review/merge the jsonld branch; Ticketmaster/SeatGeek once keys exist; Team Trivia lead; Denver events.
+
+## 2026-10-16 07:45 UTC: races, Miami/Boston openings, trivia (session 2 adapter pass)
+**Did:** Added four adapters, all with recorded real fixtures:
+- `runsignup`: global, ZIP + radius per city; registration periods become reported deadlines.
+- `csvfile`: config-driven CSV downloads into `mapped.map_rows`, with snake_case headers, a date window, `legal_name_copies` and `link_regex` discovery.
+- `teamtrivia`: venue-page JSON-LD, with a weekly-table fallback through the new `common.weekly_occurrences`.
+- `challenge`: Challenge Entertainment's show-finder JSON.
+
+New units, live counts:
+- `fl_dbpr_openings_miami` 66 (I-060 done)
+- `boston_food_openings_csv` 21
+- `teamtrivia_denver` 120 (29 venues)
+- `challenge_trivia_nashville` 172, `challenge_trivia_austin` 56, `challenge_trivia_denver` 41
+
+**Broke:** Team Trivia's JSON-LD dated one Thursday game as Friday 10/16 (their server had rolled over to the next day). Fixed by a guard that rejects any date off the posted schedule (1 reject per affected venue).
+
+**Decided (and why):**
+- RunSignup is gated on the free API caller registration. Its API Terms say "You must register and agree to these Terms before accessing the RunSignup API", and `api.runsignup.com/robots.txt` is `Disallow: /`. We only call `runsignup.com/Rest/`, which robots allows, and only with registration credentials. So **no city gains live published deadlines yet.** Chicago would gain about 42 (recorded response). It's listed in STATUS "Keys needed" (I-092).
+- Miami uses `bd4006lic.csv` (`Original Licensure Date`, a 60-day backfill) instead of `daily.csv`, which only carries transaction dates.
+- Boston reads the dataset page to find the current download link. The CKAN API stays unused. Liquor `issued` dates are bulk re-stamps, so they're rejected as a newness date (I-094).
+- Team Trivia's terms are behind its zip gate. We use only its sitemap-listed public pages, following the project's "no terms found" precedent (boston_cares, upcomingcons).
+- Race Roster was rejected: its ToS forbids reposting site content.
+
+**Verified:** live runs with 0 rejects. A privacy check over all 6,741 Dade rows found no owner name or mailing address in any stored record. The dashboard was not opened in this worktree; its DB holds only these units.
+
+**Next:** user registers the RunSignup caller → enable `runsignup`; DBPR temporary event permits (I-093).
+
+**Ideas:** I-060 done; I-092–I-096 added.
