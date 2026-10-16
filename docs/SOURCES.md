@@ -414,3 +414,29 @@ Tried and not added (San Francisco):
 | Read in the Park (Luma) | SF | mixes SF and South Bay with hidden locations | ICS |
 | SF Symphony | SF | Queue-it waiting room | probe |
 | San Mateo County Libraries (BiblioCommons) | SF | works, but few branches inside 20 km | probe |
+
+### San Jose
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sjpl_events` | san_jose | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sjpl/rss/events | none | ≤20 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 471 |
+| `sccl_events` | san_jose | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sccl/rss/events | none | ≤15 pages/day | same | as above; Campbell / Cupertino / Los Altos / Milpitas / Saratoga | events · 24h | A- | 140 |
+| `stanford_events` | san_jose | Localist / `localist` | https://events.stanford.edu/api/2/events | none | ≤5 pages/day (Crawl-delay 1) | allowed | as `usc_events`; 14-day window, 1 occurrence | events · 24h | B (~27 km out, inside the geofence) | 410 |
+| `sjsu_events` | san_jose | Localist / `localist` | https://events.sjsu.edu/api/2/events | none | ≤6 pages/day (Crawl-delay 1) | allowed | as `usc_events`, `audience_filter` | events · 24h | B | 270 |
+| `sap_center` | san_jose | carbonhouse RSS / `rss_events` | https://www.sapcenter.com/events/rss | none | 1 request/day | robots allows all | title, link, ev:startdate (UTC), location | events · 24h | B+ | 43 |
+| `volo_san_jose` | san_jose | Volo HTML / `volo` | https://www.volosports.com/discover/san-jose?category=leagues | none | ≤4 pages/day, ≥3 s | robots allows; includeFees redirect | as `volo_boston` | leagues · 24h | B | 42 |
+| `scu_athletics` | san_jose | SIDEARM ICS / `ics` | https://santaclarabroncos.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = Santa Clara | events · 24h | B | 32 |
+| `montalvo_arts` | san_jose | EventSeries JSON-LD / `jsonld` (listing, `ignore_offset`) | https://montalvoarts.org/experience/programs-event-calendar/ | none | 1 page/day | robots allows | name, start (wall clock; the bogus +00:00 is ignored), venue | concerts · 24h | C+ | 5 |
+| `handson_bay_area_south` | san_jose | HandsOn Connect / `handsonconnect` | https://www.handsonbayarea.org/calendar (block 573) | none | 7 windows/day, ≥3 s | robots.txt 404 | South Bay shifts only | volunteer · 24h | B- (few) | 2 |
+
+Tried and not added (San Jose):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San José open data (CKAN) | SJ | robots disallows /api/ and /datastore/; no license dataset; road-closure layer has no event type | robots, layer stats |
+| sanjoseca.gov (Parks, Recreation & Neighborhood Services), santaclara.gov, mountainview.gov, Sunnyvale downtown, SJ Downtown Association, Ritz SJ, Earthquakes, Silicon Valley Pride, Mountain View CPA, Stanford Live, Brewers & Bites | SJ | robots.txt 403 or disallows | probe 2026-10-16 |
+| Hammer Theatre, SJ Museum of Art, Symphony San Jose, Opera San José, Children's Discovery Museum, Happy Hollow | SJ | Cloudflare challenge, not attempted | probe |
+| SJSU and Stanford athletics | SJ | not SIDEARM (calendar.ics → 404) | probe |
+| Visit San Jose | SJ | Drupal, no feed or JSON-LD | probe |
+| San Pedro Square, SJ Stage, Japantown SJ | SJ | Squarespace, no JSON-LD or feed | probe |
+| SJ Improv, Art Boutiki, Café Stritch, Rooster T Feathers | SJ | ticket widgets only | probe |

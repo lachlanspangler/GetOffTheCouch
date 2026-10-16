@@ -1,0 +1,215 @@
+# San Jose, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Radius 20 km covers San Jose plus Santa Clara, Sunnyvale, Milpitas, Campbell, Cupertino, Los Gatos and Saratoga;
+# Mountain View/Los Altos sit at the edge, Stanford/Palo Alto just outside (kept inside the 2.5x geofence).
+# Sources verified live 2026-10-16 (batch B onboarding; docs/SOURCES.md "Batch B cities").
+# Thin spots: no openings source (San Jose's CKAN portal disallows /api/ and /datastore/ in robots.txt and has
+# no business-license dataset; CA ABC is behind a Cloudflare challenge), no city/parks calendar (sanjoseca.gov
+# answers robots.txt with 403), no trivia market (Team Trivia/Challenge don't serve the Bay Area), and most
+# venues are Ticketmaster/Etix widgets or Cloudflare-challenged (Hammer Theatre, Symphony San Jose, Opera SJ).
+slug: san_jose
+name: San Jose
+state: CA
+timezone: America/Los_Angeles
+center: [37.3382, -121.8863]
+radius_km: 20
+aliases: [San José, Santa Clara, Sunnyvale, Milpitas, Campbell, Cupertino, Los Gatos, Saratoga, Monte Sereno,
+          Mountain View, Los Altos, Alum Rock]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 37.3352, lon: -121.8890 }
+  - { name: SoFA District, lat: 37.3290, lon: -121.8860 }
+  - { name: Japantown, lat: 37.3489, lon: -121.8947 }
+  - { name: Midtown / The Alameda, lat: 37.3320, lon: -121.9080 }
+  - { name: Willow Glen, lat: 37.3047, lon: -121.8930 }
+  - { name: Rose Garden, lat: 37.3320, lon: -121.9270 }
+  - { name: Naglee Park, lat: 37.3365, lon: -121.8740 }
+  - { name: West San Jose / Santana Row, lat: 37.3210, lon: -121.9480 }
+  - { name: North San Jose, lat: 37.3900, lon: -121.9300 }
+  - { name: Berryessa, lat: 37.3870, lon: -121.8600 }
+  - { name: Alum Rock / East San Jose, lat: 37.3700, lon: -121.8270 }
+  - { name: Evergreen, lat: 37.3150, lon: -121.7800 }
+  - { name: Cambrian, lat: 37.2600, lon: -121.9300 }
+  - { name: Almaden Valley, lat: 37.2200, lon: -121.8600 }
+  - { name: Santa Clara (downtown), lat: 37.3541, lon: -121.9552 }
+  - { name: Downtown Sunnyvale, lat: 37.3770, lon: -122.0300 }
+sources:
+  # ── libraries (BiblioCommons events RSS; gateway host has no robots.txt) ──
+  - id: sjpl_events
+    adapter: bibliocommons
+    name: San José Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://sjpl.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: sjpl.org/events redirects to the BiblioCommons events app; the feed is the gateway RSS.
+    params:
+      library: sjpl
+      horizon_days: 10
+      max_pages: 20
+      venue_label: San José Public Library
+      cities: [San Jose, San José]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytime: family.kids
+        Crafts & Hobbies: arts.workshop
+        STEAM: learning.tech
+        Computer Help: learning.tech
+        Learn English: learning.language
+        Books & Authors: arts.books
+        Writing & Adult Literacy: arts.books
+        Career & Business: learning.networking
+        Halloween: nightlife.holiday
+        "Young Children, ages 0-5": family.kids
+        "Kids, ages 5-10": family.kids
+        "Pre-Teens, ages 10-12": family.kids
+
+  - id: sccl_events
+    adapter: bibliocommons
+    name: Santa Clara County Library District events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://sccl.bibliocommons.com/v2/events
+    expect_min_records: 20
+    notes: Branches in Campbell, Cupertino, Los Altos, Milpitas and Saratoga; Gilroy and Morgan Hill are outside the radius.
+    params:
+      library: sccl
+      horizon_days: 10
+      max_pages: 15
+      venue_label: Santa Clara County Library District
+      cities: [Campbell, Cupertino, Los Altos, Milpitas, Saratoga, Monte Sereno]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Early Learning & Storytimes: family.kids
+        "Crafts, Maker, & DIY": arts.workshop
+        Arts & Culture: arts.museum
+        Learn English (ESL/ELL): learning.language
+        Used Book Sales: arts.books
+        Home & Garden: outdoors.park
+        "Kids: Family Events": family.kids
+        "Kids: Preschoolers": family.kids
+        "Kids: Toddlers": family.kids
+        "Kids: Babies": family.kids
+        "Kids: Grades K-8": family.kids
+
+  # ── universities (Localist, audience-filtered) ──
+  - id: sjsu_events
+    adapter: localist
+    name: San José State University events
+    data_type: events
+    homepage: https://events.sjsu.edu/
+    expect_min_records: 20
+    params:
+      fallback_point: { lat: 37.3352, lon: -121.8811, label: "SJSU main campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.sjsu.edu
+      horizon_days: 30
+      max_pages: 6
+      organizer: San José State University
+      default_category: learning.networking
+
+  - id: stanford_events
+    adapter: localist
+    name: Stanford University events
+    data_type: events
+    homepage: https://events.stanford.edu/
+    expect_min_records: 20
+    notes: >-
+      Stanford is ~27 km from downtown San Jose (just outside the radius, inside the geofence), so the window is
+      kept short (14 days, one occurrence per event) to stop campus items dominating the city feed.
+    params:
+      fallback_point: { lat: 37.4275, lon: -122.1697, label: "Stanford main campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.stanford.edu
+      horizon_days: 14
+      max_pages: 5
+      max_occurrences: 1   # long-running exhibitions repeat daily; keep the next occurrence only
+      organizer: Stanford University
+      default_category: learning.networking
+
+  - id: scu_athletics
+    adapter: ics
+    name: Santa Clara Broncos athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 30   # robots Crawl-delay: 30
+    homepage: https://santaclarabroncos.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it). Only LOCATION starting with "Santa Clara" is kept.
+    params:
+      url: https://santaclarabroncos.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Santa Clara Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!\s*Santa Clara\b)'
+      fallback_point: { lat: 37.3496, lon: -121.9390, label: "Santa Clara University campus" }
+
+  # ── venues ──
+  - id: sap_center
+    adapter: rss_events
+    name: SAP Center (Sharks, concerts, shows)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.sapcenter.com/events
+    expect_min_records: 15
+    notes: Arena's carbonhouse events RSS (/events/rss; robots allows all). Owned by Sharks Sports & Entertainment.
+    params:
+      spectator_venue: true
+      url: https://www.sapcenter.com/events/rss
+      horizon_days: 150
+      venue: {name: SAP Center, address: "525 W Santa Clara St, San Jose, CA 95113"}
+      organizer: SAP Center
+      default_category: music.concert
+      category_map:
+        Sharks: sports_watch.game
+        Barracuda: sports_watch.game
+
+  - id: montalvo_arts
+    adapter: jsonld
+    name: Montalvo Arts Center, Saratoga (program calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://montalvoarts.org/experience/programs-event-calendar/
+    expect_min_records: 2
+    notes: >-
+      EventSeries JSON-LD on the calendar page. Its startDate carries local wall-clock time labeled +00:00
+      (a 7:30 PM concert is "19:30:00+00:00"), so the offset is ignored and the time read as Pacific.
+    params:
+      urls: [https://montalvoarts.org/experience/programs-event-calendar/]
+      ignore_offset: true
+      venue: {name: Montalvo Arts Center, address: "15400 Montalvo Rd, Saratoga, CA 95070"}
+      organizer: Montalvo Arts Center
+      default_category: music.concert
+
+  # ── leagues / volunteering ──
+  - id: volo_san_jose
+    adapter: volo
+    name: Volo Sports San Jose
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/san-jose?category=leagues
+    expect_min_records: 1
+    notes: The discover page 307-redirects to add includeFees=true (42 programs on 2026-10-16).
+    params:
+      base_url: https://www.volosports.com
+      city_slug: san-jose
+      include_fees: true
+      max_pages: 4
+
+  - id: handson_bay_area_south
+    adapter: handsonconnect
+    name: HandsOn Bay Area (South Bay shifts)
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.handsonbayarea.org/calendar
+    expect_min_records: 1
+    notes: >-
+      Same HandsOn Connect tenant as handson_bay_area (San Francisco), block id 573; this unit keeps only shifts
+      whose place or title names a South Bay city.
+    params:
+      base_url: https://www.handsonbayarea.org
+      block_id: 573
+      horizon_days: 14
+      window_days: 2
+      exclude_location: "^(?!.*\\b(San Jose|San José|Santa Clara|Sunnyvale|Milpitas|Campbell|Cupertino|Los Gatos|Saratoga|Monte Sereno|Mountain View|Los Altos|Palo Alto|Alviso)\\b)"
