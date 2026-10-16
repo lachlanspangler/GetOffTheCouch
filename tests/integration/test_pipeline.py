@@ -222,3 +222,40 @@ def test_a_crashing_city_build_does_not_blank_other_cities(db, settings, monkeyp
     assert rep.status == "partial" and rep.build_errors and "boom" in rep.build_errors[0]
     assert (settings.web_data_dir / "cities" / "testville.json").exists()
     assert db.one("SELECT kind FROM health_log WHERE unit = 'build@minneapolis'")["kind"] == "build_error"
+
+
+def test_openings_by_first_seen_baseline_is_silent_new_licenses_show(db, settings):
+    from gotc.pipeline.build import load_live_records
+    from gotc.pipeline.ingest import Parsed, upsert_records
+    from gotc.schema import SourceEvent
+    from tests.conftest import unit_for
+
+    lic = make_source("mpls_liq", "arcgis", service_url="https://x", openings_by_first_seen=True, kind="opening")
+    city = make_city("minneapolis", [lic])
+    reg = make_registry(city)
+    unit = unit_for(lic, city)
+
+    def rec(rid):  # issueDate is a renewal date in this dataset — deliberately old
+        return SourceEvent(
+            source_id="mpls_liq",
+            record_id=rid,
+            city="minneapolis",
+            title=f"Bar {rid} — new liquor license",
+            category="nightlife.opening",
+            kind="opening",
+            all_day=True,
+            timezone="America/Chicago",
+            start=NOW - timedelta(days=900),
+            fetched_at=NOW,
+        )
+
+    with db.tx():
+        upsert_records(db, unit, Parsed(valid=[(rec("old1"), None), (rec("old2"), None)]), NOW)
+    assert load_live_records(db, "minneapolis", NOW, reg) == []  # baseline: existing businesses aren't news
+    later = NOW + timedelta(days=2)
+    with db.tx():
+        upsert_records(db, unit, Parsed(valid=[(rec("old1"), None), (rec("old2"), None), (rec("fresh"), None)]), later)
+    got = load_live_records(db, "minneapolis", later, reg)
+    assert [e.record_id for e in got] == ["fresh"]
+    assert got[0].start.date() == later.astimezone(got[0].start.tzinfo).date() and got[0].all_day
+    assert "First appeared in the city's license data" in (got[0].description or "")

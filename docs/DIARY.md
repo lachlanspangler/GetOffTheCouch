@@ -135,3 +135,4 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 - 2026-10-16 05:48 UTC · run 14 ok: units[1 ok] → 300 events in 1 cities
 - 2026-10-16 05:48 UTC · run 15 ok: units[1 ok] → 779 events in 1 cities
 - 2026-10-16 05:49 UTC · run 16 ok: units[1 ok] → 658 events in 1 cities
+- 2026-10-16 05:58 UTC · run 17 ok: units[1 ok] → 519 events in 1 cities

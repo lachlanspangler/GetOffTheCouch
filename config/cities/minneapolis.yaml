@@ -164,3 +164,30 @@ sources:
       max_occurrences: 4
       organizer: Sew It Together
       default_category: arts.workshop
+
+  - id: mpls_on_sale_liquor_openings
+    adapter: arcgis
+    name: Minneapolis new on-sale liquor licenses
+    data_type: openings
+    cadence_hours: 24
+    homepage: https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/On_Sale_Liquor/FeatureServer/0
+    expect_min_records: 50
+    notes: >-
+      No original-issue date in this dataset (issueDate changes on renewal), so newness = first seen by us
+      after the initial snapshot (openings_by_first_seen; I-058). The first run is a silent baseline.
+    params:
+      service_url: https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/On_Sale_Liquor/FeatureServer/0
+      kind: opening
+      openings_by_first_seen: true
+      id_includes_start: false
+      where: "licenseStatus = 'Approved'"
+      order_by: licenseNumber
+      fields: { record_id: licenseNumber, title: licenseName, start: issueDate, category: endorsements,
+                address: [address], lat: lat, lon: long, neighborhood: neighborhood }
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Minneapolis lists an approved on-sale
+        liquor license for this address ({endorsements}).
+      default_category: food_drink.restaurant_opening
+      default_url: https://www.minneapolismn.gov/business-services/licenses-permits-inspections/business-licenses/liquor-beer-wine/
+      extras: { signal: liquor_license_first_seen }

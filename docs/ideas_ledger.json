@@ -292,13 +292,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Beer leagues have no APIs; curated + monitored is the honest path",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": [
-    "2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress"
+    "2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress",
+    "2026-10-16 done: curated adapter + page-watch shipped"
    ]
   },
   {
@@ -567,13 +568,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Every new resident has the same 10 deadlines; nobody lists them",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": [
-    "2026-10-16 doing: pipeline+UI shipped; state data being researched"
+    "2026-10-16 doing: pipeline+UI shipped; state data being researched",
+    "2026-10-16 done: dup of starter pack I-049 (shipped)"
    ]
   },
   {
@@ -852,12 +854,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "auto: the Deadlines view is empty — the core promise",
    "source": "auto",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: MPLS deadlines now from HCLib registration + HandsOn"
+   ]
   },
   {
    "id": "I-058",
@@ -1046,12 +1050,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Reliability column from data instead of a hand grade",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: dup of I-071 (reliability.py)"
+   ]
   },
   {
    "id": "I-071",

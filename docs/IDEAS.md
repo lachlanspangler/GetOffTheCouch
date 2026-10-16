@@ -5,25 +5,21 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 27 · **doing** 2 · **done** 43 · **rejected** 7 · **blocked** 3
+**open** 25 · **done** 47 · **rejected** 7 · **blocked** 3
 
 ## Up next (open, by score)
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
-| I-038 | City onboarding checklist (DMV, voter registration, library card, transit pass) as deadlines | features | 4 | 2 | 1.6 | doing | Every new resident has the same 10 deadlines; nobody lists them — 2026-10-16 doing: pipeline+UI shipped; state data being researched |
-| I-020 | Curated league registry (YAML) with verified dates + page-watch to detect changes | sources | 5 | 3 | 1.33 | doing | Beer leagues have no APIs; curated + monitored is the honest path — 2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-060 | Florida DBPR ABT CSV adapter (Miami openings + temporary event alcohol permits) | sources | 4 | 2 | 1.6 | open | daily.csv (headerless, Last-Modified works) gives Dade 'Issue Permanent License' openings; bd4002lic.csv gives one-day festival permits with dates. robots allows /sto/. Miami currently has no openings source. |
 | I-066 | Denver events: find a permitted source (Denver Arts & Venues, RiNo/Cherry Creek calendars, CU Denver) | cities | 4 | 2 | 1.6 | open | Denver's only events source (Visit Denver) is blocked and DPL's LibCal is robots-disallowed, so Denver has openings but no events. Needs new research. |
-| I-070 | Source reliability score per unit (uptime, reject rate, freshness) auto-rendered into SOURCES.md | health | 4 | 2 | 1.6 | open | Reliability column from data instead of a hand grade |
 | I-074 | Census batch geocoder (10k addresses/POST) to fill coordinates in one call | data-quality | 4 | 2 | 1.6 | open | Per-request geocoding is slow; batch API is keyless |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
 | I-077 | Track Volo price steps per program (early bird → regular → last chance) as a price trend | data-quality | 4 | 2 | 1.6 | open | Volo detail /l/{uuid} and the discover card show the same program; a weekly diff of price per player lets us show 'price went up on 10/17' with evidence and alert before early-bird ends |
 | I-054 | Find a trivia nights source for Minneapolis | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Minneapolis right now |
 | I-055 | Find a parties & openings source for Minneapolis | sources | 4 | 2 | 1.4 | open | auto: 0 parties & openings events in Minneapolis right now |
-| I-057 | Find registration deadlines for Minneapolis | sources | 4 | 2 | 1.4 | open | auto: the Deadlines view is empty — the core promise |
 | I-058 | Minneapolis new liquor licenses by snapshot-diffing On_Sale_Liquor licenseNumber | sources | 3 | 2 | 1.2 | open | The ArcGIS layer's issueDate includes renewals and there is no original-issue date; a licenseNumber not seen in yesterday's full snapshot (654 rows) is a genuinely new place. Needs a small stateful diff step (first-seen date per license). |
 | I-063 | Boston openings/events via data.boston.gov resource CSV downloads instead of the robots-disallowed CKAN API | sources | 3 | 2 | 1.2 | open | robots disallows /api/ and /datastore/* but not /dataset/<slug>/resource/<id>/download/*.csv. A CSV adapter (shared with FL DBPR) would restore special-event licenses and food-license openings — confirm the path is allowed first. |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
@@ -55,10 +51,12 @@ unless docs/HEALTH.md has something red.
 |---|---|---|---|---|---|---|---|
 | I-073 | Friendsgiving / holiday-alone finder for first holidays in a new city | features | 3 | 2 | 1.2 | done | First holidays in a new city are the loneliest; curate + classify — 2026-10-16 done: router ids + Saved shared mode |
 | I-071 | Shared plan links: encode picks in URL so a friend can see overlaps | features | 3 | 2 | 1.2 | done | Social without accounts — 2026-10-16 done: gotc/health/reliability.py |
+| I-070 | Source reliability score per unit (uptime, reject rate, freshness) auto-rendered into SOURCES.md | health | 4 | 2 | 1.6 | done | Reliability column from data instead of a hand grade — 2026-10-16 done: dup of I-071 (reliability.py) |
 | I-069 | Accessibility + sober-friendly filters from tags (wheelchair, ASL, alcohol-free) | ux | 4 | 1 | 3.2 | done | Tags already derived; expose as filter chips — 2026-10-16 done: FilterBar tag chips |
 | I-068 | 'Free food' detector (pizza provided, free snacks) as a tag + filter | features | 3 | 1 | 2.4 | done | Real newcomer budget hack; text patterns are reliable — 2026-10-16 done: enrich free_food |
 | I-061 | Chicago Park District adult sports registration deadlines (tn7v-6rnw type=Program) | sources | 4 | 2 | 1.6 | done | Program rows include Sports - Volleyball/Basketball/Soccer with fee, age_range and registration_date: real beer-league deadlines from official data. Same Socrata adapter; needs registration.closes_at mapping in mapped.py. — 2026-10-16 done: chicago_park_adult_leagues + _classes |
 | I-059 | Keep openings visible for N days after their license date (build.py window for kind=opening) | pipeline | 5 | 1 | 4.0 | done | build.load_live_records drops records whose end < now-2h, so every opening dated in the past (most license signals) never reaches the export: Denver exports 0 events, NYC exports none of its 1,216 opening records. Openings need a display window (e.g. 60 days after start) instead of a fabricated end date. — 2026-10-16 done: build.OPENING_WINDOW_DAYS |
+| I-057 | Find registration deadlines for Minneapolis | sources | 4 | 2 | 1.4 | done | auto: the Deadlines view is empty — the core promise — 2026-10-16 done: MPLS deadlines now from HCLib registration + HandsOn |
 | I-053 | Diff alerts: 'new this week' badge from first_seen | ux | 4 | 1 | 3.2 | done | first_seen is tracked already; newcomers love fresh stuff — 2026-10-16 done: pipeline is_new + badge |
 | I-052 | Per-card 'report a problem' link → prefilled GitHub issue | data-quality | 3 | 1 | 2.4 | done | Crowd-sourced correction loop without accounts — 2026-10-16 done: prefilled GitHub issue link in drawer |
 | I-051 | Neighborhood vibe cards: event mix by neighborhood (from coords) | features | 3 | 3 | 0.8 | done | Helps people choose where to live/hang out — 2026-10-16 done: web/src/lib/vibes.ts |
@@ -67,6 +65,7 @@ unless docs/HEALTH.md has something red.
 | I-048 | Rainy-day swap: suggest an indoor alternative when an outdoor pick has ≥60% rain | features | 4 | 2 | 1.6 | done | Weather is attached now; plans can self-adjust — 2026-10-16 done: recommend.ts rain penalty with reason |
 | I-047 | 'Leagues registering now' wave timeline per city (opens→closes bars) | features | 4 | 3 | 1.07 | done | League signups come in seasonal waves; a Gantt-like strip shows what's open now — 2026-10-16 done: RegistrationWaves in Deadlines view |
 | I-046 | Evidence-quote page-watch as a generic verifier for any curated fact | data-quality | 5 | 2 | 2.0 | done | Shipped inside curated adapter; generalize to venue capacities and recurring schedules — 2026-10-16 done: curated adapter page-watch |
+| I-038 | City onboarding checklist (DMV, voter registration, library card, transit pass) as deadlines | features | 4 | 2 | 1.6 | done | Every new resident has the same 10 deadlines; nobody lists them — 2026-10-16 done: dup of starter pack I-049 (shipped) |
 | I-035 | Freshness SLA per field shown on cards ('checked 2h ago') | ux | 4 | 1 | 3.6 | done | Trust — 2026-10-16 done: 'checked 2h ago' on every card + stale badges |
 | I-034 | Recorded-fixture adapter tests (tests never hit the internet) | infra | 5 | 2 | 2.25 | done | Engineering bar — 2026-10-16 done: tests/fixtures + FixtureTransport; never hits network |
 | I-032 | NYC permitted events (block parties, street fairs) via Socrata | sources | 5 | 1 | 4.5 | done | Exactly the 'block party' pitch, keyless — 2026-10-16 done: nyc_permitted_events (social event types only), 549 records live 2026-10-16 |
@@ -77,6 +76,7 @@ unless docs/HEALTH.md has something red.
 | I-024 | Wikidata SPARQL for venue capacities (P1083) with source links | data-quality | 4 | 2 | 1.4 | done | Better attendance estimates from real capacities — 2026-10-16 done: dup of I-050; shipped |
 | I-023 | Auto-open a GitHub issue when a unit gets quarantined | health | 4 | 2 | 1.6 | done | Failures loud even when nobody watches the dashboard — 2026-10-16 done: scripts/health_issues.py opens/closes per unit |
 | I-022 | GitHub Actions: hourly refresh, DB persisted via cache + data branch, Pages deploy | infra | 5 | 2 | 2.25 | done | It must auto-update — 2026-10-16 done: ci.yml + hourly refresh.yml, state on orphan branch |
+| I-020 | Curated league registry (YAML) with verified dates + page-watch to detect changes | sources | 5 | 3 | 1.33 | done | Beer leagues have no APIs; curated + monitored is the honest path — 2026-10-16 done: curated adapter + page-watch shipped |
 | I-019 | New bars/restaurants from fresh liquor-license records (NY SLA, TABC, Chicago, Minneapolis, Seattle) | sources | 5 | 3 | 1.17 | done | Openings proxy from real government data, keyless — 2026-10-16 done: openings via socrata/arcgis config (NY SLA pending+new, Chicago, Seattle, TABC x2, LA, Denver x3, Nashville). Minneapolis skipped: no original-issue date (see snapshot-diff idea). NB build.py drops past-dated openings — see diary |
 | I-018 | Weather badge on outdoor events from NWS api.weather.gov (keyless) | features | 4 | 2 | 1.6 | done | Outdoor plans need forecasts; NWS is free, US-only, perfect fit — 2026-10-16 done: NWS hourly forecast attached at build, cached 3h |
 | I-017 | Calendar export (.ics) per event and for the whole plan, with VALARM before deadlines | features | 5 | 2 | 2.25 | done | 'Remind me before registration closes' without a backend — 2026-10-16 done: .ics with VALARM 2d/3h before deadlines |

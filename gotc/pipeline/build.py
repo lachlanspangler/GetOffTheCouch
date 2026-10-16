@@ -11,9 +11,10 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -70,20 +71,43 @@ class BuildStats:
     outside: int = 0
 
 
-def load_live_records(db: Database, city: str, now: datetime) -> list[SourceEvent]:
+def load_live_records(db: Database, city: str, now: datetime, reg: Registry | None = None) -> list[SourceEvent]:
     rows = db.all(
-        "SELECT data FROM source_records WHERE city = ? AND gone_at IS NULL AND start_at >= ?",
-        (city, iso(now - timedelta(days=200))),
+        "SELECT data, unit, first_seen FROM source_records WHERE city = ? AND gone_at IS NULL AND start_at >= ?",
+        (city, iso(now - timedelta(days=4000))),
     )
+    by_first_seen = _first_seen_opening_units(reg) if reg else set()
+    baselines: dict[str, datetime] = {}
     out: list[SourceEvent] = []
     for r in rows:
         ev = SourceEvent.model_validate_json(r["data"])
+        if r["unit"] in by_first_seen:
+            # I-058: datasets with no original-issue date (e.g. Minneapolis On_Sale_Liquor). A license is "new"
+            # only if it appeared after our first snapshot; its date is the day we first saw it (labeled).
+            if r["unit"] not in baselines:
+                b = db.one("SELECT MIN(first_seen) t FROM source_records WHERE unit = ?", (r["unit"],))
+                baselines[r["unit"]] = datetime.fromisoformat(b["t"]) if b and b["t"] else now
+            seen = datetime.fromisoformat(r["first_seen"])
+            if seen < baselines[r["unit"]] + timedelta(hours=6):
+                continue  # part of the initial backfill: an existing business, not news
+            local = seen.astimezone(ZoneInfo(ev.timezone))
+            ev.start = datetime.combine(local.date(), time(0, 0), ZoneInfo(ev.timezone))
+            ev.all_day, ev.kind = True, EventKind.OPENING
+            ev.description = (
+                ev.description or ""
+            ) + f"\n\nFirst appeared in the city's license data on {local:%b %-d, %Y}."
+        if ev.start < now - timedelta(days=200) and ev.kind != EventKind.OPENING:
+            continue
         end = ev.end or ev.start + timedelta(hours=3)
         closes = ev.registration.closes_at if ev.registration else None
         recent_opening = ev.kind == EventKind.OPENING and ev.start >= now - timedelta(days=OPENING_WINDOW_DAYS)
         if end >= now - timedelta(hours=2) or (closes and closes >= now) or recent_opening:
             out.append(ev)
     return out
+
+
+def _first_seen_opening_units(reg: Registry) -> set[str]:
+    return {u.key for u in reg.units() if u.source.params.get("openings_by_first_seen")}
 
 
 def load_curated_venues(city: str, config_dir: Path = CONFIG_DIR) -> list[VenueEntity]:
@@ -122,7 +146,7 @@ def build_city(
 ) -> BuildStats:
     tax = tax or taxonomy()
     stats = BuildStats(city.slug)
-    records = load_live_records(db, city.slug, now)
+    records = load_live_records(db, city.slug, now, reg)
     stats.records = len(records)
 
     if geocoder:
