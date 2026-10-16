@@ -248,3 +248,40 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 | "aurora" BiblioCommons library | DEN | It is Aurora, **Ontario** | feed `bc:state` |
 | Levitt Pavilion Denver | DEN | Squarespace, season over (0 upcoming); revisit in spring | probe |
 | Westminster / Lakewood / Littleton city calendars (CivicPlus, Granicus OpenCities) | DEN | Usable (CivicPlus iCalendar), but tiny (≤ 10 events each) | probe |
+
+## Batch D cities
+
+Onboarded 2026-10-16: Tampa, Orlando, Jacksonville, Charlotte, Raleigh, Memphis, Birmingham, Oklahoma City,
+Providence, Hartford. Same columns as the city sources table. **Verified** = valid records on the first live
+run (`gotc run --city <slug> --no-geocode`, 2026-10-16). Every fetched URL was re-audited against robots.txt
+with RFC 9309 wildcard semantics (the parser PoliteClient now uses); units on hosts that serve our client a
+Cloudflare challenge anywhere are disabled even when an API path on the same host answered.
+
+### Tampa
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `tampa_hcplc_events` | tampa | Communico `eeventcaldata` / `communico` | https://attend.hcplc.org/eeventcaldata | none | 7 requests/day (one per day of horizon, ~60 KB each) | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | title, sub_title, description, local start/end, branch, room, tags, ages, registration; staff contact never mapped | events · 24h | B (official library data via an undocumented endpoint) | 152 |
+| `tampa_ut_events` | tampa | Trumba JSON / `trumba` | https://www.trumba.com/calendars/ut-events.json | none | 1 request/day | trumba.com robots allows all; ut.edu robots allows the calendar page | title, start/end+offset, location, "Type of Event" (Student Event → skipped as campus catch-all) | events · 24h | C+ (≈90% student-only items filtered out; ~10 public items left) | 13 (of 200; rest skipped) |
+| `tampa_usf_athletics` | tampa | SIDEARM ICS / `ics` | https://gousfbulls.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots blocks only named bots + /admin/, /services/ | SUMMARY, DTSTART, LOCATION (home = starts with "Tampa") | events · 24h | A- | 33 |
+| `tampa_downtown_events` | tampa | schema.org JSON-LD (listing page) / `jsonld` | https://www.tampasdowntown.com/all-events/ | none | 1 request/day | robots allows all | name, date-only start/end, place name+address | events · 24h | B- (date-only; multi-week exhibits) | 21 |
+| `tampa_benchmark_arena` | tampa | WP The Events Calendar / `tribe` | https://www.benchmarkintlarena.com/wp-json/tribe/events/v1/events | none | ≤ 4 pages/12h | robots allows all; arena's own site (county-owned, Vinik Sports Group), not a Live Nation/TM site | title, start/end+tz, venue, categories, cost | concerts · 12h | B+ | 69 |
+| `tampa_yuengling_center` | tampa | WP The Events Calendar / `tribe` | https://www.yuenglingcenter.com/wp-json/tribe/events/v1/events | none | ≤ 3 pages/12h | robots allows all | as above | concerts · 12h | B+ | 18 |
+| `tampa_ruth_eckerd_hall` | tampa | carbonhouse RSS / `rss_events` | https://www.rutheckerdhall.com/events/rss | none | 1 request/12h | robots allows all | title, ev:startdate/enddate, ev:location (REH, Capitol Theatre, BayCare Sound, Jannus Live, Tampa Theatre), link | concerts · 12h | A- | 139 |
+| `tampa_volunteer_suncoast` | tampa | HandsOn Connect / `handsonconnect` | `POST www.volunteersuncoast.org/search/getOpportunitiesCalendar` (block 1935) | none | 7 POSTs/day (2-day windows × 14 days), ≥3 s | robots.txt 404 (no rules); no ToS clause found | title, shift start/end, organization, address, volunteersStillNeeded | volunteer · 24h | B (undocumented endpoint used by the site's own calendar) | 40 |
+| `teamtrivia_tampa` | tampa | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-tampa/ | none | 1 region + ~3 venue pages / 48h, ≥3 s | allowed + in the site's sitemap; zip gate never used | venue, JSON-LD dated games | recurring · 48h | B (small market: 3 venues) | 8 |
+| `challenge_trivia_tampa` | tampa | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all; no terms page | as Nashville; metro-tampa within 2× radius | recurring · 48h | C (undocumented) | 72 |
+| `fl_dbpr_openings_tampa` | tampa | Florida DBPR CSV extract / `csvfile` | https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv | none | 1 request/day (~14 MB, conditional GET) | robots allows /sto/ | DBA, series (COP only), address, **Original Licensure Date**; Location County 39 (Hillsborough) + 62 (Pinellas); owner dropped | openings · 24h | A- | 67 |
+
+Rejected / not used (Tampa):
+
+- St. Petersburg Library System (splibraries.org): robots `User-agent: * / Crawl-delay: 10 / Disallow: /`.
+- Clearwater Public Library (myclearwaterlibrary.librarymarket.com): robots.txt → HTTP 403 → treated as disallow-all.
+- USF events: www.usf.edu robots `Disallow: /calendar`; calendar.usf.edu doesn't resolve; events.usf.edu → 503 (Dynamics portal error).
+- tampa.gov: 403 (Cloudflare-style error page) — not pursued.
+- Straz Center: robots.txt redirect loop; not pursued.
+- Mahaffey Theater, Tampa Theatre, Jannus Live: WordPress without Tribe or Event JSON-LD (Jannus links to Ticketmaster; its shows partly arrive via the REH feed).
+- Side Splitters Comedy: listings are punchup.live links (third-party ticketing), no JSON-LD — not added.
+- Open data: Socrata catalog `q=tampa` → only USDOT/VA datasets; ArcGIS Online search (Tampa/Hillsborough/Pinellas × event/permit/license) → no events/special-event/business-license layers (only building/historic permits, floods, trails).
+- Galaxy Digital guesses (uwsuncoast, unitedwaysuncoast, volunteertampabay, hillsborough) → "Bad Domain"; the real platform is HandsOn Connect (volunteersuncoast.org).
+- Live Nation-owned MidFlorida Credit Union Amphitheatre: skipped by policy.
