@@ -36,7 +36,8 @@ def title_case_if_shouty(s: str) -> str:
     """'BLOCK PARTY ON 5TH AVE' → 'Block Party On 5th Ave' (only when the source shouts)."""
     letters = [c for c in s if c.isalpha()]
     if letters and sum(c.isupper() for c in letters) / len(letters) > 0.8 and len(letters) > 4:
-        return re.sub(r"\b(\w)(\w*)", lambda m: m.group(1).upper() + m.group(2).lower(), s)
+        # [\w'’]* keeps possessives whole: "LUCKY'S PUB" → "Lucky's Pub", not "Lucky'S Pub"
+        return re.sub(r"\b(\w)([\w'’]*)", lambda m: m.group(1).upper() + m.group(2).lower(), s)
     return s
 
 

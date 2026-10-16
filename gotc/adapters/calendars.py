@@ -30,7 +30,11 @@ def _classify(ctx: ParseContext, title: str, cats: list[str], desc: str | None) 
     ).category
 
 
-def _price(cost_text: str | None, values: list[Any], desc: str | None, title: str) -> tuple[dict[str, Any], str]:
+def _price(cost_text: Any, values: list[Any], desc: str | None, title: str) -> tuple[dict[str, Any], str]:
+    if isinstance(cost_text, int | float):  # some LiveWhale installs send cost as a bare number
+        values, cost_text = [*values, cost_text], None
+    elif cost_text is not None:
+        cost_text = str(cost_text)
     nums = [v for v in (money(x) for x in values) if v is not None] or prices_in_text(cost_text)
     if nums and max(nums) > 0:
         return {"min": min(nums), "max": max(nums), "note": clean_text(cost_text, 80)}, "unknown"
