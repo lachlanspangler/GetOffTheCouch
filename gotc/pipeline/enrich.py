@@ -191,6 +191,11 @@ _TXT = {
     "dog_friendly": re.compile(r"\b(dog[- ]friendly|dogs welcome|pups?)\b", re.I),
     "lgbtq": re.compile(r"\b(lgbtq\+?|queer|pride|drag)\b", re.I),
     "sober_friendly": re.compile(r"\b(sober|alcohol[- ]free|zero[- ]proof|mocktails?)\b", re.I),
+    "free_food": re.compile(
+        r"\b(free (pizza|food|snacks|lunch|breakfast|dinner|refreshments|tacos|coffee|donuts|bagels)|"
+        r"(pizza|food|snacks|lunch|breakfast|dinner|refreshments) (will be )?(provided|served|included)|light refreshments)\b",
+        re.I,
+    ),
     "accessible": re.compile(r"\b(wheelchair accessible|ada accessible|asl interpret)\b", re.I),
 }
 

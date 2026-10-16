@@ -4,7 +4,7 @@ import { build, parse } from "../src/lib/router";
 
 describe("router", () => {
   it("round-trips view + filters through the URL", () => {
-    const filters = { ...DEFAULT_FILTERS, cats: ["music", "trivia_games"], when: "weekend" as const, free: true, near: "Uptown" };
+    const filters = { ...DEFAULT_FILTERS, cats: ["music", "trivia_games"], when: "weekend" as const, free: true, near: "Uptown", tags: [] };
     const h = build({ city: "minneapolis", view: "map", eventId: null, filters, day: null });
     expect(h).toBe("#/minneapolis/map?cats=music%2Ctrivia_games&when=weekend&free=1&near=Uptown");
     const r = parse(h);

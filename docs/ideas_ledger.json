@@ -926,12 +926,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "blocked",
    "why": "Their event APIs return 403 (CDN bot protection) to our client though robots allows them; adapter + fixtures are done. With permission they add 250-500 curated events/week per city, and Denver has no other events source.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 blocked: needs the user to contact Simpleview boards"
+   ]
   },
   {
    "id": "I-063",
@@ -968,12 +970,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "blocked",
    "why": "17 of our units are Socrata; keyless requests are throttled (503s seen in research). A free app token raises the ceiling; the adapter already sends X-App-Token when set.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 blocked: needs SOCRATA_APP_TOKEN from the user (free)"
+   ]
   },
   {
    "id": "I-066",

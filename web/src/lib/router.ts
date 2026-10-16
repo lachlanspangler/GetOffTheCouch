@@ -35,6 +35,7 @@ export function parse(hash: string): Route {
     size: (q.get("size") as Size) ?? "any",
     near: q.get("near"),
     radiusKm: q.get("r") ? Number(q.get("r")) : DEFAULT_FILTERS.radiusKm,
+    tags: q.get("tags")?.split(",").filter(Boolean) ?? [],
   };
   return { city, view, eventId, filters: f, day: q.get("day") };
 }
@@ -51,6 +52,7 @@ export function build(r: Partial<Route> & { city: string | null }): string {
   if (f.size !== "any") q.set("size", f.size);
   if (f.near) q.set("near", f.near);
   if (f.near && f.radiusKm !== DEFAULT_FILTERS.radiusKm) q.set("r", String(f.radiusKm));
+  if (f.tags.length) q.set("tags", f.tags.join(","));
   if (r.day) q.set("day", r.day);
   const path = r.eventId ? `${r.city}/event/${encodeURIComponent(r.eventId)}` : `${r.city ?? ""}${r.city ? `/${r.view ?? "feed"}` : ""}`;
   const s = q.toString();

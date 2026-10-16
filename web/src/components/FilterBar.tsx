@@ -3,6 +3,8 @@ import { catIcon, families, hue } from "../lib/categories";
 import { DEFAULT_FILTERS, type Filters, SIZE_LABEL, type Size, type When, WHEN_LABEL } from "../lib/filters";
 import { Icon } from "./Icon";
 
+const TAG_FILTERS = ["solo_friendly", "beginner_friendly", "free_food", "accessible", "sober_friendly", "family_friendly", "dog_friendly", "lgbtq", "21+", "outdoor", "recurring", "registration_required"];
+
 export function FilterBar({ resultCount }: { resultCount: number }) {
   const { index, route, go, feed } = useApp();
   const f = route.filters;
@@ -10,7 +12,7 @@ export function FilterBar({ resultCount }: { resultCount: number }) {
   const fams = families(index.taxonomy);
   const toggleCat = (c: string) => set({ cats: f.cats.includes(c) ? f.cats.filter((x) => x !== c) : [...f.cats, c] });
   const active =
-    f.cats.length + (f.free ? 1 : 0) + (f.social ? 1 : 0) + (f.size !== "any" ? 1 : 0) + (f.near ? 1 : 0) + (f.q ? 1 : 0) + (f.maxPrice != null ? 1 : 0);
+    f.cats.length + f.tags.length + (f.free ? 1 : 0) + (f.social ? 1 : 0) + (f.size !== "any" ? 1 : 0) + (f.near ? 1 : 0) + (f.q ? 1 : 0) + (f.maxPrice != null ? 1 : 0);
   return (
     <section class="filters" aria-label="Filters">
       <div class="filter-row">
@@ -43,6 +45,18 @@ export function FilterBar({ resultCount }: { resultCount: number }) {
           >
             <Icon name={catIcon(c, index.taxonomy)} size={14} />
             {index.taxonomy[c].label}
+          </button>
+        ))}
+      </div>
+      <div class="chips scroll" role="group" aria-label="More filters">
+        {TAG_FILTERS.map((t) => (
+          <button
+            key={t}
+            class={`chip tiny ${f.tags.includes(t) ? "on" : ""}`}
+            aria-pressed={f.tags.includes(t)}
+            onClick={() => set({ tags: f.tags.includes(t) ? f.tags.filter((x) => x !== t) : [...f.tags, t] })}
+          >
+            {index.tags[t] ?? t}
           </button>
         ))}
       </div>

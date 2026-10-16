@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 27 · **doing** 2 · **done** 39 · **rejected** 7
+**open** 25 · **doing** 2 · **done** 39 · **rejected** 7 · **blocked** 2
 
 ## Up next (open, by score)
 
@@ -13,9 +13,7 @@ unless docs/HEALTH.md has something red.
 |---|---|---|---|---|---|---|---|
 | I-038 | City onboarding checklist (DMV, voter registration, library card, transit pass) as deadlines | features | 4 | 2 | 1.6 | doing | Every new resident has the same 10 deadlines; nobody lists them — 2026-10-16 doing: pipeline+UI shipped; state data being researched |
 | I-020 | Curated league registry (YAML) with verified dates + page-watch to detect changes | sources | 5 | 3 | 1.33 | doing | Beer leagues have no APIs; curated + monitored is the honest path — 2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress |
-| I-062 | Ask Simpleview boards (Meet Boston, Visit Austin, Visit Denver) for API access or an allowlisted UA | sources | 4 | 1 | 3.2 | open | Their event APIs return 403 (CDN bot protection) to our client though robots allows them; adapter + fixtures are done. With permission they add 250-500 curated events/week per city, and Denver has no other events source. |
 | I-069 | Accessibility + sober-friendly filters from tags (wheelchair, ASL, alcohol-free) | ux | 4 | 1 | 3.2 | open | Tags already derived; expose as filter chips |
-| I-065 | Rate-limit-aware Socrata: register a free SOCRATA_APP_TOKEN | infra | 3 | 1 | 2.4 | open | 17 of our units are Socrata; keyless requests are throttled (503s seen in research). A free app token raises the ceiling; the adapter already sends X-App-Token when set. |
 | I-068 | 'Free food' detector (pizza provided, free snacks) as a tag + filter | features | 3 | 1 | 2.4 | open | Real newcomer budget hack; text patterns are reliable |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
@@ -40,6 +38,13 @@ unless docs/HEALTH.md has something red.
 | I-067 | Transit-time 'near me' from GTFS (keyless) instead of straight-line km | features | 4 | 4 | 0.8 | open | Newcomers without cars care about the bus ride, not the crow-flies distance |
 | I-072 | Typical registration windows learned from history ('kickball usually registers in Feb') | features | 4 | 4 | 0.8 | open | Needs a season of snapshot history; gives 'plan ahead' power |
 | I-029 | Neighborhood 'vibe' summaries computed from event mix | features | 3 | 3 | 0.5 | open | Help pick where to live/hang out |
+
+## Blocked (needs something only a human can provide)
+
+| ID | Idea | Area | V | E | Score | Status | Why / notes |
+|---|---|---|---|---|---|---|---|
+| I-065 | Rate-limit-aware Socrata: register a free SOCRATA_APP_TOKEN | infra | 3 | 1 | 2.4 | blocked | 17 of our units are Socrata; keyless requests are throttled (503s seen in research). A free app token raises the ceiling; the adapter already sends X-App-Token when set. — 2026-10-16 blocked: needs SOCRATA_APP_TOKEN from the user (free) |
+| I-062 | Ask Simpleview boards (Meet Boston, Visit Austin, Visit Denver) for API access or an allowlisted UA | sources | 4 | 1 | 3.2 | blocked | Their event APIs return 403 (CDN bot protection) to our client though robots allows them; adapter + fixtures are done. With permission they add 250-500 curated events/week per city, and Denver has no other events source. — 2026-10-16 blocked: needs the user to contact Simpleview boards |
 
 ## Done
 

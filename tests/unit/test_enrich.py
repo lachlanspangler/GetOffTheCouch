@@ -96,3 +96,9 @@ def test_derived_tags_and_social_score():
     e.tags = tags
     s = social_score(e, taxonomy())
     assert s.score >= 0.9 and any("free-agent" in r for r in s.reasons)
+
+
+def test_free_food_tag():
+    e = event(category="learning.tech")
+    assert "free_food" in derive_tags(e, "Talk + Q&A. Pizza provided!", taxonomy())
+    assert "free_food" not in derive_tags(e, "Food trucks on site", taxonomy())

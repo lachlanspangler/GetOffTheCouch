@@ -14,6 +14,7 @@ export interface Filters {
   size: Size;
   near: string | null; // neighborhood name
   radiusKm: number;
+  tags: string[]; // all must be present
 }
 
 export const DEFAULT_FILTERS: Filters = {
@@ -26,6 +27,7 @@ export const DEFAULT_FILTERS: Filters = {
   size: "any",
   near: null,
   radiusKm: 5,
+  tags: [],
 };
 
 export const SIZE_LABEL: Record<Size, string> = {
@@ -118,6 +120,7 @@ export function applyFilters(
       if (lo == null || lo > f.maxPrice) return false;
     }
     if (f.social && (e.social?.score ?? 0) < 0.7) return false;
+    if (f.tags.length && !f.tags.every((t) => (e.tags ?? []).includes(t))) return false;
     if (f.size !== "any" && sizeOf(e) !== f.size) return false;
     if (center) {
       const { lat, lon } = e.location;
