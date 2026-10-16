@@ -5,7 +5,14 @@ import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel 
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
 import { Icon } from "./Icon";
 
-export function DeadlineBadge({ e, compact = false }: { e: Event; compact?: boolean }) {
+export function timeLeft(hours: number): string {
+  if (hours < 1) return `${Math.max(1, Math.round(hours * 60))} min`;
+  if (hours < 36) return `${Math.round(hours)} hr`;
+  const d = Math.round(hours / 24);
+  return `${d} day${d === 1 ? "" : "s"}`;
+}
+
+export function DeadlineBadge({ e }: { e: Event; compact?: boolean }) {
   const { now } = useApp();
   const at = e.registration?.closes_at;
   if (!at) return null;
@@ -15,8 +22,7 @@ export function DeadlineBadge({ e, compact = false }: { e: Event; compact?: bool
   return (
     <span class={`badge ${tone}`} title={e.registration?.evidence ?? undefined}>
       <Icon name="clock" size={13} />
-      {compact ? "Register " : "Register by "}
-      {relative(at, now)}
+      {timeLeft(h)} left to register
     </span>
   );
 }

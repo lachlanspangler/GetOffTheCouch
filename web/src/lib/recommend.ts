@@ -223,7 +223,9 @@ export function buildPlan(
     weeks.push({ label: w === 0 ? "Week 1 — get out there" : `Week ${w + 1}`, from: from.toISOString(), picks });
   }
   const horizon = start.getTime() + 30 * 86_400_000;
+  const picked = new Set(chosen.map((e) => e.id));
   const deadlines = ranked
+    .filter((s) => !picked.has(s.event.id))
     .filter((s) => {
       const c = s.event.registration?.closes_at;
       return c && new Date(c).getTime() > now.getTime() && new Date(c).getTime() < horizon;
