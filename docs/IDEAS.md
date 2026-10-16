@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 42 · **done** 55 · **rejected** 7 · **blocked** 5
+**open** 41 · **done** 56 · **rejected** 7 · **blocked** 5
 
 ## Up next (open, by score)
 
@@ -31,7 +31,6 @@ unless docs/HEALTH.md has something red.
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
 | I-082 | ics: lift Luma 'Get up-to-date information at' link as the event URL/RSVP offer | sources | 3 | 2 | 1.2 | open | Luma ICS feeds omit URL; descriptions say 'Get up-to-date information at: https://luma.com/...'; lifting it gives every Luma event an RSVP offer |
 | I-098 | Per-room venue capacities (Icehouse main room vs whole building) to tighten attendance bands | data-quality | 3 | 2 | 1.2 | open | Whole-building capacities over-estimate small-room shows |
-| I-099 | 'Similar this week' strip in the drawer (same family, nearby, different source) | features | 3 | 2 | 1.2 | open | Helps browsing from a good find |
 | I-100 | Health check: all-past start dates while the page lists upcoming items → flag series-first-date sources | health | 3 | 2 | 1.2 | open | Caught Triple Door by hand; make it automatic |
 | I-102 | City concert digest: top 10 shows this week with lowest price per seller | features | 3 | 2 | 1.2 | open | Shareable, newsletter-ready view of the price comparison |
 | I-103 | Ask AEG Presents for permission to use their per-venue events JSON (Denver/Seattle concerts) | sources | 4 | 2 | 1.2 | open | AEG's Next.js venue sites (Mission Ballroom, Bluebird, Ogden, Gothic, Fiddler's Green; Showbox/Neumos in Seattle) read a public JSON blob per venue (aegwebprod…/json/events/<id>/events.json) with face-value prices, on-sale dates and door times. Its terms didn't render to us, so we skipped it. A permission e-mail to AEG could unlock ~10 big venues in 3+ cities with one adapter. |
@@ -70,6 +69,7 @@ unless docs/HEALTH.md has something red.
 |---|---|---|---|---|---|---|---|
 | I-109 | Weekly habits section in the 30-day plan | features | 4 | 1 | 3.2 | done | Recurring social events are the fastest way to make friends in a new city |
 | I-101 | On-sale reminders: .ics alarm 15 min before Ticketmaster public on-sale | features | 4 | 1 | 3.2 | done | On-sale times are now reported deadlines; reminders make them useful — 2026-10-16 done: ics vonsaleFor |
+| I-099 | 'Similar this week' strip in the drawer (same family, nearby, different source) | features | 3 | 2 | 1.2 | done | Helps browsing from a good find — 2026-10-16 done: recommend.similar |
 | I-077 | Track Volo price steps per program (early bird → regular → last chance) as a price trend | data-quality | 4 | 2 | 1.6 | done | Volo detail /l/{uuid} and the discover card show the same program; a weekly diff of price per player lets us show 'price went up on 10/17' with evidence and alert before early-bird ends — 2026-10-16 done: Volo offers are snapshotted each run → price_trend shows early-bird → regular steps automatically |
 | I-074 | Census batch geocoder (10k addresses/POST) to fill coordinates in one call | data-quality | 4 | 2 | 1.6 | done | Per-request geocoding is slow; batch API is keyless — 2026-10-16 done: Geocoder.batch + variants |
 | I-073 | Friendsgiving / holiday-alone finder for first holidays in a new city | features | 3 | 2 | 1.2 | done | First holidays in a new city are the loneliest; curate + classify — 2026-10-16 done: router ids + Saved shared mode |
