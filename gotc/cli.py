@@ -31,6 +31,9 @@ def cmd_run(a: argparse.Namespace, s: Settings) -> int:
         force=a.force,
         max_seconds=a.max_minutes * 60 if a.max_minutes else None,
         geocode=not a.no_geocode,
+        cities=[x.strip() for x in a.cities.split(",") if x.strip()] if a.cities else None,
+        force_build=a.force_build,
+        build=not a.no_build,
         trigger=a.trigger,
     )
     print(rep.summary())
@@ -56,9 +59,15 @@ def cmd_build(a: argparse.Namespace, s: Settings) -> int:
     now = utcnow()
     http = PoliteClient(s) if a.geocode else None
     geo = Geocoder(db, http)
+    from gotc.pipeline.incremental import inputs_hash, mark_built, needs_build
+
     for c in reg.cities.values():
         if c.enabled and (a.city is None or c.slug == a.city):
+            if a.incremental and not needs_build(db, c.slug, inputs_hash(db, reg, c), now)[0]:
+                print(f"{c.slug:14} unchanged (incremental): not rebuilt")
+                continue
             st = build_city(db, reg, c, now, geo)
+            mark_built(db, c.slug, inputs_hash(db, reg, c), now)
             print(
                 f"{c.slug:14} records={st.records:<5} events={st.events:<5} merged={st.merged:<4} "
                 f"geocoded={st.geocoded:<4} venues={st.venues:<4} deadlines={st.deadlines_extracted} outside={st.outside}"
@@ -498,6 +507,9 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--force", action="store_true", help="ignore next_due_at")
     r.add_argument("--max-minutes", type=float, default=None)
     r.add_argument("--no-geocode", action="store_true")
+    r.add_argument("--cities", help="comma list: only these cities' units (a CI shard)")
+    r.add_argument("--no-build", action="store_true", help="fetch only (CI shards; the publish job builds)")
+    r.add_argument("--force-build", action="store_true", help="rebuild every city even if its inputs didn't change")
     r.add_argument("--strict", action="store_true", help="exit 1 if any unit failed")
     r.add_argument("--trigger", default="cli")
     r.set_defaults(fn=cmd_run)
@@ -505,6 +517,7 @@ def main(argv: list[str] | None = None) -> int:
     b = sub.add_parser("build", help="rebuild + export from the DB (offline)")
     b.add_argument("--city")
     b.add_argument("--geocode", action="store_true", help="allow live geocoding lookups")
+    b.add_argument("--incremental", action="store_true", help="skip cities whose build inputs didn't change")
     b.set_defaults(fn=cmd_build)
 
     rp = sub.add_parser("replay", help="re-parse stored raw payloads (after a parser fix)")

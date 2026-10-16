@@ -35,6 +35,7 @@ class RunReport:
     started_at: datetime
     units: list[UnitResult] = field(default_factory=list)
     builds: list[BuildStats] = field(default_factory=list)
+    skipped_builds: list[str] = field(default_factory=list)  # unchanged inputs (gotc/pipeline/incremental.py)
     status: str = "ok"
     build_errors: list[str] = field(default_factory=list)
 
@@ -44,7 +45,8 @@ class RunReport:
             by[u.status] = by.get(u.status, 0) + 1
         ev = sum(b.events for b in self.builds)
         parts = ", ".join(f"{v} {k}" for k, v in sorted(by.items()))
-        return f"run {self.run_id} {self.status}: units[{parts}] → {ev} events in {len(self.builds)} cities"
+        skipped = f" ({len(self.skipped_builds)} unchanged, not rebuilt)" if self.skipped_builds else ""
+        return f"run {self.run_id} {self.status}: units[{parts}] → {ev} events in {len(self.builds)} cities{skipped}"
 
 
 def run(
@@ -62,6 +64,8 @@ def run(
     trigger: str = "cli",
     include_demo: bool = False,
     client: PoliteClient | None = None,
+    cities: list[str] | None = None,
+    force_build: bool = False,
 ) -> RunReport:
     started = now or utcnow()
     cur = db.execute("INSERT INTO runs (started_at, status, trigger) VALUES (?, 'running', ?)", (iso(started), trigger))
@@ -69,6 +73,8 @@ def run(
     http = client or PoliteClient(settings, transport=transport)
     t0 = time.monotonic()
     units = reg.units(city=city, source=source)
+    if cities is not None:  # a CI shard: only these cities' units
+        units = [u for u in units if u.city.slug in cities]
     # most overdue first, so a time-boxed run spends its budget where freshness matters most
     units.sort(key=lambda u: iso(load_health(db, u.key).next_due_at or started.replace(year=2000)))
     try:
@@ -89,21 +95,34 @@ def run(
         if build:
             geocoder = Geocoder(db, http if geocode and not settings.offline else None)
             touched = {u.city.slug for u in units} if source else None  # --source X: rebuild only its cities
+            from gotc.pipeline.incremental import inputs_hash, mark_built, needs_build
+
             for c in reg.cities.values():
-                if c.enabled and (city is None or c.slug == city) and (touched is None or c.slug in touched):
-                    try:
-                        report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
-                    except Exception as e:  # one city's bug must not blank every city's dashboard
-                        log.exception("build failed for %s", c.slug)
-                        report.build_errors.append(f"{c.slug}: {type(e).__name__}: {e}")
-                        hlog(
-                            db,
-                            f"build@{c.slug}",
-                            "error",
-                            "build_error",
-                            f"{type(e).__name__}: {e}"[:500],
-                            now or utcnow(),
-                        )
+                if not (c.enabled and (city is None or c.slug == city) and (touched is None or c.slug in touched)):
+                    continue
+                if cities is not None and c.slug not in cities:
+                    continue
+                at = now or utcnow()
+                if not force_build:
+                    need, why = needs_build(db, c.slug, inputs_hash(db, reg, c), at)
+                    if not need:
+                        report.skipped_builds.append(c.slug)
+                        continue
+                    log.info("build %s: %s", c.slug, why)
+                try:
+                    report.builds.append(build_city(db, reg, c, at, geocoder))
+                    mark_built(db, c.slug, inputs_hash(db, reg, c), at)
+                except Exception as e:  # one city's bug must not blank every city's dashboard
+                    log.exception("build failed for %s", c.slug)
+                    report.build_errors.append(f"{c.slug}: {type(e).__name__}: {e}")
+                    hlog(
+                        db,
+                        f"build@{c.slug}",
+                        "error",
+                        "build_error",
+                        f"{type(e).__name__}: {e}"[:500],
+                        now or utcnow(),
+                    )
             if geocode and not settings.offline:
                 from gotc.pipeline import starter_pack
 
