@@ -19,6 +19,7 @@ metros:
     timezone: America/New_York
     center: [40.7128, -74.0060]
     center_source: scaling_md
+    center_address: "260 Broadway, New York, NY 10007"
     radius_km: 25
     incumbent: true
   - rank: 2
@@ -31,6 +32,7 @@ metros:
     timezone: America/Los_Angeles
     center: [34.0522, -118.2437]
     center_source: scaling_md
+    center_address: "200 N Spring St, Los Angeles, CA 90012"
     radius_km: 30
     incumbent: true
   - rank: 3
@@ -41,8 +43,10 @@ metros:
     state: IL
     slug: chicago
     timezone: America/Chicago
-    center: [41.8781, -87.6298]
-    center_source: scaling_md
+    center: [41.8834, -87.6323]
+    center_source: census_geocoder
+    center_address: "121 N LaSalle St, Chicago, IL 60602"
+    center_matched: "121 N LA SALLE ST, CHICAGO, IL, 60602"
     radius_km: 25
     incumbent: true
   - rank: 4
@@ -53,8 +57,10 @@ metros:
     state: TX
     slug: dallas
     timezone: America/Chicago
-    center: [32.7767, -96.7970]
-    center_source: scaling_md
+    center: [32.7767, -96.7958]
+    center_source: census_geocoder
+    center_address: "1500 Marilla St, Dallas, TX 75201"
+    center_matched: "1500 MARILLA ST, DALLAS, TX, 75201"
     radius_km: 30
   - rank: 5
     cbsa: "26420"
@@ -64,8 +70,10 @@ metros:
     state: TX
     slug: houston
     timezone: America/Chicago
-    center: [29.7604, -95.3698]
-    center_source: scaling_md
+    center: [29.7607, -95.3695]
+    center_source: census_geocoder
+    center_address: "901 Bagby St, Houston, TX 77002"
+    center_matched: "901 BAGBY ST, HOUSTON, TX, 77002"
     radius_km: 30
   - rank: 6
     cbsa: "33100"
@@ -77,6 +85,7 @@ metros:
     timezone: America/New_York
     center: [25.7617, -80.1918]
     center_source: scaling_md
+    center_address: "3500 Pan American Dr, Miami, FL 33133"
     radius_km: 30
     incumbent: true
   - rank: 7
@@ -87,8 +96,10 @@ metros:
     state: DC
     slug: washington_dc
     timezone: America/New_York
-    center: [38.9072, -77.0369]
-    center_source: scaling_md
+    center: [38.8954, -77.0302]
+    center_source: census_geocoder
+    center_address: "1350 Pennsylvania Ave NW, Washington, DC 20004"
+    center_matched: "1350 PENNSYLVANIA AVE NW, WASHINGTON, DC, 20004"
     radius_km: 20
   - rank: 8
     cbsa: "12060"
@@ -98,8 +109,10 @@ metros:
     state: GA
     slug: atlanta
     timezone: America/New_York
-    center: [33.7490, -84.3880]
-    center_source: scaling_md
+    center: [33.7479, -84.3903]
+    center_source: census_geocoder
+    center_address: "55 Trinity Ave SW, Atlanta, GA 30303"
+    center_matched: "55 TRINITY AVE SW, ATLANTA, GA, 30303"
     radius_km: 25
   - rank: 9
     cbsa: "37980"
@@ -109,8 +122,10 @@ metros:
     state: PA
     slug: philadelphia
     timezone: America/New_York
-    center: [39.9526, -75.1652]
-    center_source: scaling_md
+    center: [39.9533, -75.1634]
+    center_source: census_geocoder
+    center_address: "1400 John F Kennedy Blvd, Philadelphia, PA 19107"
+    center_matched: "1400 JOHN F KENNEDY BLVD, PHILADELPHIA, PA, 19107"
     radius_km: 20
   - rank: 10
     cbsa: "38060"
@@ -120,8 +135,10 @@ metros:
     state: AZ
     slug: phoenix
     timezone: America/Phoenix
-    center: [33.4484, -112.0740]
-    center_source: scaling_md
+    center: [33.4483, -112.0764]
+    center_source: census_geocoder
+    center_address: "200 W Washington St, Phoenix, AZ 85003"
+    center_matched: "200 W WASHINGTON ST, PHOENIX, AZ, 85003"
     radius_km: 30
   - rank: 11
     cbsa: "14460"
@@ -133,6 +150,7 @@ metros:
     timezone: America/New_York
     center: [42.3601, -71.0589]
     center_source: scaling_md
+    center_address: "1 City Hall Sq, Boston, MA 02201"
     radius_km: 20
     incumbent: true
   - rank: 12
@@ -145,6 +163,7 @@ metros:
     timezone: America/Los_Angeles
     center: [33.9806, -117.3755]
     center_source: scaling_md
+    center_address: "3900 Main St, Riverside, CA 92522"
     radius_km: 30
   - rank: 13
     cbsa: "41860"
@@ -154,8 +173,10 @@ metros:
     state: CA
     slug: san_francisco
     timezone: America/Los_Angeles
-    center: [37.7749, -122.4194]
-    center_source: scaling_md
+    center: [37.7785, -122.4183]
+    center_source: census_geocoder
+    center_address: "1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102"
+    center_matched: "1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102"
     radius_km: 20
   - rank: 14
     cbsa: "19820"
@@ -165,8 +186,10 @@ metros:
     state: MI
     slug: detroit
     timezone: America/Detroit
-    center: [42.3314, -83.0458]
-    center_source: scaling_md
+    center: [42.3289, -83.0445]
+    center_source: census_geocoder
+    center_address: "2 Woodward Ave, Detroit, MI 48226"
+    center_matched: "2 WOODWARD AVE, DETROIT, MI, 48226"
     radius_km: 25
   - rank: 15
     cbsa: "42660"
@@ -176,8 +199,10 @@ metros:
     state: WA
     slug: seattle
     timezone: America/Los_Angeles
-    center: [47.6062, -122.3321]
-    center_source: scaling_md
+    center: [47.6033, -122.3303]
+    center_source: census_geocoder
+    center_address: "600 4th Ave, Seattle, WA 98104"
+    center_matched: "600 4TH AVE, SEATTLE, WA, 98104"
     radius_km: 20
     incumbent: true
   - rank: 16
@@ -188,8 +213,10 @@ metros:
     state: MN
     slug: minneapolis
     timezone: America/Chicago
-    center: [44.9778, -93.2650]
-    center_source: scaling_md
+    center: [44.9768, -93.2658]
+    center_source: census_geocoder
+    center_address: "350 S 5th St, Minneapolis, MN 55415"
+    center_matched: "350 S 5TH ST, MINNEAPOLIS, MN, 55415"
     radius_km: 20
     incumbent: true
   - rank: 17
@@ -200,8 +227,10 @@ metros:
     state: FL
     slug: tampa
     timezone: America/New_York
-    center: [27.9506, -82.4572]
-    center_source: scaling_md
+    center: [27.9477, -82.4578]
+    center_source: census_geocoder
+    center_address: "315 E Kennedy Blvd, Tampa, FL 33602"
+    center_matched: "315 E KENNEDY BLVD, TAMPA, FL, 33602"
     radius_km: 25
   - rank: 18
     cbsa: "41740"
@@ -211,8 +240,10 @@ metros:
     state: CA
     slug: san_diego
     timezone: America/Los_Angeles
-    center: [32.7157, -117.1611]
-    center_source: scaling_md
+    center: [32.7168, -117.1628]
+    center_source: census_geocoder
+    center_address: "202 C St, San Diego, CA 92101"
+    center_matched: "202 C ST, SAN DIEGO, CA, 92101"
     radius_km: 25
   - rank: 19
     cbsa: "19740"
@@ -222,8 +253,10 @@ metros:
     state: CO
     slug: denver
     timezone: America/Denver
-    center: [39.7392, -104.9903]
-    center_source: scaling_md
+    center: [39.739, -104.9903]
+    center_source: census_geocoder
+    center_address: "1437 Bannock St, Denver, CO 80202"
+    center_matched: "1437 BANNOCK ST, DENVER, CO, 80202"
     radius_km: 25
     incumbent: true
   - rank: 20
@@ -234,8 +267,10 @@ metros:
     state: FL
     slug: orlando
     timezone: America/New_York
-    center: [28.5384, -81.3789]
-    center_source: scaling_md
+    center: [28.5383, -81.379]
+    center_source: census_geocoder
+    center_address: "400 S Orange Ave, Orlando, FL 32801"
+    center_matched: "400 S ORANGE AVE, ORLANDO, FL, 32801"
     radius_km: 25
   - rank: 21
     cbsa: "16740"
@@ -245,8 +280,10 @@ metros:
     state: NC
     slug: charlotte
     timezone: America/New_York
-    center: [35.2271, -80.8431]
-    center_source: scaling_md
+    center: [35.222, -80.8392]
+    center_source: census_geocoder
+    center_address: "600 E 4th St, Charlotte, NC 28202"
+    center_matched: "600 E 4TH ST, CHARLOTTE, NC, 28202"
     radius_km: 25
   - rank: 22
     cbsa: "12580"
@@ -256,8 +293,10 @@ metros:
     state: MD
     slug: baltimore
     timezone: America/New_York
-    center: [39.2904, -76.6122]
-    center_source: scaling_md
+    center: [39.2906, -76.6104]
+    center_source: census_geocoder
+    center_address: "100 N Holliday St, Baltimore, MD 21202"
+    center_matched: "100 N HOLLIDAY ST, BALTIMORE, MD, 21202"
     radius_km: 20
   - rank: 23
     cbsa: "41180"
@@ -267,8 +306,10 @@ metros:
     state: MO
     slug: st_louis
     timezone: America/Chicago
-    center: [38.6270, -90.1994]
-    center_source: scaling_md
+    center: [38.6274, -90.1984]
+    center_source: census_geocoder
+    center_address: "1200 Market St, St. Louis, MO 63103"
+    center_matched: "1200 MARKET ST, SAINT LOUIS, MO, 63103"
     radius_km: 25
   - rank: 24
     cbsa: "41700"
@@ -278,8 +319,10 @@ metros:
     state: TX
     slug: san_antonio
     timezone: America/Chicago
-    center: [29.4241, -98.4936]
-    center_source: scaling_md
+    center: [29.4248, -98.4947]
+    center_source: census_geocoder
+    center_address: "100 Military Plz, San Antonio, TX 78205"
+    center_matched: "100 MILITARY PLZ, SAN ANTONIO, TX, 78205"
     radius_km: 25
   - rank: 25
     cbsa: "12420"
@@ -289,8 +332,10 @@ metros:
     state: TX
     slug: austin
     timezone: America/Chicago
-    center: [30.2672, -97.7431]
-    center_source: scaling_md
+    center: [30.265, -97.7467]
+    center_source: census_geocoder
+    center_address: "301 W 2nd St, Austin, TX 78701"
+    center_matched: "301 W 2ND ST, AUSTIN, TX, 78701"
     radius_km: 25
     incumbent: true
   - rank: 26
@@ -301,8 +346,10 @@ metros:
     state: OR
     slug: portland
     timezone: America/Los_Angeles
-    center: [45.5152, -122.6784]
-    center_source: scaling_md
+    center: [45.5151, -122.6785]
+    center_source: census_geocoder
+    center_address: "1221 SW 4th Ave, Portland, OR 97204"
+    center_matched: "1221 SW 4TH AVE, PORTLAND, OR, 97204"
     radius_km: 20
   - rank: 27
     cbsa: "40900"
@@ -312,8 +359,10 @@ metros:
     state: CA
     slug: sacramento
     timezone: America/Los_Angeles
-    center: [38.5816, -121.4944]
-    center_source: scaling_md
+    center: [38.5817, -121.4941]
+    center_source: census_geocoder
+    center_address: "915 I St, Sacramento, CA 95814"
+    center_matched: "915 I ST, SACRAMENTO, CA, 95814"
     radius_km: 20
   - rank: 28
     cbsa: "38300"
@@ -323,8 +372,10 @@ metros:
     state: PA
     slug: pittsburgh
     timezone: America/New_York
-    center: [40.4406, -79.9959]
-    center_source: scaling_md
+    center: [40.4384, -79.9973]
+    center_source: census_geocoder
+    center_address: "414 Grant St, Pittsburgh, PA 15219"
+    center_matched: "414 GRANT ST, PITTSBURGH, PA, 15219"
     radius_km: 20
   - rank: 29
     cbsa: "29820"
@@ -334,8 +385,10 @@ metros:
     state: NV
     slug: las_vegas
     timezone: America/Los_Angeles
-    center: [36.1699, -115.1398]
-    center_source: scaling_md
+    center: [36.1671, -115.1493]
+    center_source: census_geocoder
+    center_address: "495 S Main St, Las Vegas, NV 89101"
+    center_matched: "495 S MAIN ST, LAS VEGAS, NV, 89101"
     radius_km: 20
   - rank: 30
     cbsa: "17140"
@@ -345,8 +398,10 @@ metros:
     state: OH
     slug: cincinnati
     timezone: America/New_York
-    center: [39.1031, -84.5120]
-    center_source: scaling_md
+    center: [39.1043, -84.5189]
+    center_source: census_geocoder
+    center_address: "801 Plum St, Cincinnati, OH 45202"
+    center_matched: "801 PLUM ST, CINCINNATI, OH, 45202"
     radius_km: 20
   - rank: 31
     cbsa: "28140"
@@ -356,8 +411,10 @@ metros:
     state: MO
     slug: kansas_city
     timezone: America/Chicago
-    center: [39.0997, -94.5786]
-    center_source: scaling_md
+    center: [39.0998, -94.5783]
+    center_source: census_geocoder
+    center_address: "414 E 12th St, Kansas City, MO 64106"
+    center_matched: "414 E 12TH ST, KANSAS CITY, MO, 64106"
     radius_km: 25
   - rank: 32
     cbsa: "18140"
@@ -367,8 +424,10 @@ metros:
     state: OH
     slug: columbus
     timezone: America/New_York
-    center: [39.9612, -82.9988]
-    center_source: scaling_md
+    center: [39.9621, -83.0025]
+    center_source: census_geocoder
+    center_address: "90 W Broad St, Columbus, OH 43215"
+    center_matched: "90 W BROAD ST, COLUMBUS, OH, 43215"
     radius_km: 20
   - rank: 33
     cbsa: "26900"
@@ -378,8 +437,10 @@ metros:
     state: IN
     slug: indianapolis
     timezone: America/Indiana/Indianapolis
-    center: [39.7684, -86.1581]
-    center_source: scaling_md
+    center: [39.7671, -86.1544]
+    center_source: census_geocoder
+    center_address: "200 E Washington St, Indianapolis, IN 46204"
+    center_matched: "200 E WASHINGTON ST, INDIANAPOLIS, IN, 46204"
     radius_km: 20
   - rank: 34
     cbsa: "17410"
@@ -389,8 +450,10 @@ metros:
     state: OH
     slug: cleveland
     timezone: America/New_York
-    center: [41.4993, -81.6944]
-    center_source: scaling_md
+    center: [41.5047, -81.6932]
+    center_source: census_geocoder
+    center_address: "601 Lakeside Ave E, Cleveland, OH 44114"
+    center_matched: "601 LAKESIDE AVE E, CLEVELAND, OH, 44114"
     radius_km: 20
   - rank: 35
     cbsa: "34980"
@@ -402,6 +465,7 @@ metros:
     timezone: America/Chicago
     center: [36.1627, -86.7816]
     center_source: scaling_md
+    center_address: "1 Public Sq, Nashville, TN 37201"
     radius_km: 25
     incumbent: true
   - rank: 36
@@ -412,8 +476,10 @@ metros:
     state: CA
     slug: san_jose
     timezone: America/Los_Angeles
-    center: [37.3382, -121.8863]
-    center_source: scaling_md
+    center: [37.3382, -121.8862]
+    center_source: census_geocoder
+    center_address: "200 E Santa Clara St, San Jose, CA 95113"
+    center_matched: "200 E SANTA CLARA ST, SAN JOSE, CA, 95113"
     radius_km: 20
   - rank: 37
     cbsa: "47260"
@@ -434,8 +500,10 @@ metros:
     state: FL
     slug: jacksonville
     timezone: America/New_York
-    center: [30.3322, -81.6557]
-    center_source: scaling_md
+    center: [30.3297, -81.6588]
+    center_source: census_geocoder
+    center_address: "117 W Duval St, Jacksonville, FL 32202"
+    center_matched: "117 W DUVAL ST, JACKSONVILLE, FL, 32202"
     radius_km: 30
   - rank: 39
     cbsa: "39300"
@@ -445,8 +513,10 @@ metros:
     state: RI
     slug: providence
     timezone: America/New_York
-    center: [41.8240, -71.4128]
-    center_source: scaling_md
+    center: [41.8243, -71.4127]
+    center_source: census_geocoder
+    center_address: "25 Dorrance St, Providence, RI 02903"
+    center_matched: "25 DORRANCE ST, PROVIDENCE, RI, 02903"
     radius_km: 15
   - rank: 40
     cbsa: "33340"
@@ -456,8 +526,10 @@ metros:
     state: WI
     slug: milwaukee
     timezone: America/Chicago
-    center: [43.0389, -87.9065]
-    center_source: scaling_md
+    center: [43.0411, -87.9097]
+    center_source: census_geocoder
+    center_address: "200 E Wells St, Milwaukee, WI 53202"
+    center_matched: "200 E WELLS ST, MILWAUKEE, WI, 53202"
     radius_km: 20
   - rank: 41
     cbsa: "39580"
@@ -467,8 +539,10 @@ metros:
     state: NC
     slug: raleigh
     timezone: America/New_York
-    center: [35.7796, -78.6382]
-    center_source: scaling_md
+    center: [35.7784, -78.6422]
+    center_source: census_geocoder
+    center_address: "222 W Hargett St, Raleigh, NC 27601"
+    center_matched: "222 W HARGETT ST, RALEIGH, NC, 27601"
     radius_km: 20
   - rank: 42
     cbsa: "36420"
@@ -478,8 +552,10 @@ metros:
     state: OK
     slug: oklahoma_city
     timezone: America/Chicago
-    center: [35.4676, -97.5164]
-    center_source: scaling_md
+    center: [35.4686, -97.5212]
+    center_source: census_geocoder
+    center_address: "200 N Walker Ave, Oklahoma City, OK 73102"
+    center_matched: "200 N WALKER AVE, OKLAHOMA CITY, OK, 73102"
     radius_km: 25
   - rank: 43
     cbsa: "31140"
@@ -489,8 +565,10 @@ metros:
     state: KY
     slug: louisville
     timezone: America/Kentucky/Louisville
-    center: [38.2527, -85.7585]
-    center_source: scaling_md
+    center: [38.2543, -85.7604]
+    center_source: census_geocoder
+    center_address: "601 W Jefferson St, Louisville, KY 40202"
+    center_matched: "601 W JEFFERSON ST, LOUISVILLE, KY, 40202"
     radius_km: 20
   - rank: 44
     cbsa: "40060"
@@ -500,8 +578,10 @@ metros:
     state: VA
     slug: richmond
     timezone: America/New_York
-    center: [37.5407, -77.4360]
-    center_source: scaling_md
+    center: [37.5408, -77.4337]
+    center_source: census_geocoder
+    center_address: "900 E Broad St, Richmond, VA 23219"
+    center_matched: "900 E BROAD ST, RICHMOND, VA, 23219"
     radius_km: 20
   - rank: 45
     cbsa: "32820"
@@ -511,8 +591,10 @@ metros:
     state: TN
     slug: memphis
     timezone: America/Chicago
-    center: [35.1495, -90.0490]
-    center_source: scaling_md
+    center: [35.1486, -90.0516]
+    center_source: census_geocoder
+    center_address: "125 N Main St, Memphis, TN 38103"
+    center_matched: "125 N MAIN ST, MEMPHIS, TN, 38103"
     radius_km: 20
   - rank: 46
     cbsa: "41620"
@@ -522,8 +604,10 @@ metros:
     state: UT
     slug: salt_lake_city
     timezone: America/Denver
-    center: [40.7608, -111.8910]
-    center_source: scaling_md
+    center: [40.7595, -111.8881]
+    center_source: census_geocoder
+    center_address: "451 S State St, Salt Lake City, UT 84111"
+    center_matched: "451 S STATE ST, SALT LAKE CITY, UT, 84111"
     radius_km: 20
   - rank: 47
     cbsa: "13820"
@@ -533,8 +617,10 @@ metros:
     state: AL
     slug: birmingham
     timezone: America/Chicago
-    center: [33.5186, -86.8104]
-    center_source: scaling_md
+    center: [33.5197, -86.8103]
+    center_source: census_geocoder
+    center_address: "710 20th St N, Birmingham, AL 35203"
+    center_matched: "710 20TH ST N, BIRMINGHAM, AL, 35203"
     radius_km: 20
   - rank: 48
     cbsa: "23420"
@@ -544,8 +630,10 @@ metros:
     state: CA
     slug: fresno
     timezone: America/Los_Angeles
-    center: [36.7378, -119.7871]
-    center_source: scaling_md
+    center: [36.7403, -119.7861]
+    center_source: census_geocoder
+    center_address: "2600 Fresno St, Fresno, CA 93721"
+    center_matched: "2600 FRESNO ST, FRESNO, CA, 93721"
     radius_km: 15
   - rank: 49
     cbsa: "24340"
@@ -555,8 +643,10 @@ metros:
     state: MI
     slug: grand_rapids
     timezone: America/Detroit
-    center: [42.9634, -85.6681]
-    center_source: scaling_md
+    center: [42.9688, -85.6721]
+    center_source: census_geocoder
+    center_address: "300 Monroe Ave NW, Grand Rapids, MI 49503"
+    center_matched: "300 MONROE AVE NW, GRAND RAPIDS, MI, 49503"
     radius_km: 15
   - rank: 50
     cbsa: "25540"
@@ -566,6 +656,8 @@ metros:
     state: CT
     slug: hartford
     timezone: America/New_York
-    center: [41.7658, -72.6734]
-    center_source: scaling_md
+    center: [41.7629, -72.6742]
+    center_source: census_geocoder
+    center_address: "550 Main St, Hartford, CT 06103"
+    center_matched: "550 MAIN ST, HARTFORD, CT, 06103"
     radius_km: 15

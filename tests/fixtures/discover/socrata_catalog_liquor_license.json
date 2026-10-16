@@ -1,0 +1,5333 @@
+{
+ "results": [
+  {
+   "resource": {
+    "name": "New Liquor Licenses",
+    "id": "dymb-xy5c",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Weekly listing of new Liquor Licenses for the past 3 weeks",
+    "attribution": "Missouri Division of Alcohol and Tobacco Control",
+    "attribution_link": "http://www.atc.dps.mo.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T08:01:02.000Z",
+    "createdAt": "2012-06-26T13:10:26.000Z",
+    "metadata_updated_at": "2026-02-24T14:50:57.000Z",
+    "data_updated_at": "2026-10-16T08:01:02.000Z",
+    "page_views": {
+     "page_views_last_week": 119,
+     "page_views_last_month": 663,
+     "page_views_total": 593644,
+     "page_views_last_week_log": 6.906890595608519,
+     "page_views_last_month_log": 9.375039431346925,
+     "page_views_total_log": 19.179240930978022
+    },
+    "columns_name": [
+     "County",
+     "Original Date",
+     "Zip Code",
+     "State",
+     "City",
+     "Street",
+     "Street Number",
+     "Current Status",
+     "License Type",
+     "BusinessType",
+     "DBAName",
+     "Licensee",
+     "License Number"
+    ],
+    "columns_field_name": [
+     "county",
+     "original_date",
+     "zip_code",
+     "state",
+     "city",
+     "street",
+     "street_number",
+     "current_status",
+     "license_type",
+     "businesstype",
+     "dbaname",
+     "licensee",
+     "license_number"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "false",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "false",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "false",
+      "align": "right"
+     }
+    ],
+    "download_count": 50613,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2026-02-24T14:50:57.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulatory",
+    "domain_tags": [
+     "alcohol",
+     "missouri",
+     "new",
+     "tobacco",
+     "control",
+     "license",
+     "liquor"
+    ],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.mo.gov"
+   },
+   "permalink": "https://data.mo.gov/d/dymb-xy5c",
+   "link": "https://data.mo.gov/Regulatory/New-Liquor-Licenses/dymb-xy5c",
+   "owner": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   },
+   "creator": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   }
+  },
+  {
+   "resource": {
+    "name": "Liquor Licenses",
+    "id": "waq4-gs4m",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-15T13:03:52.000Z",
+    "createdAt": "2018-10-01T14:21:51.000Z",
+    "metadata_updated_at": "2026-10-15T13:03:51.000Z",
+    "data_updated_at": "2026-10-15T13:03:52.000Z",
+    "page_views": {
+     "page_views_last_week": 21,
+     "page_views_last_month": 114,
+     "page_views_total": 15218,
+     "page_views_last_week_log": 4.459431618637297,
+     "page_views_last_month_log": 6.845490050944376,
+     "page_views_total_log": 13.893585945852296
+    },
+    "columns_name": [
+     "Expired Date",
+     "TABC Original Issued Date",
+     "License Type",
+     "Primary Business",
+     "Issued Date",
+     "Owner",
+     "Address 1",
+     "Address 2",
+     "Applied Date",
+     "New Georeferenced Column (state)",
+     "State",
+     "Zip",
+     "City",
+     "TABC Expired Date",
+     "TABC License Number",
+     "New Georeferenced Column (city)",
+     "New Georeferenced Column (address)",
+     "New Georeferenced Column",
+     "TABC License Type",
+     "New Georeferenced Column (zip)",
+     "License SubType",
+     "ID",
+     "Site APN",
+     "Site Subdivision",
+     "License Number"
+    ],
+    "columns_field_name": [
+     "expired_date",
+     "tabc_original_issued_date",
+     "license_type",
+     "primary_business",
+     "issued_date",
+     "owner",
+     "address_1",
+     "address_2",
+     "applied_date",
+     "geocoded_column_state",
+     "state",
+     "zip",
+     "city",
+     "tabc_expired_date",
+     "tabc_license_number",
+     "geocoded_column_city",
+     "geocoded_column_address",
+     "geocoded_column",
+     "tabc_license_type",
+     "geocoded_column_zip",
+     "license_subtype",
+     "id",
+     "site_apn",
+     "site_subdivision",
+     "license_number"
+    ],
+    "columns_datatype": [
+     "Calendar date",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Point",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {
+      "view": "date"
+     },
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {},
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 4263,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2018-10-01T14:24:57.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_tags": [],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.cstx.gov"
+   },
+   "permalink": "https://data.cstx.gov/d/waq4-gs4m",
+   "link": "https://data.cstx.gov/dataset/Liquor-Licenses/waq4-gs4m",
+   "owner": {
+    "id": "xyei-eyr9",
+    "user_type": "interactive",
+    "display_name": "City of College Station"
+   },
+   "creator": {
+    "id": "xyei-eyr9",
+    "user_type": "interactive",
+    "display_name": "City of College Station"
+   }
+  },
+  {
+   "resource": {
+    "name": "Liquor Licenses in Colorado",
+    "id": "ier5-5ms2",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Names and locations of business with active liquor licenses from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:41.000Z",
+    "createdAt": "2018-03-30T19:24:22.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:41.000Z",
+    "data_updated_at": "2026-10-15T20:08:32.000Z",
+    "page_views": {
+     "page_views_last_week": 158,
+     "page_views_last_month": 959,
+     "page_views_total": 8350,
+     "page_views_last_week_log": 7.312882955284356,
+     "page_views_last_month_log": 9.90689059560852,
+     "page_views_total_log": 13.027733249752833
+    },
+    "columns_name": [
+     "location",
+     "Street Address",
+     "Expiration",
+     "License Type",
+     "City",
+     "Doing Business As",
+     "Licensee Name",
+     "Counties",
+     "License Number",
+     "State",
+     "Zip"
+    ],
+    "columns_field_name": [
+     "location",
+     "street_address",
+     "expiration",
+     "license_type",
+     "city",
+     "doing_business_as",
+     "licensee_name",
+     ":@computed_region_nku6_53ud",
+     "license_number",
+     "state",
+     "zip"
+    ],
+    "columns_datatype": [
+     "Point",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "Liquor license expiration date",
+     "Common types include wine delivery permit, tavern hotel and restaurant, brew pub, spirit salesroom, wine salesroom, liquor stores, etc.",
+     "",
+     "DBA is commonly known name",
+     "Name of licensee from registration filing",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (nku6-53ud) the point in column 'location' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "Registered license number issued to the location",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {},
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {
+      "noCommas": "true"
+     }
+    ],
+    "download_count": 38687,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2026-10-13T22:57:37.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "liquor licenses",
+     "location",
+     "liquor",
+     "department of revenue",
+     "dor",
+     "colorado",
+     "business",
+     "liquor license division",
+     "bic"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "14558"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name and location of business, liquor license type, number, and expiration date"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Names and locations of business with active liquor licenses from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the state with any changes to ownership, location or other information."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/ier5-5ms2",
+   "link": "https://data.colorado.gov/Regulations/Liquor-Licenses-in-Colorado/ier5-5ms2",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Permanent Liquor Licenses",
+    "id": "en23-iwca",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Provincial listing of permanent liquor licenses and physical addresses",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-05-20T14:50:11.000Z",
+    "createdAt": "2017-01-23T17:55:41.000Z",
+    "metadata_updated_at": "2026-05-20T14:50:09.000Z",
+    "data_updated_at": "2026-05-20T14:50:11.000Z",
+    "page_views": {
+     "page_views_last_week": 48,
+     "page_views_last_month": 187,
+     "page_views_total": 5941,
+     "page_views_last_week_log": 5.614709844115208,
+     "page_views_last_month_log": 7.554588851677638,
+     "page_views_total_log": 12.536732889835415
+    },
+    "columns_name": [
+     "LICENSE TYPE",
+     "Location (address)",
+     "ESTABLISHMENT",
+     "Location",
+     "LICENSE NUMBER",
+     "STREET ADDRESS",
+     "POSTAL CODE",
+     "Location (zip)",
+     "CITY/TOWN",
+     "PROVINCE",
+     "Nova Scotia Health Authority Management Zones",
+     "Location (city)",
+     "Location (state)"
+    ],
+    "columns_field_name": [
+     "license_type",
+     "location_address",
+     "establishment",
+     "location",
+     "license_number",
+     "street_address",
+     "postal_code",
+     "location_zip",
+     "city_town",
+     "province",
+     ":@computed_region_3e29_j2um",
+     "location_city",
+     "location_state"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Point",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {
+      "align": "left"
+     },
+     {},
+     {
+      "align": "left"
+     },
+     {
+      "align": "left"
+     },
+     {
+      "align": "right"
+     },
+     {
+      "align": "left"
+     },
+     {
+      "align": "left"
+     },
+     {},
+     {
+      "align": "left"
+     },
+     {
+      "align": "left"
+     },
+     {},
+     {},
+     {}
+    ],
+    "download_count": 16471,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2018-11-05T17:31:30.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Permits and Licensing",
+    "domain_tags": [
+     "liquor",
+     "licenses"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Detailed-Metadata_Language",
+      "value": "eng"
+     },
+     {
+      "key": "Detailed-Metadata_Frequency",
+      "value": "Bi-Annually"
+     },
+     {
+      "key": "Detailed-Metadata_Department",
+      "value": "Service Nova Scotia"
+     },
+     {
+      "key": "Detailed-Metadata_Usage-Considerations",
+      "value": "Current as of Apr 22, 2026."
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.novascotia.ca",
+    "license": "Nova Scotia Open Government Licence"
+   },
+   "permalink": "https://data.novascotia.ca/d/en23-iwca",
+   "link": "https://data.novascotia.ca/Permits-and-Licensing/Permanent-Liquor-Licenses/en23-iwca",
+   "owner": {
+    "id": "9pyy-md4w",
+    "user_type": "interactive",
+    "display_name": "Open Data Nova Scotia"
+   },
+   "creator": {
+    "id": "9pyy-md4w",
+    "user_type": "interactive",
+    "display_name": "Open Data Nova Scotia"
+   }
+  },
+  {
+   "resource": {
+    "name": "Recently Approved Liquor Licenses in Colorado",
+    "id": "htyp-tqzh",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Names and locations of business with active liquor licenses approved in the last three months from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:40.000Z",
+    "createdAt": "2018-03-30T21:27:42.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:40.000Z",
+    "data_updated_at": "2026-10-10T10:40:26.000Z",
+    "page_views": {
+     "page_views_last_week": 64,
+     "page_views_last_month": 263,
+     "page_views_total": 4894,
+     "page_views_last_week_log": 6.022367813028454,
+     "page_views_last_month_log": 8.044394119358454,
+     "page_views_total_log": 12.257093144491057
+    },
+    "columns_name": [
+     "Location (zip)",
+     "Location (city)",
+     "Location (address)",
+     "Location",
+     "Location (state)",
+     "Counties",
+     "Doing Business As",
+     "License Type",
+     "License Number",
+     "Street Address",
+     "State",
+     "Zip",
+     "Licensee Name",
+     "City",
+     "Issue Date"
+    ],
+    "columns_field_name": [
+     "location_zip",
+     "location_city",
+     "location_address",
+     "location",
+     "location_state",
+     ":@computed_region_nku6_53ud",
+     "doing_business_as",
+     "license_type",
+     "license_number",
+     "street_address",
+     "state",
+     "zip",
+     "licensee_name",
+     "city",
+     "issue_date"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Point",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "Geocoded location for licensee",
+     "",
+     "",
+     "DBA is commonly known name",
+     "Common types include wine delivery permit, tavern hotel and restaurant, brew pub, spirit salesroom, wine salesroom, liquor stores, etc.",
+     "Registered license number issued to the location",
+     "In some cases the location is of the license point of sale and other cases locations are mailing addresses",
+     "State listed in registration, not always the point of sale",
+     "Zip listed in registration, not always the point of sale",
+     "Name of licensee from registration filing",
+     "City listed in registration, not always the point of sale",
+     "Initial date license was issued"
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {
+      "view": "address_coords",
+      "align": "left"
+     },
+     {},
+     {},
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "noCommas": "true",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     }
+    ],
+    "download_count": 2563,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2025-01-16T23:08:54.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "bic",
+     "business",
+     "colorado",
+     "dor",
+     "liquor",
+     "liquor license division",
+     "liquor licenses",
+     "location",
+     "department of revenue"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "452"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name and location of business, liquor license type, number, and expiration date"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Names and locations of business with active liquor licenses approved in the last three months from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the stae with any changes to ownership, location or other information. Licenses expire or are surrendered."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/htyp-tqzh",
+   "link": "https://data.colorado.gov/Regulations/Recently-Approved-Liquor-Licenses-in-Colorado/htyp-tqzh",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Recently Expired and Surrendered Liquor Licenses in Colorado",
+    "id": "pwjb-9dd5",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Names, locations, license number and status of liquor licenses surrendered or expired by businesses in Colorado within the last three months from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division. Note: Retail licenses that are listed as expired may be pending with local licensing authority. Pursuant to Colorado Law, any renewal applications that were filed prior to expiration and are pending at the local licensing authority are still valid until final agency action.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:42.000Z",
+    "createdAt": "2018-03-30T21:35:59.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:42.000Z",
+    "data_updated_at": "2026-10-10T10:40:16.000Z",
+    "page_views": {
+     "page_views_last_week": 37,
+     "page_views_last_month": 240,
+     "page_views_total": 2688,
+     "page_views_last_week_log": 5.247927513443585,
+     "page_views_last_month_log": 7.912889336229962,
+     "page_views_total_log": 11.392854039872873
+    },
+    "columns_name": [
+     "companyName",
+     "streetAddress",
+     "expirationDate",
+     "licenseNumber",
+     "licenseType",
+     "doingBusinessAs",
+     "zip",
+     "state",
+     "city",
+     "Counties",
+     "geo",
+     "licenseStatus"
+    ],
+    "columns_field_name": [
+     "companyname",
+     "streetaddress",
+     "expirationdate",
+     "licensenumber",
+     "licensetype",
+     "doingbusinessas",
+     "zip",
+     "state",
+     "city",
+     ":@computed_region_nku6_53ud",
+     "geo",
+     "licensestatus"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Number",
+     "Point",
+     "Text"
+    ],
+    "columns_description": [
+     "Name of licensee from registration filing",
+     "In some cases the location is of the license point of sale and other cases locations are mailing addresses ",
+     "Liquor license expiration date",
+     "Registered license number issued to the location",
+     "Common types include wine delivery permit, tavern hotel and restaurant, brew pub, spirit salesroom, wine salesroom, liquor stores, etc.",
+     "DBA is commonly known name",
+     "Zip code listed in registration, not always the point of sale",
+     "State listed in registration, not always the point of sale",
+     "City listed in registration, not always the point of sale",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (nku6-53ud) the point in column 'geo' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "",
+     "Specifies if license is expired or surrendered"
+    ],
+    "columns_format": [
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {},
+     {},
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     }
+    ],
+    "download_count": 1670,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2025-02-03T20:00:41.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "liquor licenses",
+     "location",
+     "liquor",
+     "surrendered",
+     "liquor license division",
+     "colorado",
+     "business",
+     "bic",
+     "department of revenue",
+     "dor",
+     "expired"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "110"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name and location of business, liquor license type, number, and expiration date"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Names, locations, license number and status of liquor licenses surrendered or expired by businesses in Colorado within the last three months from the Colorado Department of Revenue (CDOR) Liquor Enforcement Division. Note: Retail licenses that are listed as expired may be pending with local licensing authority. Pursuant to Colorado Law, any renewal applications that were filed prior to expiration and are pending at the local licensing authority are still valid until final agency action."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the stae with any changes to ownership, location or other information. Licenses expire or are surrendered."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/pwjb-9dd5",
+   "link": "https://data.colorado.gov/Regulations/Recently-Expired-and-Surrendered-Liquor-Licenses-i/pwjb-9dd5",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Pending Renewals for Liquor Licenses in Colorado",
+    "id": "s52i-qvky",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Pending Renewals data for Colorado. This includes retailers whose liquor license renewals have been received by the Division and are waiting processing or fee payment.",
+    "attribution": "",
+    "attribution_link": "https://sbg.colorado.gov/tobacco-license-lists",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:07.000Z",
+    "createdAt": "2025-02-04T21:29:53.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:07.000Z",
+    "data_updated_at": "2026-09-10T10:40:29.000Z",
+    "page_views": {
+     "page_views_last_week": 17,
+     "page_views_last_month": 83,
+     "page_views_total": 920,
+     "page_views_last_week_log": 4.169925001442312,
+     "page_views_last_month_log": 6.39231742277876,
+     "page_views_total_log": 9.847057346091336
+    },
+    "columns_name": [
+     "licenseNumber",
+     "licenseeName"
+    ],
+    "columns_field_name": [
+     "license_number",
+     "licensee_name"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "The license number",
+     "The license name"
+    ],
+    "columns_format": [
+     {},
+     {}
+    ],
+    "download_count": 746,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2026-08-10T19:36:02.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Business",
+    "domain_tags": [
+     "pending renewals",
+     "renewal status",
+     "retailer renewal"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://sbg.colorado.gov/liquor-license-lists"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://sbg.colorado.gov/tobacco-license-lists"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://sbg.colorado.gov/tobacco-license-lists"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular Data"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "Colorado"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": "N/A"
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "Monthly"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "Last dataset from 12/03/2024 counted 156 rows"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Data was collected from licensing system and retail businesses records, sourced from state regulatory agency's licensing system "
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "A single row represents a retail licensee whose renewal is under a pending status with the State Licensing Authority"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "This dataset contains information about retailers renewals under a pending status for the state of Colorado, including details such as Licensee Name, License Number, and Pending Status. The data is sourced from retail licensees' business records, collected through state regulatory agencies and public databases. This dataset provides insight about retailers whose renewals have been received by the Division and are awaiting processing or fee payment, which is useful for monitoring the status of retailers' renewals and regulatory compliance. Updates to the dataset occur periodically, with new data being added as retailers update their licensing details."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": "Division licensing system provides a spreadsheet/list which is accessible through Excel."
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Data in the licensing system is updated in real-time. Pending Renewals Dataset is updated at the beginning of each month to include retail licensees whose renewal have been received and are in processing by the Liquor Enforcement Division or awaiting payment. There is only two (2) individuals responsible of pulling this data from the licensing system and posting it to the Division's website."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/s52i-qvky",
+   "link": "https://data.colorado.gov/Business/Pending-Renewals-for-Liquor-Licenses-in-Colorado/s52i-qvky",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "COVID-19 Liquor License Modifications in Colorado",
+    "id": "e7wz-djhw",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Due to COVID-19, liquor establishments licensed for on-premises sales and consumption of alcohol beverages were closed, and take out and delivery methods were put into place. As Colorado now starts to re-open certain businesses, the Liquor Enforcement Division has been collaborating with local licensing authorities, various state and county public health departments, and various stakeholders, to re-open with limited capacity for on-site consumption of alcohol beverages and food service.",
+    "attribution": "CDOR",
+    "attribution_link": "https://cdor.colorado.gov/",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:05:19.000Z",
+    "createdAt": "2020-11-05T18:14:27.000Z",
+    "metadata_updated_at": "2026-10-16T11:05:19.000Z",
+    "data_updated_at": "2021-12-08T11:40:26.000Z",
+    "page_views": {
+     "page_views_last_week": 2,
+     "page_views_last_month": 33,
+     "page_views_total": 1177,
+     "page_views_last_week_log": 1.5849625007211563,
+     "page_views_last_month_log": 5.08746284125034,
+     "page_views_total_log": 10.20212382383046
+    },
+    "columns_name": [
+     "Date issued",
+     "Jurisdiction",
+     "DBA",
+     "License Number"
+    ],
+    "columns_field_name": [
+     "date_issued",
+     "jurisdiction",
+     "dba",
+     "license_number"
+    ],
+    "columns_datatype": [
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "Date COVID 19 Modificataion Permit Was Issued ",
+     "Either Local Jurisdiction or State Depending on Licnese Type",
+     "Doing Business As - Licensee Trade Name",
+     "Liquor License Number Issued by LED to Licensee"
+    ],
+    "columns_format": [
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {}
+    ],
+    "download_count": 1419,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2020-11-05T18:19:05.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Business",
+    "domain_tags": [
+     "distance",
+     "dba",
+     "covid-19",
+     "covid",
+     "coronavirus",
+     "business",
+     "cdor",
+     "biz",
+     "bic",
+     "approved",
+     "way",
+     "temporary",
+     "street",
+     "row",
+     "right",
+     "outdoor",
+     "of",
+     "modified",
+     "modification",
+     "mod",
+     "liquor",
+     "licenses",
+     "license",
+     "expansions",
+     "dor",
+     "distancing"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": ""
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://cdor.colorado.gov/"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "Static"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Never"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "1457"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "None"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "An approved modification to a liquor license for one licensee/business."
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": "10/26/2020"
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Approved modifications to liquor licenses due to the covid-19 pandemic. Emergency Regulation 47-302(F) is being adopted to allow on-premises liquor licensed\nbusinesses to apply for temporary modifications with their local and state licensing authority and\nto pre plan for temporary outdoor seating areas that support social distancing requirements."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": "5/20/2020"
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/e7wz-djhw",
+   "link": "https://data.colorado.gov/Business/COVID-19-Liquor-License-Modifications-in-Colorado/e7wz-djhw",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Building Permits for Fiscal Year 2013 - 2014",
+    "id": "fs84-rv8z",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Building permit is needed for work involving structural elements of a building. Permits are not required for certain construction work. Historic or conservation districts have special requirements for work on the exterior of properties.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2021-08-13T16:19:17.000Z",
+    "createdAt": "2020-04-15T19:02:24.000Z",
+    "metadata_updated_at": "2021-08-13T16:19:17.000Z",
+    "data_updated_at": "2020-04-15T19:10:18.000Z",
+    "page_views": {
+     "page_views_last_week": 42,
+     "page_views_last_month": 129,
+     "page_views_total": 1699,
+     "page_views_last_week_log": 5.426264754702098,
+     "page_views_last_month_log": 7.022367813028454,
+     "page_views_total_log": 10.731319031025064
+    },
+    "columns_name": [
+     "Street Address",
+     "Mapsco",
+     "Contractor",
+     "Area",
+     "Land Use",
+     "Permit Number",
+     "Permit Type",
+     "Value",
+     "Work Description",
+     "Zip Code",
+     "Issued Date"
+    ],
+    "columns_field_name": [
+     "street_address",
+     "mapsco",
+     "contractor",
+     "area",
+     "land_use",
+     "permit_number",
+     "permit_type",
+     "value",
+     "work_description",
+     "zip_code",
+     "issued_date"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 269,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2020-04-15T19:04:14.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Archive",
+    "domain_tags": [
+     "address",
+     "issued date",
+     "fence",
+     "electrical",
+     "demolition",
+     "contractor",
+     "construction",
+     "building",
+     "barricade",
+     "area",
+     "value",
+     "tent",
+     "security system",
+     "repair",
+     "remodeling",
+     "registration",
+     "plumbing",
+     "permit type",
+     "permit number",
+     "permit",
+     "mechanical",
+     "mapsco",
+     "liquor license"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Custom-Metadata-Fields_Category",
+      "value": "Services"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Data-Type",
+      "value": "File (Excel, CSV)"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Contact-Email",
+      "value": "ODP@dallascityhall.com"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Automated-Updates",
+      "value": "No"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "www.dallasopendata.com"
+   },
+   "permalink": "https://www.dallasopendata.com/d/fs84-rv8z",
+   "link": "https://www.dallasopendata.com/Archive/Building-Permits-for-Fiscal-Year-2013-2014/fs84-rv8z",
+   "owner": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   },
+   "creator": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   }
+  },
+  {
+   "resource": {
+    "name": "Building Permits for Fiscal Year 2017 - 2018",
+    "id": "w2uy-zn9f",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Building permit is needed for work involving structural elements of a building. Permits are not required for certain construction work. Historic or conservation districts have special requirements for work on the exterior of properties.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2021-08-13T16:21:08.000Z",
+    "createdAt": "2020-04-15T19:47:49.000Z",
+    "metadata_updated_at": "2021-08-13T16:21:08.000Z",
+    "data_updated_at": "2020-04-15T19:50:48.000Z",
+    "page_views": {
+     "page_views_last_week": 22,
+     "page_views_last_month": 81,
+     "page_views_total": 2487,
+     "page_views_last_week_log": 4.523561956057013,
+     "page_views_last_month_log": 6.357552004618085,
+     "page_views_total_log": 11.280770770130603
+    },
+    "columns_name": [
+     "Mapsco",
+     "Value",
+     "Land Use",
+     "Work Description",
+     "Area",
+     "Zip Code",
+     "Contractor",
+     "Issued Date",
+     "Permit Number",
+     "Street Address",
+     "Permit Type"
+    ],
+    "columns_field_name": [
+     "mapsco",
+     "value",
+     "land_use",
+     "work_description",
+     "area",
+     "zip_code",
+     "contractor",
+     "issued_date",
+     "permit_number",
+     "street_address",
+     "permit_type"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Number",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 391,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2020-04-15T19:50:49.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Services",
+    "domain_tags": [
+     "flood control",
+     "issued date",
+     "liquor license",
+     "mapsco",
+     "permit",
+     "mechanical",
+     "tent",
+     "barricade",
+     "value",
+     "conservation",
+     "demolition",
+     "electrical",
+     "fence",
+     "area",
+     "registration",
+     "plumbing",
+     "permit type",
+     "address",
+     "permit number",
+     "security system",
+     "repair",
+     "remodeling"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Custom-Metadata-Fields_Category",
+      "value": "Services"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Data-Type",
+      "value": "File (Excel, CSV)"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Contact-Email",
+      "value": "ODP@dallascityhall.com"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Automated-Updates",
+      "value": "No"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "www.dallasopendata.com"
+   },
+   "permalink": "https://www.dallasopendata.com/d/w2uy-zn9f",
+   "link": "https://www.dallasopendata.com/Services/Building-Permits-for-Fiscal-Year-2017-2018/w2uy-zn9f",
+   "owner": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   },
+   "creator": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   }
+  },
+  {
+   "resource": {
+    "name": "Building Permits for Fiscal Year 2011 - 2012",
+    "id": "azf5-sdcr",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Building permit is needed for work involving structural elements of a building. Permits are not required for certain construction work. Historic or conservation districts have special requirements for work on the exterior of properties.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2021-08-13T16:18:26.000Z",
+    "createdAt": "2020-04-15T17:08:11.000Z",
+    "metadata_updated_at": "2021-08-13T16:18:26.000Z",
+    "data_updated_at": "2020-04-15T17:34:35.000Z",
+    "page_views": {
+     "page_views_last_week": 39,
+     "page_views_last_month": 151,
+     "page_views_total": 3332,
+     "page_views_last_week_log": 5.321928094887363,
+     "page_views_last_month_log": 7.247927513443586,
+     "page_views_total_log": 11.70260560211025
+    },
+    "columns_name": [
+     "Zip Code",
+     "Land Use",
+     "Mapsco",
+     "Work Description",
+     "Value",
+     "Permit Number",
+     "Permit Type",
+     "Issued Date",
+     "Contractor",
+     "Area",
+     "Street Address"
+    ],
+    "columns_field_name": [
+     "zip_code",
+     "land_use",
+     "mapsco",
+     "work_description",
+     "value",
+     "permit_number",
+     "permit_type",
+     "issued_date",
+     "contractor",
+     "area",
+     "street_address"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 1852,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2020-04-15T17:10:25.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Archive",
+    "domain_tags": [
+     "fence",
+     "issued date",
+     "land use",
+     "liquor license",
+     "mechanical",
+     "tent",
+     "security system",
+     "repair",
+     "remodeling",
+     "plumbing",
+     "permit type",
+     "permit number",
+     "permit",
+     "address",
+     "barricade",
+     "building",
+     "construction",
+     "contractor",
+     "demolition",
+     "electrical"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Custom-Metadata-Fields_Category",
+      "value": "Services"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Data-Type",
+      "value": "File (Excel, CSV)"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Contact-Email",
+      "value": "ODP@dallascityhall.com"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Automated-Updates",
+      "value": "No"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "www.dallasopendata.com"
+   },
+   "permalink": "https://www.dallasopendata.com/d/azf5-sdcr",
+   "link": "https://www.dallasopendata.com/Archive/Building-Permits-for-Fiscal-Year-2011-2012/azf5-sdcr",
+   "owner": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   },
+   "creator": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   }
+  },
+  {
+   "resource": {
+    "name": "Building Permits for Fiscal Year 2015 - 2016",
+    "id": "rzm4-tcqx",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Building permit is needed for work involving structural elements of a building. Permits are not required for certain construction work. Historic or conservation districts have special requirements for work on the exterior of properties.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2021-08-13T16:20:14.000Z",
+    "createdAt": "2020-04-15T19:27:58.000Z",
+    "metadata_updated_at": "2021-08-13T16:20:14.000Z",
+    "data_updated_at": "2021-07-29T13:07:42.000Z",
+    "page_views": {
+     "page_views_last_week": 32,
+     "page_views_last_month": 76,
+     "page_views_total": 1158,
+     "page_views_last_week_log": 5.044394119358453,
+     "page_views_last_month_log": 6.266786540694902,
+     "page_views_total_log": 10.178664851006472
+    },
+    "columns_name": [
+     "Area",
+     "Issued Date",
+     "Land Use",
+     "Work Description",
+     "Permit Number",
+     "Zip Code",
+     "Street Address",
+     "Value",
+     "Contractor",
+     "Mapsco",
+     "Permit Type"
+    ],
+    "columns_field_name": [
+     "area",
+     "issued_date",
+     "land_use",
+     "work_description",
+     "permit_number",
+     "zip_code",
+     "street_address",
+     "value",
+     "contractor",
+     "mapsco",
+     "permit_type"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {
+      "noCommas": "true"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 1304,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2020-04-15T19:36:33.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Archive",
+    "domain_tags": [
+     "security system",
+     "repair",
+     "remodeling",
+     "plumbing",
+     "area",
+     "barricade",
+     "building",
+     "construction",
+     "contractor",
+     "demolition",
+     "electrical",
+     "fence",
+     "issued date",
+     "permit type",
+     "permit number",
+     "permit",
+     "mechanical",
+     "liquor license",
+     "mapsco",
+     "value",
+     "tent"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Custom-Metadata-Fields_Category",
+      "value": "Services"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Data-Type",
+      "value": "File (Excel, CSV)"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Contact-Email",
+      "value": "ODP@dallascityhall.com"
+     },
+     {
+      "key": "Custom-Metadata-Fields_Automated-Updates",
+      "value": "No"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "www.dallasopendata.com"
+   },
+   "permalink": "https://www.dallasopendata.com/d/rzm4-tcqx",
+   "link": "https://www.dallasopendata.com/Archive/Building-Permits-for-Fiscal-Year-2015-2016/rzm4-tcqx",
+   "owner": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   },
+   "creator": {
+    "id": "equi-mxct",
+    "user_type": "interactive",
+    "display_name": "Dallas OpenData1"
+   }
+  },
+  {
+   "resource": {
+    "name": "[ARCHVIED] Alcohol, Gaming, Fuel & Tobacco Licensing Notices",
+    "id": "964n-wz2g",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "<b>[ARCHIVED]</b> Summary of recent licensing notices issued by the Alcohol, Gaming, Fuel and Tobacco Division.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2024-07-15T16:26:39.000Z",
+    "createdAt": "2015-11-25T18:30:28.000Z",
+    "metadata_updated_at": "2024-07-15T16:26:39.000Z",
+    "data_updated_at": "2016-01-22T16:00:17.000Z",
+    "page_views": {
+     "page_views_last_week": 9,
+     "page_views_last_month": 52,
+     "page_views_total": 2155,
+     "page_views_last_week_log": 3.3219280948873626,
+     "page_views_last_month_log": 5.7279204545632,
+     "page_views_total_log": 11.074141462752506
+    },
+    "columns_name": [
+     "LICENSE #",
+     "ESTABLISHMENT NAME",
+     "DATE",
+     "NOTICE TYPE"
+    ],
+    "columns_field_name": [
+     "license",
+     "establishment_name",
+     "date",
+     "notice_type"
+    ],
+    "columns_datatype": [
+     "Number",
+     "Text",
+     "Calendar date",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {}
+    ],
+    "download_count": 1254,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2016-01-22T16:01:44.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Permits and Licensing",
+    "domain_tags": [
+     "licensing notices",
+     "licensing",
+     "fuel",
+     "gaming",
+     "alcohol",
+     "tobacco"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Detailed-Metadata_Geographic-Region-Name",
+      "value": "Nova Scotia"
+     },
+     {
+      "key": "Detailed-Metadata_Department",
+      "value": "Service Nova Scotia"
+     },
+     {
+      "key": "Detailed-Metadata_Related-Documents",
+      "value": "http://novascotia.ca/sns/access/alcohol-gaming/license.asp"
+     },
+     {
+      "key": "Detailed-Metadata_Usage-Considerations",
+      "value": "Archived September 22, 2023. This dataset has been superseded by Permanent Liquor Licenses https://data.novascotia.ca/Permits-and-Licensing/Permanent-Liquor-Licenses/en23-iwca The Alcohol, Gaming, Fuel & Tobacco Licensing Notices contained new licenses issued and the Permanent Liquor Licenses dataset contains a list of all licenses issued. "
+     },
+     {
+      "key": "Detailed-Metadata_Time-Period-Coverage",
+      "value": "2015-05-01/2015-10-01"
+     },
+     {
+      "key": "Detailed-Metadata_Language",
+      "value": "eng"
+     },
+     {
+      "key": "Detailed-Metadata_Frequency",
+      "value": "One-time"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.novascotia.ca",
+    "license": "Nova Scotia Open Government Licence"
+   },
+   "permalink": "https://data.novascotia.ca/d/964n-wz2g",
+   "link": "https://data.novascotia.ca/Permits-and-Licensing/-ARCHVIED-Alcohol-Gaming-Fuel-Tobacco-Licensing-No/964n-wz2g",
+   "owner": {
+    "id": "9pyy-md4w",
+    "user_type": "interactive",
+    "display_name": "Open Data Nova Scotia"
+   },
+   "creator": {
+    "id": "9pyy-md4w",
+    "user_type": "interactive",
+    "display_name": "Open Data Nova Scotia"
+   }
+  },
+  {
+   "resource": {
+    "name": "Liquor Compliance Check Statistics in Colorado",
+    "id": "kapc-ib6e",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Business names, location, liquor license type and dates regarding liquor compliance checks done by the Colorado Department of Revenue, Liquor Enforcement Division. These compliance checks consists of whether or not alcohol was sold to a minor since Jan 2017. Updates are on hold due to the COVID-19 outbreak.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:43.000Z",
+    "createdAt": "2018-04-12T15:19:37.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:43.000Z",
+    "data_updated_at": "2026-10-10T10:40:55.000Z",
+    "page_views": {
+     "page_views_last_week": 18,
+     "page_views_last_month": 131,
+     "page_views_total": 3064,
+     "page_views_last_week_log": 4.247927513443585,
+     "page_views_last_month_log": 7.044394119358453,
+     "page_views_total_log": 11.581671358578145
+    },
+    "columns_name": [
+     "License Type",
+     "Date",
+     "County",
+     "Location (zip)",
+     "Location (state)",
+     "Location (city)",
+     "Zip",
+     "Agency",
+     "City",
+     "Location (address)",
+     "Counties",
+     "Pass or Fail",
+     "Location",
+     "Street Address",
+     "Business Name"
+    ],
+    "columns_field_name": [
+     "license_type",
+     "date",
+     "county",
+     "location_zip",
+     "location_state",
+     "location_city",
+     "zip",
+     "agency",
+     "city",
+     "location_address",
+     ":@computed_region_nku6_53ud",
+     "pass_or_fail",
+     "location",
+     "street_address",
+     "business_name"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Point",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "Common types include wine delivery permit, tavern hotel and restaurant, brew pub, spirit salesroom, wine salesroom, liquor stores, etc.",
+     "Date compliance check was conducted",
+     "County listed in registration, not always the point of sale",
+     "",
+     "",
+     "",
+     "Zip listed in registration, not always the point of sale",
+     "Agency conducting the compliance check",
+     "City listed in registration, not always the point of sale",
+     "",
+     "",
+     "Business passed or failed compliance check",
+     "Geocoded location for business",
+     "In some cases the location is of the business point of sale and other cases locations are mailing addresses",
+     "Name of business receiving compliance check"
+    ],
+    "columns_format": [
+     {},
+     {
+      "view": "date"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 2347,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2025-01-29T21:31:15.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "compliance check",
+     "liquor licenses",
+     "location",
+     "department of revenue",
+     "dor",
+     "liquor",
+     "statistics",
+     "liquor license division",
+     "bic",
+     "business",
+     "colorado"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "8714"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Date and agency conducting a compliance check on a business including its location and license type"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Business names, location, liquor license type and dates regarding liquor compliance checks done by the Colorado Department of Revenue, Liquor Enforcement Division. These compliance checks consists of whether or not alcohol was sold to a minor since Jan 2017. Updates are on hold due to the COVID-19 outbreak."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the state with any changes to ownership, location or other information."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/kapc-ib6e",
+   "link": "https://data.colorado.gov/Regulations/Liquor-Compliance-Check-Statistics-in-Colorado/kapc-ib6e",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Missouri Beer, Wine and Liquor Wholesaler List with Zip Code",
+    "id": "fkt2-8smh",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Listing of current Missouri beer, wine and liquor wholesalers with their associated zip codes.  This listing is updated daily.",
+    "attribution": "Missouri Division of Alcohol and Tobacco Control",
+    "attribution_link": "http://www.atc.dps.mo.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T08:01:02.000Z",
+    "createdAt": "2012-08-07T14:42:57.000Z",
+    "metadata_updated_at": "2022-09-02T13:35:46.000Z",
+    "data_updated_at": "2026-10-16T08:01:02.000Z",
+    "page_views": {
+     "page_views_last_week": 51,
+     "page_views_last_month": 303,
+     "page_views_total": 657191,
+     "page_views_last_week_log": 5.700439718141093,
+     "page_views_last_month_log": 8.247927513443585,
+     "page_views_total_log": 19.32595539290104
+    },
+    "columns_name": [
+     "License Number",
+     "Business Name",
+     "City",
+     "License Type",
+     "Zip Code"
+    ],
+    "columns_field_name": [
+     "license_number",
+     "business_name",
+     "city",
+     "license_type",
+     "zip_code"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 17379,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2022-09-02T13:35:45.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulatory",
+    "domain_tags": [
+     "wine",
+     "excise",
+     "liquor",
+     "missouri",
+     "solicitor",
+     "tax",
+     "wholesaler",
+     "zip code"
+    ],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.mo.gov"
+   },
+   "permalink": "https://data.mo.gov/d/fkt2-8smh",
+   "link": "https://data.mo.gov/Regulatory/Missouri-Beer-Wine-and-Liquor-Wholesaler-List-with/fkt2-8smh",
+   "owner": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   },
+   "creator": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   }
+  },
+  {
+   "resource": {
+    "name": "Sales Rooms in Colorado",
+    "id": "9pwz-gi5v",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Sales rooms are permanent fixtures where beer, wine, or spirits are manufactured and sold on site. Data provided from the Colorado Department of Revenue (DOR) Liquor Enforcement Division.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:38.000Z",
+    "createdAt": "2018-03-29T16:42:42.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:38.000Z",
+    "data_updated_at": "2026-10-10T10:40:18.000Z",
+    "page_views": {
+     "page_views_last_week": 18,
+     "page_views_last_month": 64,
+     "page_views_total": 2435,
+     "page_views_last_week_log": 4.247927513443585,
+     "page_views_last_month_log": 6.022367813028454,
+     "page_views_total_log": 11.250298417906333
+    },
+    "columns_name": [
+     "City",
+     "Zip",
+     "geocoded address",
+     "address",
+     "Counties",
+     "State",
+     "Expiration",
+     "licenseNum",
+     "licenseType",
+     "doingBusinessAs",
+     "licenseeName"
+    ],
+    "columns_field_name": [
+     "city",
+     "zip",
+     "geocoded_address",
+     "address",
+     ":@computed_region_nku6_53ud",
+     "state",
+     "expiration",
+     "licensenum",
+     "licensetype",
+     "doingbusinessas",
+     "licenseename"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Number",
+     "Point",
+     "Text",
+     "Number",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "City of brewery, winery, or distiller",
+     "Zip of sales room point of sale",
+     "",
+     "",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (nku6-53ud) the point in column 'geocoded_address' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "State of sales room point of sale",
+     "Expiration date of the sales room liquor license",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "noCommas": "true"
+     },
+     {},
+     {},
+     {}
+    ],
+    "download_count": 2779,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2025-01-16T22:36:35.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "liquor licenses",
+     "brewery",
+     "bic",
+     "winery",
+     "tasting room",
+     "tap room",
+     "sales room",
+     "location",
+     "liquor license division",
+     "liquor",
+     "dor",
+     "distillery",
+     "department of revenue",
+     "colorado",
+     "business"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "415"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name and location of licensee, liquor license type, number, and expiration date"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Sales rooms are permanent fixtures where beer, wine, or spirits are manufactured and sold on site. Data provided from the Colorado Department of Revenue (DOR) Liquor Enforcement Division."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits and license holders must update the state with any changes to ownership, location, or other information."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/9pwz-gi5v",
+   "link": "https://data.colorado.gov/Regulations/Sales-Rooms-in-Colorado/9pwz-gi5v",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Missouri Beer, Wine and Liquor Solicitor List with Zip Code",
+    "id": "mmn5-wy78",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Listing of all current beer, wine and liquor solicitors and their associated zip code.  This is updated daily",
+    "attribution": "Missouri Division of Alcohol and Tobacco Control",
+    "attribution_link": "http://www.atc.dps.mo.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T08:01:02.000Z",
+    "createdAt": "2012-08-07T14:31:25.000Z",
+    "metadata_updated_at": "2022-09-02T13:34:04.000Z",
+    "data_updated_at": "2026-10-16T08:01:02.000Z",
+    "page_views": {
+     "page_views_last_week": 49,
+     "page_views_last_month": 210,
+     "page_views_total": 644029,
+     "page_views_last_week_log": 5.643856189774724,
+     "page_views_last_month_log": 7.721099188707186,
+     "page_views_total_log": 19.296768367502114
+    },
+    "columns_name": [
+     "License Number",
+     "License Type",
+     "City",
+     "Business Name",
+     "Zip Code"
+    ],
+    "columns_field_name": [
+     "license_number",
+     "license_type",
+     "city",
+     "business_name",
+     "zip_code"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 18380,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2022-09-02T13:34:04.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulatory",
+    "domain_tags": [
+     "beer",
+     "listing",
+     "wholesaler",
+     "zip code",
+     "solicitor",
+     "missouri"
+    ],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.mo.gov"
+   },
+   "permalink": "https://data.mo.gov/d/mmn5-wy78",
+   "link": "https://data.mo.gov/Regulatory/Missouri-Beer-Wine-and-Liquor-Solicitor-List-with-/mmn5-wy78",
+   "owner": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   },
+   "creator": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   }
+  },
+  {
+   "resource": {
+    "name": "Business Licenses",
+    "id": "r5kz-chrr",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "NOTE, 9/25/2025 - We have populated the Address column for <a href=\"https://data.cityofchicago.org/stories/s/pnmi-a3z5\" target=\"_blank\">additional records</a>.\n\nBusiness licenses issued by the Department of Business Affairs and Consumer Protection in the City of Chicago from 2002 to the present. This dataset contains a large number of records/rows of data and may not be viewed in full in Microsoft Excel. Therefore, when downloading the file, select CSV from the Export menu. Open the file in an ASCII text editor, such as Notepad or Wordpad, to view and search. \n \nData fields requiring description are detailed below. \n\nAPPLICATION TYPE:  \u2018ISSUE\u2019 is the record associated with the initial license application.  \u2018RENEW\u2019 is a subsequent renewal record.  All renewal records are created with a term start date and term expiration date.  \u2018C_LOC\u2019 is a change of location record.  It means the business moved.   \u2018C_CAPA\u2019 is a change of capacity record.  Only a few license types may file this type of application.  \u2018C_EXPA\u2019 only applies to businesses that have liquor licenses.  It means the business location expanded.  'C_SBA' is a change of business activity record. It means that a new business activity was added or an existing business activity was marked as expired.\n\nLICENSE STATUS: \u2018AAI\u2019 means the license was issued. \u2018AAC\u2019 means the license was cancelled during its term.  \u2018REV\u2019 means the license was revoked. 'REA' means the license revocation has been appealed.\n\nLICENSE STATUS CHANGE DATE:  This date corresponds to the date a license was cancelled (AAC), revoked (REV) or appealed (REA).\n\nBusiness License Owner information may be accessed at:  https://data.cityofchicago.org/dataset/Business-Owners/ezma-pppn. To identify the owner of a business, you will need the account number or legal name, which may be obtained from this Business Licenses dataset. \n\nData Owner: Business Affairs and Consumer Protection. Time Period: January 1, 2002 to present. Frequency: Data is updated daily.",
+    "attribution": "City of Chicago",
+    "attribution_link": "http://www.cityofchicago.org",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T09:55:22.000Z",
+    "createdAt": "2011-09-27T16:03:34.000Z",
+    "metadata_updated_at": "2026-03-31T22:05:51.000Z",
+    "data_updated_at": "2026-10-16T09:55:22.000Z",
+    "page_views": {
+     "page_views_last_week": 2548,
+     "page_views_last_month": 23168,
+     "page_views_total": 403867,
+     "page_views_last_week_log": 11.315715658022203,
+     "page_views_last_month_log": 14.499908156761482,
+     "page_views_total_log": 18.623524314782777
+    },
+    "columns_name": [
+     "WARD PRECINCT",
+     "LICENSE DESCRIPTION",
+     "LOCATION (zip)",
+     "COMMUNITY AREA",
+     "BUSINESS ACTIVITY",
+     "LICENSE STATUS CHANGE DATE",
+     "BUSINESS ACTIVITY ID",
+     "DOING BUSINESS AS NAME",
+     "STATE",
+     "NEIGHBORHOOD",
+     "PAYMENT DATE",
+     "LOCATION (address)",
+     "LICENSE NUMBER",
+     "ZIP CODE",
+     "SITE NUMBER",
+     "ACCOUNT NUMBER",
+     "Wards",
+     "LICENSE TERM START DATE",
+     "Census Tracts",
+     "Zip Codes",
+     "LICENSE TERM EXPIRATION DATE",
+     "ID",
+     "CITY",
+     "LICENSE APPROVED FOR ISSUANCE",
+     "LOCATION",
+     "APPLICATION CREATED DATE",
+     "DATE ISSUED",
+     "LOCATION (state)",
+     "LATITUDE",
+     "LICENSE CODE",
+     "APPLICATION REQUIREMENTS COMPLETE",
+     "WARD",
+     "ADDRESS",
+     "LICENSE STATUS",
+     "POLICE DISTRICT",
+     "SSA",
+     "LEGAL NAME",
+     "COMMUNITY AREA NAME",
+     "LICENSE ID",
+     "Historical Wards 2003-2015",
+     "Community Areas",
+     "LOCATION (city)",
+     "LONGITUDE",
+     "APPLICATION TYPE",
+     "CONDITIONAL APPROVAL",
+     "PRECINCT"
+    ],
+    "columns_field_name": [
+     "ward_precinct",
+     "license_description",
+     "location_zip",
+     "community_area",
+     "business_activity",
+     "license_status_change_date",
+     "business_activity_id",
+     "doing_business_as_name",
+     "state",
+     "neighborhood",
+     "payment_date",
+     "location_address",
+     "license_number",
+     "zip_code",
+     "site_number",
+     "account_number",
+     ":@computed_region_43wa_7qmu",
+     "license_start_date",
+     ":@computed_region_bdys_3d7i",
+     ":@computed_region_6mkv_f3dw",
+     "expiration_date",
+     "id",
+     "city",
+     "license_approved_for_issuance",
+     "location",
+     "application_created_date",
+     "date_issued",
+     "location_state",
+     "latitude",
+     "license_code",
+     "application_requirements_complete",
+     "ward",
+     "address",
+     "license_status",
+     "police_district",
+     "ssa",
+     "legal_name",
+     "community_area_name",
+     "license_id",
+     ":@computed_region_awaf_s7ux",
+     ":@computed_region_vrxf_vc4k",
+     "location_city",
+     "longitude",
+     "application_type",
+     "conditional_approval",
+     "precinct"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Number",
+     "Text",
+     "Number",
+     "Number",
+     "Number",
+     "Calendar date",
+     "Number",
+     "Number",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Point",
+     "Calendar date",
+     "Calendar date",
+     "Text",
+     "Number",
+     "Number",
+     "Calendar date",
+     "Number",
+     "Text",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Number",
+     "Number",
+     "Text",
+     "Number",
+     "Text",
+     "Text",
+     "Number"
+    ],
+    "columns_description": [
+     "The ward and precinct where the business is located. This column can be used to filter by precinct more easily across multiple wards. ",
+     "",
+     "",
+     "Community Area Number",
+     "",
+     "",
+     "A code for the business activity. Each ID value corresponds to a specific BUSINESS ACTIVITY value.",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "The license number known to the public and generally used in other data sources that refer to the license. This is the field most users will want for most purposes. Each license has a single license number that stays consistent throughout the lifetime of the license. By contrast, the LICENSE ID field is an internal database ID and not generally useful to external users.",
+     "",
+     "An internal database ID indicating the location of this licensed business to account for business owners with more than one location.",
+     "The account number of the business owner, which will stay consistent across that owner's licenses and can be used to find the owner in the Business Owners dataset.",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "A calculated ID for each record.",
+     "",
+     "This is the date the license was ready for issuance. Licenses may not be issued if the customer owes debt to the City. ",
+     "",
+     "The date the business license application was created.  RENEW type records do not have an application.",
+     "",
+     "",
+     "",
+     "A code for the type of license. Each code value corresponds to a specific LICENSE DESCRIPTION value.",
+     "For all application types except RENEW, this is the date all required application documents were received.  For RENEW type records, this is the date the record was created.",
+     "The ward where the business is located.",
+     "",
+     "See the dataset description for the codes used.",
+     "",
+     "Special Service Areas  are local tax districts that fund expanded services and programs, to foster commercial and economic development, through a localized property tax. In other cities these areas are sometimes called Business Improvement Districts (BIDs). This portal contains a map of all Chicago SSAs",
+     "",
+     "Community Area Name",
+     "An internal database ID for each record.  Each license can have multiple records as it goes through renewals and other transactions.  See the LICENSE NUMBER field for the number generally known to the public and used in most other data sources that refer to the license.",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "This pertains to applications that contain liquor licenses. Customers may request a conditional approval prior to building out the space.",
+     "The precinct within the ward where the business is located. Note the the same precinct numbers exist in multiple wards."
+    ],
+    "columns_format": [
+     {
+      "align": "left"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "false",
+      "align": "right"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right",
+      "aggregate": "count"
+     },
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "align": "left"
+     },
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "view": "coords",
+      "align": "left"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {
+      "align": "left"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "align": "left"
+     },
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     }
+    ],
+    "download_count": 265071,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2025-02-21T02:15:51.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Community & Economic Development",
+    "domain_tags": [
+     "business",
+     "licenses"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Metadata_Frequency",
+      "value": "Data is updated daily"
+     },
+     {
+      "key": "Metadata_Data-Owner",
+      "value": "Business Affairs & Consumer Protection"
+     },
+     {
+      "key": "Metadata_Time-Period",
+      "value": "2002 to present"
+     },
+     {
+      "key": "Metadata_Changes-and-Other-Historical-Information-Useful-to-Understanding-This-Dataset",
+      "value": "https://www.google.com/search?q=site:data.cityofchicago.org/stories+\"Related+dataset+ID+s\"+\"r5kz-chrr\""
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.cityofchicago.org",
+    "license": "See Terms of Use"
+   },
+   "permalink": "https://data.cityofchicago.org/d/r5kz-chrr",
+   "link": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
+   "owner": {
+    "id": "scy9-9wg4",
+    "user_type": "interactive",
+    "display_name": "cocadmin"
+   },
+   "creator": {
+    "id": "scy9-9wg4",
+    "user_type": "interactive",
+    "display_name": "cocadmin"
+   }
+  },
+  {
+   "resource": {
+    "name": "Manufacturer Temporary Sales Room Permits in Colorado",
+    "id": "d4s4-xqg6",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Names, locations and dates of events for liquor permits. Data provided by the Colorado Department of Revenue (DOR) Liquor Enforcement Division.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:39.000Z",
+    "createdAt": "2018-03-29T18:34:07.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:39.000Z",
+    "data_updated_at": "2026-10-10T10:40:16.000Z",
+    "page_views": {
+     "page_views_last_week": 4,
+     "page_views_last_month": 36,
+     "page_views_total": 1466,
+     "page_views_last_week_log": 2.321928094887362,
+     "page_views_last_month_log": 5.20945336562895,
+     "page_views_total_log": 10.51865315567339
+    },
+    "columns_name": [
+     "licenseNumber",
+     "day",
+     "licenseeDba",
+     "eventLocation",
+     "eventDate",
+     "eventNameVenue"
+    ],
+    "columns_field_name": [
+     "licensenumber",
+     "day",
+     "licenseedba",
+     "eventlocation",
+     "eventdate",
+     "eventnamevenue"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "License Number",
+     "Day(s) noted for event",
+     "Name of manufacturer acquiring temporary permit",
+     "Address or Location of Event",
+     "Date of event",
+     "Name of event or venue"
+    ],
+    "columns_format": [
+     {},
+     {},
+     {
+      "align": "left"
+     },
+     {},
+     {},
+     {}
+    ],
+    "download_count": 748,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2023-07-21T19:08:02.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "dor",
+     "winery",
+     "temporary",
+     "tasting room",
+     "sales room",
+     "location",
+     "liquor licenses",
+     "liquor license division",
+     "liquor",
+     "distillery",
+     "department of revenue",
+     "colorado",
+     "business",
+     "bic"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "56"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name of manufacturer, event or venue name, and location of temporary tasting permit"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Names, locations and dates of events for liquor permits. Data provided by the Colorado Department of Revenue (DOR) Liquor Enforcement Division."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the state with any changes to ownership, location or other information."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/d4s4-xqg6",
+   "link": "https://data.colorado.gov/Regulations/Manufacturer-Temporary-Sales-Room-Permits-in-Color/d4s4-xqg6",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Solicitor Product List with Assigned Wholesaler",
+    "id": "gfq7-aa86",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Active list of products sold by the associated solicitor to the wholesaler.",
+    "attribution": null,
+    "attribution_link": null,
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T08:01:16.000Z",
+    "createdAt": "2013-02-15T18:41:03.000Z",
+    "metadata_updated_at": "2026-04-11T02:35:43.000Z",
+    "data_updated_at": "2026-10-16T08:01:16.000Z",
+    "page_views": {
+     "page_views_last_week": 1094,
+     "page_views_last_month": 5466,
+     "page_views_total": 1061400,
+     "page_views_last_week_log": 10.096715154488537,
+     "page_views_last_month_log": 12.416533660199583,
+     "page_views_total_log": 20.017538382423535
+    },
+    "columns_name": [
+     "Licensee Name",
+     "Solicitor Number",
+     "Effective Date",
+     "Brand Name",
+     "Wholesaler Number",
+     "Type",
+     "Wholesaler Name",
+     "Brand Number"
+    ],
+    "columns_field_name": [
+     "licensee_name",
+     "solicitor_number",
+     "effective_date",
+     "brand_name",
+     "wholesaler_number",
+     "type",
+     "wholesaler_name",
+     "brand_number"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "center"
+     },
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "false",
+      "align": "center"
+     }
+    ],
+    "download_count": 30572,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2026-02-24T14:23:50.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulatory",
+    "domain_tags": [
+     "liquor",
+     "alcohol license"
+    ],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.mo.gov"
+   },
+   "permalink": "https://data.mo.gov/d/gfq7-aa86",
+   "link": "https://data.mo.gov/Regulatory/Solicitor-Product-List-with-Assigned-Wholesaler/gfq7-aa86",
+   "owner": {
+    "id": "hxwx-y8az",
+    "user_type": "interactive",
+    "display_name": "Missouri Department of Public Safety"
+   },
+   "creator": {
+    "id": "hxwx-y8az",
+    "user_type": "interactive",
+    "display_name": "Missouri Department of Public Safety"
+   }
+  },
+  {
+   "resource": {
+    "name": "Current Liquor Authority Active Licenses",
+    "id": "9s3h-dpkz",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Liquor Authority current list of all active licenses, includes Temporary Operating Permits and Additional Bar licenses.",
+    "attribution": "Alcoholic Beverage Control, Division of (State Liquor Authority)",
+    "attribution_link": "https://sla.ny.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T00:35:01.000Z",
+    "createdAt": "2023-10-23T14:49:58.000Z",
+    "metadata_updated_at": "2026-10-16T00:34:50.000Z",
+    "data_updated_at": "2026-10-16T00:35:01.000Z",
+    "page_views": {
+     "page_views_last_week": 2421,
+     "page_views_last_month": 14729,
+     "page_views_total": 255518,
+     "page_views_last_week_log": 11.24198314969433,
+     "page_views_last_month_log": 13.846469809923212,
+     "page_views_total_log": 17.963071046173578
+    },
+    "columns_name": [
+     "LegalName",
+     "Additional Address Information",
+     "AKA Address",
+     "Parent License ID",
+     "Effective Date",
+     "State Name",
+     "City",
+     "NYS Municipal Boundaries",
+     "New York Zip Codes",
+     "Counties",
+     "Type",
+     "Legacy Serial Number",
+     "DBA",
+     "Actual Address Of Premises",
+     "Zip Code",
+     "Last Issue Date",
+     "Georeference",
+     "License Permit ID",
+     "Class",
+     "Premises County",
+     "Description",
+     "Original Issue Date",
+     "Expiration Date"
+    ],
+    "columns_field_name": [
+     "legalname",
+     "additionaladdressinformation",
+     "akaaddress",
+     "parentlicenseid",
+     "effectivedate",
+     "statename",
+     "city",
+     ":@computed_region_yamh_8v7k",
+     ":@computed_region_wbg7_3whc",
+     ":@computed_region_kjdx_g34t",
+     "type",
+     "legacyserialnumber",
+     "dba",
+     "actualaddressofpremises",
+     "zipcode",
+     "lastissuedate",
+     "georeference",
+     "licensepermitid",
+     "class",
+     "premisescounty",
+     "description",
+     "originalissuedate",
+     "expirationdate"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Number",
+     "Number",
+     "Number",
+     "Number",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Point",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Calendar date"
+    ],
+    "columns_description": [
+     "Corporate Name of Licensee",
+     "Additional address information",
+     "AKA Address",
+     "Parent License ID",
+     "Effective Date",
+     "State of licensed premise",
+     "City of licensed premise",
+     "This column was automatically created in order to record in what polygon from the dataset 'NYS Municipal Boundaries' (yamh-8v7k) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'New York Zip Codes' (wbg7-3whc) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (kjdx-g34t) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "1 or 2 character alpha code of license type",
+     "Previous Serial Number",
+     "Doing Business As",
+     "Address of licensed premise",
+     "Zip code of licensed premise",
+     "Renewal Date",
+     "Open Data platform-generated geocoding information from supplied address components. Point-type location is the centroid of the address components provided and does not reflect a specific address if the street address component is not provided. Point-type location is supplied in \"POINT (<geocoded longitude> <geocoded latitude>)\" format.",
+     "Unique Serial Number for the licensee",
+     "3 digit numeric code of license type ",
+     "County License is located",
+     "Type of License",
+     "Date license was issued",
+     "Date of Expiration"
+    ],
+    "columns_format": [
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {},
+     {
+      "align": "center"
+     },
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     }
+    ],
+    "download_count": 74326,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2023-10-23T16:35:16.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Economic Development",
+    "domain_tags": [
+     "abc",
+     "liquor authority",
+     "alcohol"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Local-Data_County-Filter",
+      "value": "Yes"
+     },
+     {
+      "key": "Local-Data_County_Column",
+      "value": "premisescounty"
+     },
+     {
+      "key": "Local-Data_Municipality-Filter",
+      "value": "Yes"
+     },
+     {
+      "key": "Local-Data_Municipality_Column",
+      "value": "city"
+     },
+     {
+      "key": "Dataset-Summary_Dataset-Owner",
+      "value": "Alcoholic Beverage Control, Division of (State Liquor Authority)"
+     },
+     {
+      "key": "Dataset-Summary_Contact-Information",
+      "value": "slaopendata@sla.ny.gov"
+     },
+     {
+      "key": "Dataset-Summary_Granularity",
+      "value": "Active license"
+     },
+     {
+      "key": "Dataset-Summary_Coverage",
+      "value": "Statewide"
+     },
+     {
+      "key": "Dataset-Summary_Posting-Frequency",
+      "value": "Daily"
+     },
+     {
+      "key": "Dataset-Summary_Organization",
+      "value": "New York State Liquor Authority / Alcoholic Beverage Control"
+     },
+     {
+      "key": "Dataset-Summary_Time-Period",
+      "value": "Current"
+     },
+     {
+      "key": "Dataset-Information_Agency",
+      "value": "Alcoholic Beverage Control, Division of (State Liquor Authority)"
+     },
+     {
+      "key": "Additional-Resources_See-Also",
+      "value": "https://lamp.sla.ny.gov"
+     },
+     {
+      "key": "Additional-Resources_See-Also-",
+      "value": "https://sla.ny.gov/leap-license-type-and-class-definitions"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.ny.gov"
+   },
+   "permalink": "https://data.ny.gov/d/9s3h-dpkz",
+   "link": "https://data.ny.gov/Economic-Development/Current-Liquor-Authority-Active-Licenses/9s3h-dpkz",
+   "owner": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   },
+   "creator": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   }
+  },
+  {
+   "resource": {
+    "name": "Liquor Permits for Special Events in Colorado",
+    "id": "d6t8-xish",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Event and festival locations, dates and organization addresses for special events registered with the Colorado Department of Revenue (CDOR) Liquor Enforcement Division for 2019-2020.",
+    "attribution": "CDOR",
+    "attribution_link": "https://www.colorado.gov/revenue",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T11:07:39.000Z",
+    "createdAt": "2018-03-29T19:37:19.000Z",
+    "metadata_updated_at": "2026-10-16T11:07:39.000Z",
+    "data_updated_at": "2026-09-10T10:40:37.000Z",
+    "page_views": {
+     "page_views_last_week": 10,
+     "page_views_last_month": 66,
+     "page_views_total": 1719,
+     "page_views_last_week_log": 3.4594316186372978,
+     "page_views_last_month_log": 6.066089190457772,
+     "page_views_total_log": 10.74819284958946
+    },
+    "columns_name": [
+     "Non-Profit Organization",
+     "State or Local",
+     "Business Address",
+     "Event Date",
+     "Event Location",
+     "Event Number"
+    ],
+    "columns_field_name": [
+     "non_profit_organization",
+     "state_or_local",
+     "business_address",
+     "event_date",
+     "event_location",
+     "event_number"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "Name of organization requiring a special event permit",
+     "Flag declaring the non-profit organization as state or local. S = State, L = Local",
+     "Address of where the organization is conducting business",
+     "Date of special event requiring a permit",
+     "Location of special event requiring a permit",
+     "Number of event as it occurred for the organization"
+    ],
+    "columns_format": [
+     {},
+     {},
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {
+      "displayStyle": "plain",
+      "align": "left"
+     },
+     {},
+     {
+      "view": "date",
+      "align": "left"
+     }
+    ],
+    "download_count": 9950,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2022-01-21T00:01:06.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulations",
+    "domain_tags": [
+     "liquor licenses",
+     "department of revenue",
+     "dor",
+     "colorado",
+     "business",
+     "bic",
+     "location",
+     "liquor",
+     "liquor license division"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Contributing-Agency-Information_Citation",
+      "value": "CDOR - Colorado Department of Revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Data-Source",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Program-Page",
+      "value": "https://www.colorado.gov/revenue"
+     },
+     {
+      "key": "Contributing-Agency-Information_Agency-Data-Series-Page",
+      "value": "https://www.colorado.gov/pacific/enforcement/liquor"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Point-of-Contact_Contact-Email",
+      "value": "bic-help@xentity.com"
+     },
+     {
+      "key": "Dataset-Coverage_Unit-of-Analysis",
+      "value": "Tabular"
+     },
+     {
+      "key": "Dataset-Coverage_Geographic-Coverage",
+      "value": "State"
+     },
+     {
+      "key": "Geospatial_Horizontal-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Coordinate-System-Disclaimer",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Horizontal-Accuracy",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Web-Display-Coordinate-System",
+      "value": ""
+     },
+     {
+      "key": "Geospatial_Collection-Method",
+      "value": ""
+     },
+     {
+      "key": "Data-Updates_Update-Method",
+      "value": "Staging Server"
+     },
+     {
+      "key": "Data-Updates_Expected-Update-Frequency",
+      "value": "monthly"
+     },
+     {
+      "key": "Data-Updates_Update-Type",
+      "value": "Automated"
+     },
+     {
+      "key": "Data-Updates_Source-Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Updates_Total-Records-At-Initial-Publish",
+      "value": "354"
+     },
+     {
+      "key": "Data-Updates_Update-Schedule",
+      "value": "6th of the Month"
+     },
+     {
+      "key": "Data-Description_Date-of-Initial-Dataset-Creation",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Mode",
+      "value": "Businesses are required to file a registration with the state in order to sell liquor."
+     },
+     {
+      "key": "Data-Description_Row-Label",
+      "value": "Name, organization type, date, and event or venue location for special event permit"
+     },
+     {
+      "key": "Data-Description_Newest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Long-Description",
+      "value": "Event and festival locations, dates and organization addresses for special events registered with the Colorado Department of Revenue (CDOR) Liquor Enforcement Division for 2019-2020."
+     },
+     {
+      "key": "Data-Description_Oldest-Record-in-Dataset",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Data-Collection-Instrument",
+      "value": ""
+     },
+     {
+      "key": "Data-Description_Collection-Method",
+      "value": "Licenses are issued with varying regulations based on different types or permits, and license holders must update the state with any changes to ownership, location or other information."
+     },
+     {
+      "key": "Publisher_Publisher-Name",
+      "value": "Business Intelligence Center of CO"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Data-Dictionary",
+      "value": ""
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Additional-Metadata",
+      "value": "https://cdor.colorado.gov/data-and-reports/liquor-data"
+     },
+     {
+      "key": "Additional-Dataset-Documentation_Technical-Documentation",
+      "value": ""
+     },
+     {
+      "key": "Data-Quality_Expected-Update-Frequency",
+      "value": "Never"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.colorado.gov",
+    "license": "Public Domain"
+   },
+   "permalink": "https://data.colorado.gov/d/d6t8-xish",
+   "link": "https://data.colorado.gov/Regulations/Liquor-Permits-for-Special-Events-in-Colorado/d6t8-xish",
+   "owner": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   },
+   "creator": {
+    "id": "azfj-qb4j",
+    "user_type": "interactive",
+    "display_name": "Business Intelligence Center of CO"
+   }
+  },
+  {
+   "resource": {
+    "name": "Current SLA Pending Licenses",
+    "id": "f8i8-k2gm",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Liquor Authority Pending Licenses",
+    "attribution": "New York State Liquor Authority",
+    "attribution_link": "https://sla.ny.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T00:33:00.000Z",
+    "createdAt": "2023-11-09T17:11:17.000Z",
+    "metadata_updated_at": "2026-10-16T00:32:56.000Z",
+    "data_updated_at": "2026-10-16T00:33:00.000Z",
+    "page_views": {
+     "page_views_last_week": 1773,
+     "page_views_last_month": 8432,
+     "page_views_total": 149142,
+     "page_views_last_week_log": 10.792790294301064,
+     "page_views_last_month_log": 13.0418302391015,
+     "page_views_total_log": 17.18633674106551
+    },
+    "columns_name": [
+     "Zip Code",
+     "NYS Municipal Boundaries",
+     "New York Zip Codes",
+     "Counties",
+     "Status",
+     "Type",
+     "Georeference",
+     "State Name",
+     "Application ID",
+     "Premises County",
+     "LegalName",
+     "Additional Address Information",
+     "DBA",
+     "Received Date",
+     "City",
+     "Actual Address Of Premises",
+     "AKA Address",
+     "Description",
+     "Class"
+    ],
+    "columns_field_name": [
+     "zip_code",
+     ":@computed_region_yamh_8v7k",
+     ":@computed_region_wbg7_3whc",
+     ":@computed_region_kjdx_g34t",
+     "status",
+     "type",
+     "georeference",
+     "state_name",
+     "application_id",
+     "premises_county",
+     "legalname",
+     "additional_address_information",
+     "dba",
+     "received_date",
+     "city",
+     "actual_address_of_premises",
+     "aka_address",
+     "description",
+     "class"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Number",
+     "Number",
+     "Number",
+     "Text",
+     "Text",
+     "Point",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "Zip code of licensed premise",
+     "This column was automatically created in order to record in what polygon from the dataset 'NYS Municipal Boundaries' (yamh-8v7k) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'New York Zip Codes' (wbg7-3whc) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (kjdx-g34t) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "Status of Application",
+     "1 or 2 character alpha code of license type",
+     "Open Data platform-generated geocoding information from supplied address components. Point-type location is the centroid of the address components provided and does not reflect a specific address if the street address component is not provided. Point-type location is supplied in \"POINT (<geocoded longitude> <geocoded latitude>)\" format.",
+     "State of licensed premise",
+     "Unique Serial Number for the Applicant",
+     "County License is located",
+     "Corporate Name of Licensee",
+     "Additional address information",
+     "Doing Business As",
+     "Date application was received",
+     "City of licensed premise",
+     "Address of licensed premise",
+     "AKA Address",
+     "Type of License",
+     "3 digit numeric code of license type "
+    ],
+    "columns_format": [
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date_time",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     }
+    ],
+    "download_count": 158868,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2023-11-14T20:29:20.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Economic Development",
+    "domain_tags": [
+     "abc",
+     "alcohol",
+     "liquor authority"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Local-Data_County_Column",
+      "value": "premisescounty"
+     },
+     {
+      "key": "Local-Data_Municipality_Column",
+      "value": "city"
+     },
+     {
+      "key": "Dataset-Summary_Dataset-Owner",
+      "value": "New York State Liquor Authority"
+     },
+     {
+      "key": "Dataset-Summary_Contact-Information",
+      "value": "slaopendata@sla.ny.gov"
+     },
+     {
+      "key": "Dataset-Summary_Granularity",
+      "value": "Pending Licenses"
+     },
+     {
+      "key": "Dataset-Summary_Coverage",
+      "value": "Statewide"
+     },
+     {
+      "key": "Dataset-Summary_Posting-Frequency",
+      "value": "Daily"
+     },
+     {
+      "key": "Dataset-Summary_Organization",
+      "value": "New York State Liquor Authority / Alcoholic Beverage Control"
+     },
+     {
+      "key": "Dataset-Summary_Time-Period",
+      "value": "Current"
+     },
+     {
+      "key": "Dataset-Information_Agency",
+      "value": "Alcoholic Beverage Control, Division of (State Liquor Authority)"
+     },
+     {
+      "key": "Additional-Resources_See-Also",
+      "value": "https://lamp.sla.ny.gov"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.ny.gov"
+   },
+   "permalink": "https://data.ny.gov/d/f8i8-k2gm",
+   "link": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm",
+   "owner": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   },
+   "creator": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   }
+  },
+  {
+   "resource": {
+    "name": "Current SLA Inactive Licenses",
+    "id": "6dg3-2z7i",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "Liquor Authority Inactive Licenses",
+    "attribution": "New York State Liquor Authority",
+    "attribution_link": "https://sla.ny.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T00:36:57.000Z",
+    "createdAt": "2023-10-02T14:41:00.000Z",
+    "metadata_updated_at": "2026-10-16T00:36:50.000Z",
+    "data_updated_at": "2026-10-16T00:36:57.000Z",
+    "page_views": {
+     "page_views_last_week": 395,
+     "page_views_last_month": 1801,
+     "page_views_total": 38811,
+     "page_views_last_week_log": 8.62935662007961,
+     "page_views_last_month_log": 10.81538329581354,
+     "page_views_total_log": 15.244215157319493
+    },
+    "columns_name": [
+     "Zip Code",
+     "Description",
+     "Class",
+     "Georeference",
+     "State Name",
+     "Additional Address Information",
+     "License Permit ID",
+     "Type",
+     "Counties",
+     "New York Zip Codes",
+     "NYS Municipal Boundaries",
+     "City",
+     "Original Issue Date",
+     "Last Issue Date",
+     "Effective Date",
+     "Expiration Date",
+     "AKA Address",
+     "Actual Address Of Premises",
+     "LegalName",
+     "DBA",
+     "Premises County",
+     "Legacy_Serial_Number"
+    ],
+    "columns_field_name": [
+     "zip_code",
+     "description",
+     "class",
+     "georeference",
+     "state_name",
+     "additional_address_information",
+     "license_permit_id",
+     "type",
+     ":@computed_region_kjdx_g34t",
+     ":@computed_region_wbg7_3whc",
+     ":@computed_region_yamh_8v7k",
+     "city",
+     "original_issue_date",
+     "last_issue_date",
+     "effective_date",
+     "expiration_date",
+     "aka_address",
+     "actual_address_of_premises",
+     "legalname",
+     "dba",
+     "premises_county",
+     "legacy_serial_number"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Number",
+     "Point",
+     "Text",
+     "Text",
+     "Text",
+     "Number",
+     "Number",
+     "Number",
+     "Number",
+     "Text",
+     "Calendar date",
+     "Calendar date",
+     "Calendar date",
+     "Calendar date",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Number"
+    ],
+    "columns_description": [
+     "Zip code of licensed premise",
+     "Type of License",
+     "3 digit numeric code of license type ",
+     "Open Data platform-generated geocoding information from supplied address components. Point-type location is the centroid of the address components provided and does not reflect a specific address if the street address component is not provided. Point-type location is supplied in \"POINT (<geocoded longitude> <geocoded latitude>)\" format.",
+     "State of licensed premise",
+     "Additional address information",
+     "Unique Serial Number for the licensee",
+     "    1 or 2 character alpha code of license type",
+     "This column was automatically created in order to record in what polygon from the dataset 'Counties' (kjdx-g34t) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'New York Zip Codes' (wbg7-3whc) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "This column was automatically created in order to record in what polygon from the dataset 'NYS Municipal Boundaries' (yamh-8v7k) the point in column 'georeference' is located.  This enables the creation of region maps (choropleths) in the visualization canvas and data lens.",
+     "City of licensed premise",
+     "Date license was issued",
+     "Renewal Date",
+     "Effective Date",
+     "Date of Expiration",
+     "AKA Address",
+     "Address of licensed premise",
+     "Corporate Name of Licensee",
+     "Doing Business As",
+     "County License is located",
+     "Previous Serial Number"
+    ],
+    "columns_format": [
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "groupSeparator": ",",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {
+      "view": "date",
+      "align": "center"
+     },
+     {},
+     {},
+     {},
+     {},
+     {},
+     {
+      "decimalSeparator": ".",
+      "noCommas": "true",
+      "groupSeparator": ",",
+      "align": "center"
+     }
+    ],
+    "download_count": 38092,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2023-11-24T16:48:49.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Economic Development",
+    "domain_tags": [
+     "abc",
+     "liquor authority",
+     "alcohol"
+    ],
+    "domain_metadata": [
+     {
+      "key": "Local-Data_County-Filter",
+      "value": "Yes"
+     },
+     {
+      "key": "Local-Data_County_Column",
+      "value": "premisescounty"
+     },
+     {
+      "key": "Local-Data_Municipality-Filter",
+      "value": "Yes"
+     },
+     {
+      "key": "Local-Data_Municipality_Column",
+      "value": "city"
+     },
+     {
+      "key": "Dataset-Summary_Dataset-Owner",
+      "value": "New York State Liquor Authority "
+     },
+     {
+      "key": "Dataset-Summary_Contact-Information",
+      "value": "slaopendata@sla.ny.gov"
+     },
+     {
+      "key": "Dataset-Summary_Granularity",
+      "value": "Inactive Licenses"
+     },
+     {
+      "key": "Dataset-Summary_Coverage",
+      "value": "Statewide"
+     },
+     {
+      "key": "Dataset-Summary_Posting-Frequency",
+      "value": "Daily"
+     },
+     {
+      "key": "Dataset-Summary_Organization",
+      "value": "New York State Liquor Authority / Alcoholic Beverage Control"
+     },
+     {
+      "key": "Dataset-Summary_Time-Period",
+      "value": "Current"
+     },
+     {
+      "key": "Dataset-Information_Agency",
+      "value": "Alcoholic Beverage Control, Division of (State Liquor Authority)"
+     },
+     {
+      "key": "Additional-Resources_See-Also",
+      "value": "https://lamp.sla.ny.gov"
+     }
+    ]
+   },
+   "metadata": {
+    "domain": "data.ny.gov"
+   },
+   "permalink": "https://data.ny.gov/d/6dg3-2z7i",
+   "link": "https://data.ny.gov/Economic-Development/Current-SLA-Inactive-Licenses/6dg3-2z7i",
+   "owner": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   },
+   "creator": {
+    "id": "xzik-pf59",
+    "user_type": "interactive",
+    "display_name": "NY Open Data"
+   }
+  },
+  {
+   "resource": {
+    "name": "Missouri Alcohol Licenses Out of Business",
+    "id": "nytw-fmz3",
+    "resource_name": null,
+    "parent_fxf": [],
+    "description": "List of alcohol licenses of businesses who have gone out of business",
+    "attribution": "Missouri Division of Alcohol and Tobacco Control",
+    "attribution_link": "http://www.atc.dps.mo.gov",
+    "contact_email": null,
+    "type": "dataset",
+    "updatedAt": "2026-10-16T08:01:02.000Z",
+    "createdAt": "2012-07-12T13:50:53.000Z",
+    "metadata_updated_at": "2026-02-27T14:30:03.000Z",
+    "data_updated_at": "2026-10-16T08:01:02.000Z",
+    "page_views": {
+     "page_views_last_week": 45,
+     "page_views_last_month": 260,
+     "page_views_total": 530509,
+     "page_views_last_week_log": 5.523561956057013,
+     "page_views_last_month_log": 8.027905996569885,
+     "page_views_total_log": 19.017020420326023
+    },
+    "columns_name": [
+     "Licensee Name",
+     "License Number",
+     "Zip Code",
+     "State",
+     "City",
+     "Street Name",
+     "Street Number",
+     "Status Effective Date",
+     "License Current Status",
+     "License Type",
+     "Business Type",
+     "DBA Name",
+     "County"
+    ],
+    "columns_field_name": [
+     "licensee_name",
+     "license_number",
+     "zip_code",
+     "state",
+     "city",
+     "street_name",
+     "street_number",
+     "status_effective_date",
+     "license_current_status",
+     "license_type",
+     "business_type",
+     "dba_name",
+     "county"
+    ],
+    "columns_datatype": [
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text",
+     "Text"
+    ],
+    "columns_description": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "columns_format": [
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {},
+     {},
+     {},
+     {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "right"
+     },
+     {
+      "view": "date",
+      "align": "left"
+     },
+     {},
+     {},
+     {},
+     {},
+     {}
+    ],
+    "download_count": 19293,
+    "provenance": "official",
+    "lens_view_type": "tabular",
+    "lens_display_type": "table",
+    "locked": false,
+    "backend": "nbe",
+    "blob_mime_type": null,
+    "hide_from_data_json": false,
+    "publication_date": "2026-02-27T14:30:03.000Z"
+   },
+   "classification": {
+    "categories": [],
+    "tags": [],
+    "domain_category": "Regulatory",
+    "domain_tags": [
+     "license",
+     "alcohol",
+     "out of business",
+     "missouri",
+     "liquor"
+    ],
+    "domain_metadata": []
+   },
+   "metadata": {
+    "domain": "data.mo.gov"
+   },
+   "permalink": "https://data.mo.gov/d/nytw-fmz3",
+   "link": "https://data.mo.gov/Regulatory/Missouri-Alcohol-Licenses-Out-of-Business/nytw-fmz3",
+   "owner": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   },
+   "creator": {
+    "id": "gytm-8bsj",
+    "user_type": "interactive",
+    "display_name": "Rob Gourley"
+   }
+  }
+ ],
+ "resultSetSize": 61,
+ "timings": {
+  "serviceMillis": 42,
+  "searchMillis": [
+   5,
+   11
+  ]
+ },
+ "warnings": []
+}

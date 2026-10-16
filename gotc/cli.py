@@ -214,6 +214,161 @@ def cmd_gate(a: argparse.Namespace, s: Settings) -> int:
     return 1 if a.strict and failed else 0
 
 
+def _rel(path: Any) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
+def _city_for(slug: str) -> Any:
+    """A city's config (even if disabled), else a skeleton from config/metros.yaml; None if unknown."""
+    from gotc.config import CityConfig
+    from gotc.config import load_yaml as _load
+    from gotc.metros import metros
+    from gotc.settings import CONFIG_DIR
+
+    path = CONFIG_DIR / "cities" / f"{slug}.yaml"
+    if path.exists():
+        return CityConfig.model_validate(_load(path.read_text()))
+    m = metros().get(slug)
+    if m is None:
+        return None
+    return CityConfig(
+        slug=m.slug,
+        name=m.name,
+        state=m.state,
+        timezone=m.timezone,
+        center=m.center,
+        radius_km=m.radius_km,
+        cbsa=m.cbsa,
+        enabled=False,
+    )
+
+
+def cmd_discover(a: argparse.Namespace, s: Settings) -> int:
+    """Probe for candidate sources for a city (live network, polite, robots-first). Writes data/discover/<slug>.yaml."""
+    from gotc.discover.engine import FAMILIES, Discoverer, existing_hosts, parse_seed, write_candidates
+    from gotc.http.client import PoliteClient
+    from gotc.metros import metros
+
+    city = _city_for(a.slug)
+    if city is None:
+        print(f"unknown city {a.slug}: add it to config/metros.yaml or config/cities/", file=sys.stderr)
+        return 2
+    families = tuple(f.strip() for f in a.families.split(",")) if a.families else FAMILIES
+    unknown = [f for f in families if f not in FAMILIES]
+    if unknown:
+        print(f"unknown families {unknown}; choose from {', '.join(FAMILIES)}", file=sys.stderr)
+        return 2
+    record = None
+    if a.record:
+        import hashlib
+        from pathlib import Path
+
+        rec_dir = Path(a.record)
+        rec_dir.mkdir(parents=True, exist_ok=True)
+
+        def record(url: str, r: Any) -> None:
+            name = hashlib.sha256(r.url.encode()).hexdigest()[:12]
+            (rec_dir / f"{name}.body").write_bytes(r.content)
+            with (rec_dir / "index.tsv").open("a") as fh:
+                fh.write(f"{name}\t{r.status}\t{r.url}\n")
+
+    http = PoliteClient(s, max_attempts=2, timeout_s=30)
+    try:
+        d = Discoverer(
+            city,
+            http,
+            utcnow(),
+            seeds=[parse_seed(x) for x in a.seed or []],
+            families=families,
+            budget=a.budget_requests,
+            existing_hosts=existing_hosts(city),
+            record=record,
+            address=m.center_address if (m := metros().get(city.slug)) else None,
+        )
+        doc = d.run()
+    finally:
+        http.close()
+    out = Path(a.out) if a.out else s.data_dir / "discover" / f"{city.slug}.yaml"
+    write_candidates(doc, out)
+    print(f"{city.slug}: {len(doc['candidates'])} candidates, {len(doc['excluded'])} excluded, "
+          f"{doc['requests']['used']} requests → {out}")  # fmt: skip
+    for c in doc["candidates"][:25]:
+        u = c["unit"]
+        print(f"  {c['confidence']:.2f}  {u['adapter']:14} {u['id']:44} {u['name'][:60]}")
+    for x in doc["excluded"][:15]:
+        print(f"  ---  excluded {x['excluded']:18} {json.dumps(x['unit_hint'])[:90]}")
+    return 0
+
+
+def cmd_city_new(a: argparse.Namespace, s: Settings) -> int:
+    """Write config/cities/<slug>.yaml (enabled: false) from the config/metros.yaml row."""
+    from gotc.config import CityConfig
+    from gotc.metros import metros
+    from gotc.settings import CONFIG_DIR
+
+    m = metros().get(a.slug)
+    if m is None:
+        print(f"{a.slug} is not in config/metros.yaml", file=sys.stderr)
+        return 2
+    path = CONFIG_DIR / "cities" / f"{m.slug}.yaml"
+    if path.exists() and not a.force:
+        print(f"{_rel(path)} already exists (use --force to overwrite)", file=sys.stderr)
+        return 1
+    CityConfig(
+        slug=m.slug,
+        name=m.name,
+        state=m.state,
+        timezone=m.timezone,
+        center=m.center,
+        radius_km=m.radius_km,
+        cbsa=m.cbsa,
+        enabled=False,
+    )  # fmt: skip  — validate before writing
+    lat, lon = m.center
+    center_note = (
+        f"Census geocoder: {m.center_matched}"
+        if m.center_source == "census_geocoder"
+        else "SCALING.md §1 (general knowledge, not surveyed)"
+    )
+    path.write_text(
+        f"# {m.name}, {m.state}: CBSA {m.cbsa} {m.msa} ({m.msa_pop_m} M, Census V2024). Skeleton from `gotc city new`.\n"
+        f"# Draft: enabled stays false until `gotc gate --city {m.slug}` passes (ADR-0008). Candidate sources:\n"
+        f"# `gotc discover {m.slug} --seed library=… --seed university=…` → data/discover/{m.slug}.yaml.\n"
+        f"# center: {center_note}\n"
+        f"# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.\n"
+        f"slug: {m.slug}\n"
+        f"name: {m.name}\n"
+        f"state: {m.state}\n"
+        f"timezone: {m.timezone}\n"
+        f"center: [{lat}, {lon}]\n"
+        f"radius_km: {m.radius_km:g}\n"
+        f'cbsa: "{m.cbsa}"\n'
+        "aliases: []\n"
+        "enabled: false\n"
+        "sources: []\n"
+    )
+    print(f"wrote {_rel(path)}")
+    return 0
+
+
+def cmd_city_recenter(a: argparse.Namespace, s: Settings) -> int:
+    """Re-derive config/metros.yaml centers from city-hall addresses with the Census geocoder (live, ~50 calls)."""
+    from gotc.http.client import PoliteClient
+    from gotc.metros import recenter
+    from gotc.settings import CONFIG_DIR
+
+    http = PoliteClient(s, max_attempts=2)
+    try:
+        for line in recenter(CONFIG_DIR / "metros.yaml", http, a.slug):
+            print(line)
+    finally:
+        http.close()
+    return 0
+
+
 def _events_for(db: Database, city: str) -> list[Any]:
     from gotc.schema import Event
 
@@ -369,6 +524,25 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--strict", action="store_true", help="exit 1 if any city fails a hard criterion")
     g.add_argument("--all-reasons", dest="verbose_reasons", action="store_true", help="also list soft misses")
     g.set_defaults(fn=cmd_gate)
+
+    dc = sub.add_parser("discover", help="probe for candidate sources (live, polite) → data/discover/<slug>.yaml")
+    dc.add_argument("slug")
+    dc.add_argument("--seed", action="append", help="kind=URL (library|university|venue|parks|volunteer|other)")
+    dc.add_argument("--families", help="comma list: socrata,datagov,arcgis,library,university,venue,volunteer,…")
+    dc.add_argument("--budget-requests", type=int, default=400)
+    dc.add_argument("--out")
+    dc.add_argument("--record", help="save every response body here (for fixtures)")
+    dc.set_defaults(fn=cmd_discover)
+
+    cy = sub.add_parser("city", help="city scaffolding")
+    cy_sub = cy.add_subparsers(dest="city_cmd", required=True)
+    cn = cy_sub.add_parser("new", help="write config/cities/<slug>.yaml (enabled: false) from config/metros.yaml")
+    cn.add_argument("slug")
+    cn.add_argument("--force", action="store_true")
+    cn.set_defaults(fn=cmd_city_new)
+    cr = cy_sub.add_parser("recenter", help="re-derive config/metros.yaml centers via the Census geocoder (live)")
+    cr.add_argument("--slug")
+    cr.set_defaults(fn=cmd_city_recenter)
 
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)

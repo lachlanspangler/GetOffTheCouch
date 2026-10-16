@@ -118,5 +118,5 @@ def test_unit_is_gated_on_api_caller_registration() -> None:
     src = reg.all_sources()["runsignup"]
     assert src.scope == "all_cities"
     assert set(src.requires) == {"RUNSIGNUP_API_REG", "RUNSIGNUP_API_REG_SECRET"}
-    assert set(src.params["zipcodes"]) == set(reg.cities)  # every city has a search ZIP
+    assert set(src.params["zipcodes"]) == {s for s, c in reg.cities.items() if c.enabled}  # every live city has a ZIP
     assert isinstance(reg, Registry)

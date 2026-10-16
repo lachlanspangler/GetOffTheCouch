@@ -1,0 +1,28 @@
+# `gotc discover` hard excludes (docs/research/SCALING.md §2.5/§2.8). Checked BEFORE any request to a host and
+# again on every fetched page (og:site_name, footer markers). A match is recorded as `excluded: tos_denylist`,
+# never probed further. Cloudflare challenge pages are excluded separately (`excluded: cloudflare`) and never
+# retried with workarounds.
+hosts:
+  # Live Nation / Ticketmaster: terms forbid automated collection (diary, session 2)
+  - livenation.com
+  - ticketmaster.com
+  - ticketweb.com
+  - houseofblues.com
+  - thefillmore.com
+  # AEG / AXS: pending I-092
+  - axs.com
+  - aegpresents.com
+  # league/ticketing platforms whose terms forbid scraping
+  - prekindle.com
+  - leaguelab.com
+  # never crawl the BiblioCommons catalog hosts (Crawl-delay 120); the gateway RSS is the documented feed
+  - bibliocommons.com
+allow_hosts:
+  # exact hosts exempt from a denylisted suffix above
+  - gateway.bibliocommons.com
+markers:
+  # page text / og:site_name markers of Live Nation-owned venue sites
+  - "Live Nation Entertainment"
+  - "livenation.com/"
+  - "s1.ticketm.net"
+  - "AEG Presents"

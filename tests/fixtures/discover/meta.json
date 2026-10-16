@@ -1,0 +1,100 @@
+{
+ "note": "real responses recorded with `gotc discover <city> --record DIR` on 2026-10-16 (robots checked by PoliteClient); trimmed only by record count where noted",
+ "files": {
+  "census_geographies_phoenix.json": {
+   "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=200+W+Washington+St%2C+Phoenix%2C+AZ+85003&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "socrata_catalog_liquor_license.json": {
+   "url": "https://api.us.socrata.com/api/catalog/v1?q=liquor+license&only=datasets&limit=50",
+   "recorded": "2026-10-16",
+   "trim": "results:25"
+  },
+  "socrata_catalog_phoenix_special_events.json": {
+   "url": "https://api.us.socrata.com/api/catalog/v1?q=Phoenix+special+events&only=datasets&limit=50",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "datagov_search_phoenix_events.json": {
+   "url": "https://catalog.data.gov/search?q=Phoenix+events&per_page=20",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "hub_sites_philadelphia.json": {
+   "url": "https://hub.arcgis.com/api/search/v1/collections/site/items?q=Philadelphia+open+data&limit=5",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "hub_sites_phoenix.json": {
+   "url": "https://hub.arcgis.com/api/search/v1/collections/site/items?q=Phoenix+open+data&limit=5",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "arcgis_search_philadelphia.json": {
+   "url": "https://www.arcgis.com/sharing/rest/search?q=orgid%3AfLeGjb7u4uXqeF9q+AND+type%3A%22Feature+Service%22+AND+%28permit+OR+event+OR+license+OR+liquor%29&num=50&f=json",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "arcgis_layer_community_events.json": {
+   "url": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Community_Events/FeatureServer/0?f=json",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "phoenixpubliclibrary_home.html": {
+   "url": "https://www.phoenixpubliclibrary.org",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "mcldaz_home.html": {
+   "url": "https://mcldaz.org",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "libcal_phoenix_calendar.html": {
+   "url": "https://calendar.phoenixpubliclibrary.org/calendar",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "libcal_phoenix.ics": {
+   "url": "https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15420",
+   "recorded": "2026-10-16",
+   "trim": "first 6 VEVENTs"
+  },
+  "galaxy_bad_domain.xml": {
+   "url": "https://volunteerphoenix.galaxydigital.com/need/rss/",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "volo_discover.html": {
+   "url": "https://www.volosports.com/discover?view=list&page=1&category=leagues&programType=league",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "volo_phoenix.html": {
+   "url": "https://www.volosports.com/discover/phoenix?category=leagues",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "teamtrivia_sitemap_locations.xml": {
+   "url": "https://www.teamtrivia.com/sitemap-locations.php",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  },
+  "challenge_shows_sample.json": {
+   "url": "https://challengeentertainment.com/wp-json/ce/v1/shows",
+   "recorded": "2026-10-16",
+   "trim": "12 metro-phoenix + 8 metro-austin shows"
+  },
+  "carbonhouse_xfinity.xml": {
+   "url": "https://www.xfinitymobilearena.com/events/rss",
+   "recorded": "2026-10-16",
+   "trim": "first 5 items"
+  },
+  "libcal_phoenix_root.html": {
+   "url": "https://calendar.phoenixpubliclibrary.org",
+   "recorded": "2026-10-16",
+   "trim": "none"
+  }
+ }
+}
