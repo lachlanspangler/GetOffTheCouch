@@ -1090,12 +1090,14 @@
    "value": 3,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "First holidays in a new city are the loneliest; curate + classify",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: router ids + Saved shared mode"
+   ]
   },
   {
    "id": "I-074",
