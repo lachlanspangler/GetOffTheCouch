@@ -1,0 +1,1262 @@
+# GetOffTheCouch seed registry: leagues/clubs, volunteer orgs, niche events.
+# Generated 2026-10-15 by research pass (see docs/research/leagues_volunteer_niche.md).
+#
+# Rules:
+#  - Every entry was reached by a live fetch on `checked` (UA "GetOffTheCouch-research/0.1").
+#    Entries whose page could not be read (403/Cloudflare) say so in `notes`; they need a human check.
+#  - `season_text` is a VERBATIM quote from `season_source_url` ("..." marks elisions).
+#    Empty string = not published / not found. Nothing here is invented or inferred.
+#  - `stale: true` marks quotes that are visibly out of date (do not display as current).
+#  - `recommendation` values: adapter | permission-gated adapter | curated-page-watch | curated-manual | reject/exclude.
+#  - city slugs: minneapolis, miami, los-angeles, chicago, nyc, austin, denver, seattle, nashville, boston.
+#
+# Sections: leagues (adult rec / curling / bowling), volunteer, niche (cons, faires, trivia, run clubs, maker, car shows).
+
+# ======================= LEAGUES =======================
+# ---------- LEAGUES / CLUBS ----------
+# Minneapolis / St. Paul metro
+- name: Minneapolis Park & Recreation Board, Adult Sports Leagues
+  city: minneapolis
+  url: https://www.minneapolisparks.org/activities-events/sports_leagues/adult_sports_leagues/
+  category: leagues
+  subcategory: [broomball, pond-hockey, kickball, pickleball, volleyball, softball, dodgeball, kubb, molkky, cornhole, bocce, basketball, flag-football, soccer]
+  platform: teamsideline
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "Winter 2026 Click the sport for registration details Basketball Broomball Dodgeball Pickleball Pond Hockey Volleyball – Indoor"
+  season_source_url: https://www.minneapolisparks.org/activities-events/sports_leagues/adult_sports_leagues/
+  checked: 2026-10-15
+  notes: >-
+    Page also says "Registration can be done online or in person at Park Board Headquarters (2117 West River Road).
+    For more information, or to register, contact us at 612-230-6400 or visit www.teamsideline.com/minneapolisparks".
+    Per-sport info pages are on teamsideline.com (e.g. /sites/minneapolisparks/content/35978/Adult-Broomball-League-Info),
+    which serves a Cloudflare 403 challenge (even robots.txt). Page-watch the MPRB page weekly; no dates/prices are published there.
+- name: CLUBWAKA Minneapolis (kickball / volleyball)
+  city: minneapolis
+  url: https://clubwaka.com/locations/minneapolis-2/
+  category: leagues
+  subcategory: [kickball, volleyball]
+  platform: leagueapps
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "Fun, Friendly Co-ed Leagues 21+ | Social After-Parties & Events | Great Times & New Friends Don't miss out on another season - join the club today before the next price hike!"
+  season_source_url: https://clubwaka.com/locations/minneapolis-2/
+  checked: 2026-10-15
+  notes: >-
+    Listed as a CLUBWAKA market on https://kickball.com/join-the-fun/. Registration via clubwakaminneapolis.leagueapps.com
+    (SPA; LeagueApps ToS forbids automated access). No dates/prices visible in static HTML.
+- name: Frogtown Curling Club, Happy Hour League
+  city: minneapolis
+  url: https://frogtowncurling.org/
+  category: leagues
+  subcategory: [curling]
+  platform: joomla
+  feed_url: https://frogtowncurling.org/index.php?format=feed&type=rss
+  feed_type: rss (club news only)
+  recommendation: curated-page-watch
+  season_text: "HAPPY HOUR LEAGUE Mondays at 4 p.m. · Registration is open now Your best bet for guaranteed ice this season. 90-minute games, five weeks per session, two sessions starting Nov 16 and Jan 25. Sign up as an individual and we'll match you with teammates. First come, first served. Full membership required. Per person, per session $50 + tax"
+  season_source_url: https://frogtowncurling.org/
+  checked: 2026-10-15
+  notes: >-
+    St. Paul. Same page: "Our regular leagues are full for 2026-27". JEvents iCal export URL returned HTTP 500.
+- name: Frogtown Curling Club, Homer Simpson League (drop-in)
+  city: minneapolis
+  url: https://frogtowncurling.org/
+  category: leagues
+  subcategory: [curling, drop-in]
+  platform: joomla
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "HOMER SIMPSON LEAGUE Tuesdays at 10 a.m. · Drop in any week Extra games on a Tuesday morning with no roster and no commitment. ... anyone who has finished a Learn to Curl is welcome. Pay as you go $15 members, tax incl. $20 non-members, or $120 + tax season pass"
+  season_source_url: https://frogtowncurling.org/
+  checked: 2026-10-15
+  notes: "The Homer Simpson League requires no membership at all (quoted on same page)."
+- name: Frogtown Curling Club, Group Learn to Curl / curling parties
+  city: minneapolis
+  url: https://frogtowncurling.org/index.php/curling/learn-to-curl
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: joomla
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "GROUPS, PARTIES & TEAMBUILDING Booking now for October 17 onward Two and a half hours on the ice for your team, your family, or your friends. Instructors and all the equipment are included ... Groups of 8 to 48. ... Per person $55 weekdays $65 per person on weekends"
+  season_source_url: https://frogtowncurling.org/
+  checked: 2026-10-15
+  notes: "Learn-to-curl page: 'Booking now for the 2026-27 season. Group dates start October 17.'"
+- name: Four Seasons Curling Club (Fogerty Arena, Blaine), Learn to Curl & leagues
+  city: minneapolis
+  url: https://www.fogertyarena.com/curling-club/learn-to-curl/
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: finnlyconnect
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "A Public Learn to Curl clinic is a great way for anyone, age 10 to adult, to get their first exposure to the sport. Each lesson is a 2-hour introduction and instructional session that teaches the basics of curling."
+  season_source_url: https://www.fogertyarena.com/curling-club/learn-to-curl/
+  checked: 2026-10-15
+  notes: >-
+    fourseasonscurlingclub.com redirects to fogertyarena.com. Registration: https://fscc.finnlyconnect.com/registration/activityitemv2/46339
+    ("Learn to Curl 2026-27"); finnlyconnect robots.txt is "Disallow: /" so no automation. Winter league page
+    (https://www.fogertyarena.com/curling-club/leagues/winter-league/) lists "2026 Winter League Information ... Sunday 5:00pm Rec & 5U ... Monday 5:45pm Rec ...". No prices/dates seen in static HTML.
+- name: St. Paul Curling Club
+  city: minneapolis
+  url: https://stpaulcurlingclub.org/
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: unknown
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-manual
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Domain resolves (stpaulcurlingclub.com 302s to it) but returns HTTP 403 to our research UA; content not verified. Human check needed."
+- name: Chaska Curling Center
+  city: minneapolis
+  url: https://www.chaskacurlingcenter.com/
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: unknown
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-manual
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Cloudflare 'Just a moment...' 403 challenge; content not verified. Human check needed."
+- name: Memory Lanes, bowling leagues
+  city: minneapolis
+  url: https://www.memorylanes.com/winter-bowling-leagues/
+  category: leagues
+  subcategory: [bowling]
+  platform: wordpress
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "2025 Winter League Sign-up Sheet ... Sunday Hangover League Noon 1/12 - 4/13 4 person teams Casual, non-sanctioned league Cash prizes $16/bowler/week ... Tuesday Mega League 7 PM Tuesdays 2/4 - 4/29"
+  season_source_url: https://www.memorylanes.com/wp-content/uploads/2024/12/2025-Winter-sign-up.pdf
+  checked: 2026-10-15
+  stale: true
+  notes: "2520 26th Ave S, Minneapolis. The linked sign-up PDF is for WINTER 2025 (still posted Oct 2026), so it's stale and must not be shown as current. Page-watch for a 2026-27 PDF."
+- name: Bryant Lake Bowl (no leagues)
+  city: minneapolis
+  url: https://www.bryantlakebowl.com/bowling
+  category: leagues
+  subcategory: [bowling]
+  platform: squarespace
+  feed_url: ""
+  feed_type: none
+  recommendation: exclude-from-leagues
+  season_text: "We never have leagues."
+  season_source_url: https://www.bryantlakebowl.com/bowling
+  checked: 2026-10-15
+  notes: "Same page: 'Wednesday: 9 a.m. - Midnight - TRIVIA NIGHT AT 8' (see niche/trivia). Squarespace robots disallow ?format=json and ?format=ical."
+
+# Chicago
+- name: Chicago Sport & Social Club (CSSC)
+  city: chicago
+  url: https://chicagosocial.com/
+  category: leagues
+  subcategory: [kickball, softball, volleyball, broomball, curling, bowling, pickleball, dodgeball, flag-football, soccer, basketball, cornhole, whirlyball]
+  platform: leagueapps
+  feed_url: https://chicagosocial.leagueapps.com/leagues
+  feed_type: html (legacy LeagueApps listing; ToS bars automation)
+  recommendation: curated + request LeagueApps API key
+  season_text: "Fall 2026 Fri DePaul Women's Int Basketball ... Season: Fall 2026 Starts: 2026-10-02 ... Registration Dates: 2026-07-10 – Wed Sep 23 23:59:59 EDT 2026 early bird Thu Sep 24 00:00:00 EDT 2026 – 2026-10-09 regular ... Team Fees Early Bird 1349.0 per team + 5.0% Processing Fee Regular 1399.0 per team + 5.0% Processing Fee Free Agent Fees Early Bird 139.0 ... Regular 139.0"
+  season_source_url: https://chicagosocial.leagueapps.com/leagues
+  checked: 2026-10-15
+  notes: "Old domain chicagosportandsocialclub.com redirects to chicagosocial.com. Sport filter on the listing includes Broomball and Curling."
+
+# Boston
+- name: Boston Ski & Sports Club (BSSC)
+  city: boston
+  url: https://bssc.com/sports/?la-state=OPEN_REGISTRATIONS
+  category: leagues
+  subcategory: [kickball, softball, volleyball, soccer, basketball, bowling, dek-hockey, flag-football]
+  platform: leagueapps
+  feed_url: ""
+  feed_type: iframe widget (leagueappwidget.web.app)
+  recommendation: curated + request LeagueApps API key (siteId 47536)
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Programs load in a JS iframe; no dates/prices in static HTML. robots: allow all, Crawl-delay 10."
+- name: Volo Sports Boston
+  city: boston
+  url: https://www.volosports.com/discover/boston?category=leagues
+  category: leagues
+  subcategory: [volleyball, flag-football, golf, kickball, softball, pickleball, bowling, cornhole]
+  platform: volo
+  feed_url: https://www.volosports.com/discover/boston?category=leagues&page=1
+  feed_type: html (SSR)
+  recommendation: adapter
+  season_text: "Sunday - Flag Football - Fenway | Sweeney Field - Wentworth | 11/8 · 7 weeks · 10AM - 1PM | Early bird | $116.91 | $106.16 | /player | · | $1,511.72 | $1,371.97 | /team | Coed | All Skills | 7v7 | Closes 11/6 (badge: Price goes up 10/17)"
+  season_source_url: https://www.volosports.com/discover/boston?category=leagues&includeFees=true
+  checked: 2026-10-15
+  notes: "92 'ways to play' listed. Prices shown with includeFees=true (redirected). League link https://www.volosports.com/l/c68de10d-a27b-4d92-adc1-822b1fedf41a"
+
+# Denver
+- name: Volo Sports Denver
+  city: denver
+  url: https://www.volosports.com/discover/denver?category=leagues
+  category: leagues
+  subcategory: [pickleball, volleyball, kickball, softball, bowling, skeeball, ultimate-frisbee, flag-football, basketball]
+  platform: volo
+  feed_url: https://www.volosports.com/discover/denver?category=leagues&page=1
+  feed_type: html (SSR)
+  recommendation: adapter
+  season_text: "Sunday - Rec/Int Pickleball - RiNo | Volo Sports Arena | 11/8 · 8 weeks · 9AM - 12PM | Early bird | $89 | $79 | /player | · | $267 | $237 | /team | Open | Skills (2) | 2v2 | Closes 11/6 (badge: Price goes up 10/17)"
+  season_source_url: https://www.volosports.com/discover/denver?category=leagues
+  checked: 2026-10-15
+  notes: "98 'ways to play'. League link https://www.volosports.com/l/07259bbb-1c62-4740-b632-6e0885935279. Kickball FAQ: 'anywhere from $39-$89 per player for the entire season' (https://www.volosports.com/denver/kickball)."
+- name: Denver Curling Club
+  city: denver
+  url: https://denvercurlingclub.com/
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: curlingclubmanager
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-page-watch
+  season_text: "Corporate and Private Curling Events: Submit your event request here . Bookings for 2026/27 season is now open."
+  season_source_url: https://denvercurlingclub.com/
+  checked: 2026-10-15
+  notes: "Has 'Learn to Curl Info' and 'Subscribe to notification list' menu items."
+
+# NYC
+- name: Volo Sports New York Metro (incl. former ZogSports)
+  city: nyc
+  url: https://www.volosports.com/discover/new-york-metro-area?category=leagues
+  category: leagues
+  subcategory: [basketball, pickleball, volleyball, kickball, softball, dodgeball]
+  platform: volo
+  feed_url: https://www.volosports.com/discover/new-york-metro-area?category=leagues&page=1
+  feed_type: html (SSR)
+  recommendation: adapter
+  season_text: "Monday - Volleyball - West Village | Pier 25 | 10/19 · 7 weeks · 6PM - 11:30PM | Last chance | $190 | /player | · | $2,280 | /team | Coed | Skills (2) | 6v6 | Closing in 8m"
+  season_source_url: https://www.volosports.com/discover/new-york-metro-area?category=leagues
+  checked: 2026-10-15
+  notes: "126 'ways to play'. ZogSports announcement: 'ZogSports is officially joining forces with Volo Sports!' (https://play.zogsports.com/zogsports-volo)."
+
+# Los Angeles
+- name: Volo Sports Los Angeles
+  city: los-angeles
+  url: https://www.volosports.com/discover/los-angeles?category=leagues
+  category: leagues
+  subcategory: [kickball, volleyball, beach-volleyball, basketball, skeeball]
+  platform: volo
+  feed_url: https://www.volosports.com/discover/los-angeles?category=leagues&page=1
+  feed_type: html (SSR)
+  recommendation: adapter
+  season_text: "Monday, Wednesday - Traditional Kickball - Hollywood | Immaculate Heart HS | 10/19 · 8 weeks · 7:15PM - 10:15PM | Last chance | $95.41 | /player | · | $1,193.25 | /team | Open | All Skills | 10v10 | Closing in 3h 8m"
+  season_source_url: https://www.volosports.com/discover/los-angeles?category=leagues&includeFees=true
+  checked: 2026-10-15
+  notes: "47 'ways to play'."
+- name: Hollywood Curling, Learn to Curl (Panorama City)
+  city: los-angeles
+  url: https://hollywoodcurling.org/
+  category: leagues
+  subcategory: [curling, learn-to-curl]
+  platform: eventbrite
+  feed_url: https://www.eventbrite.com/o/hollywood-curling-18177600694
+  feed_type: eventbrite organizer (use Eventbrite API /v3/organizers/18177600694/events/)
+  recommendation: adapter (via Eventbrite API)
+  season_text: "Learn to Curl in Panorama City | startDate 2026-10-18T19:00:00-07:00 | endDate 2026-10-18T20:30:00-07:00 | LA Kings Valley Ice Center, 8750 Van Nuys Boulevard | AggregateOffer lowPrice 44.52 USD, availability InStock, availabilityEnds 2026-10-19T02:00:00Z"
+  season_source_url: https://www.eventbrite.com/e/learn-to-curl-in-panorama-city-tickets-2003227226560
+  checked: 2026-10-15
+  notes: "Values from the event page's schema.org EducationEvent JSON-LD."
+
+# Miami
+- name: Volo Sports Miami
+  city: miami
+  url: https://www.volosports.com/discover/miami?category=leagues
+  category: leagues
+  subcategory: [softball, kickball, volleyball]
+  platform: volo
+  feed_url: https://www.volosports.com/discover/miami?category=leagues&page=1
+  feed_type: html (SSR)
+  recommendation: adapter
+  season_text: "Saturday - Softball - Downtown | José Martí Park | 10/24 · 8 weeks · 11AM - 2PM | $60 | /player | · | $960 | /team | Coed | All Skills | 10v10 | Closes 10/23"
+  season_source_url: https://www.volosports.com/discover/miami?category=leagues
+  checked: 2026-10-15
+  notes: "17 'ways to play'. CLUBWAKA also lists Miami FL as a market (https://kickball.com/join-the-fun/)."
+
+# Seattle
+- name: Underdog Sports Leagues (Seattle)
+  city: seattle
+  url: https://www.underdogseattle.com/
+  category: leagues
+  subcategory: [volleyball, pickleball, flag-football, pickup]
+  platform: leaguelab
+  feed_url: https://www.underdogseattle.com/leagues?v=upcoming
+  feed_type: html (SSR; LeagueLab ToS requires permission for automation)
+  recommendation: permission-gated adapter
+  season_text: "Fall Co-ed Volleyball at North Seattle CC Saturdays Locations: North Seattle College • Day: Saturday • Starts: Saturday, October 17 ... Softcore ... Team Status: Open Cost: $75.00 Deposit Team $795.00 Total Individual Status: Open Cost: $115.00 Individual"
+  season_source_url: https://www.underdogseattle.com/leagues?v=upcoming
+  checked: 2026-10-15
+  notes: "Also: 'Pick Up Volleyball in Wallingford Thursday - 10/22 ... Starts: Thursday, October 22 • Deadline: Wednesday, October 21 ... Opens October 16 ... Cost: $15.00 Individual'. underdogsportsleagues.com meta-refreshes here."
+
+# Nashville
+- name: Nashville Sports Leagues (NSL)
+  city: nashville
+  url: https://nashvillesportsleagues.com/
+  category: leagues
+  subcategory: [kickball, volleyball, cornhole, softball, soccer, pickleball, bowling, flag-football, basketball, ultimate-frisbee, dodgeball]
+  platform: leaguelab
+  feed_url: https://widget.leaguelab.com/v1/nashvillesportsleagues/league-listing
+  feed_type: html widget table (needs LeagueLab permission for automation)
+  recommendation: permission-gated adapter
+  season_text: "Kickball Quickie (LFA26) - Thursday - Shelby Park/ES Rose - Recreational ... Format: Coed 10v10 Team Price: $600.00 Individual Price: $56.00 Start Date: 10/29/26 Signup Deadline: 10/26/26 Status: Open"
+  season_source_url: https://widget.leaguelab.com/v1/nashvillesportsleagues/league-listing?sport=Kickball
+  checked: 2026-10-15
+  notes: "Also: 'Volleyball Quickie (LFA26) - Wednesday - W.A.Bass - 6v6 Indoor ... Team Price: $390.00 Individual Price: $71.00 Start Date: 10/28/26 Signup Deadline: 10/23/26 Status: Open'. 43 rows in widget."
+- name: Nashville Curling Club
+  city: nashville
+  url: https://playpass.com/NashvilleCurlingClub
+  category: leagues
+  subcategory: [curling]
+  platform: playpass
+  feed_url: ""
+  feed_type: json-ld (SportsOrganization only)
+  recommendation: curated-page-watch
+  season_text: "Annual Membership Registration - 2026-2027 Nashville Curling Club Dec 1 – Nov 30 $35 - $75"
+  season_source_url: https://playpass.com/NashvilleCurlingClub
+  checked: 2026-10-15
+  notes: "nashvillecurlingclub.com redirects to Playpass. Curls at Tee Line Nashville, 106 Duluth Ave (per JSON-LD). Playpass robots disallows /activities/."
+
+# Austin
+- name: Austin Sports & Social Club (ASSC)
+  city: austin
+  url: https://austinssc.com/
+  category: leagues
+  subcategory: []
+  platform: unknown
+  feed_url: ""
+  feed_type: none
+  recommendation: curated-manual
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "austinsportsandsocial.com redirects here. Homepage = Cloudflare 403 challenge to non-browser clients; robots.txt allows all with Crawl-delay: 20. Sports offered not verified (page unreadable)."
+
+# ======================= VOLUNTEER =======================
+# Volunteer seed entries, all verified by live fetch on 2026-10-15.
+# season_text is quoted verbatim from season_source_url (HTML entities decoded). Empty means not published or not found.
+- name: Minneapolis Park & Recreation Board - Environmental Volunteer Opportunities
+  city: minneapolis
+  url: https://www.minneapolisparks.org/
+  category: volunteer
+  subcategory: environmental / parks
+  platform: WordPress + The Events Calendar
+  feed_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?categories=environmental-volunteer-opportunities
+  feed_type: json (tribe REST)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "34 upcoming events in category on check date. 429 rate-limits fast; space requests >=5s. Do not use ?ical= (robots-disallowed)."
+- name: Lake Harriet Environmental Committee - Lake Harriet Buckthorn Slaying (via MPRB)
+  city: minneapolis
+  url: https://www.minneapolisparks.org/event-calendar/lake-harriet-buckthorn-slaying/2026-10-15/
+  category: volunteer
+  subcategory: environmental / invasive removal
+  platform: MPRB event calendar
+  feed_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014621
+  feed_type: json (tribe REST)
+  recommendation: adapter (covered by MPRB feed)
+  season_text: "Dates: Tuesdays and Thursdays 9-11am, May-September"
+  season_source_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?per_page=3&categories=environmental-volunteer-opportunities
+  checked: 2026-10-15
+  notes: "Feed still lists an occurrence 2026-10-15 09:00-11:00 America/Chicago, even though the description text says May-September."
+- name: Lyndale Park Rose Garden Volunteering (Deadheaders, via MPRB)
+  city: minneapolis
+  url: https://www.minneapolisparks.org/event-calendar/rose-garden-volunteering/2026-10-17/
+  category: volunteer
+  subcategory: gardening
+  platform: MPRB event calendar
+  feed_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013781
+  feed_type: json (tribe REST)
+  recommendation: adapter (covered by MPRB feed)
+  season_text: "Dates: 1st and 3rd Saturday & select Thursdays, May-October, 9-11am"
+  season_source_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?per_page=3&categories=environmental-volunteer-opportunities
+  checked: 2026-10-15
+  notes: "Signup via SignUpGenius link in description (https://www.signupgenius.com/go/60B0F48ADA928A2F58-60446456-rose)."
+- name: Friends of Minnehaha Park - Minnehaha Park Invasive Plant Management (via MPRB)
+  city: minneapolis
+  url: https://www.friendsofminnehahapark.org/
+  category: volunteer
+  subcategory: environmental / invasive removal
+  platform: MPRB event calendar
+  feed_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014638
+  feed_type: json (tribe REST)
+  recommendation: adapter (covered by MPRB feed)
+  season_text: "Dates: Saturdays 10-noon, through October"
+  season_source_url: https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?per_page=3&categories=environmental-volunteer-opportunities
+  checked: 2026-10-15
+  notes: "Meet at 4749 46th Ave S parking lot (per event description)."
+- name: HandsOn Twin Cities
+  city: minneapolis
+  url: https://www.handsontwincities.org/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: Galaxy Digital Get Connected
+  feed_url: https://handsontwincities.galaxydigital.com/need/rss/
+  feed_type: rss + html (/need/, /calendar/, /need/detail/)
+  recommendation: adapter
+  season_text: "Volunteer as a Musician with Young Learners this October ... Until Oct 30, 2026"
+  season_source_url: https://handsontwincities.galaxydigital.com/need/detail/?need_id=1326479
+  checked: 2026-10-15
+  notes: "Need listing shows end dates like 'Runs Until Dec 11, 2026' (e.g. 'Giving Tree - Help Spread Holiday Joy', Living Well Disability Services) at https://handsontwincities.galaxydigital.com/need/"
+- name: Greater Twin Cities United Way - Volunteer
+  city: minneapolis
+  url: https://www.gtcuw.org/volunteer/
+  category: volunteer
+  subcategory: united way
+  platform: WordPress (links out to Idealist / VolunteerMatch)
+  feed_url: ""
+  feed_type: ""
+  recommendation: curated
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "No own listings; links to idealist.org and volunteermatch.org."
+- name: Boston Cares
+  city: boston
+  url: https://www.bostoncares.org/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: HandsOn Connect
+  feed_url: https://www.bostoncares.org/search/getOpportunitiesCalendar
+  feed_type: json (POST, searchvo_startfrom/searchvo_endfrom, block 589)
+  recommendation: adapter
+  season_text: "Breakfast is served every weekday, and volunteers are asked to be there for the full 3 hour shift"
+  season_source_url: https://www.bostoncares.org/opportunity/a0CUq00007LI7lbMAD
+  checked: 2026-10-15
+  notes: "Text quoted from the calendar JSON description of 'Serve Breakfast at the Boston Living Center' (2026-10-15T07:45-10:30, America/New_York). 314 occurrences 2026-10-15..22."
+- name: Hands On Greater Nashville (United Way Greater Nashville)
+  city: nashville
+  url: https://handson.unitedwaygreaternashville.org/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: HandsOn Connect
+  feed_url: https://handson.unitedwaygreaternashville.org/search/getOpportunitiesCalendar
+  feed_type: json (POST, block 2009)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "hon.org redirects here. 111 occurrences 2026-10-15..17, e.g. 'Food Delivery Restock Shift' (Inspiritus) 2026-10-15T07:30-09:30, 5 volunteers still needed."
+- name: L.A. Works
+  city: los-angeles
+  url: https://www.laworks.com/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: HandsOn Connect
+  feed_url: https://volunteer.laworks.com/search/getOpportunitiesCalendar
+  feed_type: json (POST)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "56 occurrences 2026-10-15..17, e.g. 'Breakfast - Help Prepare & Distribute Breakfast to our Unhoused Community' (St. Francis Center) 2026-10-15T07:00-08:30, 8 still needed. laworks.com robots: Allow /."
+- name: NYC Service
+  city: nyc
+  url: https://www.nycservice.org/
+  category: volunteer
+  subcategory: city volunteer portal
+  platform: HandsOn Connect
+  feed_url: https://www.nycservice.org/search/getOpportunitiesCalendar
+  feed_type: json (POST, block 2073)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "36 occurrences 2026-10-15..17, e.g. 'Russian-Speaking Food Pantry Guest Support Volunteer' (Shorefront Jewish Community Council) 2026-10-15T09:30."
+- name: NYC Parks volunteer events (NYC Open Data)
+  city: nyc
+  url: https://www.nycgovparks.org/
+  category: volunteer
+  subcategory: parks / environmental
+  platform: Socrata (NYC Open Data)
+  feed_url: https://data.cityofnewyork.us/resource/w3wp-dpdi.json?$q=volunteer
+  feed_type: json (Socrata SODA)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Examples: 'Trail Work Thursdays' 2026-10-15T09:00 VCPA Learning Garden (Van Cortlandt Park); 'Restoration Fridays at Forest Park' 2026-10-16T10:00. Site /xml/ RSS is robots-disallowed; use Socrata."
+- name: New York Cares
+  city: nyc
+  url: https://www.newyorkcares.org/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: Drupal (JS project search)
+  feed_url: ""
+  feed_type: ""
+  recommendation: curated
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Site claims 'Explore 1000+ volunteer opportunities in NYC.' No public feed found."
+- name: Chicago Cares
+  city: chicago
+  url: https://www.chicagocares.org/s/
+  category: volunteer
+  subcategory: volunteer center (multi-cause)
+  platform: Salesforce Experience Cloud (Volunteers for Salesforce)
+  feed_url: https://www.chicagocares.org/s/sitemap.xml
+  feed_type: sitemap (shift URLs + lastmod)
+  recommendation: curated + sitemap watch
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Shift pages are client-rendered."
+- name: United Way for Greater Austin - Volunteer
+  city: austin
+  url: https://volunteer.uwatx.org/
+  category: volunteer
+  subcategory: united way
+  platform: HandsOn Connect
+  feed_url: https://volunteer.uwatx.org/search/getOpportunitiesCalendar
+  feed_type: json (POST, block 447 required)
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Sparse: 1 occurrence 2026-10-15..11-15, 'Monthly Diaper Bank Distribution presented by Women United' 2026-11-06T09:30-11:00, 11 still needed."
+- name: United Way of King County - Volunteer
+  city: seattle
+  url: https://volunteer.uwkc.org/
+  category: volunteer
+  subcategory: united way
+  platform: Galaxy Digital Get Connected
+  feed_url: https://volunteer.uwkc.org/need/rss/
+  feed_type: rss + html
+  recommendation: adapter
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Recent RSS items: 'Planting Party at Duwamish Hill Preserve', 'Arbor Day at E.C. Hughes Park with Trees for Seattle' (pubDate Sat, 10 Oct 2026)."
+- name: United Way Miami - Volunteer Miami
+  city: miami
+  url: https://portal.unitedwaymiami.org/Volunteer/QuickSearch.jsp
+  category: volunteer
+  subcategory: united way
+  platform: Andar Software portal
+  feed_url: ""
+  feed_type: ""
+  recommendation: curated + page-watch
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "volunteermiami.org redirects here. Calendar rendered empty to curl."
+- name: Mile High United Way - Volunteer
+  city: denver
+  url: https://unitedwaydenver.org/get-involved/volunteer/
+  category: volunteer
+  subcategory: united way
+  platform: unknown (volunteer.unitedwaydenver.org returns 403 to our UA)
+  feed_url: ""
+  feed_type: ""
+  recommendation: curated
+  season_text: ""
+  season_source_url: ""
+  checked: 2026-10-15
+  notes: "Marketing page links to volunteer.unitedwaydenver.org/event/856810-community-corner-at-mile-high-united-way (403 to our UA)."
+
+# ======================= NICHE =======================
+# Niche seed entries (fork output). Values verified by fetch on 2026-10-15; season_text quoted verbatim from season_source_url. Blank = not found.
+- name: "Trivia Mafia"
+  city: minneapolis
+  url: "https://www.triviamafia.com/locations"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Squarespace + Storepoint locator"
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + weekly page-watch of /locations; ask Trivia Mafia for permission to use their Storepoint feed"
+  season_text: "Filter by day and/or location to find a trivia night near you any night of the week."
+  season_source_url: "https://www.triviamafia.com/locations"
+  checked: "2026-10-15"
+  notes: "~100 Minneapolis/St Paul venues listed in HTML (no day/time in HTML). Day/time lives in api.storepoint.co/v1/164f9e9ab5e100/locations, but api.storepoint.co robots.txt is \"Disallow: /\" and triviamafia.com robots disallows ?format=json and ?format=ical. Theme nights listed (e.g. \"Oct: Avatar: the Last Airbender\")."
+- name: "Mill City Running - free community group runs"
+  city: minneapolis
+  url: "https://www.millcityrunning.com/pages/group-runs"
+  category: "niche"
+  subcategory: "run club"
+  platform: "Shopify (Mahina event calendar app on /pages/calendar)"
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry (recurring schedule), monthly page-watch"
+  season_text: "Join us every Monday, Tuesday, and Friday (and some Saturdays) for a free community run. ... Monday Night in Highland Every Monday at 6pm ... Tuesday Night in Northeast Every Tuesday at 6PM ... Friday Morning in Northeast Every Friday at 6:30AM"
+  season_source_url: "https://www.millcityrunning.com/pages/group-runs"
+  checked: "2026-10-15"
+  notes: "Free, all paces, waiver required. Also \"BIPOC Community Run Every Second Thursday at 6PM\" and \"Assisted Long Run Twice monthly\". robots.txt (Shopify default) allows /pages/."
+- name: "Furry Migration"
+  city: minneapolis
+  url: "https://www.furrymigration.org/"
+  category: "niche"
+  subcategory: "furry convention"
+  platform: "WordPress"
+  feed_url: "https://www.furrymigration.org/feed/"
+  feed_type: "rss (news posts only)"
+  recommendation: "curated registry + yearly page-watch of homepage"
+  season_text: "September 10 -12, 2027 Downtown Minneapolis"
+  season_source_url: "https://www.furrymigration.org/"
+  checked: "2026-10-15"
+  notes: "Organized by Minnesota Furs (MNFurs). WikiFur page \"Furry Migration\" has infobox metadata (CC-BY-SA 4.0)."
+- name: "Anime Detour"
+  city: minneapolis
+  url: "https://www.animedetour.com/"
+  category: "niche"
+  subcategory: "anime convention"
+  platform: "WordPress + The Events Calendar"
+  feed_url: "https://www.animedetour.com/wp-json/tribe/events/v1/events"
+  feed_type: "json (tribe REST; 0 events on 2026-10-15)"
+  recommendation: "curated registry + page-watch; tribe endpoint is cheap to poll but currently empty"
+  season_text: "March 26th – 28th, 2027 Hyatt Regency Hotel 1300 Nicollet Mall, Minneapolis, MN 55403"
+  season_source_url: "https://www.animedetour.com/"
+  checked: "2026-10-15"
+  notes: "Homepage also: \"2027 Hotel Room Blocks open on October 12th! (10/1/2026)\"; panel applications \"open NOW until January 15th, 2027\". robots.txt allows all but /wp-admin/."
+- name: "Twin Cities Con"
+  city: minneapolis
+  url: "https://www.twincitiescon.com/"
+  category: "niche"
+  subcategory: "comic convention"
+  platform: "custom"
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "Twin Cities Con returns November 20th – 22nd, 2026! TICKETS ON SALE NOW! USE CODE EARLYBIRD10 TO SAVE 10% ON WEEKEND OR SINGLE DAY"
+  season_source_url: "https://www.twincitiescon.com/"
+  checked: "2026-10-15"
+  notes: "Exhibit hall hours on homepage (\"Friday, November 20| 12:00 PM – 7:00 PM\")."
+- name: "MarsCon (Minnesota)"
+  city: minneapolis
+  url: "https://marscon.org/"
+  category: "niche"
+  subcategory: "sci-fi/fan convention"
+  platform: "WordPress"
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "MarsCon 2027: Sci-Fi? What a Joke! March 5-7 2027"
+  season_source_url: "https://marscon.org/"
+  checked: "2026-10-15"
+  notes: "Homepage: \"March 5-6-7 – MarsCon at Minneapolis/St. Paul Airport Hilton\". NOTE: marscon.net is a different (Virginia Beach) MarsCon."
+- name: "AniMinneapolis"
+  city: minneapolis
+  url: "https://www.upcomingcons.com/upcomingcons/40544-AniMinneapolis"
+  category: "niche"
+  subcategory: "anime convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "May 7-9, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "Aggregator-only (startDate 2027-05-07, endDate 2027-05-09); official site not checked."
+- name: "Minneapolis Anime and Gaming Event"
+  city: minneapolis
+  url: "https://www.upcomingcons.com/upcomingcons/40549-Minneapolis-Anime-and-Gaming-Event"
+  category: "niche"
+  subcategory: "anime/gaming convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons"
+  season_text: "Oct 30-Nov 1, 2026"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "Also listed \"Sep 3-5, 2027\" (listing 40550). Aggregator-only; official site not checked."
+- name: "MSRA Back to the 50's Weekend"
+  city: minneapolis
+  url: "https://msrabacktothe50s.com/"
+  category: "niche"
+  subcategory: "car show"
+  platform: "WordPress.com"
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + yearly page-watch"
+  season_text: "See you at the 53rd Annual MSRA Back to the 50’s Weekend!😊🏁 📅 June 18–20, 2027"
+  season_source_url: "https://msrabacktothe50s.com/"
+  checked: "2026-10-15"
+  notes: "Minnesota Street Rod Association (msra.com; NOT msra.org which is Mississippi). Page <title> still reads \"June 19-21, 2026\"."
+- name: "Minnesota Renaissance Festival"
+  city: minneapolis
+  url: "https://www.renaissancefest.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: "unknown (nginx 403)"
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual check (site and robots.txt return 403 to our UA)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "renfaire.com listing exists but is stale (\"2015 Dates 2015-08-22 - 2015-10-04\", \"Updated 2015-09-14\"); unusable for dates."
+- name: "CONvergence"
+  city: minneapolis
+  url: "https://www.convergence-con.org/"
+  category: "niche"
+  subcategory: "sci-fi/fan convention"
+  platform: "Wix (Cloudflare challenge)"
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual check (Cloudflare 403 to curl)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Not readable by polite curl."
+- name: "Car Show Radar - Minnesota listings"
+  city: minneapolis
+  url: "https://carshowradar.com/"
+  category: "niche"
+  subcategory: "car show"
+  platform: "WordPress REST (posts, category Minnesota id 36)"
+  feed_url: "https://carshowradar.com/wp-json/wp/v2/posts?categories=36"
+  feed_type: "json"
+  recommendation: "adapter (low priority); event dates only in free text -> date extraction"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Only 23 MN posts total; most recent MN post dated 2026-07-29 (Gear-Head Get Together Show & Swap Meet, Maple Lake)."
+- name: "ZOMA House (Luma calendar)"
+  city: minneapolis
+  url: "https://luma.com/minneapolis"
+  category: "niche"
+  subcategory: "community events (Meetup alternative)"
+  platform: "Luma"
+  feed_url: "https://api.lu.ma/ics/get?entity=calendar&id=cal-ZcUa89sLSrEvGwZ"
+  feed_type: "ics"
+  recommendation: "adapter: per-calendar ICS for curated Luma calendars"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "1426 W Lake St, Minneapolis. ICS had 45 VEVENTs; REFRESH-INTERVAL PT12H. Discovered via luma.com/minneapolis __NEXT_DATA__."
+- name: "Sherwood Forest Faire"
+  city: austin
+  url: "https://www.sherwoodforestfaire.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "18th Annual Sherwood Forest Faire Open Weekends: March 6 – April 25, 2027 Also Open Friday, March 19th 10 am to Dusk"
+  season_source_url: "https://www.sherwoodforestfaire.com/"
+  checked: "2026-10-15"
+  notes: "McDade, TX (Austin area)."
+- name: "Colorado Renaissance Festival"
+  city: denver
+  url: "https://coloradorenaissance.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "Thank you for an Amazing 2026 season! We look forward to seeing you in June of 2027 for our 50th anniversary celebration!"
+  season_source_url: "https://coloradorenaissance.com/"
+  checked: "2026-10-15"
+  notes: "Larkspur, CO. Exact 2027 dates not yet published."
+- name: "King Richard's Faire"
+  city: boston
+  url: "https://www.kingrichardsfaire.net/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "Sep 5 – Oct 25 • 8 Weekends Only ... Limited Tickets Available: Only 2 More Weekends in 2026."
+  season_source_url: "https://www.kingrichardsfaire.net/"
+  checked: "2026-10-15"
+  notes: "Carver, MA."
+- name: "Washington Midsummer Renaissance Faire"
+  city: seattle
+  url: "https://washingtonfaire.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "Returning for 5 Weekends in July & August 2027! Snohomish, WA"
+  season_source_url: "https://washingtonfaire.com/"
+  checked: "2026-10-15"
+  notes: ""
+- name: "Tennessee Renaissance Festival"
+  city: nashville
+  url: "https://www.tnrenfest.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: "html"
+  recommendation: "curated registry + page-watch"
+  season_text: "Every Saturday and Sunday in May Plus Memorial Day May 1 - 31, 2026"
+  season_source_url: "https://www.tnrenfest.com/"
+  checked: "2026-10-15"
+  notes: "Arrington, TN. 2027 dates not yet on homepage."
+- name: "Bristol Renaissance Faire"
+  city: chicago
+  url: "https://www.renfair.com/bristol/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual (403 to curl)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Kenosha, WI. renfair.com returns 403 to our UA."
+- name: "New York Renaissance Faire"
+  city: nyc
+  url: "https://www.renfair.com/ny/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual (403 to curl)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Tuxedo, NY. renfair.com returns 403 to our UA."
+- name: "Renaissance Pleasure Faire (SoCal)"
+  city: los-angeles
+  url: "https://www.renfair.com/socal/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual (403 to curl)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Irvine, CA. renfair.com returns 403 to our UA."
+- name: "Florida Renaissance Festival"
+  city: miami
+  url: "https://www.ren-fest.com/"
+  category: "niche"
+  subcategory: "renaissance faire"
+  platform: ""
+  feed_url: ""
+  feed_type: ""
+  recommendation: "curated registry; manual (Cloudflare 403)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "renfaire.com entry exists but data is stale (2015)."
+- name: "L.A. Comic Con"
+  city: los-angeles
+  url: "https://www.upcomingcons.com/upcomingcons/42336-L-A-Comic-Con"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Oct 30-Nov 1, 2026"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2026-10-30 endDate 2026-11-01 (listed city: Los Angeles CA); aggregator-only."
+- name: "Con+Alt+Delete"
+  city: chicago
+  url: "https://www.upcomingcons.com/upcomingcons/42373-Con-Alt-Delete"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Dec 18-20, 2026"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2026-12-18 endDate 2026-12-20 (listed city: Rosemont Illinois); aggregator-only."
+- name: "D20 Cruise"
+  city: los-angeles
+  url: "https://www.upcomingcons.com/upcomingcons/42420-D20-Cruise"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Apr 9-15, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-04-09 endDate 2027-04-15 (listed city: Los Angeles CA); aggregator-only."
+- name: "PAX East"
+  city: boston
+  url: "https://www.upcomingcons.com/upcomingcons/42409-PAX-East"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Apr 22-25, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-04-22 endDate 2027-04-25 (listed city: Boston MA); aggregator-only."
+- name: "Anime Boston"
+  city: boston
+  url: "https://www.upcomingcons.com/upcomingcons/42456-Anime-Boston"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "May 28-30, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-05-28 endDate 2027-05-30 (listed city: Boston Massachusetts); aggregator-only."
+- name: "Anime Expo"
+  city: los-angeles
+  url: "https://www.upcomingcons.com/upcomingcons/42444-Anime-Expo"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Jul 2-5, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-07-02 endDate 2027-07-05 (listed city: Los Angeles California); aggregator-only."
+- name: "Anime Midwest"
+  city: chicago
+  url: "https://www.upcomingcons.com/upcomingcons/42446-Anime-Midwest"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Jul 2-4, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-07-02 endDate 2027-07-04 (listed city: Rosemont Illinois); aggregator-only."
+- name: "PAX West"
+  city: seattle
+  url: "https://www.upcomingcons.com/upcomingcons/42458-PAX-West"
+  category: "niche"
+  subcategory: "fan convention"
+  platform: "UpcomingCons listing"
+  feed_url: ""
+  feed_type: "html (schema.org Event microdata)"
+  recommendation: "adapter via UpcomingCons; confirm on official site"
+  season_text: "Sep 3-6, 2027"
+  season_source_url: "https://www.upcomingcons.com/anime-cons"
+  checked: "2026-10-15"
+  notes: "startDate 2027-09-03 endDate 2027-09-06 (listed city: Seattle WA); aggregator-only."
+- name: "Geeks Who Drink quiz @ 4 Noses Brewing- Park Hill"
+  city: denver
+  url: "https://www.geekswhodrink.com/venues/2648773390"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 4040 Dahlia Street Denver, CO 80216; brand=gwd; local start 6:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Black Shirt Brewing Co & Craft Pizza Kitchen"
+  city: denver
+  url: "https://www.geekswhodrink.com/venues/3250193813"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Thursday (data-day); address: 3719 Walnut St Denver, CO 80205; brand=jbl; local start 6:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Glass Half Full @Alamo Drafthouse Lakeline"
+  city: austin
+  url: "https://www.geekswhodrink.com/venues/164279323"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Monday (data-day); address: 14028 U.S. 183 Austin, TX 78717; brand=gwd; local start 8:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Taco Flats - Riata"
+  city: austin
+  url: "https://www.geekswhodrink.com/venues/3112084034"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 12221 Riata Trace Parkway Ste 100 Austin, TX 78727; brand=sbt; local start 8:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Verdugo Bar"
+  city: los-angeles
+  url: "https://www.geekswhodrink.com/venues/472261107"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 3408 Verdugo Rd Los Angeles, CA 90065; brand=gwd; local start 6:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ The Bigfoot Lodge (East)"
+  city: los-angeles
+  url: "https://www.geekswhodrink.com/venues/598328977"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 3172 Los Feliz Blvd Los Angeles, CA 90039; brand=gwd; local start 8:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ The Garage Bar & Sandwiches"
+  city: chicago
+  url: "https://www.geekswhodrink.com/venues/3259006292"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Thursday (data-day); address: 6154 N Milwaukee Ave Chicago, IL 60646; brand=jbl; local start 8:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Open Outcry Brewing"
+  city: chicago
+  url: "https://www.geekswhodrink.com/venues/2901398010"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 10934 South Western Avenue Chicago, IL 60643; brand=gwd; local start 8:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ 51 North Taproom"
+  city: nashville
+  url: "https://www.geekswhodrink.com/venues/3105558713"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 704 51st Ave N Nashville, TN 37209; brand=jbl; local start 8:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Chuck's Hop Shop (Seward Park)"
+  city: seattle
+  url: "https://www.geekswhodrink.com/venues/2139612481"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 5041 Wilson Ave S Seattle, WA 98118; brand=gwd; local start 6:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Rookies Sports Bar & Grill"
+  city: seattle
+  url: "https://www.geekswhodrink.com/venues/3279754366"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 3820 S Ferdinand St Seattle, WA 98118; brand=sbt; local start n/a derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Assembly Food Hall"
+  city: nashville
+  url: "https://www.geekswhodrink.com/venues/3357366795"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Thursday (data-day); address: 5055 Broadway Nashville, TN 37203; brand=jbl; local start n/a derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Olly Olly Market"
+  city: nyc
+  url: "https://www.geekswhodrink.com/venues/3352943124"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Monday (data-day); address: 601 W 26th St New York, NY 10001; brand=jbl; local start 8:30 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ The Press Room @Alamo Drafthouse 28 Liberty"
+  city: nyc
+  url: "https://www.geekswhodrink.com/venues/2866037282"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Sunday (data-day); address: 28 Liberty Street, Suite SC301 New York, NY 10005; brand=jbl; local start 8:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ BEEPUBLIC"
+  city: nyc
+  url: "https://www.geekswhodrink.com/venues/3265638092"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Tuesday (data-day); address: 181 Front St Brooklyn, NY 11201; brand=gwd; local start 9:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ House of Wax @Alamo Drafthouse Brooklyn"
+  city: nyc
+  url: "https://www.geekswhodrink.com/venues/532021164"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Monday (data-day); address: 445 Albee Square W #4410 Brooklyn, NY 11201; brand=gwd; local start 10:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Old Tom's Sports Bar Kendall"
+  city: miami
+  url: "https://www.geekswhodrink.com/venues/3081001254"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 9525 N Kendall Drive Miami, FL 33176; brand=sbt; local start 9:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ The Leinster | Irish Pub"
+  city: miami
+  url: "https://www.geekswhodrink.com/venues/3191206389"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 1600 NE 1st Ave Miami, FL 33132; brand=jbl; local start 10:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ Long Live Roxbury"
+  city: boston
+  url: "https://www.geekswhodrink.com/venues/2965727169"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Wednesday (data-day); address: 152 Hampden St Boston, MA 02119; brand=jbl; local start 9:00 PM derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Geeks Who Drink quiz @ City Winery - Boston (Starts on January 11!)"
+  city: boston
+  url: "https://www.geekswhodrink.com/venues/3361406254"
+  category: "niche"
+  subcategory: "trivia"
+  platform: "Geeks Who Drink motherbrain (WP admin-ajax)"
+  feed_url: "https://www.geekswhodrink.com/wp-admin/admin-ajax.php?action=mb_display_mapped_events"
+  feed_type: "html fragment (data-* attributes)"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: "https://www.geekswhodrink.com/venues/"
+  checked: "2026-10-15"
+  notes: "weekly on Monday (data-day); address: 80 Beverly St Boston, MA 02114; brand=jbl; local start n/a derived from data-time UTC reference stamp (verify; DST may shift 1h)."
+- name: "Maker Faire Miami"
+  city: miami
+  url: "https://miami.makerfaire.com/"
+  category: "niche"
+  subcategory: "maker faire"
+  platform: "makerfaire.com query API"
+  feed_url: "https://makerfaire.com/query/?type=map"
+  feed_type: "json"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Feed record event_start_dt 04/25/2026 (already past at check); no 2027 record yet."
+- name: "Maker Faire Los Angeles"
+  city: los-angeles
+  url: "https://losangeles.makerfaire.com/"
+  category: "niche"
+  subcategory: "maker faire"
+  platform: "makerfaire.com query API"
+  feed_url: "https://makerfaire.com/query/?type=map"
+  feed_type: "json"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Feed record event_start_dt 04/26/2026 (already past at check); no 2027 record yet."
+- name: "Maker Faire Coney Island"
+  city: nyc
+  url: "https://coneyisland.makerfaire.com/"
+  category: "niche"
+  subcategory: "maker faire"
+  platform: "makerfaire.com query API"
+  feed_url: "https://makerfaire.com/query/?type=map"
+  feed_type: "json"
+  recommendation: "adapter (weekly)"
+  season_text: ""
+  season_source_url: ""
+  checked: "2026-10-15"
+  notes: "Feed record event_start_dt 09/19/2026 (already past at check); no 2027 record yet."
