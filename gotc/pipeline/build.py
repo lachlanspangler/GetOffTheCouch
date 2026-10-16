@@ -126,6 +126,7 @@ def build_city(
     stats.records = len(records)
 
     if geocoder:
+        geocoder.lookups = 0  # the live-lookup budget is per city, so early cities can't starve later ones
         for rec in records:
             if rec.location.lat is None and (rec.location.address or rec.location.venue_name):
                 q = rec.location.address or rec.location.venue_name or ""

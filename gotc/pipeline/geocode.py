@@ -33,7 +33,7 @@ class GeoResult:
 
 
 class Geocoder:
-    def __init__(self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int = 200) -> None:
+    def __init__(self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int = 150) -> None:
         self.db = db
         self.http = http
         self.offline = offline or http is None
