@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 68 · **doing** 4 · **done** 78 · **rejected** 20 · **parked** 2 · **blocked** 8
+**open** 76 · **doing** 4 · **done** 78 · **rejected** 23 · **parked** 2 · **blocked** 10
 
 ## Up next (open, by score)
 
@@ -21,6 +21,9 @@ unless docs/HEALTH.md has something red.
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | open | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | open | GitHub disables crons on inactive repos |
+| I-185 | SeatEngine/Opendate fingerprints in discover | cities | 3 | 1 | 2.4 | open | Comedy clubs and venues become config-only |
+| I-187 | LiveWhale pagination | sources | 3 | 1 | 2.4 | open | Brown's calendar stops at 100 items (~2–3 days) |
+| I-188 | ArcGIS route geometry → representative point | pipeline | 3 | 1 | 2.4 | open | Raleigh street-event permits are routes and don't map |
 | I-168 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | open | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
@@ -62,8 +65,13 @@ unless docs/HEALTH.md has something red.
 | I-149 | Fee-inclusive price display where sellers expose fees | data-quality | 3 | 2 | 1.2 | open | DICE pattern; only where reported |
 | I-165 | Doctor: per-source share of admin/noise_recurring/service_desk flags; suggest an adapter reject rule above 30% | health | 3 | 2 | 1.2 | open | Fix noise upstream (RANKING.md section 4 feedback loop); rank hints now make the shares cheap to compute |
 | I-176 | Fetch national feeds once per run and share across cities (Challenge, UpcomingCons) | pipeline | 3 | 2 | 1.2 | open | Challenge's 0.9 MB show list is fetched once per city unit today; at 50 cities that's 45 MB/run of identical bodies (§4.6 item 6). |
+| I-184 | Modern Events Calendar REST adapter | sources | 3 | 2 | 1.2 | open | BJCC, Myriad Gardens, Arts Council OKC use it |
+| I-186 | Squarespace events preset for jsonld | sources | 3 | 2 | 1.2 | open | 4 of 11 Memphis units |
+| I-189 | Match 'X vs Y' games across arena and athletics feeds | pipeline | 3 | 2 | 1.2 | open | Providence Friars games duplicated |
+| I-190 | Curated league registries for league-empty metros | data-quality | 3 | 2 | 1.2 | open | Leagues are empty in Tampa, Hartford and most of batch D |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
+| I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -88,6 +96,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-183 | Outreach: Memphis Public Libraries, Community Libraries of Providence, Hands On Birmingham, LibraryMarket | sources | 4 | 1 | 3.2 | blocked | Each is a city's primary official source and blocked today |
+| I-182 | NC ABC new-permit feed via outreach | sources | 4 | 2 | 1.6 | blocked | Openings for Charlotte and Raleigh |
 | I-159 | Search Console property + sitemap submission | growth | 4 | 1 | 3.2 | blocked | Blocked on the user's Google account |
 | I-158 | Custom domain before Google indexes github.io URLs | growth | 4 | 1 | 3.2 | blocked | Avoids a site move later; blocked on the user |
 | I-103 | Ask AEG Presents for permission to use their per-venue events JSON (Denver/Seattle concerts) | sources | 4 | 2 | 1.2 | blocked | AEG's Next.js venue sites (Mission Ballroom, Bluebird, Ogden, Gothic, Fiddler's Green; Showbox/Neumos in Seattle) read a public JSON blob per venue (aegwebprod…/json/events/<id>/events.json) with face-value prices, on-sale dates and door times. Its terms didn't render to us, so we skipped it. A permission e-mail to AEG could unlock ~10 big venues in 3+ cities with one adapter. — 2026-10-16 blocked: needs the user to contact AEG Presents |
@@ -191,6 +201,9 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-193 | OKC garage-sale permits | sources | 1 | 1 | 0.8 | rejected | Rejected: private home addresses |
+| I-192 | CT business registry as openings | sources | 2 | 2 | 0.8 | rejected | Rejected: formations aren't openings and rows carry personal data |
+| I-191 | jaxevents.com (Legends Global) | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid robots |
 | I-180 | Guess Communico tenants from the city name (<name>.libnet.info) | sources | 2 | 1 | 1.6 | rejected | Cheap library discovery. — 2026-10-16 rejected: Unknown libnet.info subdomains 302 to google.co.uk (we'd be fetching Google), and names collide across states (hcpl = Harford County MD, not Harris County TX). Only fingerprinted links from a library's own homepage are probed. |
 | I-179 | Keep Nominatim at 1 req/s with a per-run cap | pipeline | 3 | 1 | 2.4 | rejected | Would keep place-name geocoding as before. — 2026-10-16 rejected: nominatim.openstreetmap.org/robots.txt disallows /search and the OSMF policy limits recurring scripts to 4 req/min and strongly discourages periodic app use. Nominatim is off by default; GOTC_NOMINATIM=1 is a compliant 15 s / 20-per-run lane. |
 | I-178 | Urban Institute Education Data API (cbsa= filter) for university discovery | sources | 3 | 1 | 2.4 | rejected | Has IPEDS by CBSA in one call. — 2026-10-16 rejected: educationdata.urban.org/robots.txt says Disallow: /api/. Use College Scorecard (api.data.gov key) instead (I-116). |
