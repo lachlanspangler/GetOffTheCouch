@@ -10,6 +10,7 @@ Writes are atomic (tmp + rename) so the dashboard never reads a half-written fil
 from __future__ import annotations
 
 import json
+import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -33,6 +34,7 @@ from gotc.schema import (
 from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
 
+log = logging.getLogger(__name__)
 HORIZON_DAYS = 180
 PLAN_AHEAD_DAYS = 400  # cons, faires and league seasons are planned months ahead
 
@@ -76,7 +78,15 @@ def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, incl
         " OR category LIKE 'sports_league.%'))) ORDER BY start_at",
         (city.slug, iso(now + timedelta(days=HORIZON_DAYS)), iso(now + timedelta(days=PLAN_AHEAD_DAYS))),
     )
-    events = [Event.model_validate_json(r["data"]) for r in rows]
+    events: list[Event] = []
+    bad = 0
+    for r in rows:
+        try:
+            events.append(Event.model_validate_json(r["data"]))
+        except ValueError:
+            bad += 1  # e.g. slimmed CI state for a city whose rebuild failed: skip, never crash every city
+    if bad:
+        log.warning("%s: skipped %d unreadable event rows", city.slug, bad)
     used_venues = {e.venue_id for e in events if e.venue_id}
     return CityFeed(
         generated_at=now,

@@ -61,8 +61,9 @@ jobs:
         if: always()
         run: |
           [ -f data/gotc.db ] || exit 0
-          .venv/bin/python -c "import sqlite3; c=sqlite3.connect('data/gotc.db'); c.execute('PRAGMA wal_checkpoint(TRUNCATE)'); c.close()"
-          tmp=$(mktemp -d); gzip -9 -c data/gotc.db > "$tmp/gotc.db.gz"
+          tmp=$(mktemp -d)
+          .venv/bin/python scripts/slim_state.py data/gotc.db "$tmp/gotc.db"
+          gzip -9 -c "$tmp/gotc.db" > "$tmp/gotc.db.gz" && rm "$tmp/gotc.db"
           cd "$tmp" && git init -q -b pipeline-state && git add gotc.db.gz \
             && git -c user.name=gotc-bot -c user.email=gotc-bot@users.noreply.github.com commit -qm "pipeline state $(date -u +%FT%TZ)" \
             && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pipeline-state
