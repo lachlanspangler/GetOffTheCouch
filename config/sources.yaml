@@ -67,3 +67,35 @@ sources:
     params:
       url: https://makerfaire.com/query/?type=map
       categories: [Featured, Flagship, Mini]
+
+  # RunSignup "Get Races" REST API: upcoming races with registration periods = published deadlines for every
+  # city. Keyless technically, but the API Terms of Use require registering as an API caller first ("You must
+  # register and agree to these Terms before accessing the RunSignup API"), so the unit waits for the free
+  # caller registration (RUNSIGNUP_API_REG + RUNSIGNUP_API_REG_SECRET; STATUS.md "Keys needed"). ZIP + radius
+  # around each city center; runsignup.com/robots.txt allows /Rest/ (api.runsignup.com is Disallow: /, unused).
+  - id: runsignup
+    adapter: runsignup
+    name: RunSignup races
+    data_type: events
+    scope: all_cities
+    cadence_hours: 24
+    min_interval_s: 2           # API terms: at most 2 concurrent calls; we stay sequential and slow
+    requires: [RUNSIGNUP_API_REG, RUNSIGNUP_API_REG_SECRET]
+    homepage: https://runsignup.com/Races/Search
+    expect_min_records: 1
+    params:
+      url: https://runsignup.com/Rest/races
+      horizon_days: 120
+      results_per_page: 100
+      max_pages: 5
+      zipcodes:   # a downtown ZIP per city; radius = the city's radius_km in miles
+        austin: "78701"
+        boston: "02108"
+        chicago: "60602"
+        denver: "80202"
+        los_angeles: "90012"
+        miami: "33130"
+        minneapolis: "55401"
+        nashville: "37201"
+        nyc: "10007"
+        seattle: "98101"

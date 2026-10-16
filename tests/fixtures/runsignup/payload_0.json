@@ -1,0 +1,1559 @@
+{
+ "races": [
+  {
+   "race": {
+    "race_id": 148462,
+    "name": "Haunted Halloween Half Marathon & 5km",
+    "last_date": "10/25/2026",
+    "last_end_date": "10/25/2026",
+    "next_date": "10/25/2026",
+    "next_end_date": "10/25/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "6/3/2023 03:37",
+    "last_modified": "9/28/2026 12:36",
+    "description": "<p>2025 results: <a href=\"https://www.athlinks.com/event/314344/results/Event/1099091/Results\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">https://www.athlinks.com/event/314344/results/Event/1099091/Results</a></p>\n<p>\u00a0</p>\n<p>The Haunted Halloween Half Marathon &amp; 5km returns this fall to Chicago&#39;s Lincoln Park, at a new site! We will be in Diversey Event Space, across the street from Notebaert Nature Museum. The event offers race distances of half marathon and 5K \u2015 with a special Halloween twist! Hundreds of runners and walkers of all ages and abilities dress in costume and compete for fun and prizes. Age group awards will be given in ten-year age ranges. And there is prize money for the winners of our pre-race Costume Contest! Costume Contest Prize Money:\u00a0 For the teams 1st, 2nd win $200 and for individuals 1st, 2nd win $100.\u00a0\u00a0</p>\n<p>After the race, help yourself to some autumn refreshment treats. There will of course be Halloween candy. Every HM &amp; 5k finisher gets a <i><u><b>H^3 medal</b></u></i> to match your bib and shirt! Please attend our post party with a free beer at Tin Lizzie in Lincoln Park where they will also be offering 20% discount on their food menu.\u00a0</p>\n<p>Course will traverse the trails within Lincoln Park before heading south along Chicago&#39;s scenic Lakefront Trail. Course is accurately measured with every mile marked. Timing splits on the HM course at 5km, 10km, 10mi. ***the 10km split has been moved to the TURNAROUND point at 6.55miles***</p>\n<p>Participants are encouraged to use public transportation. If you choose to drive, parking is available in the Chicago History Museum lot, or along Cannon Drive.</p>\n<p>Packet Pickups are being scheduled for Fleet Feet &amp; Xtra Mile Running as well as on raceday, on site, beginning at 7:15am! Tentative schedule below.\u00a0</p>\n<p>TBD, &#64; Fleet Feet CHICAGO</p>\n<p>Sunday, 10/25, 7:15-8:35am &#64; Diversey Event Space (2611 N Cannon Dr, Chicago, IL)</p>\n<p>This event will sell out.</p>\n<p>Schedule: 7:15am - PPU and Gear Check open ... 7:45am - Costume Contest Judging at stage ... 8:05am - Costume Winners decided ... 8:30am - HALF MARATHON Start ... 8:45am - 5k Start ... 9:10am - 5k winners ... 10:05am - HM winners ... 12:50pm - Gear Check closed</p>\n<p>Age group awards will be given in ten year categories: 19 &amp; under, 20-29, 30-39, 40-49, 50-59, 60&#43;</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/HauntedHalloweenHalf",
+    "external_race_url": null,
+    "external_results_url": "https://www.athlinks.com/event/314344/results/Event/1099091/Results",
+    "fb_page_id": null,
+    "fb_event_id": null,
+    "address": {
+     "street": "2611 N Cannon Drive",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60614",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/races/race148462-logo-0.bKEVVM.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1068908,
+      "race_event_days_id": 374629,
+      "name": "H^3 Half Marathon",
+      "details": "8:25am race start\r\nRunners encouraged to race in costume!\r\nHalloween-themed bib and shirt\r\nMatching themed finisher's medal\r\nTiming splits at 5k, 10k-ish, 10M",
+      "start_time": "10/25/2026 08:25",
+      "end_time": "10/25/2026 12:00",
+      "age_calc_base_date": null,
+      "registration_opens": "10/27/2025 01:00",
+      "event_type": "running_race",
+      "distance": "13.1 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "10/27/2025 01:00",
+        "registration_closes": "1/23/2026 00:59",
+        "race_fee": "$55.00",
+        "processing_fee": "$4.55"
+       },
+       {
+        "registration_opens": "1/23/2026 01:00",
+        "registration_closes": "3/24/2026 00:59",
+        "race_fee": "$60.00",
+        "processing_fee": "$4.85"
+       },
+       {
+        "registration_opens": "3/24/2026 01:00",
+        "registration_closes": "5/4/2026 00:59",
+        "race_fee": "$69.00",
+        "processing_fee": "$5.39"
+       },
+       {
+        "registration_opens": "5/4/2026 01:00",
+        "registration_closes": "6/11/2026 00:59",
+        "race_fee": "$79.00",
+        "processing_fee": "$5.99"
+       },
+       {
+        "registration_opens": "6/11/2026 01:00",
+        "registration_closes": "7/19/2026 00:59",
+        "race_fee": "$85.00",
+        "processing_fee": "$6.35"
+       },
+       {
+        "registration_opens": "7/19/2026 01:00",
+        "registration_closes": "8/25/2026 00:59",
+        "race_fee": "$90.00",
+        "processing_fee": "$6.65"
+       },
+       {
+        "registration_opens": "8/25/2026 01:00",
+        "registration_closes": "9/26/2026 00:59",
+        "race_fee": "$99.00",
+        "processing_fee": "$7.19"
+       },
+       {
+        "registration_opens": "9/26/2026 01:00",
+        "registration_closes": "10/18/2026 00:59",
+        "race_fee": "$105.00",
+        "processing_fee": "$7.55"
+       },
+       {
+        "registration_opens": "10/18/2026 01:00",
+        "registration_closes": "10/24/2026 10:05",
+        "race_fee": "$120.00",
+        "processing_fee": "$8.45"
+       }
+      ],
+      "giveaway": "Long Sleeve Shirt",
+      "participant_cap": 510
+     },
+     {
+      "event_id": 1068909,
+      "race_event_days_id": 374629,
+      "name": "H^3 5k",
+      "details": "8:40am race start\r\nRunners encouraged to race in costume!\r\nHalloween-themed bib and shirt\r\nMatching themed finisher's medal",
+      "start_time": "10/25/2026 08:40",
+      "end_time": "10/25/2026 12:00",
+      "age_calc_base_date": null,
+      "registration_opens": "10/27/2025 01:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "10/27/2025 01:00",
+        "registration_closes": "1/23/2026 00:59",
+        "race_fee": "$35.00",
+        "processing_fee": "$3.35"
+       },
+       {
+        "registration_opens": "1/23/2026 01:00",
+        "registration_closes": "5/4/2026 00:59",
+        "race_fee": "$42.00",
+        "processing_fee": "$3.77"
+       },
+       {
+        "registration_opens": "5/4/2026 01:00",
+        "registration_closes": "6/11/2026 00:59",
+        "race_fee": "$45.00",
+        "processing_fee": "$3.95"
+       },
+       {
+        "registration_opens": "6/11/2026 01:00",
+        "registration_closes": "7/19/2026 00:59",
+        "race_fee": "$49.00",
+        "processing_fee": "$4.19"
+       },
+       {
+        "registration_opens": "7/19/2026 01:00",
+        "registration_closes": "8/25/2026 00:59",
+        "race_fee": "$54.00",
+        "processing_fee": "$4.49"
+       },
+       {
+        "registration_opens": "8/25/2026 01:00",
+        "registration_closes": "9/26/2026 00:59",
+        "race_fee": "$59.00",
+        "processing_fee": "$4.79"
+       },
+       {
+        "registration_opens": "9/26/2026 01:00",
+        "registration_closes": "10/18/2026 00:59",
+        "race_fee": "$64.00",
+        "processing_fee": "$5.09"
+       },
+       {
+        "registration_opens": "10/18/2026 01:00",
+        "registration_closes": "10/24/2026 10:05",
+        "race_fee": "$69.00",
+        "processing_fee": "$5.39"
+       }
+      ],
+      "giveaway": "Long Sleeve Shirt",
+      "participant_cap": 227
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 186355,
+    "name": "CANCELLED Holiday Cross Country Race & Reunion",
+    "last_date": "11/29/2026",
+    "last_end_date": "11/29/2026",
+    "next_date": "11/29/2026",
+    "next_end_date": "11/29/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "6/20/2025 11:55",
+    "last_modified": "9/21/2026 07:51",
+    "description": "<p>CANCELLED--DUE TO LOW TURNOUT FOR AUGUST RACE--</p>\n<p>DO NOT REGISTER FOR THIS EVENT.</p>",
+    "url": "https://runsignup.com/Race/IL/Evanston/ERCJohnHennellyPublicCrossCountryRaces",
+    "external_race_url": null,
+    "external_results_url": null,
+    "fb_page_id": null,
+    "fb_event_id": null,
+    "address": {
+     "street": "Gross Point Rd &, Thayer St",
+     "street2": null,
+     "city": "Evanston",
+     "state": "IL",
+     "zipcode": "60201",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "real_time_notifications_enabled": "T",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1171868,
+      "race_event_days_id": 409846,
+      "name": "XC 6K",
+      "details": "10AM Start",
+      "start_time": "11/29/2026 10:00",
+      "end_time": null,
+      "age_calc_base_date": "11/29/2026",
+      "registration_opens": "6/13/2026 08:56",
+      "event_type": "running_only",
+      "distance": "3.62 Miles",
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "6/13/2026 08:56",
+        "registration_closes": "11/28/2026 00:59",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       },
+       {
+        "registration_opens": "11/28/2026 01:00",
+        "registration_closes": "11/30/2026 00:59",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 210095,
+    "name": "HOW 5K",
+    "last_date": "10/18/2026",
+    "last_end_date": "10/18/2026",
+    "next_date": "10/18/2026",
+    "next_end_date": "10/18/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "F",
+    "created": "6/29/2026 11:26",
+    "last_modified": "10/9/2026 13:05",
+    "description": "<p><strong>About the Event: </strong></p>\n<p>HOW is thrilled to invite you to join us for our annual 5K run/walk, held this year on\u00a0<strong>October 18th</strong> at <a href=\"https://www.google.com/maps/place/Horner&#43;Park,&#43;Chicago,&#43;IL&#43;60618/&#64;41.9540484,-87.693386,15z/data=!3m1!4b1!4m6!3m5!1s0x880fd20b6e9698b1:0x7da149ad3e5f97c6!8m2!3d41.9585722!4d-87.6950899!16s%2Fg%2F1tc_lr87?entry=ttu&amp;g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Horner Park</a> on Chicago\u2019s North Side. All ages and abilities are welcome to run, walk, jog, or stroll the course. Check-in will open at 9AM and the run/walk will start at 10AM. Following the completion of the run/walk, we&#39;ll have an afterparty with food and drinks at <a href=\"https://www.irvingparkpizzaandpatio.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Irving Park Pizza &amp; Patio</a> from 11AM-1PM.\u00a0</p>\n<p>Housing is a human right. That&#39;s the belief at the heart of everything we do at HOW. As federal funding grows increasingly uncertain, it&#39;s our community \u2014 people like you \u2014 who make it possible to keep our neighbors housed. \u00a0</p>\n<p>That&#39;s where the 2026 HOW 5K comes in. For years, this event has rallied people from across the city all in service of one goal: keeping our neighbors housed. This year, that support matters more than ever. Lace up, show up, and stand with your community. Your neighbors are counting on you.</p>\n<p><strong>Every Registrant Helps Provide:\u00a0<br /></strong></p>\n<ul><li><strong>Permanent Housing:</strong> Individuals and families move from homelessness into safe, stable housing they can call home.\u00a0</li><li><strong>Case Management:</strong> One-on-one support that helps clients overcome barriers and build long-term stability.\u00a0</li><li><strong>Employment Services:</strong> Job coaching, resume assistance, and career development that help clients increase their income and regain independence.\u00a0</li><li><strong>Health Care Support:</strong> Connects clients with health insurance, primary care, and ongoing health services so they can stay healthy and remain housed.\u00a0</li><li><strong>Family &amp; Youth Services:</strong> Helps children and parents access tutoring, youth programs, school support, and resources the whole family needs.</li><li><strong>Support Against Rising Housing Costs:</strong> Helps keep people housed as rents and costs (like security deposits) keep climbing year after year.\u00a0</li></ul>",
+    "url": "https://runsignup.com/Race/IL/Chicago/HOW5K",
+    "external_race_url": null,
+    "external_results_url": null,
+    "fb_page_id": null,
+    "fb_event_id": null,
+    "address": {
+     "street": "2741 W. Montrose",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60618",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/uploads/generic/genericImage-websiteLogo-285819-1784854798.0423-0.bQyRKo.png",
+    "real_time_notifications_enabled": "T",
+    "postponed_cancelled_text": "Due to unforeseen circumstances, the 2026 HOW 5K, scheduled for Oct. 18, has been canceled.",
+    "events": [
+     {
+      "event_id": 1182502,
+      "race_event_days_id": 411916,
+      "name": "HOW 5K - Run and Afterparty",
+      "details": "Registration includes: timed race entry and official results, a commemorative race shirt, exclusive HOW swag, and admission to the post-race celebration with food and drinks at Irving Park Pizza & Patio.",
+      "start_time": "10/18/2026 09:00",
+      "end_time": "10/18/2026 13:00",
+      "age_calc_base_date": null,
+      "registration_opens": "7/29/2026 10:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "7/29/2026 10:00",
+        "registration_closes": "10/5/2026 12:00",
+        "race_fee": "$65.00",
+        "processing_fee": "$0.00"
+       }
+      ],
+      "giveaway": "T-Shirt"
+     },
+     {
+      "event_id": 1182503,
+      "race_event_days_id": 411916,
+      "name": "HOW 5K - Walk and Afterparty",
+      "details": "Registration includes: a commemorative race shirt, exclusive HOW swag, and admission to the post-race celebration with food and drinks at Irving Park Pizza & Patio.\r\n  ",
+      "start_time": "10/18/2026 09:00",
+      "end_time": "10/18/2026 13:00",
+      "age_calc_base_date": null,
+      "registration_opens": "7/29/2026 10:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "7/29/2026 10:00",
+        "registration_closes": "10/5/2026 12:00",
+        "race_fee": "$65.00",
+        "processing_fee": "$0.00"
+       }
+      ],
+      "giveaway": "T-Shirt"
+     },
+     {
+      "event_id": 1178303,
+      "race_event_days_id": 411916,
+      "name": "HOW 5K - Run",
+      "details": "Registration includes: timed race entry and official results, a commemorative race T-shirt, and exclusive HOW swag.",
+      "start_time": "10/18/2026 09:00",
+      "end_time": "10/18/2026 11:00",
+      "age_calc_base_date": null,
+      "registration_opens": "7/29/2026 10:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "7/29/2026 10:00",
+        "registration_closes": "10/5/2026 12:00",
+        "race_fee": "$45.00",
+        "processing_fee": "$0.00"
+       }
+      ],
+      "giveaway": "T-Shirt"
+     },
+     {
+      "event_id": 1182501,
+      "race_event_days_id": 411916,
+      "name": "HOW 5K - Walk",
+      "details": "Registration includes: a commemorative race T-shirt and exclusive HOW swag.",
+      "start_time": "10/18/2026 09:00",
+      "end_time": "10/18/2026 11:00",
+      "age_calc_base_date": null,
+      "registration_opens": "7/29/2026 10:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "7/29/2026 10:00",
+        "registration_closes": "10/5/2026 12:00",
+        "race_fee": "$45.00",
+        "processing_fee": "$0.00"
+       }
+      ],
+      "giveaway": "T-Shirt"
+     },
+     {
+      "event_id": 1182504,
+      "race_event_days_id": 411916,
+      "name": "HOW 5K - Afterparty",
+      "details": "Registration includes: admission to the post-race celebration with food and drinks at Irving Park Pizza & Patio.",
+      "start_time": "10/18/2026 11:00",
+      "end_time": "10/18/2026 13:00",
+      "age_calc_base_date": null,
+      "registration_opens": "7/29/2026 10:00",
+      "event_type": "nonprofit_event",
+      "distance": null,
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "7/29/2026 10:00",
+        "registration_closes": "10/5/2026 12:45",
+        "race_fee": "$25.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 47786,
+    "name": "18th Annual Beverly Hills Turkey Trot 5K Run & Family Walk",
+    "last_date": "11/28/2026",
+    "last_end_date": "11/28/2026",
+    "next_date": "11/28/2026",
+    "next_end_date": "11/28/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "5/16/2017 07:08",
+    "last_modified": "9/14/2026 17:26",
+    "description": "<p>This event leads runners and walkers through the tree-lined streets of the 19th Ward&#39;s historic North Beverly. We expect over 2,200 participants with spectators lining the race route. Proceeds will benefit the 19th Ward Youth and Community Foundation and the John McNicholas Pediatric Brain Tumor Foundation.</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/BeverlyHillsTurkeyTrot",
+    "external_race_url": "https://www.19thwardmobile.com/beverly-hills-turkey-trot/",
+    "external_results_url": null,
+    "fb_page_id": "mattoshea19",
+    "fb_event_id": null,
+    "address": {
+     "street": "Christ the King School Gymnasium",
+     "street2": "9225 S Hamilton Ave",
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60643",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/races/race47786-logo-0.bFFlhm.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1203679,
+      "race_event_days_id": 420176,
+      "name": "5K Run - Adult",
+      "details": null,
+      "start_time": "11/28/2026 09:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "8/15/2026 01:01",
+      "event_type": "running_only",
+      "distance": "3.1 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "8/15/2026 01:01",
+        "registration_closes": "11/25/2026 18:00",
+        "race_fee": "$35.00",
+        "processing_fee": "$3.10"
+       }
+      ],
+      "giveaway": "Race Shirt"
+     },
+     {
+      "event_id": 1203680,
+      "race_event_days_id": 420176,
+      "name": "5K Run - Youth (Ages 19 and under)",
+      "details": null,
+      "start_time": "11/28/2026 09:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "8/15/2026 01:01",
+      "event_type": "running_only",
+      "distance": "3.1 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "8/15/2026 01:01",
+        "registration_closes": "11/25/2026 18:00",
+        "race_fee": "$30.00",
+        "processing_fee": "$2.80"
+       }
+      ],
+      "giveaway": "Race Shirt"
+     },
+     {
+      "event_id": 1203681,
+      "race_event_days_id": 420176,
+      "name": "5K Walk - Individual",
+      "details": "Family Pricing is available: 5K Walk Family (limit 4 shirts): $80",
+      "start_time": "11/28/2026 09:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "8/15/2026 01:01",
+      "event_type": "walking_only",
+      "distance": "3.1 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "8/15/2026 01:01",
+        "registration_closes": "11/25/2026 18:00",
+        "race_fee": "$35.00",
+        "processing_fee": "$3.10"
+       }
+      ],
+      "giveaway": "Race Shirt"
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 139113,
+    "name": "Life Time Events: Add-On Purchases",
+    "last_date": "01/01/2026",
+    "last_end_date": "12/31/2026",
+    "next_date": "01/01/2026",
+    "next_end_date": "12/31/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "11/14/2022 13:42",
+    "last_modified": "4/15/2026 13:34",
+    "description": "<p>Add-On purchases for Life Time Chicago Half Marathon Expo at Morgan Manufacturing.\u00a0</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/2023LifeTimeEventsAddOnPurchases",
+    "external_race_url": null,
+    "external_results_url": null,
+    "fb_page_id": null,
+    "fb_event_id": null,
+    "address": {
+     "street": "Life Time Events",
+     "street2": "750 N State Street",
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60654",
+     "country_code": "US"
+    },
+    "timezone": "America/Detroit",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/races/race139113-logo-0.bJCOZI.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1100601,
+      "race_event_days_id": 385114,
+      "name": "Life Time Events: Add-On Purchases",
+      "details": null,
+      "start_time": "1/1/2026 13:00",
+      "end_time": "12/31/2026 23:59",
+      "age_calc_base_date": null,
+      "registration_opens": "1/1/2026 00:00",
+      "event_type": "running_race",
+      "distance": null,
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "1/1/2026 00:00",
+        "registration_closes": "12/31/2026 23:59",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ],
+      "participant_cap": 0
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 175729,
+    "name": "Spiked Apple Virtual 5k",
+    "last_date": "01/01/2026",
+    "last_end_date": "12/31/2026",
+    "next_date": "01/01/2026",
+    "next_end_date": "12/31/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "12/8/2024 12:09",
+    "last_modified": "5/13/2026 11:34",
+    "description": "<p>Love Running or Walking and Supporting Charities?\u00a0 The Spiked Apple Hard Cider Virtual Race is all about Running or Walking by yourself or with friends and family, encouraging charitable giving, and of course scoring sweet race swag!\u00a0\u00a0</p>\n<p><b>Registration Includes:</b></p>\n<ul><li><b>T-shirt</b>: \u00a0Super Soft Ring Spun Cotton t-shirt included!\u00a0</li><li><b>Glass</b>:\u00a0 Portable Collabsible Cider Cup</li><li><b>Finisher Medal: </b>Doubles as a bottle opener.</li><li><b>Race Bib</b>: Digital bib</li><li><b>Results Posted Online</b></li><li><b>Free Shipping</b></li></ul>\n<p><strong>TO JOIN:</strong></p>\n<ul><li>Register or transfer to the 5k event</li><li>Complete your distance\u00a0</li><li>Post your time online (<a href=\"https://runsignup.com/Race/Results/175729#resultSetId-622010;perpage:10\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">click here</a>)</li><li>Fill up that souvenir cup with some tasty cider and enjoy a job well done!</li></ul>\n<p><strong>Where is this Race?\u00a0 \u00a0</strong>This is a Virtual race, so we will ship your packet to you and you can complete your race when and where and with whom you choose!</p>\n<p><strong>When is this Race?</strong> \u00a0You can complete your race any time and location that you choose!\u00a0 lease be aware that you do not have to wait for your swag to arrive to run your race and report your time/miles!</p>\n<p><b>When Will Items Ship?\u00a0</b>Race swag typically ships within 1 week of registraton</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/SpikedAppleVirtualRace",
+    "external_race_url": "https://www.spikedapple5k.com/",
+    "external_results_url": null,
+    "fb_page_id": "profile.php",
+    "fb_event_id": null,
+    "address": {
+     "street": "Anywhere",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60626",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/uploads/generic/genericImage-websiteLogo-243513-1733679318.6377-0.bNvDJw.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1105873,
+      "race_event_days_id": 386721,
+      "name": "Spiked Apple Virtual 5k",
+      "details": "Complete a 5k Run or Walk any time and any location that you choose",
+      "start_time": "1/1/2026 00:00",
+      "end_time": "12/31/2026 23:59",
+      "age_calc_base_date": null,
+      "registration_opens": "1/1/2026 01:00",
+      "event_type": "virtual_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "1/1/2026 01:00",
+        "registration_closes": "5/17/2026 00:59",
+        "race_fee": "$29.00",
+        "processing_fee": "$3.49"
+       },
+       {
+        "registration_opens": "5/17/2026 01:00",
+        "registration_closes": "9/25/2026 00:59",
+        "race_fee": "$32.00",
+        "processing_fee": "$3.99"
+       },
+       {
+        "registration_opens": "9/25/2026 01:00",
+        "registration_closes": "1/1/2027 00:59",
+        "race_fee": "$35.00",
+        "processing_fee": "$3.99"
+       }
+      ],
+      "giveaway": "T-Shirt"
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 194061,
+    "name": "Cyclocross for Everyone! -- 10/31/2026 -- THE MARSH MONSTER Halloween Race",
+    "last_date": "10/31/2026",
+    "last_end_date": "10/31/2026",
+    "next_date": "10/31/2026",
+    "next_end_date": "10/31/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "10/19/2025 22:54",
+    "last_modified": "10/7/2026 16:33",
+    "description": "<p><strong>A: </strong>Our most competitive category. Consider it a \u201cPro/Cat1/2 Race\u201d. All legal race tactics welcome, this is about competing with each other respectfully and pushing each other as hard as we can.</p>\n<p><strong>B: </strong>Our less advanced competitive category. Consider it a \u201cCat 3/4&#34; Race. This also encompasses anyone who has a goal to compete beyond what the C race would allow. If people who are just trying racing want to race for less than 45 minutes, they can always drop out early.</p>\n<p><strong>C: </strong>Fun only, it\u2019s not results-focused. It is also completely unlabeled in terms of gender. This will be about the side quest, or about the hand-ups, or about trying something for the first time without the pressure of also competing at it. Any level is welcome, but everyone has to remember that this is about letting other people have their good time without getting in their way. If you go fast, that\u2019s fine, but give all the slower people room to ride (or abruptly stop for whipped cream).</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/CrossIs4Everyone",
+    "external_race_url": "https://www.cx4everyone.com",
+    "external_results_url": null,
+    "fb_page_id": null,
+    "fb_event_id": null,
+    "address": {
+     "street": "11559 S Stony Island Ave",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60617",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/uploads/generic/genericImage-websiteLogo-265958-1791404505.2615-0.bQXQNz.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1223478,
+      "race_event_days_id": 426147,
+      "name": "Advanced (A): Men/Open 60 Minutes",
+      "details": "A: Our most competitive category. Consider it a \u201cPro/Cat1/2 Race\u201d. All legal race tactics welcome, this is about competing with each other respectfully and pushing each other as hard as we can.",
+      "start_time": "10/31/2026 10:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223479,
+      "race_event_days_id": 426147,
+      "name": "Advanced (A): Women/Open 60 Minutes",
+      "details": "A: Our most competitive category. Consider it a \u201cPro/Cat1/2 Race\u201d. All legal race tactics welcome, this is about competing with each other respectfully and pushing each other as hard as we can.\r\n\r\nWomen's Categories are open to ALL those who identify as Women, you are who you say you are.",
+      "start_time": "10/31/2026 11:15",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223481,
+      "race_event_days_id": 426147,
+      "name": "Intermediate (B): Men/Open 45 Minutes",
+      "details": "B: Our less advanced competitive category. Consider it a \u201cCat 3/4\" Race. This also encompasses anyone who has a goal to compete beyond what the C race would allow. If people who are just trying racing want to race for less than 45 minutes, they can always drop out early.",
+      "start_time": "10/31/2026 12:30",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223482,
+      "race_event_days_id": 426147,
+      "name": "Intermediate (B): Women/Open 45 Minutes",
+      "details": "B: Our less advanced competitive category. Consider it a \u201cCat 3/4\" Race. This also encompasses anyone who has a goal to compete beyond what the C race would allow. If people who are just trying racing want to race for less than 45 minutes, they can always drop out early. \r\n\r\nWomen's Categories are open to ALL those who identify as Women, you are who you say you are.",
+      "start_time": "10/31/2026 13:30",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223483,
+      "race_event_days_id": 426147,
+      "name": "Gender Expansive 45 minutes",
+      "details": "Open to anyone who identifies as non-binary, trans or gender non-conforming",
+      "start_time": "10/31/2026 13:36",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223480,
+      "race_event_days_id": 426147,
+      "name": "U23 Youth 2 Laps/30 Minutes",
+      "details": null,
+      "start_time": "10/31/2026 14:30",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223484,
+      "race_event_days_id": 426147,
+      "name": "Adaptive Bikes - 30 Minutes",
+      "details": "Adaptive Bikes can be e-assist or 100% person-powered; all are welcome!",
+      "start_time": "10/31/2026 15:15",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1223485,
+      "race_event_days_id": 426147,
+      "name": "Cyclocross For Everyone (C) 30 minutes",
+      "details": "C: Fun only, it\u2019s not results-focused. It is also completely unlabeled in terms of gender. This will be about the side quest, or about the hand-ups, or about trying something for the first time without the pressure of also competing at it. Any level is welcome, but everyone has to remember that this is about letting other people have their good time without getting in their way. If you go fast, that\u2019s fine, but give all the slower people room to ride (or abruptly stop for whipped cream).\r\nRiders must be 14 years or older.",
+      "start_time": "10/31/2026 16:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/27/2026 22:55",
+      "event_type": "bike_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/27/2026 22:55",
+        "registration_closes": "10/30/2026 13:00",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 77990,
+    "name": "Lincolnwood Turkey Trot: 5K, 10K, Walk, Dash",
+    "last_date": "11/22/2026",
+    "last_end_date": "11/22/2026",
+    "next_date": "11/22/2026",
+    "next_end_date": "11/22/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "7/1/2019 16:15",
+    "last_modified": "10/6/2026 12:17",
+    "description": "<h5>Be part of the tradition.</h5>\n<p>The annual Lincolnwood Turkey Trot is a chip-timed, USATF certified 5K and 10K race. This flat and fast course weaves through scenic Lincolnwood and features races for all ages and abilities, including a 5K Fitness Walk and Kid&#39;s Drumstick Dash (ages six and younger). Everyone that crosses the Finish Line will receive a finisher medal!\u00a0</p>",
+    "url": "https://runsignup.com/Race/IL/Lincolnwood/LWTurkeyTrot",
+    "external_race_url": "https://www.lincolnwoodil.org/Trot",
+    "external_results_url": null,
+    "fb_page_id": "LincolnwoodParks",
+    "fb_event_id": null,
+    "address": {
+     "street": "6915 Kostner Avenue",
+     "street2": null,
+     "city": "Lincolnwood",
+     "state": "IL",
+     "zipcode": "60712",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/uploads/generic/genericImage-websiteLogo-84641-1777487906.3858-0.bP8LaI.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1129266,
+      "race_event_days_id": 394622,
+      "name": "5K Run",
+      "details": "Race Village, Start, and Finish: Proesel Park, 7055 N. Kostner Avenue (near Proesel Park Family Aquatic Center)\r\n\r\nThe 5K (USATF Certification Number IL-23031-NM) and 10K (USATF Certification Number IL-23032-NM) courses will be marked on the road and with signs along the route. Course cut-off time is 10:20am.\r\n\r\nFor participant's safety, no bicycles, in-line skates or other-wheeled vehicles, except wheelchairs or other accessibility devices. \r\n\r\nStrollers and baby joggers are allowed, but all runners with strollers or baby joggers must start at the back of the race corral. \r\n\r\nAnimals are not permitted on the racecourse or in Proesel Park. Service animals must be registered at least one week before race day, please contact the Race Director at jglowacki@lwd.org\r\n\r\nAll pre-registered runners and walkers will receive a long-sleeve running shirt. (Adult shirts are designed by men\u2019s sizes.) Lincolnwood Turkey Trot finisher medals will be awarded to all registered runners and walkers who cross the finish line.\r\n\r\nOverall winners will be awarded by the gun time start, and age division winners will be awarded off of the chip time. Race medals will be awarded for 1st, 2nd, and 3rd place finishers in each distance, age division, and male and female. Additionally, awards will be given to top male and female Lincolnwood resident finishers in each distance, and top male and female overall winners in each distance.\r\n\r\nPacket pick-up will be held at the Lincolnwood Community Center (4170 Morse Ave, Lincolnwood, IL 60712) as follows:\r\n\r\nThursday, November 19: 9 am - 7 pm\r\nFriday, November 20: 7 am - 5 pm\r\nSaturday, November 21: 9 am - 2 pm\r\nSunday, November 22: (Race Day): 6:30 am in the race village near Proesel Park Family Aquatic Center\r\n\r\nEarly packet pickup is strongly encouraged. Packets will include a Turkey Trot long-sleeved shirt, race bib, and pins. \r\n\r\nPacket pickup for fellow runners is allowed. For groups of four or more runners, please write down each name in your party to assist staff. Shirt sizes may be exchanged following the race.",
+      "start_time": "11/22/2026 08:45",
+      "end_time": "11/22/2026 10:30",
+      "age_calc_base_date": "11/22/2026",
+      "registration_opens": "5/1/2026 10:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "5/1/2026 10:00",
+        "registration_closes": "10/2/2026 18:00",
+        "race_fee": "$42.00",
+        "processing_fee": "$3.52"
+       },
+       {
+        "registration_opens": "10/2/2026 18:01",
+        "registration_closes": "11/6/2026 18:00",
+        "race_fee": "$47.00",
+        "processing_fee": "$3.82"
+       },
+       {
+        "registration_opens": "11/6/2026 18:01",
+        "registration_closes": "11/18/2026 14:00",
+        "race_fee": "$52.00",
+        "processing_fee": "$4.12"
+       }
+      ],
+      "giveaway": "Long Sleeved Shirt",
+      "participant_cap": 1500
+     },
+     {
+      "event_id": 1129267,
+      "race_event_days_id": 394622,
+      "name": "10K Run",
+      "details": "Race Village, Start, and Finish: Proesel Park, 7055 N. Kostner Avenue (near Proesel Park Family Aquatic Center)\r\n\r\nThe 5K (USATF Certification Number IL-23031-NM) and 10K (USATF Certification Number IL-23032-NM) courses will be marked on the road and with signs along the route. Course cut-off time is 10:20am.\r\n\r\nFor participant's safety, no bicycles, in-line skates or other-wheeled vehicles, except wheelchairs or other accessibility devices. \r\n\r\nStrollers and baby joggers are allowed, but all runners with strollers or baby joggers must start at the back of the race corral. \r\n\r\nAnimals are not permitted on the racecourse or in Proesel Park. Service animals must be registered at least one week before race day, please contact the Race Director at jglowacki@lwd.org\r\n\r\nAll pre-registered runners and walkers will receive a long-sleeve running shirt. (Adult shirts are designed by men\u2019s sizes.) Lincolnwood Turkey Trot finisher medals will be awarded to all registered runners and walkers who cross the finish line.\r\n\r\nOverall winners will be awarded by the gun time start, and age division winners will be awarded off of the chip time. Race medals will be awarded for 1st, 2nd, and 3rd place finishers in each distance, age division, and male and female. Additionally, awards will be given to top male and female Lincolnwood resident finishers in each distance, and top male and female overall winners in each distance.\r\n\r\nPacket pick-up will be held at the Lincolnwood Community Center (4170 Morse Ave, Lincolnwood, IL 60712) as follows:\r\n\r\nThursday, November 19: 9 am - 7 pm\r\nFriday, November 20: 7 am - 5 pm\r\nSaturday, November 21: 9 am - 2 pm\r\nSunday, November 22: (Race Day): 6:30 am in the race village near Proesel Park Family Aquatic Center\r\n\r\nEarly packet pickup is strongly encouraged. Packets will include a Turkey Trot long-sleeved shirt, race bib, and pins. \r\n\r\nPacket pickup for fellow runners is allowed. For groups of four or more runners, please write down each name in your party to assist staff. Shirt sizes may be exchanged following the race.",
+      "start_time": "11/22/2026 08:45",
+      "end_time": "11/22/2026 10:30",
+      "age_calc_base_date": "11/22/2026",
+      "registration_opens": "5/1/2026 10:00",
+      "event_type": "running_race",
+      "distance": "10K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "5/1/2026 10:00",
+        "registration_closes": "10/2/2026 18:00",
+        "race_fee": "$42.00",
+        "processing_fee": "$3.52"
+       },
+       {
+        "registration_opens": "10/2/2026 18:01",
+        "registration_closes": "11/6/2026 18:00",
+        "race_fee": "$47.00",
+        "processing_fee": "$3.82"
+       },
+       {
+        "registration_opens": "11/6/2026 18:01",
+        "registration_closes": "11/18/2026 14:00",
+        "race_fee": "$52.00",
+        "processing_fee": "$4.12"
+       }
+      ],
+      "giveaway": "Long Sleeved Shirt",
+      "participant_cap": 600
+     },
+     {
+      "event_id": 1129268,
+      "race_event_days_id": 394622,
+      "name": "5K Fitness Walk",
+      "details": "Race Village, Start, and Finish: Proesel Park, 7055 N. Kostner Avenue (near Proesel Park Family Aquatic Center)\r\n\r\nThe 5K (USATF Certification Number IL-23031-NM) and 10K (USATF Certification Number IL-23032-NM) courses will be marked on the road and with signs along the route. Course cut-off time is 10:20am.\r\n\r\nFor participant's safety, no bicycles, in-line skates or other-wheeled vehicles, except wheelchairs or other accessibility devices. \r\n\r\nStrollers and baby joggers are allowed, but all runners with strollers or baby joggers must start at the back of the race corral. \r\n\r\nAnimals are not permitted on the racecourse or in Proesel Park. Service animals must be registered at least one week before race day, please contact the Race Director at jglowacki@lwd.org\r\n\r\nAll pre-registered runners and walkers will receive a long-sleeve running shirt. (Adult shirts are designed by men\u2019s sizes.) Lincolnwood Turkey Trot finisher medals will be awarded to all registered runners and walkers who cross the finish line.\r\n\r\nOverall winners will be awarded by the gun time start, and age division winners will be awarded off of the chip time. Race medals will be awarded for 1st, 2nd, and 3rd place finishers in each distance, age division, and male and female. Additionally, awards will be given to top male and female Lincolnwood resident finishers in each distance, and top male and female overall winners in each distance.\r\n\r\nPacket pick-up will be held at the Lincolnwood Community Center (4170 Morse Ave, Lincolnwood, IL 60712) as follows:\r\n\r\nThursday, November 19: 9 am - 7 pm\r\nFriday, November 20: 7 am - 5 pm\r\nSaturday, November 21: 9 am - 2 pm\r\nSunday, November 22: (Race Day): 6:30 am in the race village near Proesel Park Family Aquatic Center\r\n\r\nEarly packet pickup is strongly encouraged. Packets will include a Turkey Trot long-sleeved shirt, race bib, and pins. \r\n\r\nPacket pickup for fellow runners is allowed. For groups of four or more runners, please write down each name in your party to assist staff. Shirt sizes may be exchanged following the race.",
+      "start_time": "11/22/2026 08:45",
+      "end_time": "11/22/2026 10:30",
+      "age_calc_base_date": "11/22/2026",
+      "registration_opens": "5/1/2026 10:00",
+      "event_type": "walking_only",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "5/1/2026 10:00",
+        "registration_closes": "10/2/2026 18:00",
+        "race_fee": "$42.00",
+        "processing_fee": "$3.52"
+       },
+       {
+        "registration_opens": "10/2/2026 18:01",
+        "registration_closes": "11/6/2026 18:00",
+        "race_fee": "$47.00",
+        "processing_fee": "$3.82"
+       },
+       {
+        "registration_opens": "11/6/2026 18:01",
+        "registration_closes": "11/18/2026 14:00",
+        "race_fee": "$52.00",
+        "processing_fee": "$4.12"
+       }
+      ],
+      "giveaway": "Long Sleeved Shirt",
+      "participant_cap": 600
+     },
+     {
+      "event_id": 1129269,
+      "race_event_days_id": 394622,
+      "name": "Drumstick Dash",
+      "details": "Race Village, Start, and Finish: Proesel Park, 7055 N. Kostner Avenue (near Proesel Park Family Aquatic Center)\r\n\r\nThe 5K (USATF Certification Number IL-23031-NM) and 10K (USATF Certification Number IL-23032-NM) courses will be marked on the road and with signs along the route. Course cut-off time is 10:20am.\r\n\r\nFor participant's safety, no bicycles, in-line skates or other-wheeled vehicles, except wheelchairs or other accessibility devices. \r\n\r\nStrollers and baby joggers are allowed, but all runners with strollers or baby joggers must start at the back of the race corral. \r\n\r\nAnimals are not permitted on the racecourse or in Proesel Park. Service animals must be registered at least one week before race day, please contact the Race Director at jglowacki@lwd.org\r\n\r\nAll pre-registered runners and walkers will receive a long-sleeve running shirt. (Adult shirts are designed by men\u2019s sizes.) Lincolnwood Turkey Trot finisher medals will be awarded to all registered runners and walkers who cross the finish line.\r\n\r\nOverall winners will be awarded by the gun time start, and age division winners will be awarded off of the chip time. Race medals will be awarded for 1st, 2nd, and 3rd place finishers in each distance, age division, and male and female. Additionally, awards will be given to top male and female Lincolnwood resident finishers in each distance, and top male and female overall winners in each distance.\r\n\r\nPacket pick-up will be held at the Lincolnwood Community Center (4170 Morse Ave, Lincolnwood, IL 60712) as follows:\r\n\r\nThursday, November 19: 9 am - 7 pm\r\nFriday, November 20: 7 am - 5 pm\r\nSaturday, November 21: 9 am - 2 pm\r\nSunday, November 22: (Race Day): 6:30 am in the race village near Proesel Park Family Aquatic Center\r\n\r\nEarly packet pickup is strongly encouraged. Packets will include a Turkey Trot long-sleeved shirt, race bib, and pins. \r\n\r\nPacket pickup for fellow runners is allowed. For groups of four or more runners, please write down each name in your party to assist staff. Shirt sizes may be exchanged following the race.",
+      "start_time": "11/22/2026 10:10",
+      "end_time": "11/22/2026 10:30",
+      "age_calc_base_date": null,
+      "registration_opens": "5/1/2026 10:00",
+      "event_type": "other",
+      "distance": null,
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "5/1/2026 10:00",
+        "registration_closes": "10/2/2026 18:00",
+        "race_fee": "$21.00",
+        "processing_fee": "$2.26"
+       },
+       {
+        "registration_opens": "10/2/2026 18:01",
+        "registration_closes": "11/6/2026 18:00",
+        "race_fee": "$26.00",
+        "processing_fee": "$2.56"
+       },
+       {
+        "registration_opens": "11/6/2026 18:01",
+        "registration_closes": "11/19/2026 18:00",
+        "race_fee": "$31.00",
+        "processing_fee": "$2.86"
+       }
+      ],
+      "giveaway": "Long Sleeved Shirt",
+      "participant_cap": 200
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 6223,
+    "name": "Chi Town Turkey Trot 5K & 10K",
+    "last_date": "11/26/2026",
+    "last_end_date": "11/26/2026",
+    "next_date": "11/26/2026",
+    "next_end_date": "11/26/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "12/18/2013 08:09",
+    "last_modified": "10/6/2026 13:43",
+    "description": "<p>Join the Thanksgiving tradition at the Chi Town Turkey Trot 10K &amp; 5K Run/Walk on Thanksgiving morning. \u00a0Everyone gets a finisher medal and donut at the finish line!</p>\n<p>Chicago, IL</p>\n<p>Use #TurkeyTradition to share your photos!</p>\n<p>Event times, dates, location and all other details are subject to change prior to the event. All official information is on the event&#39;s website <a href=\"https://allcommunityevents.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">AllCommunityEvents.com</a>.</p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/GrantParkTurkeyTrot5k",
+    "external_race_url": "http://allcommunityevents.com/grantparkturkeytrot",
+    "external_results_url": "http://allcommunityevents.com/grantparkturkeytrot",
+    "fb_page_id": "allcommunityevents",
+    "fb_event_id": 878255121262780,
+    "address": {
+     "street": "DuSable Harbor",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60601",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/uploads/generic/genericImage-websiteLogo-13104-1750435500.3482-0.bOvyAS.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1096918,
+      "race_event_days_id": 383904,
+      "name": "5K Run/Walk",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 09:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 09:00",
+        "registration_closes": "11/23/2026 00:59",
+        "race_fee": "$39.99",
+        "processing_fee": "$6.00"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096919,
+      "race_event_days_id": 383904,
+      "name": "5K Run/Walk (Untimed)",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 09:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 09:00",
+        "registration_closes": "11/23/2026 00:59",
+        "race_fee": "$39.99",
+        "processing_fee": "$6.00"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096920,
+      "race_event_days_id": 383904,
+      "name": "10K Run",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:50",
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 09:00",
+      "event_type": "running_only",
+      "distance": "10K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 09:00",
+        "registration_closes": "11/23/2026 00:59",
+        "race_fee": "$49.99",
+        "processing_fee": "$7.50"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096921,
+      "race_event_days_id": 383904,
+      "name": "5K Kid's Division Fun Run (11 Years and Under)",
+      "details": "Registration includes an untimed bib, finisher medal, and finish line donut. Additional items available during registration.",
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 09:00",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 09:00",
+        "registration_closes": "11/26/2026 10:00",
+        "race_fee": "$12.99",
+        "processing_fee": "$1.95"
+       }
+      ]
+     },
+     {
+      "event_id": 1096922,
+      "race_event_days_id": 383904,
+      "name": "5K - Extended Online Registration",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "11/23/2026 00:59",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "11/23/2026 00:59",
+        "registration_closes": "11/26/2026 10:00",
+        "race_fee": "$54.99",
+        "processing_fee": "$8.25"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096923,
+      "race_event_days_id": 383904,
+      "name": "5K Run/Walk (Untimed) - Extended Online Registration",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "11/23/2026 00:59",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "11/23/2026 00:59",
+        "registration_closes": "11/26/2026 10:00",
+        "race_fee": "$54.99",
+        "processing_fee": "$8.25"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096924,
+      "race_event_days_id": 383904,
+      "name": "10K - Extended Online Registration",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:50",
+      "age_calc_base_date": null,
+      "registration_opens": "11/23/2026 00:59",
+      "event_type": "running_only",
+      "distance": "10K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "11/23/2026 00:59",
+        "registration_closes": "11/26/2026 10:00",
+        "race_fee": "$59.99",
+        "processing_fee": "$9.00"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096925,
+      "race_event_days_id": 383904,
+      "name": "5K Kid's Division Fun Run (11 Years and Under) Extended Online Registration",
+      "details": "Registration includes an untimed bib, finisher medal, and finish line donut. Additional items available during registration.",
+      "start_time": "11/26/2026 09:00",
+      "end_time": "11/26/2026 10:20",
+      "age_calc_base_date": null,
+      "registration_opens": "11/23/2026 00:59",
+      "event_type": "running_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "11/23/2026 00:59",
+        "registration_closes": "11/26/2026 10:00",
+        "race_fee": "$12.99",
+        "processing_fee": "$1.95"
+       }
+      ]
+     },
+     {
+      "event_id": 1096926,
+      "race_event_days_id": 383904,
+      "name": "Kids Dash (age 8 & under)",
+      "details": "The Kids Dash is for children 8 years old and younger. It is 100 meters long and all finishers get a ribbon at the finish line!",
+      "start_time": "11/26/2026 08:45",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "2/1/2026 09:00",
+      "event_type": "running_race",
+      "distance": "100m",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "2/1/2026 09:00",
+        "registration_closes": "11/26/2026 00:59",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1096927,
+      "race_event_days_id": 383904,
+      "name": "Virtual Run - 5K",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 10:00",
+      "event_type": "virtual_race",
+      "distance": "5K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 10:00",
+        "registration_closes": "11/27/2026 00:59",
+        "race_fee": "$39.99",
+        "processing_fee": "$6.00"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     },
+     {
+      "event_id": 1096928,
+      "race_event_days_id": 383904,
+      "name": "Virtual Run - 10K",
+      "details": null,
+      "start_time": "11/26/2026 09:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "12/29/2025 10:00",
+      "event_type": "virtual_race",
+      "distance": "10K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "12/29/2025 10:00",
+        "registration_closes": "11/27/2026 00:59",
+        "race_fee": "$49.99",
+        "processing_fee": "$7.50"
+       }
+      ],
+      "giveaway": "Unisex Commemorative Gear!"
+     }
+    ]
+   }
+  },
+  {
+   "race": {
+    "race_id": 112485,
+    "name": "Santa Hustle Chicago",
+    "last_date": "12/05/2026",
+    "last_end_date": "12/05/2026",
+    "next_date": "12/05/2026",
+    "next_end_date": "12/05/2026",
+    "is_draft_race": "F",
+    "is_private_race": "F",
+    "is_registration_open": "T",
+    "created": "5/18/2021 11:30",
+    "last_modified": "9/17/2026 10:56",
+    "description": "<p><span style=\"color:rgb( 0 , 0 , 0 );font-size:12pt\">The Santa Hustle Race Series is more than just a run\u2014it\u2019s a magical holiday experience filled with festive fun, Christmas cheer, and a whole lot of Santa spirit! Runners of all ages and abilities are invited to join this winter wonderland race, featuring a scenic course, holiday music, and sweet treats like candy canes and cookies along the way. Whether you&#39;re dashing through the snow for a PR or just in it for the holiday vibes, the Santa Hustle is the perfect way to celebrate the season with family, friends, and fellow festive runners!</span></p>",
+    "url": "https://runsignup.com/Race/IL/Chicago/SantaHustleChicago",
+    "external_race_url": "https://santahustle.com/chicago",
+    "external_results_url": "https://www.brooksee.com/shc/results?",
+    "fb_page_id": "SantaHustle",
+    "fb_event_id": null,
+    "address": {
+     "street": "1410 Special Olympics Dr",
+     "street2": null,
+     "city": "Chicago",
+     "state": "IL",
+     "zipcode": "60605",
+     "country_code": "US"
+    },
+    "timezone": "America/Chicago",
+    "logo_url": "https://d368g9lw5ileu7.cloudfront.net/races/race112485-logo-0.bGRaav.png",
+    "real_time_notifications_enabled": "F",
+    "postponed_cancelled_text": "",
+    "postponed_to_date_text": "",
+    "events": [
+     {
+      "event_id": 1211844,
+      "race_event_days_id": 395617,
+      "name": "GUIDE - 10K",
+      "details": null,
+      "start_time": "12/5/2026 08:15",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/12/2026 12:25",
+      "event_type": "running_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/12/2026 12:25",
+        "registration_closes": "12/5/2026 09:15",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1211845,
+      "race_event_days_id": 395617,
+      "name": "GUIDE - 5K",
+      "details": null,
+      "start_time": "12/5/2026 08:30",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "9/12/2026 12:25",
+      "event_type": "running_race",
+      "distance": null,
+      "volunteer": "T",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "9/12/2026 12:25",
+        "registration_closes": "12/5/2026 09:30",
+        "race_fee": "$0.00",
+        "processing_fee": "$0.00"
+       }
+      ]
+     },
+     {
+      "event_id": 1132022,
+      "race_event_days_id": 395617,
+      "name": "10K",
+      "details": null,
+      "start_time": "12/5/2026 08:15",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "4/1/2026 01:00",
+      "event_type": "running_race",
+      "distance": "6.2 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "4/1/2026 01:00",
+        "registration_closes": "5/1/2026 00:59",
+        "race_fee": "$59.99",
+        "processing_fee": "$7.35"
+       },
+       {
+        "registration_opens": "5/1/2026 01:00",
+        "registration_closes": "10/1/2026 00:59",
+        "race_fee": "$69.99",
+        "processing_fee": "$7.95"
+       },
+       {
+        "registration_opens": "10/1/2026 01:00",
+        "registration_closes": "11/1/2026 00:59",
+        "race_fee": "$74.99",
+        "processing_fee": "$8.25"
+       },
+       {
+        "registration_opens": "11/1/2026 01:00",
+        "registration_closes": "12/1/2026 00:59",
+        "race_fee": "$79.99",
+        "processing_fee": "$8.55"
+       },
+       {
+        "registration_opens": "12/1/2026 01:00",
+        "registration_closes": "12/5/2026 09:15",
+        "race_fee": "$95.00",
+        "processing_fee": "$9.45"
+       }
+      ],
+      "giveaway": "Santa Hustle Long Sleeve Shirt + Beanie"
+     },
+     {
+      "event_id": 1132023,
+      "race_event_days_id": 395617,
+      "name": "5K",
+      "details": null,
+      "start_time": "12/5/2026 08:30",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "4/1/2026 01:00",
+      "event_type": "running_race",
+      "distance": "3.1 Miles",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "4/1/2026 01:00",
+        "registration_closes": "5/1/2026 00:59",
+        "race_fee": "$49.99",
+        "processing_fee": "$6.75"
+       },
+       {
+        "registration_opens": "5/1/2026 01:00",
+        "registration_closes": "10/1/2026 00:59",
+        "race_fee": "$54.99",
+        "processing_fee": "$7.05"
+       },
+       {
+        "registration_opens": "10/1/2026 01:00",
+        "registration_closes": "11/1/2026 00:59",
+        "race_fee": "$59.99",
+        "processing_fee": "$7.35"
+       },
+       {
+        "registration_opens": "11/1/2026 01:00",
+        "registration_closes": "12/1/2026 00:59",
+        "race_fee": "$64.99",
+        "processing_fee": "$7.65"
+       },
+       {
+        "registration_opens": "12/1/2026 01:00",
+        "registration_closes": "12/5/2026 09:30",
+        "race_fee": "$75.00",
+        "processing_fee": "$8.25"
+       }
+      ],
+      "giveaway": "Santa Hustle Long Sleeve Shirt + Beanie"
+     },
+     {
+      "event_id": 1132024,
+      "race_event_days_id": 395617,
+      "name": "Kids Dash",
+      "details": null,
+      "start_time": "12/5/2026 08:00",
+      "end_time": null,
+      "age_calc_base_date": null,
+      "registration_opens": "4/1/2026 01:00",
+      "event_type": "running_race",
+      "distance": "1K",
+      "volunteer": "F",
+      "require_dob": "T",
+      "require_phone": "T",
+      "registration_periods": [
+       {
+        "registration_opens": "4/1/2026 01:00",
+        "registration_closes": "5/1/2026 00:59",
+        "race_fee": "$19.99",
+        "processing_fee": "$4.95"
+       },
+       {
+        "registration_opens": "5/1/2026 01:00",
+        "registration_closes": "10/1/2026 00:59",
+        "race_fee": "$24.99",
+        "processing_fee": "$5.25"
+       },
+       {
+        "registration_opens": "10/1/2026 01:00",
+        "registration_closes": "12/1/2026 00:59",
+        "race_fee": "$29.99",
+        "processing_fee": "$5.55"
+       },
+       {
+        "registration_opens": "12/1/2026 01:00",
+        "registration_closes": "12/5/2026 09:00",
+        "race_fee": "$35.00",
+        "processing_fee": "$5.85"
+       }
+      ],
+      "giveaway": "Santa Hustle Long Sleeve Shirt + Santa Hat and Beard"
+     }
+    ]
+   }
+  }
+ ]
+}

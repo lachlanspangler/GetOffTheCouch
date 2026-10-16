@@ -1,0 +1,7 @@
+{
+  "unit": "runsignup@chicago",
+  "recorded_at": "2026-10-16T07:14:11+00:00",
+  "payloads": 1,
+  "request": "GET https://runsignup.com/Rest/races?format=json&events=T&include_extra_date_info=T&zipcode=60602&radius=12&start_date=2026-10-16&end_date=2027-02-13&sort=date+ASC&results_per_page=100&page=1",
+  "note": "real response recorded with `gotc record` (55 races); trimmed to 10 races chosen to cover price tiers, cancellations, virtual-only and past-start skips; otherwise unmodified"
+}

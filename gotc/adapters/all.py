@@ -12,6 +12,7 @@ from gotc.adapters import (  # noqa: F401
     handsonconnect,
     ics,
     makerfaire,
+    runsignup,
     simpleview,
     socrata,
     ticketing,
