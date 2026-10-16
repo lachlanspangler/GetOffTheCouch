@@ -1,0 +1,57 @@
+# Official new-resident deadlines for Virginia. Every fact is quoted verbatim from source_url.
+state: VA
+items:
+  - id: va-drivers-license
+    title: "Get a Virginia driver's license"
+    kind: license
+    days_after_move: 60
+    summary: "You have 60 days after moving to Virginia to get a Virginia driver's license (30 days for a commercial license)."
+    action_url: https://www.dmv.virginia.gov/moving/new-virginia
+    evidence: "When you move to Virginia, you have 60 days to get a Virginia driver's license to legally drive here. If you currently have a commercial driver's license (CDL), you must get a Virginia CDL within 30 days."
+    source_url: https://www.dmv.virginia.gov/moving/new-virginia
+    verified_at: 2026-10-16
+  - id: va-vehicle-title
+    title: "Title your vehicle in Virginia"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Title your vehicle in Virginia within 30 days of moving; you need the title before you can register it."
+    action_url: https://www.dmv.virginia.gov/moving/new-virginia
+    evidence: "Before you can register your vehicle and get license plates, you must first title your vehicle within 30 days of moving to Virginia."
+    source_url: https://www.dmv.virginia.gov/moving/new-virginia
+    verified_at: 2026-10-16
+  - id: va-vehicle-registration
+    title: "Register your vehicle and get Virginia plates"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Once it's insured and titled, register your vehicle at a Virginia DMV within 30 days of moving."
+    action_url: https://www.dmv.virginia.gov/moving/new-virginia
+    evidence: "Once you've insured and titled your vehicle, register it at any Virginia DMV customer service center within 30 days of moving here."
+    source_url: https://www.dmv.virginia.gov/moving/new-virginia
+    verified_at: 2026-10-16
+  - id: va-safety-inspection
+    title: "Get a Virginia safety inspection sticker"
+    kind: inspection
+    days_after_move: null
+    summary: "Vehicles driven in Virginia must pass an annual safety inspection and display the sticker."
+    action_url: https://www.dmv.virginia.gov/moving/new-virginia
+    evidence: "Before operating a vehicle in Virginia, it must pass an annual safety inspection and display a valid safety inspection sticker."
+    source_url: https://www.dmv.virginia.gov/moving/new-virginia
+    verified_at: 2026-10-16
+  - id: va-local-decal
+    title: "Buy a local vehicle sticker or decal (some localities)"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Some Virginia localities require new residents to buy a local sticker or decal within 30 days, from the locality (not DMV)."
+    action_url: https://www.dmv.virginia.gov/moving/new-virginia
+    evidence: "some localities also require new residents to purchase a Local Sticker or Decal within 30 days of moving there."
+    source_url: https://www.dmv.virginia.gov/moving/new-virginia
+    verified_at: 2026-10-16
+  - id: va-voter-registration
+    title: "Register to vote in Virginia"
+    kind: voting
+    days_after_move: null
+    summary: "The registration deadline for a general election is 11 days before the election; after it, you can still register at your local registration office and vote a provisional ballot."
+    action_url: https://www.elections.virginia.gov/registration/how-to-register/
+    evidence: "Registration Deadlines General 11 Days before election ... Note: After the registration deadline, voters may visit their local registration office to complete a registration application and vote a provisional ballot in person."
+    source_url: https://www.elections.virginia.gov/registration/how-to-register/
+    verified_at: 2026-10-16

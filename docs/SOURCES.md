@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -317,6 +317,17 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `baltimore_county_volunteer` | baltimore | Galaxy Digital / `galaxydigital` | https://baltimorecounty.galaxydigital.com/need/rss/ | none | as above | as above | as above ("Needs on Baltimore County Volunteers") | volunteer · 24h | B+ | 15 |
 | `volo_baltimore` | baltimore | Volo discover pages / `volo` | https://www.volosports.com/discover/baltimore?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 83 |
 | `teamtrivia_baltimore` | baltimore | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-baltimore-delaware/ | none | 1 region + ≤40 venue pages / 48h, ≥3 s | region/venue pages allowed and in the sitemap; zip gate never used | as `teamtrivia_denver` | recurring · 48h | B | 109 |
+| `rpl_events` | richmond | LibCal iCalendar / `ics` | https://rvalibrary.libcal.com/ical_subscribe.php?src=p&cid=7469 | none | 1 request/day | robots allows it (`Crawl-delay: 10`, honored) | SUMMARY, UTC DTSTART/DTEND, LOCATION (room - branch), CATEGORIES → categories | events · 24h | A- (official; ~430 items/yr, under LibCal's 500-item export cap) | 28 |
+| `henrico_library_events` | richmond | LibCal iCalendar / `ics` | https://henricolibrary-va.libcal.com/ical_subscribe.php?src=p&cid=12755 | none | 1 request/day | as above | as above | events · 24h | B+ (export capped at 500 items ≈ 5 weeks ahead; horizon 14 days) | 100 |
+| `lewis_ginter_events` | richmond | WP The Events Calendar / `tribe` | https://www.lewisginter.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events`; blank venues → the garden | events · 24h | B+ | 54 |
+| `altria_theater` | richmond | carbonhouse RSS / `rss_events` | https://www.altriatheater.com/events/rss | none | 1 request/day | robots allows all | title, link, ev:startdate (UTC) | concerts · 24h | B+ | 18 |
+| `dominion_energy_center` | richmond | carbonhouse RSS / `rss_events` | https://www.dominionenergycenter.com/events/rss | none | 1 request/day | robots allows all | as above + room | concerts · 24h | B+ | 38 |
+| `broadberry_rva` | richmond | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://thebroadberry.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), room (Broadberry / Richmond Music Hall), ticket link | concerts · 12h | C+ | 40 |
+| `vcu_athletics` | richmond | SIDEARM ICS / `ics` | https://vcuathletics.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = "Richmond…" or Siegel Center | events · 24h | B | 15 |
+| `richmond_spiders_athletics` | richmond | SIDEARM ICS / `ics` | https://richmondspiders.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = "Richmond…" or Robins venues | events · 24h | B | 20 |
+| `handson_rva` | richmond | HandsOn Connect / `handsonconnect` | https://www.cfengage.org/calendar (block 1573) | none | ~8 calendar requests/day, ≥3 s | robots.txt is a 404 (no policy); handsonrva.org redirects here | as `boston_cares` | volunteer · 24h | B+ | 248 |
+| `challenge_trivia_richmond` | richmond | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-virginia within 40 km | recurring · 48h | C+ | 54 |
+| `maymont_events` | richmond | WP The Events Calendar / `tribe` | https://maymont.org/wp-json/tribe/events/v1/events | none | — | robots allows it, but **HTTP 403 to PoliteClient on the live run** | — | events · 24h | D for us (disabled) | disabled |
 
 **Tried and not added (batch A).**
 
@@ -364,3 +375,9 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Baltimore Soundstage, Baltimore Symphony (my.bsomusic.org) | baltimore | no Event JSON-LD (Ticketmaster / Tessitura links) | probe |
 | Rams Head Live, Pier Six Pavilion | baltimore | Live Nation venues (ToS) — via Ticketmaster API once keyed | — |
 | Pratt Library BiblioCommons / BCPL / AACPL codes | baltimore | not BiblioCommons tenants (gateway 404); Pratt is served by its own ICS instead | gateway probes |
+| data.richmondgov.com Business Licenses (`hy5d-7dcv`) | richmond | last updated 2025-03-18 (stale) | Socrata catalog |
+| Team Trivia (trivia-in-virginia) | richmond | region page lists 0 venues today | region page |
+| VMFA | richmond | HTTP 202 empty body (bot challenge) | probe |
+| The National, Venture Richmond, Science Museum of Virginia | richmond | no feed / no Tribe / no Event JSON-LD | probe |
+| VCU / University of Richmond event calendars | richmond | no Localist/LiveWhale API (events.vcu.edu 404; calendar.richmond.edu has a broken TLS chain, so robots can't be read) | probe |
+| Chesterfield County Public Library (LibCal) | richmond | not added this round (county is mostly south of the circle); same LibCal ICS pattern would work | homepage fingerprint |

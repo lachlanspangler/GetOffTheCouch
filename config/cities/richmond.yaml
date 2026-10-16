@@ -1,0 +1,217 @@
+# Richmond, VA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: data.richmondgov.com Business Licenses (last updated 2025-03); The National (no feed/JSON-LD);
+# VMFA (HTTP 202 bot challenge); Venture Richmond / Science Museum of Virginia (no Tribe/JSON-LD); VCU and University
+# of Richmond event calendars (no Localist/LiveWhale API; calendar.richmond.edu has a broken TLS chain); Team
+# Trivia's trivia-in-virginia region page lists 0 venues today.
+slug: richmond
+name: Richmond
+state: VA
+timezone: America/New_York
+center: [37.5407, -77.4360]
+radius_km: 20
+aliases: [RVA, Henrico, Short Pump, Glen Allen, Mechanicsville, Midlothian, Bon Air, Chesterfield, Highland Springs, Sandston, Lakeside, Tuckahoe]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 37.5407, lon: -77.4360 }
+  - { name: The Fan, lat: 37.5530, lon: -77.4700 }
+  - { name: Museum District, lat: 37.5560, lon: -77.4810 }
+  - { name: Carytown, lat: 37.5550, lon: -77.4850 }
+  - { name: Scott's Addition, lat: 37.5690, lon: -77.4730 }
+  - { name: Shockoe Bottom, lat: 37.5320, lon: -77.4300 }
+  - { name: Shockoe Slip, lat: 37.5350, lon: -77.4370 }
+  - { name: Church Hill, lat: 37.5300, lon: -77.4150 }
+  - { name: Jackson Ward, lat: 37.5480, lon: -77.4400 }
+  - { name: Manchester, lat: 37.5200, lon: -77.4420 }
+  - { name: Oregon Hill / VCU, lat: 37.5440, lon: -77.4520 }
+  - { name: Northside, lat: 37.5800, lon: -77.4400 }
+  - { name: Forest Hill, lat: 37.5130, lon: -77.4800 }
+  - { name: West End, lat: 37.5850, lon: -77.5500 }
+  - { name: Byrd Park, lat: 37.5400, lon: -77.4870 }
+sources:
+  # ── libraries (LibCal iCalendar subscriptions) ──
+  - id: rpl_events
+    adapter: ics
+    name: Richmond Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://rvalibrary.libcal.com/calendar/main?cid=7469
+    expect_min_records: 15
+    notes: >-
+      Springshare LibCal ical_subscribe.php for the main events calendar (cid 7469, linked from rvalibrary.org).
+      robots allows it (Crawl-delay 10, honored). LibCal caps the export at 500 items starting a month back; this
+      calendar has ~430, so the next weeks are all present.
+    params:
+      url: https://rvalibrary.libcal.com/ical_subscribe.php?src=p&cid=7469
+      horizon_days: 14
+      max_occurrences: 4
+      organizer: Richmond Public Library
+      default_category: arts.books
+      category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
+  - id: henrico_library_events
+    adapter: ics
+    name: Henrico County Public Library programs and events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://henricolibrary-va.libcal.com/calendar
+    expect_min_records: 20
+    notes: >-
+      LibCal "Programs and Events" calendar (cid 12755; baseCalendarId on the calendar page). The export holds 500
+      items from a month back to ~5 weeks ahead, so the 14-day horizon is complete. Storytime calendar (12415) not used.
+    params:
+      url: https://henricolibrary-va.libcal.com/ical_subscribe.php?src=p&cid=12755
+      horizon_days: 14
+      max_occurrences: 4
+      organizer: Henrico County Public Library
+      default_category: arts.books
+      category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
+
+  # ── gardens / parks (The Events Calendar REST) ──
+  - id: maymont_events
+    adapter: tribe
+    name: Maymont events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://maymont.org/calendar/
+    expect_min_records: 10
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the Events Calendar REST API (robots allows it) answered HTTP 403 to our PoliteClient on
+      the first live run (a one-off probe had returned 200). A 403 means the site doesn't want automated clients
+      here; we don't work around it.
+    params:
+      base_url: https://maymont.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Maymont
+      venue: {name: Maymont, address: "1700 Hampton St, Richmond, VA 23220"}
+      default_category: outdoors.park
+  - id: lewis_ginter_events
+    adapter: tribe
+    name: Lewis Ginter Botanical Garden events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.lewisginter.org/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Classes, walks, garden events.
+    params:
+      base_url: https://www.lewisginter.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Lewis Ginter Botanical Garden
+      venue: {name: Lewis Ginter Botanical Garden, address: "1800 Lakeside Ave, Henrico, VA 23228"}
+      default_category: outdoors.park
+
+  # ── venues ──
+  - id: altria_theater
+    adapter: rss_events
+    name: Altria Theater (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.altriatheater.com/events
+    expect_min_records: 5
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it.
+    params:
+      spectator_venue: true
+      url: https://www.altriatheater.com/events/rss
+      horizon_days: 180
+      venue: {name: "Altria Theater", address: "6 N Laurel St, Richmond, VA 23220"}
+      organizer: Altria Theater
+      default_category: music.concert
+  - id: dominion_energy_center
+    adapter: rss_events
+    name: Dominion Energy Center (Carpenter Theatre, Libby S. Gottwald Playhouse, Rhythm Hall)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.dominionenergycenter.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC; ev:location = room); robots allows it.
+    params:
+      spectator_venue: true
+      url: https://www.dominionenergycenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Dominion Energy Center", address: "600 E Grace St, Richmond, VA 23219"}
+      organizer: Dominion Energy Center
+      default_category: music.concert
+  - id: broadberry_rva
+    adapter: jsonld
+    name: The Broadberry & Richmond Music Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://thebroadberry.com/
+    expect_min_records: 15
+    notes: Rockhouse WordPress; Event JSON-LD per event page (offsets included). `follow` keeps Richmond rooms only.
+    params:
+      urls: [https://thebroadberry.com/]
+      follow: 'thebroadberry\.com/event/[^/]+/[^/]+/richmond-virginia/$'
+      max_follow: 40
+      venue: {name: The Broadberry, address: "2729 W Broad St, Richmond, VA 23220"}
+      organizer: The Broadberry
+      default_category: music.concert
+      classify_description: false
+
+  # ── college athletics (SIDEARM ICS, home games only) ──
+  - id: vcu_athletics
+    adapter: ics
+    name: VCU Rams athletics (home games — Siegel Center, Cary Street Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://vcuathletics.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Richmond" or the Siegel Center.
+    params:
+      url: https://vcuathletics.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: VCU Rams
+      exclude_location: '^(?!(Richmond\b|, Siegel|Siegel))'
+      force_category: sports_watch.game
+      fallback_point: { lat: 37.5490, lon: -77.4530, label: "VCU Monroe Park campus" }
+  - id: richmond_spiders_athletics
+    adapter: ics
+    name: Richmond Spiders athletics (home games — Robins Center, Robins Stadium)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://richmondspiders.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Richmond" or a Robins venue.
+    params:
+      url: https://richmondspiders.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Richmond Spiders
+      exclude_location: '^(?!(Richmond\b|Robins|, Robins))'
+      force_category: sports_watch.game
+      fallback_point: { lat: 37.5746, lon: -77.5390, label: "University of Richmond campus" }
+
+  # ── volunteering ──
+  - id: handson_rva
+    adapter: handsonconnect
+    name: HandsOn Greater Richmond (CFengage)
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.cfengage.org/calendar
+    expect_min_records: 1
+    notes: >-
+      handsonrva.org redirects to CFengage, the Community Foundation's HandsOn Connect site (generator meta
+      "HandsOn Connect"; calendar-search-block-id 1573). robots.txt is a 404 (no policy).
+    params:
+      base_url: https://www.cfengage.org
+      block_id: 1573
+      horizon_days: 14
+      window_days: 2
+
+  # ── trivia ──
+  - id: challenge_trivia_richmond
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Richmond)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 3
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-virginia within 2× the city radius (Hampton Roads shows are ~120 km away).
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [virginia]

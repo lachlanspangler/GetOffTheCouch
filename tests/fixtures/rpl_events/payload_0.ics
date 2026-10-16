@@ -1,0 +1,129 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Springshare//LibCal//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Main
+X-WR-CALDESC:
+X-WR-TIMEZONE:America/New_York
+X-PUBLISHED-TTL:PT15M
+BEGIN:VEVENT
+DTSTART:20261017T133000Z
+DTEND:20261017T204500Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Keys to Homeownership: Affordable Housing Workshop
+DESCRIPTION:Two homebuyer information class sessions in one day that will 
+ cover downpayment assistance/affordable housing programs and the homebuying 
+ process:\n\nSession 1 – The Downpayment Assistance/Affordable Housing 
+ Program session will be held from 9:30 am – 10:30 am. This 1-hour session 
+ will cover specific information each month on downpayment and affordable 
+ housing grants and programs in your local area. If you plan to attend 
+ session 1\, please be sure to arrive at 9:30 am. REGISTER FOR PART 1 
+ HERE!\n\nSession 2 – The Virginia Housing Homebuyer Education session 
+ will be held from 10:30 am – 4:45 pm*.  This session is a 6-hour 
+ homebuyer education class sponsored through Virginia Housing that will 
+ cover Managing Your Money\, Credit\, Exploring Lenders\, Mortgages\, and 
+ the Loan Process\, Working with a Real Estate Agent\, All You Need to Know 
+ About the Home Inspection\, and the Loan Closing.  This class is a 
+ certified Virginia Housing homebuyer education class and meets the 
+ educational requirements for Virginia Housing loans\, some other loan 
+ products\, and most downpayment and closing cost assistance programs. A 
+ certificate of completion will be provided at the end of the workshop. 
+ *Registration is required. Space is limited. Please register at 
+ https://www.virginiahousing.com/individuals-families/calendar for part 2 of 
+ the day and select the date that you would like to attend\, the City of 
+ Richmond Main Library location – 101 E Franklin Street\, Richmond\, VA  
+ 23219\, to attend this class session.\n\nIf you have any questions\, please 
+ contact the Office of Community Wealth Building at 804-646-6360.
+LOCATION:Gellman Room - Main Library
+ORGANIZER;CN="Ben Himmelfarb":MAILTO:benjamin.himmelfarb@richmondgov.com
+CATEGORIES:Life & Job Skills
+UID:LibCal-7469-15152168
+URL:https://rvalibrary.libcal.com/event/15152168
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T150000Z
+DTEND:20261017T170000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Libraries with Heart: Free Blood Pressure Screenings
+DESCRIPTION:Get your blood pressure checked at your local library. Blood 
+ pressure kits are also available for checkout. This program is provided in 
+ partnership with VCU Health\, American Heart Association\, Daily Planet\, 
+ and Capital Area Health Network.
+LOCATION:Main
+ORGANIZER;CN="Ben Himmelfarb":MAILTO:benjamin.himmelfarb@richmondgov.com
+CATEGORIES:Health & Wellness
+UID:LibCal-7469-17027702
+URL:https://rvalibrary.libcal.com/event/17027702
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T180000Z
+DTEND:20261017T193000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Fall Concert Series: Chamber Music Society of Central Virginia
+DESCRIPTION:The Chamber Music Society of Central Virginia is dedicated to 
+ inspiring\, entertaining\, and moving our communities through a combination 
+ of unique venues\, world-class musicians\, thought-provoking content and 
+ eclectic classical music. Engaging with contemporary culture and honoring 
+ the classical tradition\, we strive to promote interest and diversity in 
+ the musical life of Richmond and beyond.
+LOCATION:Auditorium - Main Library
+ORGANIZER;CN="Michael McBean":MAILTO:michael.mcbean@rva.gov
+CATEGORIES:Art, Performances
+UID:LibCal-7469-16880355
+URL:https://rvalibrary.libcal.com/event/16880355
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261018T170000Z
+DTEND:20261018T190000Z
+DTSTAMP:20261018T000000Z
+SUMMARY:It's a Vibe
+DESCRIPTION:It's a Vibe is a relaxing young adult hangout where you can 
+ color\, sketch\, do puzzles/board games\, or bring your own 
+ knitting/crochet projects to work on while listening to music or hanging 
+ with friends. Join us from 1-3 on Sundays to relax and destress before the 
+ busy week.
+LOCATION:Teen Space - Main Library
+ORGANIZER;CN="Genevievre Wood":MAILTO:genevievre.gray@rva.gov
+CATEGORIES:Art
+UID:LibCal-7469-15085925
+URL:https://rvalibrary.libcal.com/event/15085925
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261018T170000Z
+DTEND:20261018T203000Z
+DTSTAMP:20261018T000000Z
+SUMMARY:An Homage to Home: A Workshop and Reading
+DESCRIPTION:Spend an afternoon finding community as we explore the 
+ questions: Where is your story of origin rooted? With whom? In an 
+ all-skills level workshop meant for Richmonders affected by diaspora\, we 
+ will dive into poetic storytelling using the practice of 
+ ekphrasis—writing based on visual art. For the workshop\, please bring a 
+ digital or physical copy of any visual art (photograph\, short video\, 
+ painting\, etc.) that reminds you of your place of origin. And then stay 
+ after the workshop for a reading featuring local writers and an open mic. 
+ The workshop will be facilitated by Felix Salmoran and Fairouz Bsharat. 
+ \n\nThe workshop will run from roughly 1:00 pm - 3:00 pm and the reading 
+ will run from roughly 3:15 pm - 4:30 pm. Please register and indicate 
+ whether you are interested in the workshop\, reading\, or both!
+LOCATION:Auditorium - Main Library
+ORGANIZER;CN="Ben Himmelfarb":MAILTO:benjamin.himmelfarb@richmondgov.com
+CATEGORIES:Lectures & Talks, Workshops
+UID:LibCal-7469-17051656
+URL:https://rvalibrary.libcal.com/event/17051656
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261018T170000Z
+DTEND:20261018T210000Z
+DTSTAMP:20261018T000000Z
+SUMMARY:Puzzle Meetup!
+DESCRIPTION:Love to puzzle? Make some new friends at our quarterly puzzle 
+ meetup! Bring a puzzle to swap then sip tea and chat while working on your 
+ new find.
+LOCATION:Gellman Room - Main Library
+ORGANIZER;CN="Hannah Kilgore":MAILTO:hannah.kilgore@rva.gov
+CATEGORIES:
+UID:LibCal-7469-16818025
+URL:https://rvalibrary.libcal.com/event/16818025
+END:VEVENT
+END:VCALENDAR
