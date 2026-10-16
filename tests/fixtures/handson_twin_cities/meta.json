@@ -1,0 +1,15 @@
+{
+  "unit": "handson_twin_cities@minneapolis",
+  "recorded_at": "2026-10-16T05:03:14+00:00",
+  "payloads": 16,
+  "kept": {
+    "payload_0.xml": "https://handsontwincities.galaxydigital.com/need/rss/",
+    "payload_1.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1330212",
+    "payload_5.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1330019",
+    "payload_9.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1328980",
+    "payload_13.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1328905",
+    "payload_14.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1328766",
+    "payload_15.html": "https://handsontwincities.galaxydigital.com/need/detail/?need_id=1328305"
+  },
+  "note": "real responses recorded with `gotc record --max-payloads 16`; unmodified. 9 of the 15 detail pages were deleted to keep the repo small; the kept ones cover ongoing, 'Until <date>', 'Register by', virtual, board and shift-table needs."
+}
