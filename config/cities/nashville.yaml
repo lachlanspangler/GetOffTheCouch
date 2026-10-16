@@ -1,0 +1,67 @@
+# Nashville, TN. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Nashville Public Library, Metro Parks events and Visit Music City (incl. its Simpleview token endpoint) all
+# answer with Cloudflare 403 challenges — we don't bypass them. Sources verified live 2026-10-15/16
+# (see docs/research/city_open_data.md §3.8 and docs/SOURCES.md).
+slug: nashville
+name: Nashville
+state: TN
+timezone: America/Chicago
+center: [36.1627, -86.7816]
+radius_km: 25
+aliases: [Music City, Nashville-Davidson, Davidson County, Franklin, Brentwood, Hendersonville, Murfreesboro, Antioch, Hermitage, Madison]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Broadway, lat: 36.1610, lon: -86.7780 }
+  - { name: The Gulch, lat: 36.1520, lon: -86.7890 }
+  - { name: Midtown, lat: 36.1510, lon: -86.7990 }
+  - { name: Music Row, lat: 36.1490, lon: -86.7930 }
+  - { name: SoBro, lat: 36.1560, lon: -86.7720 }
+  - { name: East Nashville, lat: 36.1810, lon: -86.7480 }
+  - { name: Five Points, lat: 36.1760, lon: -86.7500 }
+  - { name: Germantown, lat: 36.1780, lon: -86.7880 }
+  - { name: North Nashville, lat: 36.1820, lon: -86.8200 }
+  - { name: 12South, lat: 36.1250, lon: -86.7900 }
+  - { name: Hillsboro Village, lat: 36.1340, lon: -86.8000 }
+  - { name: Sylvan Park, lat: 36.1490, lon: -86.8400 }
+  - { name: The Nations, lat: 36.1620, lon: -86.8520 }
+  - { name: Wedgewood-Houston, lat: 36.1380, lon: -86.7680 }
+  - { name: Green Hills, lat: 36.1060, lon: -86.8150 }
+sources:
+  - id: vanderbilt_events
+    adapter: livewhale
+    name: Vanderbilt University events
+    data_type: events
+    homepage: https://events.vanderbilt.edu/
+    expect_min_records: 20
+    params:
+      base_url: https://events.vanderbilt.edu
+      max: 200
+      organizer: Vanderbilt University
+      default_category: learning.networking
+
+  - id: nashville_beer_permit_openings
+    adapter: arcgis
+    name: Nashville new beer permits (Metro Beer Board)
+    data_type: openings
+    homepage: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Beer_Permit_Locations_Feature_Layer_view/FeatureServer/0
+    expect_min_records: 3
+    notes: >-
+      Date_Entered = when the permit application was entered (a newness date; renewals don't create new
+      permits). Only on-premises sales permits; "BB - Special Events" temporary permits are excluded because
+      Date_Entered is not the event date. Business_Owner (a person) is dropped.
+    params:
+      service_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Beer_Permit_Locations_Feature_Layer_view/FeatureServer/0
+      kind: opening
+      lookback_days: 60
+      where: "Date_Entered >= DATE '{today_date}' AND Permit_Sub_Type <> 'SPECIAL'"
+      order_by: Date_Entered DESC
+      include_regex: { Permit_Subtype_Description: "(?i)on site|on-site|on and off|on & off" }
+      fields: { record_id: Permit__, title: Business_Name, start: Date_Entered, category: Permit_Subtype_Description,
+                address: [Address, City, ZIP] }
+      exclude_title: ["(?i)\\b(market|mart|grocery|convenience|food store|gas|shell|exxon|marathon|dollar)\\b"]
+      title_template: "{title} — new beer permit"
+      description_template: >-
+        License signal, not a confirmed opening date. The Metro Nashville Beer Board entered a new
+        "{Permit_Subtype_Description}" permit application for this address on {date} (status: {Status}).
+      default_category: food_drink.restaurant_opening
+      default_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Beer_Permit_Locations_Feature_Layer_view/FeatureServer/0
+      extras: { signal: beer_permit_application }

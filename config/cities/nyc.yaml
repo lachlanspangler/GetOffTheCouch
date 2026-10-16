@@ -1,0 +1,162 @@
+# New York City, NY. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-15/16 (see docs/research/city_open_data.md §3.2 and docs/SOURCES.md).
+slug: nyc
+name: New York City
+state: NY
+timezone: America/New_York
+center: [40.7128, -74.0060]
+radius_km: 25
+aliases: [New York, NYC, Manhattan, Brooklyn, Queens, The Bronx, Bronx, Staten Island, Long Island City, Astoria, Williamsburg, Flushing, Jersey City, Hoboken]
+neighborhoods:  # approximate centroids
+  - { name: Lower Manhattan / FiDi, lat: 40.7075, lon: -74.0113 }
+  - { name: SoHo / Tribeca, lat: 40.7220, lon: -74.0040 }
+  - { name: East Village / LES, lat: 40.7230, lon: -73.9860 }
+  - { name: West Village, lat: 40.7350, lon: -74.0040 }
+  - { name: Chelsea, lat: 40.7465, lon: -74.0014 }
+  - { name: Midtown, lat: 40.7549, lon: -73.9840 }
+  - { name: Upper West Side, lat: 40.7870, lon: -73.9754 }
+  - { name: Upper East Side, lat: 40.7736, lon: -73.9566 }
+  - { name: Harlem, lat: 40.8116, lon: -73.9465 }
+  - { name: Williamsburg, lat: 40.7081, lon: -73.9571 }
+  - { name: Bushwick, lat: 40.6944, lon: -73.9213 }
+  - { name: Park Slope, lat: 40.6710, lon: -73.9814 }
+  - { name: Downtown Brooklyn / DUMBO, lat: 40.6960, lon: -73.9880 }
+  - { name: Astoria, lat: 40.7644, lon: -73.9235 }
+  - { name: Long Island City, lat: 40.7447, lon: -73.9485 }
+  - { name: South Bronx, lat: 40.8160, lon: -73.9150 }
+sources:
+  - id: nyc_permitted_events
+    adapter: socrata
+    name: NYC Permitted Events (street fairs, block parties, parades)
+    data_type: events
+    homepage: https://data.cityofnewyork.us/d/tvpp-9vvx
+    expect_min_records: 20
+    notes: >-
+      Only social event types. Excluded: Sport - Youth/Adult (field permits), Production Event (filming),
+      Special Event (mostly private: weddings, closures, contract work), Religious Event, Health Fair.
+    params:
+      domain: data.cityofnewyork.us
+      dataset: tvpp-9vvx
+      horizon_days: 60
+      where: >-
+        start_date_time >= '{today}' AND start_date_time < '{horizon}' AND event_type in('Block Party',
+        'Street Event','Parade','Single Block Festival','Plaza Event','Plaza Partner Event',
+        'Open Street Partner Event','Farmers Market','Athletic Race / Tour')
+      order: start_date_time
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: event_id, title: event_name, start: start_date_time, end: end_date_time,
+                address: event_location, area: event_borough, category: event_type, organizer: event_agency }
+      exclude_title: ["(?i)\\b(closed|closure|wedding|contract work|filming|construction|private|rain date)\\b"]
+      category_map:
+        Block Party: community.block_party
+        Street Event: community.block_party
+        Single Block Festival: community.block_party
+        Plaza Event: community.block_party
+        Plaza Partner Event: community.block_party
+        Open Street Partner Event: community.block_party
+        Parade: community.festival
+        Farmers Market: community.market
+        Athletic Race / Tour: fitness.race
+      default_category: community.block_party
+      tags: [outdoor]
+
+  - id: nyc_parks_events
+    adapter: socrata
+    name: NYC Parks public events (next 14 days)
+    data_type: events
+    homepage: https://data.cityofnewyork.us/d/w3wp-dpdi
+    expect_min_records: 100
+    notes: nycgovparks.org /xml/ is robots-disallowed; this Open Data mirror is the sanctioned copy. Explicit $select avoids 503s.
+    params:
+      domain: data.cityofnewyork.us
+      dataset: w3wp-dpdi
+      select: title,guid,link,description,parknames,starttime,endtime,location,categories,coordinates
+      where: "starttime >= '{today}'"
+      order: starttime
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: guid, title: title, start: starttime, end: endtime, venue: parknames,
+                address: location, category: categories, description: description, url: link, latlon: coordinates }
+      default_category: outdoors.park
+      organizer: NYC Parks
+
+  - id: nys_sla_pending_openings
+    adapter: socrata
+    name: NY State Liquor Authority — pending on-premises applications (NYC)
+    data_type: openings
+    homepage: https://data.ny.gov/d/f8i8-k2gm
+    expect_min_records: 20
+    notes: Pre-opening signal. received_date = application received (genuinely new; renewals are not in this dataset).
+    params:
+      domain: data.ny.gov
+      dataset: f8i8-k2gm
+      kind: opening
+      lookback_days: 60
+      where: >-
+        received_date >= '{today}' AND premises_county in('New York','Kings','Queens','Bronx','Richmond')
+        AND description in('Restaurant','Food & Beverage Business','Cabaret','Club','Tavern','Summer Restaurant')
+      order: received_date DESC
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: application_id, title: [dba, legalname], start: received_date, category: description,
+                address: [actual_address_of_premises, city, zip_code],
+                lat: georeference.coordinates.1, lon: georeference.coordinates.0 }
+      entity_only_fields: [legalname]
+      exclude_title: ["(?i)\\b(deli|grocery|groceries|mini ?mart|food mart|bodega|convenience|supermarket|gas station|smoke shop)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The NY State Liquor Authority received an on-premises
+        liquor license application ({description}) for this address on {date}; status: {status}.
+        Openings usually follow approval by weeks to months.
+      category_map: { Cabaret: nightlife.opening, Club: nightlife.opening, Tavern: nightlife.opening,
+                      Restaurant: food_drink.restaurant_opening, Summer Restaurant: food_drink.restaurant_opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.ny.gov/d/f8i8-k2gm
+      extras: { signal: liquor_license_application }
+
+  - id: nys_sla_new_licenses
+    adapter: socrata
+    name: NY State Liquor Authority — newly issued on-premises licenses (NYC)
+    data_type: openings
+    homepage: https://data.ny.gov/d/9s3h-dpkz
+    expect_min_records: 20
+    notes: originalissuedate = first issuance (renewals keep their original date), so this is a real newness signal.
+    params:
+      domain: data.ny.gov
+      dataset: 9s3h-dpkz
+      kind: opening
+      lookback_days: 60
+      where: >-
+        originalissuedate >= '{today}' AND premisescounty in('New York','Kings','Queens','Bronx','Richmond')
+        AND description in('Restaurant','Food & Beverage Business','Cabaret','Club','Tavern','Summer Restaurant')
+      order: originalissuedate DESC
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: licensepermitid, title: [dba, legalname], start: originalissuedate, category: description,
+                address: [actualaddressofpremises, city, zipcode],
+                lat: georeference.coordinates.1, lon: georeference.coordinates.0 }
+      entity_only_fields: [legalname]
+      exclude_title: ["(?i)\\b(deli|grocery|groceries|mini ?mart|food mart|bodega|convenience|supermarket|gas station|smoke shop)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The NY State Liquor Authority first issued an on-premises
+        liquor license ({description}) for this address on {date}. New licensees often open within a few weeks.
+      category_map: { Cabaret: nightlife.opening, Club: nightlife.opening, Tavern: nightlife.opening,
+                      Restaurant: food_drink.restaurant_opening, Summer Restaurant: food_drink.restaurant_opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.ny.gov/d/9s3h-dpkz
+      extras: { signal: liquor_license_issued }
+
+  - id: nyu_events
+    adapter: livewhale
+    name: NYU events (open to the public)
+    data_type: events
+    homepage: https://events.nyu.edu/
+    expect_min_records: 10
+    params:
+      base_url: https://events.nyu.edu
+      path: "/live/json/events/type/Open to the Public/max/{max}/response_fields/location,description,event_types,tags,group_title"
+      max: 200
+      organizer: New York University
+      default_category: learning.networking
