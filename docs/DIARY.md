@@ -314,3 +314,4 @@ New units, live counts:
 - **Arena feeds are spectator venues.**
 
 **Blocked on the user:** Pages enablement and a first manual Refresh run; TM/SG keys; RunSignup registration; outreach list (see STATUS).
+- 2026-10-16 20:53 UTC · run 41 partial: units[46 disabled, 1 failed, 48 ok, 101 skipped] → 12976 events in 10 cities
