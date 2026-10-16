@@ -39,11 +39,23 @@ PAGE_SIZE = 25
 _UNSAFE = re.compile(rb"<!(DOCTYPE|ENTITY)", re.I)
 
 
+_BARE_AMP = re.compile(rb"&(?!(?:[a-zA-Z][a-zA-Z0-9]{1,31}|#[0-9]{1,7}|#x[0-9a-fA-F]{1,6});)")
+
+
 def safe_xml(content: bytes) -> ET.Element:
     """Parse untrusted feed XML. Refuses DTDs/entities outright (see module docstring)."""
     if _UNSAFE.search(content):
         raise ValueError("refusing XML with a DOCTYPE/ENTITY declaration")
-    return ET.fromstring(content)
+    try:
+        return ET.fromstring(content)
+    except ET.ParseError:
+        # common real-world breakage: bare "&" in titles ("Hall & Oates"). Escape those and retry once;
+        # if it still fails, it's a format change → ValueError (health: format_changed), never a crash.
+        fixed = _BARE_AMP.sub(b"&amp;", content)
+        try:
+            return ET.fromstring(fixed)
+        except ET.ParseError as e:
+            raise ValueError(f"feed is not well-formed XML: {e}") from e
 
 
 @register

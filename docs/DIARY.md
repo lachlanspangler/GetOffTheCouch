@@ -290,3 +290,6 @@ New units, live counts:
 **Decided (and why):** Skipped Live Nation venue pages and Prekindle, whose terms forbid scraping. Skipped AEG's JSON blob because its terms are unconfirmed (I-092). Kept Town Hall and Contemporary Austin, whose Tribe REST API answers 200 while their HTML sits behind Cloudflare. We never touch the challenge, and if the API starts challenging, the unit fails.
 **Verified:** Live runs and fixture tests only. I didn't do a dashboard screenshot in this worktree.
 **Ideas:** I-066 done; I-092–I-097 added.
+- 2026-10-16 08:20 UTC · run 38 ok: units[46 disabled, 23 ok, 109 skipped] → 12334 events in 10 cities
+- 2026-10-16 08:27 UTC · run 39 partial: units[46 disabled, 1 failed, 17 ok, 132 skipped] → 13113 events in 10 cities
+- 2026-10-16 08:28 UTC · run 40 ok: units[1 ok] → 886 events in 1 cities

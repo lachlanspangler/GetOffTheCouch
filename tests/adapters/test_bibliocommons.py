@@ -98,3 +98,14 @@ def test_kcls_countywide_feed_keeps_only_branches_near_seattle():
     assert cities and cities <= {"Tukwila", "Seatac", "Shoreline"}
     assert len(near.valid) == 5
     assert all(str(ev.location.venue_name).startswith("King County Library System – ") for ev, _ in near.valid)
+
+
+def test_safe_xml_repairs_bare_ampersands_and_refuses_garbage():
+    import pytest as _pt
+
+    from gotc.adapters.bibliocommons import safe_xml
+
+    root = safe_xml(b"<rss><channel><item><title>Hall & Oates &amp; friends &#169;</title></item></channel></rss>")
+    assert root.find("channel/item/title").text == "Hall & Oates & friends ©"
+    with _pt.raises(ValueError, match="not well-formed"):
+        safe_xml(b"<rss><channel><item></channel>")
