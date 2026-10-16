@@ -9,6 +9,7 @@ than plotted in the wrong state.
 from __future__ import annotations
 
 import csv
+import os
 import io
 import logging
 import re
@@ -36,11 +37,12 @@ class GeoResult:
 
 
 class Geocoder:
-    def __init__(self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int = 150) -> None:
+    def __init__(self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int | None = None) -> None:
         self.db = db
         self.http = http
         self.offline = offline or http is None
-        self.budget = budget  # max live lookups per run — politeness + bounded run time
+        # max live lookups per city per run — politeness + bounded run time (CI sets GOTC_GEOCODE_BUDGET low)
+        self.budget = budget if budget is not None else int(os.environ.get("GOTC_GEOCODE_BUDGET", "150"))
         self.lookups = 0
         if http is not None:
             http.host_intervals.setdefault("nominatim.openstreetmap.org", 1.1)
