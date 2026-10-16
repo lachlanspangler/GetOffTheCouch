@@ -1,6 +1,10 @@
-import { describe, expect, it } from "vitest";
-import { buildPlan, DEFAULT_PROFILE, highlights, rank, scoreEvent, similar } from "../src/lib/recommend";
+// v1 (additive rules) behavior. v2 is the default ranker; these pin v1 so the comparison baseline keeps working.
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { buildPlan, DEFAULT_PROFILE, highlights, rank, scoreEvent, setRanker, similar } from "../src/lib/recommend";
 import { ev, NOW } from "./helpers";
+
+beforeAll(() => setRanker("v1"));
+afterAll(() => setRanker(null));
 
 const labels = { "trivia_games.trivia": "Trivia nights", trivia_games: "Trivia & games", music: "Music" };
 
