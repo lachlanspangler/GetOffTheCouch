@@ -67,8 +67,8 @@ def estimate_attendance(
             mid=min(sig2(capacity * mid), capacity),
             high=min(sig2(capacity * hi), capacity),
             method=(
-                f"venue capacity {capacity:,} × {int(lo * 100)}–{int(hi * 100)}% fill "
-                f"({ev.tickets.availability.value.replace('_', ' ')})"
+                f"venue capacity {capacity:,}{' (Wikidata)' if (capacity_source or '').startswith('wikidata:') else ''}"
+                f" × {int(lo * 100)}–{int(hi * 100)}% fill ({ev.tickets.availability.value.replace('_', ' ')})"
             ),
             inputs={
                 "capacity": capacity,

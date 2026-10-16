@@ -1,12 +1,12 @@
 # Health
 
-_Generated 2026-10-16T04:48:00+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-16T04:52:35+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
 **4 units** — ⚪ disabled: 2 · 🟢 healthy: 2
 
 | State | Unit | Last success | Records | Fails | Note |
 |---|---|---|---|---|---|
-| 🟢 healthy | `curated_minneapolis@minneapolis` | 0.1h | 23 | 0 |  |
+| 🟢 healthy | `curated_minneapolis@minneapolis` | 0.2h | 23 | 0 |  |
 | 🟢 healthy | `mprb_events@minneapolis` | 0.9h | 53 | 0 |  |
 | ⚪ disabled | `seatgeek@minneapolis` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
 | ⚪ disabled | `ticketmaster@minneapolis` | never | – | 0 | needs TICKETMASTER_API_KEY |

@@ -17,6 +17,7 @@ from typing import Any
 
 import yaml
 
+from gotc.adapters.base import stable_id
 from gotc.config import CityConfig, Registry
 from gotc.pipeline.deadlines import extract_deadlines
 from gotc.pipeline.enrich import derive_tags, estimate_attendance, social_score, ticket_signal
@@ -131,6 +132,23 @@ def build_city(
                     stats.geocoded += 1
 
     venues = load_curated_venues(city.slug)
+    if geocoder is not None:
+        from gotc.pipeline.venue_refs import sync
+
+        sync(db, None if geocoder.offline else geocoder.http, city, now)
+    venues += [
+        VenueEntity(
+            f"ven_{stable_id(city.slug, norm_venue(r['name']))}",
+            r["name"],
+            norm_venue(r["name"]),
+            r["lat"],
+            r["lon"],
+            None,
+            r["capacity"],
+            r["ref_id"],
+        )
+        for r in db.all("SELECT * FROM venue_refs WHERE city = ?", (city.slug,))
+    ]
     venues += [
         VenueEntity(
             r["id"],
