@@ -1,0 +1,214 @@
+# Hampton Roads (Norfolk – Virginia Beach), VA. Neighborhood points are approximate centroids, used only for "near
+# me" distance filters. Polycentric metro: the center sits between downtown Norfolk and the Virginia Beach oceanfront
+# (docs/research/SCALING.md §1), radius 30 km.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Virginia Beach Public Library (LibraryMarket host vbpl.librarymarket.com answers robots.txt with 403 =
+# disallow all); Chrysler Museum (Tribe API but 0 upcoming); The NorVa (HTML at the Tribe route); ODU calendar/athletics
+# (no Localist host; odusports.com isn't SIDEARM); Veterans United Home Loans Amphitheater (Live Nation); Team
+# Trivia's trivia-in-virginia region lists 0 venues today.
+slug: hampton_roads
+name: Hampton Roads
+state: VA
+timezone: America/New_York
+center: [36.8500, -76.1500]
+radius_km: 30
+aliases: [Norfolk, Virginia Beach, Chesapeake, Portsmouth, Hampton, Newport News, Suffolk, "757", Tidewater]
+neighborhoods:  # approximate centroids
+  - { name: Downtown Norfolk, lat: 36.8468, lon: -76.2852 }
+  - { name: Ghent, lat: 36.8600, lon: -76.3000 }
+  - { name: NEON District, lat: 36.8560, lon: -76.2880 }
+  - { name: Park Place / Colley Ave, lat: 36.8720, lon: -76.2980 }
+  - { name: Ocean View, lat: 36.9500, lon: -76.2500 }
+  - { name: ODU / Larchmont, lat: 36.8850, lon: -76.3060 }
+  - { name: Olde Towne Portsmouth, lat: 36.8350, lon: -76.2980 }
+  - { name: Virginia Beach Oceanfront, lat: 36.8530, lon: -75.9780 }
+  - { name: ViBe Creative District, lat: 36.8460, lon: -75.9800 }
+  - { name: Town Center (Virginia Beach), lat: 36.8420, lon: -76.1350 }
+  - { name: Hilltop, lat: 36.8580, lon: -76.0230 }
+  - { name: Chic's Beach / Shore Drive, lat: 36.9200, lon: -76.0950 }
+  - { name: Greenbrier (Chesapeake), lat: 36.7700, lon: -76.2050 }
+  - { name: Great Bridge (Chesapeake), lat: 36.7190, lon: -76.2400 }
+  - { name: Downtown Hampton, lat: 37.0260, lon: -76.3450 }
+sources:
+  # ── library ──
+  - id: norfolk_library_events
+    adapter: ics
+    name: Norfolk Public Library adult programs
+    data_type: events
+    cadence_hours: 24
+    homepage: https://norfolk.libcal.com/calendar
+    expect_min_records: 15
+    notes: >-
+      LibCal ical_subscribe.php for the "Adult Programs" calendar (cid 17863, the baseCalendarId; linked from
+      norfolkpubliclibrary.org). robots allows it (Crawl-delay 10, honored). The export's 500 items reach ~6 months ahead.
+    params:
+      url: https://norfolk.libcal.com/ical_subscribe.php?src=p&cid=17863
+      horizon_days: 14
+      max_occurrences: 4
+      organizer: Norfolk Public Library
+      default_category: arts.books
+      category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books }   # LibCal categories
+
+  - id: chesapeake_library_events
+    adapter: communico
+    name: Chesapeake Public Library events
+    data_type: events
+    homepage: https://events.chesapeakelibrary.org/events
+    expect_min_records: 10
+    notes: >-
+      Communico calendar JSON (events.chesapeakelibrary.org, linked from chesapeakelibrary.org; branch names confirm
+      the tenant). Undocumented front-end endpoint; robots disallows only /results* and site search.
+    params:
+      base_url: https://events.chesapeakelibrary.org
+      horizon_days: 7
+      venue_label: Chesapeake Public Library
+      default_category: arts.books
+      category_map: { Storytime: family.kids, Book Club: arts.books, "Arts & Crafts": arts.workshop, Technology: learning.tech }
+
+  - id: virginia_zoo_events
+    adapter: tribe
+    name: Virginia Zoo events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://virginiazoo.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). ZooBoo, member nights, classes.
+    params:
+      base_url: https://virginiazoo.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Virginia Zoo
+      venue: {name: Virginia Zoo, address: "3500 Granby St, Norfolk, VA 23504"}
+      default_category: family.kids
+
+  # ── openings ──
+  - id: norfolk_business_openings
+    adapter: socrata
+    name: Norfolk new restaurant & bar business licenses
+    data_type: openings
+    homepage: https://data.norfolk.gov/d/dpi6-sct5
+    expect_min_records: 3
+    notes: >-
+      City of Norfolk Business Licenses (updated daily). business_opened_date = the opening date the business
+      reported to the Commissioner of the Revenue. Only restaurant/bar NAICS descriptions; primary_owner (may be a
+      person) and mailing_address are dropped.
+    params:
+      domain: data.norfolk.gov
+      dataset: dpi6-sct5
+      kind: opening
+      lookback_days: 60
+      where: >-
+        business_opened_date >= '{today}' AND (naics like '%Restaurant%' OR naics like '%Drinking Places%'
+        OR naics like '%Brewer%' OR naics like '%Winer%')
+      order: business_opened_date DESC
+      fields: { title: trading_as_name, start: business_opened_date, category: naics,
+                address: [location_address], lat: latitude, lon: longitude }
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas|vending|catering)\\b"]
+      title_template: "{title} — new business license"
+      description_template: >-
+        License signal, not a confirmed opening date. This business ({naics}) reported an opening date of {date}
+        to the City of Norfolk on its business license.
+      category_map: { "Drinking Places (Alcoholic Beverages)": nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.norfolk.gov/d/dpi6-sct5
+      extras: { signal: business_license_opened }
+
+  # ── venues (carbonhouse /events/rss) ──
+  - id: seven_venues_norfolk
+    adapter: rss_events
+    name: Seven Venues (City of Norfolk — Scope Arena, Chrysler Hall, Harrison Opera House, Attucks, Wells, NorVa-area)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.sevenvenues.com/events
+    expect_min_records: 15
+    notes: The city's venue group's carbonhouse events RSS (ev:startdate in UTC; ev:location = venue); robots allows it.
+    params:
+      spectator_venue: true
+      url: https://www.sevenvenues.com/events/rss
+      horizon_days: 180
+      venue: {name: "Seven Venues (Norfolk)", address: "201 E Brambleton Ave, Norfolk, VA 23510"}
+      venues:
+        Scope Arena: "201 E Brambleton Ave, Norfolk, VA 23510"
+        Chrysler Hall: "215 St Pauls Blvd, Norfolk, VA 23510"
+        Harrison Opera House: "160 W Virginia Beach Blvd, Norfolk, VA 23510"
+        Attucks Theatre: "1010 Church St, Norfolk, VA 23510"
+        Wells Theatre: "110 E Tazewell St, Norfolk, VA 23510"
+      organizer: Seven Venues
+      default_category: music.concert
+  - id: sandler_center
+    adapter: rss_events
+    name: Sandler Center for the Performing Arts (Virginia Beach)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.sandlercenter.org/events
+    expect_min_records: 5
+    notes: City of Virginia Beach performing-arts center; carbonhouse events RSS (robots allows it).
+    params:
+      spectator_venue: true
+      url: https://www.sandlercenter.org/events/rss
+      horizon_days: 180
+      venue: {name: "Sandler Center for the Performing Arts", address: "201 Market St, Virginia Beach, VA 23462"}
+      organizer: Sandler Center
+      default_category: music.concert
+  - id: chartway_arena
+    adapter: rss_events
+    name: Chartway Arena at ODU (venue calendar)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.chartwayarena.com/events
+    expect_min_records: 5
+    notes: Old Dominion University's arena; carbonhouse events RSS (robots allows it). ODU basketball, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.chartwayarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Chartway Arena", address: "4320 Hampton Blvd, Norfolk, VA 23508"}
+      organizer: Chartway Arena
+      default_category: sports_watch.game
+
+  # ── college athletics ──
+  - id: nsu_athletics
+    adapter: ics
+    name: Norfolk State Spartans athletics (home games — Echols Hall, Dick Price Stadium, Gill Gym)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://nsuspartans.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Norfolk".
+    params:
+      url: https://nsuspartans.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Norfolk State Spartans
+      exclude_location: '^(?!Norfolk\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 36.8486, lon: -76.2610, label: "Norfolk State University campus" }
+
+  # ── volunteering ──
+  - id: volunteer_hr
+    adapter: handsonconnect
+    name: Volunteer Hampton Roads
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteerhr.org/calendar
+    expect_min_records: 1
+    notes: HandsOn Connect site (generator meta "HandsOn Connect"; calendar-search-block-id 2179). robots.txt is a 404 (no policy).
+    params:
+      base_url: https://www.volunteerhr.org
+      block_id: 2179
+      horizon_days: 14
+      window_days: 2
+
+  # ── trivia ──
+  - id: challenge_trivia_hampton_roads
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Hampton Roads)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 10
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-virginia within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [virginia]

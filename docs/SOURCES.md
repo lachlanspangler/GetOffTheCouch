@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -328,6 +328,16 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `handson_rva` | richmond | HandsOn Connect / `handsonconnect` | https://www.cfengage.org/calendar (block 1573) | none | ~8 calendar requests/day, ≥3 s | robots.txt is a 404 (no policy); handsonrva.org redirects here | as `boston_cares` | volunteer · 24h | B+ | 248 |
 | `challenge_trivia_richmond` | richmond | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-virginia within 40 km | recurring · 48h | C+ | 54 |
 | `maymont_events` | richmond | WP The Events Calendar / `tribe` | https://maymont.org/wp-json/tribe/events/v1/events | none | — | robots allows it, but **HTTP 403 to PoliteClient on the live run** | — | events · 24h | D for us (disabled) | disabled |
+| `norfolk_library_events` | hampton_roads | LibCal iCalendar / `ics` | https://norfolk.libcal.com/ical_subscribe.php?src=p&cid=17863 | none | 1 request/day | robots allows it (`Crawl-delay: 10`, honored) | as `rpl_events` | events · 24h | A- (official) | 56 |
+| `chesapeake_library_events` | hampton_roads | Communico `eeventcaldata` / `communico` | https://events.chesapeakelibrary.org/eeventcaldata | none | 7 requests/day | **undocumented** front-end JSON; robots disallows only /results* and site search | as `mdpls_events` | events · 24h | B | 32 |
+| `virginia_zoo_events` | hampton_roads | WP The Events Calendar / `tribe` | https://virginiazoo.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events`; blank venues → the zoo | events · 24h | B | 41 |
+| `norfolk_business_openings` | hampton_roads | Socrata `dpi6-sct5` (data.norfolk.gov) / `socrata` | https://data.norfolk.gov/d/dpi6-sct5 | none | Socrata throttling; robots `Crawl-delay: 1` | Norfolk Open Data; `primary_owner` and `mailing_address` dropped | trading_as_name, NAICS description (restaurants/bars only), location address, lat/lon, **business_opened_date** | openings · 24h | B+ (self-reported opening date; daily) | 13 |
+| `seven_venues_norfolk` | hampton_roads | carbonhouse RSS / `rss_events` | https://www.sevenvenues.com/events/rss | none | 1 request/day | robots allows all; City of Norfolk venue group | title, link, ev:startdate (UTC), ev:location → venue address | concerts · 24h | B+ (Scope, Chrysler Hall, Harrison Opera House…) | 63 |
+| `sandler_center` | hampton_roads | carbonhouse RSS / `rss_events` | https://www.sandlercenter.org/events/rss | none | 1 request/day | robots allows all | as above | concerts · 24h | B+ | 32 |
+| `chartway_arena` | hampton_roads | carbonhouse RSS / `rss_events` | https://www.chartwayarena.com/events/rss | none | 1 request/day | robots allows all | as above (ODU basketball, concerts) | events · 24h | B+ | 54 |
+| `nsu_athletics` | hampton_roads | SIDEARM ICS / `ics` | https://nsuspartans.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = LOCATION starts with "Norfolk" | events · 24h | B | 14 |
+| `volunteer_hr` | hampton_roads | HandsOn Connect / `handsonconnect` | https://www.volunteerhr.org/calendar (block 2179) | none | ~8 calendar requests/day, ≥3 s | robots.txt is a 404 (no policy) | as `boston_cares` | volunteer · 24h | B+ | 98 |
+| `challenge_trivia_hampton_roads` | hampton_roads | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-virginia within 60 km | recurring · 48h | C+ | 107 |
 
 **Tried and not added (batch A).**
 
@@ -381,3 +391,9 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | The National, Venture Richmond, Science Museum of Virginia | richmond | no feed / no Tribe / no Event JSON-LD | probe |
 | VCU / University of Richmond event calendars | richmond | no Localist/LiveWhale API (events.vcu.edu 404; calendar.richmond.edu has a broken TLS chain, so robots can't be read) | probe |
 | Chesterfield County Public Library (LibCal) | richmond | not added this round (county is mostly south of the circle); same LibCal ICS pattern would work | homepage fingerprint |
+| Virginia Beach Public Library (LibraryMarket `vbpl.librarymarket.com`) | hampton_roads | robots.txt answers HTTP 403 (disallow-all) | probe |
+| Chrysler Museum (Tribe) | hampton_roads | API works but 0 upcoming events in 30 days | probe |
+| The NorVa, Waterside District, Virginia Arts Festival | hampton_roads | no Tribe/JSON-LD (NorVa's Tribe route serves HTML; vafest redirects to a ticketing session page) | probe |
+| ODU calendar / ODU athletics | hampton_roads | no Localist host (`calendar.odu.edu` doesn't resolve); odusports.com isn't SIDEARM | probe |
+| Hampton Coliseum (carbonhouse RSS works) | hampton_roads | ~30 km from the center (edge of the circle) and a handful of items; not added | RSS probe |
+| VolunteerHR / United Way of South Hampton Roads on Galaxy Digital | hampton_roads | "Bad Domain" for both guesses — VolunteerHR runs on HandsOn Connect instead (used) | Galaxy probes |
