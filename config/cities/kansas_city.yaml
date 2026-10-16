@@ -1,0 +1,162 @@
+# Kansas City, MO (metro straddles MO/KS). Neighborhood points are approximate centroids, used only for "near me"
+# distance filters. Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first)
+# and ran once with `gotc run --city kansas_city --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * Kansas City Public Library: Drupal calendar with no feed (BiblioCommons code kclibrary is catalog-only);
+#     Mid-Continent PL (mymcpl) BiblioCommons events channel is empty. Johnson County Library (KS) is used.
+#   * openings: data.kcmo.org "Business License Holders" (pnm4-68wg) was last updated 2026-01; Missouri's state
+#     liquor feed is used instead (Kansas-side licenses not covered).
+#   * venues: T-Mobile Center and Starlight expose no ev: RSS/Tribe; Kauffman Center is behind a Cloudflare
+#     challenge; the Midland is AEG (skipped). Team Trivia's kansas-city region lists 0 venues today.
+#   * volunteering: United Way of Greater KC's Tribe calendar has 1 event; no HOC/Galaxy tenant found.
+slug: kansas_city
+name: Kansas City
+state: MO
+timezone: America/Chicago
+center: [39.0997, -94.5786]
+radius_km: 25
+aliases: [KC, KCMO, Kansas City Kansas, KCK, Overland Park, Prairie Village, Mission, Merriam, Shawnee, Lenexa,
+          Leawood, Olathe, Independence, North Kansas City, Gladstone, Raytown, Grandview, Riverside, Roeland Park,
+          Fairway, Westwood, Lee's Summit, Liberty]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Power & Light, lat: 39.0997, lon: -94.5786 }
+  - { name: Crossroads, lat: 39.0900, lon: -94.5820 }
+  - { name: River Market, lat: 39.1090, lon: -94.5830 }
+  - { name: West Bottoms, lat: 39.0990, lon: -94.6040 }
+  - { name: 18th & Vine, lat: 39.0910, lon: -94.5620 }
+  - { name: Crown Center, lat: 39.0820, lon: -94.5810 }
+  - { name: Westport, lat: 39.0530, lon: -94.5920 }
+  - { name: Midtown, lat: 39.0650, lon: -94.5830 }
+  - { name: Country Club Plaza, lat: 39.0420, lon: -94.5920 }
+  - { name: Brookside, lat: 39.0130, lon: -94.5900 }
+  - { name: Waldo, lat: 38.9970, lon: -94.5910 }
+  - { name: Columbus Park, lat: 39.1070, lon: -94.5700 }
+  - { name: North Kansas City, lat: 39.1300, lon: -94.5620 }
+  - { name: Strawberry Hill (KCK), lat: 39.1070, lon: -94.6230 }
+  - { name: Downtown Overland Park, lat: 38.9820, lon: -94.6710 }
+sources:
+  - id: kc_parks_events
+    adapter: tribe
+    name: KC Parks events (Kansas City, Missouri Parks & Recreation)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.kcparks.org/events/
+    expect_min_records: 20
+    notes: The Events Calendar REST API on the city parks department's site (robots allows it).
+    params:
+      base_url: https://www.kcparks.org
+      horizon_days: 60
+      per_page: 50
+      max_pages: 4
+      organizer: KC Parks
+      default_category: outdoors.park
+  - id: folly_theater
+    adapter: tribe
+    name: Folly Theater (downtown performing-arts hall)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.follytheater.org/
+    expect_min_records: 8
+    notes: The Events Calendar REST API (robots allows it); jazz series, chamber music, dance, theatre. Cost is published.
+    params:
+      base_url: https://www.follytheater.org
+      horizon_days: 180
+      per_page: 50
+      max_pages: 2
+      organizer: Folly Theater
+      venue: {name: Folly Theater, address: "300 W 12th St, Kansas City, MO 64105"}
+      default_category: music.concert
+      classify_description: false
+  - id: umkc_events
+    adapter: livewhale
+    name: University of Missouri–Kansas City events
+    data_type: events
+    homepage: https://calendar.umkc.edu/
+    expect_min_records: 20
+    notes: LiveWhale JSON (robots.txt 404 = no rules); 200 events ≈ the next 2–3 weeks.
+    params:
+      fallback_point: { lat: 39.0330, lon: -94.5760, label: "UMKC Volker campus (approximate)" }
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.umkc.edu
+      max: 200
+      organizer: UMKC
+      default_category: learning.networking
+  - id: kc_roos_athletics
+    adapter: ics
+    name: Kansas City Roos athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://kcroos.com/calendar
+    expect_min_records: 5
+    notes: UMKC's SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Kansas City" is kept.
+    params:
+      url: https://kcroos.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Kansas City Roos
+      exclude_location: '^(?!Kansas City\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.0330, lon: -94.5760, label: "UMKC Volker campus (approximate)" }
+  - id: jocolibrary_events
+    adapter: bibliocommons
+    name: Johnson County Library events (KS)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://jocolibrary.bibliocommons.com/v2/events
+    expect_min_records: 20
+    notes: BiblioCommons events RSS (gateway host, no robots.txt). Branches across Johnson County, KS; far-south branches (Spring Hill, Gardner, Edgerton) dropped by `cities`.
+    params:
+      library: jocolibrary
+      horizon_days: 10
+      max_pages: 15
+      venue_label: Johnson County Library
+      cities: [Overland Park, Merriam, Shawnee, Lenexa, Leawood, Mission, Prairie Village, Roeland Park, Olathe, De Soto]
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Club: arts.books
+        Kids: family.kids
+        Teens: family.kids
+  - id: mo_new_liquor_licenses_kc
+    adapter: socrata
+    name: Missouri new liquor licenses — retail by the drink (Kansas City, MO)
+    data_type: openings
+    homepage: https://data.mo.gov/d/dymb-xy5c
+    expect_min_records: 1
+    notes: >-
+      Missouri Division of Alcohol & Tobacco Control "New Liquor Licenses" (data.mo.gov, refreshed daily); see the
+      St. Louis unit. Only "Retail by Drink" rows; `licensee` is only a title fallback when it looks like an organisation.
+    params:
+      domain: data.mo.gov
+      dataset: dymb-xy5c
+      kind: opening
+      lookback_days: 60
+      select: "license_number, dbaname, licensee, license_type, original_date, street_number || ' ' || street AS street_line, city, zip_code"
+      where: "city = 'KANSAS CITY' AND license_type = 'Retail by Drink'"
+      fields: { record_id: license_number, title: [dbaname, licensee], start: original_date, category: license_type,
+                address: [street_line, city] }
+      entity_only_fields: [licensee]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Missouri's Division of Alcohol and Tobacco Control lists a new
+        "{license_type}" license for this address, original date {date}.
+      default_category: food_drink.restaurant_opening
+      category_rules:
+        - { match: "(?i)\\b(bar|pub|tavern|lounge|brewing|brewery|sports|social|club)\\b", category: nightlife.opening }
+      default_url: https://data.mo.gov/d/dymb-xy5c
+      extras: { signal: liquor_license_issued }
+  - id: challenge_trivia_kansas_city
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Kansas City)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 1
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-kansas-city within 2× the radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [kansas-city, kansas]
