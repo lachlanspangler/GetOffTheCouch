@@ -293,3 +293,24 @@ New units, live counts:
 - 2026-10-16 08:20 UTC · run 38 ok: units[46 disabled, 23 ok, 109 skipped] → 12334 events in 10 cities
 - 2026-10-16 08:27 UTC · run 39 partial: units[46 disabled, 1 failed, 17 ok, 132 skipped] → 13113 events in 10 cities
 - 2026-10-16 08:28 UTC · run 40 ok: units[1 ok] → 886 events in 1 cities
+
+## 2026-10-16 08:45 UTC: session 2 wrap-up
+**Did:**
+- Merged three agent branches: venue concerts, openings/trivia/races, Denver/Seattle/Austin coverage.
+- Added 10 arena RSS feeds and 9 college athletics calendars. Sourced 40 venue capacities.
+- Category correction pass for multi-purpose venues.
+- Second newcomer walkthrough: highlights quality fixes.
+- Weekly habits in the plan, similar-this-week in the drawer, map clustering, on-sale reminders.
+- Final count: 13,182 events.
+- Gates: `make check` green (390 pytest, 23 vitest), e2e 24/24 with axe. Clean-clone `make setup && make check` green.
+
+**Broke:**
+- Crypto.com Arena's RSS isn't well-formed XML. The parser now repairs bare `&` once, and still-broken feeds report `format_changed`.
+- A formatting slip would have failed CI; the clean-clone check caught it.
+
+**Decided:**
+- **RunSignup stays gated on registration.** That's what its terms require.
+- **Cloudflare-fronted sites with open, robots-allowed APIs are kept** (Town Hall Seattle, The Contemporary Austin). We never touch challenges.
+- **Arena feeds are spectator venues.**
+
+**Blocked on the user:** Pages enablement and a first manual Refresh run; TM/SG keys; RunSignup registration; outreach list (see STATUS).

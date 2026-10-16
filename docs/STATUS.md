@@ -1,100 +1,99 @@
 # Status
 
-## Milestone summary: 2026-10-16 (end of session 1, about 9 hours from an empty folder)
+## Milestone summary: 2026-10-16, end of session 2
 
-**What's real today.**
-- **Volume:** ~9,800 live events across all 10 seed cities from 70+ healthy source×city units. Every unit runs through the self-healing pipeline, with no API keys at all.
-- **Sources:**
-  - parks and city open data (Socrata/ArcGIS/CKAN)
-  - libraries (BiblioCommons/Communico/Trumba)
-  - universities (Localist/LiveWhale), filtered to public events
-  - Volo leagues
-  - HandsOn/Galaxy volunteer shifts, with live "spots left"
-  - Chicago Park District adult leagues and classes
-  - new bar and restaurant openings from liquor and business licenses
-  - UpcomingCons, Luma calendars, and the curated registry (page-watched quotes)
-- **Enrichment:** NWS weather, Wikidata venue capacities, and the official new-resident starter pack (34 rules, 10 states).
+**What's real today:** 13,182 live events across all 10 seed cities. They come from 196 configured source×city units, and every enabled unit is healthy. Everything below runs without API keys.
 
-| City | Events | Healthy sources | Leagues | Volunteer | Published deadlines |
-|---|---|---|---|---|---|
-| Austin | 631 | 8/8 (+4 need keys/blocked) | 62 | 5 | 17 |
-| Boston | 1,385 | 8/8 (+6 need keys/blocked) | 99 | 542 | 91 |
-| Chicago | 1,722 | 10/10 (+3 need keys/blocked) | 66 | 7 | 0 |
-| Denver | 201 | 5/5 (+4 need keys/blocked) | 98 | 0 | 98 |
-| Los Angeles | 779 | 8/8 (+3 need keys/blocked) | 48 | 225 | 50 |
-| Miami | 773 | 6/6 (+3 need keys/blocked) | 17 | 7 | 17 |
-| Minneapolis | 518 | 11/11 (+3 need keys/blocked) | 6 | 95 | 3 |
-| Nashville | 589 | 5/5 (+3 need keys/blocked) | 7 | 406 | 1 |
-| New York City | 2,914 | 11/11 (+3 need keys/blocked) | 149 | 220 | 122 |
-| Seattle | 300 | 7/7 (+3 need keys/blocked) | 1 | 21 | 8 |
+| City | Events | Music | Games to watch | Trivia | Volunteer | Leagues | Openings | Published deadlines | Healthy sources |
+|---|---|---|---|---|---|---|---|---|---|
+| Austin | 1,026 | 382 | 75 | 60 | 11 | 17 | 51 | 1 | 20/20 |
+| Boston | 1,567 | 95 | 142 | 54 | 542 | 99 | 21 | 91 | 14/14 |
+| Chicago | 1,806 | 74 | 43 | 2 | 7 | 66 | 135 | 0 | 14/14 |
+| Denver | 970 | 191 | 58 | 169 | 0 | 98 | 103 | 99 | 16/16 |
+| Los Angeles | 886 | 103 | 117 | 0 | 225 | 48 | 104 | 50 | 12/12 |
+| Miami | 831 | 63 | 75 | 97 | 8 | 17 | 66 | 17 | 11/11 |
+| Minneapolis | 872 | 237 | 110 | 33 | 95 | 6 | 0 | 3 | 19/19 |
+| Nashville | 878 | 190 | 45 | 177 | 406 | 7 | 13 | 1 | 10/10 |
+| New York City | 3,040 | 128 | 72 | 3 | 221 | 149 | 1184 | 122 | 15/15 |
+| Seattle | 1,306 | 433 | 33 | 38 | 26 | 1 | 33 | 7 | 19/19 |
 
-**Engineering.**
-- ruff and mypy --strict are clean.
-- ~220 pytest (unit, recorded-fixture adapter tests for 20+ adapters, contract, end-to-end self-healing scenarios).
-- 17 vitest; 24 Playwright tests (smoke + axe WCAG AA) on desktop and mobile.
-- CI workflow plus an hourly refresh workflow → GitHub Pages, with state persisted on an orphan branch.
+### Done this session
+- **Concerts with live prices (priority 1).** The biggest gap is now partly closed without keys.
+  - **Sources:**
+    - Venues' own calendars (schema.org JSON-LD): 17 venues, face-value prices where published.
+    - 10 big arenas and theaters via public venue RSS: Ryman, Bridgestone, Target Center, Grand Casino Arena, TD Garden, Kaseya, Barclays, Crypto.com Arena, Wintrust, Moody Center.
+    - Denver Arts & Venues, ACL Live, H-E-B Center, and comedy and jazz calendars.
+  - **Dedup:** the same show from a venue calendar and Ticketmaster merges into one event (tested on a real fixture).
+  - **Price display:**
+    - Cards show "from $X · N sellers" with a per-seller tooltip.
+    - A weekly price-trend badge appears only with ≥24h of snapshots, and the drawer has a sparkline.
+    - Price snapshots are taken every run, so trends become real as hourly runs accumulate.
+  - **Availability and on-sale:**
+    - "~x% left" is shown only from reported counts (libraries, volunteer shifts) or labeled resale-listing signals.
+    - Ticketmaster on-sale and presale times become reported "Tickets go on sale" deadlines, with .ics reminders 1 day and 15 minutes before.
+  - **Ticketmaster and SeatGeek are fully built and tested** against documented-shape fixtures. They turn on the moment keys exist.
+- **Coverage holes (priority 2):**
+  - **Denver:** 201 → 970 events (libraries, arts venues, concerts, trivia, DU games).
+  - **Seattle:** 300 → 1,306 events (KCLS, city calendar, jazz, comedy, theatres, Huskies).
+  - **Austin:** concerts and comedy added (ACL Live, Moody Center, Cap City, Flamingo Cantina).
+  - **Openings:** Miami (Florida DBPR original-licensure dates) and Boston (food-license CSV).
+  - **Trivia:** Team Trivia and Challenge Entertainment in Denver, Nashville and Austin.
+  - **Athletics:** college home games in 9 cities.
+  - **Chicago deadlines:** still 0 published. The keyless fix, RunSignup races, is built and recorded (+42 real Chicago deadlines) but gated on a free API registration (see below).
+- **Newcomer walkthrough (priority 3).** Before and after screenshots are in `docs/screenshots/{before,after}/`. Fixed:
+  - contradictory "closed/open" badges (availability now reconciled with live deadlines)
+  - highlights repeating in the day list below them
+  - kids/teen and campus programs topping adult picks
+  - "~1" crowd sizes
+  - mobile filters filling the first screen (now behind "Filters (N)")
+  - campus catch-all noise; "12 AM" date-only items
+  - NBA games, forums and venue tours labeled as concerts
+  - library-dominated highlights; no concert in highlights
+- **Widening (priority 4):**
+  - "Pick a weekly habit" in the plan; "Similar this week" in the drawer.
+  - 40 sourced venue capacities, so 499 concerts now get capacity × fill attendance bands instead of category priors.
+  - Map clustering.
+  - Tolerant XML feeds; disabled a source (Triple Door) whose dates were wrong rather than patching around it.
+- **Fixed for CI and tooling:**
+  - `make pipeline` had been broken by flag order.
+  - Cold-cache geocoding is now bounded so the hourly refresh fits its timeout.
+  - `run --source` rebuilds only affected cities.
 
-**Real vs. stubbed**
-
+### Real vs. stubbed
 | Area | State |
 |---|---|
-| Open data, libraries, universities, parks, Volo, volunteering, cons, Luma, curated registry | ✅ real and live |
-| Openings (new liquor/business licenses) | ✅ real: NYC (SLA pending + new), Chicago, Austin (TABC), Denver, Seattle, LA, Nashville. Miami and Boston: no keyless source yet |
-| Spots left / "% left" | ✅ real where sources report it (libraries, HandsOn shifts). Labeled estimates elsewhere |
-| Weather, venue capacities, starter pack | ✅ real |
-| Ticketmaster (concerts/sports/theater, face value) | 🟡 adapter + tests ready, **needs `TICKETMASTER_API_KEY`** |
-| SeatGeek (resale prices, listing trends, selling fast) | 🟡 adapter + tests ready, **needs `SEATGEEK_CLIENT_ID`** |
+| Open data, libraries, universities, parks, venue calendars, arenas, athletics, Volo, volunteering, cons, trivia, openings, curated registry | ✅ real, live |
+| Weather, venue capacities (Wikidata + 40 sourced), starter pack, geocoding | ✅ real |
+| Face-value concert prices | ✅ real where venues publish them. Ticketmaster fills the rest once keyed |
+| Resale prices, listing counts, "selling fast" from resale | 🟡 SeatGeek adapter ready; **needs `SEATGEEK_CLIENT_ID`** |
+| Ticketmaster (most big-venue tickets, on-sale times) | 🟡 adapter ready; **needs `TICKETMASTER_API_KEY`** |
+| RunSignup races (published registration deadlines in every city) | 🟡 adapter + fixture ready; **needs free API caller registration** |
+| Price trends | 🟡 real snapshots accumulate per run; a trend shows after ≥24h of data |
 | Meetup, Eventbrite per-organizer | ⏸ need OAuth/token |
-| Visit Austin/Denver, Meet Boston (Simpleview); Maker Faire | ⏸ adapters done; blocked by CDN bot protection (we don't work around it) |
-
-**Since the milestone table (same session):**
-- Census batch geocoding + place-name variants + campus fallbacks (labeled approximate). Map coverage is now 63–95% per city.
-- Online-only events are skipped globally. UT away games are excluded.
-- Minneapolis openings via first-seen liquor licenses (silent baseline, labeled).
-- "Worth getting off the couch this week" highlights.
-- Payload split: lean card feed + lazy details file.
-- CI state slimmed to ~4.5 MB gz; ids verified identical after rebuild.
-- `gotc validate` pre-commit gate; duplicate-YAML-key protection.
-- ADRs 0004–0006.
-
-**Unfinished work (stopped at wrap-up, not merged into main):**
-- Branch `worktree-agent-a04a2e136bc0da5de` has one commit: a generic schema.org JSON-LD venue-calendar adapter (`jsonld`) for concerts. Its venue configs and live verification were not finished. Review it, then merge it or redo it.
-- Trivia/Denver/Miami research found most trivia hosts behind Cloudflare challenges or robots disallows (Geeks Who Drink included). Team Trivia is the only open lead. Nothing was committed from that work.
-
-**Thin spots to fix next:**
-1. **Concerts.** Almost no music until the Ticketmaster key arrives. The jsonld branch is the keyless path.
-2. **Leagues** in Seattle and Minneapolis: Volo isn't there, and LeagueApps/TeamSideline forbid automation.
-3. **Trivia** outside Minneapolis/Boston/Miami (most hosts block bots).
-4. **Denver** has no general events source. **Miami and Boston** have no openings source.
 
 ## What I need from you
+1. **GitHub (one time):**
+   - Settings → Pages → Source: **GitHub Actions**. The Pages API currently returns 404, so the site isn't enabled yet.
+   - Actions → General → Workflow permissions: **Read and write**.
+   - Actions → **Refresh data** → **Run workflow**, once by hand. The hourly schedule hadn't fired by 08:43 UTC, 2h after the push. GitHub often delays a new repo's first cron, and a manual run also verifies Pages and the state branch.
+2. **Keys** (add to `.env` locally and as repo secrets):
+   - `TICKETMASTER_API_KEY`: free, instant, https://developer-acct.ticketmaster.com/user/register
+   - `SEATGEEK_CLIENT_ID`: free, https://seatgeek.com/account/develop
+   - `RUNSIGNUP_API_REG` + `RUNSIGNUP_API_REG_SECRET`: free API caller registration; RunSignup's terms require it.
+   - Optional: `SOCRATA_APP_TOKEN`.
+3. **Outreach** that would unlock more (all blocked on you):
+   - AEG Presents (Mission Ballroom, Bluebird, Ogden, Gothic…)
+   - LeagueLab (Nashville Sports Leagues, Underdog Seattle)
+   - LeagueApps clubs (Chicago Sport & Social, Boston Ski & Sports, CLUBWAKA)
+   - Simpleview boards (Meet Boston, Visit Austin, Visit Denver)
+   - Geeks Who Drink / King Trivia (LA and Seattle trivia)
+   - Galaxy Digital tenants; Volo partner feed
 
-**Keys (only you can get these):**
-| Key | Unlocks | How | Cost |
-|---|---|---|---|
-| `TICKETMASTER_API_KEY` | concerts, sports and theater for all cities; face-value prices; on-sale dates | https://developer-acct.ticketmaster.com/user/register (instant) | free |
-| `SEATGEEK_CLIENT_ID` | resale prices, listing counts, so "selling fast" and price trends become real | https://seatgeek.com/account/develop (portal login) | free |
-| `SOCRATA_APP_TOKEN` (optional) | higher rate limits on city open-data portals | https://dev.socrata.com/register | free |
-| `RUNSIGNUP_API_REG` + `RUNSIGNUP_API_REG_SECRET` | races with registration deadlines in all 10 cities (the `runsignup` source is built and tested; the recorded Chicago response alone has 42 published close dates). The API Terms require registering as an API caller | https://runsignup.com/API/APIKeys → "API Caller Registration" (needs a RunSignup account) | free |
-| Ticketmaster Inventory Status API (optional) | first-party "few tickets left" | email devportalinquiry@ticketmaster.com | approval |
-| Meetup OAuth client (later) | run clubs, social groups, real RSVP counts | https://www.meetup.com/api/oauth/list/ | may need Pro |
-
-Put keys in `.env` locally, and in repo **Settings → Secrets → Actions** for the hourly refresh.
-
-**To go live (one time, in the GitHub repo):**
-1. Enable Pages (Settings → Pages → Source: GitHub Actions).
-2. Set Actions → Workflow permissions to "Read and write".
-3. `git push -u origin main`. Nothing has been pushed; there are about 90 local commits. The hourly refresh then builds and deploys the dashboard to Pages.
-
-## Outreach that would unlock more data (from research)
-- **Permission:**
-  - LeagueLab (Nashville Sports Leagues, Underdog Seattle): the best deadline data found, but their terms forbid automation without permission.
-  - Trivia Mafia: locator API.
-- **Per-org API keys:**
-  - LeagueApps: Chicago Sport & Social, Boston Ski & Sports Club, CLUBWAKA Minneapolis.
-  - Galaxy Digital: HandsOn Twin Cities, United Way King County.
-- **Partner feed:** Volo (official). We'd be using their public pages until then.
-- **Paid API quote:** Idealist (VolunteerMatch).
+## What I'd do next
+1. With keys: record real Ticketmaster/SeatGeek fixtures, then check cross-seller dedup and price comparison on live NYC/LA arena data.
+2. With RunSignup registration: race deadlines in all cities. That alone fixes Chicago's 0 published deadlines.
+3. After a few days of hourly runs: review price-trend and "selling fast" signals on real snapshot history, and tune the thresholds.
+4. Remaining polish ideas (time-precision labels, per-room capacities, series-date health check, concert digest) are in `python -m gotc.ideas next`.
 
 ## What works (detail)
 - **Pipeline.** `gotc run` is hourly-safe: units that aren't due skip in microseconds, and each unit commits in its own transaction, so it's resumable.
