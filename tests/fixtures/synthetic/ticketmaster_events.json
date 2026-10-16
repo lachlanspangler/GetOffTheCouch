@@ -1,0 +1,25 @@
+{
+  "_note": "SYNTHETIC test fixture in the documented Discovery v2 shape (fictional values). Replace with `gotc record ticketmaster@<city>` once a key exists.",
+  "_embedded": {"events": [
+    {"name": "The Placeholder Band", "type": "event", "id": "vvTEST1", "url": "https://www.ticketmaster.com/event/vvTEST1",
+     "dates": {"start": {"localDate": "2026-11-07", "localTime": "20:00:00", "dateTime": "2026-11-08T02:00:00Z"},
+               "timezone": "America/Chicago", "status": {"code": "onsale"}},
+     "sales": {"public": {"startDateTime": "2026-08-01T15:00:00Z", "endDateTime": "2026-11-08T02:00:00Z"}},
+     "classifications": [{"segment": {"name": "Music"}, "genre": {"name": "Rock"}, "subGenre": {"name": "Indie"}}],
+     "priceRanges": [{"type": "standard", "currency": "USD", "min": 39.5, "max": 89.5}],
+     "ticketLimit": {"info": "There is an 8 ticket limit for this event."},
+     "_embedded": {"venues": [{"id": "KovTEST", "name": "Example Theater", "postalCode": "55401", "city": {"name": "Minneapolis"},
+                               "state": {"stateCode": "MN"}, "address": {"line1": "1 Example Ave"},
+                               "location": {"longitude": "-93.2750", "latitude": "44.9750"}}]}},
+    {"name": "Comedy Night Placeholder", "type": "event", "id": "vvTEST2", "url": "https://www.ticketmaster.com/event/vvTEST2",
+     "dates": {"start": {"localDate": "2026-12-01", "localTime": "19:30:00"}, "timezone": "America/Chicago", "status": {"code": "onsale"}},
+     "sales": {"public": {"startDateTime": "2026-10-20T15:00:00Z"}},
+     "classifications": [{"segment": {"name": "Arts & Theatre"}, "genre": {"name": "Comedy"}}],
+     "_embedded": {"venues": [{"name": "Example Club", "city": {"name": "Minneapolis"}, "state": {"stateCode": "MN"}}]}},
+    {"name": "Cancelled Show", "type": "event", "id": "vvTEST3", "url": "https://www.ticketmaster.com/event/vvTEST3",
+     "dates": {"start": {"localDate": "2026-11-10", "localTime": "20:00:00"}, "status": {"code": "canceled"}},
+     "classifications": [{"segment": {"name": "Music"}}], "_embedded": {"venues": [{"name": "Example Theater"}]}},
+    {"type": "event", "id": "vvBROKEN", "dates": {"start": {}}}
+  ]},
+  "page": {"size": 200, "totalElements": 4, "totalPages": 1, "number": 0}
+}

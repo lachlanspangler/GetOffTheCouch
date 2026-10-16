@@ -1,0 +1,17 @@
+{
+  "_note": "SYNTHETIC test fixture in the documented SeatGeek /2/events shape (fictional values). Replace with a recorded response once a client_id exists.",
+  "events": [
+    {"id": 9001, "title": "The Placeholder Band", "type": "concert", "url": "https://seatgeek.com/placeholder-band-tickets/9001",
+     "datetime_local": "2026-11-07T20:00:00", "datetime_utc": "2026-11-08T02:00:00", "datetime_tbd": false, "time_tbd": false,
+     "taxonomies": [{"name": "concert"}], "score": 0.61, "popularity": 0.55,
+     "performers": [{"name": "The Placeholder Band"}],
+     "venue": {"id": 77, "name": "Example Theater", "address": "1 Example Ave", "extended_address": "Minneapolis, MN 55401",
+               "location": {"lat": 44.9751, "lon": -93.2749}, "capacity": 1800, "timezone": "America/Chicago"},
+     "stats": {"listing_count": 112, "visible_listing_count": 98, "lowest_price": 58, "average_price": 96, "median_price": 88, "highest_price": 240}},
+    {"id": 9002, "title": "Minnesota Example FC vs. Placeholder United", "type": "mls", "url": "https://seatgeek.com/x/9002",
+     "datetime_local": "2026-10-25T15:00:00", "taxonomies": [{"name": "sports"}, {"name": "mls"}],
+     "venue": {"name": "Example Stadium", "location": {"lat": 44.95, "lon": -93.16}, "capacity": 0, "timezone": "America/Chicago"},
+     "stats": {"listing_count": 0, "lowest_price": null}}
+  ],
+  "meta": {"total": 2, "page": 1, "per_page": 100}
+}
