@@ -54,6 +54,9 @@ jobs:
         working-directory: web
         env: { GOTC_BASE: "/GetOffTheCouch/", GOTC_SITE_ORIGIN: "https://lachlanspangler.github.io" }
         run: ../.venv/bin/python -m gotc demo && npm ci && npm run build
+      - name: Check pre-rendered pages (SEO + size budgets)
+        working-directory: web
+        run: node scripts/check-dist.mjs --warn >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: web/dist }

@@ -23,7 +23,7 @@ export default defineConfig({
   base,
   define: { __SITE_ORIGIN__: JSON.stringify(origin) },
   plugins: [preact(), spaFallback()],
-  build: { target: "es2020", sourcemap: true },
+  build: { target: "es2020", sourcemap: process.env.GOTC_SOURCEMAP === "1" },
   test: {
     environment: "jsdom",
     include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],

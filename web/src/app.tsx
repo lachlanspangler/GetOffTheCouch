@@ -6,46 +6,40 @@ import { SkeletonRows } from "./components/EventRow";
 import { Ctx, type AppCtx } from "./lib/ctx";
 import { isDemo, loadCity, loadIndex } from "./lib/data";
 import { applyFilters, deadlines } from "./lib/filters";
-import { setTitleLookup, useRoute, type View } from "./lib/router";
+import { setTitleLookup, useRoute, type Route } from "./lib/router";
 import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
-import { fmtDay } from "./lib/time";
+import { pageTitle } from "./lib/seo";
 import type { CityFeed, Index } from "./lib/types";
 import { About, Methodology, Privacy } from "./views/About";
 import { Calendar } from "./views/Calendar";
 import { Deadlines } from "./views/Deadlines";
 import { EventPage } from "./views/EventPage";
-import { Feed, cityHeadline } from "./views/Feed";
+import { Feed } from "./views/Feed";
 import { Health } from "./views/Health";
 import { Home } from "./views/Home";
 import { MapView } from "./views/MapView";
 import { Plan } from "./views/Plan";
 import { Saved } from "./views/Saved";
 
-const SITE = "Get Off the Couch";
-const VIEW_TITLE: Partial<Record<View, string>> = {
-  deadlines: "Deadlines",
-  calendar: "Calendar",
-  map: "Map",
-  plan: "New in town",
-  saved: "Saved",
-  health: "Data status",
-  about: "About",
-  methodology: "How we get the data",
-  privacy: "Privacy",
-};
-
 function applyTheme(t: Theme): void {
   const dark = t === "dark" || (t === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.dataset.theme = dark ? "dark" : "light";
 }
 
-export function App() {
-  const [route, go] = useRoute();
-  const [index, setIndex] = useState<Index | null>(null);
-  const [feed, setFeed] = useState<CityFeed | null>(null);
+export interface Initial {
+  index: Index;
+  feed: CityFeed | null;
+  route?: Route;
+  now?: Date;
+}
+
+export function App({ initial }: { initial?: Initial } = {}) {
+  const [route, go] = useRoute(initial?.route);
+  const [index, setIndex] = useState<Index | null>(initial?.index ?? null);
+  const [feed, setFeed] = useState<CityFeed | null>(initial?.feed ?? null);
   const [error, setError] = useState<string | null>(null);
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState(() => initial?.now ?? new Date());
   const [lastCity, setLastCity] = usePersistent<string | null>("lastCity", null);
   const [saved, setSaved] = usePersistent<string[]>(`saved:${route.city ?? "_"}`, []);
   const [theme, setTheme] = usePersistent<Theme>("theme", "auto");
@@ -53,7 +47,8 @@ export function App() {
   const demo = isDemo();
 
   useEffect(() => {
-    loadIndex().then(setIndex).catch((e: Error) => setError(e.message));
+    if (!index) loadIndex().then(setIndex).catch((e: Error) => setError(e.message));
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(t);
   }, []);
@@ -113,14 +108,7 @@ export function App() {
 
   const event = route.eventId && ctx ? ctx.byId.get(route.eventId) : undefined;
   useEffect(() => {
-    const cityName = feed?.city_name;
-    const page = event
-      ? `${event.title} · ${fmtDay(event.start, event.timezone)}`
-      : route.city && route.view === "feed"
-        ? route.hub && cityName ? cityHeadline(route.hub, cityName) : cityName ? `Things to do in ${cityName}` : null
-        : VIEW_TITLE[route.view] ?? null;
-    const parts = [page, route.city && cityName && (event || route.view !== "feed") ? cityName : null, SITE].filter(Boolean);
-    document.title = parts.length > 1 ? parts.join(" · ") : `${SITE} · Your city, made easy`;
+    document.title = pageTitle(route, feed, event);
   }, [feed, route, event]);
 
   if (error && !index) {

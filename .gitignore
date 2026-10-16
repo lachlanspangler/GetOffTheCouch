@@ -20,3 +20,4 @@ web/playwright-report/
 .playwright-mcp/
 .claude/
 web/public/demo/
+web/dist-ssr/
