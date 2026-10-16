@@ -141,3 +141,20 @@ sources:
       base_url: https://www.volosports.com
       city_slug: denver
       max_pages: 6
+
+  # ── trivia (Team Trivia public venue pages: schema.org Event JSON-LD; robots-allowed, in their sitemap) ──
+  - id: teamtrivia_denver
+    adapter: teamtrivia
+    name: Team Trivia (Denver / Front Range)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-denver/
+    expect_min_records: 20
+    notes: >-
+      Region page → ~29 venue pages, each with the next four dated games in JSON-LD. Never uses the zip-code gate
+      or /getlocation.php (robots-disallowed). The /terms page is behind that gate and could not be read.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { denver: denver }
+      max_venues: 60

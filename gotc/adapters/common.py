@@ -159,6 +159,18 @@ def infer_year(month: int, day: int, ref: date, weekday: int | None = None, grac
     return nxt
 
 
+def weekly_occurrences(weekday: int, at: str, tz: str, now: datetime, n: int = 4) -> list[datetime]:
+    """The next ``n`` dates of a weekly schedule ("Wednesdays 7:00 PM": weekday=2, at='7:00 PM') in the city's
+    zone, starting today if the time hasn't passed yet. Wall-clock time is kept across DST changes."""
+    t = dtparser.parse(at).time()
+    zone = ZoneInfo(tz)
+    local_now = now.astimezone(zone)
+    first = local_now.date() + timedelta(days=(weekday - local_now.weekday()) % 7)
+    if datetime.combine(first, t, zone) <= local_now:
+        first += timedelta(days=7)
+    return [datetime.combine(first + timedelta(weeks=i), t, zone) for i in range(n)]
+
+
 US_STATES: dict[str, str] = {
     "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California", "CO": "Colorado",
     "CT": "Connecticut", "DE": "Delaware", "DC": "District of Columbia", "FL": "Florida", "GA": "Georgia",

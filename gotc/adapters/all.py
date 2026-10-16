@@ -16,6 +16,7 @@ from gotc.adapters import (  # noqa: F401
     runsignup,
     simpleview,
     socrata,
+    teamtrivia,
     ticketing,
     trumba,
     upcomingcons,

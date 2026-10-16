@@ -1,0 +1,7 @@
+{
+  "unit": "teamtrivia_denver@denver",
+  "recorded_at": "2026-10-16T07:35:00+00:00",
+  "payloads": 3,
+  "request": "GET https://www.teamtrivia.com/trivia-in-denver/ (region page, 29 venue links) and GET https://www.teamtrivia.com/venue/<slug> for three venues",
+  "note": "real, unmodified pages. little-machine-beer shows the site's own inconsistency: its first JSON-LD game is dated Fri 2026-10-16 while the schedule table says Thursdays (the adapter rejects that one date)"
+}
