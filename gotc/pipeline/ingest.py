@@ -94,6 +94,8 @@ def parse_payloads(
                 continue
             try:
                 rec = normalize_record(rec, unit.source.name)
+                if unit.source.params.get("spectator_venue") and str(rec.get("category", "")).startswith("sports_league."):
+                    rec["category"] = "sports_watch.game"  # an arena's "basketball" is a game to watch, not a rec league
                 ev = SourceEvent.model_validate(rec)
                 if not tax.is_valid(ev.category):
                     raise ValueError(f"unknown category {ev.category!r}")

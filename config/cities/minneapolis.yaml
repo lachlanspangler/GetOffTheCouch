@@ -271,6 +271,7 @@ sources:
     homepage: https://www.targetcenter.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.targetcenter.com/events/rss
       horizon_days: 180
       venue: {name: "Target Center", address: "600 N 1st Ave, Minneapolis, MN 55403"}
@@ -284,6 +285,7 @@ sources:
     homepage: https://www.grandcasinoarena.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.grandcasinoarena.com/events/rss
       horizon_days: 180
       venue: {name: "Grand Casino Arena", address: "199 W Kellogg Blvd, St Paul, MN 55102"}

@@ -296,6 +296,7 @@ sources:
     homepage: https://www.wintrustarena.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.wintrustarena.com/events/rss
       horizon_days: 180
       venue: {name: "Wintrust Arena", address: "200 E Cermak Rd, Chicago, IL 60616"}

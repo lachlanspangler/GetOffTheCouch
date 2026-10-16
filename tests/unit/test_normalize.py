@@ -85,3 +85,20 @@ def test_online_only_events_are_skipped_globally():
     assert location_skip(
         {"title": "Game", "location": {"venue_name": "Norman, Okla., Tennis Center"}}, r"\b(Okla)\b\.?"
     )
+
+
+def test_fix_category_for_arena_feeds():
+    from gotc.pipeline.normalize import fix_category
+
+    def cat(title, c="music.concert"):
+        r = {"title": title, "category": c}
+        fix_category(r)
+        return r["category"]
+
+    assert cat("Detroit Pistons vs Miami HEAT") == "sports_watch.game"
+    assert cat("America Business Forum") == "learning.networking"
+    assert cat("Kaseya Center All-Access Tour") == "other.uncategorized"
+    assert cat("Nick Cannon Presents: Wild ‘N Out Live") == "nightlife.comedy"
+    assert cat("Monster Jam") == "sports_watch.game"
+    assert cat("Doja Cat") == "music.concert"
+    assert cat("Kickball: Team A vs Team B", "sports_league.kickball") == "sports_league.kickball"

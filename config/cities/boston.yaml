@@ -272,6 +272,7 @@ sources:
     homepage: https://www.tdgarden.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.tdgarden.com/events/rss
       horizon_days: 180
       venue: {name: "TD Garden", address: "100 Legends Way, Boston, MA 02114"}

@@ -187,6 +187,7 @@ sources:
     homepage: https://www.kaseyacenter.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.kaseyacenter.com/events/rss
       horizon_days: 180
       venue: {name: "Kaseya Center", address: "601 Biscayne Blvd, Miami, FL 33132"}

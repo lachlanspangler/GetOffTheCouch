@@ -148,6 +148,7 @@ sources:
     homepage: https://www.ryman.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.ryman.com/events/rss
       horizon_days: 180
       venue: {name: "Ryman Auditorium", address: "116 5th Ave N, Nashville, TN 37219"}
@@ -161,6 +162,7 @@ sources:
     homepage: https://www.bridgestonearena.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.bridgestonearena.com/events/rss
       horizon_days: 180
       venue: {name: "Bridgestone Arena", address: "501 Broadway, Nashville, TN 37203"}

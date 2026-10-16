@@ -144,7 +144,49 @@ def audience_skip(rec: dict[str, Any], mode: str | None) -> str | None:
     return f"not public: {m.group(0)!r}" if m else None
 
 
+_MATCHUP = re.compile(r"\s(vs\.?|v\.|versus)\s|^\s*(game|match)\s*\d+\b", re.I)
+#: titles that a "music by default" venue feed (arenas, theaters) mislabels as concerts
+_NOT_A_CONCERT: list[tuple[re.Pattern[str], str]] = [
+    (
+        re.compile(r"\b(forum|summit|conference|expo|convention|job fair|career fair|town hall|keynote)\b", re.I),
+        "learning.networking",
+    ),
+    (
+        re.compile(
+            r"\b(wwe|aew|wrestling|monster jam|monster trucks?|ufc|boxing|bull riding|pbr|globetrotters|rodeo)\b", re.I
+        ),
+        "sports_watch.game",
+    ),
+    (re.compile(r"\b(disney on ice|cirque|circus|paw patrol|sesame street|bluey|cocomelon)\b", re.I), "family.kids"),
+    (re.compile(r"\b(comedy|comedian|stand-?up|wild ['‘’]?n['‘’]? out|roast)\b", re.I), "nightlife.comedy"),
+    (
+        re.compile(
+            r"\b(all-access tour|venue tour|stadium tour|arena tour|behind[- ]the[- ]scenes tour|graduation|commencement)\b",
+            re.I,
+        ),
+        "other.uncategorized",
+    ),
+]
+
+
+def fix_category(rec: dict[str, Any]) -> None:
+    """Correct the most common default-category mistakes from multi-purpose venue feeds."""
+    cat = str(rec.get("category") or "")
+    title = str(rec.get("title") or "")
+    if cat.startswith(("sports_league.", "trivia_games.", "sports_watch.")):
+        return
+    if _MATCHUP.search(title) and cat.startswith(("music.", "other.", "arts.", "community.")):
+        rec["category"] = "sports_watch.game"
+        return
+    if cat.startswith("music."):
+        for pat, new in _NOT_A_CONCERT:
+            if pat.search(title):
+                rec["category"] = new
+                return
+
+
 def normalize_record(rec: dict[str, Any], source_name: str) -> dict[str, Any]:
+    fix_category(rec)
     raw_html = rec.pop("_html", None)
     title = str(rec.get("title") or "")
     if m := _CANCELLED.match(title):

@@ -269,6 +269,7 @@ sources:
     homepage: https://www.barclayscenter.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.barclayscenter.com/events/rss
       horizon_days: 180
       venue: {name: "Barclays Center", address: "620 Atlantic Ave, Brooklyn, NY 11217"}

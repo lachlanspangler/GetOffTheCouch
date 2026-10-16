@@ -183,6 +183,7 @@ sources:
     homepage: https://www.cryptoarena.com/events
     expect_min_records: 10
     params:
+      spectator_venue: true
       url: https://www.cryptoarena.com/events/rss
       horizon_days: 180
       venue: {name: "Crypto.com Arena", address: "1111 S Figueroa St, Los Angeles, CA 90015"}
