@@ -5,10 +5,10 @@ import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel 
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
 import { Icon } from "./Icon";
 
-export function spotsLeft(e: Event): { left: number; cap: number } | null {
-  const inp = e.tickets?.pct_left?.inputs as { capacity?: number; registered?: number } | undefined;
-  if (!inp || inp.capacity == null || inp.registered == null) return null;
-  return { left: Math.max(0, inp.capacity - inp.registered), cap: inp.capacity };
+export function spotsLeft(e: Event): { left: number; cap: number | null } | null {
+  const t = e.tickets;
+  if (t?.spots_left == null) return null;
+  return { left: t.spots_left, cap: t.spots_total ?? null };
 }
 
 export function timeLeft(hours: number): string {
@@ -26,9 +26,9 @@ export function DeadlineBadge({ e }: { e: Event; compact?: boolean }) {
   if (e.registration?.method === "derived") {
     // no published deadline: don't invent a countdown, show what we actually know
     return (
-      <span class={`badge ${spots && spots.left <= Math.max(2, spots.cap * 0.2) ? "badge-hot" : "badge-info"}`} title={e.registration.evidence ?? undefined}>
+      <span class={`badge ${spots && spots.left <= Math.max(2, (spots.cap ?? 0) * 0.2) ? "badge-hot" : "badge-info"}`} title={e.registration.evidence ?? undefined}>
         <Icon name="clock" size={13} />
-        {spots ? (spots.left ? `${spots.left} of ${spots.cap} spots left` : "Full") : "Registration required"}
+        {spots ? (spots.left ? (spots.cap ? `${spots.left} of ${spots.cap} spots left` : `${spots.left} spots left`) : "Full") : "Registration required"}
       </span>
     );
   }
@@ -104,6 +104,11 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
         <div class="badges">
           <DeadlineBadge e={e} compact />
           {price ? <span class={`badge ${price === "Free" ? "badge-free" : ""}`}>{price}</span> : null}
+          {e.tickets?.spots_left != null && e.registration?.method !== "derived" && (
+            <span class={`badge ${e.tickets.spots_left <= 2 ? "badge-hot" : "badge-info"}`}>
+              {e.tickets.spots_left === 0 ? "Full" : `${e.tickets.spots_left}${e.tickets.spots_total ? ` of ${e.tickets.spots_total}` : ""} spots left`}
+            </span>
+          )}
           {e.tickets?.selling_fast && (
             <span class="badge badge-hot" title={e.tickets.signal ?? ""}>
               <Icon name="flame" size={12} /> Selling fast

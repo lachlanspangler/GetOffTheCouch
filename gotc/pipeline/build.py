@@ -288,6 +288,14 @@ def apply_spots(ev: Event, members: list[SourceEvent]) -> None:
     from gotc.schema import Estimate
 
     src = next((m for m in members if m.extras.get("capacity") and m.extras.get("registered") is not None), None)
+    only_left = next((m for m in members if m.extras.get("spots_left") is not None), None)
+    if src is None and only_left is not None:  # e.g. volunteer shifts: "3 volunteers still needed"
+        n = int(str(only_left.extras["spots_left"]))
+        ev.tickets.spots_left = n
+        if 0 < n <= 2:
+            ev.tickets.selling_fast = True
+            ev.tickets.signal = f"only {n} spot{'s' if n != 1 else ''} left"
+        return
     if src is None:
         if "registration_required" in ev.tags and ev.registration is None:
             ev.registration = Registration(
@@ -300,6 +308,7 @@ def apply_spots(ev: Event, members: list[SourceEvent]) -> None:
     cap = int(str(src.extras["capacity"]))
     reg = min(int(str(src.extras["registered"])), cap)
     left = max(0.0, (cap - reg) / cap * 100)
+    ev.tickets.spots_left, ev.tickets.spots_total = cap - reg, cap
     ev.tickets.pct_left = Estimate(
         low=round(left),
         mid=round(left),

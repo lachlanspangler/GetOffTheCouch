@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.2.0"
+SCHEMA_VERSION = "1.3.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -217,6 +217,8 @@ class Estimate(Strict):
 
 class TicketSignal(Strict):
     availability: Availability = Availability.UNKNOWN
+    spots_left: Annotated[int, Field(ge=0)] | None = None  # reported by the source (volunteer shifts, classes)
+    spots_total: Annotated[int, Field(gt=0)] | None = None
     pct_left: Estimate | None = None  # 0–100
     selling_fast: bool = False
     signal: str | None = None  # "listings down 38% in 48h", "few tickets left flag"

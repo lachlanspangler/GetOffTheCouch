@@ -144,6 +144,8 @@ export type Availability1 =
   | "unknown";
 export type SellingFast = boolean;
 export type Signal = string | null;
+export type SpotsLeft = number | null;
+export type SpotsTotal = number | null;
 export type Timezone = string;
 export type Title = string;
 export type Url3 = string | null;
@@ -421,6 +423,8 @@ export interface TicketSignal {
   pct_left?: Estimate | null;
   selling_fast?: SellingFast;
   signal?: Signal;
+  spots_left?: SpotsLeft;
+  spots_total?: SpotsTotal;
 }
 /**
  * NWS hourly forecast for the event's start hour (outdoor events, ≤ ~6 days out).

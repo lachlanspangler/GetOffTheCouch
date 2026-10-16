@@ -62,3 +62,10 @@ def test_no_counts_no_signal_but_required_gets_derived_deadline():
     plain = event()
     apply_spots(plain, [member()])
     assert plain.registration is None
+
+
+def test_spots_left_without_capacity():
+    ev = event()
+    apply_spots(ev, [member(spots_left=2)])
+    assert ev.tickets.spots_left == 2 and ev.tickets.spots_total is None and ev.tickets.selling_fast
+    assert ev.tickets.pct_left is None  # no total → no percentage, never a guess
