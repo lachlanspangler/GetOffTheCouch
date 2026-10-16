@@ -401,3 +401,5 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .key { display: inline-block; width: 14px; height: 8px; border-radius: 4px; vertical-align: middle; margin: 0 2px 0 8px; }
 .key-bar { background: var(--accent); } .key-eb { background: var(--warn); width: 4px; height: 12px; } .key-start { background: var(--ink); width: 4px; height: 12px; }
 @media (max-width: 640px) { .waves li { grid-template-columns: 1fr; } .waves-axis { margin-left: 0; } }
+
+.more { display: flex; justify-content: center; margin: 8px 0 32px; }

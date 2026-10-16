@@ -37,7 +37,7 @@ export function LeafletMap({
       await import("leaflet/dist/leaflet.css");
       if (cancelled || !el.current) return;
       if (!map.current) {
-        map.current = L.map(el.current, { zoomControl: true, attributionControl: true }).setView(center, zoom);
+        map.current = L.map(el.current, { zoomControl: true, attributionControl: true, preferCanvas: true }).setView(center, zoom);
         L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 19,
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

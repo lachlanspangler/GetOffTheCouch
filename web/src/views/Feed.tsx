@@ -1,3 +1,4 @@
+import { useEffect, useState } from "preact/hooks";
 import { EventCard } from "../components/EventCard";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
@@ -5,13 +6,18 @@ import { collapseSeries } from "../lib/filters";
 import { dayKey, fmtDateLong } from "../lib/time";
 import type { Event } from "../lib/types";
 
+const PAGE = 60;
+
 export function Feed({ events }: { events: Event[] }) {
-  const { feed, now } = useApp();
+  const { feed, now, route } = useApp();
+  const [limit, setLimit] = useState(PAGE);
+  useEffect(() => setLimit(PAGE), [route.filters, feed?.city]);
   if (!feed) return null;
   const tz = feed.timezone;
   const openings = events.filter((e) => e.kind === "opening");
   const regular = events.filter((e) => e.kind !== "opening");
-  const groups = collapseSeries(regular);
+  const allGroups = collapseSeries(regular);
+  const groups = allGroups.slice(0, limit);
   const byDay = new Map<string, typeof groups>();
   for (const g of groups) {
     const k = new Date(g.event.start) < now ? dayKey(now, tz) : dayKey(g.event.start, tz);
@@ -43,6 +49,13 @@ export function Feed({ events }: { events: Event[] }) {
           </div>
         </section>
       ))}
+      {allGroups.length > limit && (
+        <div class="more">
+          <button class="btn btn-ghost" onClick={() => setLimit(limit + PAGE * 2)}>
+            Show more ({allGroups.length - limit} left)
+          </button>
+        </div>
+      )}
       {openings.length > 0 && (
         <section class="day">
           <h2 class="day-head">
