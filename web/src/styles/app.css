@@ -411,3 +411,7 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .signups summary::-webkit-details-marker { display: none; }
 .signups summary h3::after { content: ' ▸'; color: var(--muted); }
 .signups[open] summary h3::after { content: ' ▾'; }
+
+.vibes { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.vibe { display: grid; gap: 2px; text-align: left; padding: 10px 12px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface-2); cursor: pointer; }
+.vibe.on { border-color: var(--btn); background: var(--accent-soft); }

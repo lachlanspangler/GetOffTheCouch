@@ -10,10 +10,11 @@ import { buildPlan, DEFAULT_PROFILE, GOALS, type Goal, type Profile, type Slot }
 import { usePersistent } from "../lib/store";
 import { fmtDay } from "../lib/time";
 import type { Event } from "../lib/types";
+import { vibes } from "../lib/vibes";
 
 const SLOTS: Record<Slot, string> = { weeknights: "Weeknights", weekends: "Weekends", daytime: "Weekday daytime" };
 
-function Onboarding({ initial, onDone }: { initial: Profile; onDone: (p: Profile) => void }) {
+function Onboarding({ initial, onDone, events }: { initial: Profile; onDone: (p: Profile) => void; events: Event[] }) {
   const { index, feed } = useApp();
   const [p, setP] = useState<Profile>(initial);
   const [step, setStep] = useState(0);
@@ -95,6 +96,22 @@ function Onboarding({ initial, onDone }: { initial: Profile; onDone: (p: Profile
               {feed?.neighborhoods?.map((n) => <option key={n.name} value={n.name}>{n.name}</option>)}
             </select>
           </label>
+          {(feed?.neighborhoods?.length ?? 0) > 0 && (
+            <div class="vibes" aria-label="What's going on in each neighborhood">
+              {vibes(events, feed!.neighborhoods!).slice(0, 9).map((v) => (
+                <button
+                  key={v.name}
+                  class={`vibe ${p.neighborhood === v.name ? "on" : ""}`}
+                  aria-pressed={p.neighborhood === v.name}
+                  onClick={() => setP({ ...p, neighborhood: p.neighborhood === v.name ? null : v.name })}
+                >
+                  <strong>{v.name}</strong>
+                  <span class="small muted">{v.total} things nearby{v.free ? ` · ${v.free} free` : ""}</span>
+                  <span class="small">{v.top.map((t) => `${index.taxonomy[t.family]?.label ?? t.family} (${t.n})`).join(" · ") || "quiet so far"}</span>
+                </button>
+              ))}
+            </div>
+          )}
           <label class="field">
             <span>When do you arrive? (leave blank if you're already here)</span>
             <input type="date" value={p.startDate ?? ""} onInput={(e) => setP({ ...p, startDate: (e.target as HTMLInputElement).value || null })} />
@@ -129,6 +146,7 @@ export function Plan({ events }: { events: Event[] }) {
   if (!profile || editing) {
     return (
       <Onboarding
+        events={events}
         initial={profile ?? DEFAULT_PROFILE}
         onDone={(p) => {
           setProfile(p);
