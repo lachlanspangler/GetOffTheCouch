@@ -762,12 +762,14 @@
    "value": 3,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Helps people choose where to live/hang out",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: web/src/lib/vibes.ts"
+   ]
   },
   {
    "id": "I-052",
