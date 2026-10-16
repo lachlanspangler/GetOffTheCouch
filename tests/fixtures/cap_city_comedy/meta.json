@@ -1,0 +1,9 @@
+{
+  "unit": "cap_city_comedy@austin",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T08:01:43+00:00",
+  "files": {
+    "page_0.html": "https://www.capcitycomedy.com/"
+  },
+  "note": "real page fetched live by `gotc run`; only its JSON-LD block is kept, and that block's event array is trimmed to the first 8 records (each record unmodified)"
+}

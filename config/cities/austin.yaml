@@ -324,3 +324,20 @@ sources:
         " vs": sports_watch.game
         "Texas Stars": sports_watch.game
         "Austin Spurs": sports_watch.game
+  - id: cap_city_comedy
+    adapter: jsonld
+    name: Cap City Comedy Club (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.capcitycomedy.com/
+    expect_min_records: 20
+    notes: >-
+      The homepage carries one Event JSON-LD record per show (~260, UTC start times; no offers). robots.txt allows
+      everything and the terms have no automated-access clause. One page per run.
+    params:
+      urls: [https://www.capcitycomedy.com/]
+      horizon_days: 45
+      organizer: Cap City Comedy Club
+      default_category: nightlife.comedy
+      category_map: {Event: nightlife.comedy}   # every record is a stand-up show

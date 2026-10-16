@@ -467,3 +467,15 @@ def test_stg_listing_date_only_and_placeholder_valid_from():
     # education classes, tours and the online session are skipped, not rejected
     assert not any("Kerry Hall" in str(ev.location.venue_name) or "Tour" in ev.title for ev, _ in parsed.valid)
     assert "STG Dance for PD® Virtual Sessions" not in evs and parsed.skipped == 3
+
+
+def test_cap_city_comedy_place_with_nested_events_list():
+    """Cap City Comedy Club: one Place block whose non-standard "Events" key holds every show (UTC times)."""
+    parsed = _real("cap_city_comedy")
+    assert len(parsed.valid) == 8 and not parsed.rejects
+    first = min((ev for ev, _ in parsed.valid), key=lambda e: e.start)
+    assert first.title == "Special Event: Tisha Campbell"
+    assert first.start.isoformat() == "2026-10-17T00:00:00+00:00"  # = 7 PM CDT on Oct 16
+    assert first.location.venue_name == "Cap City Comedy Club"
+    assert first.location.address == "11506 Century Oaks Terrace, Bldg B Unit 100, Austin, TX"
+    assert {ev.category for ev, _ in parsed.valid} == {"nightlife.comedy"}
