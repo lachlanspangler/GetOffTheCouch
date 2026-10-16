@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 34 · **done** 62 · **rejected** 7 · **blocked** 6
+**open** 33 · **done** 63 · **rejected** 7 · **blocked** 6
 
 ## Up next (open, by score)
 
@@ -27,7 +27,6 @@ unless docs/HEALTH.md has something red.
 | I-098 | Per-room venue capacities (Icehouse main room vs whole building) to tighten attendance bands | data-quality | 3 | 2 | 1.2 | open | Whole-building capacities over-estimate small-room shows |
 | I-100 | Health check: all-past start dates while the page lists upcoming items → flag series-first-date sources | health | 3 | 2 | 1.2 | open | Caught Triple Door by hand; make it automatic |
 | I-102 | City concert digest: top 10 shows this week with lowest price per seller | features | 3 | 2 | 1.2 | open | Shareable, newsletter-ready view of the price comparison |
-| I-033 | Map view clustering + 'near me' by neighborhood | ux | 4 | 3 | 1.07 | open | Distance filter in the pitch |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
@@ -95,6 +94,7 @@ unless docs/HEALTH.md has something red.
 | I-038 | City onboarding checklist (DMV, voter registration, library card, transit pass) as deadlines | features | 4 | 2 | 1.6 | done | Every new resident has the same 10 deadlines; nobody lists them — 2026-10-16 done: dup of starter pack I-049 (shipped) |
 | I-035 | Freshness SLA per field shown on cards ('checked 2h ago') | ux | 4 | 1 | 3.6 | done | Trust — 2026-10-16 done: 'checked 2h ago' on every card + stale badges |
 | I-034 | Recorded-fixture adapter tests (tests never hit the internet) | infra | 5 | 2 | 2.25 | done | Engineering bar — 2026-10-16 done: tests/fixtures + FixtureTransport; never hits network |
+| I-033 | Map view clustering + 'near me' by neighborhood | ux | 4 | 3 | 1.07 | done | Distance filter in the pitch — 2026-10-16 done: markercluster |
 | I-032 | NYC permitted events (block parties, street fairs) via Socrata | sources | 5 | 1 | 4.5 | done | Exactly the 'block party' pitch, keyless — 2026-10-16 done: nyc_permitted_events (social event types only), 549 records live 2026-10-16 |
 | I-031 | Library systems via BiblioCommons RSS (Hennepin, Chicago, Boston) | sources | 4 | 2 | 1.6 | done | Free classes, clubs, talks — high-quality keyless data — 2026-10-16 done: bibliocommons adapter; hclib/chipublib/bpl live 2026-10-16 (254/969/440 records) |
 | I-027 | Shareable links (state in URL) + saved events in localStorage | features | 4 | 2 | 1.8 | done | Share a plan with a friend — 2026-10-16 done: hash router encodes view+filters; saved in localStorage |

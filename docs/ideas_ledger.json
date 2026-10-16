@@ -494,12 +494,14 @@
    "value": 4,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Distance filter in the pitch",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: markercluster"
+   ]
   },
   {
    "id": "I-034",
