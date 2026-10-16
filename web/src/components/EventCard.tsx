@@ -94,7 +94,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
             </span>
           )}
           {avail && avail !== "No ticket needed" && avail !== "On sale" && <span class="badge">{avail}</span>}
-          {att && e.kind !== "opening" && (
+          {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && (
             <span class="badge badge-ghost" title={e.attendance?.method}>
               <Icon name="users" size={12} /> {att}
             </span>

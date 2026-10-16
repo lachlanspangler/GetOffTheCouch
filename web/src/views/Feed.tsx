@@ -33,6 +33,7 @@ export function Feed({ events }: { events: Event[] }) {
       </div>
     );
   }
+  for (const gs of byDay.values()) gs.sort((a, b) => Number(!!a.event.all_day) - Number(!!b.event.all_day) || a.event.start.localeCompare(b.event.start));
   const today = dayKey(now, tz);
   const tomorrow = dayKey(new Date(now.getTime() + 86_400_000), tz);
   return (
