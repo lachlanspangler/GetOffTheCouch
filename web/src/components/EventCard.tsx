@@ -50,6 +50,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
   const price = priceLabel(e);
   const avail = availabilityLabel(e.tickets?.availability);
   const att = estimateLabel(e.attendance);
+  const hasSpots = e.tickets?.spots_left != null && e.registration?.method !== "derived";
   const isSaved = saved.includes(e.id);
   const primary = e.offers?.find((o) => o.kind === "registration") ?? e.offers?.[0];
   const sources = e.sources.map((s) => sourceName(s.source_id, sourceNames));
@@ -104,17 +105,21 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
         <div class="badges">
           <DeadlineBadge e={e} compact />
           {price ? <span class={`badge ${price === "Free" ? "badge-free" : ""}`}>{price}</span> : null}
-          {e.tickets?.spots_left != null && e.registration?.method !== "derived" && (
-            <span class={`badge ${e.tickets.spots_left <= 2 ? "badge-hot" : "badge-info"}`}>
-              {e.tickets.spots_left === 0 ? "Full" : `${e.tickets.spots_left}${e.tickets.spots_total ? ` of ${e.tickets.spots_total}` : ""} spots left`}
+          {hasSpots && (
+            <span class={`badge ${(e.tickets!.spots_left ?? 0) <= 2 ? "badge-hot" : "badge-info"}`}>
+              {e.tickets!.spots_left === 0
+                ? avail === "Waitlist" ? "Full · waitlist" : "Full"
+                : `${e.tickets!.spots_left}${e.tickets!.spots_total ? ` of ${e.tickets!.spots_total}` : ""} spot${e.tickets!.spots_left === 1 ? "" : "s"} left`}
             </span>
           )}
-          {e.tickets?.selling_fast && (
+          {e.tickets?.selling_fast && !hasSpots && (
             <span class="badge badge-hot" title={e.tickets.signal ?? ""}>
               <Icon name="flame" size={12} /> Selling fast
             </span>
           )}
-          {avail && avail !== "No ticket needed" && avail !== "On sale" && <span class="badge">{avail}</span>}
+          {avail && !["No ticket needed", "On sale"].includes(avail) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
+            <span class="badge">{avail}</span>
+          )}
           {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && (
             <span class="badge badge-ghost" title={e.attendance?.method}>
               <Icon name="users" size={12} /> {att}
