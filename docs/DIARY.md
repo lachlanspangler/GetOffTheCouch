@@ -218,3 +218,39 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 - 2026-10-16 07:22 UTC · run 34 ok: units[1 ok] → 416 events in 1 cities
 - 2026-10-16 07:23 UTC · run 35 ok: units[1 ok] → 428 events in 1 cities
 - 2026-10-16 07:26 UTC · run 36 partial: units[1 failed] → 428 events in 1 cities
+
+## 2026-10-16 07:45 UTC: session 2 start: bearings, concert merge, newcomer walkthrough
+**State on arrival:**
+- The repo is pushed. CI passed on GitHub (run 38862399708).
+- The Refresh workflow is registered but hadn't fired its first cron yet. That's normal on a new repo, and I can't trigger it without auth.
+- The Pages API returns 404, so the user still has to enable Pages.
+- No `.env` and no API keys.
+- `make setup && make check` were green (294 tests).
+
+**Did:**
+- **Fixed `make pipeline`.** It was broken because `-v` must precede the subcommand. The first run then skipped all 80 units as not due: data ~7h old, within SLA.
+- **Concerts:**
+  - Salvaged the stopped concert agent's uncommitted WIP (18 venue sources, real fixtures, tests) and merged the branch.
+  - 17/18 venues are healthy, ~550 concerts with face-value prices. Triple Door is disabled: its JSON-LD gives series-first dates.
+- **Ticketmaster:** future on-sale and presale times become reported "Tickets go on sale" deadlines.
+- **Dedup:** a test merges a real venue-calendar show with a Ticketmaster record.
+- **Cards:** "from $X · N sellers" plus a price-trend badge (only with ≥24h of snapshots).
+- **CI:** cold-cache geocoding is bounded (`GOTC_GEOCODE_BUDGET=40`) so the refresh fits its timeout. `run --source` rebuilds only its cities.
+
+**Newcomer walkthrough (before screenshots in docs/screenshots/before/), problems found and fixed:**
+1. A Volo card said "Registration closed" *and* "Registration open". The deadline had passed since the hourly fetch. Availability is now reconciled at build time and against the viewer's clock.
+2. Highlights repeated in the day list below.
+3. Austin's top pick was a UT dorm event, and Miami's was a *teen* committee. `kids_teens` and `campus` tags now demote these for adults, with stated reasons. Highlights are capped at 2 per source.
+4. Library signups produced "~1" crowd sizes. Cards no longer show estimates when signup counts exist.
+5. On mobile, filters filled the first screen. They now sit behind "Filters (N)".
+6. Campus feeds included employee-benefit notices. Campus items that only reach the catch-all category are skipped and counted (UT 523 → 271).
+7. Date-only items showed "12 AM"; they now show "All day".
+
+**Decided:**
+- **Campus feeds trade recall for precision.** Newcomers want public things.
+- **Triple Door is disabled, not patched.** Correct dates aren't available.
+
+**In flight (agents):**
+- Denver/Seattle/Austin coverage
+- RunSignup races (deadlines everywhere), Miami/Boston openings, Team Trivia
+- Sourced venue capacities
