@@ -1014,12 +1014,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Real newcomer budget hack; text patterns are reliable",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: enrich free_food"
+   ]
   },
   {
    "id": "I-069",
@@ -1028,12 +1030,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Tags already derived; expose as filter chips",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: FilterBar tag chips"
+   ]
   },
   {
    "id": "I-070",
