@@ -133,7 +133,11 @@ class TribeEventsAdapter(Adapter):
 
 @register
 class LocalistAdapter(Adapter):
-    """Localist: https://developer.localist.com/doc/api — GET /api/2/events?days=N&pp=100&page=P"""
+    """Localist: https://developer.localist.com/doc/api — GET /api/2/events?days=N&pp=100&page=P
+
+    Filters: ``type: <id>`` (one filter ID) or ``types: [<id>, …]`` (any of several, sent as ``type[]=``); the IDs
+    come from ``GET /api/2/events/filters`` (e.g. a "General Public" audience or public event types).
+    """
 
     name = "localist"
 
@@ -144,6 +148,9 @@ class LocalistAdapter(Adapter):
         self.check_config(ctx.source)
         p = ctx.params
         url = p["base_url"].rstrip("/") + "/api/2/events"
+        if types := p.get("types"):
+            # any-of filter IDs: Localist ORs repeated `type[]=` values (a repeated plain `type=` ANDs them)
+            url += "?" + "&".join(f"type%5B%5D={int(t)}" for t in types)
         payloads: list[Payload] = []
         complete = True
         for page in range(1, int(p.get("max_pages", 10)) + 1):

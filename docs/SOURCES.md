@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads, philadelphia). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads, philadelphia, pittsburgh). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -352,6 +352,16 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `drexel_athletics` | philadelphia | SIDEARM ICS / `ics` | https://drexeldragons.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | as above | events · 24h | B | 30 |
 | `sju_athletics` | philadelphia | SIDEARM ICS / `ics` | https://sjuhawks.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | as above | events · 24h | B | 30 |
 | `volo_philadelphia` | philadelphia | Volo discover pages / `volo` | https://www.volosports.com/discover/philadelphia?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 13 |
+| `pitt_events` | pittsburgh | Localist / `localist` (`types` = public event types, sent as `type[]`) | https://calendar.pitt.edu/api/2/events | none | ≤3 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events`; event types → categories; regional campuses skipped | events · 24h | B | 51 |
+| `cmu_events` | pittsburgh | LiveWhale v2 JSON / `livewhale` | https://events.cmu.edu/live/json/events/max/100/response_fields/… | none | 1 request/day | allowed | as `umn_events`; "Exclude from Main Calendar" items skipped | events · 24h | B- (≈ next 5 days only: v2 caps at 100) | 26 |
+| `pitt_athletics` | pittsburgh | SIDEARM ICS / `ics` | https://pittsburghpanthers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = LOCATION starts with "Pittsburgh" | events · 24h | B | 31 |
+| `duquesne_athletics` | pittsburgh | SIDEARM ICS / `ics` | https://goduquesne.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | as above | events · 24h | B | 27 |
+| `pittsburgh_parks_events` | pittsburgh | WP The Events Calendar / `tribe` | https://pittsburghparks.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 20 |
+| `carnegie_museums_events` | pittsburgh | WP The Events Calendar / `tribe` | https://carnegiemuseums.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as above; Powdermill (Rector) skipped | events · 24h | B+ | 41 |
+| `rivers_of_steel_events` | pittsburgh | WP The Events Calendar / `tribe` | https://riversofsteel.com/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above | events · 24h | B | 10 |
+| `ppg_paints_arena` | pittsburgh | carbonhouse RSS / `rss_events` | https://www.ppgpaintsarena.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (Penguins, concerts) | 62 |
+| `thunderbird_music_hall` | pittsburgh | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://thunderbirdmusichall.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), ticket link | concerts · 12h | C+ | 19 |
+| `pittsburgh_cares` | pittsburgh | Galaxy Digital / `galaxydigital` | https://pittsburghcares.galaxydigital.com/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title | volunteer · 24h | B+ | 23 |
 
 **Tried and not added (batch A).**
 
@@ -419,3 +429,9 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Philadelphia volunteer centers on Galaxy Digital (uwgpsnj, phillyvolunteers, philadelphia) | philadelphia | "Bad Domain" — no tenant found | Galaxy probes |
 | Team Trivia / Challenge Entertainment | philadelphia | no market covers Philadelphia | sitemaps |
 | Fairmount Park Conservancy, World Cafe Live, Philly Fun Guide | philadelphia | 522 / robots.txt timed out (couldn't verify) | probe |
+| Carnegie Library of Pittsburgh; Downtown Pittsburgh Partnership | pittsburgh | robots.txt answers 403 (disallow-all) | probe |
+| WPRDC (data.wprdc.org, CKAN) | pittsburgh | robots.txt `Disallow: /api/` | robots.txt |
+| Allegheny County Library Association (BiblioCommons `acl`) | pittsburgh | gateway answered 504 twice, even for a one-day window (big systems time out; retry later) | gateway probes |
+| Pittsburgh Cultural Trust, Pittsburgh Symphony, Pittsburgh Public Theater, Mr. Smalls, Club Cafe, City Winery | pittsburgh | no Tribe/Event JSON-LD/RSS | probe |
+| Team Trivia (trivia-in-western-pa) | pittsburgh | region lists only Carlisle/State College/Connellsville/Lock Haven venues | region page |
+| Stage AE, Roxian Theatre | pittsburgh | Live Nation venues (ToS) | — |
