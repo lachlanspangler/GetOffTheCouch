@@ -129,3 +129,47 @@ def test_fetch_rejects_html_and_honours_robots(tmp_path: Path, settings: Setting
     fr = get_adapter("csvfile").fetch(fetch_ctx(u, client(t, tmp_path), settings))
     assert fr.payloads[0].content_type == "csv" and fr.complete
     assert any(c.endswith("/robots.txt") for c in t.calls)
+
+
+BOS = "boston_food_openings_csv/payload_0.csv"
+
+
+def test_boston_food_licenses_from_the_csv_download() -> None:
+    parsed = parse(unit("boston_food_openings_csv"), BOS)
+    assert parsed.rejects == []
+    titles = sorted(ev.title for ev, _ in parsed.valid)
+    assert titles == [
+        "Bloom — new food license",
+        "Bun Buds - K101 — new food license",
+        "Mochi & Brew - K118 — new food license",
+        "Rosa's Kitchen - K111 — new food license",
+        "Taco Mex — new food license",
+        "The Halal Fusion — new food license",
+    ]
+    bloom = next(ev for ev, _ in parsed.valid if ev.title.startswith("Bloom"))
+    # license_add_dt_tm "2026-09-09 16:40:00.293+00" → the local (Boston) calendar date, all day
+    assert bloom.start == datetime(2026, 9, 9, 0, 0, tzinfo=ET) and bloom.all_day
+    assert bloom.location.lat == 42.353425169987005 and bloom.location.address == "23 Northern, Boston, MA"
+    assert bloom.description and bloom.description.startswith("License signal, not a confirmed opening date.")
+    # food-hall kiosks at one property stay separate records
+    assert len({ev.record_id for ev, _ in parsed.valid}) == 6
+    blob = dump(parsed)
+    assert "7186667214" not in blob and "dayphn" not in blob  # phone column dropped
+
+
+def test_boston_discovers_the_current_download_link(tmp_path: Path, settings: Settings) -> None:
+    page = (FIXTURES / "boston_food_openings_csv/dataset_page.html").read_bytes()
+    t = FixtureTransport()
+    t.add("data.boston.gov/robots.txt", (
+        "User-agent: *\nDisallow: /api/\nDisallow: /datastore/*\nDisallow: /dataset/activity/*\n"
+    ))  # fmt: skip
+    t.add(r"/dataset/active-food-establishment-licenses$", page)
+    t.add(r"/resource/f1e13724-284d-478c-b8bc-ef042aa5b70b/download/tmppi79touu\.csv$", (FIXTURES / BOS).read_bytes())
+    fr = get_adapter("csvfile").fetch(fetch_ctx(unit("boston_food_openings_csv"), client(t, tmp_path), settings))
+    assert fr.payloads[0].url.endswith("/download/tmppi79touu.csv")
+    assert not any("/api/" in c for c in t.calls)  # never the robots-disallowed CKAN API
+
+
+def test_robots_disallowed_api_path_is_never_used_by_config() -> None:
+    src = unit("boston_food_openings_csv").source
+    assert "/api/" not in src.params["url"] and "datastore" not in src.params["url"]

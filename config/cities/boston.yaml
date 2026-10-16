@@ -191,3 +191,35 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/boston.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+
+  # ── openings via the resource CSV download (the CKAN API is robots-disallowed; /dataset/… pages and
+  #    /dataset/…/resource/…/download/… files are not). The download file name changes when the city
+  #    re-publishes, so the dataset page is read each run to find the current link (csvfile link_regex). ──
+  - id: boston_food_openings_csv
+    adapter: csvfile
+    name: Boston new food establishment licenses (CSV download)
+    data_type: openings
+    homepage: https://data.boston.gov/dataset/active-food-establishment-licenses
+    min_interval_s: 10       # robots.txt asks Crawl-delay: 10
+    expect_min_records: 3
+    notes: >-
+      Active Food Establishment Licenses, full-table CSV (~0.5 MB, daily). Newness date = license_add_dt_tm
+      (when the license was added; UTC timestamps → local date). dayphn_cleaned is dropped by the privacy scrub.
+      robots.txt (2026-10-16) disallows /api/ and /datastore/* but not /dataset/<slug> or resource downloads.
+    params:
+      url: https://data.boston.gov/dataset/active-food-establishment-licenses
+      link_regex: 'href="(https://data\.boston\.gov/dataset/[^"]+/resource/[^"]+/download/[^"]+\.csv)"'
+      kind: opening
+      lookback_days: 60
+      window: { field: license_add_dt_tm }
+      include: { licstatus: [Active] }
+      fields: { title: [dbaname, businessname], start: license_add_dt_tm, category: descript,
+                address: [address, city, state], lat: latitude, lon: longitude }
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas|cvs|walgreens|7-eleven)\\b"]
+      title_template: "{title} — new food license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Boston added a "{descript}" food establishment
+        license for this address on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.boston.gov/dataset/active-food-establishment-licenses
+      extras: { signal: food_license_added }

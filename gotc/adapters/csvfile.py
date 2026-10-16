@@ -1,4 +1,4 @@
-"""Plain CSV file downloads (state license extracts, open-data "download CSV" links) — config-driven, like Socrata.
+r"""Plain CSV file downloads (state license extracts, open-data "download CSV" links) — config-driven, like Socrata.
 
 Some agencies publish only a nightly CSV file, no query API (Florida DBPR's alcoholic-beverage license extracts).
 This adapter downloads the file (conditional GET: ``Last-Modified``/``ETag`` make unchanged days cheap), decodes
@@ -7,6 +7,7 @@ option, the privacy scrubbing (``PII_KEY``) and ``entity_only_fields`` work exac
 
     params:
       url: https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv
+      link_regex: 'href="([^"]+/download/[^"]+\.csv)"'   # optional: ``url`` is an HTML page; download the matching link
       encoding: [utf-8, cp1252]        # tried in order (strict); the last one always decodes (with replacement)
       columns: [profession, county, …]  # for headerless files: positional column names (else the header row is used)
       delimiter: ","
@@ -32,11 +33,13 @@ organisation ("… LLC", "… Restaurant"). Column *b* itself is dropped by the 
 from __future__ import annotations
 
 import csv
+import html
 import io
 import re
 from collections.abc import Iterator
 from datetime import timedelta
 from typing import Any
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 from gotc.adapters.base import Adapter, FetchContext, FetchResult, ParseContext, Payload, register
@@ -70,12 +73,26 @@ class CSVFileAdapter(Adapter):
 
     def fetch(self, ctx: FetchContext) -> FetchResult:
         self.check_config(ctx.source)
-        r = ctx.http.get(str(ctx.params["url"]))
+        url = str(ctx.params["url"])
+        if link_rx := ctx.params.get("link_regex"):
+            url = self._discover(ctx, url, str(link_rx))
+        r = ctx.http.get(url)
         if not r.content.strip():
-            raise ValueError(f"{ctx.params['url']}: empty file")
+            raise ValueError(f"{url}: empty file")
         if r.content.lstrip()[:1] == b"<":
-            raise ValueError(f"{ctx.params['url']}: got HTML, not CSV — moved or blocked?")
-        return FetchResult([Payload.from_response(r, ctx.now, "csv")], complete=True)
+            raise ValueError(f"{url}: got HTML, not CSV — moved or blocked?")
+        # keep the URL we asked for: a download may redirect to a pre-signed storage URL (credentials in the query)
+        p = Payload(url, r.status, r.content, ctx.now, "csv", r.from_cache, r.elapsed_ms)
+        return FetchResult([p], complete=True)
+
+    @staticmethod
+    def _discover(ctx: FetchContext, page_url: str, link_rx: str) -> str:
+        """``url`` is an HTML page (a dataset page): find the current CSV link on it with ``link_regex``."""
+        page = ctx.http.get(page_url)
+        m = re.search(link_rx, page.text)
+        if not m:
+            raise ValueError(f"{page_url}: no link matching {link_rx!r} — dataset page changed?")
+        return html.unescape(urljoin(page_url, m.group(1) if m.groups() else m.group(0)))
 
     def parse(self, payload: Payload, ctx: ParseContext) -> Iterator[dict[str, Any]]:
         yield from map_rows(self.rows(payload, ctx), ctx)
