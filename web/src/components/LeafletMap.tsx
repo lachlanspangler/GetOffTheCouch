@@ -10,6 +10,7 @@ export interface Pin {
   hue: number;
   title: string;
   sub: string;
+  approx?: boolean; // low-confidence location → hollow pin
 }
 
 export function LeafletMap({
@@ -50,7 +51,8 @@ export function LeafletMap({
           color: `hsl(${p.hue} 70% 35%)`,
           weight: 2,
           fillColor: `hsl(${p.hue} 80% 55%)`,
-          fillOpacity: 0.85,
+          fillOpacity: p.approx ? 0.15 : 0.85,
+          dashArray: p.approx ? "3 3" : undefined,
         });
         const div = document.createElement("div");
         div.className = "map-pop";

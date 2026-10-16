@@ -19,6 +19,7 @@ export function MapView({ events }: { events: Event[] }) {
           lon: e.location.lon as number,
           hue: hue(e.category),
           title: e.title,
+          approx: (e.location.geocode_confidence ?? 1) < 0.5,
           sub: `${e.kind === "opening" ? "New spot" : `${fmtDay(e.start, e.timezone)} · ${fmtTime(e.start, e.timezone)}`} · ${e.location.venue_name ?? ""}`,
         })),
     [events],
@@ -30,6 +31,7 @@ export function MapView({ events }: { events: Event[] }) {
       <LeafletMap center={feed.center as [number, number]} pins={pins} onPick={(id) => go({ city: feed.city, eventId: id })} label={`Map of ${feed.city_name} events`} />
       <p class="muted small map-note">
         {pins.length} on the map{missing > 0 ? ` · ${missing} without a mappable address (see the list)` : ""}
+        {pins.some((p) => p.approx) && " · hollow pins are approximate (e.g. somewhere on a campus)"}
       </p>
     </div>
   );
