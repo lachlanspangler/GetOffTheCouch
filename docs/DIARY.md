@@ -200,3 +200,10 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 - 2026-10-16 06:26 UTC · run 18 ok: units[1 ok] → 62 events in 1 cities
 - 2026-10-16 06:27 UTC · run 19 ok: units[1 ok] → 83 events in 1 cities
 - 2026-10-16 06:27 UTC · run 20 ok: units[1 ok] → 133 events in 1 cities
+
+## 2026-10-16 09:30 UTC: Denver / Seattle / Austin coverage (session 2)
+**Did:** 23 new units, all live-run once with 0 rejects. Denver (526 records): Jefferson County and Arapahoe library calendars (BiblioCommons), Denver Arts & Venues' Performing Arts Complex and the Coliseum, DU Pioneers home games, and Cervantes'. Seattle (916): KCLS, the seattle.gov city calendar (Trumba), MOHAI, Town Hall, Visit Ballard, STG Presents, Huskies home games, Earshot Jazz, Laughs Comedy and Unexpected Productions. Austin (341): ACL Live, H-E-B Center, Cap City Comedy, Flamingo Cantina, the Wildflower Center, The Contemporary Austin and Austin Parks Foundation. Added a new `rss_events` adapter: carbonhouse `/events/rss` with the RSS event module, reusable for any carbonhouse venue. Smaller adapter options: `jsonld` `date_only`, cancelled/postponed titles, and a fix so `$`-less text never becomes a price. `tribe` got a `venue` fallback and `ics` got `force_category`.
+**Broke:** STG's JSON-LD times are 7 h early, so it runs date-only. Come and Take It Live has no JSON-LD and was removed. A "… Age 16+" text price was being read as $16; that's fixed.
+**Decided (and why):** Skipped Live Nation venue pages and Prekindle, whose terms forbid scraping. Skipped AEG's JSON blob because its terms are unconfirmed (I-092). Kept Town Hall and Contemporary Austin, whose Tribe REST API answers 200 while their HTML sits behind Cloudflare. We never touch the challenge, and if the API starts challenging, the unit fails.
+**Verified:** Live runs and fixture tests only. I didn't do a dashboard screenshot in this worktree.
+**Ideas:** I-066 done; I-092–I-097 added.
