@@ -692,12 +692,14 @@
    "value": 4,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "League signups come in seasonal waves; a Gantt-like strip shows what's open now",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: RegistrationWaves in Deadlines view"
+   ]
   },
   {
    "id": "I-048",
