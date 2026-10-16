@@ -204,12 +204,14 @@
    "value": 5,
    "effort": 4,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "The product people see",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: feed/deadlines/calendar/map/plan/saved/health views"
+   ]
   },
   {
    "id": "I-016",
@@ -218,12 +220,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "The core 'you're new, here's your first month' promise",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 4-step onboarding → explained 30-day plan"
+   ]
   },
   {
    "id": "I-017",
@@ -232,12 +236,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "'Remind me before registration closes' without a backend",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: .ics with VALARM 2d/3h before deadlines"
+   ]
   },
   {
    "id": "I-018",
@@ -246,12 +252,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Outdoor plans need forecasts; NWS is free, US-only, perfect fit",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: NWS hourly forecast attached at build, cached 3h"
+   ]
   },
   {
    "id": "I-019",
@@ -274,12 +282,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "doing",
    "why": "Beer leagues have no APIs; curated + monitored is the honest path",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress"
+   ]
   },
   {
    "id": "I-021",
@@ -302,12 +312,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "It must auto-update",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: ci.yml + hourly refresh.yml, state on orphan branch"
+   ]
   },
   {
    "id": "I-023",
@@ -316,12 +328,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Failures loud even when nobody watches the dashboard",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: scripts/health_issues.py opens/closes per unit"
+   ]
   },
   {
    "id": "I-024",
@@ -344,12 +358,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Observability inside the product",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: in-app Health view + header freshness pill"
+   ]
   },
   {
    "id": "I-026",
@@ -358,12 +374,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Newcomers want people, not just events",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: filter chip + social score reasons in drawer"
+   ]
   },
   {
    "id": "I-027",
@@ -372,12 +390,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Share a plan with a friend",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: hash router encodes view+filters; saved in localStorage"
+   ]
   },
   {
    "id": "I-028",
@@ -470,12 +490,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Engineering bar",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: tests/fixtures + FixtureTransport; never hits network"
+   ]
   },
   {
    "id": "I-035",
@@ -484,12 +506,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Trust",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 'checked 2h ago' on every card + stale badges"
+   ]
   },
   {
    "id": "I-036",
@@ -626,6 +650,118 @@
    "confidence": 0.8,
    "status": "rejected",
    "why": "No legit source exposes seat inventory to third parties; we show labeled signals with bands instead",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-046",
+   "title": "Evidence-quote page-watch as a generic verifier for any curated fact",
+   "area": "data-quality",
+   "value": 5,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Shipped inside curated adapter; generalize to venue capacities and recurring schedules",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-047",
+   "title": "'Leagues registering now' wave timeline per city (opens→closes bars)",
+   "area": "features",
+   "value": 4,
+   "effort": 3,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "League signups come in seasonal waves; a Gantt-like strip shows what's open now",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-048",
+   "title": "Rainy-day swap: suggest an indoor alternative when an outdoor pick has ≥60% rain",
+   "area": "features",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Weather is attached now; plans can self-adjust",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-049",
+   "title": "City 'starter pack' deadlines (library card, voter registration, transit pass, DMV 60-day rule)",
+   "area": "features",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Every new resident has the same deadlines; state rules are public",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-050",
+   "title": "Venue capacity registry (config/venues) with Wikidata P1083 + source URLs",
+   "area": "data-quality",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Better attendance bands; currently mostly category priors",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-051",
+   "title": "Neighborhood vibe cards: event mix by neighborhood (from coords)",
+   "area": "features",
+   "value": 3,
+   "effort": 3,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Helps people choose where to live/hang out",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-052",
+   "title": "Per-card 'report a problem' link → prefilled GitHub issue",
+   "area": "data-quality",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Crowd-sourced correction loop without accounts",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-053",
+   "title": "Diff alerts: 'new this week' badge from first_seen",
+   "area": "ux",
+   "value": 4,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "first_seen is tracked already; newcomers love fresh stuff",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
