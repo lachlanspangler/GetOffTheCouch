@@ -77,3 +77,14 @@ def test_fetch_sends_local_startdate_and_days(tmp_path, settings):
     assert fr.complete and len(fr.payloads) == 1
     url = next(c for c in t.calls if "kalendaro.json" in c)
     assert "startdate=20261015" in url and "days=14" in url  # 2026-10-16T03:00Z is still Oct 15 in Seattle
+
+
+def test_seattle_city_calendar_skips_government_meetings():
+    """seattle.gov's city-wide Trumba calendar (real recorded page): council/committee meetings are skipped by
+    the source's exclude_location rule; parks, work parties and markets are kept."""
+    parsed = parse(unit("seattle_city_events"), "seattle_city_events/payload_0.json")
+    assert not parsed.rejects
+    titles = {ev.title for ev, _ in parsed.valid}
+    assert parsed.skipped == 3  # School Traffic Safety Committee, Revenue Forecast Council, Select Budget Committee
+    assert not any(("Committee" in t or "Council" in t) for t in titles)
+    assert {"Open Adoption Hours", "Delridge Farmers Market", "Carkeek STARS Work Party"} <= titles

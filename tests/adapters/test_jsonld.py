@@ -451,3 +451,19 @@ def test_cervantes_rockhouse_detail_pages():
     first = min((ev for ev, _ in parsed.valid), key=lambda e: e.start)
     assert first.title.startswith("Zach Nugent’s Dead Set")  # &#8217; unescaped
     assert first.price.min is None  # Rockhouse sends "price": 0 for "see the ticket page"
+
+
+def test_stg_listing_date_only_and_placeholder_valid_from():
+    """STG Presents (Modern Events Calendar listing): clock times are 7 h early, so the config keeps dates only;
+    offers.validFrom is the event date (not an on-sale date) and price "0" is a placeholder."""
+    parsed = _real("stg_presents")
+    evs = _by_title(parsed)
+    assert all(ev.all_day for ev, _ in parsed.valid)
+    bamford = [ev for ev, _ in parsed.valid if ev.title == "Maria Bamford"]
+    assert len(bamford) == 1 and bamford[0].start.isoformat() == "2026-10-17T00:00:00-07:00"  # two shows → one day
+    assert evs["almost monday"].location.venue_name == "The Neptune Theatre"
+    assert all(ev.availability != "not_yet_on_sale" and not ev.registration for ev, _ in parsed.valid)
+    assert all(ev.price.min is None for ev, _ in parsed.valid)  # "0" is not a price
+    # education classes, tours and the online session are skipped, not rejected
+    assert not any("Kerry Hall" in str(ev.location.venue_name) or "Tour" in ev.title for ev, _ in parsed.valid)
+    assert "STG Dance for PD® Virtual Sessions" not in evs and parsed.skipped == 3

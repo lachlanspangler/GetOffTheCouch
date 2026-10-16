@@ -85,3 +85,16 @@ def test_fetch_pages_until_a_short_page(tmp_path, settings):
     fr = get_adapter("bibliocommons").fetch(fetch_ctx(BPL, client(t, tmp_path), settings))
     assert len(fr.payloads) == 1 and fr.complete
     assert pages[0] == {"startDate": "2026-10-15", "endDate": "2026-10-25", "page": "1"}
+
+
+def test_kcls_countywide_feed_keeps_only_branches_near_seattle():
+    """King County Library System (real recorded page): Skykomish, Federal Way, Sammamish, Carnation are out."""
+    kcls = unit("kcls_events")
+    everywhere = parse(unit("kcls_events", cities=[]), "kcls_events/payload_0.xml")
+    near = parse(kcls, "kcls_events/payload_0.xml")
+    assert not everywhere.rejects and not near.rejects
+    assert len(everywhere.valid) == 9
+    cities = {str(ev.location.address).split(", ")[-3] for ev, _ in near.valid}
+    assert cities and cities <= {"Tukwila", "Seatac", "Shoreline"}
+    assert len(near.valid) == 5
+    assert all(str(ev.location.venue_name).startswith("King County Library System – ") for ev, _ in near.valid)
