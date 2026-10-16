@@ -1,0 +1,9 @@
+{
+  "unit": "comedy_zone_jax@jacksonville",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T21:50:00+00:00",
+  "files": {
+    "page_0.html": "https://www.comedyzone.com/"
+  },
+  "note": "real homepage fetched live 2026-10-16; only its single JSON-LD block is kept, with the non-standard Place.Events list trimmed to the first 5 shows (otherwise verbatim)"
+}

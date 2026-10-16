@@ -315,3 +315,35 @@ Rejected / not used (Orlando):
 - Rollins (calendar./events. Localist/LiveWhale probes) and Valencia Localist: connection timeouts; rollins.edu/events has no feed links.
 - Orlando sidewalk café permits (6sbc-v4b9): only ~8 applications in 3.5 months and contact-heavy; not added.
 - Volo: no Orlando market. Team Trivia: no Orlando region.
+
+### Jacksonville
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `jax_library_events` | jacksonville | Communico `eeventcaldata` / `communico` | https://jaxpubliclibrary.libnet.info/eeventcaldata | none | 7 requests/day (one per day of horizon, ~60 KB each) | **undocumented** front-end JSON on the vendor host; libnet.info robots disallows only /results*, /sitesearch* (jaxpubliclibrary.org itself answers robots 403 and is never fetched) | title, sub_title, description, local start/end, branch, room, tagsArray, agesArray, registration (capacity, registrants), cost | events · 24h | B (official library data via an undocumented endpoint) | 180 |
+| `unf_events` | jacksonville | Localist / `localist` | https://events.unf.edu/api/2/events?type=41614676488110 | none | ≤ 5 pages/day; robots `Crawl-Delay: 1` | allowed (disallows only HTML ?types, old calendar paths) | title, instances, venue+geo, filters, free/ticket url; server-side "Event Audience: Public" filter + `audience_filter: institution` | events · 24h | B (public subset incl. MOCA Jacksonville workshops; some academic talks) | 92 |
+| `fl_dbpr_openings_jacksonville` | jacksonville | Florida DBPR ABT CSV / `csvfile` | https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv | none | 1 × ~14 MB/day, conditional GET | robots allows /sto/ (blocks only WP internals) | DBA (org legal name only if it looks like an organisation), series (COP only), address, **Original Licensure Date**; Location County 26 (Duval) + 20 (Clay); Owner Name dropped | openings · 24h | A- | 29 |
+| `florida_theatre_jax` | jacksonville | carbonhouse events RSS / `rss_events` | https://www.floridatheatre.com/events/rss | none | 1 request/12h (~2.2 MB) | robots allows; public syndication feed | title, ev:startdate/enddate (UTC), ev:type (Concerts/Comedy/Family Shows/Theater/Dance), link | concerts · 12h | B+ (carbonhouse feed; blank line before `<?xml` handled by safe_xml since e9381ee) | 113 |
+| `ponte_vedra_concert_hall` | jacksonville | carbonhouse events RSS / `rss_events` | https://www.pvconcerthall.com/events/rss | none | 1 request/12h | robots `User-agent: *` with no rules; St. Johns County Cultural Events venue | title, ev:startdate/enddate, ev:type, link | concerts · 12h | A- | 48 |
+| `comedy_zone_jax` | jacksonville | schema.org JSON-LD / `jsonld` | https://www.comedyzone.com/ | none | 1 request/12h | robots.txt has no rules (all commented out); no terms page linked | Event name, startDate (UTC), url, venue (Place 3130 Hartley Rd) — nested under a non-standard `Place.Events` key | events · 12h | B (official club calendar; no prices in the LD) | 87 |
+| `unf_athletics` | jacksonville | SIDEARM calendar.ics / `ics` | https://unfospreys.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows /calendar.ashx | SUMMARY, DTSTART, LOCATION (home = starts "Jacksonville") | events · 24h | A- | 33 |
+| `ju_athletics` | jacksonville | SIDEARM calendar.ics / `ics` | https://judolphins.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows /calendar.ashx | as UNF | events · 24h | A- | 47 |
+| `jax_icemen` | jacksonville | team ICS / `ics` | https://jacksonvilleicemen.com/schedule-home.ics | none | 1 request/day | robots allows; subscription feed linked from the homepage | SUMMARY (promo-night name), DESCRIPTION (matchup), DTSTART (TZID), LOCATION, URL | events · 24h | B+ (titles are promo names like "Halloween") | 15 |
+| `uw_nefl_volunteer` | jacksonville | Galaxy Digital / `galaxydigital` | https://uwnefl.galaxydigital.com/need/rss/ + detail pages | none | 24 h, ≥3 s/req, ≤15 detail pages | Galaxy robots: `*` empty Disallow; tenant title "Needs on United Way of Northeast Florida" | need title, date line/shifts, address, nonprofit, registration closes | volunteer · 24h | B | 25 (2 rejected: no date line) |
+| `volo_jacksonville` | jacksonville | Volo discover pages / `volo` | https://www.volosports.com/discover/jacksonville?category=leagues | none | ≤3 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as other Volo markets | leagues · 24h | C (market listed in sitemap; "0 ways to play" on 2026-10-16) | 0 |
+| `teamtrivia_jacksonville` | jacksonville | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-jacksonville-fl/ | none | 48 h | as teamtrivia_denver | as teamtrivia_denver | recurring · 48h | — **disabled**: region page says "0 venues, 0 nights a week" | disabled |
+
+Rejected / not used (Jacksonville):
+
+| Source | Why it isn't used | Evidence |
+|---|---|---|
+| jaxpubliclibrary.org (main site) | robots.txt answers HTTP 403 → treated as disallow-all (events come from its Communico tenant instead) | probe 2026-10-16 |
+| Downtown Jacksonville / DTJax (dtjax.com, The Events Calendar, 721 events) | robots.txt `Disallow: /*?*`; the Tribe REST API needs query parameters | dtjax.com/robots.txt |
+| jaxevents.com (VyStar Veterans Memorial Arena, Times-Union Center/PAC, Ritz Theatre, ballpark, convention center; JSON-LD present) | Legends Global Terms of Use prohibit "spiders, robots … to harvest or collect such information" | legendsglobal.com/terms-of-use/ |
+| Jack Rabbits, Underbelly (music clubs) | robots.txt disallows all | robots.txt |
+| Cummer Museum events | Cloudflare "Just a moment…" challenge | probe 2026-10-16 |
+| Daily's Place carbonhouse RSS | empty channel | probe |
+| City of Jacksonville (jacksonville.gov, events.jacksonville.gov) | Kentico pages; no feed/JSON-LD | probe |
+| Jacksonville open data | no Socrata tenant; ArcGIS Online search found no events/permit/license layers from COJ | catalog + arcgis search 2026-10-16 |
+| Jacksonville Symphony, MOSH | no machine-readable calendar (Elementor / no JSON-LD) | probe |
+| Challenge Entertainment | no shows within 60 km | national feed 2026-10-16 |
