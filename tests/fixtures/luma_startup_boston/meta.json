@@ -1,0 +1,9 @@
+{
+  "unit": "luma_startup_boston@boston",
+  "recorded_at": "2026-10-16T05:21:25+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; unmodified",
+  "urls": {
+    "payload_0.ics": "https://api.lu.ma/ics/get?entity=calendar&id=cal-BI22W7AXNavDI82"
+  }
+}
