@@ -178,6 +178,12 @@ def cmd_validate(a: argparse.Namespace, s: Settings) -> int:
             load_sp(path.stem.upper())
         except Exception as ex:
             errors.append(f"starter_pack/{path.name}: {str(ex)[:200]}")
+    from gotc.pipeline.payload import check_all
+
+    for rep in check_all(s.web_data_dir, utcnow()):  # per-city payload budgets (only if exports exist)
+        for w in rep.warnings:
+            print("WARN payload", w)
+        errors += [f"payload {f}" for f in rep.failures]
     for msg in errors:
         print("ERROR", msg)
     print(f"validate: {len(reg.cities)} cities, {len(reg.units())} units, {len(errors)} errors")

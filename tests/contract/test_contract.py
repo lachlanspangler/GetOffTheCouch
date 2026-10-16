@@ -97,3 +97,12 @@ def test_real_exports_honour_the_contract(path: Path):
 @pytest.mark.parametrize("path", DEMOS, ids=[p.stem for p in DEMOS])
 def test_demo_exports_are_flagged(path: Path):
     check_feed(json.loads(path.read_text()), demo=True)
+
+
+@pytest.mark.parametrize("path", EXPORTS, ids=[p.stem for p in EXPORTS])
+def test_real_exports_within_payload_budget(path: Path):
+    from gotc.pipeline.payload import check_city
+    from gotc.storage.db import utcnow
+
+    rep = check_city(path, utcnow())
+    assert not rep.failures, rep.failures  # SCALING.md §4.6 item 5: shard the card files before this fails
