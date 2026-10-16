@@ -503,3 +503,32 @@ Tried and not added (Portland):
 | Kickstand Comedy, PDX Jazz | PDX | Squarespace, no usable event markup | probe |
 | Friends of Trees (Tribe) | PDX | 0 events, and the homepage carries spam links (looks compromised) | probe |
 | OLCC licenses dataset `srxe-qkm2` | PDX | effective_date may reset on renewal (ADR-0006); applications received used instead | catalog columns |
+
+### Riverside (Inland Empire)
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `ucr_events` | riverside | Localist / `localist` | https://events.ucr.edu/api/2/events?type=118257 | none | ≤4 pages/day at ≥2 s (Crawl-delay 1) | robots allows | title, instances, venue + geo, filters (athletics → games), ticket url; "General Public" audience server-side; Palm Desert Center skipped; campus fallback point | events · 24h | B | 233 |
+| `corona_library_events` | riverside | LibCal ICS / `ics` | https://coronacalibrary.libcal.com/ical_subscribe.php?src=p&cid=21349 | none | 1 request/day (Crawl-delay 10) | robots: only named crawlers disallowed | SUMMARY, DTSTART, room; pinned to 650 S Main St; `category_rules` stop "Math Tutor" / "Homework Center" counting as volunteering | events · 24h | B- (many weekly ESL classes; no CATEGORIES) | 131 |
+| `cbu_athletics` | riverside | SIDEARM ICS / `ics` | https://cbulancers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Riverside") | events · 24h | B | 28 |
+| `redlands_athletics` | riverside | SIDEARM ICS / `ics` | https://goredlands.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as above (home = "Redlands") | events · 24h | B- (D-III) | 24 |
+| `ucr_athletics` | riverside | SIDEARM ICS / `ics` | https://gohighlanders.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows; subscription feed | as above | events · 24h | B | 16 |
+| `csusb_athletics` | riverside | SIDEARM ICS / `ics` | https://csusbathletics.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as above (home = "San Bernardino") | events · 24h | B- | 10 |
+| `visit_riverside_events` | riverside | Simpleview / `simpleview` (disabled) | https://riversidecvb.com/things-to-do/events/ | none | — | robots allows (Crawl-delay 2); events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Riverside):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| City of Riverside ArcGIS "Alcohol Business Location" | RIV | stale (last edited 2023-04) | layer `editingInfo` |
+| CorStat (Corona) business licenses `ibcd-bv79` | RIV | last updated 2024-06 | Socrata catalog |
+| riversideca.gov/calendar | RIV | robots `Disallow: /calendar` | robots.txt |
+| Riverside Public Library | RIV | monthly PDF; its LibCal (cid 23485) has 11 items | probe 2026-10-16 |
+| Riverside County Library (LibCal cid 15516) | RIV | ICS capped at 500 items, all in the past month, so no future events | ICS |
+| Fox Performing Arts Center / Riverside Municipal Auditorium | RIV | Live Nation sites (Ticketmaster links); they arrive via the TM API | probe |
+| Riverside Art Museum, Downtown Riverside (Tribe) | RIV | 1 and 0 upcoming events | API |
+| CSUSB events (events.csusb.edu), Yaamava' Theater | RIV | robots.txt answers 403 | probe |
+| toyotaarena.com, ieuw.org, sbclib.org | RIV | parked or hijacked domains (gambling content) | probe |
+| Fontana CivicPlus iCalendar | RIV | ~20 items, mostly commission meetings | ICS |
+| Rancho Cucamonga library (Drupal), California Theatre (Wix) | RIV | no JSON-LD or feed | probe |
+| Galaxy Digital slugs (ieuw, inlandempire, rivco, riverside, sbcounty, uwfm, …) | RIV | "Bad Domain" | probe |

@@ -10,12 +10,15 @@ a weekly run club doesn't flood the feed. Conditional GET (ETag/Last-Modified) m
       default_category: community.festival     # when classification finds nothing
       force_category: sports_watch.game        # every event is this (a team schedule: "Volleyball vs X" ≠ a rec league)
       category_map: {"Volunteer": volunteer.one_off}   # ICS CATEGORIES → taxonomy id
+      category_rules:                          # title regex → taxonomy id, checked after category_map, before
+        - {match: "(?i)\\btutor", category: family.kids}   # the keyword classifier ("Math Tutor" is a service)
       tags: [outdoor]
       organizer: Minneapolis Park & Recreation Board
 """
 
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 from collections.abc import Iterator
 from datetime import date, datetime, timedelta
@@ -56,6 +59,7 @@ class IcsAdapter(Adapter):
         max_occ = int(p.get("max_occurrences", 4))
         per_uid: dict[str, int] = defaultdict(int)
         cmap: dict[str, str] = p.get("category_map", {})
+        rules: list[dict[str, str]] = p.get("category_rules", [])
         occurrences = recurring_ical_events.of(cal).between(start_window, end_window)
         occurrences = sorted(occurrences, key=lambda e: _as_dt(e.get("DTSTART").dt, tz))
         for ev in occurrences:
@@ -81,6 +85,8 @@ class IcsAdapter(Adapter):
                 location = None
             cats = _categories(ev)
             category = p.get("force_category") or next((cmap[c] for c in cats if c in cmap), None)
+            if not category:
+                category = next((r["category"] for r in rules if re.search(r["match"], title)), None)
             if not category:
                 category = ctx.tax.classify(
                     title, " ".join(cats), desc, default=p.get("default_category", "other.uncategorized")
