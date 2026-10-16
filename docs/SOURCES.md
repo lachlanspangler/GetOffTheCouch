@@ -525,3 +525,35 @@ Rejected / not used (Oklahoma City):
 Upcoming events after build: **414** (133 in the next 14 days; 8 merged). Categories: sports_watch 99, community 88, arts 79, music 59, trivia_games 49, volunteer 15, outdoors 11, nightlife 6, family 5, fitness 2. Coordinates: ~50% before geocoding (pipeline geocodes later). robots audit: 34 URLs, 0 disallowed (RFC 9309 parser).
 
 Fix during verification: SIDEARM ICS `location_skip` text is "venue_name address title" (venue_name = part before the comma), so the OCU regex anchors on `.*` (`'^(?!.*Oklahoma City, (?!OK\b))'`) — first run returned 0.
+
+### Providence
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `pvd_brown_events` | providence | LiveWhale JSON / `livewhale` | https://events.brown.edu/live/json/events/type/%20Open%20to%20the%20Public/max/200/… | none | 1 request/day; server caps a response at 100 events (~2–3 days ahead) | robots disallows only `?replytocom` | title, date_iso, location+geo, event types, tags, cost; athletics/away games excluded (SIDEARM unit covers home games) | events · 24h | B (official; rolling short window) | 35 |
+| `pvd_pawtucket_library_events` | providence | Springshare LibCal ICS / `ics` | https://pawtucketlibrary.libcal.com/ical_subscribe.php?src=p&cid=12088 | none | 1 request/day; robots `Crawl-delay: 10` | robots: named crawlers + `/process_` disallowed; `*` allowed | SUMMARY, DTSTART/END, room, CATEGORIES, URL; ESOL/citizenship course sessions, meetings, closings skipped by title; pinned to the library (approximate) | events · 24h | B+ (official) | 50 |
+| `pvd_east_providence_library_events` | providence | LibCal ICS / `ics` | https://eplib.libcal.com/ical_subscribe.php?src=p&cid=20146 | none | 1 request/day; Crawl-delay 10 | as above | as above; branch in LOCATION; fallback Weaver Library (approximate) | events · 24h | B+ | 103 |
+| `pvd_cranston_library_events` | providence | LibCal ICS / `ics` | https://events.cranstonlibrary.org/ical_subscribe.php?src=p&cid=15394 | none | 1 request/day; Crawl-delay 10 | as above | as above; "Sunday Hours"/closings skipped; fallback Central Library (approximate) | events · 24h | B+ | 105 |
+| `pvd_serve_ri_volunteer` | providence | Galaxy Digital / `galaxydigital` | https://serverhodeisland.galaxydigital.com/need/rss/ + detail pages | none | ≤ 16 requests/day, ≥ 3 s apart | galaxydigital robots: named SEO bots only | as `handson_twin_cities` (RSS title "Needs on United Way of Rhode Island") | volunteer · 24h | B (statewide needs; RSS = 15 newest) | 25 |
+| `pvd_amica_mutual_pavilion` | providence | carbonhouse RSS / `rss_events` | https://www.amicamutualpavilion.com/events/rss | none | 2 requests/day | robots: empty `User-agent: *` | title, ev:startdate (UTC), link | concerts · 12h | A- (arena: Friars, P-Bruins, concerts) | 35 |
+| `pvd_ppac` | providence | carbonhouse RSS / `rss_events` | https://www.ppacri.org/events/rss | none | 2 requests/day | robots: empty | as above | concerts · 12h | A- | 25 |
+| `pvd_ri_convention_center` | providence | carbonhouse RSS / `rss_events` | https://www.riconvention.com/events/rss | none | 1 request/day | robots: empty | as above (Rhode Island Comic Con, home show, expos) | conventions · 24h | B+ | 5 |
+| `pvd_fete_music_hall` | providence | Squarespace Event JSON-LD / `jsonld` | https://www.fetemusic.com/all-shows (+ ≤ 40 show pages) | none | ≤ 41 requests/run, ≥ 2 s apart | Squarespace robots: `?format=`/`?tag=`… query variants disallowed (wildcards; `follow` never requests a query string) | name, startDate/endDate with offset, location | concerts · 12h | B (independent venue; no prices in LD) | 23 |
+| `pvd_as220` | providence | Squarespace Event JSON-LD / `jsonld` | https://as220.org/calendar (+ ≤ 30 pages) | none | ≤ 31 requests/run | as Fete | as Fete | concerts · 12h | B | 30 |
+| `pvd_the_met` | providence | Rockhouse WP Event JSON-LD / `jsonld` | https://themetri.com/ (+ ≤ 40 event pages) | none | ≤ 41 requests/run | robots: only /wp-admin/ | name, startDate, Etix offer link | concerts · 12h | B | 22 |
+| `pvd_comedy_connection` | providence | ComedyEvent JSON-LD / `jsonld` | https://www.ricomedyconnection.com/ (+ ≤ 30 show pages) | none | ≤ 31 requests/run | robots: `User-Agent: *` with Content-Signal search/ai allowed, nothing disallowed | name, startDate per show time, offer price | events · 12h | B+ (prices published) | 23 |
+| `pvd_brown_athletics` | providence | SIDEARM ICS / `ics` | https://brownbears.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots `Crawl-delay: 30` | `/calendar*` allowed | SUMMARY, DTSTART, LOCATION ("Providence, R.I., <facility>" only) | events · 24h | A- | 58 |
+| `pvd_friars_athletics` | providence | SIDEARM ICS / `ics` | https://friars.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; Crawl-delay 30 | as above | as above | events · 24h | A- (some home games also in the Amica feed; only 2 merged) | 39 |
+| `upcomingcons` (global) | providence | upcomingcons | https://www.upcomingcons.com/ | none | weekly | see global table | — | conventions · 168h | B | 1 (RI Anime Con) |
+
+Rejected / not used (Providence):
+
+- data.providenceri.gov Socrata: Special Events `rv3y-tq8q` and Active Business Licenses `ui7z-kv69` last updated 2021 (catalog `data_updated_at`); Monthly Entertainment Licenses `2f79-9nkc` 2020. Dead. No RI state Socrata tenant; ArcGIS Online search (owner PVD_DPWGIS, URIEDC_RIGIS) found no license/event layers.
+- Providence Public Library (provlib.org): robots.txt → HTTP 403 (= disallow all).
+- Community Libraries of Providence (clpvd.org, The Events Calendar, 1,655 events!): robots.txt `Disallow: /wp-json/` for `*`. **One probe request was sent before this was noticed** because Python's RobotFileParser ends the `*` group at the blank line after `Crawl-delay: 5` and so reported "allowed" (see "PoliteClient bug" below). Not used.
+- City of Providence calendar (providenceri.gov, Tribe): robots disallows `/events/` and `/*?*` (every query string) → the Tribe API can't be called as the adapter needs.
+- downtownprovidence.com, unitedwayri.org, provath.org (Athenaeum): Cloudflare "Just a moment" challenge. risd.edu: robots 403.
+- The Strand (Rockhouse WP): event pages carry no Event JSON-LD. Trinity Rep Tribe API: total 0. WaterFire: EventOn plugin (no adapter). Columbus Theatre: expired TLS certificate + connection reset. JWU LiveWhale: student-life items, mixes the Charlotte campus.
+- pclib.libcal.com (linked from pclib.org) is **Poplar Creek Public Library (IL)** — name collision, not Providence.
+- Galaxy tenants `uwri`, `unitedwayri`, `serveri`, `volunteerri` → "Bad Domain".
+- Lupo's / Live Nation-ticketed rooms: not probed (ToS denylist).

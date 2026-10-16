@@ -1,0 +1,16 @@
+# Official new-resident deadlines for Rhode Island. Every fact is quoted verbatim from source_url.
+# Note: dmv.ri.gov, vote.sos.ri.gov and elections.ri.gov answer the GetOffTheCouch UA with a Cloudflare challenge
+# (2026-10-16), which we don't work around. The voter-registration item is quoted from the RI General Laws on
+# rilegislature.gov. Driver license and vehicle registration are skipped: no new-resident deadline could be
+# verified on a reachable official page (R.I. Gen. Laws §§ 31-10-2 and 31-3-2 state none).
+state: RI
+items:
+  - id: ri-voter-registration
+    title: "Register to vote in Rhode Island"
+    kind: voting
+    days_after_move: null
+    summary: "Registration for any election closes on the 30th day before the election."
+    action_url: https://vote.sos.ri.gov/
+    evidence: "Registration for any election shall close on the thirtieth (30th) day preceding an election"
+    source_url: https://webserver.rilegislature.gov/Statutes/TITLE17/17-9.1/17-9.1-3.htm
+    verified_at: 2026-10-16

@@ -1,0 +1,272 @@
+# Providence, RI. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Research 2026-10-16 (batch D). Not used, with evidence (docs/SOURCES.md "Batch D cities"):
+#   - data.providenceri.gov Socrata: Special Events rv3y-tq8q and Active Business Licenses ui7z-kv69 last updated
+#     2021 (dead); no Rhode Island state Socrata/ArcGIS license data found → no openings source.
+#   - Providence Public Library (provlib.org): robots.txt answers 403 (= disallow all).
+#   - Community Libraries of Providence (clpvd.org, The Events Calendar): robots.txt `Disallow: /wp-json/`.
+#   - City of Providence calendar (providenceri.gov, Tribe): robots disallows /events/ and every query string.
+#   - downtownprovidence.com, unitedwayri.org, provath.org: Cloudflare challenge. risd.edu: robots 403.
+#   - The Strand (Rockhouse WP) has no Event JSON-LD; Trinity Rep's Tribe API is empty; WaterFire uses EventOn
+#     (no adapter); Columbus Theatre's TLS certificate is expired; JWU LiveWhale is student-life only.
+#   - pclib.libcal.com is Poplar Creek (IL), not Providence — name collision.
+slug: providence
+name: Providence
+state: RI
+timezone: America/New_York
+center: [41.8240, -71.4128]
+radius_km: 15
+aliases: [Pawtucket, Cranston, East Providence, Warwick, North Providence, Johnston, Central Falls, PVD]
+neighborhoods:  # approximate centroids
+  - { name: Downcity, lat: 41.8236, lon: -71.4128 }
+  - { name: College Hill, lat: 41.8268, lon: -71.4025 }
+  - { name: Fox Point, lat: 41.8195, lon: -71.3990 }
+  - { name: Jewelry District, lat: 41.8170, lon: -71.4100 }
+  - { name: Federal Hill, lat: 41.8195, lon: -71.4280 }
+  - { name: West End, lat: 41.8105, lon: -71.4300 }
+  - { name: Olneyville, lat: 41.8180, lon: -71.4440 }
+  - { name: Smith Hill, lat: 41.8320, lon: -71.4210 }
+  - { name: Mount Pleasant, lat: 41.8350, lon: -71.4500 }
+  - { name: Elmhurst, lat: 41.8410, lon: -71.4400 }
+  - { name: Wayland Square, lat: 41.8290, lon: -71.3880 }
+  - { name: Blackstone / East Side, lat: 41.8370, lon: -71.3880 }
+  - { name: South Providence, lat: 41.8000, lon: -71.4150 }
+  - { name: Elmwood, lat: 41.7980, lon: -71.4250 }
+  - { name: Silver Lake, lat: 41.8100, lon: -71.4650 }
+  - { name: Wanskuck, lat: 41.8530, lon: -71.4310 }
+sources:
+  # ── university ──
+  - id: pvd_brown_events
+    adapter: livewhale
+    name: Brown University events (open to the public)
+    data_type: events
+    homepage: https://events.brown.edu/
+    expect_min_records: 20
+    notes: >-
+      LiveWhale JSON filtered to the event type " Open to the Public" (the label has a leading space). The
+      server caps a response at 100 events (~2–3 days ahead), so this is a rolling near-term window refreshed
+      daily. robots.txt disallows only ?replytocom.
+    params:
+      base_url: https://events.brown.edu
+      path: "/live/json/events/type/ Open to the Public/max/{max}/response_fields/location,description,event_types,tags,group_title,location_latitude,location_longitude,cost"
+      max: 200
+      fallback_point: { lat: 41.8268, lon: -71.4025, label: "Brown University campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      # athletics come from pvd_brown_athletics (SIDEARM, home games only); this feed also lists away games
+      exclude_location: '\bBrown University (Men|Women)\S*s\b|\b(Mass|Md|Conn|N\.H|N\.J|N\.Y|Pa|Va|Calif|Fla)\.(\s|$)'
+      organizer: Brown University
+      default_category: learning.networking
+      category_map:
+        "Performances, Concerts and Exhibitions": arts.theater
+
+  # ── libraries (Springshare LibCal ICS; robots Crawl-delay 10 is honored) ──
+  - id: pvd_pawtucket_library_events
+    adapter: ics
+    name: Pawtucket Public Library events
+    data_type: events
+    homepage: https://pawtucketlibrary.libcal.com/calendar?cid=12088
+    expect_min_records: 20
+    notes: >-
+      LibCal ICS (cid 12088, "Library Calendar"; events reference Pawtucket throughout). LOCATION is a room
+      name only, so events are pinned to the library (approximate). Partner ESOL/citizenship course sessions,
+      meetings and closings are skipped by title.
+    params:
+      url: https://pawtucketlibrary.libcal.com/ical_subscribe.php?src=p&cid=12088
+      horizon_days: 30
+      organizer: Pawtucket Public Library
+      default_category: arts.books
+      fallback_point: { lat: 41.8787, lon: -71.3826, label: "Pawtucket Public Library, 13 Summer St" }
+      exclude_location: '\b(ESOL|RIFLI|ILSR|Citizenship|Meeting|Reclaim RI|Registration|Closed|Closing)\b'
+      category_map: { "Story Classes": family.kids, "Kids Events": family.kids }
+  - id: pvd_east_providence_library_events
+    adapter: ics
+    name: East Providence Public Library events
+    data_type: events
+    homepage: https://eplib.libcal.com/calendar/eppl
+    expect_min_records: 20
+    notes: >-
+      LibCal ICS (cid 20146, "East Providence Library Calendar of Events"). LOCATION names the branch (Weaver,
+      Riverside, Fuller Creative Learning Center); unmappable ones are pinned to Weaver Library (approximate).
+    params:
+      url: https://eplib.libcal.com/ical_subscribe.php?src=p&cid=20146
+      horizon_days: 30
+      organizer: East Providence Public Library
+      default_category: arts.books
+      fallback_point: { lat: 41.8183, lon: -71.3700, label: "East Providence Public Library (Weaver)" }
+      exclude_location: '\b(Libraries Closed|Closed|Holiday)\b'
+  - id: pvd_cranston_library_events
+    adapter: ics
+    name: Cranston Public Library events
+    data_type: events
+    homepage: https://events.cranstonlibrary.org/calendar/events
+    expect_min_records: 20
+    notes: >-
+      LibCal ICS (cid 15394, "CPL Events and Programs"; six branches). Unmappable rooms are pinned to the
+      Central Library (approximate). Opening-hours entries ("Sunday Hours") and closings are skipped.
+    params:
+      url: https://events.cranstonlibrary.org/ical_subscribe.php?src=p&cid=15394
+      horizon_days: 30
+      organizer: Cranston Public Library
+      default_category: arts.books
+      fallback_point: { lat: 41.7740, lon: -71.4470, label: "Cranston Public Library (Central)" }
+      exclude_location: '\b(Sunday Hours|Closed|Closing)\b'
+
+  # ── volunteering (Galaxy Digital; tenant "serverhodeisland" = United Way of Rhode Island) ──
+  - id: pvd_serve_ri_volunteer
+    adapter: galaxydigital
+    name: United Way of Rhode Island (Serve Rhode Island)
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://serverhodeisland.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: RSS title "Needs on United Way of Rhode Island" (verified 2026-10-16; unknown tenants return "Bad Domain").
+    params:
+      base_url: https://serverhodeisland.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows all) ──
+  - id: pvd_amica_mutual_pavilion
+    adapter: rss_events
+    name: Amica Mutual Pavilion (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.amicamutualpavilion.com/events
+    expect_min_records: 10
+    notes: Arena (Providence Friars basketball, Providence Bruins, concerts); carbonhouse events RSS.
+    params:
+      spectator_venue: true
+      url: https://www.amicamutualpavilion.com/events/rss
+      horizon_days: 180
+      venue: {name: "Amica Mutual Pavilion", address: "1 La Salle Square, Providence, RI 02903"}
+      organizer: Amica Mutual Pavilion
+      default_category: music.concert
+  - id: pvd_ppac
+    adapter: rss_events
+    name: Providence Performing Arts Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.ppacri.org/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (Broadway tours, comedy, concerts).
+    params:
+      spectator_venue: true
+      url: https://www.ppacri.org/events/rss
+      horizon_days: 180
+      venue: {name: "Providence Performing Arts Center", address: "220 Weybosset St, Providence, RI 02903"}
+      organizer: Providence Performing Arts Center
+      default_category: arts.theater
+      classify_description: false
+  - id: pvd_ri_convention_center
+    adapter: rss_events
+    name: Rhode Island Convention Center (venue calendar)
+    data_type: conventions
+    cadence_hours: 24
+    homepage: https://www.riconvention.com/events
+    expect_min_records: 1
+    notes: carbonhouse events RSS; public shows and cons (Rhode Island Comic Con, home show, bridal expo).
+    params:
+      url: https://www.riconvention.com/events/rss
+      horizon_days: 365
+      venue: {name: "Rhode Island Convention Center", address: "1 Sabin St, Providence, RI 02903"}
+      organizer: Rhode Island Convention Center
+      default_category: community.festival
+      classify_description: false
+      category_map: { "Comic Con": niche.comic_con, "Home Show": community.market, "Expo": community.market }
+
+  # ── clubs and music venues: their own pages' schema.org Event JSON-LD ──
+  - id: pvd_fete_music_hall
+    adapter: jsonld
+    name: Fete Music Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.fetemusic.com/all-shows
+    expect_min_records: 8
+    notes: Squarespace events collection; Event JSON-LD per show page. robots disallows only ?format= variants, which `follow` never matches.
+    params:
+      urls: [https://www.fetemusic.com/all-shows]
+      follow: 'fetemusic\.com/all-shows/[^/?#]+$'
+      max_follow: 40
+      venue: {name: Fete Music Hall, address: "103 Dike St, Providence, RI 02909"}
+      organizer: Fete Music Hall
+      default_category: music.concert
+  - id: pvd_as220
+    adapter: jsonld
+    name: AS220 (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://as220.org/calendar
+    expect_min_records: 5
+    notes: Nonprofit arts space; Squarespace events collection with Event JSON-LD per page.
+    params:
+      urls: [https://as220.org/calendar]
+      follow: 'as220\.org/calendar/[^/?#]+$'
+      max_follow: 30
+      venue: {name: AS220, address: "115 Empire St, Providence, RI 02903"}
+      organizer: AS220
+      default_category: music.concert
+  - id: pvd_the_met
+    adapter: jsonld
+    name: The Met, Pawtucket (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://themetri.com/
+    expect_min_records: 8
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://themetri.com/]
+      follow: 'themetri\.com/event/[^/]+/[^/]+/pawtucket-rhode-island/$'
+      max_follow: 40
+      venue: {name: The Met, address: "1005 Main St, Pawtucket, RI 02860"}
+      organizer: The Met
+      default_category: music.concert
+  - id: pvd_comedy_connection
+    adapter: jsonld
+    name: Comedy Connection, East Providence (club calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.ricomedyconnection.com/
+    expect_min_records: 5
+    notes: ComedyEvent JSON-LD on each show page (one node per show time). robots allows all.
+    params:
+      urls: [https://www.ricomedyconnection.com/]
+      follow: 'ricomedyconnection\.com/events/[^/?#]+$'
+      max_follow: 30
+      venue: {name: Comedy Connection, address: "39 Warren Ave, East Providence, RI 02914"}
+      organizer: Comedy Connection
+      default_category: nightlife.comedy
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows, Crawl-delay 30 honored) ──
+  - id: pvd_brown_athletics
+    adapter: ics
+    name: Brown Bears athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://brownbears.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://brownbears.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Brown Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!Providence\b)'
+      fallback_point: { lat: 41.8295, lon: -71.3979, label: "Brown University athletics" }
+  - id: pvd_friars_athletics
+    adapter: ics
+    name: Providence College Friars athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://friars.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://friars.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Providence College Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!Providence\b)'
+      fallback_point: { lat: 41.8434, lon: -71.4385, label: "Providence College campus" }
