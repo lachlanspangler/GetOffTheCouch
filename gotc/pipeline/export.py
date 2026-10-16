@@ -20,7 +20,7 @@ from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
 from gotc.pipeline.starter_pack import load as load_starter_pack
 from gotc.pipeline.starter_pack import with_status
-from gotc.schema import SCHEMA_VERSION, CityFeed, Event, NeighborhoodPoint, SourceStatus
+from gotc.schema import SCHEMA_VERSION, CityFeed, Event, Method, NeighborhoodPoint, SourceStatus
 from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
 
@@ -119,7 +119,10 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
                 "deadlines": sum(
                     1
                     for e in feed.events
-                    if e.registration and e.registration.closes_at and e.registration.closes_at >= now
+                    if e.registration
+                    and e.registration.closes_at
+                    and e.registration.closes_at >= now
+                    and e.registration.method != Method.DERIVED
                 ),
                 "sources_ok": sum(1 for s in feed.sources if s.state in ("healthy", "recovering")),
                 "sources_total": sum(1 for s in feed.sources if s.state != "disabled"),
