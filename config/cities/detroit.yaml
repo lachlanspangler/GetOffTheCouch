@@ -1,0 +1,180 @@
+# Detroit, MI. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C). Every unit below was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city detroit --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (all checked 2026-10-16):
+#   * library: Detroit Public Library lists its programs through Eventbrite (ToS: no automated collection); Royal Oak
+#     and Canton use LibraryMarket (librarycalendar.com robots.txt answers 403 = treated as disallow); Dearborn's
+#     calendar is a JS app with no feed.
+#   * openings: the city's ArcGIS "Liquor Licenses" and "Business Licenses (Current)" layers carry no issue/application
+#     date (only expiration), so they can't signal newness; Michigan's MLCC has no open-data feed.
+#   * leagues: no Volo market (volosports.com sitemap) and no Team Trivia venues (trivia-in-michigan lists 0).
+#   * Downtown Detroit Partnership (robots.txt 403), Eastern Market, DIA, Detroit Zoo, Detroit Opera, CCS and
+#     UM-Dearborn (Cloudflare challenge), Metroparks (Cloudflare) are not attempted.
+slug: detroit
+name: Detroit
+state: MI
+timezone: America/Detroit
+center: [42.3314, -83.0458]
+radius_km: 25
+aliases: [Motor City, Dearborn, Dearborn Heights, Hamtramck, Highland Park, Ferndale, Royal Oak, Oak Park, Berkley,
+          Southfield, Grosse Pointe, Grosse Pointe Park, Grosse Pointe Farms, Warren, Eastpointe, Madison Heights,
+          Lincoln Park, Wyandotte, River Rouge, Ecorse, Allen Park]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 42.3314, lon: -83.0458 }
+  - { name: Midtown, lat: 42.3530, lon: -83.0650 }
+  - { name: Corktown, lat: 42.3310, lon: -83.0700 }
+  - { name: Southwest / Mexicantown, lat: 42.3190, lon: -83.0930 }
+  - { name: Eastern Market, lat: 42.3480, lon: -83.0410 }
+  - { name: Lafayette Park, lat: 42.3400, lon: -83.0300 }
+  - { name: Rivertown, lat: 42.3350, lon: -83.0170 }
+  - { name: New Center, lat: 42.3690, lon: -83.0750 }
+  - { name: Woodbridge, lat: 42.3540, lon: -83.0800 }
+  - { name: Boston-Edison, lat: 42.3820, lon: -83.0930 }
+  - { name: Indian Village / West Village, lat: 42.3520, lon: -82.9960 }
+  - { name: Palmer Park, lat: 42.4250, lon: -83.1250 }
+  - { name: University District, lat: 42.4230, lon: -83.1450 }
+  - { name: Hamtramck, lat: 42.3930, lon: -83.0500 }
+  - { name: Ferndale, lat: 42.4600, lon: -83.1350 }
+  - { name: Dearborn, lat: 42.3223, lon: -83.1763 }
+sources:
+  # ── concerts / arenas: carbonhouse events RSS (/events/rss, ev: module, UTC start times) ──
+  - id: three13_presents
+    adapter: rss_events
+    name: 313 Presents (Fox Theatre, Little Caesars Arena, Sound Board)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.313presents.com/events
+    expect_min_records: 30
+    notes: >-
+      Olympia Entertainment's venue calendar (carbonhouse /events/rss; robots allows all; the site's only legal page
+      is a privacy policy, no automated-access clause). Tickets are Ticketmaster links (no face value in the feed).
+      Pine Knob (Clarkston, ~55 km) and Fifth Third Park are outside the city radius and skipped.
+    params:
+      spectator_venue: true
+      url: https://www.313presents.com/events/rss
+      horizon_days: 180
+      venue: {name: Fox Theatre, address: "2211 Woodward Ave, Detroit, MI 48201"}
+      venues:
+        "Fox Theatre": "2211 Woodward Ave, Detroit, MI 48201"
+        "Little Caesars Arena": "2645 Woodward Ave, Detroit, MI 48201"
+        "Sound Board at MotorCity Casino Hotel": "2901 Grand River Ave, Detroit, MI 48201"
+      exclude_location: '^(Pine Knob|Fifth Third Park)'
+      organizer: 313 Presents
+      default_category: music.concert
+      category_map:   # ev:type values seen in the live feed, then title keywords
+        Comedy: nightlife.comedy
+        "Theatre & Family Events": arts.theater
+        Sports: sports_watch.game
+        " vs": sports_watch.game
+  - id: majestic_detroit
+    adapter: rss_events
+    name: The Majestic Theatre & Magic Stick (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.majesticdetroit.com/events
+    expect_min_records: 15
+    notes: >-
+      Majestic complex on Woodward (Majestic Theatre, Magic Stick upstairs); carbonhouse /events/rss, robots allows
+      all. Tickets are AXS links (the venue is independent; no price in the feed).
+    params:
+      url: https://www.majesticdetroit.com/events/rss
+      horizon_days: 180
+      venue: {name: The Majestic Theatre, address: "4120 Woodward Ave, Detroit, MI 48201"}
+      venues:
+        "The Majestic Theatre": "4120 Woodward Ave, Detroit, MI 48201"
+        "Magic Stick": "4120 Woodward Ave, Detroit, MI 48201"
+      organizer: Majestic Detroit
+      default_category: music.concert
+  - id: ford_field
+    adapter: rss_events
+    name: Ford Field (Lions, college football, stadium shows)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.fordfield.com/events
+    expect_min_records: 5
+    notes: Stadium's carbonhouse /events/rss (robots allows all). Lions home games, MHSAA finals, Monster Jam, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.fordfield.com/events/rss
+      horizon_days: 240
+      venue: {name: Ford Field, address: "2000 Brush St, Detroit, MI 48226"}
+      organizer: Ford Field
+      default_category: sports_watch.game
+      category_map:
+        "Tour": music.concert
+        "Monster Jam": sports_watch.game
+        "Band": music.concert
+
+  # ── jazz club: WordPress The Events Calendar ──
+  - id: cliff_bells
+    adapter: tribe
+    name: Cliff Bell's (jazz club calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://cliffbells.com/
+    expect_min_records: 15
+    notes: The Events Calendar REST API (robots allows it). Events carry no venue object, so the club is the fallback.
+    params:
+      base_url: https://cliffbells.com
+      horizon_days: 90
+      per_page: 50
+      max_pages: 3
+      organizer: Cliff Bell's
+      venue: {name: Cliff Bell's, address: "2030 Park Ave, Detroit, MI 48226"}
+      default_category: music.concert
+      classify_description: false
+
+  # ── college athletics: SIDEARM subscription calendars (home games only) ──
+  - id: detroit_titans_athletics
+    adapter: ics
+    name: Detroit Mercy Titans athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://detroittitans.com/calendar
+    expect_min_records: 5
+    notes: >-
+      University of Detroit Mercy's SIDEARM calendar.ics (robots allows it). Only events whose LOCATION starts with
+      "Detroit" are kept (away/neutral games skipped).
+    params:
+      url: https://detroittitans.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Detroit Mercy Titans
+      exclude_location: '^(?!Detroit\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 42.4140, lon: -83.1390, label: "Detroit Mercy McNichols campus (approximate)" }
+  - id: wayne_state_athletics
+    adapter: ics
+    name: Wayne State Warriors athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://wsuathletics.com/calendar
+    expect_min_records: 5
+    notes: >-
+      Wayne State University's SIDEARM calendar.ics (robots allows it). Only events whose LOCATION starts with
+      "Detroit" are kept.
+    params:
+      url: https://wsuathletics.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Wayne State Warriors
+      exclude_location: '^(?!Detroit\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 42.3570, lon: -83.0700, label: "Wayne State University campus (approximate)" }
+
+  # ── volunteering: Galaxy Digital tenant of United Way for Southeastern Michigan (linked from unitedwaysem.org) ──
+  - id: united_way_sem_volunteer
+    adapter: galaxydigital
+    name: United Way for Southeastern Michigan volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://liveunitedsem.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: >-
+      Tenant linked from unitedwaysem.org/get-involved/volunteering/; RSS <title> "Opportunities on United Way for
+      Southeastern Michigan" (not the "Bad Domain" page). RSS = 15 newest needs; detail pages are the records.
+    params:
+      base_url: https://liveunitedsem.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
