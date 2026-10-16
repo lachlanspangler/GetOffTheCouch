@@ -132,3 +132,51 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/seattle.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: nectar_lounge
+    adapter: jsonld
+    name: Nectar Lounge / High Dive / Hidden Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3   # robots Crawl-delay: 3
+    homepage: https://nectarlounge.com/calendar/
+    expect_min_records: 30
+    notes: >-
+      One calendar page lists all three rooms (~120 Event JSON-LD records) with Tixr price, availability and
+      on-sale date. robots disallows any URL with a query string, so the URL has none.
+    params:
+      urls: [https://www.nectarlounge.com/calendar/]
+      organizer: Nectar Lounge
+      default_category: music.concert
+  - id: royal_room_seattle
+    adapter: jsonld
+    name: The Royal Room (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://theroyalroomseattle.com/events/
+    expect_min_records: 5
+    notes: WordPress; Event JSON-LD per event page (naive local times, no offers).
+    params:
+      urls: [https://theroyalroomseattle.com/events/]
+      follow: 'theroyalroomseattle\.com/event/[^/?#]+/$'
+      max_follow: 30
+      venue: {name: The Royal Room}
+      organizer: The Royal Room
+      default_category: music.concert
+  - id: triple_door
+    adapter: jsonld
+    name: The Triple Door (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 10  # robots Crawl-delay: 10
+    homepage: https://thetripledoor.net/
+    expect_min_records: 5
+    notes: MusicEvent JSON-LD per event page with the advance/day-of price text. Crawl-delay 10 → keep max_follow small.
+    params:
+      urls: [https://thetripledoor.net/]
+      follow: 'thetripledoor\.net/go/events/\d+\?'
+      max_follow: 20
+      venue: {name: The Triple Door}
+      organizer: The Triple Door
+      default_category: music.concert

@@ -11,6 +11,7 @@ from gotc.adapters import (  # noqa: F401
     galaxydigital,
     handsonconnect,
     ics,
+    jsonld,
     makerfaire,
     simpleview,
     socrata,

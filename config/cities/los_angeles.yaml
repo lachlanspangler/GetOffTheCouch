@@ -142,3 +142,34 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/los_angeles.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: the_echo
+    adapter: jsonld
+    name: The Echo (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.theecho.com/
+    expect_min_records: 10
+    notes: One page, ~25 MusicEvent JSON-LD blocks (naive local times; Ticketmaster links). No price in the markup.
+    params:
+      urls: [https://www.theecho.com/]
+      venue: {name: The Echo}
+      organizer: The Echo
+      default_category: music.concert
+  - id: venue_1720
+    adapter: jsonld
+    name: 1720 (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://1720.la/
+    expect_min_records: 10
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://1720.la/]
+      follow: '1720\.la/event/[^/]+/[^/]+/[^/]+/$'
+      max_follow: 40
+      venue: {name: "1720"}
+      organizer: "1720"
+      default_category: music.concert

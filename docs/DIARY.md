@@ -180,3 +180,23 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 **Did:** Stopped the two running agents. The concert jsonld adapter is left on its own branch, unmerged, and the trivia research found no clean host. Ran all gates: validate, ruff, mypy, 294 pytest, 18 vitest, 24 Playwright including axe. Updated STATUS.md with what's done and what I need from the user (keys, Pages setup, push, outreach).
 **Next session:** review/merge the jsonld branch; Ticketmaster/SeatGeek once keys exist; Team Trivia lead; Denver events.
 - 2026-10-16 07:02 UTC · run 18 ok: units[35 disabled, 80 skipped] → 9780 events in 10 cities
+- 2026-10-16 06:13 UTC · run 1 ok: units[1 ok] → 122 events in 1 cities
+- 2026-10-16 06:15 UTC · run 2 ok: units[1 ok] → 36 events in 1 cities
+- 2026-10-16 06:15 UTC · run 3 ok: units[1 ok] → 25 events in 1 cities
+- 2026-10-16 06:15 UTC · run 4 ok: units[1 ok] → 105 events in 1 cities
+- 2026-10-16 06:15 UTC · run 5 ok: units[1 ok] → 63 events in 1 cities
+- 2026-10-16 06:15 UTC · run 6 ok: units[1 ok] → 171 events in 1 cities
+- 2026-10-16 06:15 UTC · run 7 ok: units[1 ok] → 233 events in 1 cities
+- 2026-10-16 06:15 UTC · run 8 ok: units[1 ok] → 67 events in 1 cities
+- 2026-10-16 06:15 UTC · run 9 ok: units[1 ok] → 26 events in 1 cities
+- 2026-10-16 06:17 UTC · run 10 ok: units[1 ok] → 145 events in 1 cities
+- 2026-10-16 06:18 UTC · run 11 ok: units[1 ok] → 185 events in 1 cities
+- 2026-10-16 06:19 UTC · run 12 ok: units[1 ok] → 224 events in 1 cities
+- 2026-10-16 06:21 UTC · run 13 ok: units[1 ok] → 83 events in 1 cities
+- 2026-10-16 06:22 UTC · run 14 ok: units[1 ok] → 36 events in 1 cities
+- 2026-10-16 06:23 UTC · run 15 ok: units[1 ok] → 61 events in 1 cities
+- 2026-10-16 06:24 UTC · run 16 ok: units[1 ok] → 54 events in 1 cities
+- 2026-10-16 06:25 UTC · run 17 ok: units[1 ok] → 40 events in 1 cities
+- 2026-10-16 06:26 UTC · run 18 ok: units[1 ok] → 62 events in 1 cities
+- 2026-10-16 06:27 UTC · run 19 ok: units[1 ok] → 83 events in 1 cities
+- 2026-10-16 06:27 UTC · run 20 ok: units[1 ok] → 133 events in 1 cities

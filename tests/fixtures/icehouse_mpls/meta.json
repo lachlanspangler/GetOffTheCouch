@@ -1,0 +1,12 @@
+{
+  "unit": "icehouse_mpls@minneapolis",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T06:15:49+00:00",
+  "files": {
+    "page_0.html": "https://www.icehousempls.com/shows/feeding-leroy-stringdingers-double-release-show/",
+    "page_1.html": "https://www.icehousempls.com/shows/urgent-emergent-performance-art-series-volume-ten-old-school-vs-new-school/",
+    "page_2.html": "https://www.icehousempls.com/shows/laplant-road-with-special-guests-rachel-bearinger-garret-nasset/",
+    "page_3.html": "https://www.icehousempls.com/shows/fela-night-2026-celebrating-fela-kutis-88th-birthday/"
+  },
+  "note": "real pages fetched live by `gotc run`; only their JSON-LD <script> blocks are kept (verbatim); surrounding HTML removed to keep fixtures small"
+}

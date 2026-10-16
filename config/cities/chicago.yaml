@@ -253,3 +253,36 @@ sources:
       horizon_days: 60
       organizer: mHUB
       default_category: learning.tech
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: metro_chicago
+    adapter: jsonld
+    name: Metro Chicago (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://metrochicago.com/events/
+    expect_min_records: 10
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://metrochicago.com/events/]
+      follow: 'metrochicago\.com/event/[^/]+/[^/]+/[^/]+/$'
+      max_follow: 40
+      venue: {name: Metro}
+      organizer: Metro Chicago
+      default_category: music.concert
+  - id: buddy_guys_legends
+    adapter: jsonld
+    name: Buddy Guy's Legends (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://buddyguy.com/
+    expect_min_records: 10
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://buddyguy.com/]
+      follow: 'buddyguy\.com/event/[^/]+/buddy-guys-legends/[^/]+/$'
+      max_follow: 40
+      venue: {name: "Buddy Guy's Legends"}
+      organizer: "Buddy Guy's Legends"
+      default_category: music.concert

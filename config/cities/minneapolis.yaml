@@ -192,3 +192,72 @@ sources:
       default_category: food_drink.restaurant_opening
       default_url: https://www.minneapolismn.gov/business-services/licenses-permits-inspections/business-licenses/liquor-beer-wine/
       extras: { signal: liquor_license_first_seen }
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: icehouse_mpls
+    adapter: jsonld
+    name: Icehouse (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.icehousempls.com/shows/
+    expect_min_records: 10
+    notes: WordPress; MusicEvent JSON-LD on each /shows/ page with face-value price + availability (gobo.show tickets).
+    params:
+      urls: [https://www.icehousempls.com/shows/]
+      follow: 'icehousempls\.com/shows/[^/?#]+/$'
+      max_follow: 40
+      venue: {name: Icehouse}
+      organizer: Icehouse
+      default_category: music.concert
+  - id: hook_and_ladder
+    adapter: jsonld
+    name: The Hook and Ladder Theater (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.thehookmpls.com/events/
+    expect_min_records: 10
+    notes: Opendate-powered site; MusicEvent JSON-LD per show. offers.validFrom is the page render time, so it is ignored.
+    params:
+      urls: [https://www.thehookmpls.com/events/]
+      follow: 'thehookmpls\.com/shows/[^/?#]+$'
+      max_follow: 40
+      trust_valid_from: false
+      venue: {name: The Hook and Ladder Theater}
+      organizer: The Hook and Ladder Theater
+      default_category: music.concert
+  - id: cedar_cultural_center
+    adapter: jsonld
+    name: The Cedar Cultural Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.thecedar.org/events
+    expect_min_records: 10
+    notes: >-
+      Squarespace; Event JSON-LD on each event page (no offers). robots disallows ?format=json/ical
+      (wildcard rules Python's robotparser can't evaluate), so `follow` only matches query-less event URLs.
+    params:
+      urls: [https://www.thecedar.org/events]
+      follow: 'thecedar\.org/events/[^/?#]+$'
+      max_follow: 40
+      venue: {name: The Cedar Cultural Center}
+      organizer: The Cedar Cultural Center
+      default_category: music.concert
+  - id: dakota_jazz
+    adapter: tribe
+    name: Dakota (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.dakotacooks.com/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows everything).
+    params:
+      base_url: https://www.dakotacooks.com
+      horizon_days: 90
+      per_page: 50
+      max_pages: 6
+      organizer: Dakota
+      default_category: music.concert
+      classify_description: false

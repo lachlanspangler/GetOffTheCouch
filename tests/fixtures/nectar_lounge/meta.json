@@ -1,0 +1,9 @@
+{
+  "unit": "nectar_lounge@seattle",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T06:13:24+00:00",
+  "files": {
+    "page_0.html": "https://nectarlounge.com/events/calendar/"
+  },
+  "note": "real pages fetched live by `gotc run`; only their JSON-LD <script> blocks are kept (verbatim; event arrays cut to 8); surrounding HTML removed to keep fixtures small"
+}

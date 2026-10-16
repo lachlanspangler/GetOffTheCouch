@@ -1,0 +1,9 @@
+{
+  "unit": "the_echo@los_angeles",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T06:15:17+00:00",
+  "files": {
+    "page_0.html": "https://www.theecho.com/"
+  },
+  "note": "real pages fetched live by `gotc run`; only their JSON-LD <script> blocks are kept (verbatim); surrounding HTML removed to keep fixtures small"
+}

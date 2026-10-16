@@ -91,3 +91,37 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/nashville.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: station_inn
+    adapter: tribe
+    name: The Station Inn (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://stationinn.com/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots only blocks add-to-cart/uploads).
+    params:
+      base_url: https://stationinn.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 6
+      organizer: The Station Inn
+      default_category: music.concert
+      classify_description: false
+  - id: analog_nashville
+    adapter: jsonld
+    name: Analog at Hutton Hotel (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.analognashville.com/events/
+    expect_min_records: 3
+    notes: WordPress; Event JSON-LD per event page (naive local times).
+    params:
+      urls: [https://www.analognashville.com/events/]
+      follow: 'analognashville\.com/events/[^/?#]+/$'
+      max_follow: 30
+      venue: {name: Analog at Hutton Hotel}
+      organizer: Analog at Hutton Hotel
+      default_category: music.concert

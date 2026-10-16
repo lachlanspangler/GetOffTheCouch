@@ -105,3 +105,39 @@ sources:
       horizon_days: 45
       organizer: RUN GABLES
       default_category: fitness.run_club
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: miami_beach_bandshell
+    adapter: tribe
+    name: Miami Beach Bandshell (Rhythm Foundation calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 10   # robots Crawl-delay: 10
+    homepage: https://miamibeachbandshell.com/events/
+    expect_min_records: 5
+    notes: City-owned bandshell run by the nonprofit Rhythm Foundation; The Events Calendar REST API.
+    params:
+      base_url: https://miamibeachbandshell.com
+      horizon_days: 120
+      per_page: 50
+      max_pages: 4
+      organizer: Rhythm Foundation
+      default_category: music.concert
+      classify_description: false
+  - id: bayfront_park_miami
+    adapter: jsonld
+    name: Bayfront Park (Bayfront Park Management Trust calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.bayfrontparkmiami.com/events
+    expect_min_records: 5
+    notes: >-
+      City of Miami trust; Squarespace Event JSON-LD per event page. Mix of amphitheater concerts and park
+      events, so the title classifier decides and concerts are the default. `follow` skips ?format=ical.
+    params:
+      urls: [https://www.bayfrontparkmiami.com/events]
+      follow: 'bayfrontparkmiami\.com/events/[^/?#]+$'
+      max_follow: 40
+      venue: {name: Bayfront Park}
+      organizer: Bayfront Park Management Trust
+      default_category: music.concert
