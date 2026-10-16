@@ -83,3 +83,34 @@ All four were caught by tests or by looking at the real output.
 **Next:** I-047 (openings display window), I-048 (FL DBPR CSV), I-054 (Denver events), I-049 (Chicago adult sports deadlines).
 **Ideas:** I-019, I-031, I-032 done; I-046..I-054 added.
 _Note (merge, 2026-10-16 05:10 UTC): the idea ids in the entry above were renumbered on merge: I-046..I-054 there are I-058..I-066 in the ledger._
+
+## 2026-10-16 05:20 UTC: dashboard, curated registry, starter pack, weather, a11y; merged 10-city adapters
+**Did:**
+- **Dashboard (Vite + Preact + TS).**
+  - Views: feed with series collapsed, deadlines by urgency with a "registering now" timeline, calendar, Leaflet map (canvas), new-in-town onboarding → explained 30-day plan, saved, health, about.
+  - Event drawer: price comparison, attendance band, provenance, report link.
+  - .ics export with alarms, shareable URLs, demo mode.
+- **Curated registry with page-watch.** Each entry quotes its source verbatim, and every run re-checks that the quote is still on the page. 10/11 Minneapolis quotes were re-verified live.
+- **Enrichment:**
+  - New-resident starter pack (pipeline + UI; state data being researched).
+  - NWS weather on outdoor events, which also feeds the rain penalty in recommendations.
+  - Wikidata venue capacities (P1083, demolished venues excluded).
+  - Auto-ideas from coverage gaps; "new" badges (pipeline-side); a 60-day openings window.
+- **Merged the adapters branch:** 10 cities, plus arcgis/ckan/bibliocommons/trumba/simpleview/communico.
+
+**Broke:**
+- **Axe found real WCAG AA failures:** button contrast (white on #ff5a36 is about 3:1), category-label contrast, calendar ARIA grid without rows, aria-label on a div. All fixed at the token level (`--btn`, `--cat-l`), not suppressed.
+- **The contract test caught stale demo exports** after schema bumps. The demo is now a generated, gitignored artifact (`make demo`).
+- **Openings dated in the past were silently dropped by build** (found by the adapter agent). Now visible for 60 days.
+
+**Decided (and why):**
+- **ArcGIS skips the robots check, like Socrata (the agent's call; I agree).** It's a documented public REST API. `services*.arcgis.com/robots.txt` returns 403 "Invalid URL", which reflects the host setup, not a crawl policy.
+- **LeagueLab sites are curated with `watch: false`.** Their terms forbid automated access, so we don't page-watch them.
+- **Starter-pack due dates are computed client-side** from the user's move date. That keeps personal data on the device.
+
+**Verified:**
+- Screenshots of home, feed, drawer, map, plan, deadlines and the waves timeline (desktop + 390px mobile).
+- 24 Playwright tests (smoke + axe) on desktop and mobile; 175 pytest; 15 vitest.
+- Full live run of all 10 cities in progress.
+
+**Next:** finish the full live run and check every city in the browser. Merge the Volo/volunteer/cons branch and the starter-pack data. Watch payload size for NYC.
