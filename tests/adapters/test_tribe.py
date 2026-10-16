@@ -5,15 +5,22 @@ from gotc.pipeline.ingest import parse_payloads
 from tests.conftest import NOW, fixture_bytes, make_city, make_source, unit_for
 
 SRC = make_source(
-    "mprb_events", "tribe", base_url="https://www.minneapolisparks.org", default_category="outdoors.park",
+    "mprb_events",
+    "tribe",
+    base_url="https://www.minneapolisparks.org",
+    default_category="outdoors.park",
     category_map={"Environmental Volunteer Opportunities": "volunteer.one_off"},
 )
 UNIT = unit_for(SRC, make_city("minneapolis", [SRC]))
 
 
 def payload():
-    return Payload("https://www.minneapolisparks.org/wp-json/tribe/events/v1/events", 200,
-                   fixture_bytes("mprb_events/payload_0.json"), NOW)
+    return Payload(
+        "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events",
+        200,
+        fixture_bytes("mprb_events/payload_0.json"),
+        NOW,
+    )
 
 
 def test_parses_every_record_without_rejects():

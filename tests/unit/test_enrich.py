@@ -8,8 +8,20 @@ T = datetime(2026, 11, 1, 1, tzinfo=UTC)
 
 
 def event(**kw):
-    d = dict(id="e", city="c", title="Show", kind="one_off", category="music.concert", start=T,
-             timezone="America/Chicago", location={}, price={}, sources=[], first_seen=T, last_checked=T)
+    d = {
+        "id": "e",
+        "city": "c",
+        "title": "Show",
+        "kind": "one_off",
+        "category": "music.concert",
+        "start": T,
+        "timezone": "America/Chicago",
+        "location": {},
+        "price": {},
+        "sources": [],
+        "first_seen": T,
+        "last_checked": T,
+    }
     d.update(kw)
     return Event.model_validate(d)
 
@@ -38,13 +50,27 @@ def test_attendance_reported_wins():
 
 
 def snap(hours_ago, listings, price):
-    return {"seller": "SeatGeek", "observed_at": (T - timedelta(hours=hours_ago)).isoformat(),
-            "price_min": price, "price_max": None, "listing_count": listings, "availability": "on_sale"}
+    return {
+        "seller": "SeatGeek",
+        "observed_at": (T - timedelta(hours=hours_ago)).isoformat(),
+        "price_min": price,
+        "price_max": None,
+        "listing_count": listings,
+        "availability": "on_sale",
+    }
 
 
 def test_selling_fast_from_listing_drop_and_price_trend():
-    offers = [Offer(seller="SeatGeek", kind="resale", url="https://seatgeek.com/x", source_id="seatgeek", fetched_at=T,
-                    availability=Availability.ON_SALE)]
+    offers = [
+        Offer(
+            seller="SeatGeek",
+            kind="resale",
+            url="https://seatgeek.com/x",
+            source_id="seatgeek",
+            fetched_at=T,
+            availability=Availability.ON_SALE,
+        )
+    ]
     e = event(offers=offers)
     sig, trend = ticket_signal(e, [snap(72, 200, 40), snap(48, 180, 45), snap(0, 90, 60)], T)
     assert sig.selling_fast and "down" in (sig.signal or "")
@@ -58,8 +84,12 @@ def test_no_snapshots_no_fake_signal():
 
 
 def test_derived_tags_and_social_score():
-    e = event(category="sports_league.kickball", kind="recurring", price={"is_free": True},
-              registration={"signup_types": ["free_agent", "team"]})
+    e = event(
+        category="sports_league.kickball",
+        kind="recurring",
+        price={"is_free": True},
+        registration={"signup_types": ["free_agent", "team"]},
+    )
     tags = derive_tags(e, "All skill levels welcome! 21+", taxonomy())
     for t in ("free", "recurring", "free_agent", "team_signup", "beginner_friendly", "21+", "solo_friendly"):
         assert t in tags

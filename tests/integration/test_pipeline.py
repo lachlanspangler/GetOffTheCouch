@@ -9,7 +9,9 @@ from gotc.schema import CityFeed
 from tests.conftest import NOW, FixtureTransport, fixture_bytes, make_city, make_registry, make_source
 
 TRIBE = make_source(
-    "mprb_events", "tribe", base_url="https://www.minneapolisparks.org",
+    "mprb_events",
+    "tribe",
+    base_url="https://www.minneapolisparks.org",
     category_map={"Environmental Volunteer Opportunities": "volunteer.one_off"},
 )
 ICS = make_source("test_ics", "ics", url="https://cal.example/feed.ics", horizon_days=30)

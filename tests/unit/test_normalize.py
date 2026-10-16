@@ -16,7 +16,10 @@ def test_links_by_host_and_anchor_text():
 
 
 def test_location_lines():
-    assert location_from_text("Dates: Sundays\nLocation: Minnehaha Regional Park. Sign up below.") == "Minnehaha Regional Park"
+    assert (
+        location_from_text("Dates: Sundays\nLocation: Minnehaha Regional Park. Sign up below.")
+        == "Minnehaha Regional Park"
+    )
     assert location_from_text("Meet at: the north lot") == "the north lot"
     assert location_from_text("no location here") is None
 
