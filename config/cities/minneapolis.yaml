@@ -261,3 +261,47 @@ sources:
       organizer: Dakota
       default_category: music.concert
       classify_description: false
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──
+  - id: target_center
+    adapter: rss_events
+    name: Target Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.targetcenter.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.targetcenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Target Center", address: "600 N 1st Ave, Minneapolis, MN 55403"}
+      organizer: Target Center
+      default_category: music.concert
+  - id: grand_casino_arena
+    adapter: rss_events
+    name: Grand Casino Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.grandcasinoarena.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.grandcasinoarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Grand Casino Arena", address: "199 W Kellogg Blvd, St Paul, MN 55102"}
+      organizer: Grand Casino Arena
+      default_category: music.concert
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
+  - id: gophers_athletics
+    adapter: ics
+    name: Minnesota Golden Gophers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gophersports.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://gophersports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Minnesota Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Minneapolis)\b)'

@@ -354,3 +354,33 @@ sources:
       organizer: Cap City Comedy Club
       default_category: nightlife.comedy
       category_map: {Event: nightlife.comedy}   # every record is a stand-up show
+
+  - id: moody_center
+    adapter: tribe
+    name: Moody Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://moodycenteratx.com/events/
+    expect_min_records: 5
+    params:
+      base_url: https://moodycenteratx.com
+      horizon_days: 180
+      organizer: Moody Center
+      venue: {name: Moody Center, address: "2001 Robert Dedman Dr, Austin, TX 78712"}
+      default_category: music.concert
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
+  - id: texas_athletics
+    adapter: ics
+    name: Texas Longhorns athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://texaslonghorns.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://texaslonghorns.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Texas Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Austin)\b)'

@@ -262,3 +262,48 @@ sources:
       default_category: food_drink.restaurant_opening
       default_url: https://data.boston.gov/dataset/active-food-establishment-licenses
       extras: { signal: food_license_added }
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──
+  - id: td_garden
+    adapter: rss_events
+    name: TD Garden (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.tdgarden.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.tdgarden.com/events/rss
+      horizon_days: 180
+      venue: {name: "TD Garden", address: "100 Legends Way, Boston, MA 02114"}
+      organizer: TD Garden
+      default_category: music.concert
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
+  - id: bc_athletics
+    adapter: ics
+    name: Boston College Eagles athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://bceagles.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://bceagles.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Boston College Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Chestnut Hill|Boston)\b)'
+  - id: bu_athletics
+    adapter: ics
+    name: Boston University Terriers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://goterriers.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://goterriers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: BU Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Boston)\b)'

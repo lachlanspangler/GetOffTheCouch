@@ -138,3 +138,31 @@ sources:
     params:
       url: https://challengeentertainment.com/wp-json/ce/v1/shows
       metros: [nashville]
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──
+  - id: ryman_auditorium
+    adapter: rss_events
+    name: Ryman Auditorium (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.ryman.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.ryman.com/events/rss
+      horizon_days: 180
+      venue: {name: "Ryman Auditorium", address: "116 5th Ave N, Nashville, TN 37219"}
+      organizer: Ryman Auditorium
+      default_category: music.concert
+  - id: bridgestone_arena
+    adapter: rss_events
+    name: Bridgestone Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.bridgestonearena.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.bridgestonearena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Bridgestone Arena", address: "501 Broadway, Nashville, TN 37203"}
+      organizer: Bridgestone Arena
+      default_category: music.concert

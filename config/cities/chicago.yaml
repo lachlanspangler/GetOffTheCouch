@@ -286,3 +286,34 @@ sources:
       venue: {name: "Buddy Guy's Legends"}
       organizer: "Buddy Guy's Legends"
       default_category: music.concert
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──
+  - id: wintrust_arena
+    adapter: rss_events
+    name: Wintrust Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.wintrustarena.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.wintrustarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Wintrust Arena", address: "200 E Cermak Rd, Chicago, IL 60616"}
+      organizer: Wintrust Arena
+      default_category: music.concert
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
+  - id: depaul_athletics
+    adapter: ics
+    name: DePaul Blue Demons athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://depaulbluedemons.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://depaulbluedemons.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: DePaul Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Chicago)\b)'

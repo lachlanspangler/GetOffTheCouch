@@ -173,3 +173,34 @@ sources:
       venue: {name: "1720"}
       organizer: "1720"
       default_category: music.concert
+
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──
+  - id: crypto_arena
+    adapter: rss_events
+    name: Crypto.com Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.cryptoarena.com/events
+    expect_min_records: 10
+    params:
+      url: https://www.cryptoarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Crypto.com Arena", address: "1111 S Figueroa St, Los Angeles, CA 90015"}
+      organizer: Crypto.com Arena
+      default_category: music.concert
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
+  - id: usc_athletics
+    adapter: ics
+    name: USC Trojans athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://usctrojans.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://usctrojans.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: USC Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Los Angeles)\b)'
