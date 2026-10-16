@@ -95,12 +95,34 @@ Curated entries and starter-pack rules store a verbatim `evidence` quote. Each r
 - **Missing:** the card is flagged "page changed", confidence drops, and the freshness clock stops, so it turns stale on schedule.
 - **Page blocked:** the check is skipped and the fact ages normally.
 
-## Recommendations (dashboard, `web/src/lib/recommend.ts`)
-Scoring is a transparent sum of rules, each with the sentence it adds: interests, goals, budget, time of week, distance from your neighborhood, solo-friendliness, recurrence, deadline urgency, and a stale-data penalty.
+## Recommendations (dashboard, `web/src/lib/recommend.ts` → `web/src/lib/rank/`)
+Ranking v2 is the default since 2026-10-16. The design is `docs/research/RANKING.md`; its "Results" section has the measured numbers. v1 (the additive rule list) stays as the comparison baseline: set `localStorage["gotc:ranker"] = "v1"` to use it.
 
-The 30-day plan is greedy per week: up to 3 picks, with no time overlaps, one occurrence per series, and a −0.45 diversity penalty per repeated category family.
+**Pipeline hints (`gotc/pipeline/rankprep.py`, schema 1.5.0, `Event.rank`).** Computed at export from the full record, profile-independent:
+- `fp`: a near-duplicate fingerprint (normalized title, venue or ~300 m cell, local date). Same-day, same-place titles with char-3-gram Jaccard ≥ 0.8 share one.
+- `group` / `group_n`: the same program on the same day at 2+ venues (library storytime at 5 branches).
+- `desc_len`: full description length (the card feed only has 240 characters).
+- `flags` / `lowq`: administrative and low-information flags. The weighted sum is capped at 1. The flags are admin phrases, cancelled titles, generic titles, all caps, shouting, no info, no place, promo, long span, daily non-habit series, service desks (tech help, legal clinics, ESL classes) and specific-audience listings.
+- `complete`: the share of 7 key fields present. `quality = complete × (1 − lowq)`.
+- `src_rel`: the best member unit's 30-day reliability, 0–1.
 
-Nothing is learned from other users. Preferences stay on the device.
+**Browser (all pure functions except `affinityStore.ts`).**
+1. *Candidates.* Removes anything cancelled, postponed, past, sold out without resale, closed for registration, hard noise or dismissed.
+2. *Collapse.* One card per series, multi-site group and fingerprint.
+3. *Features.* 29 features, each in [0, 1], with formulas documented in `features.ts`.
+4. *Score.* A linear sum with a weight table (`weights.ts`). Each feature's contribution is measured against a neutral baseline, so an unknown value contributes exactly 0.
+5. *Diversify.* MMR re-rank with hard caps: ≤ 2 per source and ≤ 1 per series, group or fingerprint in every 10, ≥ 3 families, no kids content for adults, nothing with `lowq ≥ 0.7`, and ≤ 1 library event in Highlights.
+6. *Explain.* At most 3 reasons plus 1 caveat, each literally a score term. A derived deadline never gets a countdown. Estimates say "~" and "estimate". An unknown value is never a reason.
+
+**Personalization is on-device only** (`localStorage`, nothing sent anywhere):
+- Learning signals: saves, calendar adds, opens of ≥ 5 s, outbound clicks, unsaves and "Not for me" dismisses.
+- The model: Beta counts per family, category, venue, time slot and a small tag vocabulary, with a 21-day half-life that decays back toward neutral.
+- Limits: it switches on after 5 signals and its effect is capped at ±0.3. A "too far / price / time" dismiss never touches the topic.
+- Exploration: one slot (position 4) is filled by seeded Thompson sampling over families missing from the list.
+- Family floor: once there are 14 days of history, a family that hasn't been shown in 14 days gets one slot.
+- `whySeeingThis()` (in `recommend.ts`) returns the plain-language "Why am I seeing this?" data.
+
+The plan uses the same score and caps: per week, MMR λ 0.55 over picks with no time overlaps and one per series. Nothing is learned from other users.
 
 ## Openings (new bars and restaurants)
 These come from government license data. They're always presented as a *signal*, not a confirmed opening date.

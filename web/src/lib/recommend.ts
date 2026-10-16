@@ -19,7 +19,9 @@ import type { Profile, Reason, Scored } from "./rank/types";
 export type { Budget, Goal, Profile, Reason, Scored, Slot } from "./rank/types";
 export type { Plan, PlanWeek, Why } from "./rank/index";
 export { DEFAULT_PROFILE, GOALS, slotOf } from "./rank/profile";
-export { whyThis } from "./rank/index";
+// "Why am I seeing this?" for a ranked card (score terms + on-device part). lib/why.ts is the data-only
+// "why it's here" list for event pages; this one explains the ranking.
+export { whyThis as whySeeingThis } from "./rank/index";
 export { dismiss, undismiss, recordSignal, resetAffinity, learnedSummary } from "./rank/affinityStore";
 
 /** Ranking engine v2 is on by default. */

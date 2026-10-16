@@ -11,7 +11,7 @@ import {
   rankerVersion,
   scoreEvent,
   similar,
-  whyThis,
+  whySeeingThis,
 } from "../../src/lib/recommend";
 import { recordSignal } from "../../src/lib/rank/affinityStore";
 import { ev, NOW } from "../helpers";
@@ -111,7 +111,7 @@ describe("dismiss + on-device signals", () => {
     for (const e of pool.slice(3, 5)) recordSignal(e, "calendar", undefined, t0);
     const list = forYou([...pool, ...music], null, labels, {}, NOW);
     const trivia = list.find((s) => s.event.category === "trivia_games.trivia")!;
-    const why = whyThis(trivia, { profile: null, labels, cityName: "Testville" });
+    const why = whySeeingThis(trivia, { profile: null, labels, cityName: "Testville" });
     expect(why.personal?.text).toMatch(/^You saved 3 and added 2 to your calendar · Trivia nights$/);
     expect(why.personal!.contribution).toBeGreaterThan(0);
     expect(why.headline).toBe("Picked for someone new to Testville");

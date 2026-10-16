@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 56 · **doing** 5 · **done** 73 · **rejected** 15 · **parked** 2 · **blocked** 8
+**open** 59 · **doing** 4 · **done** 78 · **rejected** 16 · **parked** 2 · **blocked** 8
 
 ## Up next (open, by score)
 
@@ -14,9 +14,7 @@ unless docs/HEALTH.md has something red.
 | I-137 | Nominatim compliance: ≤1 req/s and per-run budget | pipeline | 5 | 1 | 4.0 | doing | We burst ~55/min at 10 cities; policy violation (SCALING §4.3) |
 | I-138 | Replace Wikidata SPARQL (robots-disallowed) with allowed API or curated venues | sources | 5 | 2 | 2.0 | doing | query.wikidata.org robots.txt disallows /sparql |
 | I-140 | Per-city go-live gate (G1–G11) with live/beta/hidden tiers | cities | 5 | 2 | 2.0 | doing | Honest coverage; thin cities never pretend |
-| I-130 | Ranking v2: candidates → features → score → MMR → explanations | features | 5 | 3 | 1.33 | doing | Algorithmic ranking is the product (RANKING.md) |
 | I-139 | gotc discover <city>: Socrata/data.gov/ArcGIS/library/university/venue fingerprints | cities | 5 | 4 | 1.0 | doing | Adding a city should approach automatic |
-| I-131 | Golden-rule ranking tests (no kids items atop adult picks, ≤2 per source) | data-quality | 5 | 1 | 4.0 | open | Hard-fail tests for embarrassing rankings |
 | I-114 | Per-city sitemaps + sitemap index with honest lastmod | growth | 4 | 1 | 3.2 | open | Discovery for ~8k pages; Search Console URL-prefix property |
 | I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | open | Time Out pattern: one URL, fresh dates, high-intent query |
 | I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | open | Partiful trust pattern; clarifies we're a guide |
@@ -33,6 +31,10 @@ unless docs/HEALTH.md has something red.
 | I-142 | Hash-gated incremental builds and exports | infra | 4 | 2 | 1.6 | open | Only rebuild cities whose inputs changed |
 | I-143 | Raw payload retention + price snapshot downsampling | infra | 4 | 2 | 1.6 | open | State file would pass GitHub's 100 MB limit |
 | I-147 | Organizer track record chip (past events, how long listed) | features | 4 | 2 | 1.6 | open | Meetup trust pattern without ratings we don't have |
+| I-160 | Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin) | features | 4 | 2 | 1.6 | open | The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness |
+| I-161 | Human spot-check >=20% of the ranking judgments, then re-snapshot on a new date as a held-out eval | data-quality | 4 | 2 | 1.6 | open | All 3,360 grades are one agent's; the flags, lambda and interest tweaks were chosen in-sample (RANKING.md 7.6) |
+| I-162 | Taxonomy rules for library services and big-name concerts (MNsure Help filed as hike, Drop-in Tech Help as volunteering, Indigo Girls as festival) | data-quality | 4 | 2 | 1.6 | open | Ranking eval error analysis: category mistakes drive more bad picks than any weight |
+| I-163 | UI for rank v2: 'Why am I seeing this?' (whySeeingThis), Not for me + why (dismiss), What we've learned panel with reset (learnedSummary/resetAffinity) | ux | 4 | 2 | 1.6 | open | The lib exposes all of it; nothing renders it yet, and dismisses give the cleanest negative signal |
 | I-096 | Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule | data-quality | 2 | 1 | 1.4 | open | Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources. |
 | I-084 | Find a volunteering source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 volunteering events in Denver right now |
 | I-085 | Find a cons & faires source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Denver right now |
@@ -42,7 +44,6 @@ unless docs/HEALTH.md has something red.
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
 | I-111 | Pre-render city, hub and event pages at build time (SSR + hydrate) | growth | 5 | 3 | 1.33 | open | Crawlers and social scrapers need real HTML; most first visits come from search |
 | I-117 | Week-sharded city data + inlined initial.json | infra | 5 | 3 | 1.33 | open | City JSON is 170–470 KB gz and blocks first render; target ≤30 KB first view |
-| I-132 | Judgment sets per city × persona with NDCG/ILD regression gate | data-quality | 5 | 3 | 1.33 | open | Measurable ranking quality without user data |
 | I-141 | Per-city state files + sharded matrix refresh + single publish job | infra | 5 | 3 | 1.33 | open | Monolithic run stops fitting at ~60–70 cities |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
@@ -51,10 +52,9 @@ unless docs/HEALTH.md has something red.
 | I-100 | Health check: all-past start dates while the page lists upcoming items → flag series-first-date sources | health | 3 | 2 | 1.2 | open | Caught Triple Door by hand; make it automatic |
 | I-102 | City concert digest: top 10 shows this week with lowest price per seller | features | 3 | 2 | 1.2 | open | Shareable, newsletter-ready view of the price comparison |
 | I-115 | Build-time OG share images (art + title + date) via satori/resvg | growth | 3 | 2 | 1.2 | open | Shared links look like a publication in iMessage/Slack |
-| I-134 | Thompson-sampling exploration slot + 14-day family floor | features | 3 | 2 | 1.2 | open | Prevents filter bubbles in on-device personalization |
 | I-149 | Fee-inclusive price display where sellers expose fees | data-quality | 3 | 2 | 1.2 | open | DICE pattern; only where reported |
+| I-165 | Doctor: per-source share of admin/noise_recurring/service_desk flags; suggest an adapter reject rule above 30% | health | 3 | 2 | 1.2 | open | Fix noise upstream (RANKING.md section 4 feedback loop); rank hints now make the shares cheap to compute |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
-| I-133 | On-device affinity from saves/opens/dismisses (21-day half-life, ±0.3 cap) | features | 4 | 3 | 1.07 | open | Learns without tracking; capped so it can't override penalties |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -64,8 +64,10 @@ unless docs/HEALTH.md has something red.
 | I-056 | Widen Minneapolis coverage (only 2 healthy sources) | cities | 4 | 3 | 0.93 | open | auto: thin coverage makes the city feel empty |
 | I-030 | 'Bring a friend' mode: events good for pairs vs. solo | features | 3 | 2 | 0.9 | open | Different social modes for newcomers |
 | I-094 | Boston new liquor licenses by first-seen snapshot diff | sources | 3 | 2 | 0.9 | open | The liquor-licenses CSV download is robots-allowed, but 'issued' is re-stamped in bulk (1,057 rows dated 2013-11, a batch of existing breweries re-issued 2026-09), so it can't signal newness. openings_by_first_seen (silent baseline) would; person names in business_name/applicant need entity_only_fields. |
+| I-164 | Move newcomer_prior from rank/weights.ts into config/taxonomy.yaml and export it in index.json | pipeline | 2 | 2 | 0.8 | open | RANKING.md wants priors as config, documented per family; kept in TS for now to avoid index.json plumbing |
 | I-028 | Price-drop / selling-fast alerts from snapshots | features | 4 | 3 | 0.8 | open | Needs SeatGeek/TM keys for real signal |
 | I-118 | Service worker: cached data first, refresh in background, 'data as of' badge | infra | 3 | 3 | 0.8 | open | Usable on flaky phone connections; honest about staleness |
+| I-166 | Rank v2 learned weights: coordinate ascent on the judgment sets with leave-one-city-out, signs fixed, x0.5-x2 bounds | features | 3 | 3 | 0.8 | open | Rollout step 7; worth it only after a second, held-out snapshot exists |
 | I-067 | Transit-time 'near me' from GTFS (keyless) instead of straight-line km | features | 4 | 4 | 0.8 | open | Newcomers without cars care about the bus ride, not the crow-flies distance |
 | I-072 | Typical registration windows learned from history ('kickball usually registers in Feb') | features | 4 | 4 | 0.8 | open | Needs a season of snapshot history; gives 'plan ahead' power |
 | I-108 | Levitt Pavilion Denver free concerts when the 2027 season posts (jsonld follow) | cities | 3 | 2 | 0.75 | open | Levitt Pavilion Denver (free summer concert series, Squarespace) had 0 upcoming events in October; Squarespace event pages carry Event JSON-LD, so a jsonld follow config should work when the 2027 season is announced (spring). |
@@ -97,6 +99,11 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-134 | Thompson-sampling exploration slot + 14-day family floor | features | 3 | 2 | 1.2 | done | Prevents filter bubbles in on-device personalization — 2026-10-16 done: exploration slot at position 4; floor needs 14 days of history |
+| I-133 | On-device affinity from saves/opens/dismisses (21-day half-life, ±0.3 cap) | features | 4 | 3 | 1.07 | done | Learns without tracking; capped so it can't override penalties — 2026-10-16 done: rank/affinity.ts + affinityStore.ts; saves, calendar adds, opens ≥5 s, outbound, dismiss |
+| I-132 | Judgment sets per city × persona with NDCG/ILD regression gate | data-quality | 5 | 3 | 1.33 | done | Measurable ranking quality without user data — 2026-10-16 done: 5 cities × 6 personas, 560 events labeled; npm run eval:rank in make check |
+| I-131 | Golden-rule ranking tests (no kids items atop adult picks, ≤2 per source) | data-quality | 5 | 1 | 4.0 | done | Hard-fail tests for embarrassing rankings — 2026-10-16 done: web/tests/rank/golden.test.ts on 5 snapshots × 6 personas + adversarial feed |
+| I-130 | Ranking v2: candidates → features → score → MMR → explanations | features | 5 | 3 | 1.33 | done | Algorithmic ranking is the product (RANKING.md) — 2026-10-16 done: 2026-10-16 rank v2 shipped (default on); results RANKING.md §7 |
 | I-128 | Public status page with plain-sentence summary, freshness out of the header | health | 4 | 2 | 1.6 | done | Turns pipeline honesty into a trust asset without dev-ops chrome |
 | I-127 | Contrast regression test recomputing WCAG ratios from tokens | ux | 4 | 1 | 3.2 | done | Token edits can't silently break AA |
 | I-126 | Real event page with sticky ticket card and destination-named CTA | ux | 5 | 3 | 1.33 | done | Bookmarkable, SEO-ready, provenance next to the CTA |
@@ -175,6 +182,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-167 | Ranking engine v2: pipeline rank hints (schema 1.5.0), normalized linear score with contributions, MMR + hard caps, honest explanations, on-device affinity, offline eval | features | 5 | 4 | 1.0 | rejected | RANKING.md rollout steps 1-6; results in RANKING.md section 7 — 2026-10-16 rejected: Duplicate of I-130 (Ranking v2), which is now done |
 | I-157 | Mixing online events into city results | data-quality | 1 | 1 | 0.8 | rejected | Rejected: Meetup/Eventbrite do it and it dilutes 'what's on in my city' |
 | I-156 | Event photos scraped from organizer pages | ux | 2 | 2 | 0.8 | rejected | Rejected: rights unclear; generated art instead |
 | I-155 | Per-card static map thumbnails from OSM tiles | ux | 2 | 2 | 0.8 | rejected | Rejected: bulk tile prefetch violates the OSMF tile policy |

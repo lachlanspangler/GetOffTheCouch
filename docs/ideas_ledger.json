@@ -1928,12 +1928,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Algorithmic ranking is the product (RANKING.md)",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 2026-10-16 rank v2 shipped (default on); results RANKING.md §7"
+   ]
   },
   {
    "id": "I-131",
@@ -1942,12 +1944,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Hard-fail tests for embarrassing rankings",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: web/tests/rank/golden.test.ts on 5 snapshots × 6 personas + adversarial feed"
+   ]
   },
   {
    "id": "I-132",
@@ -1956,12 +1960,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Measurable ranking quality without user data",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 5 cities × 6 personas, 560 events labeled; npm run eval:rank in make check"
+   ]
   },
   {
    "id": "I-133",
@@ -1970,12 +1976,14 @@
    "value": 4,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Learns without tracking; capped so it can't override penalties",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: rank/affinity.ts + affinityStore.ts; saves, calendar adds, opens ≥5 s, outbound, dismiss"
+   ]
   },
   {
    "id": "I-134",
@@ -1984,12 +1992,14 @@
    "value": 3,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Prevents filter bubbles in on-device personalization",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: exploration slot at position 4; floor needs 14 days of history"
+   ]
   },
   {
    "id": "I-135",
@@ -2340,6 +2350,120 @@
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": []
+  },
+  {
+   "id": "I-160",
+   "title": "Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin)",
+   "area": "features",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-161",
+   "title": "Human spot-check >=20% of the ranking judgments, then re-snapshot on a new date as a held-out eval",
+   "area": "data-quality",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "All 3,360 grades are one agent's; the flags, lambda and interest tweaks were chosen in-sample (RANKING.md 7.6)",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-162",
+   "title": "Taxonomy rules for library services and big-name concerts (MNsure Help filed as hike, Drop-in Tech Help as volunteering, Indigo Girls as festival)",
+   "area": "data-quality",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Ranking eval error analysis: category mistakes drive more bad picks than any weight",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-163",
+   "title": "UI for rank v2: 'Why am I seeing this?' (whySeeingThis), Not for me + why (dismiss), What we've learned panel with reset (learnedSummary/resetAffinity)",
+   "area": "ux",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "The lib exposes all of it; nothing renders it yet, and dismisses give the cleanest negative signal",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-164",
+   "title": "Move newcomer_prior from rank/weights.ts into config/taxonomy.yaml and export it in index.json",
+   "area": "pipeline",
+   "value": 2,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "RANKING.md wants priors as config, documented per family; kept in TS for now to avoid index.json plumbing",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-165",
+   "title": "Doctor: per-source share of admin/noise_recurring/service_desk flags; suggest an adapter reject rule above 30%",
+   "area": "health",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Fix noise upstream (RANKING.md section 4 feedback loop); rank hints now make the shares cheap to compute",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-166",
+   "title": "Rank v2 learned weights: coordinate ascent on the judgment sets with leave-one-city-out, signs fixed, x0.5-x2 bounds",
+   "area": "features",
+   "value": 3,
+   "effort": 3,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Rollout step 7; worth it only after a second, held-out snapshot exists",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-167",
+   "title": "Ranking engine v2: pipeline rank hints (schema 1.5.0), normalized linear score with contributions, MMR + hard caps, honest explanations, on-device affinity, offline eval",
+   "area": "features",
+   "value": 5,
+   "effort": 4,
+   "confidence": 0.8,
+   "status": "rejected",
+   "why": "RANKING.md rollout steps 1-6; results in RANKING.md section 7",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": [
+    "2026-10-16 rejected: Duplicate of I-130 (Ranking v2), which is now done"
+   ]
   }
  ]
 }

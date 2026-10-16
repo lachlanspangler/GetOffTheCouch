@@ -100,9 +100,10 @@ export const SLOT_PRIOR = { weekends: 1.0, weeknights: 0.8, daytime: 0.35 } as c
 /** MMR λ per surface (§1E): lower = more spread. */
 export const LAMBDA = {
   highlights: 0.6,
-  // RANKING.md proposed 0.65 / 0.75. The eval (λ sweep, leave-one-city-out) picked 0.9 in every fold: rel is
-  // min-max over the whole pool, so near the top items differ by a few hundredths and a low λ lets similarity
-  // dominate. 0.9 still gives ILD ≈ 0.92 (gate 0.55) with the hard caps doing the heavy lifting.
+  // RANKING.md proposed 0.65 / 0.75. In the eval's λ sweep (npm run eval:ablate) NDCG@10 rises from 0.41 at
+  // 0.65 to 0.46 at 0.9 and 0.47 at 1.0 (leave-one-city-out picks 0.9–1.0 in every fold): rel is min-max over the
+  // whole pool, so near the top items differ by hundredths and a low λ lets similarity dominate. 0.9 keeps a
+  // little venue/day de-clumping beyond the hard caps for ~0.01 NDCG; ILD stays ≈ 0.90 (gate 0.55).
   for_you_narrow: 0.9, // ≤ 1 interest
   for_you_broad: 0.9, // ≥ 2 interests
   search: 0.9,
