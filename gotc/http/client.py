@@ -22,10 +22,10 @@ from http.cookiejar import CookieJar, DefaultCookiePolicy
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
-from urllib.robotparser import RobotFileParser
 
 import httpx
 
+from gotc.http.robots import RobotsRules
 from gotc.settings import Settings
 
 REDACT_KEYS = ("apikey", "client_id", "client_secret", "app_id", "token", "key")
@@ -92,7 +92,7 @@ class Response:
 class _HostState:
     lock: threading.Lock = field(default_factory=threading.Lock)
     next_ok: float = 0.0
-    robots: RobotFileParser | None = None
+    robots: RobotsRules | None = None
     robots_checked: bool = False
 
 
@@ -241,16 +241,13 @@ class PoliteClient:
             try:
                 r = self._client.get(f"{host}/robots.txt")
                 if r.status_code < 400:
-                    rp = RobotFileParser()
-                    rp.parse(r.text.splitlines())
+                    rp = RobotsRules(r.text)  # RFC 9309: wildcards, blank lines don't end groups
                     st.robots = rp
                     if (delay := rp.crawl_delay(self.settings.user_agent)) is not None:
                         self.host_intervals[urlsplit(url).netloc] = max(float(delay), self.min_interval_s)
                 elif r.status_code in (401, 403):
                     # RFC 9309 §2.3.1.3: unreachable-because-forbidden robots → assume full disallow
-                    rp = RobotFileParser()
-                    rp.parse(["User-agent: *", "Disallow: /"])
-                    st.robots = rp
+                    st.robots = RobotsRules("User-agent: *\nDisallow: /")
             except httpx.HTTPError:
                 st.robots = None  # unreachable robots.txt → allowed (RFC 9309 §2.3.1.4)
         if st.robots and not st.robots.can_fetch(self.settings.user_agent, url):
