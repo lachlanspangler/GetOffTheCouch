@@ -3,6 +3,7 @@
 from gotc.adapters import (  # noqa: F401
     calendars,
     demo,
+    handsonconnect,
     ics,
     socrata,
     ticketing,

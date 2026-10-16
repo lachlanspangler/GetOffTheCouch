@@ -1,0 +1,7 @@
+{
+  "unit": "hands_on_nashville@nashville",
+  "recorded_at": "2026-10-16T05:12:43+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; unmodified",
+  "request": "POST https://handson.unitedwaygreaternashville.org/search/getOpportunitiesCalendar searchvo_startfrom=2026-10-16&searchvo_endfrom=2026-10-17&searchvo_searchresultblockid=2009 (first 2-day window of the run)"
+}
