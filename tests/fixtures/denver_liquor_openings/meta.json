@@ -1,0 +1,6 @@
+{
+  "unit": "denver_liquor_openings@denver",
+  "source": "docs/research/samples/denver_liquor_licenses_new.geojson",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}
