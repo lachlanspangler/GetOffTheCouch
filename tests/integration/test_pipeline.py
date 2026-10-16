@@ -57,6 +57,9 @@ def test_end_to_end_dedup_export_and_health(db, settings):
     # every event has attendance with a band and method; nothing is demo
     assert all(e.attendance and e.attendance.method for e in f.events)
     assert not any(e.is_demo for e in f.events)
+    # ranking hints are precomputed from the full description (before the card feed trims it)
+    assert all(e.rank and e.rank.fp for e in f.events)
+    assert rose[0].rank and rose[0].rank.desc_len == len(det.events[rose[0].id].summary or "")
     # index + health exports exist and agree
     idx = json.loads((settings.web_data_dir / "index.json").read_text())
     assert idx["cities"][0]["events"] == len(f.events)

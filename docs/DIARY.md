@@ -369,3 +369,38 @@ New units, live counts:
 - The design-critic grades (agent running).
 - Merging ranking v2 and the scaling infra branches.
 - 50 metros.
+
+## 2026-10-16 21:40 UTC: Ranking engine v2 (RANKING.md rollout 1–6)
+**Did:**
+- **Pipeline.** `gotc/pipeline/rankprep.py` computes `Event.rank` hints at export, before card summaries are cut: fingerprint and near-dup merge, multi-site groups, `desc_len`, quality flags with `lowq`, `complete`/`quality` and `src_rel`. Schema 1.5.0 (minor), `make schema`. Kids regex now catches "3rd–12th Grade" and "Pre-K".
+- **Browser.** Pure modules in `web/src/lib/rank/`:
+  - candidates → collapse → 29 features, each in [0, 1]
+  - linear score with per-feature contributions vs a neutral baseline
+  - MMR + hard caps: ≤ 2 per source, ≤ 1 per series/group/fp, ≥ 3 families, no kids for adults, no lowq ≥ 0.7
+  - explanations: ≤ 3 reasons + 1 caveat, honesty guards
+  - Beta affinity (21-day half-life, ±0.3 cap, on after 5 signals), seeded Thompson exploration slot, family floor, `whyThis()` (exported from `recommend.ts` as `whySeeingThis`)
+- **Wiring.** `recommend.ts` keeps its API and routes through v2 (`RANKER_V2 = true`; `localStorage["gotc:ranker"]="v1"` switches back). New exports: `forYou`, `whySeeingThis`, `dismiss`, `recordSignal`, `learnedSummary`, `resetAffinity`. Component changes are one-liners: save/unsave in `app.tsx`; open ≥ 5 s, calendar add and outbound in `EventPage.tsx` (rebased onto the v3 redesign, which replaced the drawer).
+- **Eval.** 5 real snapshots (Minneapolis, NYC, Chicago, Austin, Seattle; 2,818 events in the 7-day window). 560 pooled events, each graded for 6 personas (3,360 grades). I labeled them by reading each event, with pools sorted by id. `npm run eval:rank` is in `make check` (~2 s) and golden-rule tests are hard fails. `eval:pool` and `eval:ablate` are for relabeling and ablations.
+
+**Broke:**
+- First v2 run: For You NDCG@10 0.37 vs v1 0.51.
+- Causes: λ 0.65 on a pool-wide min-max made similarity dominate; the family floor fired on a first visit (an extra junk slot, plus a false "you haven't seen X lately"); and library help desks / ESL classes / "high school students needed" ranked as social picks.
+- Fixed: λ 0.9 (from a leave-one-city-out sweep), floor needs 14 days of history, new `service_desk` and `audience_specific` flags. Now 0.46.
+- Old v1 tests now pin v1 explicitly.
+
+**Decided (and why):**
+- **Kept the ≤ 2-per-source cap** even though it's most of the remaining gap. Ablation: the pure v2 score gets 0.56 vs v1 0.51, the cap costs 0.075. Without it v1-style lists are ten Volo leagues or ten HEB trivia nights.
+- **Recorded honestly that §5.4.4's gate fails for For You NDCG.** It passes for Highlights (NDCG@6 0.46→0.64). ILD 0.61→0.90, entropy 0.33→0.73, coverage 0.63→0.83, newcomer junk 0.14→0.04, median hours-to-start 102→50.
+- **Gates now guard v2 against its own stored numbers** (`fixtures/baseline.json`), with junk gated on the no-profile persona.
+- **Interest family pick 0.85, prior halved once interests exist.** A parent who picked "family" got adult picks.
+- Every deviation is listed in RANKING.md §7.5.
+
+**Verified:**
+- `make check` green: 390 pytest, 101 vitest + 5 eval.
+- Golden rules hold on all 5 snapshots × 6 personas and on an adversarial feed.
+- Determinism and monotonicity tests pass. `vite build` is fine.
+- Ran the dev server against the current real feeds (schema 1.4.0, no `rank` hints yet) and took Playwright screenshots. Minneapolis and NYC Highlights render with v2 reasons, with no page errors. Minneapolis shows six families: volunteering, run club, trivia, curling, a craft club and birding.
+- Without hints, v2 uses neutral values for completeness, quality and reliability. Hard-noise drops and dup collapse start with the next export.
+- No visual review beyond that: another agent is redesigning every view.
+
+**Ideas:** I-130–I-134 done (this work); I-160–I-166 added.

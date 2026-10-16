@@ -2,66 +2,82 @@
 //
 // Every point added to a score comes with the sentence that justifies it, so the UI can always answer
 // "why is this here?". Nothing here is learned from other users; it's transparent rules over your choices.
+//
+// Two rankers sit behind this one API. v2 (web/src/lib/rank/, docs/research/RANKING.md) is the default:
+// normalized features, a linear score with per-feature contributions, MMR diversity with hard caps, and
+// on-device personalization. v1 (the additive rules below) stays as the comparison baseline and fallback:
+// set localStorage["gotc:ranker"] = "v1" to switch back.
 
 import type { Event } from "./types";
 import { km, liveAvailability } from "./filters";
-import { hoursUntil, parts } from "./time";
+import { dayKey, hoursUntil } from "./time";
+import * as v2 from "./rank/index";
+import { lastShownBefore, loadAffinity, loadDismissed, markShown } from "./rank/affinityStore";
+import { DEFAULT_PROFILE, GOALS, family, slotOf } from "./rank/profile";
+import type { Profile, Reason, Scored } from "./rank/types";
 
-export type Goal = "meet_people" | "stay_active" | "culture" | "party" | "give_back" | "nerd_out";
-export type Budget = "free" | "cheap" | "any";
-export type Slot = "weeknights" | "weekends" | "daytime";
+export type { Budget, Goal, Profile, Reason, Scored, Slot } from "./rank/types";
+export type { Plan, PlanWeek, Why } from "./rank/index";
+export { DEFAULT_PROFILE, GOALS, slotOf } from "./rank/profile";
+// "Why am I seeing this?" for a ranked card (score terms + on-device part). lib/why.ts is the data-only
+// "why it's here" list for event pages; this one explains the ranking.
+export { whyThis as whySeeingThis } from "./rank/index";
+export { dismiss, undismiss, recordSignal, resetAffinity, learnedSummary } from "./rank/affinityStore";
 
-export interface Profile {
-  interests: string[]; // taxonomy ids
-  goals: Goal[];
-  budget: Budget;
-  times: Slot[];
-  neighborhood: string | null;
-  solo: boolean;
-  startDate?: string | null; // "2026-11-01" — plan starts here if later than today (moving soon)
+/** Ranking engine v2 is on by default. */
+export const RANKER_V2 = true;
+let override: "v1" | "v2" | null = null;
+
+/** Tests and the debug panel can force a ranker; otherwise localStorage["gotc:ranker"], else the default. */
+export function setRanker(v: "v1" | "v2" | null): void {
+  override = v;
 }
 
-export const DEFAULT_PROFILE: Profile = {
-  interests: [],
-  goals: ["meet_people"],
-  budget: "any",
-  times: ["weeknights", "weekends"],
-  neighborhood: null,
-  solo: true,
-  startDate: null,
-};
-
-export const GOALS: Record<Goal, { label: string; families: string[]; weight: number }> = {
-  meet_people: { label: "Meet people", families: [], weight: 0 },
-  stay_active: { label: "Stay active", families: ["fitness", "sports_league", "outdoors"], weight: 0.5 },
-  culture: { label: "Arts & culture", families: ["arts", "music"], weight: 0.4 },
-  party: { label: "Go out", families: ["nightlife", "music", "food_drink"], weight: 0.4 },
-  give_back: { label: "Give back", families: ["volunteer", "community"], weight: 0.55 },
-  nerd_out: { label: "Nerd out", families: ["niche", "trivia_games", "learning"], weight: 0.5 },
-};
-
-export interface Reason {
-  text: string;
-  weight: number;
+export function rankerVersion(): "v1" | "v2" {
+  if (override) return override;
+  try {
+    const v = globalThis.localStorage?.getItem("gotc:ranker");
+    if (v === "v1" || v === "v2") return v;
+  } catch {
+    /* storage disabled */
+  }
+  return RANKER_V2 ? "v2" : "v1";
 }
 
-export interface Scored {
-  event: Event;
-  score: number;
-  reasons: Reason[];
+const useV2 = () => rankerVersion() === "v2";
+
+/** The browser-side context v2 needs: on-device affinity, dismissals and the family-floor history. */
+function ctxFor(
+  events: Event[],
+  profile: Profile | null,
+  labels: Record<string, string>,
+  neighborhoods: Record<string, [number, number]>,
+  now: Date,
+): Omit<v2.RankContext, "surface"> {
+  const tz = events[0]?.timezone ?? "UTC";
+  return {
+    now,
+    profile,
+    labels,
+    neighborhoods,
+    city: events[0]?.city,
+    affinity: loadAffinity(),
+    dismissed: loadDismissed(),
+    lastShown: lastShownBefore(dayKey(now, tz)),
+  };
+}
+
+function noteShown(list: Scored[], now: Date): void {
+  const e = list[0]?.event;
+  if (e) markShown(list.map((s) => family(s.event.category)), dayKey(now, e.timezone));
+}
+
+/** True when the profile is the untouched default: v2 then uses newcomer priors (RANKING.md §2.1). */
+function isColdStart(p: Profile): boolean {
+  return !p.interests.length && p.budget === "any" && !p.neighborhood && JSON.stringify(p.goals) === '["meet_people"]';
 }
 
 const CHEAP = 30;
-
-export function slotOf(e: Event): Slot {
-  const p = parts(e.start, e.timezone);
-  if (p.weekday === 0 || p.weekday === 6 || (p.weekday === 5 && p.hour >= 17)) return "weekends";
-  return p.hour >= 17 ? "weeknights" : "daytime";
-}
-
-function family(id: string): string {
-  return id.split(".")[0];
-}
 
 export function scoreEvent(
   e: Event,
@@ -70,6 +86,7 @@ export function scoreEvent(
   neighborhoods: Record<string, [number, number]>,
   now: Date = new Date(),
 ): Scored | null {
+  if (useV2()) return v2.scoreEventV2(e, { ...ctxFor([e], profile, labels, neighborhoods, now), surface: "for_you" });
   const avail = liveAvailability(e, now);
   if (avail === "cancelled" || avail === "sold_out" || avail === "postponed") return null;
   if (avail === "registration_closed" && (e.kind === "season" || e.registration?.closes_at)) return null;
@@ -152,24 +169,15 @@ export function rank(
   neighborhoods: Record<string, [number, number]>,
   now: Date = new Date(),
 ): Scored[] {
+  if (useV2()) {
+    const ctx: v2.RankContext = { ...ctxFor(events, profile, labels, neighborhoods, now), surface: "search" };
+    return v2.rankV2(events, ctx, { collapseSeries: false, window: { from: now, to: new Date(now.getTime() + 400 * 86_400_000) } });
+  }
   return events
     .filter((e) => new Date(e.end ?? e.start).getTime() >= now.getTime() || e.kind === "opening")
     .map((e) => scoreEvent(e, profile, labels, neighborhoods, now))
     .filter((s): s is Scored => s !== null)
     .sort((a, b) => b.score - a.score || a.event.start.localeCompare(b.event.start));
-}
-
-export interface PlanWeek {
-  label: string;
-  from: string;
-  picks: Scored[];
-}
-
-export interface Plan {
-  weeks: PlanWeek[];
-  habits: Scored[]; // recurring social things to become a regular at
-  deadlines: Scored[]; // registrations to act on soon
-  openings: Scored[]; // new places to try
 }
 
 function overlaps(a: Event, b: Event): boolean {
@@ -191,13 +199,14 @@ export function buildPlan(
   neighborhoods: Record<string, [number, number]>,
   now: Date = new Date(),
   perWeek = 3,
-): Plan {
+): v2.Plan {
+  if (useV2()) return v2.planV2(events, ctxFor(events, isColdStart(profile) ? null : profile, labels, neighborhoods, now), perWeek);
   const start = profile.startDate && new Date(profile.startDate) > now ? new Date(profile.startDate) : now;
   const ranked = rank(events, profile, labels, neighborhoods, now).filter((s) => s.score > 0.2);
   const chosen: Event[] = [];
   const usedSeries = new Set<string>();
   const famCount = new Map<string, number>();
-  const weeks: PlanWeek[] = [];
+  const weeks: v2.PlanWeek[] = [];
   const week = 7 * 86_400_000;
   for (let w = 0; w < 4; w++) {
     const from = new Date(start.getTime() + w * week);
@@ -258,6 +267,11 @@ export function buildPlan(
 
 /** Default highlights for someone who hasn't set preferences: social, concrete, soon, diverse. */
 export function highlights(events: Event[], labels: Record<string, string>, now: Date = new Date(), n = 6): Scored[] {
+  if (useV2()) {
+    const out = v2.highlightsV2(events, ctxFor(events, null, labels, {}, now), n);
+    noteShown(out, now);
+    return out;
+  }
   const week = now.getTime() + 7 * 86_400_000;
   const pool = events.filter(
     (e) =>
@@ -302,6 +316,7 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
 
 /** "Similar this week": same family, upcoming within 7 days, nearest first when we know where both are. */
 export function similar(e: Event, events: Event[], now: Date = new Date(), n = 4): Event[] {
+  if (useV2()) return v2.similarV2(e, events, ctxFor(events, null, {}, {}, now), n);
   const fam = family(e.category);
   const t0 = now.getTime();
   const week = t0 + 7 * 86_400_000;
@@ -326,4 +341,33 @@ export function similar(e: Event, events: Event[], now: Date = new Date(), n = 4
       return true;
     })
     .slice(0, n);
+}
+
+/**
+ * For You: the top `k` for a profile (v2: MMR + caps + one exploration slot + family floor). v1 has no For You
+ * surface; there it falls back to rank() with one card per series.
+ */
+export function forYou(
+  events: Event[],
+  profile: Profile | null,
+  labels: Record<string, string>,
+  neighborhoods: Record<string, [number, number]>,
+  now: Date = new Date(),
+  k = 10,
+): Scored[] {
+  if (useV2()) {
+    const p = profile && !isColdStart(profile) ? profile : null;
+    const out = v2.forYouV2(events, ctxFor(events, p, labels, neighborhoods, now), k);
+    noteShown(out, now);
+    return out;
+  }
+  const seen = new Set<string>();
+  return rank(events, profile ?? DEFAULT_PROFILE, labels, neighborhoods, now)
+    .filter((s) => {
+      const key = s.event.series_id ?? s.event.id;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, k);
 }

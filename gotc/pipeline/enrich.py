@@ -193,7 +193,8 @@ _TXT = {
     "sober_friendly": re.compile(r"\b(sober|alcohol[- ]free|zero[- ]proof|mocktails?)\b", re.I),
     "kids_teens": re.compile(
         r"\b(teens?|tweens?|kids?|children'?s?|toddlers?|bab(y|ies)|preschool(ers)?|storytimes?|story time|"
-        r"homeschool|youth|grades? \d|ages \d{1,2}\s*(-|–|to)\s*1[0-7]|lego club|baby ?time)\b",
+        r"homeschool|youth|grades? (\d|k)|\d+(st|nd|rd|th)\s*(-|–|to)\s*\d+(st|nd|rd|th) grade|pre-?k|"
+        r"kindergart(en|ners?)|ages \d{1,2}\s*(-|–|to)\s*1[0-7]|lego club|baby ?time)\b",
         re.I,
     ),
     "free_food": re.compile(

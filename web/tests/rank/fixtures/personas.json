@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "note": "RANKING.md §3.1 personas. neighborhood 'auto' resolves per city via 'neighborhood_by_city'. newcomer_default has no profile (cold start).",
+  "neighborhood_by_city": {
+    "minneapolis": "Uptown",
+    "nyc": "Williamsburg",
+    "chicago": "Lincoln Park",
+    "austin": "East Austin",
+    "seattle": "Capitol Hill"
+  },
+  "personas": {
+    "newcomer_default": null,
+    "social_25": { "interests": [], "goals": ["meet_people", "party"], "budget": "cheap", "times": ["weeknights", "weekends"], "neighborhood": null, "solo": true },
+    "active_30": { "interests": [], "goals": ["stay_active"], "budget": "any", "times": ["weekends", "daytime"], "neighborhood": "auto", "solo": false },
+    "culture_free": { "interests": [], "goals": ["culture"], "budget": "free", "times": ["weekends"], "neighborhood": null, "solo": true },
+    "parent_35": { "interests": ["family"], "goals": ["meet_people"], "budget": "any", "times": ["daytime", "weekends"], "neighborhood": null, "solo": false },
+    "nerd_40": { "interests": [], "goals": ["nerd_out", "give_back"], "budget": "any", "times": ["weeknights"], "neighborhood": null, "solo": true }
+  }
+}

@@ -13,7 +13,7 @@ import { loadDetails } from "../lib/data";
 import type { EventDetail } from "../lib/details.generated";
 import { bandLabel, confidenceWord, count, OFFER_KIND, offerPrice, sourceName } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
-import { similar } from "../lib/recommend";
+import { recordSignal, similar } from "../lib/recommend";
 import { build } from "../lib/router";
 import { cardSignals } from "../lib/signals";
 import { absolute, eventPath } from "../lib/site";
@@ -98,6 +98,10 @@ export function EventPage({ e }: { e: Event }) {
     io.observe(el);
     return () => io.disconnect();
   }, [e.id]);
+  useEffect(() => {
+    const t = setTimeout(() => recordSignal(e, "open"), 5000); // "opened ≥ 5 s" ranking signal (rank v2)
+    return () => clearTimeout(t);
+  }, [e.id]);
   const tz = e.timezone;
   const sig = cardSignals(e, now);
   const summary = detail?.summary ?? e.summary;
@@ -122,7 +126,7 @@ export function EventPage({ e }: { e: Event }) {
   const when = e.kind === "opening" ? null : isDateOnly(e) ? (e.all_day ? "All day" : "Time not listed") : fmtTimeRange(e.start, e.end, tz);
   const shareUrl = absolute(eventPath(city, e.id, e.title));
   const doShare = async () => setShareMsg(await share(e.title, shareUrl));
-  const ics = () => download(`${slug(e.title)}.ics`, calendar([e], { name: e.title }));
+  const ics = () => (recordSignal(e, "calendar"), download(`${slug(e.title)}.ics`, calendar([e], { name: e.title })));
   const tags = (e.tags ?? []).map((t) => index.tags[t]).filter(Boolean);
   return (
     <div class="container event-page">
@@ -367,7 +371,7 @@ export function EventPage({ e }: { e: Event }) {
             <StatusLine s={sig.status} />
             <div class="actions" ref={ctaRef}>
               {cta && !ended && (
-                <a class="btn btn-lg btn-block" href={cta.url} target="_blank" rel="noopener noreferrer">
+                <a class="btn btn-lg btn-block" href={cta.url} target="_blank" rel="noopener noreferrer" onClick={() => recordSignal(e, "outbound")}>
                   {cta.label} ↗<span class="sr-only"> (opens in new tab)</span>
                 </a>
               )}
@@ -389,7 +393,7 @@ export function EventPage({ e }: { e: Event }) {
       {cta && !ended && (
         <div class={`sticky-cta ${showSticky ? "show" : ""}`} aria-hidden={!showSticky}>
           <span class="price">{sig.price ?? e.title}</span>
-          <a class="btn" href={cta.url} target="_blank" rel="noopener noreferrer" tabIndex={showSticky ? 0 : -1}>{cta.label.split(" ")[0] === "Get" ? "Get tickets" : cta.label.split(" ")[0]} ↗</a>
+          <a class="btn" href={cta.url} target="_blank" rel="noopener noreferrer" tabIndex={showSticky ? 0 : -1} onClick={() => recordSignal(e, "outbound")}>{cta.label.split(" ")[0] === "Get" ? "Get tickets" : cta.label.split(" ")[0]} ↗</a>
         </div>
       )}
     </div>

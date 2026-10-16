@@ -33,8 +33,9 @@ typecheck:     ## mypy --strict on the pipeline, tsc on the web app
 test-py:       ## Python tests (unit, adapters/fixtures, contract, integration) — no network
 	$(PY) -m pytest
 
-test-web:      ## dashboard unit tests (vitest)
+test-web:      ## dashboard unit tests (vitest) + offline ranking gate (npm run eval:rank, ~2 s)
 	$(NPM) test
+	$(NPM) run eval:rank
 
 e2e:           ## dashboard smoke tests in a real browser (Playwright, frozen-clock demo data)
 	$(PY) -m gotc demo --anchor 2026-10-16T15:00:00+00:00

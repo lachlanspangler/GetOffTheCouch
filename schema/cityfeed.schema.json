@@ -199,6 +199,17 @@
           "title": "Provenance",
           "type": "object"
         },
+        "rank": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RankHints"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "recurrence": {
           "anyOf": [
             {
@@ -828,6 +839,96 @@
       "title": "PriceTrend",
       "type": "object"
     },
+    "RankHints": {
+      "additionalProperties": false,
+      "description": "Profile-independent ranking hints precomputed at export (gotc/pipeline/rankprep.py, RANKING.md \u00a75.1).\n\nShort keys keep the card feed lean. Every value is derived from the event's own fields or run history.",
+      "properties": {
+        "complete": {
+          "default": 0.0,
+          "description": "completeness: share of 7 key fields present",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Complete",
+          "type": "number"
+        },
+        "desc_len": {
+          "default": 0,
+          "description": "full description length in chars",
+          "minimum": 0,
+          "title": "Desc Len",
+          "type": "integer"
+        },
+        "flags": {
+          "description": "quality flags (admin, no_info, no_place, ...)",
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "fp": {
+          "description": "near-duplicate fingerprint: equal fp = same listing (title|venue|local date)",
+          "title": "Fp",
+          "type": "string"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "multi-site group id: same program, same day, 2+ venues",
+          "title": "Group"
+        },
+        "group_n": {
+          "default": 1,
+          "description": "venues in the multi-site group",
+          "minimum": 1,
+          "title": "Group N",
+          "type": "integer"
+        },
+        "lowq": {
+          "default": 0.0,
+          "description": "low-quality score: sum of flag weights, capped at 1",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Lowq",
+          "type": "number"
+        },
+        "quality": {
+          "default": 0.0,
+          "description": "complete \u00d7 (1 \u2212 lowq)",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Quality",
+          "type": "number"
+        },
+        "src_rel": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "best source unit's 30-day reliability, 0\u20131",
+          "title": "Src Rel"
+        }
+      },
+      "required": [
+        "fp"
+      ],
+      "title": "RankHints",
+      "type": "object"
+    },
     "Registration": {
       "additionalProperties": false,
       "description": "Deadlines. ``closes_at`` is the headline 'register by' date.",
@@ -1452,7 +1553,7 @@
       "type": "object"
     }
   },
-  "$id": "https://getoffthecouch.app/schema/cityfeed-1.4.0.json",
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.5.0.json",
   "additionalProperties": false,
   "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
   "properties": {
@@ -1503,7 +1604,7 @@
       "type": "array"
     },
     "schema_version": {
-      "default": "1.4.0",
+      "default": "1.5.0",
       "title": "Schema Version",
       "type": "string"
     },

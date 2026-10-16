@@ -1,0 +1,869 @@
+{
+ "version": 1,
+ "city": "nyc",
+ "snapshot": "nyc.feed.json.gz",
+ "now": "2026-10-16T20:53:50.307121Z",
+ "labeler": "agent:claude (read each event; no human spot-check yet)",
+ "personas": [
+  "newcomer_default",
+  "social_25",
+  "active_30",
+  "culture_free",
+  "parent_35",
+  "nerd_40"
+ ],
+ "labels": {
+  "evt_01d8eda34bc7828c": {
+   "g": "100001",
+   "fp": "0c899b044170",
+   "t": "City Human Rights Law Overview Training",
+   "why": "Human-rights law training session, Sunday (not volunteering)"
+  },
+  "evt_056d057987469e40": {
+   "g": "221121",
+   "fp": "8a9ac0414f63",
+   "t": "Hey you Quiche Off!",
+   "why": "Community-garden quiche competition, Saturday"
+  },
+  "evt_058d7dc17a04f65e": {
+   "g": "322121",
+   "fp": "d18bf10f2d4c",
+   "t": "McKinley Park Clean Up with PCR",
+   "why": "Sunday park cleanup"
+  },
+  "evt_0642c722a2e4cab5": {
+   "g": "323010",
+   "fp": "8934d00e584e",
+   "t": "Aleph x Corgi Run Club NYC",
+   "why": "Saturday-morning social run club on the Hudson"
+  },
+  "evt_069f7ec79605a355": {
+   "g": "222010",
+   "fp": "80f07f470a63",
+   "t": "Volo Basketball — Upper West Side (Thu)",
+   "why": "Women's rec basketball league, Thursday, $119"
+  },
+  "evt_06f3a537e9fd41d6": {
+   "g": "000000",
+   "fp": "ead48a84814a",
+   "t": "New York University Women’s Tennis at ITA Cup - Day Three",
+   "why": "NYU tennis away tournament in Rome, Georgia"
+  },
+  "evt_07990d41bca43073": {
+   "g": "322121",
+   "fp": "e6f1f5f0f15f",
+   "t": "Leif Ericson Park Cleanup with PCR",
+   "why": "Saturday park cleanup"
+  },
+  "evt_098fa88a0f0bdf7f": {
+   "g": "112011",
+   "fp": "7de9a83d52b2",
+   "t": "Volunteering at Conference House Park - The Blue Wave",
+   "why": "Staten Island beach cleanup, Tuesday morning"
+  },
+  "evt_0c3901fdf9b4eaa9": {
+   "g": "322010",
+   "fp": "21878a93a3ec",
+   "t": "Volo Volleyball — Lower East Side (Mon)",
+   "why": "Rec volleyball league, Monday, $149"
+  },
+  "evt_0c47b934e6094844": {
+   "g": "210301",
+   "fp": "0ca1ea738288",
+   "t": "ISAW Gallery Tour: Cursed! The Power of Magic in the Ancient World",
+   "why": "Free guided exhibition tour, Friday 6pm (miscategorized as concert)"
+  },
+  "evt_10ccb69c6271e371": {
+   "g": "211011",
+   "fp": "d221689e233a",
+   "t": "Meal Service Volunteers Needed in East New York, Brooklyn",
+   "why": "Meal-service volunteering, Saturday (interest form, not a signup)"
+  },
+  "evt_179c8f3bfd592b35": {
+   "g": "111011",
+   "fp": "f812eb306b7e",
+   "t": "Volunteer in Harlem Soup Kitchen",
+   "why": "Soup-kitchen volunteering, Monday 1:30pm"
+  },
+  "evt_197bf4a9d02c8148": {
+   "g": "112011",
+   "fp": "50786d9550a5",
+   "t": "Team RIVER Volunteers",
+   "why": "Ecological restoration volunteering, Wednesday morning"
+  },
+  "evt_1a848a94ca10f9f0": {
+   "g": "000030",
+   "fp": "bdbaf5328635",
+   "t": "Kids In Motion: De Matti Playground",
+   "why": "Kids active play program"
+  },
+  "evt_1b39644f5179d90d": {
+   "g": "321211",
+   "fp": "f1bb2434ff9c",
+   "t": "Fall Book Crawl",
+   "why": "Social book crawl from Cooper Hewitt, Saturday"
+  },
+  "evt_1b8c4e2d6a1d75d8": {
+   "g": "213110",
+   "fp": "147896150c69",
+   "t": "LaBlast® Fitness",
+   "why": "Free dance-fitness class, Saturday"
+  },
+  "evt_1b9bd20cb7aa1843": {
+   "g": "102110",
+   "fp": "1f393a5471d4",
+   "t": "Bodyroll",
+   "why": "Dance practice, Tuesday 9:30am"
+  },
+  "evt_1d477712d63fe5d6": {
+   "g": "222121",
+   "fp": "8686becdd12a",
+   "t": "Volunteer Day: Cedar Tree",
+   "why": "Community-garden volunteer day, Saturday"
+  },
+  "evt_1d7d26a35f352077": {
+   "g": "221011",
+   "fp": "b075af9e5223",
+   "t": "VOLUNTEERS NEEDED! Serve Meals to Those Less Fortunate - Bed-Stuy, BROOKLYN",
+   "why": "Meal-service volunteering, Saturday 4pm"
+  },
+  "evt_1f507251a5368819": {
+   "g": "323020",
+   "fp": "2f407560016b",
+   "t": "NYRR Open Run: Baisley Pond Park",
+   "why": "Free weekly community 5K (Queens)"
+  },
+  "evt_203c219ed1b59c69": {
+   "g": "000000",
+   "fp": "b65cf13f18c4",
+   "t": "Afrikana Office Support MUST SPEAK FRENCH OR AN AFRICAN LANGUAGE",
+   "why": "Office volunteering that requires French or an African language"
+  },
+  "evt_20f8564faca3dfcb": {
+   "g": "000000",
+   "fp": "c773584f10e2",
+   "t": "Afrikana Office Support MUST SPEAK FRENCH OR AN AFRICAN LANGUAGE",
+   "why": "Office volunteering that requires French or an African language"
+  },
+  "evt_2104cc4bd6c78d7e": {
+   "g": "000000",
+   "fp": "ea865175a3d1",
+   "t": "Pumpkin Painting",
+   "why": "Student-club meeting"
+  },
+  "evt_25d34422125b6f43": {
+   "g": "000000",
+   "fp": "5f88c1d0f706",
+   "t": "New York University Men’s Tennis vs ITA Cup - Day Three",
+   "why": "NYU tennis away tournament in Georgia"
+  },
+  "evt_26334bdcd30a2802": {
+   "g": "000020",
+   "fp": "071ef3a6ecf0",
+   "t": "Girl's Softball Clinic",
+   "why": "Girls' softball clinic"
+  },
+  "evt_2721fd85a5f84d58": {
+   "g": "213010",
+   "fp": "bbf9190adae2",
+   "t": "Forest Fitness",
+   "why": "Free outdoor fitness program, Saturday morning"
+  },
+  "evt_279cf1345bffe9d3": {
+   "g": "000000",
+   "fp": "52448f655c75",
+   "t": "Board Games Oneg",
+   "why": "Student-group board game night"
+  },
+  "evt_27a459821283d62b": {
+   "g": "212000",
+   "fp": "ef4284f0128c",
+   "t": "Hatha Flow",
+   "why": "Park yoga class, Tuesday 6pm"
+  },
+  "evt_28c002d9c15aac74": {
+   "g": "000030",
+   "fp": "99629e304409",
+   "t": "Farmhouse Family Day: Autumnal Wonders",
+   "why": "Farmhouse family day"
+  },
+  "evt_29a7448b24247403": {
+   "g": "000030",
+   "fp": "81b6e1f7eddb",
+   "t": "Kids in Motion: Anne Loftus Playground",
+   "why": "Kids active play program"
+  },
+  "evt_2a9b0e6c8b685133": {
+   "g": "000000",
+   "fp": "cdb8067ef874",
+   "t": "Club Anime General Meeting",
+   "why": "Student anime club meeting"
+  },
+  "evt_2d1ef0ee376255d6": {
+   "g": "322010",
+   "fp": "a0a2df7c761d",
+   "t": "Volo Volleyball — Williamsburg (Thu)",
+   "why": "Rec volleyball league in Williamsburg, Thursday"
+  },
+  "evt_2de259b81c62f212": {
+   "g": "323010",
+   "fp": "836fde8237bd",
+   "t": "Volo Party Pickleball — Williamsburg (Sun)",
+   "why": "Party pickleball league in Williamsburg, Sunday"
+  },
+  "evt_2f15003bb2e2ac1e": {
+   "g": "213110",
+   "fp": "075f0f1b26aa",
+   "t": "Groove & Glow",
+   "why": "Cardio dance class, Saturday"
+  },
+  "evt_2f2e6408a0b3743e": {
+   "g": "212000",
+   "fp": "9a723d1a3db1",
+   "t": "Body-Centric Circuit Training",
+   "why": "Outdoor circuit training in McCarren Park, Wednesday 6pm"
+  },
+  "evt_2f81a55e09c0bad2": {
+   "g": "111011",
+   "fp": "fb64f916250b",
+   "t": "VOLUNTEERS NEEDED! Serve Meals to Those Less Fortunate - Bed-Stuy, BROOKLYN",
+   "why": "Meal-service volunteering, Friday 4pm"
+  },
+  "evt_3194305f6004b040": {
+   "g": "323020",
+   "fp": "583893ade480",
+   "t": "NYRR Open Run: Cunningham Park",
+   "why": "Free weekly community 5K (Queens)"
+  },
+  "evt_333d3405c17ad7f3": {
+   "g": "111011",
+   "fp": "34786d9d2363",
+   "t": "Light the Night Manhattan",
+   "why": "Charity night walk permit, few details"
+  },
+  "evt_357ceb6499167353": {
+   "g": "101000",
+   "fp": "0ec11596c28f",
+   "t": "Chair Yoga",
+   "why": "Chair yoga"
+  },
+  "evt_377fd7122334165a": {
+   "g": "102010",
+   "fp": "3aee010d0129",
+   "t": "Riverside Field House: Fall Mat Pilates",
+   "why": "Mat Pilates, Thursday 11am"
+  },
+  "evt_37cef86c92c76e5c": {
+   "g": "211011",
+   "fp": "c18e82b22493",
+   "t": "Bridging Community and Culture Together Pantry",
+   "why": "Community pantry volunteering, Sunday"
+  },
+  "evt_37d1c7cba67daaaf": {
+   "g": "322010",
+   "fp": "cef88836f559",
+   "t": "Volo Volleyball — Lower East Side (Tue)",
+   "why": "Rec volleyball league, Tuesday"
+  },
+  "evt_40065a522c41ab1c": {
+   "g": "321122",
+   "fp": "bc603237309e",
+   "t": "Repair Cafe at the Old Stone House",
+   "why": "Free community repair cafe, Sunday"
+  },
+  "evt_453fccbc7cfe591a": {
+   "g": "213020",
+   "fp": "923007ae1146",
+   "t": "Adventure Course Free Public Sunday Morning Program",
+   "why": "Free adventure ropes course, Sunday morning"
+  },
+  "evt_462c8f7eaba6583b": {
+   "g": "110002",
+   "fp": "b513391fee96",
+   "t": "Chess on Underhill Plaza",
+   "why": "Outdoor chess on a plaza, Tuesday evening (permit, no details)"
+  },
+  "evt_495b4373f7385e5e": {
+   "g": "112011",
+   "fp": "ef9379f2413f",
+   "t": "Stewardship Morning at the Foodway",
+   "why": "Garden stewardship, Tuesday morning"
+  },
+  "evt_4a0b5bb24c76e412": {
+   "g": "322010",
+   "fp": "1b7ad735da23",
+   "t": "Volo Volleyball — Lower East Side (Thu)",
+   "why": "Rec volleyball league, Thursday"
+  },
+  "evt_4db463f3585eb62a": {
+   "g": "112011",
+   "fp": "01cb42be59ce",
+   "t": "Volunteer Workday: Howard Garden",
+   "why": "Community-garden workday, Wednesday morning"
+  },
+  "evt_4f9f578de0f3ec1a": {
+   "g": "000000",
+   "fp": "1bc7a8871fbe",
+   "t": "Open for Cocktails",
+   "why": "Bar opening hours, not an event"
+  },
+  "evt_5110d6fad0407c55": {
+   "g": "000030",
+   "fp": "924c8a75f74a",
+   "t": "Kids In Motion: The Big Park",
+   "why": "Kids active play program"
+  },
+  "evt_52c2f36897274c98": {
+   "g": "322121",
+   "fp": "d33ddd5e92cc",
+   "t": "Plant Tulips & Daffodil Bulbs in Dag Plaza",
+   "why": "Plant bulbs in a Midtown plaza, Saturday"
+  },
+  "evt_59c9faf227b29d0a": {
+   "g": "322010",
+   "fp": "c72cbb349b03",
+   "t": "Volo Flag Football — Chelsea (Thu)",
+   "why": "Rec flag-football league, Thursday"
+  },
+  "evt_59deec2a0f67ef38": {
+   "g": "112011",
+   "fp": "61b5b813889f",
+   "t": "Open Play Table Tennis",
+   "why": "Open-play table tennis, Tuesday noon"
+  },
+  "evt_5d4ae388270df268": {
+   "g": "222121",
+   "fp": "0be526c31883",
+   "t": "Volunteer Day: Building Double Raised Garden Beds at Surfside Multicultural Gard",
+   "why": "Garden-bed building volunteer day, Saturday"
+  },
+  "evt_5da32e3b69527875": {
+   "g": "322121",
+   "fp": "a90b3dfaeac8",
+   "t": "Volunteer Workday: Wanaqua Garden",
+   "why": "Community-garden volunteer day, Sunday"
+  },
+  "evt_5fcaa53aef0e40dd": {
+   "g": "210202",
+   "fp": "515033d4f226",
+   "t": "Reading Club: Aristotle's Ethics",
+   "why": "Philosophy reading club, Sunday"
+  },
+  "evt_6091860d7211ed05": {
+   "g": "222010",
+   "fp": "1fec017f5b5a",
+   "t": "Volo Basketball — Williamsburg (Thu)",
+   "why": "Women's rec basketball league in Williamsburg"
+  },
+  "evt_60cb930a8b23df8e": {
+   "g": "323020",
+   "fp": "f0a57256bade",
+   "t": "NYRR Open Run: Soundview Park",
+   "why": "Free weekly community 5K (Bronx)"
+  },
+  "evt_61af124a5b6a6d88": {
+   "g": "210311",
+   "fp": "21bf0ffdac1d",
+   "t": "C-Words: Six New Short Plays Presented By Creative Women New York",
+   "why": "Six short plays in a park field house, Saturday"
+  },
+  "evt_6305c2348480b400": {
+   "g": "213020",
+   "fp": "21040d006723",
+   "t": "Adventure Course Free Public Sunday Afternoon Program",
+   "why": "Free adventure ropes course, Sunday afternoon"
+  },
+  "evt_648a13646212dce4": {
+   "g": "221011",
+   "fp": "0b3686a94818",
+   "t": "Sunday Dinner Meal Service Volunteers Needed in the Lower East Side",
+   "why": "Sunday dinner meal-service volunteering"
+  },
+  "evt_65153ef0831e2e1c": {
+   "g": "322010",
+   "fp": "2c847a0477a1",
+   "t": "Volo Soccer — Chelsea (Thu)",
+   "why": "Rec soccer league, Thursday"
+  },
+  "evt_6563150f69ccbb70": {
+   "g": "323010",
+   "fp": "3d0f01e58ff8",
+   "t": "Volo Party Pickleball — Lower East Side (Sun)",
+   "why": "Party pickleball league, Sunday"
+  },
+  "evt_6707e3704800c673": {
+   "g": "102010",
+   "fp": "7e9a5679ed0a",
+   "t": "Yoga en Español (Yoga in Spanish)",
+   "why": "Spanish-language yoga, Friday 10am"
+  },
+  "evt_6e07152bf2badfeb": {
+   "g": "110110",
+   "fp": "77c96a9cbb11",
+   "t": "Phoenix Community Garden Farm Stand",
+   "why": "Community-garden farm stand"
+  },
+  "evt_73608d4148295dbf": {
+   "g": "110100",
+   "fp": "18922f850c64",
+   "t": "Etch A Sketch: Dad, I’m Gay",
+   "why": "Student sketch-comedy show"
+  },
+  "evt_7568ea76356ac117": {
+   "g": "220103",
+   "fp": "2a7f7cdb55ee",
+   "t": "The New York Philosophy Club: Williamsburg",
+   "why": "Philosophy club meetup in Williamsburg, Wednesday 7pm"
+  },
+  "evt_785e10c59eac7023": {
+   "g": "210320",
+   "fp": "751dcffa017f",
+   "t": "Park Open Studio",
+   "why": "Drop-in art class in Washington Square Park, Saturday"
+  },
+  "evt_786f6243cc9ff660": {
+   "g": "000030",
+   "fp": "430b17080d8d",
+   "t": "Kids In Motion: Faber",
+   "why": "Kids active play program"
+  },
+  "evt_7b30190a468af75a": {
+   "g": "213010",
+   "fp": "c52f3df648d7",
+   "t": "Strength & Cardio Circuit Training",
+   "why": "Outdoor circuit training, Sunday morning"
+  },
+  "evt_7c4bf19215e2e65d": {
+   "g": "000000",
+   "fp": "b5c49f38261c",
+   "t": "Jev Jam Sesh",
+   "why": "Unclear listing, no address"
+  },
+  "evt_7eec3faa61d15374": {
+   "g": "213010",
+   "fp": "6977910a1b66",
+   "t": "Bodyweight Circuit Training",
+   "why": "Circuit training class, Saturday"
+  },
+  "evt_8215291d147390d3": {
+   "g": "213010",
+   "fp": "f6c700164a57",
+   "t": "No Excuses Circuit Training",
+   "why": "Beginner circuit workout, Saturday morning"
+  },
+  "evt_837d8a4032e5d5d5": {
+   "g": "102010",
+   "fp": "37398dbf7949",
+   "t": "Yoga en Español (Yoga in Spanish)",
+   "why": "Spanish-language yoga, Monday 10am"
+  },
+  "evt_8459d9b51cc5408d": {
+   "g": "000030",
+   "fp": "383ff1a5cfa6",
+   "t": "Kids in Motion: Tompkins Square Park",
+   "why": "Kids active play program"
+  },
+  "evt_8611aa80f8e6f071": {
+   "g": "100001",
+   "fp": "cdeb4c9c48b9",
+   "t": "Term Sheet Teardown: Clauses, Catches & Negotiation Tactics, presented by Wells ",
+   "why": "Startup term-sheet talk, Tuesday 10am (miscategorized as run club)"
+  },
+  "evt_876fd39103d611b4": {
+   "g": "322121",
+   "fp": "80895fd2473f",
+   "t": "Sunset Park Cleanup with PCR",
+   "why": "Sunday park cleanup"
+  },
+  "evt_8804f0a80b316b1a": {
+   "g": "000000",
+   "fp": "7ea83d14688b",
+   "t": "URGENT: High School students Needed for Holocaust Storytelling Through Theater",
+   "why": "Volunteering for high-school students"
+  },
+  "evt_89ce51ef46b8375e": {
+   "g": "000030",
+   "fp": "164a25e1a9e6",
+   "t": "Kids in Motion: Columbus Park",
+   "why": "Kids active play program"
+  },
+  "evt_8be8d8bc696e2868": {
+   "g": "210121",
+   "fp": "edd7b6b1b258",
+   "t": "BHS Vintage Car Show 2026",
+   "why": "Vintage car show, Sunday"
+  },
+  "evt_8de135df218c3208": {
+   "g": "322010",
+   "fp": "7cf64608db94",
+   "t": "Volo Basketball — Union Square (Wed)",
+   "why": "Rec basketball league, Wednesday, $159"
+  },
+  "evt_8ed133d10982e5ba": {
+   "g": "000030",
+   "fp": "534796892948",
+   "t": "Kids in Motion: Seward Park",
+   "why": "Kids active play program"
+  },
+  "evt_928ad002493a161a": {
+   "g": "213010",
+   "fp": "4a07a3f99d1d",
+   "t": "Rise&Restore Circuit Training",
+   "why": "Circuit training, Saturday"
+  },
+  "evt_92a0b33da9880137": {
+   "g": "100110",
+   "fp": "eaa0fc468cd4",
+   "t": "Old Stone House: Open Hours",
+   "why": "Historic house open hours"
+  },
+  "evt_97bc15a086d4b454": {
+   "g": "000000",
+   "fp": "0bfc03717f67",
+   "t": "Food Allergy Research and Education Gala at Ciprianis",
+   "why": "Private gala (street permit)"
+  },
+  "evt_9852ec299637e985": {
+   "g": "000000",
+   "fp": "a56afd614cc8",
+   "t": "Columbia University Women's Tennis vs Ivy League Qualifier",
+   "why": "College tennis qualifier, all day"
+  },
+  "evt_99169005513ba487": {
+   "g": "102010",
+   "fp": "7cdee3a5c57d",
+   "t": "Total Body Fitness",
+   "why": "Outdoor fitness, Tuesday 8am"
+  },
+  "evt_9bd614e4ba977c29": {
+   "g": "322121",
+   "fp": "8507ff6840d7",
+   "t": "Sunday Stewardship",
+   "why": "Sunday park stewardship"
+  },
+  "evt_9c16bb2c5c685889": {
+   "g": "323010",
+   "fp": "f128652f0961",
+   "t": "Volo Basketball — Williamsburg (Sat)",
+   "why": "Rec basketball league in Williamsburg, Saturday"
+  },
+  "evt_9dc7d02f6a26a4ca": {
+   "g": "111010",
+   "fp": "10f8f2985569",
+   "t": "Stickball League",
+   "why": "Street stickball league (permit, no details)"
+  },
+  "evt_a008ed0dc3b9e040": {
+   "g": "111000",
+   "fp": "e89e7f61628e",
+   "t": "Volo Weeknight (Recreational) - Volleyball — Jersey City (Mon)",
+   "why": "Rec volleyball league in Jersey City"
+  },
+  "evt_a05ccecb8c5aefc6": {
+   "g": "111011",
+   "fp": "37df4cda9d40",
+   "t": "Pétanque in the Park",
+   "why": "Learn petanque in the park, Monday 1pm"
+  },
+  "evt_a1a06354dffa3ffa": {
+   "g": "213110",
+   "fp": "0f02a647adbc",
+   "t": "R&B Beats Dance",
+   "why": "R&B dance-fitness class, Saturday"
+  },
+  "evt_a3a6baded679462d": {
+   "g": "112011",
+   "fp": "1899bb0c7dd9",
+   "t": "Wetland Wednesdays: Phragmites Control and Native Planting at Van Cortlandt Park",
+   "why": "Wetland restoration, Wednesday 9am"
+  },
+  "evt_a445453be8bc6dff": {
+   "g": "112011",
+   "fp": "468b335e88e8",
+   "t": "Monday Morning Pitch In to Pick Up",
+   "why": "Park litter pickup, Monday 10am"
+  },
+  "evt_aaf952d2d9169708": {
+   "g": "220003",
+   "fp": "9d4318362899",
+   "t": "After All Things Open Community Meetup: Agentic AI in the Wild: Open Source Agen",
+   "why": "Open-source AI community meetup, Thursday 5pm"
+  },
+  "evt_abe0f42fd5a4a4f2": {
+   "g": "323020",
+   "fp": "b3454af15ca0",
+   "t": "NYRR Open Run: St. Marys Park",
+   "why": "Free weekly community 5K (Bronx)"
+  },
+  "evt_addde67645a15449": {
+   "g": "323010",
+   "fp": "2c139251a5ee",
+   "t": "Volo Basketball — Williamsburg (Sat)",
+   "why": "Rec basketball league in Williamsburg, Saturday"
+  },
+  "evt_ae8cdd6ba5766887": {
+   "g": "230002",
+   "fp": "2dd08fe7b5e3",
+   "t": "Founders After Hours: A Mixer",
+   "why": "Founders mixer, Tuesday 6pm"
+  },
+  "evt_afa0ffa50451f93e": {
+   "g": "000030",
+   "fp": "a7e8f35fd14a",
+   "t": "Tiny Tots: Session 1",
+   "why": "Toddler class"
+  },
+  "evt_b43ba9450ee9b81b": {
+   "g": "322010",
+   "fp": "500f6936289f",
+   "t": "Volo Soccer — Chelsea (Mon)",
+   "why": "Rec soccer league, Monday"
+  },
+  "evt_b8345f97bdb862ce": {
+   "g": "323010",
+   "fp": "24fe6191b8b4",
+   "t": "Volo Basketball — Williamsburg (Sun)",
+   "why": "Rec basketball league in Williamsburg, Sunday"
+  },
+  "evt_ba43c1b504d12f97": {
+   "g": "323010",
+   "fp": "0fcc970c47cc",
+   "t": "Volo Pickleball — Lower East Side (Sat)",
+   "why": "Party pickleball league, Saturday"
+  },
+  "evt_bab5d06409730ed4": {
+   "g": "100011",
+   "fp": "37345c653ce2",
+   "t": "In-Person Volunteer Literacy Tutors Needed for Fall 2026!",
+   "why": "Literacy tutoring for kids, Monday 2pm"
+  },
+  "evt_bd0b7bbb2f3f1374": {
+   "g": "000030",
+   "fp": "51fe0ac4c0f6",
+   "t": "Art in the Park",
+   "why": "Kids art in the park"
+  },
+  "evt_bdeae05da9f7c871": {
+   "g": "322121",
+   "fp": "122044bb66a7",
+   "t": "Garden Bed Building Day at Wanaqua Garden",
+   "why": "Community-garden bed building, Sunday"
+  },
+  "evt_c18113cc37786c69": {
+   "g": "000000",
+   "fp": "454cdbf7c2fa",
+   "t": "GFC Jam & Mixer! Meet and play with musicians (free food!)",
+   "why": "Student-club jam and mixer"
+  },
+  "evt_c7e0bae61adc1a05": {
+   "g": "000000",
+   "fp": "df93d0265c00",
+   "t": "Russian-Speaking Food Pantry Guest Support Volunteer",
+   "why": "Pantry volunteering that requires Russian"
+  },
+  "evt_caed5a8fa475fce5": {
+   "g": "000000",
+   "fp": "887d779a072b",
+   "t": "MetroPlus Gold Open Enrollment",
+   "why": "Health-plan enrollment table (permit)"
+  },
+  "evt_cb5ca8db9105c071": {
+   "g": "221202",
+   "fp": "96cf7496ee18",
+   "t": "New York Philosophy Club: Peripatetics",
+   "why": "Walking philosophy club, Saturday"
+  },
+  "evt_ce355d2123aa1c5d": {
+   "g": "221011",
+   "fp": "27bfe9bb43c3",
+   "t": "Help Serve Lunch or Dinner to Those Less Fortunate in Chelsea",
+   "why": "Meal-service volunteering in Chelsea, Saturday"
+  },
+  "evt_ce9482ae3ce711e4": {
+   "g": "000030",
+   "fp": "aceefdc77900",
+   "t": "Kids In Motion: Cherry Tree Park",
+   "why": "Kids active play program"
+  },
+  "evt_d24aac01b1320f39": {
+   "g": "323010",
+   "fp": "f4d54a240895",
+   "t": "Volo Volleyball — Williamsburg (Sat)",
+   "why": "Rec volleyball league in Williamsburg, Saturday"
+  },
+  "evt_d6b06c80520a7188": {
+   "g": "213110",
+   "fp": "9be53929497c",
+   "t": "Zumba",
+   "why": "Zumba in the park, Saturday"
+  },
+  "evt_d8478b45f778271b": {
+   "g": "000000",
+   "fp": "38ade7b0cc19",
+   "t": "BPE NYU Volleyball Trip",
+   "why": "Student-club outing"
+  },
+  "evt_d89208abf9cbdd55": {
+   "g": "110110",
+   "fp": "c52f202161e8",
+   "t": "Jackson Heights Greenmarket Sunday",
+   "why": "Greenmarket (permit, no details)"
+  },
+  "evt_dc4d9dd167bfd073": {
+   "g": "000000",
+   "fp": "ea865175a3d1",
+   "t": "Pumpkin Painting",
+   "why": "Student-club meeting"
+  },
+  "evt_dccbca70576d3022": {
+   "g": "322010",
+   "fp": "b4f4a69bcaff",
+   "t": "Volo Basketball — Williamsburg (Thu)",
+   "why": "Rec basketball league in Williamsburg, Thursday"
+  },
+  "evt_e348f3b08a818e28": {
+   "g": "213010",
+   "fp": "443582ff846c",
+   "t": "Strong For Life Circuit Training",
+   "why": "Strength class, Saturday"
+  },
+  "evt_e3cfec70fbb4de35": {
+   "g": "322121",
+   "fp": "d8c0f720df1a",
+   "t": "Inwood Canoe Club Shoreline Cleanup",
+   "why": "Sunday shoreline cleanup with a canoe club"
+  },
+  "evt_e40dcf977e1453a7": {
+   "g": "221011",
+   "fp": "30318740e67d",
+   "t": "Help Our Staff in the Dining Room & Kitchen! - Greenpoint, BROOKLYN",
+   "why": "Dining-room volunteering in Greenpoint, Saturday"
+  },
+  "evt_e5ed12b92bf8e428": {
+   "g": "102010",
+   "fp": "19d3b50b8a58",
+   "t": "Yoga",
+   "why": "Free park yoga, Friday 8:30am"
+  },
+  "evt_e76229314019183f": {
+   "g": "222121",
+   "fp": "5bddb4b1b7e4",
+   "t": "Grassroots Grocery Produce Party!!",
+   "why": "Produce-distribution volunteering, Saturday morning"
+  },
+  "evt_e764770f494eb224": {
+   "g": "212000",
+   "fp": "e09fa6f6d2c9",
+   "t": "Low Impact Bodyweight Circuit Training",
+   "why": "Circuit training, Monday 6pm"
+  },
+  "evt_e870a2cdafdde73f": {
+   "g": "212000",
+   "fp": "46e005fb8f4e",
+   "t": "Mat Pilates",
+   "why": "Mat Pilates, Wednesday 5:45pm"
+  },
+  "evt_ea5c07acd2467590": {
+   "g": "101010",
+   "fp": "2b296e254fbe",
+   "t": "Gentle Yoga",
+   "why": "Gentle yoga, Monday 11:30am"
+  },
+  "evt_ee47c15b3ffe9504": {
+   "g": "120101",
+   "fp": "f35b965fe086",
+   "t": "Men's Book Club",
+   "why": "Men's book club at a bar, Saturday 5pm"
+  },
+  "evt_ef985b3968244073": {
+   "g": "000030",
+   "fp": "a7e8f35fd14a",
+   "t": "Tiny Tots: Session 2",
+   "why": "Toddler class"
+  },
+  "evt_efa9fb287a43ac91": {
+   "g": "210211",
+   "fp": "8b59fa8b907a",
+   "t": "Manual Cinema: The 4th Witch",
+   "why": "$3 shadow-puppet film performance, Friday night"
+  },
+  "evt_f0e592c07a13aa56": {
+   "g": "110000",
+   "fp": "437342c61eb5",
+   "t": "Brooklyn Nets vs. Charlotte Hornets",
+   "why": "NBA game, Wednesday"
+  },
+  "evt_f2dbc0e45af29139": {
+   "g": "312010",
+   "fp": "e9cbc6125609",
+   "t": "Volo Basketball — Chelsea (Tue)",
+   "why": "Rec basketball league in Chelsea, $185"
+  },
+  "evt_f4bb809e11234b5f": {
+   "g": "000000",
+   "fp": "29b8040c2619",
+   "t": "Tienda de Pueblo",
+   "why": "Street-permit listing, no details"
+  },
+  "evt_f4cb503a9fc2f7fb": {
+   "g": "210302",
+   "fp": "e26bdf8bb814",
+   "t": "Philosophy at the Museum: Medieval Art at The Met Cloisters",
+   "why": "Philosophy discussion at the Met Cloisters, Sunday"
+  },
+  "evt_f5f97a5ffb76cf80": {
+   "g": "000000",
+   "fp": "d065fba12968",
+   "t": "Revelation Nights",
+   "why": "Church worship night at an arena"
+  },
+  "evt_f64f663271b0c5f0": {
+   "g": "120002",
+   "fp": "c27d7b653455",
+   "t": "Built in Person: How Great Companies Scale IRL",
+   "why": "Startup scaling talk and meetup, Wednesday 6pm"
+  },
+  "evt_f752d27cc59fb8ca": {
+   "g": "111111",
+   "fp": "ea7a02db6e1b",
+   "t": "Juggling in Greeley Square Park",
+   "why": "Learn to juggle in a park, Friday 2pm"
+  },
+  "evt_fb6ab4fcf278124d": {
+   "g": "323020",
+   "fp": "d4771a2fe9da",
+   "t": "NYRR Open Run: Crocheron Park",
+   "why": "Free weekly community 5K (Queens)"
+  },
+  "evt_fc47d4cc58829a5b": {
+   "g": "222121",
+   "fp": "c1d8a9b179be",
+   "t": "Volunteer Day: Building Double Raised Garden Beds at Surfside Multicultural Gard",
+   "why": "Garden-bed building volunteer day, Sunday"
+  }
+ },
+ "rules": [
+  {
+   "when": {
+    "tags_any": [
+     "kids_teens"
+    ]
+   },
+   "except_persona": [
+    "parent_35"
+   ],
+   "grade": 0,
+   "why": "kids content for adults"
+  },
+  {
+   "when": {
+    "flags_any": [
+     "hard_noise",
+     "admin"
+    ]
+   },
+   "grade": 0,
+   "why": "administrative noise or cancelled"
+  }
+ ]
+}
