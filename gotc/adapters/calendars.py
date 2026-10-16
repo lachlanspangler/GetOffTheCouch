@@ -25,6 +25,8 @@ def _classify(ctx: ParseContext, title: str, cats: list[str], desc: str | None) 
     for c in cats:
         if c in cmap:
             return cmap[c]
+    if not ctx.params.get("classify_description", True):
+        desc = None  # venue blurbs ("the band will play…") mislead the keyword classifier; title + labels only
     return ctx.tax.classify(
         title, " ".join(cats), desc, default=ctx.params.get("default_category", "other.uncategorized")
     ).category
@@ -36,6 +38,7 @@ def _price(cost_text: Any, values: list[Any], desc: str | None, title: str) -> t
     elif cost_text is not None:
         cost_text = str(cost_text)
     nums = [v for v in (money(x) for x in values) if v is not None] or prices_in_text(cost_text)
+    nums = nums or prices_in_text(title)  # "Route 3 $25": some venues only put the cover in the title
     if nums and max(nums) > 0:
         return {"min": min(nums), "max": max(nums), "note": clean_text(cost_text, 80)}, "unknown"
     if (cost_text and "free" in cost_text.lower()) or (nums and max(nums) == 0) or says_free(title, desc):

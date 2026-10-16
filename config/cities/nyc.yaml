@@ -223,3 +223,38 @@ sources:
       horizon_days: 45
       organizer: Corgi NYC
       default_category: fitness.run_club
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: zinc_bar
+    adapter: tribe
+    name: Zinc Bar (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.zincbar.com/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows everything).
+    params:
+      base_url: https://www.zincbar.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 6
+      organizer: Zinc Bar
+      default_category: music.concert
+      classify_description: false
+  - id: jazz_gallery
+    adapter: jsonld
+    name: The Jazz Gallery (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://jazzgallery.org/calendar
+    expect_min_records: 10
+    notes: Squarespace; Event JSON-LD per event page. `follow` skips ?format=ical links (robots disallows them).
+    params:
+      urls: [https://jazzgallery.org/calendar]
+      follow: 'jazzgallery\.org/calendar/[^/?#]+$'
+      max_follow: 60   # the listing starts with ~20 past shows
+      venue: {name: The Jazz Gallery}
+      organizer: The Jazz Gallery
+      default_category: music.concert
+      category_map: {Mentoring Series: music.concert}

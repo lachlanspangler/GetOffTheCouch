@@ -190,3 +190,42 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/boston.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: lizard_lounge
+    adapter: jsonld
+    name: Lizard Lounge (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://lizardloungeclub.com/events/list/
+    expect_min_records: 10
+    notes: The Events Calendar list view embeds Event JSON-LD with price, availability and on-sale date (3 pages ≈ 36 shows).
+    params:
+      urls:
+        - https://lizardloungeclub.com/events/list/
+        - https://lizardloungeclub.com/events/list/page/2/
+        - https://lizardloungeclub.com/events/list/page/3/
+      venue: {name: Lizard Lounge}
+      organizer: Lizard Lounge
+      default_category: music.concert
+  - id: club_passim
+    adapter: jsonld
+    name: Club Passim (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.passim.org/
+    expect_min_records: 5
+    notes: >-
+      WordPress; Event JSON-LD per show page with face value ("all fees included"). Its startDate carries a
+      bogus +00:00 (7 PM shows say 19:00+00:00), so ignore_offset re-zones it; validFrom is render time.
+    params:
+      urls: [https://www.passim.org/]
+      follow: 'passim\.org/live-music/events/[^/?#]+/$'
+      max_follow: 30
+      ignore_offset: true
+      trust_valid_from: false
+      price_note: all fees included
+      venue: {name: Club Passim}
+      organizer: Club Passim
+      default_category: music.concert

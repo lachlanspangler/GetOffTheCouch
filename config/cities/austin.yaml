@@ -162,3 +162,38 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/austin.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: saxon_pub
+    adapter: tribe
+    name: The Saxon Pub (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://thesaxonpub.com/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots only blocks add-to-cart/uploads).
+    params:
+      base_url: https://thesaxonpub.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 6
+      organizer: The Saxon Pub
+      default_category: music.concert
+      classify_description: false
+  - id: carousel_lounge
+    adapter: tribe
+    name: Carousel Lounge (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://carousellounge.com/calendar/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows everything).
+    params:
+      base_url: https://carousellounge.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 4
+      organizer: Carousel Lounge
+      default_category: music.concert
+      classify_description: false

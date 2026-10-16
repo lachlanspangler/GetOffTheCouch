@@ -141,3 +141,52 @@ sources:
       base_url: https://www.volosports.com
       city_slug: denver
       max_pages: 6
+  # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
+  - id: larimer_lounge
+    adapter: jsonld
+    name: Larimer Lounge (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://larimerlounge.com/
+    expect_min_records: 10
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link. Also lists its Tree House / Campground rooms.
+    params:
+      urls: [https://larimerlounge.com/]
+      follow: 'larimerlounge\.com/event/[^/]+/[^/]+/denver-colorado/$'
+      max_follow: 40
+      venue: {name: Larimer Lounge}
+      organizer: Larimer Lounge
+      default_category: music.concert
+  - id: globe_hall
+    adapter: jsonld
+    name: Globe Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://globehall.com/
+    expect_min_records: 8
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://globehall.com/]
+      follow: 'globehall\.com/event/[^/]+/globe-hall/denver-colorado/$'
+      max_follow: 40
+      venue: {name: Globe Hall}
+      organizer: Globe Hall
+      default_category: music.concert
+  - id: lost_lake
+    adapter: jsonld
+    name: Lost Lake Lounge (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://lost-lake.com/
+    expect_min_records: 8
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://lost-lake.com/]
+      follow: 'lost-lake\.com/event/[^/]+/lost-lake/denver-colorado/$'
+      max_follow: 40
+      venue: {name: Lost Lake Lounge}
+      organizer: Lost Lake Lounge
+      default_category: music.concert

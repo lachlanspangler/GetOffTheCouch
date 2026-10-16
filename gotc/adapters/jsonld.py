@@ -215,6 +215,21 @@ def _unescape_html(v: Any) -> str | None:
     return s.replace("\\'", "'").replace('\\"', '"')
 
 
+_SOLD_OUT = re.compile(r"\bsold[\s-]*out\b", re.I)
+
+
+def _strip_site_suffix(title: str, *names: Any) -> str:
+    """'LAURA VEIRS with Karl Blau — The Cedar Cultural Center' → 'LAURA VEIRS with Karl Blau' (Squarespace
+    appends the site title to the event name). Only an exact venue/organizer name is stripped."""
+    for name in names:
+        if not isinstance(name, str) or not name.strip():
+            continue
+        m = re.search(rf"\s+[—–|-]\s+{re.escape(name.strip())}\s*$", title, re.I)
+        if m and m.start() >= 2:
+            return title[: m.start()].strip()
+    return title
+
+
 def _amounts(v: Any) -> list[float]:
     """'25.00' → [25.0]; '$25 Advance // $30 Day of' → [25.0, 30.0]; 'Free' / None → []."""
     if isinstance(v, str) and len(found := prices_in_text(v)) > 1:
@@ -252,51 +267,59 @@ def _offers(
         flat.append(o)
         inner = o.get("offers")  # AggregateOffer may nest the individual offers
         flat.extend(x for x in (inner if isinstance(inner, list) else [inner]) if isinstance(x, dict))
-    offers: list[dict[str, Any]] = []
+    by_url: dict[str, dict[str, Any]] = {}  # one offer per ticket URL; tiers on the same page are merged
     prices: list[float] = []
     avails: list[str] = []
     valid_from: list[datetime] = []
-    seen: set[tuple[str, float | None, float | None]] = set()
+    trust_vf = bool(ctx.params.get("trust_valid_from", True))
     for o in flat:
         spec = _first(o.get("priceSpecification"))
         spec = spec if isinstance(spec, dict) else {}
         cur = str(o.get("priceCurrency") or spec.get("priceCurrency") or "USD")
         usd = cur.strip().upper() in ("USD", "US$", "$", "")
         vals = [x for k in ("price", "lowPrice", "highPrice") for x in _amounts(o.get(k))]
-        nums = [*vals, *_amounts(spec.get("price"))] if usd else []
+        nums = [*vals, *_amounts(spec.get("price"))] if usd else []  # non-USD prices are never shown
         prices.extend(nums)
         a = _avail(o.get("availability"))
         if a:
             avails.append(a)
-        vf = parse_dt(o.get("validFrom") or o.get("availabilityStarts"), ctx.city.timezone)
-        if vf and ctx.params.get("trust_valid_from", True):
+        vf = parse_dt(o.get("validFrom") or o.get("availabilityStarts"), ctx.city.timezone) if trust_vf else None
+        if vf:
             valid_from.append(vf)
         url = _url(o.get("url"), base) or ev_url
         if not url:
             continue
-        pos = [n for n in nums if n > 0]
-        pmin, pmax = (min(pos), max(pos)) if pos else (None, None)
-        key = (url, pmin, pmax)
-        if key in seen:
-            continue
-        seen.add(key)
         status = a or "unknown"
-        if vf and ctx.params.get("trust_valid_from", True) and vf > ctx.fetched_at and status in ("unknown", "on_sale"):
+        if vf and vf > ctx.fetched_at and status in ("unknown", "on_sale"):
             status = "not_yet_on_sale"
-        host = urlsplit(url).netloc.lower().removeprefix("www.")
-        offers.append(
-            {
+        pos = [n for n in nums if n > 0]
+        cur_offer = by_url.get(url)
+        if cur_offer is None:
+            host = urlsplit(url).netloc.lower().removeprefix("www.")
+            by_url[url] = {
                 "seller": _name(o.get("seller")) or _name(o.get("offeredBy")) or _seller(host, ctx.source.name),
                 "kind": "primary",
                 "url": url,
-                "price_min": pmin,
-                "price_max": pmax,
+                "price_min": min(pos) if pos else None,
+                "price_max": max(pos) if pos else None,
                 "availability": status,
                 "source_id": ctx.source.id,
                 "fetched_at": ctx.fetched_at,
             }
-        )
-    return offers[:4], prices, avails, valid_from
+            continue
+        if pos:
+            lo, hi = cur_offer["price_min"], cur_offer["price_max"]
+            cur_offer["price_min"] = min(pos) if lo is None else min(lo, *pos)
+            cur_offer["price_max"] = max(pos) if hi is None else max(hi, *pos)
+        if status != "unknown" and (
+            cur_offer["availability"] == "unknown" or _rank(status) < _rank(cur_offer["availability"])
+        ):
+            cur_offer["availability"] = status
+    return list(by_url.values())[:4], prices, avails, valid_from
+
+
+def _rank(availability: str) -> int:
+    return _AVAIL_RANK.index(availability) if availability in _AVAIL_RANK else len(_AVAIL_RANK)
 
 
 _SELLERS = {
@@ -499,6 +522,10 @@ class JsonLdAdapter(Adapter):
         status = _status(ev)
         if status in ("cancelled", "postponed"):
             availability = status
+        elif availability == "unknown" and _SOLD_OUT.search(title):
+            availability = "sold_out"  # "Oliver Malcolm - SOLD OUT": the venue says so in the title
+        loc = _location(ev, fallback)
+        title = _strip_site_suffix(title, loc.get("venue_name"), p.get("organizer"), fallback.get("name"))
         record_key = _url(ev.get("@id"), base) or ev_url or title
         performers = _names(ev.get("performer") or ev.get("performers"))
         extras: dict[str, Any] = {
@@ -522,7 +549,7 @@ class JsonLdAdapter(Adapter):
             start=start,
             end=end,
             all_day=all_day,
-            location=_location(ev, fallback),
+            location=loc,
             organizer=organizer,
             price=price,
             offers=offers,
