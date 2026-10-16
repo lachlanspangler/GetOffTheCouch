@@ -440,3 +440,32 @@ Tried and not added (San Jose):
 | Visit San Jose | SJ | Drupal, no feed or JSON-LD | probe |
 | San Pedro Square, SJ Stage, Japantown SJ | SJ | Squarespace, no JSON-LD or feed | probe |
 | SJ Improv, Art Boutiki, Café Stritch, Rooster T Feathers | SJ | ticket widgets only | probe |
+
+### Sacramento
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sacpl_events` | sacramento | Communico `eeventcaldata` / `communico` | https://engage.saclibrary.org/eeventcaldata | none | 10 requests/day (one per day of horizon) | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | as `mdpls_events`; ballot drop-off, service desks and the Delta branches skipped | events · 24h | B | 180 |
+| `old_sacramento_events` | sacramento | WP The Events Calendar / `tribe` | https://www.oldsacramento.com/wp-json/tribe/events/v1/events | none | ≤5 pages/day | REST allowed and answered 200; the HTML site shows a Cloudflare challenge we never attempt | as `mprb_events` (comedy, river cruises, happy hours) | events · 24h | B (could start challenging) | 104 |
+| `sacstate_events` | sacramento | Trumba JSON / `trumba` | https://www.trumba.com/calendars/sacramento-state-events.json | none | 1 request/day | trumba.com robots allows all | title, offset times, location, Event Type → category; campus-internal types, observance months and Zoom skipped | events · 24h | B (feed caps at 200 items → 14-day horizon) | 51 |
+| `harlows_sacramento` | sacramento | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://www.harlows.com/events/ | none | 1 listing + ≤40 details at ≥2 s | robots: wp-admin only | name, start (offset), room (Harlow's / Starlet Room), Etix link | concerts · 12h | C+ | 40 |
+| `fairytale_town_events` | sacramento | WP The Events Calendar / `tribe` | https://www.fairytaletown.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 37 |
+| `sacramento_business_openings` | sacramento | ArcGIS FeatureServer table / `arcgis` | https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/account_data_with_header_NEW/FeatureServer/0 | none | 1 request/day | documented ArcGIS REST; no robots policy (403); explicit `out_fields`, so owner, phone and mailing columns are never requested | Business_Name, Business_Description (restaurants / cafés / bakeries / bars / live entertainment / theatres), **Business_Start_Date** (future = pre-registered, ≤60 d), status, street address | openings · 24h | B+ (official; no geometry, geocoded) | 28 |
+| `sacstate_athletics` | sacramento | SIDEARM ICS / `ics` | https://hornetsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Sacramento") | events · 24h | B | 15 |
+| `cal_expo_events` | sacramento | WP The Events Calendar / `tribe` | https://calexpo.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events`; category labels → taxonomy | events · 24h | B | 9 |
+| `visit_sacramento_events` | sacramento | Simpleview / `simpleview` (disabled) | https://www.visitsacramento.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Sacramento):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| Golden 1 Center, Downtown Sacramento Partnership, Midtown Association, Channel 24, Goldfield Trading Post, B Street Theatre, Elk Grove, Mondavi Center | SAC | Cloudflare challenge, not attempted | probe 2026-10-16 |
+| Ace of Spades | SAC | Live Nation / Ticketmaster site | homepage |
+| Capital Stage | SAC | robots.txt disallows | probe |
+| City of Sacramento community calendar | SAC | AEM page (3.5 MB), no feed or JSON-LD | probe |
+| West Sacramento | SAC | robots.txt 403 | probe |
+| Sacramento Comedy Spot | SAC | VBO Tickets JS widget only | probe |
+| Sacramento Theatre Company | SAC | robots.txt 503 | probe |
+| Sac Republic FC, California Museum, Sacramento Pride (Tribe) | SAC | 0 upcoming events | REST probe |
+| Galaxy Digital tenants (uwccr, volunteersacramento, sacramento, cityofsacramento, saccounty) | SAC | "Bad Domain" | probe |
+| BiblioCommons `sacramento` | SAC | 404 (the library runs Communico) | gateway |

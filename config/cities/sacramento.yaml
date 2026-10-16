@@ -1,0 +1,263 @@
+# Sacramento, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 (batch B onboarding; see docs/SOURCES.md "Batch B cities").
+# Not used (details in docs/SOURCES.md): CA ABC licensing reports, Golden 1 Center, Old Sacramento / Downtown
+# Sacramento Partnership / Midtown Association HTML, Channel 24, Goldfield, B Street Theatre, Elk Grove (Cloudflare
+# challenges); Ace of Spades (Live Nation); Capital Stage (robots disallows); city community calendar (AEM page,
+# no feed); no Galaxy Digital / HandsOn volunteer tenant, Team Trivia, Challenge or Volo market for Sacramento.
+slug: sacramento
+name: Sacramento
+state: CA
+timezone: America/Los_Angeles
+center: [38.5816, -121.4944]
+radius_km: 20
+aliases: [West Sacramento, Rancho Cordova, Carmichael, Fair Oaks, Citrus Heights, Elk Grove, Arden-Arcade, North Highlands, Antelope, Rio Linda, Florin, Orangevale, Gold River, Rosemont]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 38.5800, lon: -121.4930 }
+  - { name: Old Sacramento, lat: 38.5840, lon: -121.5050 }
+  - { name: Midtown, lat: 38.5720, lon: -121.4750 }
+  - { name: East Sacramento, lat: 38.5680, lon: -121.4450 }
+  - { name: Land Park, lat: 38.5390, lon: -121.4990 }
+  - { name: Curtis Park, lat: 38.5440, lon: -121.4750 }
+  - { name: Oak Park, lat: 38.5430, lon: -121.4600 }
+  - { name: Tahoe Park, lat: 38.5390, lon: -121.4300 }
+  - { name: Sacramento State / College-Glen, lat: 38.5610, lon: -121.4240 }
+  - { name: Natomas, lat: 38.6500, lon: -121.5100 }
+  - { name: Pocket / Greenhaven, lat: 38.4870, lon: -121.5260 }
+  - { name: Arden-Arcade, lat: 38.6000, lon: -121.3800 }
+  - { name: West Sacramento, lat: 38.5800, lon: -121.5300 }
+  - { name: Rancho Cordova, lat: 38.5890, lon: -121.3030 }
+sources:
+  - id: sacpl_events
+    adapter: communico
+    name: Sacramento Public Library events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://engage.saclibrary.org/events
+    expect_min_records: 40
+    notes: >-
+      Communico eeventcaldata JSON (the calendar page's own data; robots disallows only /results*, /sitesearch*).
+      One request per day of horizon. Ballot drop-off windows, service desks and the far-south Delta branches
+      (Galt, Isleton, Walnut Grove, Courtland) are skipped.
+    params:
+      base_url: https://engage.saclibrary.org
+      horizon_days: 10
+      venue_label: Sacramento Public Library
+      exclude_location: '\b(Galt|Isleton|Walnut Grove|Courtland)\b|\bBallot Drop|\bOutreach Library\b|\bHousing (&|and) Resource|\bJob Assistance\b|\bTax (Help|Prep)\b'
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Book Sale: arts.books
+        Reading: arts.books
+        Authors & Speakers: arts.books
+        "Art, Hobbies & Crafts": arts.workshop
+        Classes & Workshops: arts.workshop
+        STEAM: learning.tech
+        Computers & Tech: learning.tech
+        Early Learning: family.kids
+        Babies: family.kids
+        Toddlers & Preschoolers: family.kids
+        Kids: family.kids
+
+  - id: sacramento_business_openings
+    adapter: arcgis
+    name: City of Sacramento new business operations tax certificates (restaurants, cafes, bars, venues)
+    data_type: openings
+    homepage: https://data.cityofsacramento.org/
+    expect_min_records: 3
+    notes: >-
+      City of Sacramento "Business Operation Tax Information" table (Publisher_SacCity; data edited 2026-10-15).
+      Business_Start_Date is the registered start date (future = pre-registered), never a renewal. No geometry:
+      geocoded from the street address. Business_Name is the trade name (owner first/last names are separate
+      columns, dropped with phone and mailing address by PII_KEY).
+    params:
+      service_url: https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/account_data_with_header_NEW/FeatureServer/0
+      format: json
+      # explicit columns: owner names, phone and mailing address are never even requested
+      out_fields: Account_Number,Business_Name,Business_Description,Business_Start_Date,Current_License_Status,Location_Street_Number,Location_Direction,Location_Street_Name,Location_Street_Type,Location_City,Location_State,Location_Zip_code
+      kind: opening
+      lookback_days: 45
+      max_future_days: 60
+      where: >-
+        Business_Start_Date >= DATE '{today_date}' AND upper(Location_City) = 'SACRAMENTO' AND Business_Description IN
+        ('Restaurants ', 'Cafes', 'Bakery', 'Bars - Taverns', 'Live Entertainment  ', 'Theatres')
+      order_by: Business_Start_Date DESC
+      fields: { record_id: Account_Number, title: Business_Name, start: Business_Start_Date, category: Business_Description,
+                address: [Location_Street_Number, Location_Direction, Location_Street_Name, Location_Street_Type, Location_City, Location_State] }
+      exclude_title: ["(?i)\\b(catering|grocery|mini ?mart|food mart|convenience|supermarket|gas|vending|commissary|property|investments?|holdings)\\b"]
+      title_template: "{title} — new business registration"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Sacramento lists a business operations tax
+        certificate ("{Business_Description}", status {Current_License_Status}) for this address with a business
+        start date of {date}.
+      category_map:
+        "Bars - Taverns": nightlife.opening
+        "Live Entertainment": nightlife.opening
+        Theatres: nightlife.opening
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.cityofsacramento.org/
+      extras: { signal: business_registration }
+
+  - id: sacstate_events
+    adapter: trumba
+    name: Sacramento State events
+    data_type: events
+    homepage: https://www.csus.edu/events/
+    expect_min_records: 20
+    notes: >-
+      Trumba feed behind csus.edu's "Campus Calendar" (trumba.com robots allows all). The feed caps at 200 items,
+      so the horizon is 14 days. Observance-month banners and internal items are skipped.
+    params:
+      webname: sacramento-state-events
+      horizon_days: 14
+      organizer: Sacramento State
+      venue_label: Sacramento State
+      audience_filter: institution   # skip faculty/student-only items
+      fallback_point: { lat: 38.5610, lon: -121.4240, label: "Sacramento State campus" }   # unmappable rooms → campus, labeled approximate
+      exclude_location: '\((Global|U\.S\.|Cultural|Hindu|Jewish|Muslim|Christian|Buddhist|Sikh|Islamic|Jain|Baha.i)\)|\b(Heritage|History|Awareness) Month\b|\bzoom\b|\bon24\b|\bvirtual\b'
+      category_fields: [Event Type]
+      default_category: learning.networking
+      category_map:
+        Concert: music.concert
+        Performance: arts.theater
+        Dance: arts.theater
+        Movie: arts.film
+        Exhibit: arts.museum
+        Literature: arts.books
+        Sporting Event: sports_watch.game
+        Cultural: community.cultural
+        Celebration: community.festival
+        # campus-internal labels → the catch-all default, which audience_filter skips (precision over recall)
+        Student Activity: learning.networking
+        Recreation: learning.networking
+        "Health & Wellness": learning.networking
+        "Health &amp; Wellness": learning.networking
+        Meeting: learning.networking
+        Workshop: learning.networking
+        Professional Development: learning.networking
+        Information Session: learning.networking
+        Training: learning.networking
+        Discussion: learning.networking
+        Presentation: learning.networking
+        Academic: learning.networking
+        Deadline: learning.networking
+        Service Hours: learning.networking
+        Open House: learning.networking
+        Reception: learning.networking
+        Anchor University: learning.networking
+
+  - id: sacstate_athletics
+    adapter: ics
+    name: Sacramento State Hornets athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://hornetsports.com/calendar
+    expect_min_records: 3
+    notes: >-
+      SIDEARM Sports subscription calendar (robots allows it, Crawl-delay 30 — one request a day). Only events
+      whose LOCATION starts with "Sacramento" are kept (away/neutral games skipped).
+    params:
+      url: https://hornetsports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Sacramento State Hornets
+      exclude_location: '^(?!Sacramento\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 38.5610, lon: -121.4240, label: "Sacramento State campus" }
+
+  - id: harlows_sacramento
+    adapter: jsonld
+    name: Harlow's & The Starlet Room (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.harlows.com/events/
+    expect_min_records: 15
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://www.harlows.com/events/]
+      follow: 'harlows\.com/event/[^/]+/(harlows|the-starlet-room)/-?sacramento-california/$'
+      max_follow: 40
+      venue: {name: "Harlow's", address: "2708 J Street, Sacramento, CA"}
+      organizer: Harlow's
+      default_category: music.concert
+
+  - id: old_sacramento_events
+    adapter: tribe
+    name: Old Sacramento Waterfront events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://www.oldsacramento.com/events
+    expect_min_records: 20
+    notes: >-
+      WP The Events Calendar REST API (robots allows; answered 200). The HTML site serves a Cloudflare challenge,
+      which we never attempt — if the API starts challenging too, the unit fails and is disabled.
+    params:
+      base_url: https://www.oldsacramento.com
+      horizon_days: 45
+      max_pages: 5
+      venue: {name: Old Sacramento Waterfront, address: "Old Sacramento, Sacramento, CA 95814"}
+      organizer: Old Sacramento Waterfront
+      default_category: community.festival
+      category_map:
+        Comedy: nightlife.comedy
+        Comedy Shows: nightlife.comedy
+        Happy Hour: food_drink.tasting
+        Halloween 21+: nightlife.holiday
+
+  - id: fairytale_town_events
+    adapter: tribe
+    name: Fairytale Town (William Land Park) events
+    data_type: events
+    homepage: https://www.fairytaletown.org/events/
+    expect_min_records: 5
+    params:
+      base_url: https://www.fairytaletown.org
+      horizon_days: 45
+      max_pages: 3
+      venue: {name: Fairytale Town}
+      organizer: Fairytale Town
+      default_category: family.kids
+
+  - id: visit_sacramento_events
+    adapter: simpleview
+    name: Visit Sacramento events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://www.visitsacramento.com/events/
+    expect_min_records: 30
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our
+      PoliteClient on the first live run, although robots.txt allows it (Crawl-delay 2) and the token endpoint
+      worked — same as Visit Denver/Austin/Meet Boston. We do not work around it; re-enable only with permission.
+    params:
+      base_url: https://www.visitsacramento.com
+      board: Visit Sacramento
+      horizon_days: 7
+      default_category: community.festival
+
+  - id: cal_expo_events
+    adapter: tribe
+    name: Cal Expo (California State Fairgrounds) events
+    data_type: events
+    homepage: https://calexpo.com/events/
+    expect_min_records: 2
+    notes: >-
+      WP The Events Calendar REST API (robots allows). Shows, expos and festivals on the state fairgrounds
+      (Building A–D, Heart Health Park); the State Fair itself appears in July.
+    params:
+      base_url: https://calexpo.com
+      horizon_days: 120
+      max_pages: 3
+      spectator_venue: true
+      venue: {name: Cal Expo}
+      organizer: Cal Expo
+      default_category: community.festival
+      category_map:
+        Concerts: music.concert
+        Sac Republic FC: sports_watch.game
+        Sports: sports_watch.game
+        Competitions: sports_watch.game
+        Conference: learning.networking
+        Education: learning.networking
+        Crafts: niche.hobby
+        Family Fun: family.kids
