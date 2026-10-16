@@ -309,6 +309,38 @@ def test_rejects_and_windowing():
     assert errors[0].startswith("event without name/startDate") and "unparseable JSON-LD" in errors[1]
 
 
+def test_all_day_event_today_survives_the_evening_window():
+    # NOW is 22:00 local; a date-only event today must not be windowed out at midnight + 6 h
+    today = {**EV, "name": "All Day Today", "startDate": "2026-10-15", "url": "/today"}
+    yesterday = {**EV, "name": "All Day Yesterday", "startDate": "2026-10-14", "url": "/yday"}
+    assert set(_by_title(_parse(_page(today, yesterday)))) == {"All Day Today"}
+
+
+def test_date_only_keeps_the_local_date_and_drops_wrong_clock_times():
+    # STG-style: two shows on one day, both stamped 7 h early; with date_only they collapse to one all-day record
+    early = {**EV, "name": "Comic", "startDate": "2026-10-17T09:00:00-05:00", "url": "/comic"}
+    late = {**early, "startDate": "2026-10-17T13:00:00-05:00"}
+    parsed = _parse(_page(early, late), date_only=True)
+    assert len(parsed.valid) == 1
+    ev = parsed.valid[0][0]
+    assert ev.all_day and ev.start.isoformat() == "2026-10-17T00:00:00-05:00"
+    assert len(_parse(_page(early, late)).valid) == 2  # without the flag both timed records are kept
+
+
+@pytest.mark.parametrize(
+    ("title", "availability"),
+    [
+        ("An Evening with Eric Idle – CANCELED", "cancelled"),
+        ("Cancelled: Story Hour", "cancelled"),
+        ("Big Band (Postponed)", "postponed"),
+        ("Cancel Culture Comedy Hour", "unknown"),
+    ],
+)
+def test_cancelled_or_postponed_in_the_title(title: str, availability: str):
+    ev = _by_title(_parse(_page({**EV, "name": title})))
+    assert next(iter(ev.values())).availability == availability
+
+
 def test_non_event_blocks_are_ignored_quietly():
     parsed = _parse(_page({"@type": "Organization", "name": "x"}, raw="{not json, no events here}"))
     assert not parsed.valid and not parsed.rejects
