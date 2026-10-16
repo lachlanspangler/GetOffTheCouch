@@ -877,12 +877,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "build.load_live_records drops records whose end < now-2h, so every opening dated in the past (most license signals) never reaches the export: Denver exports 0 events, NYC exports none of its 1,216 opening records. Openings need a display window (e.g. 60 days after start) instead of a fabricated end date.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: build.OPENING_WINDOW_DAYS"
+   ]
   },
   {
    "id": "I-060",
