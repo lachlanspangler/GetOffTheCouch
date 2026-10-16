@@ -321,3 +321,24 @@ sources:
       exclude_location: '^(?!Seattle\b)'
       force_category: sports_watch.game   # spectator games, not rec leagues ("Volleyball vs Rutgers")
       fallback_point: { lat: 47.6505, lon: -122.3016, label: "UW athletics, Montlake" }
+  - id: earshot_jazz
+    adapter: tribe
+    name: Earshot Jazz calendar (Seattle-area jazz listings)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.earshot.org/events/
+    expect_min_records: 40
+    notes: >-
+      Earshot Jazz (Seattle jazz nonprofit) publishes the region's jazz gigs through The Events Calendar REST
+      API (robots allows it). Gigs far outside Seattle are skipped by exclude_location.
+    params:
+      base_url: https://www.earshot.org
+      horizon_days: 21
+      per_page: 50
+      max_pages: 8
+      organizer: Earshot Jazz
+      default_category: music.concert
+      classify_description: false
+      category_map: {Festival: music.concert, Film: arts.film, Education: arts.workshop}   # Earshot Jazz Festival shows are concerts
+      exclude_location: '\b(Tacoma|Olympia|Everett|Port Townsend|Bellingham|Gig Harbor|Bremerton|Anacortes|Mount Vernon|Port Angeles|Langley|Whidbey|Vashon|Poulsbo|Lacey|Puyallup|Spokane|Portland)\b'
