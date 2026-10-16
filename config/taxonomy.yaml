@@ -88,7 +88,7 @@ categories:
     attendance: [5, 25, 150]
     children:
       one_off: { label: One-day volunteering, match: [volunteer, cleanup, clean-up, clean up, tree planting, food packing, service day] }
-      recurring: { label: Ongoing volunteering, match: [weekly volunteer, ongoing volunteer, mentor, tutor] }
+      recurring: { label: Ongoing volunteering, match: [weekly volunteer, ongoing volunteer, volunteer mentor, become a mentor, volunteer tutor, become a tutor, tutors needed] }
       board: { label: Boards & civic, match: [board member, commission, civic, poll worker, election judge] }
 
   niche:
