@@ -44,3 +44,32 @@ def test_says_free():
     assert not says_free("Gluten free brunch")
     assert not says_free("Free parking available. Tickets $25")
     assert not says_free("Free drinks for the first 50 guests")
+
+
+def test_cancelled_titles_set_availability():
+    out = normalize_record(
+        {
+            "source_id": "s",
+            "fetched_at": "x",
+            "title": "CANCELED: SoUP Research Presentation",
+            "category": "learning.tech",
+        },
+        "S",
+    )
+    assert out["availability"] == "cancelled"
+    out = normalize_record(
+        {"source_id": "s", "fetched_at": "x", "title": "[Postponed] Jazz Night", "category": "music.concert"}, "S"
+    )
+    assert out["availability"] == "postponed"
+
+
+def test_institution_audience_filter_is_opt_in():
+    from gotc.pipeline.normalize import audience_skip
+
+    internal = {"title": "NYU Faculty Housing Pet Photo Contest"}
+    public = {"title": "Free Jazz Concert on the Quad", "description": "Open to the public."}
+    assert audience_skip(internal, "institution")
+    assert audience_skip({"title": "Dissertation Defense: J. Doe"}, "institution")
+    assert audience_skip({"title": "Talk", "description": "For current graduate students only"}, "institution")
+    assert audience_skip(public, "institution") is None
+    assert audience_skip(internal, None) is None

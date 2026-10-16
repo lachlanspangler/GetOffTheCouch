@@ -114,3 +114,4 @@ _Note (merge, 2026-10-16 05:10 UTC): the idea ids in the entry above were renumb
 - Full live run of all 10 cities in progress.
 
 **Next:** finish the full live run and check every city in the browser. Merge the Volo/volunteer/cons branch and the starter-pack data. Watch payload size for NYC.
+- 2026-10-16 05:06 UTC · run 5 ok: units[25 disabled, 35 ok, 2 skipped] → 8032 events in 10 cities

@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/hooks";
 import { EventCard } from "../components/EventCard";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
-import { collapseSeries } from "../lib/filters";
+import { collapseSeries, isOngoing } from "../lib/filters";
 import { dayKey, fmtDateLong } from "../lib/time";
 import type { Event } from "../lib/types";
 
@@ -15,7 +15,8 @@ export function Feed({ events }: { events: Event[] }) {
   if (!feed) return null;
   const tz = feed.timezone;
   const openings = events.filter((e) => e.kind === "opening");
-  const regular = events.filter((e) => e.kind !== "opening");
+  const ongoing = events.filter((e) => e.kind !== "opening" && isOngoing(e, now));
+  const regular = events.filter((e) => e.kind !== "opening" && !isOngoing(e, now));
   const allGroups = collapseSeries(regular);
   const groups = allGroups.slice(0, limit);
   const byDay = new Map<string, typeof groups>();
@@ -55,6 +56,18 @@ export function Feed({ events }: { events: Event[] }) {
             Show more ({allGroups.length - limit} left)
           </button>
         </div>
+      )}
+      {ongoing.length > 0 && (
+        <details class="day ongoing">
+          <summary class="day-head">
+            Ongoing: exhibits, faires & multi-day things <span class="muted">· {ongoing.length}</span>
+          </summary>
+          <div class="grid">
+            {collapseSeries(ongoing).slice(0, 48).map((g) => (
+              <EventCard key={g.event.id} e={g.event} more={g.more} />
+            ))}
+          </div>
+        </details>
       )}
       {openings.length > 0 && (
         <section class="day">

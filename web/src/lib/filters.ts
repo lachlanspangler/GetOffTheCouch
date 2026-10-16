@@ -108,6 +108,8 @@ export function applyFilters(
   const q = f.q.trim().toLowerCase();
   const center = f.near ? neighborhoods[f.near] : undefined;
   return events.filter((e) => {
+    const av = e.tickets?.availability;
+    if ((av === "cancelled" || av === "postponed") && !q) return false; // still findable by search
     if (!matchesWhen(e, f.when, tz, now)) return false;
     if (!matchesCategory(e, f.cats)) return false;
     if (f.free && !e.price.is_free) return false;
@@ -188,4 +190,12 @@ export function deadlines(events: Event[], now: Date = new Date()): DeadlineItem
 
 export function urgency(hours: number): "now" | "soon" | "week" | "later" {
   return hours <= 48 ? "now" : hours <= 24 * 7 ? "soon" : hours <= 24 * 30 ? "week" : "later";
+}
+
+/** Long-running things (exhibits, multi-week faires) that would otherwise repeat on every day of the feed. */
+export function isOngoing(e: Event, now: Date = new Date()): boolean {
+  if (!e.end) return false;
+  const start = new Date(e.start).getTime();
+  const end = new Date(e.end).getTime();
+  return end - start > 36 * 3600_000 && start < now.getTime() + 86_400_000;
 }

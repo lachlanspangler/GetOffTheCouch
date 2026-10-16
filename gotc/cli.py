@@ -70,7 +70,7 @@ def cmd_build(a: argparse.Namespace, s: Settings) -> int:
 def cmd_replay(a: argparse.Namespace, s: Settings) -> int:
     """Re-parse the latest stored raw payloads for a unit (after fixing a parser) — no network."""
     from gotc.adapters.base import Payload, get_adapter
-    from gotc.pipeline.ingest import parse_payloads, upsert_records
+    from gotc.pipeline.ingest import mark_gone, parse_payloads, upsert_records
     from gotc.storage.raw import RawStore
 
     reg = load_registry()
@@ -103,6 +103,8 @@ def cmd_replay(a: argparse.Namespace, s: Settings) -> int:
         parsed = parse_payloads(get_adapter(u.source.adapter), u, payloads, fetched_at)
         with db.tx():
             upsert_records(db, u, parsed, fetched_at)
+            if not parsed.rejects:  # same snapshot semantics as a live fetch
+                mark_gone(db, u, {ev.record_id for ev, _ in parsed.valid}, fetched_at)
         print(
             f"{u.key}: replayed {len(payloads)} payload(s) → {len(parsed.valid)} valid, {len(parsed.rejects)} rejected"
         )

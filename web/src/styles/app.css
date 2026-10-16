@@ -403,3 +403,7 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 @media (max-width: 640px) { .waves li { grid-template-columns: 1fr; } .waves-axis { margin-left: 0; } }
 
 .more { display: flex; justify-content: center; margin: 8px 0 32px; }
+.ongoing summary { cursor: pointer; list-style: none; }
+.ongoing summary::-webkit-details-marker { display: none; }
+.ongoing summary::before { content: '▸ '; color: var(--muted); }
+.ongoing[open] summary::before { content: '▾ '; }

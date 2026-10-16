@@ -160,6 +160,7 @@ sources:
     homepage: https://events.uchicago.edu/
     expect_min_records: 10
     params:
+      audience_filter: institution   # skip faculty/student-only items
       base_url: https://events.uchicago.edu
       path: "/live/json/events/max/{max}/response_fields/location,description,event_types,tags,group_title"
       max: 200

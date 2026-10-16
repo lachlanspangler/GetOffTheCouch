@@ -65,6 +65,7 @@ sources:
     homepage: https://calendar.utexas.edu/
     expect_min_records: 20
     params:
+      audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.utexas.edu
       horizon_days: 30
       max_pages: 6

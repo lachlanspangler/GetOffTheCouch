@@ -29,7 +29,7 @@ from gotc.config import Registry, Unit
 from gotc.health import store as hstore
 from gotc.health.state import Outcome, disabled, transition
 from gotc.http.client import FetchError, PoliteClient
-from gotc.pipeline.normalize import normalize_record
+from gotc.pipeline.normalize import audience_skip, normalize_record
 from gotc.schema import SourceEvent
 from gotc.settings import Settings
 from gotc.storage.db import Database, iso
@@ -56,6 +56,7 @@ class UnitResult:
 class Parsed:
     valid: list[tuple[SourceEvent, int | None]] = field(default_factory=list)  # (event, raw_fetch_id)
     rejects: list[tuple[str, str, int | None]] = field(default_factory=list)  # (hint, error, raw_fetch_id)
+    skipped: int = 0  # valid records deliberately left out (e.g. not open to the public)
 
 
 def parse_payloads(
@@ -75,6 +76,9 @@ def parse_payloads(
         for rec in records:
             if "_reject" in rec:
                 out.rejects.append((str(rec.get("_hint", ""))[:200], str(rec["_reject"]), raw_id))
+                continue
+            if audience_skip(rec, unit.source.params.get("audience_filter")):
+                out.skipped += 1
                 continue
             try:
                 rec = normalize_record(rec, unit.source.name)
@@ -167,6 +171,8 @@ def run_unit(
         result.fetched = len(fr.payloads)
         result.valid = len(parsed.valid)
         result.rejected = len(parsed.rejects)
+        if parsed.skipped:
+            result.notes.append(f"{parsed.skipped} not-public record(s) skipped")
         for hint, err, rid in parsed.rejects[:200]:
             db.execute(
                 "INSERT INTO rejects (unit, raw_fetch_id, at, record_hint, error) VALUES (?,?,?,?,?)",
@@ -265,10 +271,10 @@ def _snapshot_prices(db: Database, ev: SourceEvent, now: datetime) -> None:
 
 
 def mark_gone(db: Database, unit: Unit, seen: set[str], now: datetime) -> int:
-    """Records absent from a complete, healthy snapshot (and still in the future) are marked gone."""
+    """Records absent from a complete, healthy snapshot (and not long past) are marked gone."""
     rows = db.all(
         "SELECT record_id FROM source_records WHERE unit = ? AND gone_at IS NULL AND start_at >= ?",
-        (unit.key, iso(now)),
+        (unit.key, iso(now - timedelta(hours=24))),  # include things that started earlier today (all-day items)
     )
     gone = [r["record_id"] for r in rows if r["record_id"] not in seen]
     for rid in gone:

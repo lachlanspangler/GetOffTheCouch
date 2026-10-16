@@ -136,6 +136,7 @@ sources:
     homepage: https://calendar.northeastern.edu/
     expect_min_records: 10
     params:
+      audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.northeastern.edu
       horizon_days: 30
       max_pages: 5

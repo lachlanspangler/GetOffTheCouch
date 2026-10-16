@@ -47,6 +47,7 @@ sources:
     homepage: https://www.washington.edu/calendar/
     expect_min_records: 20
     params:
+      audience_filter: institution   # skip faculty/student-only items
       webname: sea_campus
       horizon_days: 14
       organizer: University of Washington

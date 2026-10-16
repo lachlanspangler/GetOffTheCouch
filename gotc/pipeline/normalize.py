@@ -95,8 +95,35 @@ def location_from_text(text: str | None) -> str | None:
     return loc or None
 
 
+_CANCELLED = re.compile(r"^\s*\[?\(?(cancel+ed|postponed)\b[\]):\s-]*", re.I)
+# University/institution feeds mix public events with internal ones. Only applied to sources that opt in
+# (params.audience_filter: institution). Matches are *skipped* (counted), not rejected — they're valid, just not for us.
+_INTERNAL = re.compile(
+    r"\b(faculty|staff|employees?|students?|alumni|members|residents?) only\b"
+    r"|\bfor (current |enrolled |admitted )?(\w+ )?(students|faculty|staff|employees)\b"
+    r"|\b(dissertation|thesis|prospectus|qualifying exam|defen[cs]e of)\b"
+    r"|\b(office hours|colloquium|faculty meeting|staff meeting|board meeting|e-board|department meeting|lab meeting)\b"
+    r"|\b(orientation for|advising|registrar|commencement rehearsal|info session for (graduate|undergraduate))\b"
+    r"|\b(faculty|staff) (housing|appreciation|development|senate|council)\b"
+    r"|\bnot open to the public\b|\bby invitation only\b|\binvite only\b|\bclosed to the public\b"
+    r"|\b(TA|RA) - |\bfixed pros\b",
+    re.I,
+)
+
+
+def audience_skip(rec: dict[str, Any], mode: str | None) -> str | None:
+    if mode != "institution":
+        return None
+    text = f"{rec.get('title') or ''} \n {(rec.get('description') or '')[:600]}"
+    m = _INTERNAL.search(text)
+    return f"not public: {m.group(0)!r}" if m else None
+
+
 def normalize_record(rec: dict[str, Any], source_name: str) -> dict[str, Any]:
     raw_html = rec.pop("_html", None)
+    title = str(rec.get("title") or "")
+    if m := _CANCELLED.match(title):
+        rec["availability"] = "postponed" if m.group(1).lower().startswith("post") else "cancelled"
     offers = list(rec.get("offers") or [])
     have = {str(o.get("url")) for o in offers}
     for kind, url, _text in links_from_html(raw_html):

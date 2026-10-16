@@ -94,6 +94,7 @@ sources:
     homepage: https://events.tc.umn.edu/
     expect_min_records: 20
     params:
+      audience_filter: institution   # skip faculty/student-only items
       base_url: https://events.tc.umn.edu
       max: 200
       organizer: University of Minnesota
