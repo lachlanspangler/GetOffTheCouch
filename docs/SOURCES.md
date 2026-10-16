@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads, philadelphia). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -338,6 +338,20 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `nsu_athletics` | hampton_roads | SIDEARM ICS / `ics` | https://nsuspartans.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = LOCATION starts with "Norfolk" | events · 24h | B | 14 |
 | `volunteer_hr` | hampton_roads | HandsOn Connect / `handsonconnect` | https://www.volunteerhr.org/calendar (block 2179) | none | ~8 calendar requests/day, ≥3 s | robots.txt is a 404 (no policy) | as `boston_cares` | volunteer · 24h | B+ | 98 |
 | `challenge_trivia_hampton_roads` | hampton_roads | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-virginia within 60 km | recurring · 48h | C+ | 107 |
+| `phl_restaurant_openings` | philadelphia | Carto SQL API (CSV) / `csvfile` | https://phl.carto.com/api/v2/sql?format=csv&q=… (`business_licenses`) | none | 1 request/day | robots disallows /api/ only for named search crawlers (Googlebot, Slurp, Yandex, msnbot, Baidu), not `*`; OpenDataPhilly terms | licensenum, business name (legal name only if it looks like an org), license type, address, point, **initialissuedate**; owner/contact columns never selected | openings · 24h | A- (official, daily) | 118 |
+| `bartrams_garden_events` | philadelphia | WP The Events Calendar / `tribe` | https://www.bartramsgarden.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` (farm stands, volunteer days, boating) | events · 24h | B+ | 33 |
+| `xfinity_mobile_arena` | philadelphia | carbonhouse RSS / `rss_events` | https://www.xfinitymobilearena.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (76ers, Flyers, concerts) | 104 |
+| `johnny_brendas` | philadelphia | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://johnnybrendas.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), ticket link | concerts · 12h | C+ | 27 |
+| `helium_comedy_philly` | philadelphia | Event JSON-LD on the homepage / `jsonld` | https://philadelphia.heliumcomedy.com/ | none | 1 page/day | robots allows it | name, start (UTC), club address | events · 24h | C+ | 104 |
+| `chris_jazz_cafe` | philadelphia | Event JSON-LD on the homepage / `jsonld` | https://www.chrisjazzcafe.com/ | none | 1 page/12h | robots allows it | name, start (UTC) | concerts · 12h | C+ | 90 |
+| `underground_arts` | philadelphia | Event JSON-LD on the homepage / `jsonld` | https://undergroundarts.org/ | none | 1 page/12h (Crawl-delay 3) | robots allows it | name, start (UTC), Tixr offers | concerts · 12h | B- | 58 |
+| `milkboy_philly` | philadelphia | Event JSON-LD on the homepage / `jsonld` | https://milkboyphilly.com/ | none | 1 page/12h (Crawl-delay 3) | robots allows it | as above | concerts · 12h | B- | 57 |
+| `ardmore_music_hall` | philadelphia | Event JSON-LD on the homepage / `jsonld` | https://ardmoremusichall.com/ | none | 1 page/12h | robots allows it | as above | concerts · 12h | B- | 51 |
+| `penn_athletics` | philadelphia | SIDEARM ICS / `ics` | https://pennathletics.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = Philadelphia or a Penn venue (The Palestra, Franklin Field…) | events · 24h | B | 25 |
+| `temple_athletics` | philadelphia | SIDEARM ICS / `ics` | https://owlsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | home = "Philadelphia…" | events · 24h | B | 30 |
+| `drexel_athletics` | philadelphia | SIDEARM ICS / `ics` | https://drexeldragons.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | as above | events · 24h | B | 30 |
+| `sju_athletics` | philadelphia | SIDEARM ICS / `ics` | https://sjuhawks.com/calendar.ashx/calendar.ics?sport_id=0 | none | as above | as above | as above | events · 24h | B | 30 |
+| `volo_philadelphia` | philadelphia | Volo discover pages / `volo` | https://www.volosports.com/discover/philadelphia?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 13 |
 
 **Tried and not added (batch A).**
 
@@ -397,3 +411,11 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | ODU calendar / ODU athletics | hampton_roads | no Localist host (`calendar.odu.edu` doesn't resolve); odusports.com isn't SIDEARM | probe |
 | Hampton Coliseum (carbonhouse RSS works) | hampton_roads | ~30 km from the center (edge of the circle) and a handful of items; not added | RSS probe |
 | VolunteerHR / United Way of South Hampton Roads on Galaxy Digital | hampton_roads | "Bad Domain" for both guesses — VolunteerHR runs on HandsOn Connect instead (used) | Galaxy probes |
+| Free Library of Philadelphia (freelibrary.org) | philadelphia | robots.txt answers 403 (disallow-all) | probe |
+| Center City District, University City District, Penn Today, Mann Center | philadelphia | robots.txt answers 403 (disallow-all) | probe |
+| Penn / Temple / Drexel event calendars | philadelphia | no Localist/LiveWhale/Trumba API (events.upenn.edu doesn't resolve; events.temple.edu → now.temple.edu HTML; Drexel 404) | probe |
+| Union Transfer, Ensemble Arts Philly (Kimmel), Philadelphia Museum of Art, Franklin Institute | philadelphia | no Event JSON-LD / feed | probe |
+| Old City District, South Street, Manayunk, East Passyunk, Penn Museum, Eastern State | philadelphia | no Tribe REST and no usable structured data | probe |
+| Philadelphia volunteer centers on Galaxy Digital (uwgpsnj, phillyvolunteers, philadelphia) | philadelphia | "Bad Domain" — no tenant found | Galaxy probes |
+| Team Trivia / Challenge Entertainment | philadelphia | no market covers Philadelphia | sitemaps |
+| Fairmount Park Conservancy, World Cafe Live, Philly Fun Guide | philadelphia | 522 / robots.txt timed out (couldn't verify) | probe |

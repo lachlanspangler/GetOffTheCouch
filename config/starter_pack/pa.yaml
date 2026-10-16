@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Pennsylvania. Every fact is quoted verbatim from source_url.
+state: PA
+items:
+  - id: pa-drivers-license
+    title: "Get a Pennsylvania driver's license"
+    kind: license
+    days_after_move: 60
+    summary: "New residents with an out-of-state license must get a PA driver's license within 60 days (30 days for a CDL), in person at a Driver License Center."
+    action_url: https://www.pa.gov/agencies/dmv/resources/relocation/moving-to-pennsylvania
+    evidence: "All new residents with out-of-state non-commercial driver's licenses must obtain a PA Driver's License within 60 days of establishing Pennsylvania residency."
+    source_url: https://www.pa.gov/agencies/dmv/resources/relocation/moving-to-pennsylvania
+    verified_at: 2026-10-16
+  - id: pa-vehicle-registration
+    title: "Title and register your vehicle in Pennsylvania"
+    kind: vehicle
+    days_after_move: 20
+    summary: "You have 20 days after establishing residency to apply for a Pennsylvania title and registration — and you need PA identification to do it."
+    action_url: https://www.pa.gov/agencies/dmv/resources/relocation/motor-vehicle-information-for-new-residents
+    evidence: "All new residents are required to make application for Pennsylvania title and registration of their vehicle(s) within 20 days of establishing residency in Pennsylvania."
+    source_url: https://www.pa.gov/agencies/dmv/resources/relocation/motor-vehicle-information-for-new-residents
+    verified_at: 2026-10-16
+  - id: pa-voter-registration
+    title: "Register to vote in Pennsylvania"
+    kind: voting
+    days_after_move: null
+    summary: "Register at least 15 days before the next election; you must have lived in your election district for 30 days before it."
+    action_url: https://www.pa.gov/services/vote/register-to-vote
+    evidence: "Register at least 15 days before the next election."
+    source_url: https://www.pa.gov/services/vote/register-to-vote
+    verified_at: 2026-10-16
