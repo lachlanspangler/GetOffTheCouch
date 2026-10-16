@@ -162,7 +162,7 @@ export function EventDrawer({ e }: { e: Event }) {
           <button class="btn btn-ghost" onClick={() => download(`${slug(e.title)}.ics`, calendar([e], { name: e.title }))}>
             <Icon name="calendar" size={16} /> Add to calendar
           </button>
-          {e.registration?.closes_at && (
+          {(e.registration?.closes_at || (e.registration?.opens_at && new Date(e.registration.opens_at) > now)) && (
             <button
               class="btn btn-ghost"
               onClick={() => download(`${slug(e.title)}-deadline.ics`, calendar([e], { mode: "deadlines", name: "Deadline" }))}

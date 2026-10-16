@@ -69,6 +69,26 @@ export function vdeadlineFor(e: Event, now: Date = new Date()): string[] {
   ];
 }
 
+/** "Tickets go on sale" reminder for future on-sale times (reported by the ticketing source). */
+export function vonsaleFor(e: Event, now: Date = new Date()): string[] {
+  const at = e.registration?.opens_at;
+  if (!at || new Date(at) <= now) return [];
+  const url = e.registration?.url ?? e.offers?.[0]?.url ?? e.url;
+  return [
+    "BEGIN:VEVENT",
+    `UID:${e.id}-onsale@getoffthecouch`,
+    `DTSTAMP:${stamp(now)}`,
+    `DTSTART:${stamp(at)}`,
+    `DTEND:${stamp(new Date(new Date(at).getTime() + 15 * 60_000))}`,
+    `SUMMARY:${esc(`🎟 On sale: ${e.title}`)}`,
+    ...(url ? [`URL:${url}`] : []),
+    `DESCRIPTION:${esc(`Tickets go on sale for ${e.title}.${url ? `\n${url}` : ""}`)}`,
+    ...alarm("-P1D", `${e.title} goes on sale tomorrow`),
+    ...alarm("-PT15M", `${e.title} goes on sale in 15 minutes`),
+    "END:VEVENT",
+  ];
+}
+
 export function calendar(
   events: Event[],
   opts: { mode?: "events" | "deadlines" | "both"; name?: string } = {},
@@ -78,7 +98,7 @@ export function calendar(
   const body: string[] = [];
   for (const e of events) {
     if (mode !== "deadlines") body.push(...veventFor(e, now));
-    if (mode !== "events") body.push(...vdeadlineFor(e, now));
+    if (mode !== "events") body.push(...vdeadlineFor(e, now), ...vonsaleFor(e, now));
   }
   return [
     "BEGIN:VCALENDAR",

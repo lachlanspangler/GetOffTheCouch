@@ -26,3 +26,12 @@ describe("ics", () => {
     expect(calendar([ev({ all_day: true, start: "2026-11-01T05:00:00Z" })], { mode: "events" })).toContain("DTSTART;VALUE=DATE:20261101");
   });
 });
+
+describe("on-sale reminders", () => {
+  it("adds an on-sale entry with alarms for future on-sale times", () => {
+    const e = ev({ category: "music.concert", registration: { opens_at: "2030-01-10T16:00:00Z", method: "reported" } as never });
+    const out = calendar([e], { mode: "deadlines" });
+    expect(out).toContain("On sale:");
+    expect(out).toContain("TRIGGER:-PT15M");
+  });
+});
