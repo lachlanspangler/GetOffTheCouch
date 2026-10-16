@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 42 · **done** 54 · **rejected** 7 · **blocked** 5
+**open** 42 · **done** 55 · **rejected** 7 · **blocked** 5
 
 ## Up next (open, by score)
 
@@ -68,6 +68,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-109 | Weekly habits section in the 30-day plan | features | 4 | 1 | 3.2 | done | Recurring social events are the fastest way to make friends in a new city |
 | I-101 | On-sale reminders: .ics alarm 15 min before Ticketmaster public on-sale | features | 4 | 1 | 3.2 | done | On-sale times are now reported deadlines; reminders make them useful — 2026-10-16 done: ics vonsaleFor |
 | I-077 | Track Volo price steps per program (early bird → regular → last chance) as a price trend | data-quality | 4 | 2 | 1.6 | done | Volo detail /l/{uuid} and the discover card show the same program; a weekly diff of price per player lets us show 'price went up on 10/17' with evidence and alert before early-bird ends — 2026-10-16 done: Volo offers are snapshotted each run → price_trend shows early-bird → regular steps automatically |
 | I-074 | Census batch geocoder (10k addresses/POST) to fill coordinates in one call | data-quality | 4 | 2 | 1.6 | done | Per-request geocoding is slow; batch API is keyless — 2026-10-16 done: Geocoder.batch + variants |

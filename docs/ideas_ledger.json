@@ -1608,6 +1608,20 @@
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": []
+  },
+  {
+   "id": "I-109",
+   "title": "Weekly habits section in the 30-day plan",
+   "area": "features",
+   "value": 4,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "done",
+   "why": "Recurring social events are the fastest way to make friends in a new city",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
   }
  ]
 }
