@@ -1,6 +1,6 @@
 # Health
 
-_Generated 2026-10-16T05:23:05+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-16T05:21:28+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
 **64 units** — ⚪ disabled: 25 · 🟢 healthy: 39
 
@@ -20,31 +20,31 @@ _Generated 2026-10-16T05:23:05+00:00 by `gotc` (do not edit by hand — regenera
 | 🟢 healthy | `denver_liquor_openings@denver` | 0.4h | 10 | 0 |  |
 | 🟢 healthy | `denver_pending_food_openings@denver` | 0.4h | 71 | 0 |  |
 | 🟢 healthy | `downtown_boston_events@boston` | 0.4h | 187 | 0 |  |
-| 🟢 healthy | `downtown_seattle_events@seattle` | 0.4h | 7 | 0 |  |
-| 🟢 healthy | `fiu_events@miami` | 0.4h | 280 | 0 |  |
-| 🟢 healthy | `hclib_events@minneapolis` | 0.4h | 268 | 0 |  |
-| 🟢 healthy | `la_business_openings@los_angeles` | 0.4h | 105 | 0 |  |
-| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.4h | 10 | 0 |  |
-| 🟢 healthy | `mdpls_events@miami` | 0.4h | 490 | 0 |  |
-| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.4h | 110 | 0 |  |
+| 🟢 healthy | `downtown_seattle_events@seattle` | 0.3h | 7 | 0 |  |
+| 🟢 healthy | `fiu_events@miami` | 0.3h | 280 | 0 |  |
+| 🟢 healthy | `hclib_events@minneapolis` | 0.3h | 268 | 0 |  |
+| 🟢 healthy | `la_business_openings@los_angeles` | 0.3h | 105 | 0 |  |
+| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.3h | 10 | 0 |  |
+| 🟢 healthy | `mdpls_events@miami` | 0.3h | 490 | 0 |  |
+| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.3h | 110 | 0 |  |
 | 🟢 healthy | `mprb_events@minneapolis` | 1.4h | 53 | 0 |  |
-| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.4h | 14 | 0 |  |
+| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.3h | 14 | 0 |  |
 | 🟢 healthy | `northeastern_events@boston` | 0.4h | 124 | 0 |  |
-| 🟢 healthy | `nyc_parks_events@nyc` | 0.4h | 781 | 0 |  |
-| 🟢 healthy | `nyc_permitted_events@nyc` | 0.4h | 549 | 0 |  |
-| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.4h | 984 | 0 |  |
-| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.4h | 218 | 0 |  |
-| 🟢 healthy | `nyu_events@nyc` | 0.4h | 92 | 0 |  |
-| 🟢 healthy | `seattle_business_openings@seattle` | 0.4h | 33 | 0 |  |
-| 🟢 healthy | `spl_events@seattle` | 0.4h | 189 | 0 |  |
+| 🟢 healthy | `nyc_parks_events@nyc` | 0.3h | 781 | 0 |  |
+| 🟢 healthy | `nyc_permitted_events@nyc` | 0.3h | 549 | 0 |  |
+| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.3h | 984 | 0 |  |
+| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.3h | 218 | 0 |  |
+| 🟢 healthy | `nyu_events@nyc` | 0.3h | 92 | 0 |  |
+| 🟢 healthy | `seattle_business_openings@seattle` | 0.3h | 33 | 0 |  |
+| 🟢 healthy | `spl_events@seattle` | 0.3h | 189 | 0 |  |
 | 🟢 healthy | `tabc_new_licenses_austin@austin` | 0.4h | 33 | 0 |  |
 | 🟢 healthy | `tabc_pending_openings_austin@austin` | 0.4h | 18 | 0 |  |
 | 🟢 healthy | `uchicago_events@chicago` | 0.4h | 92 | 0 |  |
-| 🟢 healthy | `umn_events@minneapolis` | 0.4h | 54 | 0 |  |
+| 🟢 healthy | `umn_events@minneapolis` | 0.3h | 54 | 0 |  |
 | 🟢 healthy | `usc_events@los_angeles` | 0.4h | 442 | 0 |  |
 | 🟢 healthy | `utaustin_events@austin` | 0.4h | 600 | 0 |  |
-| 🟢 healthy | `uw_events@seattle` | 0.4h | 115 | 0 |  |
-| 🟢 healthy | `vanderbilt_events@nashville` | 0.4h | 181 | 0 |  |
+| 🟢 healthy | `uw_events@seattle` | 0.3h | 115 | 0 |  |
+| 🟢 healthy | `vanderbilt_events@nashville` | 0.3h | 181 | 0 |  |
 | ⚪ disabled | `boston_food_openings@boston` | never | – | 0 | disabled in config |
 | ⚪ disabled | `boston_special_events@boston` | never | – | 0 | disabled in config |
 | ⚪ disabled | `meet_boston_events@boston` | never | – | 0 | disabled in config |
