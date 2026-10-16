@@ -41,7 +41,7 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
         sla = reg.sla_hours(unit.source)
         n = db.one(
             "SELECT COUNT(*) c FROM source_records WHERE unit = ? AND gone_at IS NULL AND start_at >= ?",
-            (unit.key, iso(now - timedelta(days=1))),
+            (unit.key, iso(now - timedelta(days=60))),
         )
         out.append(
             SourceStatus(

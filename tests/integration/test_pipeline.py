@@ -172,3 +172,31 @@ def test_new_badge_only_for_records_after_initial_backfill(db, settings):
     run(db, REG, settings, client=fast_client(later), now=NOW + timedelta(hours=25), geocode=False, force=True)
     new = [e for e in feed(settings).events if e.is_new]
     assert [s.record_id for e in new for s in e.sources] == [str(held_back["id"])]
+
+
+def test_recent_openings_stay_visible_old_ones_drop(db, settings):
+    from gotc.pipeline.build import load_live_records
+    from gotc.pipeline.ingest import Parsed, upsert_records
+    from gotc.schema import SourceEvent
+    from tests.conftest import unit_for
+
+    unit = unit_for(TRIBE, CITY)
+
+    def opening(rid, days_ago):
+        return SourceEvent(
+            source_id="mprb_events",
+            record_id=rid,
+            city="minneapolis",
+            title=f"New Bar {rid}",
+            category="nightlife.opening",
+            kind="opening",
+            all_day=True,
+            timezone="America/Chicago",
+            start=NOW - timedelta(days=days_ago),
+            fetched_at=NOW,
+        )
+
+    with db.tx():
+        upsert_records(db, unit, Parsed(valid=[(opening("fresh", 10), None), (opening("old", 90), None)]), NOW)
+    ids = {e.record_id for e in load_live_records(db, "minneapolis", NOW)}
+    assert "fresh" in ids and "old" not in ids

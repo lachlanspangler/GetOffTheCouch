@@ -53,6 +53,9 @@ from gotc.taxonomy import FALLBACK, Taxonomy, taxonomy
 log = logging.getLogger(__name__)
 
 
+OPENING_WINDOW_DAYS = 60  # a new license is 'news' for about two months (I-059)
+
+
 @dataclass
 class BuildStats:
     city: str
@@ -76,7 +79,8 @@ def load_live_records(db: Database, city: str, now: datetime) -> list[SourceEven
         ev = SourceEvent.model_validate_json(r["data"])
         end = ev.end or ev.start + timedelta(hours=3)
         closes = ev.registration.closes_at if ev.registration else None
-        if end >= now - timedelta(hours=2) or (closes and closes >= now):
+        recent_opening = ev.kind == EventKind.OPENING and ev.start >= now - timedelta(days=OPENING_WINDOW_DAYS)
+        if end >= now - timedelta(hours=2) or (closes and closes >= now) or recent_opening:
             out.append(ev)
     return out
 
