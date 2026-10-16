@@ -84,13 +84,18 @@ Put keys in `.env` locally, and in repo **Settings → Secrets → Actions** for
 - **Dedup.** Cross-source clustering with sticky ids. One card keeps every seller's price.
 - **Estimates.** Attendance bands, social score and ticket signals each carry a method and confidence. See docs/METHODOLOGY.md.
 - **Recommendations.** Explainable scoring plus a first-30-days plan. Weather-aware, deadline-aware, diverse.
-- **Exports.** Calendar export (.ics) with deadline alarms, shareable URLs, saved events, "new this week" badges, and report-a-problem links.
+- **Exports.** Calendar export (.ics) with deadline alarms, shareable URLs and shared lists, saved events, "new this week" badges, and report-a-problem links.
+- **Relevance.** Cancelled events are hidden, not-public university items are skipped (counted), a geofence drops out-of-area events, multi-site programs collapse, and an "Ongoing" section holds exhibits.
+- **Operator tools.** `gotc forget <unit>` after a deliberate config change; `gotc replay` after a parser fix; `python -m gotc.autoideas`.
 
-## Known gaps / next
-1. Merge the two adapter branches (9 more cities, openings, leagues, volunteering), then run all cities live.
-2. Minneapolis has **no registration deadlines yet**. Library registration (BiblioCommons) and HandsOn Twin Cities should fix that.
-3. Venue capacity registry (Wikidata P1083) for better attendance bands.
-4. "Leagues registering now" wave timeline; neighborhood vibe cards.
-5. Push notifications or email reminders would need a backend. .ics alarms cover it for now.
+## Next (what I'd build next, in order)
+1. **Ticketmaster key → concerts everywhere.** It's the biggest content gap. Then record real fixtures and check cross-seller dedup on live data.
+2. **SeatGeek key → real price trends.** This makes "selling fast" and the price trend come from live resale data.
+3. **More leagues.** HandsOn/Galaxy tenants and Volo markets (I-076). Outreach to LeagueLab/LeagueApps orgs for permission.
+4. **Census batch geocoder** to close the coordinate gap in Miami and Seattle (I-076/batch idea).
+5. **Payload split** (cards vs. details) once NYC passes ~8 MB raw.
+6. **Email/push reminders.** These need a tiny backend (e.g. a scheduled GitHub Action + Buttondown). .ics alarms cover it today.
+
+Also done this session (no longer gaps): Minneapolis deadlines via library registration and HandsOn Twin Cities, the Wikidata venue capacity registry, the registration-waves timeline, and neighborhood vibes.
 
 See `python -m gotc.ideas next` for the ranked backlog.
