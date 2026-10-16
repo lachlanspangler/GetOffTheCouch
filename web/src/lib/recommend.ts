@@ -272,5 +272,13 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
     if (s.event.series_id) series.add(s.event.series_id);
     if (out.length >= n) break;
   }
+  // a city is also its music: reserve one slot for the best show this week if none made it in
+  if (!out.some((s) => family(s.event.category) === "music")) {
+    const show = ranked.find((s) => family(s.event.category) === "music" && !s.event.tags?.includes("campus") && !out.includes(s));
+    if (show) {
+      if (out.length >= n) out.pop();
+      out.push({ ...show, reasons: [{ text: "A show worth seeing this week", weight: 0.1 }, ...show.reasons] });
+    }
+  }
   return out;
 }

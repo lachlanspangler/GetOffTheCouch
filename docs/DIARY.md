@@ -282,3 +282,4 @@ New units, live counts:
 **Next:** user registers the RunSignup caller → enable `runsignup`; DBPR temporary event permits (I-093).
 
 **Ideas:** I-060 done; I-092–I-096 added.
+- 2026-10-16 07:54 UTC · run 37 ok: units[46 disabled, 12 ok, 97 skipped] → 10576 events in 10 cities

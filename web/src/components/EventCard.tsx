@@ -148,7 +148,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
               <Icon name="flame" size={12} /> Selling fast
             </span>
           )}
-          {avail && !["No ticket needed", "On sale"].includes(avail) && !(avail === "Registration closed" && e.registration?.closes_at) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
+          {avail && !["No ticket needed", "On sale"].includes(avail) && !(avail === "Registration closed" && e.registration?.closes_at) && !(avail === "Registration open" && (e.registration?.closes_at || hasSpots)) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
             <span class="badge">{avail}</span>
           )}
           {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && e.tickets?.spots_total == null && (
