@@ -17,6 +17,12 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+      - id: gotc-validate
+        name: gotc validate (configs, registries, starter packs)
+        entry: .venv/bin/python -m gotc validate
+        language: system
+        files: ^config/
+        pass_filenames: false
       - id: no-secrets
         name: no API keys in staged files
         entry: bash -c 'if git diff --cached -U0 | grep -E "^\+.*(apikey=|client_id=)[A-Za-z0-9]{12,}"; then echo "possible secret staged"; exit 1; fi'

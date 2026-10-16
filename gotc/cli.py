@@ -130,6 +130,50 @@ def cmd_forget(a: argparse.Namespace, s: Settings) -> int:
     return 0
 
 
+def cmd_validate(a: argparse.Namespace, s: Settings) -> int:
+    """Fast config gate (pre-commit): cities/sources load, adapters exist, categories valid, registries parse."""
+    import yaml as _yaml
+
+    from gotc.adapters.base import get_adapter
+    from gotc.adapters.curated import CuratedEntry
+    from gotc.pipeline.starter_pack import load as load_sp
+    from gotc.settings import CONFIG_DIR
+    from gotc.taxonomy import load_taxonomy
+
+    errors: list[str] = []
+    try:
+        tax = load_taxonomy()
+        reg = load_registry()
+    except Exception as exc:
+        print(f"config does not load: {exc}")
+        return 1
+    for sid, src in reg.all_sources().items():
+        try:
+            get_adapter(src.adapter).check_config(src)
+        except Exception as exc:
+            errors.append(f"{sid}: {exc}")
+        for cat in [*(src.params.get("category_map") or {}).values(), src.params.get("default_category")]:
+            if cat and not tax.is_valid(cat):
+                errors.append(f"{sid}: unknown category {cat!r}")
+    for path in sorted((CONFIG_DIR / "registry").glob("*.yaml")):
+        for raw in _yaml.safe_load(path.read_text()) or []:
+            try:
+                entry = CuratedEntry.model_validate(raw)
+                if not tax.is_valid(entry.category):
+                    errors.append(f"{path.name}:{entry.id}: unknown category {entry.category}")
+            except Exception as ex:
+                errors.append(f"{path.name}: {str(ex)[:200]}")
+    for path in sorted((CONFIG_DIR / "starter_pack").glob("*.yaml")):
+        try:
+            load_sp(path.stem.upper())
+        except Exception as ex:
+            errors.append(f"starter_pack/{path.name}: {str(ex)[:200]}")
+    for msg in errors:
+        print("ERROR", msg)
+    print(f"validate: {len(reg.cities)} cities, {len(reg.units())} units, {len(errors)} errors")
+    return 1 if errors else 0
+
+
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
     from gotc.health.report import render
 
@@ -265,6 +309,7 @@ def main(argv: list[str] | None = None) -> int:
     fg.add_argument("--reason", default="config change")
     fg.set_defaults(fn=cmd_forget)
 
+    sub.add_parser("validate", help="fast config validation (pre-commit gate)").set_defaults(fn=cmd_validate)
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)
 

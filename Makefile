@@ -17,7 +17,8 @@ setup:         ## one-command setup: Python venv + deps, web deps, pre-commit ho
 	@test -f .env || cp .env.example .env
 	@echo "setup done → try: make pipeline && make dev"
 
-lint:          ## ruff lint + format check
+lint:          ## config validation + ruff lint + format check
+	$(PY) -m gotc validate
 	.venv/bin/ruff check gotc tests
 	.venv/bin/ruff format --check gotc tests
 
