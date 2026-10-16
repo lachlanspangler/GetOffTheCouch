@@ -315,3 +315,57 @@ New units, live counts:
 
 **Blocked on the user:** Pages enablement and a first manual Refresh run; TM/SG keys; RunSignup registration; outreach list (see STATUS).
 - 2026-10-16 20:53 UTC · run 41 partial: units[46 disabled, 1 failed, 48 ok, 101 skipped] → 12976 events in 10 cities
+
+## 2026-10-16 21:30 UTC: session 3, research, real URLs, redesign, pre-rendering
+**Bearings:**
+- **Live site:** Pages serves schema 1.4.0 from the d7ed84d push. The hourly refresh succeeded at 12:27Z and 17:25Z.
+- **Local:** `main` was ~60 commits ahead of origin; nothing pushed.
+- **Keys:** none in `.env`.
+- **Baseline:** `make check` green; the live `make pipeline` exited 0.
+
+**Did:**
+- **Research (5 docs in `docs/research/`):**
+  - COMPETITORS: macOS treats `COMPETITORS.md` and `competitors.md` as the same file, so the new teardown is Part 2 of `competitors.md`.
+  - DESIGN, RANKING, SCALING, SEO_ACCESS.
+  - 50 ideas added to the ledger: 8 rejected with reasons, 2 blocked on the user.
+- **Real paths (ADR-0007):**
+  - `/city/`, `/city/<hub>/` (concerts, this-weekend, free…), `/city/<view>/`, `/city/events/<slug>-<hex>/`.
+  - Old `#/` links are redirected.
+  - The base path is absolute and comes from `GOTC_BASE`. refresh.yml sets it, in the same commit.
+  - `404.html` is the app shell.
+- **Design system and full redesign (DESIGN.md):**
+  - **Foundations:** the 3-layer tokens. Inter and Newsreader are self-hosted, 73.5 KB with metric-matched fallbacks. The deterministic SVG art comes from an agent (`lib/art.ts`, 15 motifs plus city tiles).
+  - **Rows and filters:**
+    - Day-grouped list rows replace the card grid.
+    - `cardSignals()` enforces the budget of one meta line, at most one status and at most one tag. It's tested, including "no countdown on derived deadlines".
+    - The filter bar is one row of menus on desktop, with a bottom sheet on mobile.
+  - **Pages:**
+    - A real event page with a sticky ticket card and a CTA named for its destination ("Register with …"); "We don't sell tickets" sits under it.
+    - An editorial city page (picks, closing soon, browse by category, "New in …?").
+    - A status page; About, Methodology and Privacy pages; a footer with "Popular in {city}" hub links.
+- **Pre-rendering:**
+  - An SSR bundle plus `scripts/prerender.mjs` writes 6,107 pages: 5,852 events, one per series within 45 days.
+  - Each page gets a title, description, canonical, robots tag, OG tags and Event JSON-LD. JSON-LD carries reported prices only, and openings and seasons never get it.
+  - There are per-city sitemaps. `check-dist.mjs` checks every page.
+  - The build takes 39 s and produces 125 MB of HTML.
+  - Pages work without JS. With JS, the client loads the same data, then swaps in the live app in one task, so there's no loading flash.
+
+**Broke:**
+- **Old e2e specs:** they asserted old copy, so they were rewritten. axe now covers WCAG 2.2 AA in light and dark across 12 pages plus the event page: 66/66 pass.
+- **Mobile Saved link:** its label was hidden, so it had no accessible name. Fixed with aria-label.
+
+**Decided (and why):**
+- **Swap-render, not hydrate:** Preact's hydrate doesn't patch mismatched text, and "today / 14m ago" differ between build time and view time.
+- **Pre-render horizon is 45 days:** at 50 cities, 60 days would approach the 800 MB guard.
+- **Sourcemaps off in the Pages build:** they doubled the artifact.
+- **Health is out of the primary nav.** It's linked from the footer ("Data status" with a status dot) and from an inline notice when a source is stale.
+
+**Verified:**
+- 60 before and 60 after screenshots in `docs/screenshots/v3-{before,after}`.
+- `make check` green: 390 pytest, 196 vitest.
+- The no-JS and JS runs of the built site under `/GetOffTheCouch/` both show 52 concert rows and navigate to event pages.
+
+**Next:**
+- The design-critic grades (agent running).
+- Merging ranking v2 and the scaling infra branches.
+- 50 metros.
