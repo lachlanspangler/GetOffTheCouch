@@ -81,6 +81,8 @@ class Taxonomy:
         for rank, text in enumerate(t for t in texts if t):
             hay = " " + re.sub(r"\s+", " ", text.lower()) + " "
             for pat, cat_id, phrase in self._patterns:
+                if rank > 0 and not _strong_in_body(phrase):
+                    continue  # one generic word in a description ("walk-in", "ballet company") isn't a category
                 if pat.search(hay):
                     key = (rank, -len(phrase), -cat_id.count("."), cat_id, phrase)
                     if best is None or key < best:
@@ -96,6 +98,16 @@ class Taxonomy:
 
     def valid_tags(self, tags: list[str]) -> list[str]:
         return sorted({t for t in tags if t in self.tags})
+
+
+# Phrases that mean something in a title but are noise in a description ("meet new people" is in half of all
+# club blurbs; "walk" matches "walk-in hours").
+_WEAK_IN_BODY = frozenset({"meet new people", "make new friends", "mixer", "social", "networking", "party", "show", "games"})
+
+
+def _strong_in_body(phrase: str) -> bool:
+    p = phrase.strip().lower()
+    return p not in _WEAK_IN_BODY and (len(p) >= 8 or " " in p)
 
 
 def _walk(node: dict[str, Any], parent: Category | None, prefix: str, out: dict[str, Category]) -> None:
