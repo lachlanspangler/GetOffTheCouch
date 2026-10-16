@@ -31,7 +31,7 @@ function page(html, head) {
     .replace(/<title>[\s\S]*?<\/title>\s*/, "")
     .replace(/<meta name="description"[^>]*>\s*/, "")
     .replace("</head>", `  ${head}\n  </head>`)
-    .replace('<div id="app"></div>', `<div id="app" data-ssr="1">${html}</div>`);
+    .replace('<div id="app"></div>', `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>`);
 }
 
 let files = 0;

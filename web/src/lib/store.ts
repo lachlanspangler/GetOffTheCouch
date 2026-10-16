@@ -23,6 +23,9 @@ export function loadRaw<T>(key: string, fallback: T): T {
 
 const listeners = new Map<string, Set<() => void>>();
 
+/** True while hydrating a pre-rendered page: the first render must match the server (no stored values yet). */
+export const hydration = { active: false };
+
 export function save<T>(key: string, value: T): void {
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value));
@@ -34,9 +37,10 @@ export function save<T>(key: string, value: T): void {
 
 export function usePersistent<T>(key: string, fallback: T, merge = false): [T, (v: T) => void] {
   const read = () => (merge ? load(key, fallback) : loadRaw(key, fallback));
-  const [value, setValue] = useState<T>(read);
+  const [value, setValue] = useState<T>(() => (hydration.active ? fallback : read()));
   useEffect(() => {
     const fn = () => setValue(read());
+    fn(); // after hydration, swap the server's defaults for this device's stored values
     const set = listeners.get(key) ?? new Set();
     set.add(fn);
     listeners.set(key, set);

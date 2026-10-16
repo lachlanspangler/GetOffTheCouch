@@ -56,7 +56,7 @@ jobs:
         run: ../.venv/bin/python -m gotc demo && npm ci && npm run build
       - name: Check pre-rendered pages (SEO + size budgets)
         working-directory: web
-        run: node scripts/check-dist.mjs --warn >> "$GITHUB_STEP_SUMMARY"
+        run: (node scripts/check-dist.mjs --warn && node scripts/check-budgets.mjs --warn) >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: web/dist }
