@@ -161,6 +161,7 @@ export interface DeadlineItem {
   at: string;
   kind: "closes" | "early_bird" | "opens";
   hours: number;
+  derived: boolean; // no published date (e.g. "registration required" → before it starts)
 }
 
 /** Every upcoming deadline across events, soonest first. */
@@ -182,7 +183,7 @@ export function deadlines(events: Event[], now: Date = new Date()): DeadlineItem
       const k = `${key}:${kind}:${at}`;
       if (seen.has(k)) continue;
       seen.add(k);
-      out.push({ event: e, at, kind, hours });
+      out.push({ event: e, at, kind, hours, derived: r.method === "derived" });
     }
   }
   return out.sort((a, b) => a.at.localeCompare(b.at));

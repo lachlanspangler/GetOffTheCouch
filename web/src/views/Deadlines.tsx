@@ -4,7 +4,7 @@ import { RegistrationWaves } from "../components/RegistrationWaves";
 import { StarterPack } from "../components/StarterPack";
 import { useApp } from "../lib/ctx";
 import { catIcon, catLabel, hue } from "../lib/categories";
-import { deadlines, urgency } from "../lib/filters";
+import { deadlines, type DeadlineItem, urgency } from "../lib/filters";
 import { calendar, download } from "../lib/ics";
 import { fmtDay, fmtTime } from "../lib/time";
 import type { Event } from "../lib/types";
@@ -24,10 +24,22 @@ function countdown(hours: number): string {
   return `${Math.round(hours / 24)}d`;
 }
 
+function collapseSeriesItems(items: DeadlineItem[]): DeadlineItem[] {
+  const seen = new Set<string>();
+  return items.filter((i) => {
+    const k = i.event.series_id ?? i.event.id;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
 export function Deadlines({ events }: { events: Event[] }) {
   const { feed, index, go, now } = useApp();
   if (!feed) return null;
-  const items = deadlines(events, now);
+  const all = deadlines(events, now);
+  const items = all.filter((i) => !i.derived);
+  const signups = collapseSeriesItems(all.filter((i) => i.derived && i.hours <= 24 * 14));
   const sections = (["now", "soon", "week", "later"] as const).map((u) => ({ u, items: items.filter((i) => urgency(i.hours) === u) }));
   const withDeadlines = [...new Map(items.filter((i) => i.kind === "closes").map((i) => [i.event.id, i.event])).values()];
   return (
@@ -82,6 +94,26 @@ export function Deadlines({ events }: { events: Event[] }) {
               </ul>
             </section>
           ),
+      )}
+      {signups.length > 0 && (
+        <details class="dl-section dl-muted signups">
+          <summary>
+            <h3>Sign up before it starts <span class="muted">· {signups.length} in the next 2 weeks · no published deadline</span></h3>
+          </summary>
+          <ul class="dl-list">
+            {signups.slice(0, 60).map((i) => (
+              <li key={i.event.id} class="dl-row" style={{ "--h": hue(i.event.category) }}>
+                <span class="dl-count">{countdown(i.hours)}</span>
+                <div class="dl-body">
+                  <span class="dl-kind">Starts {fmtDay(i.event.start, feed.timezone)} {fmtTime(i.event.start, feed.timezone)}</span>
+                  <button class="dl-title" onClick={() => go({ city: feed.city, eventId: i.event.id })}>{i.event.title}</button>
+                  <span class="cat small"><Icon name={catIcon(i.event.category, index.taxonomy)} size={13} /> {catLabel(i.event.category, index.taxonomy)}</span>
+                </div>
+                <DeadlineBadge e={i.event} />
+              </li>
+            ))}
+          </ul>
+        </details>
       )}
     </div>
   );

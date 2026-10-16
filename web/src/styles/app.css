@@ -407,3 +407,7 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .ongoing summary::-webkit-details-marker { display: none; }
 .ongoing summary::before { content: '▸ '; color: var(--muted); }
 .ongoing[open] summary::before { content: '▾ '; }
+.signups summary { cursor: pointer; list-style: none; }
+.signups summary::-webkit-details-marker { display: none; }
+.signups summary h3::after { content: ' ▸'; color: var(--muted); }
+.signups[open] summary h3::after { content: ' ▾'; }

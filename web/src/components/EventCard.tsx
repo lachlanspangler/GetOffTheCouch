@@ -5,6 +5,12 @@ import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel 
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
 import { Icon } from "./Icon";
 
+export function spotsLeft(e: Event): { left: number; cap: number } | null {
+  const inp = e.tickets?.pct_left?.inputs as { capacity?: number; registered?: number } | undefined;
+  if (!inp || inp.capacity == null || inp.registered == null) return null;
+  return { left: Math.max(0, inp.capacity - inp.registered), cap: inp.capacity };
+}
+
 export function timeLeft(hours: number): string {
   if (hours < 1) return `${Math.max(1, Math.round(hours * 60))} min`;
   if (hours < 36) return `${Math.round(hours)} hr`;
@@ -16,6 +22,16 @@ export function DeadlineBadge({ e }: { e: Event; compact?: boolean }) {
   const { now } = useApp();
   const at = e.registration?.closes_at;
   if (!at) return null;
+  const spots = spotsLeft(e);
+  if (e.registration?.method === "derived") {
+    // no published deadline: don't invent a countdown, show what we actually know
+    return (
+      <span class={`badge ${spots && spots.left <= Math.max(2, spots.cap * 0.2) ? "badge-hot" : "badge-info"}`} title={e.registration.evidence ?? undefined}>
+        <Icon name="clock" size={13} />
+        {spots ? (spots.left ? `${spots.left} of ${spots.cap} spots left` : "Full") : "Registration required"}
+      </span>
+    );
+  }
   const h = hoursUntil(at, now);
   if (h < 0) return <span class="badge badge-muted">Registration closed</span>;
   const tone = h <= 48 ? "badge-hot" : h <= 24 * 7 ? "badge-warn" : "badge-info";

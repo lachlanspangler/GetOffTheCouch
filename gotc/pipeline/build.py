@@ -209,6 +209,7 @@ def build_city(
         ev.attendance = estimate_attendance(
             ev, tax, v.capacity if v else None, v.capacity_source if v else None, reported
         )
+        apply_spots(ev, cl.members)
         text = " ".join(filter(None, [ev.title, *(m.description or "" for m in cl.members)]))
         ev.tags = derive_tags(ev, text, tax)
         ev.social = social_score(ev, tax)
@@ -274,6 +275,58 @@ def build_city(
         stats.venues = len({cl.venue_id for _, cl in events if cl.venue_id})
     stats.events = len(events)
     return stats
+
+
+def apply_spots(ev: Event, members: list[SourceEvent]) -> None:
+    """Registration counts reported by the source (e.g. library programs: 15 of 20 spots taken).
+
+    This is the one *real* "% left" signal we have — reported, not estimated — so it overrides the
+    listing-based guess and gives an attendance band anchored on actual signups.
+    """
+    from gotc.pipeline.enrich import sig2
+    from gotc.schema import Estimate
+
+    src = next((m for m in members if m.extras.get("capacity") and m.extras.get("registered") is not None), None)
+    if src is None:
+        if "registration_required" in ev.tags and ev.registration is None:
+            ev.registration = Registration(
+                closes_at=ev.start,
+                method=Method.DERIVED,
+                confidence=0.5,
+                evidence="Registration required; no separate deadline is published, so sign up before it starts.",
+            )
+        return
+    cap = int(str(src.extras["capacity"]))
+    reg = min(int(str(src.extras["registered"])), cap)
+    left = max(0.0, (cap - reg) / cap * 100)
+    ev.tickets.pct_left = Estimate(
+        low=round(left),
+        mid=round(left),
+        high=round(left),
+        method=f"{reg} of {cap} spots taken (reported by {src.source_id})",
+        inputs={"capacity": cap, "registered": reg},
+        confidence=0.9,
+    )
+    if left == 0:
+        ev.tickets.availability = Availability.REGISTRATION_CLOSED
+    elif left <= 20:
+        ev.tickets.selling_fast = True
+        ev.tickets.signal = f"only {cap - reg} of {cap} spots left"
+    ev.attendance = Estimate(
+        low=min(sig2(max(1, reg * 0.75)), cap),
+        mid=max(1, reg),
+        high=cap,
+        method=f"{reg} registered so far, capacity {cap} (reported)",
+        inputs={"registered": reg, "capacity": cap},
+        confidence=0.7,
+    )
+    if ev.registration is None:
+        ev.registration = Registration(
+            closes_at=ev.start,
+            method=Method.DERIVED,
+            confidence=0.5,
+            evidence=f"Registration required ({reg} of {cap} spots taken); no separate deadline is published.",
+        )
 
 
 def assign_series(events: list[Event], now: datetime) -> None:
