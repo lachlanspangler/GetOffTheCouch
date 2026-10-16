@@ -192,3 +192,59 @@ valid records on the first `gotc run --city X --source Y --force --no-geocode`, 
 | Pub Geeks (pubgeeks.com) | only NH/VT venues | static location list |
 | OpenAir Trivia, Trivia Time Live, Brainstorm Trivia, Riddlers Trivia | no official domain found (every likely domain fails to resolve or redirects elsewhere; no web search available this session). Not assessed | DNS checks 2026-10-16 |
 | District Trivia | DC only (skipped by design) | — |
+## Denver / Seattle / Austin coverage (session 2)
+
+Added 2026-10-16 to lift the thinnest cities. Every unit ran live once with
+`gotc run --city <slug> --source <id> --force --no-geocode` from our UA (robots enforced by `PoliteClient`); the
+count is valid records after the final config (0 rejects everywhere). New adapter: **`rss_events`** (RSS 2.0 +
+the RSS event module, `ev:startdate`/`ev:location`; carbonhouse venue sites serve it at `/events/rss`). Adapter
+tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-less text; `tribe` `venue` fallback;
+`ics` `force_category`.
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `jeffco_library_events` | denver | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/jeffcolibrary/rss/events | none | ~12 pages/day | gateway host has no robots.txt; published feed | as `hclib_events`; `cities` keeps Lakewood/Arvada/Wheat Ridge/Golden/Edgewater/Littleton | events · 24h | A- | 210 |
+| `arapahoe_library_events` | denver | BiblioCommons RSS / `bibliocommons` | …/libraries/arapahoelibraries/rss/events | none | ~7 pages/day | same | as above; Centennial/Denver/Englewood/Littleton/Sheridan branches; trustee meetings skipped | events · 24h | A- | 108 |
+| `cervantes_denver` | denver | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://cervantesmasterpiece.com/ | none | 1 listing + ≤40 detail pages at ≥2 s | robots: only wp-admin etc. | name, start (offset), room, Etix offer link | concerts · 12h | C+ (scrape of structured data) | 40 |
+| `denver_arts_venues` | denver | carbonhouse RSS / `rss_events` | https://www.artscomplex.com/events/rss | none | 1 request/day | robots allows all; city-owned (Denver Arts & Venues) | title, link, ev:startdate/enddate (UTC), ev:location (room → category, Dazzle address) | concerts · 24h | B+ (official city venue feed) | 110 |
+| `denver_coliseum` | denver | carbonhouse RSS / `rss_events` | https://www.denvercoliseum.com/events/rss | none | 1 request/day | robots allows all; city-owned | as above | events · 24h | B+ | 26 |
+| `denver_pioneers_athletics` | denver | SIDEARM ICS / `ics` | https://denverpioneers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it; subscription feed | SUMMARY, DTSTART, LOCATION (home = starts with "Denver") | events · 24h | B | 32 |
+| `kcls_events` | seattle | BiblioCommons RSS / `bibliocommons` | …/libraries/kcls/rss/events | none | ≤30 pages/day, 7-day horizon | gateway host, no robots.txt | as `hclib_events`; branches within ~20 km of downtown | events · 24h | A- | 258 |
+| `seattle_city_events` | seattle | Trumba JSON / `trumba` | https://www.trumba.com/calendars/seattlegov-city-wide.json | none | 1 request/day | trumba.com robots allows all; the calendar seattle.gov embeds | title, offset times, location, Event Types; council/committee/board meetings and WebEx skipped | events · 24h | A- (official city calendar) | 87 |
+| `mohai_events` | seattle | WP The Events Calendar / `tribe` | https://mohai.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 11 |
+| `town_hall_seattle` | seattle | WP The Events Calendar / `tribe` | https://townhallseattle.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed by robots and answered 200; the HTML site shows a Cloudflare challenge we never attempt | as above + sliding-scale prices | events · 24h | B (could start challenging) | 59 |
+| `visit_ballard_events` | seattle | WP The Events Calendar / `tribe` | https://www.visitballard.com/wp-json/tribe/events/v1/events | none | ≤8 pages/day | REST allowed | as above (trivia, open mics, markets, classes) | events · 24h | B+ | 87 |
+| `stg_presents` | seattle | Modern Events Calendar JSON-LD / `jsonld` (listing only) | https://www.stgpresents.org/calendar/ | none | 1 page/day | robots allows it | name, date, theatre + address; `date_only` (stated times are 7 h early), `trust_valid_from: false` ("0" price, validFrom = event date); classes/tours skipped | concerts · 24h | C+ (dates only) | 44 |
+| `uw_athletics` | seattle | SIDEARM ICS / `ics` | https://gohuskies.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it; subscription feed | SUMMARY, DTSTART (UTC/all-day), LOCATION (home = starts with "Seattle"); `force_category: sports_watch.game` | events · 24h | B | 31 |
+| `earshot_jazz` | seattle | WP The Events Calendar / `tribe` | https://www.earshot.org/wp-json/tribe/events/v1/events | none | ≤8 pages/day | REST allowed | regional jazz gigs with venue + geo + cost; far-off towns skipped | concerts · 24h | B+ | 274 |
+| `laughs_comedy_seattle` | seattle | WP The Events Calendar / `tribe` | https://laughscomedyclub.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above | events · 24h | B | 16 |
+| `unexpected_productions` | seattle | WP The Events Calendar / `tribe` | https://www.unexpectedproductions.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as above | events · 24h | B | 49 |
+| `flamingo_cantina` | austin | WP The Events Calendar / `tribe` | https://flamingocantina.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above; blank venues filled from `venue` | concerts · 12h | B | 11 |
+| `wildflower_center_events` | austin | WP The Events Calendar / `tribe` | https://www.wildflower.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed (UT Austin's botanic garden) | as above; member-only events skipped | events · 24h | B+ | 57 |
+| `contemporary_austin_events` | austin | WP The Events Calendar / `tribe` | https://thecontemporaryaustin.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed by robots and answered 200; HTML pages show a Cloudflare challenge we never attempt | as above | events · 24h | B (could start challenging) | 14 |
+| `austin_parks_foundation_events` | austin | Modern Events Calendar JSON-LD / `jsonld` (listing only) | https://austinparks.org/event-calendar/ | none | 1 page/day | robots allows it | name, date (all-day), park + address; validFrom not trusted | events · 24h | B- (dates only) | 17 |
+| `acl_live` | austin | carbonhouse RSS / `rss_events` | https://www.acllive.com/events/rss | none | 2 requests/day | robots allows all; terms (Ryman Hospitality) have no automated-access clause | title, link, ev:startdate (UTC), room | concerts · 12h | B+ | 91 |
+| `heb_center` | austin | carbonhouse RSS / `rss_events` | https://www.hebcenter.com/events/rss | none | 1 request/day | robots allows it; City of Cedar Park arena | as above (Texas Stars, Austin Spurs, concerts) | events · 24h | B+ | 49 |
+| `cap_city_comedy` | austin | Event JSON-LD on the homepage / `jsonld` | https://www.capcitycomedy.com/ | none | 1 page/day | robots allows all; terms have no automated-access clause | name, start (UTC), club address (one Place block with an `Events` list) | events · 24h | C+ | 102 |
+
+**Tried and not added (session 2).**
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| Live Nation venue sites (Marquis, Summit, Fillmore; Emo's, Scoot Inn) | DEN/AUS | Event JSON-LD is there, but Live Nation/Ticketmaster terms forbid automated access; their shows arrive via the Ticketmaster API once a key is set | 2026-10-16 probe |
+| Prekindle organizer pages (Mohawk Austin and others) | AUS | Rich JSON-LD with face-value prices, but prekindle.com/terms-of-use: "You may not use any software, tool… to 'scrape' or otherwise compile data" | https://www.prekindle.com/terms-of-use |
+| AEG Presents venue JSON (`aegwebprod.blob.core.windows.net/json/events/<id>/events.json`: Mission Ballroom, Bluebird, Ogden, Gothic, Fiddler's Green) | DEN | Undocumented blob behind AEG's Next.js sites; AEG's terms page didn't render to us, so we couldn't confirm automated use is allowed. Ask AEG first | 2026-10-16 probe |
+| Neumos / Showbox carbonhouse RSS | SEA | Feed has no `ev:` dates (title text only, ~10 items) | /events/rss |
+| Red Rocks (redrocksonline.com) | DEN | No JSON-LD; custom `clique/v1` WP endpoints without event dates; WP feed has publish dates only | 2026-10-16 probe |
+| Come and Take It Live | AUS | Rockhouse site without Event JSON-LD on its pages (0 records on the live run) — removed | `gotc run` 2026-10-16 |
+| Goosetown Tavern, Antone's, Tractor Tavern, The Crocodile | DEN/AUS/SEA | No JSON-LD / JS-only ticketing widgets (Rockhouse without SEO markup, TicketWeb plugin, Webflow + TicketWeb links) | probe |
+| Austin Public Library (Drupal) | AUS | Event JSON-LD has no branch/location (all events would map to one point); 60 listing pages | probe |
+| austintexas.gov events (Drupal) | AUS | JSON-LD times are UTC labeled `-05:00` (10 AM event stamped 15:00-05:00) | probe |
+| Denver Botanic Gardens | DEN | JSON-LD times are UTC without an offset and the HTML inside is mangled | probe |
+| DU calendar (LiveWhale v2) | DEN | Mostly internal/student items, "Sign in to download the location"; first 100 items cover ~4 days | probe |
+| Seattle Art Museum, Hole in the Wall, Empire Control Room, Cactus Cafe, Texas Performing Arts, Arvada, Englewood, Auraria | SEA/AUS/DEN | robots.txt disallows | probe |
+| Pike Place Market, Stubb's, Long Center, Continental Club, Chop Suey, Dazzle (own site), Swallow Hill, Denver Zoo, Clyfford Still, Kirkland Museum, MSU Denver, Bullock Museum | SEA/AUS/DEN | Cloudflare challenge (403 "Just a moment…") — not attempted | probe |
+| History Colorado | DEN | HTTP 202 with an empty body (bot challenge) | probe |
+| "aurora" BiblioCommons library | DEN | It is Aurora, **Ontario** | feed `bc:state` |
+| Levitt Pavilion Denver | DEN | Squarespace, season over (0 upcoming); revisit in spring | probe |
+| Westminster / Lakewood / Littleton city calendars (CivicPlus, Granicus OpenCities) | DEN | Usable (CivicPlus iCalendar), but tiny (≤ 10 events each) | probe |

@@ -1,0 +1,9 @@
+{
+  "unit": "seattle_city_events@seattle",
+  "adapter": "trumba",
+  "recorded_at": "2026-10-16T07:35:27+00:00",
+  "files": {
+    "payload_0.json": "https://www.trumba.com/calendars/seattlegov-city-wide.json?startdate=20261016&days=14"
+  },
+  "note": "real response fetched live by `gotc run`; trimmed to the first 12 records"
+}

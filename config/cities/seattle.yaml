@@ -183,3 +183,201 @@ sources:
       venue: {name: The Triple Door}
       organizer: The Triple Door
       default_category: music.concert
+  # ── session 2: Denver / Seattle / Austin coverage (2026-10-16; docs/SOURCES.md "session 2") ──
+  - id: kcls_events
+    adapter: bibliocommons
+    name: King County Library System events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://kcls.bibliocommons.com/v2/events
+    expect_min_records: 60
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). KCLS is countywide (~50 branches, ~750 events a
+      fortnight); `cities` keeps the branches within ~20 km of downtown Seattle and the horizon is a week.
+    params:
+      library: kcls
+      horizon_days: 7
+      max_pages: 30
+      venue_label: King County Library System
+      cities: [Seattle, Shoreline, Lake Forest Park, Kenmore, Bothell, Kirkland, Redmond, Bellevue, Mercer Island,
+               Newcastle, Renton, Tukwila, Burien, Seatac, White Center]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Story Times: family.kids
+        Early Learning: family.kids
+        Book Groups: arts.books
+        "Literature & Writing": arts.books
+        "Games & Gaming": trivia_games.board_games
+        "Crafts & DIY": arts.workshop
+        Makerspace: arts.workshop
+        "Arts & Culture": community.cultural
+        "STEM & Learning": learning.tech
+        "Computers & Technology": learning.tech
+        "Language Learning & Literacy": learning.language
+        "Babies (Ages 0-1)": family.kids
+        "Toddlers (Age 2)": family.kids
+        "Preschool (Ages 3 to 5)": family.kids
+        "Kids (Ages 6 to 8)": family.kids
+  - id: seattle_city_events
+    adapter: trumba
+    name: City of Seattle calendar (parks, volunteer work parties, community events)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.seattle.gov/event-calendar
+    expect_min_records: 20
+    notes: >-
+      The seattle.gov city-wide Trumba calendar (webname seattlegov-city-wide, the spud embedded on
+      seattle.gov/event-calendar). Council, board and commission meetings are skipped via exclude_location.
+    params:
+      webname: seattlegov-city-wide
+      horizon_days: 14
+      organizer: City of Seattle
+      category_fields: [Event Types, Parks Event Category]
+      exclude_location: '\b(Council|Councilmember|Committee|Commission|Board of|Advisory (Board|Committee)|Public (Hearing|Meeting)|Task Force|Budget|WebEx)\b'
+      default_category: community.neighborhood
+  - id: mohai_events
+    adapter: tribe
+    name: MOHAI (Museum of History & Industry) events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://mohai.org/events/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it).
+    params:
+      base_url: https://mohai.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 3
+      organizer: MOHAI
+      default_category: arts.museum
+  - id: town_hall_seattle
+    adapter: tribe
+    name: Town Hall Seattle events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://townhallseattle.org/events/
+    expect_min_records: 10
+    notes: >-
+      The Events Calendar REST API answered 200 to our client (robots allows /wp-json/); the HTML homepage serves a
+      Cloudflare challenge, which we never attempt. If the API starts challenging too, the unit fails and stays off.
+    params:
+      base_url: https://townhallseattle.org
+      horizon_days: 60
+      per_page: 50
+      max_pages: 4
+      organizer: Town Hall Seattle
+      default_category: arts.books
+      classify_description: false
+  - id: visit_ballard_events
+    adapter: tribe
+    name: Visit Ballard community calendar
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.visitballard.com/events/
+    expect_min_records: 30
+    notes: Ballard Alliance's The Events Calendar (community-submitted; shops, bars, venues). REST allowed by robots.
+    params:
+      base_url: https://www.visitballard.com
+      horizon_days: 21
+      per_page: 50
+      max_pages: 8
+      organizer: Visit Ballard
+      default_category: community.neighborhood
+  - id: stg_presents
+    adapter: jsonld
+    name: STG Presents — Paramount, Moore & Neptune theatres (calendar)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.stgpresents.org/calendar/
+    expect_min_records: 30
+    notes: >-
+      One calendar page (Modern Events Calendar) carries ~200 Event JSON-LD records with dates and theatre. The
+      listing gives dates only (all-day records). Detail pages are NOT followed: their JSON-LD start time is wrong
+      (13:00 for an 8 PM show) and their price is a "0" placeholder. Same-day double shows collapse into one record.
+    params:
+      urls: [https://www.stgpresents.org/calendar/]
+      organizer: STG Presents
+      default_category: music.concert
+      horizon_days: 120
+      date_only: true          # stated times are 7 h early ("13:00-07:00" for an 8 PM show); dates are right
+      trust_valid_from: false  # offers.validFrom = the event date, not an on-sale date
+      exclude_location: '\b(Kerry Hall|Francia Russell Center|Garfield Community Center|Broadway Inclusion Program|Theatre Group Archive|Neptune Tour)\b'   # STG education classes, tours, archive
+  - id: uw_athletics
+    adapter: ics
+    name: Washington Huskies athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gohuskies.com/calendar
+    expect_min_records: 10
+    notes: >-
+      The SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics, all sports; robots allows it).
+      Away and neutral-site games are skipped: exclude_location keeps only events whose LOCATION starts with
+      "Seattle". Exact venues (Husky Stadium, Alaska Airlines Arena) are in LOCATION when the school lists them.
+    params:
+      url: https://gohuskies.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Washington Athletics
+      exclude_location: '^(?!Seattle\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues ("Volleyball vs Rutgers")
+      fallback_point: { lat: 47.6505, lon: -122.3016, label: "UW athletics, Montlake" }
+  - id: earshot_jazz
+    adapter: tribe
+    name: Earshot Jazz calendar (Seattle-area jazz listings)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.earshot.org/events/
+    expect_min_records: 40
+    notes: >-
+      Earshot Jazz (Seattle jazz nonprofit) publishes the region's jazz gigs through The Events Calendar REST
+      API (robots allows it). Gigs far outside Seattle are skipped by exclude_location.
+    params:
+      base_url: https://www.earshot.org
+      horizon_days: 21
+      per_page: 50
+      max_pages: 8
+      organizer: Earshot Jazz
+      default_category: music.concert
+      classify_description: false
+      category_map: {Festival: music.concert, Film: arts.film, Education: arts.workshop}   # Earshot Jazz Festival shows are concerts
+      exclude_location: '\b(Tacoma|Olympia|Everett|Port Townsend|Bellingham|Gig Harbor|Bremerton|Anacortes|Mount Vernon|Port Angeles|Langley|Whidbey|Vashon|Poulsbo|Lacey|Puyallup|Spokane|Portland)\b'
+  - id: laughs_comedy_seattle
+    adapter: tribe
+    name: Laughs Comedy Club (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://laughscomedyclub.com/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Stand-up club in the U District.
+    params:
+      base_url: https://laughscomedyclub.com
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Laughs Comedy Club
+      venue: {name: Laughs Comedy Club, address: "5220 Roosevelt Way NE, Seattle, WA 98105"}
+      default_category: nightlife.comedy
+      classify_description: false
+  - id: unexpected_productions
+    adapter: tribe
+    name: Unexpected Productions improv (Market Theater, Pike Place)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.unexpectedproductions.org/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Improv shows plus classes (classes classify as workshops).
+    params:
+      base_url: https://www.unexpectedproductions.org
+      horizon_days: 30
+      per_page: 50
+      max_pages: 4
+      organizer: Unexpected Productions
+      venue: {name: Market Theater, address: "1428 Post Alley, Seattle, WA 98101"}
+      default_category: nightlife.comedy
+      classify_description: false

@@ -15,6 +15,8 @@ face-value offers (price / AggregateOffer low–high, availability, on-sale ``va
       category_map: {Comedy: nightlife.comedy}   # @type or keyword (in the title) → taxonomy id
       organizer: First Avenue Productions
       zero_is_free: false             # treat an offer price of 0 as "free" (many sites use 0 for "unknown")
+      trust_valid_from: true          # false when offers.validFrom is a placeholder (e.g. = the event date)
+      date_only: false                # true when the source's clock times are wrong: keep dates (all-day)
       tags: [indoor]
 
 Fetch is network only (listing pages, then up to ``max_follow`` detail pages at ``min_interval_s`` ≥ 2 s,
@@ -31,9 +33,10 @@ import html as htmllib
 import json
 import re
 from collections.abc import Iterator
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from typing import Any
 from urllib.parse import urljoin, urlsplit
+from zoneinfo import ZoneInfo
 
 from gotc.adapters.base import Adapter, FetchContext, FetchResult, ParseContext, Payload, register, stable_id
 from gotc.adapters.common import clean_text, join_address, money, parse_dt, prices_in_text, says_free
@@ -216,6 +219,14 @@ def _unescape_html(v: Any) -> str | None:
 
 
 _SOLD_OUT = re.compile(r"\bsold[\s-]*out\b", re.I)
+_PLAIN_AMOUNT = re.compile(r"\s*(US)?\$?\s*\d[\d,]*(\.\d+)?\s*(USD)?\s*", re.I)
+_CANCELLED_TITLE = re.compile(r"(?:^|[\s(\[*–—|-])(cancell?ed|postponed)\b", re.I)
+
+
+def _local_midnight(dt: datetime, tz: str) -> datetime:
+    """The calendar date of ``dt`` in the city's zone, as local midnight (for ``date_only`` sources)."""
+    zone = ZoneInfo(tz)
+    return datetime.combine(dt.astimezone(zone).date(), time(0, 0), zone)
 
 
 def _strip_site_suffix(title: str, *names: Any) -> str:
@@ -231,9 +242,10 @@ def _strip_site_suffix(title: str, *names: Any) -> str:
 
 
 def _amounts(v: Any) -> list[float]:
-    """'25.00' → [25.0]; '$25 Advance // $30 Day of' → [25.0, 30.0]; 'Free' / None → []."""
-    if isinstance(v, str) and len(found := prices_in_text(v)) > 1:
-        return found
+    """'25.00' → [25.0]; '$25 Advance // $30 Day of' → [25.0, 30.0]; 'Free' / None → [].
+    Free text without a '$' never yields a price ('… Age 16+' is an age, not $16)."""
+    if isinstance(v, str) and not _PLAIN_AMOUNT.fullmatch(v):
+        return prices_in_text(v)
     m = money(v)
     return [m] if m is not None else []
 
@@ -492,11 +504,15 @@ class JsonLdAdapter(Adapter):
             yield {"_reject": "event without name/startDate", "_hint": f"{base} {str(ev.get('name'))[:80]}"}
             return
         end = _dt(_first(ev.get("endDate")), tz, bool(p.get("ignore_offset")))
+        all_day = not _HAS_TIME.search(str(raw_start))
+        if p.get("date_only"):  # the source's clock times are known to be wrong: keep the (correct) date only
+            start, all_day = _local_midnight(start, tz), True
+            end = _local_midnight(end, tz) if end is not None else None
         if end is not None and end < start:
             end = None
-        if (end or start) < ctx.fetched_at - timedelta(hours=6) or start > horizon:
+        last = end or (start + timedelta(days=1) if all_day else start)  # an all-day event lasts its whole day
+        if last < ctx.fetched_at - timedelta(hours=6) or start > horizon:
             return  # windowed out (past or beyond the horizon), like the ICS adapter
-        all_day = not _HAS_TIME.search(str(raw_start))
         ev_url = _url(ev.get("url"), base) or (_url(ev.get("@id"), base) if "#" not in str(ev.get("@id")) else None)
         ev_url = ev_url or base
         desc_html = _unescape_html(ev.get("description"))
@@ -522,6 +538,8 @@ class JsonLdAdapter(Adapter):
         status = _status(ev)
         if status in ("cancelled", "postponed"):
             availability = status
+        elif m := _CANCELLED_TITLE.search(title):  # "An Evening with Eric Idle – CANCELED"
+            availability = "postponed" if m.group(1).lower().startswith("post") else "cancelled"
         elif availability == "unknown" and _SOLD_OUT.search(title):
             availability = "sold_out"  # "Oliver Malcolm - SOLD OUT": the venue says so in the title
         loc = _location(ev, fallback)

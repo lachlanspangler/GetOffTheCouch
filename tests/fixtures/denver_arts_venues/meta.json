@@ -1,0 +1,9 @@
+{
+  "unit": "denver_arts_venues@denver",
+  "adapter": "rss_events",
+  "recorded_at": "2026-10-16T07:51:15+00:00",
+  "files": {
+    "payload_0.xml": "https://www.artscomplex.com/events/rss"
+  },
+  "note": "real response fetched live by `gotc run`; trimmed to the first 12 records"
+}

@@ -1,0 +1,12 @@
+{
+  "unit": "cervantes_denver@denver",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T07:32:40+00:00",
+  "files": {
+    "page_0.html": "https://cervantesmasterpiece.com/event/zach-nugents-dead-set-1972-theme-w-seven-teller-friday-night-1/cervantes-other-side/denver-colorado/",
+    "page_1.html": "https://cervantesmasterpiece.com/event/koastle-w-lyrah-moon-water-bowman/cervantes-masterpiece-ballroom/denver-colorado/",
+    "page_2.html": "https://cervantesmasterpiece.com/event/ott-w-ours-samplus-bread-winner-j-lang/cervantes-masterpiece-ballroom/denver-colorado/",
+    "page_3.html": "https://cervantesmasterpiece.com/event/zach-nugents-dead-set-1985-theme-w-canyon-collective-saturday-night-2/cervantes-other-side/denver-colorado/"
+  },
+  "note": "real pages fetched live by `gotc run`; only their JSON-LD <script> blocks are kept (verbatim); surrounding HTML removed to keep fixtures small"
+}

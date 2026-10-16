@@ -1,0 +1,9 @@
+{
+  "unit": "stg_presents@seattle",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T07:36:01+00:00",
+  "files": {
+    "page_0.html": "https://www.stgpresents.org/calendar/"
+  },
+  "note": "real pages fetched live by `gotc run`; only their JSON-LD <script> blocks are kept (verbatim); surrounding HTML removed to keep fixtures small"
+}

@@ -1,0 +1,948 @@
+[
+ {
+  "eventID": 180095765,
+  "template": "Boards &amp; Commissions Sub Form Template",
+  "title": "School Traffic Safety Committee",
+  "description": "Monthly School Traffic Safety Committee meeting.&#160;<br /><br />Visit&#160;<a href=\"https://www.seattle.gov/school-traffic-safety-committee/meetings\" target=\"_blank\" rel=\"noopener\">here</a>&#160;for more information, including meeting agenda and log-in information.&#160;",
+  "locationType": "In-Person",
+  "location": "Online or in-person at Seattle City Hall.",
+  "webLink": "<a href=\"https://www.seattle.gov/school-traffic-safety-committee\" target=\"_blank\" rel=\"noopener\" title=\"https://www.seattle.gov/school-traffic-safety-committee\">www.seattle.gov&#8230;</a>",
+  "startDateTime": "2026-10-16T08:30:00",
+  "endDateTime": "2026-10-16T10:30:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 8:30&nbsp;&ndash;&nbsp;10:30am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Monthly on the 3rd Friday of the month",
+  "seriesID": 180095743,
+  "customFields": [
+   {
+    "fieldID": 11444,
+    "label": "Event Types",
+    "value": "Boards &amp; Commissions",
+    "type": 17
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Citywide, Duwamish/SODO",
+    "type": 17
+   },
+   {
+    "fieldID": 18593,
+    "label": "Department/Organization",
+    "value": "SDOT",
+    "type": 17
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 17289,
+    "label": "Department",
+    "value": "Transportation",
+    "type": 17
+   },
+   {
+    "fieldID": 17276,
+    "label": "Website",
+    "value": "<a href=\"http://www.seattle.gov/transportation/\" target=\"_blank\" rel=\"noopener\" title=\"http://www.seattle.gov/transportation/\">www.seattle.gov&#8230;</a>",
+    "type": 6
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Diane Walsh",
+    "type": 0
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:STSC@seattle.gov\" target=\"_blank\" rel=\"noopener\">STSC@seattle.gov</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D180095765",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/gn7tz7c4sgfwfezgad3ktswb72",
+  "categoryCalendar": "Boards & Commissions",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 208389236,
+  "template": "Boards &amp; Commissions Sub Form Template",
+  "title": "Economic and Revenue Forecast Council - October 2026 Revenue Forecast Update",
+  "description": "",
+  "locationType": "In-Person",
+  "location": "Seattle City Hall",
+  "webLink": "",
+  "startDateTime": "2026-10-16T09:30:00",
+  "endDateTime": "2026-10-16T11:30:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 9:30&nbsp;&ndash;&nbsp;11:30am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 17427,
+    "label": "Venue",
+    "value": "Seattle City Hall",
+    "type": 17
+   },
+   {
+    "fieldID": 15915,
+    "label": "Address",
+    "value": "<a href=\"http://maps.google.com/?q=600+4th+Ave%2C+Seattle%2C+WA+98104%2C+USA\" target=\"_blank\" rel=\"noopener\">600 4th Ave<br />Seattle, WA 98104</a>",
+    "type": 9
+   },
+   {
+    "fieldID": 10956,
+    "label": "Building/Room #",
+    "value": "<strong><strong>Council Chamber</strong></strong>,&#160;Floor 2 of City Hall.<br /><a href=\"https://www.seattle.gov/council/meet-the-council/visiting-city-hall\" target=\"_blank\" rel=\"noopener\" title=\"https://www.seattle.gov/council/meet-the-council/visiting-city-hall\">www.seattle.gov&#8230;</a><br /><br /><a href=\"https://us02web.zoom.us/s/83572272546\" target=\"_blank\" rel=\"noopener\" title=\"https://us02web.zoom.us/s/83572272546\">us02web.zoom.us&#8230;</a><br />Meeting ID: 835 7227 2546<br />Passcode: 826836<br />Or One tap mobile : US: +12532158782,,83572272546#<br />Dial-in Phone Number: +1 253 215 8782",
+    "type": 1
+   },
+   {
+    "fieldID": 11444,
+    "label": "Event Types",
+    "value": "Boards &amp; Commissions",
+    "type": 17
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Citywide",
+    "type": 17
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "<a href=\"mailto:jan.duras@seattle.gov\" target=\"_blank\" rel=\"noopener\">jan.duras@seattle.gov</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D208389236",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/4dys02rxd36ggs5b469subcu9w",
+  "categoryCalendar": "Boards & Commissions",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 207247720,
+  "template": "Parks Submission Form Template",
+  "title": "Daybreak Community &amp; Land Tending",
+  "description": "Join us for a restoration work party at Daybreak Star - See website for important details on what to bring and where to meet.",
+  "location": "",
+  "webLink": "<a href=\"http://seattle.greencitypartnerships.org/event/44618/\" target=\"_blank\" rel=\"noopener\" title=\"http://seattle.greencitypartnerships.org/event/44618/\">seattle.greencitypartnerships.org&#8230;</a>",
+  "startDateTime": "2026-10-16T11:00:00",
+  "endDateTime": "2026-10-16T15:00:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 11am&nbsp;&ndash;&nbsp;3pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Magnolia",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "Green Seattle Partnership",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Future Rising",
+    "type": 0
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:shameka.gagnier@gmail.com\" target=\"_blank\" rel=\"noopener\">shameka.gagnier@gmail.com</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D207247720",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/4k9gb704br8s9sphku9xcu6et0",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 182114586,
+  "template": "Animal Shelter Submission Form Template",
+  "title": "Open Adoption Hours",
+  "description": "Come see all the adorable dogs, cats, and critters available for adoption.",
+  "locationType": "In-Person",
+  "location": "2061 15th Ave. W., Seattle, WA 98119",
+  "webLink": "<a href=\"https://www.seattle.gov/animal-shelter/find-an-animal/adopt\" target=\"_blank\" rel=\"noopener\" title=\"https://www.seattle.gov/animal-shelter/find-an-animal/adopt\">www.seattle.gov&#8230;</a>",
+  "startDateTime": "2026-10-16T13:00:00",
+  "endDateTime": "2026-10-16T17:00:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 1&nbsp;&ndash;&nbsp;5pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Friday",
+  "seriesID": 182114504,
+  "customFields": [
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Adults, Family, Pets, Senior",
+    "type": 17
+   },
+   {
+    "fieldID": 12613,
+    "label": "Website",
+    "value": "<a href=\"https://www.seattle.gov/animal-shelter/find-an-animal/adopt\" target=\"_blank\" rel=\"noopener\" title=\"https://www.seattle.gov/animal-shelter/find-an-animal/adopt\">www.seattle.gov&#8230;</a>",
+    "type": 6
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Citywide",
+    "type": 17
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D182114586",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/s8v37byfx7mzbb1zcdk25wez3y",
+  "categoryCalendar": "Animal Shelter",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 206231109,
+  "template": "",
+  "title": "CANCELLED - Select Budget Committee",
+  "description": "",
+  "locationType": "In-Person",
+  "location": "<a href=\"http://maps.google.com/?q=600+4th+Ave%2C+Seattle%2C+WA+98104\" target=\"_blank\" rel=\"noopener\">City Hall <br />Council Chambers<br />600 4th Ave<br />Seattle, WA 98104</a>",
+  "webLink": "<a href=\"https://www.seattle.gov/council/meetings/committees-and-agendas/select-budget-committee\" target=\"_blank\" rel=\"noopener\" title=\"https://www.seattle.gov/council/meetings/committees-and-agendas/select-budget-committee\">www.seattle.gov&#8230;</a>",
+  "startDateTime": "2026-10-16T14:00:00",
+  "endDateTime": "2026-10-16T14:00:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 2pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": true,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 27738,
+    "label": "Venue Location",
+    "value": "<a href=\"http://www.seattle.gov/council/visiting_city_hall.htm\" target=\"_blank\" rel=\"noopener\">City Hall, Council Chambers</a>",
+    "type": 0
+   },
+   {
+    "fieldID": 12011,
+    "label": "City Council Meeting Type",
+    "value": "<a href=\"https://www.seattle.gov/council/committees/2025-select-budget-committee\" target=\"_blank\">Budget</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 11444,
+    "label": "Event Types",
+    "value": "City Council Meeting",
+    "type": 17
+   },
+   {
+    "fieldID": 12615,
+    "label": "Agendas",
+    "value": "<a href=\"http://seattle.legistar.com/DepartmentDetail.aspx?ID=28376&amp;GUID=80396F0C-82A6-41FD-942B-FD82FDBA594A&amp;Search=\" target=\"_blank\" rel=\"noopener\">Budget Committee Agendas</a>",
+    "type": 1
+   },
+   {
+    "fieldID": 12902,
+    "label": "Committee Chair",
+    "value": "<a href=\"http://www.seattle.gov/council/strauss/\" target=\"_blank\" rel=\"noopener\">Dan Strauss</a>, <a href=\"mailto:Dan.Strauss@seattle.gov\" target=\"_blank\" rel=\"noopener\">Dan.Strauss@seattle.gov</a>, 206-684-8806",
+    "type": 17
+   },
+   {
+    "fieldID": 12009,
+    "label": "Councilmembers",
+    "value": "Dionne Foster, Rob Saka, Eddie Lin, Joy Hollingsworth, Maritza Rivera, Debora Juarez, Dan Strauss, Robert Kettle, Alexis Mercedes Rinck",
+    "type": 17
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Downtown Commercial Core",
+    "type": 17
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Adults, All",
+    "type": 17
+   },
+   {
+    "fieldID": 22851,
+    "label": "Additional Information",
+    "value": "<a href=\"http://www.seattle.gov/council/visiting_city_hall.htm\" target=\"_blank\" rel=\"noopener\">Visiting City Hall</a>",
+    "type": 1
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D206231109",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/cpj98bc02a4fk125t2yaden9mh",
+  "categoryCalendar": "Seattle City Council",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 206660674,
+  "template": "Parks Submission Form Template",
+  "title": "Happy Haunts Carnival",
+  "description": "Come dressed up in your favorite Happy Haunt gear and play some Carnival games! Win prizes! Geared towards families.",
+  "locationType": "In-Person",
+  "location": "<a href=\"http://maps.google.com/?q=6535+Ravenna+Ave+NE%2C+Seattle%2C+WA+98115\" target=\"_blank\" rel=\"noopener\">Ravenna Eckstein Community Center 6535 Ravenna Ave NE Seattle WA 98115</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-16T16:00:00",
+  "endDateTime": "2026-10-16T18:30:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 4&nbsp;&ndash;&nbsp;6:30pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgBi3u%2APFWhmEDp7jhV%2ABpLN.jpg",
+   "alt": "Happy Haunts Carnival Oct 16th 4-6:30pm includes carnival games, put-put, crafting, and an escape room game called the Haunted Hunt. Geared towards families/children/all abilities. Image has an orange background with blue and green carnival flags.",
+   "size": {
+    "width": 879,
+    "height": 1137
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgBi3u%2APFWhmEDp7jhV%2ABpLN.jpg",
+   "alt": "Happy Haunts Carnival Oct 16th 4-6:30pm includes carnival games, put-put, crafting, and an escape room game called the Haunted Hunt. Geared towards families/children/all abilities. Image has an orange background with blue and green carnival flags.",
+   "size": {
+    "width": 879,
+    "height": 1137
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 67613,
+    "label": "Parks Event Category",
+    "value": "Community Center Special Events",
+    "type": 17
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Ravenna/Bryant/Roosevelt",
+    "type": 17
+   },
+   {
+    "fieldID": 67612,
+    "label": "Location Type",
+    "value": "Indoor",
+    "type": 17
+   },
+   {
+    "fieldID": 10954,
+    "label": "Community Center",
+    "value": "<a href=\"http://www.seattle.gov/parks/find/centers/ravenna-eckstein-community-center\" target=\"_blank\">Ravenna-Eckstein Community Center</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "SPR Rav-Eck CC",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Audrey Stueckle",
+    "type": 0
+   },
+   {
+    "fieldID": 10950,
+    "label": "Contact Phone",
+    "value": "2066847534",
+    "type": 12
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:Audrey.Stueckle@seattle.gov\" target=\"_blank\" rel=\"noopener\">Audrey.Stueckle@seattle.gov</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Children, Family, Special Needs",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   },
+   {
+    "fieldID": 10963,
+    "label": "Cost",
+    "value": "Free",
+    "type": 0
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D206660674",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/sbysetmg2eamcjybnebk8pdzud",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 205682893,
+  "template": "Parks Submission Form Template",
+  "title": "Haunted Hunt",
+  "description": "Haunted Hunt: Friday Night at Ravvy&#39;s is October 16th 2026 4-7pm. This Escape Room event is for All Ages - we have various escape room sessions that can scale up or down in scariness based on the age group. Volunteers can help set up, take down, be a storyteller (set the scene for participants), be a Scarer (spook or help the participants during the game), or a Game Leader (facilitate the escape room game in character). Mandatory volunteer meeting on October 15th time TBD to go over instructions. Please fill out google form linked.",
+  "locationType": "In-Person",
+  "location": "<a href=\"http://maps.google.com/?q=6535+Ravenna+Ave+NE%2C+Seattle%2C+WA+98115\" target=\"_blank\" rel=\"noopener\">Ravenna Eckstein Community Center <br />6535 Ravenna Ave NE 98115</a>",
+  "webLink": "<a href=\"https://docs.google.com/forms/d/e/1FAIpQLSfg8gLO6IW9P-7O-ObF7CTVhFUsrnd7n4FA5M8vCZ4rCB6eSA/viewform?usp=dialog\" target=\"_blank\" rel=\"noopener\" title=\"https://docs.google.com/forms/d/e/1FAIpQLSfg8gLO6IW9P-7O-ObF7CTVhFUsrnd7n4FA5M8vCZ4rCB6eSA/viewform?usp=dialog\">docs.google.com&#8230;</a>",
+  "startDateTime": "2026-10-16T16:00:00",
+  "endDateTime": "2026-10-16T19:00:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 4&nbsp;&ndash;&nbsp;7pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "eventImage": {
+   "url": "https://www.trumba.com/i/DgBA4Y16iND8tvi5yc%2A9Pi-B.jpg",
+   "alt": "Flier for Event titled Haunted Hunt: Friday Night at Ravvy's with spooky teddy bears, a blue sky with puffy white clouds background, and video screens that say \"Come play with me\"",
+   "size": {
+    "width": 879,
+    "height": 1137
+   }
+  },
+  "detailImage": {
+   "url": "https://www.trumba.com/i/DgBA4Y16iND8tvi5yc%2A9Pi-B.jpg",
+   "alt": "Flier for Event titled Haunted Hunt: Friday Night at Ravvy's with spooky teddy bears, a blue sky with puffy white clouds background, and video screens that say \"Come play with me\"",
+   "size": {
+    "width": 879,
+    "height": 1137
+   }
+  },
+  "customFields": [
+   {
+    "fieldID": 67613,
+    "label": "Parks Event Category",
+    "value": "Community Center Special Events",
+    "type": 17
+   },
+   {
+    "fieldID": 10956,
+    "label": "Building/Room #",
+    "value": "Stage Room",
+    "type": 1
+   },
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Ravenna/Bryant/Roosevelt",
+    "type": 17
+   },
+   {
+    "fieldID": 67612,
+    "label": "Location Type",
+    "value": "Indoor",
+    "type": 17
+   },
+   {
+    "fieldID": 10954,
+    "label": "Community Center",
+    "value": "<a href=\"http://www.seattle.gov/parks/find/centers/ravenna-eckstein-community-center\" target=\"_blank\">Ravenna-Eckstein Community Center</a>",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "SPR Rav-Eck CC",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Audrey Stueckle",
+    "type": 0
+   },
+   {
+    "fieldID": 10950,
+    "label": "Contact Phone",
+    "value": "2066847534",
+    "type": 12
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:Audrey.Stueckle@seattle.gov\" target=\"_blank\" rel=\"noopener\">Audrey.Stueckle@seattle.gov</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Children, Teen",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   },
+   {
+    "fieldID": 10963,
+    "label": "Cost",
+    "value": "Free",
+    "type": 0
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D205682893",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/mmxff26edyawgw5c4fzxv4gbbd",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 210624027,
+  "template": "Master Submission Form Template",
+  "title": "Harmony in Community",
+  "description": "Join the Dispute Resolution Center of King County on Friday, October 16th for an unforgettable evening celebrating 40 years of building stronger communities through dialogue, understanding, and conflict resolution. Enjoy live music, heavy hors d&#39;oeuvres, and meaningful connections with people who believe in creating a more peaceful and connected King County. <br /><br />Our featured band is R E P O S A D O, a Latin-Funk-Afro-Soul collective dedicated to using the power of music to connect and transcend. <br /><br />Entertainment also includes American Flats, a rock and roll band with Americana and Punk influences that plays with a passion that is ageless, timeless, and electric.<br /><br />Whether you&#39;re discovering KCDRC for the first time or have been part of our journey for years, this community celebration is your opportunity to have fun, meet like-minded neighbors, and help build a future where everyone has the tools to resolve conflict constructively.",
+  "locationType": "In-Person",
+  "location": "<a href=\"http://maps.google.com/?q=153+14th+Ave%2C+Seattle%2C+WA+98122\" target=\"_blank\" rel=\"noopener\">Washington Hall<br />153 14th Ave, Seattle, WA 98122, USA</a>",
+  "webLink": "<a href=\"https://giving.kcdrc.org/event/harmony-in-community/e820190\" target=\"_blank\" rel=\"noopener\" title=\"https://giving.kcdrc.org/event/harmony-in-community/e820190\">giving.kcdrc.org&#8230;</a>",
+  "startDateTime": "2026-10-16T19:00:00",
+  "endDateTime": "2026-10-16T23:00:00",
+  "dateTimeFormatted": "Friday, October 16, 2026, 7&nbsp;&ndash;&nbsp;11pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Ballard, Belltown, Capitol Hill, Cascade/Eastlake/South Lake Union, Citywide, Downtown Commercial Core, East of Seattle, First Hill, Fremont, Green Lake, Greenwood/Phinney Ridge, Interbay, Lake City/Olympic Hills/Victory Heights, Laurelhurst/Sand Point, Madison Park, Madrona/Leschi, Magnolia, North Capitol Hill, North of Seattle, Northgate/Maple Leaf, Pioneer Square, Queen Anne, Ravenna/Bryant/Roosevelt, Sunset Hill/Loyal Heights, University District, Uptown, Wallingford",
+    "type": 17
+   },
+   {
+    "fieldID": 11444,
+    "label": "Event Types",
+    "value": "Arts, Community, Ethnic/Cultural, Party, Public Outreach and Engagement",
+    "type": 17
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Adults",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "King County Dispute Resolution Center",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Salvador C",
+    "type": 0
+   },
+   {
+    "fieldID": 10950,
+    "label": "Contact Phone",
+    "value": "2064439603",
+    "type": 12
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:salvadorc@kcdrc.org\" target=\"_blank\" rel=\"noopener\">salvadorc@kcdrc.org</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "Yes",
+    "type": 3
+   },
+   {
+    "fieldID": 10963,
+    "label": "Cost",
+    "value": "20.00",
+    "type": 0
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D210624027",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/s97xkfxmz081x0vg7j671sszxu",
+  "categoryCalendar": "Seattle.Gov|City-Wide",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 209131456,
+  "template": "Parks Submission Form Template",
+  "title": "Duwamish Alive!   Saving Our Salmon, Saves Our Orca",
+  "description": "Join us for a restoration work party at Herrings House Park (Tulaltwx) - See website for important details on what to bring and where to meet.",
+  "locationType": "In-Person",
+  "location": "4600 W Marginal Way SW, Seattle, WA 98106",
+  "webLink": "<a href=\"http://seattle.greencitypartnerships.org/event/44779/\" target=\"_blank\" rel=\"noopener\" title=\"http://seattle.greencitypartnerships.org/event/44779/\">seattle.greencitypartnerships.org&#8230;</a>",
+  "startDateTime": "2026-10-17T02:00:00",
+  "endDateTime": "2026-10-17T10:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 2&nbsp;&ndash;&nbsp;10am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Duwamish/SODO",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "Green Seattle Partnership",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Sharon Leishman",
+    "type": 0
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:s.leishman@comcast.net\" target=\"_blank\" rel=\"noopener\">s.leishman@comcast.net</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D209131456",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/wnw80m1wct752602dtfvad20ek",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 210582794,
+  "template": "Parks Submission Form Template",
+  "title": "Duwamish Alive!   Saving Our Salmon, Saves Our Orca",
+  "description": "Join us for a restoration work party at Herrings House Park (Tulaltwx) - See website for important details on what to bring and where to meet.",
+  "locationType": "In-Person",
+  "location": "4600 W Marginal Way SW, Seattle, WA 98106",
+  "webLink": "<a href=\"http://seattle.greencitypartnerships.org/event/44779/\" target=\"_blank\" rel=\"noopener\" title=\"http://seattle.greencitypartnerships.org/event/44779/\">seattle.greencitypartnerships.org&#8230;</a>",
+  "startDateTime": "2026-10-17T02:00:00",
+  "endDateTime": "2026-10-17T10:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 2&nbsp;&ndash;&nbsp;10am&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Duwamish/SODO",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "Green Seattle Partnership",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Sharon Leishman",
+    "type": 0
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:s.leishman@comcast.net\" target=\"_blank\" rel=\"noopener\">s.leishman@comcast.net</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D210582794",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/wbdejh9mz07ggphsuh8y3h3dyg",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 207247704,
+  "template": "Parks Submission Form Template",
+  "title": "Carkeek STARS Work Party",
+  "description": "Join us for a restoration work party at Carkeek Park - See website for important details on what to bring and where to meet.",
+  "locationType": "In-Person",
+  "location": "950 NW Carkeek Park Rd, Seattle, WA 98177",
+  "webLink": "<a href=\"http://seattle.greencitypartnerships.org/event/44595/\" target=\"_blank\" rel=\"noopener\" title=\"http://seattle.greencitypartnerships.org/event/44595/\">seattle.greencitypartnerships.org&#8230;</a>",
+  "startDateTime": "2026-10-17T09:00:00",
+  "endDateTime": "2026-10-17T12:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 9am&nbsp;&ndash;&nbsp;12pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Broadview/Bitter Lake, Greenwood/Phinney Ridge, North Beach/Blue Ridge",
+    "type": 17
+   },
+   {
+    "fieldID": 10959,
+    "label": "Sponsoring Organization",
+    "value": "Green Seattle Partnership",
+    "type": 0
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Dale Johnson",
+    "type": 0
+   },
+   {
+    "fieldID": 10950,
+    "label": "Contact Phone",
+    "value": "206-362-2980",
+    "type": 12
+   },
+   {
+    "fieldID": 10949,
+    "label": "Contact Email",
+    "value": "<a href=\"mailto:carkeekstars@gmail.com\" target=\"_blank\" rel=\"noopener\">carkeekstars@gmail.com</a>",
+    "type": 11
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "All",
+    "type": 17
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D207247704",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/wt8brajmn0kn0458s9tawdn36x",
+  "categoryCalendar": "Parks & Recreation|Volunteer",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ },
+ {
+  "eventID": 203367773,
+  "template": "Master Submission Form Template",
+  "title": "Delridge Farmers Market",
+  "description": "The Delridge Farmers Market is operating at a new location in the beautiful Highland Park neighborhood at 8855 9th Ave SW, Seattle, WA 98106! This move intentionally brings community activation to the corner of 9th Ave SW and SW Henderson, adjacent to the site of ACHD&#8217;s future Seattle International Public Market development proect expected to break ground in late 2027.<br />Led by African Community Housing &amp; Development (ACHD), our markets prioritize farmers, food producers, and artisans of color. We operate as a true nonprofit market charging no vendor fees, so vendors keep 100% of their earnings. In partnership with local organizations, we also provide free food, wellness resources, and community services, distributing thousands of dollars in food and resources at each market. We hope you can join us on opening day, or anytime during the season, as we advance food justice, health equity, and economic development in Southwest Seattle through a community-centered market model.",
+  "locationType": "In-Person",
+  "location": "<a href=\"http://maps.google.com/?q=8855+9th+Ave+SW%2C+Seattle%2C+WA+98106\" target=\"_blank\" rel=\"noopener\">8855 9th Ave SW, Seattle WA 98106</a>",
+  "webLink": "",
+  "startDateTime": "2026-10-17T10:00:00",
+  "endDateTime": "2026-10-17T14:00:00",
+  "dateTimeFormatted": "Saturday, October 17, 2026, 10am&nbsp;&ndash;&nbsp;2pm&nbsp;PDT",
+  "allDay": false,
+  "startTimeZoneOffset": "-0700",
+  "endTimeZoneOffset": "-0700",
+  "canceled": false,
+  "openSignUp": false,
+  "reservationFull": false,
+  "pastDeadline": false,
+  "pastCancelDeadline": false,
+  "requiresPayment": false,
+  "refundsAllowed": false,
+  "waitingListAvailable": false,
+  "repeatingRegistration": 0,
+  "repeats": "Every Saturday through October 31, 2026",
+  "seriesID": 203367750,
+  "customFields": [
+   {
+    "fieldID": 11388,
+    "label": "Neighborhoods",
+    "value": "Delridge/North Delridge, Highland Park",
+    "type": 17
+   },
+   {
+    "fieldID": 10952,
+    "label": "Audience",
+    "value": "Adults, All, Children, Family, Pets, Senior, Special Needs, Teen",
+    "type": 17
+   },
+   {
+    "fieldID": 10948,
+    "label": "Contact",
+    "value": "Indra Budiman",
+    "type": 0
+   },
+   {
+    "fieldID": 10961,
+    "label": "Pre-Register",
+    "value": "No",
+    "type": 3
+   },
+   {
+    "fieldID": 10963,
+    "label": "Cost",
+    "value": "Free",
+    "type": 0
+   }
+  ],
+  "permaLinkUrl": "https://www.seattle.gov/event-calendar?trumbaEmbed=view%3Devent%26eventid%3D203367773",
+  "eventActionUrl": "https://www.trumba.com/eventactions/seattlegov-city-wide#/actions/skrsthdu740yu1b8gtdxc6jfyr",
+  "categoryCalendar": "Seattle.Gov|City-Wide",
+  "registrationTransferTargetCount": 0,
+  "regAllowChanges": true
+ }
+]

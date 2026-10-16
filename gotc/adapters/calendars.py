@@ -101,6 +101,11 @@ class TribeEventsAdapter(Adapter):
             lat, lon = _ll(venue.get("geo_lat")), _ll(venue.get("geo_lng"))
             if lat is None or lon is None:
                 lat = lon = None
+            venue_name = clean_text(venue.get("venue"))
+            address = join_address(venue.get("address"), venue.get("city"), venue.get("state"), venue.get("zip"))
+            if not venue_name and not address:  # single-venue calendars often leave the venue blank
+                fallback = ctx.params.get("venue") or {}
+                venue_name, address = fallback.get("name"), fallback.get("address")
             yield ctx.base(
                 str(ev["id"]),
                 title=title,
@@ -113,10 +118,8 @@ class TribeEventsAdapter(Adapter):
                 end=parse_dt(ev.get("end_date"), tz),
                 all_day=bool(ev.get("all_day")),
                 location={
-                    "venue_name": clean_text(venue.get("venue")),
-                    "address": join_address(
-                        venue.get("address"), venue.get("city"), venue.get("state"), venue.get("zip")
-                    ),
+                    "venue_name": venue_name,
+                    "address": address,
                     "lat": lat,
                     "lon": lon,
                     "geocode_method": "reported" if lat is not None else None,

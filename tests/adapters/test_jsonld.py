@@ -309,6 +309,38 @@ def test_rejects_and_windowing():
     assert errors[0].startswith("event without name/startDate") and "unparseable JSON-LD" in errors[1]
 
 
+def test_all_day_event_today_survives_the_evening_window():
+    # NOW is 22:00 local; a date-only event today must not be windowed out at midnight + 6 h
+    today = {**EV, "name": "All Day Today", "startDate": "2026-10-15", "url": "/today"}
+    yesterday = {**EV, "name": "All Day Yesterday", "startDate": "2026-10-14", "url": "/yday"}
+    assert set(_by_title(_parse(_page(today, yesterday)))) == {"All Day Today"}
+
+
+def test_date_only_keeps_the_local_date_and_drops_wrong_clock_times():
+    # STG-style: two shows on one day, both stamped 7 h early; with date_only they collapse to one all-day record
+    early = {**EV, "name": "Comic", "startDate": "2026-10-17T09:00:00-05:00", "url": "/comic"}
+    late = {**early, "startDate": "2026-10-17T13:00:00-05:00"}
+    parsed = _parse(_page(early, late), date_only=True)
+    assert len(parsed.valid) == 1
+    ev = parsed.valid[0][0]
+    assert ev.all_day and ev.start.isoformat() == "2026-10-17T00:00:00-05:00"
+    assert len(_parse(_page(early, late)).valid) == 2  # without the flag both timed records are kept
+
+
+@pytest.mark.parametrize(
+    ("title", "availability"),
+    [
+        ("An Evening with Eric Idle – CANCELED", "cancelled"),
+        ("Cancelled: Story Hour", "cancelled"),
+        ("Big Band (Postponed)", "postponed"),
+        ("Cancel Culture Comedy Hour", "unknown"),
+    ],
+)
+def test_cancelled_or_postponed_in_the_title(title: str, availability: str):
+    ev = _by_title(_parse(_page({**EV, "name": title})))
+    assert next(iter(ev.values())).availability == availability
+
+
 def test_non_event_blocks_are_ignored_quietly():
     parsed = _parse(_page({"@type": "Organization", "name": "x"}, raw="{not json, no events here}"))
     assert not parsed.valid and not parsed.rejects
@@ -406,3 +438,44 @@ def test_real_fixture_parses_without_rejects(source_id: str):
     assert not parsed.rejects, parsed.rejects[:3]
     for ev, _ in parsed.valid:
         assert ev.start.tzinfo is not None and ev.category and ev.url is not None
+
+
+def test_cervantes_rockhouse_detail_pages():
+    parsed = _real("cervantes_denver")
+    assert len(parsed.valid) == 4
+    for ev, _ in parsed.valid:
+        assert ev.category == "music.concert" and not ev.all_day
+        assert ev.location.address == "2637 Welton Street, Denver, Colorado"
+        assert ev.start.utcoffset() is not None and ev.start.utcoffset().total_seconds() == -6 * 3600
+        assert any(o.seller == "Etix" for o in ev.offers)
+    first = min((ev for ev, _ in parsed.valid), key=lambda e: e.start)
+    assert first.title.startswith("Zach Nugent’s Dead Set")  # &#8217; unescaped
+    assert first.price.min is None  # Rockhouse sends "price": 0 for "see the ticket page"
+
+
+def test_stg_listing_date_only_and_placeholder_valid_from():
+    """STG Presents (Modern Events Calendar listing): clock times are 7 h early, so the config keeps dates only;
+    offers.validFrom is the event date (not an on-sale date) and price "0" is a placeholder."""
+    parsed = _real("stg_presents")
+    evs = _by_title(parsed)
+    assert all(ev.all_day for ev, _ in parsed.valid)
+    bamford = [ev for ev, _ in parsed.valid if ev.title == "Maria Bamford"]
+    assert len(bamford) == 1 and bamford[0].start.isoformat() == "2026-10-17T00:00:00-07:00"  # two shows → one day
+    assert evs["almost monday"].location.venue_name == "The Neptune Theatre"
+    assert all(ev.availability != "not_yet_on_sale" and not ev.registration for ev, _ in parsed.valid)
+    assert all(ev.price.min is None for ev, _ in parsed.valid)  # "0" is not a price
+    # education classes, tours and the online session are skipped, not rejected
+    assert not any("Kerry Hall" in str(ev.location.venue_name) or "Tour" in ev.title for ev, _ in parsed.valid)
+    assert "STG Dance for PD® Virtual Sessions" not in evs and parsed.skipped == 3
+
+
+def test_cap_city_comedy_place_with_nested_events_list():
+    """Cap City Comedy Club: one Place block whose non-standard "Events" key holds every show (UTC times)."""
+    parsed = _real("cap_city_comedy")
+    assert len(parsed.valid) == 8 and not parsed.rejects
+    first = min((ev for ev, _ in parsed.valid), key=lambda e: e.start)
+    assert first.title == "Special Event: Tisha Campbell"
+    assert first.start.isoformat() == "2026-10-17T00:00:00+00:00"  # = 7 PM CDT on Oct 16
+    assert first.location.venue_name == "Cap City Comedy Club"
+    assert first.location.address == "11506 Century Oaks Terrace, Bldg B Unit 100, Austin, TX"
+    assert {ev.category for ev, _ in parsed.valid} == {"nightlife.comedy"}

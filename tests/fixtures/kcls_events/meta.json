@@ -1,0 +1,9 @@
+{
+  "unit": "kcls_events@seattle",
+  "adapter": "bibliocommons",
+  "recorded_at": "2026-10-16T07:35:06+00:00",
+  "files": {
+    "payload_0.xml": "https://gateway.bibliocommons.com/v2/libraries/kcls/rss/events?startDate=2026-10-16&endDate=2026-10-23&page=1"
+  },
+  "note": "real response fetched live by `gotc run`; trimmed to the first 10 records"
+}

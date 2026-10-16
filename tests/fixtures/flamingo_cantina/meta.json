@@ -1,0 +1,9 @@
+{
+  "unit": "flamingo_cantina@austin",
+  "adapter": "tribe",
+  "recorded_at": "2026-10-16T07:39:47+00:00",
+  "files": {
+    "payload_0.json": "https://flamingocantina.com/wp-json/tribe/events/v1/events?start_date=2026-10-16+00%3A00%3A00&end_date=2026-12-15+23%3A59%3A59&per_page=50&status=publish&page=1"
+  },
+  "note": "real response fetched live by `gotc run`; trimmed to the first 8 records"
+}

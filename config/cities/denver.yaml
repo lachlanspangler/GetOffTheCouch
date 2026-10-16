@@ -219,3 +219,143 @@ sources:
     params:
       url: https://challengeentertainment.com/wp-json/ce/v1/shows
       metros: [denver]
+  # ── session 2: Denver / Seattle / Austin coverage (2026-10-16; docs/SOURCES.md "session 2") ──
+  - id: jeffco_library_events
+    adapter: bibliocommons
+    name: Jefferson County Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://jeffcolibrary.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). Branches in Lakewood, Arvada, Wheat Ridge, Golden,
+      Edgewater and Littleton only; the mountain branches (Evergreen, Conifer) are outside the city radius.
+    params:
+      library: jeffcolibrary
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Jefferson County Public Library
+      cities: [Lakewood, Arvada, Wheat Ridge, Golden, Edgewater, Littleton]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Story Times: family.kids
+        Book Club: arts.books
+        Writing: arts.books
+        DIY and Crafting: arts.workshop
+        Science and Technology: learning.tech
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        School Age: family.kids
+        Tweens: family.kids
+  - id: arapahoe_library_events
+    adapter: bibliocommons
+    name: Arapahoe Libraries events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://arapahoelibraries.bibliocommons.com/v2/events
+    expect_min_records: 30
+    notes: >-
+      BiblioCommons events RSS. Branches in Centennial, Englewood, Littleton, Sheridan and the Denver-addressed
+      branches (Eloise May, Sheridan); the far-east rural branches (Deer Trail, Byers) are dropped by `cities`.
+    params:
+      library: arapahoelibraries
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Arapahoe Libraries
+      cities: [Centennial, Denver, Englewood, Littleton, Sheridan, Greenwood Village, Aurora]
+      exclude_location: '\b(Board of Trustees|Trustees Meeting)\b'   # governance meetings, not events
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytimes: family.kids
+        "Book & Movie Clubs": arts.books
+        "Literature & Writing": arts.books
+        "Authors & Speakers": arts.books
+        "Crafts & Hobbies": arts.workshop
+        Language Learning: learning.language
+        Computer Classes: learning.tech
+        "Technology & Innovation": learning.tech
+        "Children (0–5)": family.kids
+        "Kids (5–8)": family.kids
+        "Tweens (9–12)": family.kids
+  - id: cervantes_denver
+    adapter: jsonld
+    name: Cervantes' Masterpiece Ballroom & Other Side (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://cervantesmasterpiece.com/
+    expect_min_records: 15
+    notes: >-
+      Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link. The
+      homepage also lists shows the promoter books elsewhere (Ogden, Mission Ballroom, Red Rocks, Steamboat);
+      `follow` keeps Denver-addressed rooms only.
+    params:
+      urls: [https://cervantesmasterpiece.com/]
+      follow: 'cervantesmasterpiece\.com/event/[^/]+/cervantes[^/]*/denver-colorado/$'
+      max_follow: 40
+      venue: {name: "Cervantes' Masterpiece Ballroom", address: "2637 Welton St, Denver, CO 80205"}
+      organizer: Cervantes' Masterpiece
+      default_category: music.concert
+  - id: denver_arts_venues
+    adapter: rss_events
+    name: Denver Arts & Venues — Denver Performing Arts Complex (Boettcher, Buell, Ellie Caulkins, Dazzle, DCPA)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.artscomplex.com/events
+    expect_min_records: 40
+    notes: >-
+      City-owned venues' carbonhouse events RSS (/events/rss, ev: module; robots allows all). Covers the
+      Colorado Symphony at Boettcher, Broadway at the Buell, DCPA theatres and Dazzle jazz club (whose own site
+      serves a Cloudflare challenge — this feed is the city's syndication, not a workaround).
+    params:
+      url: https://www.artscomplex.com/events/rss
+      horizon_days: 120
+      venue: {name: Denver Performing Arts Complex, address: "1400 Curtis St, Denver, CO 80202"}
+      venues: {"Dazzle": "1512 Curtis St, Denver, CO 80202"}
+      organizer: Denver Arts & Venues
+      default_category: music.concert
+      category_map:   # ev:location rooms seen in the live feed (then title keywords)
+        Opening Night: arts.theater   # "Opening Night Dinner" is a gala, not a bar opening
+        Boettcher Concert Hall: music.classical
+        Dazzle: music.concert
+        Buell Theatre: arts.theater
+        Ellie Caulkins Opera House: arts.theater
+        Studio Loft of the Ellie Caulkins Opera House: arts.theater
+        Kilstrom Theatre: arts.theater
+        Wolf Theatre: arts.theater
+        Space Theatre: arts.theater
+        Garner Galleria Theatre: arts.theater
+        Randy Weeks Conservatory Theatre: arts.theater
+  - id: denver_coliseum
+    adapter: rss_events
+    name: Denver Coliseum (Denver Arts & Venues)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.denvercoliseum.com/events
+    expect_min_records: 5
+    notes: City-owned arena's carbonhouse events RSS (rodeo, high-school championships, shows). robots allows all.
+    params:
+      url: https://www.denvercoliseum.com/events/rss
+      horizon_days: 150
+      venue: {name: Denver Coliseum, address: "4600 Humboldt St, Denver, CO 80216"}
+      organizer: Denver Arts & Venues
+      default_category: sports_watch.game
+  - id: denver_pioneers_athletics
+    adapter: ics
+    name: Denver Pioneers athletics (home games — hockey at Magness Arena, basketball, soccer, gymnastics)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://denverpioneers.com/calendar
+    expect_min_records: 8
+    notes: >-
+      University of Denver's SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics; robots allows it).
+      Only events whose LOCATION starts with "Denver" are kept (away/neutral games skipped).
+    params:
+      url: https://denverpioneers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Denver Pioneers
+      exclude_location: '^(?!Denver\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 39.6766, lon: -104.9619, label: "University of Denver campus" }

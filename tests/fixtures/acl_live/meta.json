@@ -1,0 +1,9 @@
+{
+  "unit": "acl_live@austin",
+  "adapter": "rss_events",
+  "recorded_at": "2026-10-16T07:51:18+00:00",
+  "files": {
+    "payload_0.xml": "https://www.acllive.com/events/rss"
+  },
+  "note": "real response fetched live by `gotc run`; trimmed to the first 8 records"
+}
