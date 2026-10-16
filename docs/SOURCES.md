@@ -15,7 +15,8 @@ notes and raw samples: `docs/research/city_open_data.md`, `docs/research/ticketi
 - PoliteClient honors robots.txt (and `Crawl-delay`) for every adapter except documented data APIs, which opt out
   in code: **Socrata** (SODA API) and **ArcGIS** (`services*.arcgis.com/robots.txt` answers HTTP 403 "Invalid URL",
   i.e. no policy is published; PoliteClient would read that as "disallow all"). CKAN, BiblioCommons, Trumba,
-  Localist, LiveWhale, Tribe, Simpleview and Communico all go through the robots check.
+  Localist, LiveWhale, Tribe, Simpleview and Communico all go through the robots check. Every other opt-out is
+  listed in "Robots exceptions and API usage policies" below.
 - **Openings** (`data_type: openings`, `kind: opening`) come from license data. Every record is all-day on the
   license's newness date (application, original issue, or registered start; never a renewal date), its
   description starts with "License signal, not a confirmed opening date", and personal-data columns (owner,
@@ -77,6 +78,22 @@ notes and raw samples: `docs/research/city_open_data.md`, `docs/research/ticketi
 
 Rejected ticketing/discovery platforms (Bandsintown, Songkick, Resident Advisor, DICE, AXS, DoStuff, Yelp, …) and
 their reasons are in `docs/research/ticketing_and_events_apis.md` §0.
+
+## Robots exceptions and API usage policies (reviewed 2026-10-16)
+
+Every call made with `respect_robots=False`, and why. robots.txt and the operator's API policy were both re-read
+on 2026-10-16 with our UA. **Rule:** an opt-out is allowed only for a documented machine API whose operator
+publishes terms for programmatic clients, we follow those terms, and the row is listed here. Where the
+operator's own policy discourages our kind of use, the source is off.
+
+| host / path | robots.txt (2026-10-16) | operator API policy | our use | stance |
+|---|---|---|---|---|
+| `api.us.socrata.com`, `<portal>/resource/*.json` (SODA) | catalog host: 301 to nginx page (no policy) | documented SODA API, app tokens optional | adapters + `gotc discover` | ✅ exception (unchanged) |
+| `services*.arcgis.com` FeatureServer | 403 "Invalid URL" (no policy) | documented ArcGIS REST | adapters | ✅ exception (unchanged) |
+| `geocoding.geo.census.gov` | 404 (no file) | public geocoder, batch ≤ 10,000 rows | batch first, then single-line (per-city budget `GOTC_GEOCODE_BUDGET`) | ✅ allowed (no robots file) |
+| `nominatim.openstreetmap.org/search` | **`User-agent: *` `Disallow: /search`** (also /reverse, /lookup, /details) | [OSMF Nominatim policy](https://operations.osmfoundation.org/policies/nominatim/): "an absolute maximum of 1 request per second"; "Scripts running longer than a day and scripts that are run at regular intervals are restricted to 4 requests per minute"; single thread, one machine, "no distributed scripts"; "Results must be cached on your side"; repeated identical queries "may be classified as faulty and blocked"; "periodic requests from apps are considered bulk geocoding and as such are strongly discouraged"; attribution required | **was:** fallback for every place name at 1.1 s, up to 150/city/run (≈55 req/min bursts, a policy violation). **now:** off by default. `GOTC_NOMINATIM=1` opts one process (never a CI shard) into a compliant lane: ≥ 15 s between requests, hard per-run budget `GOTC_NOMINATIM_BUDGET` (default 20) shared by all cities, every answer (hit or miss) cached forever and never re-sent, Census tried first | ⛔ **off** (robots disallows `/search` and the policy discourages periodic app use). Previously cached Nominatim results keep serving; they are © OpenStreetMap contributors (ODbL), so the dashboard must show "Geocoding © OpenStreetMap contributors" wherever coordinates are shown (web/ change pending, see STATUS). |
+| `api.weather.gov` | **`User-agent: *` `Disallow: /`** | NWS API docs ask apps for a UA with contact info; no published rate limit | 1 forecast/city per 3 h (`gotc/pipeline/weather.py`) | ⚠ exception kept: documented public API that explicitly expects application clients; flagged for the user to confirm |
+| `app.ticketmaster.com`, `api.seatgeek.com` | — | keyed developer APIs with ToS | key-gated adapters | ✅ exception (unchanged) |
 
 ## Rejected, blocked and dead sources
 

@@ -1,6 +1,18 @@
-"""Geocoding with a permanent cache. US Census Geocoder first (keyless, US-only, free, public domain),
-then OpenStreetMap Nominatim as a fallback for place names (1 req/s, identified UA, results cached — per
-https://operations.osmfoundation.org/policies/nominatim/).
+"""Geocoding with a permanent cache. US Census Geocoder first (keyless, US-only, public domain; batch file
+first, then single-line), then OpenStreetMap Nominatim only as an **opt-in** fallback for place names.
+
+Nominatim compliance (OSMF usage policy, https://operations.osmfoundation.org/policies/nominatim/, re-read
+2026-10-16): "an absolute maximum of 1 request per second"; "Scripts running longer than a day and scripts
+that are run at regular intervals are restricted to 4 requests per minute"; single thread, one machine, no
+distributed scripts; "Results must be cached on your side"; "Clients sending repeatedly the same query may be
+classified as faulty and blocked"; "periodic requests from apps are considered bulk geocoding and as such are
+strongly discouraged". On top of that, nominatim.openstreetmap.org/robots.txt has ``Disallow: /search`` for
+every user agent. So (docs/SOURCES.md, "Robots exceptions"):
+
+  * Nominatim is OFF unless ``GOTC_NOMINATIM=1`` (an operator decision, never the default, never in CI shards)
+  * when on: ≥ 15 s between requests (= 4/min), a hard per-run budget shared by all cities
+    (``GOTC_NOMINATIM_BUDGET``, default 20), one lane (this process only)
+  * every Nominatim answer, hit or miss, is cached forever and the same query is never sent twice
 
 Every result carries a provider and a confidence; anything outside the city's radius is discarded rather
 than plotted in the wrong state.
@@ -25,6 +37,8 @@ log = logging.getLogger(__name__)
 
 CENSUS = "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress"
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
+NOMINATIM_HOST = "nominatim.openstreetmap.org"
+NOMINATIM_INTERVAL_S = 15.0  # OSMF policy: recurring scripts ≤ 4 requests/minute
 
 
 @dataclass(frozen=True)
@@ -36,18 +50,35 @@ class GeoResult:
     confidence: float
 
 
+def nominatim_enabled() -> bool:
+    return os.environ.get("GOTC_NOMINATIM", "").strip() == "1"
+
+
 class Geocoder:
     def __init__(
-        self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int | None = None
+        self,
+        db: Database,
+        http: PoliteClient | None,
+        offline: bool = False,
+        budget: int | None = None,
+        nominatim: bool | None = None,
+        nominatim_budget: int | None = None,
     ) -> None:
         self.db = db
         self.http = http
         self.offline = offline or http is None
-        # max live lookups per city per run — politeness + bounded run time (CI sets GOTC_GEOCODE_BUDGET low)
+        # max live Census lookups per city per run — politeness + bounded run time (CI sets GOTC_GEOCODE_BUDGET)
         self.budget = budget if budget is not None else int(os.environ.get("GOTC_GEOCODE_BUDGET", "150"))
         self.lookups = 0
+        self.nominatim = nominatim_enabled() if nominatim is None else nominatim
+        # hard per-RUN budget (not per city): at 15 s each, 20 lookups = 5 minutes of one lane
+        self.nominatim_budget = (
+            nominatim_budget if nominatim_budget is not None else int(os.environ.get("GOTC_NOMINATIM_BUDGET", "20"))
+        )
+        self.nominatim_lookups = 0
         if http is not None:
-            http.host_intervals.setdefault("nominatim.openstreetmap.org", 1.1)
+            # force, don't setdefault: a looser interval set elsewhere must never win
+            http.host_intervals[NOMINATIM_HOST] = max(NOMINATIM_INTERVAL_S, http.host_intervals.get(NOMINATIM_HOST, 0))
 
     def batch(self, queries: list[str], city: CityConfig) -> int:
         """Census batch geocoder (≤10,000 street addresses per POST, keyless). Fills the cache; returns hits.
@@ -118,23 +149,41 @@ class Geocoder:
             return None
         key = f"{city.slug}|{q.lower()}"
         row = self.db.one("SELECT * FROM geocode_cache WHERE query = ?", (key,))
+        nominatim_tried = False
         if row is not None:
             if row["lat"] is not None:
                 return GeoResult(row["lat"], row["lon"], row["matched"] or "", row["provider"], row["confidence"] or 0)
+            nominatim_tried = "nominatim" in (row["provider"] or "")
             looked = datetime.fromisoformat(row["looked_up_at"])
-            if utcnow() - looked < MISS_TTL or self.offline:
+            census_retry = utcnow() - looked >= MISS_TTL
+            nominatim_open = self.nominatim and not nominatim_tried
+            if self.offline or not (census_retry or nominatim_open):
                 return None  # a recent miss: don't hammer the geocoder
-        if self.offline or self.lookups >= self.budget:
+            census_ok = census_retry
+        else:
+            census_ok = True
+        if self.offline:
             return None
-        self.lookups += 1
-        res = None
-        for variant in variants(query, city):
-            res = self._census(variant, city) or self._nominatim(variant, city)
-            if res:
-                break
+        cands = variants(query, city)
+        res: GeoResult | None = None
+        if census_ok and self.lookups < self.budget and any(re.search(r"\d", v) for v in cands):
+            self.lookups += 1
+            for variant in cands:
+                res = self._census(variant, city)
+                if res:
+                    break
+        if res is None and self.nominatim and not nominatim_tried:
+            for variant in cands:
+                if self.nominatim_lookups >= self.nominatim_budget:
+                    break
+                nominatim_tried = True
+                res = self._nominatim(variant, city)
+                if res:
+                    break
         if res and haversine_m(res.lat, res.lon, *city.center) > city.radius_km * 1000 * 2.5:
             log.info("geocode %r landed outside %s; discarded", q, city.slug)
             res = None
+        provider = res.provider if res else ("none:nominatim" if nominatim_tried else "none")
         self.db.execute(
             "INSERT OR REPLACE INTO geocode_cache (query, lat, lon, matched, provider, confidence, looked_up_at)"
             " VALUES (?,?,?,?,?,?,?)",
@@ -143,7 +192,7 @@ class Geocoder:
                 res.lat if res else None,
                 res.lon if res else None,
                 res.matched if res else None,
-                res.provider if res else "none",
+                provider,
                 res.confidence if res else None,
                 iso(utcnow()),
             ),
@@ -171,6 +220,7 @@ class Geocoder:
 
     def _nominatim(self, q: str, city: CityConfig) -> GeoResult | None:
         assert self.http is not None
+        self.nominatim_lookups += 1  # counted before the request: failures spend budget too
         lat, lon = city.center
         d = city.radius_km / 111.0
         try:
