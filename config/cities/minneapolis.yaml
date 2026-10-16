@@ -94,6 +94,7 @@ sources:
     homepage: https://events.tc.umn.edu/
     expect_min_records: 20
     params:
+      fallback_point: { lat: 44.974, lon: -93.2277, label: "University of Minnesota East Bank" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://events.tc.umn.edu
       max: 200

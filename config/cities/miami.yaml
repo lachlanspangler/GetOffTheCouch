@@ -61,6 +61,7 @@ sources:
     homepage: https://calendar.fiu.edu/
     expect_min_records: 10
     params:
+      fallback_point: { lat: 25.7562, lon: -80.3755, label: "FIU Modesto Maidique campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.fiu.edu
       horizon_days: 30

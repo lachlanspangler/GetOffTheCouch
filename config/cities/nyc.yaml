@@ -155,6 +155,7 @@ sources:
     homepage: https://events.nyu.edu/
     expect_min_records: 10
     params:
+      fallback_point: { lat: 40.7295, lon: -73.9965, label: "NYU Washington Square campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       exclude_location: "\\b(Shanghai|Abu Dhabi|Florence|Paris|Accra|Berlin|Buenos Aires|London|Madrid|Prague|Sydney|Tel Aviv|Washington,? DC|Los Angeles)\\b"   # NYU global sites
       base_url: https://events.nyu.edu

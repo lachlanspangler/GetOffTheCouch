@@ -47,6 +47,7 @@ sources:
     homepage: https://www.washington.edu/calendar/
     expect_min_records: 20
     params:
+      fallback_point: { lat: 47.6553, lon: -122.3035, label: "UW Seattle campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       webname: sea_campus
       horizon_days: 14

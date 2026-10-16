@@ -136,6 +136,7 @@ sources:
     homepage: https://calendar.northeastern.edu/
     expect_min_records: 10
     params:
+      fallback_point: { lat: 42.3398, lon: -71.0892, label: "Northeastern main campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.northeastern.edu
       horizon_days: 30

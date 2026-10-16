@@ -259,3 +259,19 @@ def test_openings_by_first_seen_baseline_is_silent_new_licenses_show(db, setting
     assert [e.record_id for e in got] == ["fresh"]
     assert got[0].start.date() == later.astimezone(got[0].start.tzinfo).date() and got[0].all_day
     assert "First appeared in the city's license data" in (got[0].description or "")
+
+
+def test_institution_fallback_point_is_labeled_approximate(db, settings):
+    ics = make_source(
+        "campus_ics",
+        "ics",
+        url="https://cal.example/feed.ics",
+        horizon_days=30,
+        fallback_point={"lat": 44.974, "lon": -93.2277, "label": "University of Minnesota East Bank"},
+    )
+    reg = make_registry(make_city("minneapolis", [ics]))
+    t = FixtureTransport().add(r"cal\.example/feed\.ics", fixture_bytes("synthetic/dup_calendar.ics"))
+    run(db, reg, settings, client=fast_client(t), now=NOW, geocode=False)
+    ev = next(e for e in feed(settings).events if e.title == "Tuesday Trivia")
+    assert ev.location.lat == 44.974 and ev.location.geocode_confidence == 0.3
+    assert "approximate: University of Minnesota East Bank" in (ev.location.address or "")

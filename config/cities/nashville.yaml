@@ -33,6 +33,7 @@ sources:
     homepage: https://events.vanderbilt.edu/
     expect_min_records: 20
     params:
+      fallback_point: { lat: 36.1447, lon: -86.8027, label: "Vanderbilt campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://events.vanderbilt.edu
       max: 200

@@ -32,6 +32,7 @@ sources:
     homepage: https://calendar.usc.edu/
     expect_min_records: 10
     params:
+      fallback_point: { lat: 34.0224, lon: -118.2851, label: "USC University Park campus" }   # unmappable rooms → campus, labeled approximate
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.usc.edu
       horizon_days: 30
