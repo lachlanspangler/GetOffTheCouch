@@ -85,3 +85,69 @@ def test_per_source_rate_limit_applies_to_its_hosts(tmp_path):
     c = client(FixtureTransport(), tmp_path)
     apply_rate_limit(c, unit_for(src, make_city()))
     assert c.host_intervals["parks.example.org"] == 6
+
+
+def test_post_sends_form_and_honors_robots(tmp_path):
+    seen = {}
+
+    def handler(req):
+        seen["method"] = req.method
+        seen["body"] = req.content.decode()
+        return httpx.Response(200, json={"code": 200})
+
+    t = (
+        FixtureTransport()
+        .add(r"robots\.txt$", "User-agent: *\nDisallow: /private\n")
+        .add_fn(r"/search/getOpportunitiesCalendar", handler)
+    )
+    c = client(t, tmp_path)
+    r = c.post("https://hoc.example/search/getOpportunitiesCalendar", data={"a": "2026-10-17", "n": 5})
+    assert r.json() == {"code": 200}
+    assert seen["method"] == "POST" and seen["body"] == "a=2026-10-17&n=5"
+    with pytest.raises(RobotsDisallowed):
+        c.post("https://hoc.example/private/search", data={"a": 1})
+
+
+def test_post_retries_5xx_and_is_never_cached(tmp_path):
+    n = {"i": 0}
+
+    def flaky(req):
+        n["i"] += 1
+        return httpx.Response(503 if n["i"] == 1 else 200, content=b"OK", headers={"ETag": '"v1"'})
+
+    t = FixtureTransport().add_fn(r"/search", flaky)
+    c = client(t, tmp_path)
+    assert c.post("https://api.example.com/search", data={"q": 1}, respect_robots=False).text == "OK"
+    assert c.post("https://api.example.com/search", data={"q": 1}, respect_robots=False).text == "OK"
+    assert n["i"] == 3  # one retry, then a fresh request (no conditional cache for POST)
+    assert not (tmp_path / "cache").exists()
+
+
+def test_post_redacts_secrets_in_errors(tmp_path):
+    t = FixtureTransport().add(r"/bad", status=403)
+    with pytest.raises(HttpStatusError) as e:
+        client(t, tmp_path).post("https://api.example.com/bad", params={"token": "S3CRET"}, respect_robots=False)
+    assert "S3CRET" not in str(e.value) and e.value.kind == "forbidden"
+
+
+def test_existing_query_string_is_kept_and_params_are_merged(tmp_path):
+    t = FixtureTransport().add_fn(r"/ics/get", lambda req: httpx.Response(200, content=str(req.url).encode()))
+    c = client(t, tmp_path)
+    url = "https://api.example.com/ics/get?entity=calendar&id=cal-1"
+    assert c.get(url, respect_robots=False).text == url
+    assert c.get(url, params={"page": 2}, respect_robots=False).text == url + "&page=2"
+
+
+def test_cookies_are_never_stored(tmp_path):
+    """Volo/Galaxy redirect cookie-carrying requests to a remembered view (dropping ?page=N)."""
+
+    def setter(req):
+        return httpx.Response(200, content=b"x", headers={"Set-Cookie": "session=abc; Path=/"})
+
+    def checker(req):
+        return httpx.Response(200, content=req.headers.get("cookie", "").encode())
+
+    t = FixtureTransport().add_fn(r"/first", setter).add_fn(r"/second", checker)
+    c = client(t, tmp_path)
+    c.get("https://site.example/first", respect_robots=False)
+    assert c.get("https://site.example/second", respect_robots=False).text == ""

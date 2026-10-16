@@ -128,3 +128,17 @@ sources:
       default_category: food_drink.restaurant_opening
       default_url: https://data.colorado.gov/d/htyp-tqzh
       extras: { signal: liquor_license_issued }
+
+  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
+sources:
+  - id: volo_denver
+    adapter: volo
+    name: Volo Sports Denver
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/denver?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: denver
+      max_pages: 6

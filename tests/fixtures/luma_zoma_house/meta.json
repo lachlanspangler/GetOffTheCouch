@@ -1,0 +1,10 @@
+{
+  "unit": "luma_zoma_house@minneapolis",
+  "recorded_at": "2026-10-16T05:03:18+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; unmodified",
+  "urls": {
+    "payload_0.ics": "https://api.lu.ma/ics/get?entity=calendar&id=cal-ZcUa89sLSrEvGwZ"
+  },
+  "research_2026-10-15.ics": "docs/research/samples/luma-calendar-zoma-house.ics (research pass, trimmed by event count)"
+}

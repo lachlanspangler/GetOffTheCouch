@@ -1,0 +1,8 @@
+{
+  "unit": "boston_cares@boston",
+  "recorded_at": "2026-10-16T05:12:36+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; unmodified",
+  "research_2026-10-15.json": "docs/research/samples/handsonconnect-bostoncares-calendar.json \u2014 research pass 2026-10-15 (trimmed by record count only; see its _note)",
+  "request": "POST https://www.bostoncares.org/search/getOpportunitiesCalendar searchvo_startfrom=2026-10-16&searchvo_endfrom=2026-10-17&searchvo_searchresultblockid=589 (first 2-day window of the run)"
+}

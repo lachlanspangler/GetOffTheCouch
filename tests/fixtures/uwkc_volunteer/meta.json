@@ -1,0 +1,16 @@
+{
+  "unit": "uwkc_volunteer@seattle",
+  "recorded_at": "2026-10-16T05:16:26+00:00",
+  "payloads": 16,
+  "kept": {
+    "payload_0.xml": "https://volunteer.uwkc.org/need/rss/",
+    "payload_1.html": "https://volunteer.uwkc.org/need/detail/?need_id=1328854",
+    "payload_5.html": "https://volunteer.uwkc.org/need/detail/?need_id=1326690",
+    "payload_6.html": "https://volunteer.uwkc.org/need/detail/?need_id=1326674",
+    "payload_9.html": "https://volunteer.uwkc.org/need/detail/?need_id=1323425",
+    "payload_11.html": "https://volunteer.uwkc.org/need/detail/?need_id=1321980",
+    "payload_12.html": "https://volunteer.uwkc.org/need/detail/?need_id=1320467",
+    "payload_15.html": "https://volunteer.uwkc.org/need/detail/?need_id=1319569"
+  },
+  "note": "real responses recorded with `gotc record --max-payloads 16` (Seattle tenant; config pending in config/pending_sources/seattle.yaml); unmodified. 8 of 15 detail pages deleted to keep the repo small; kept: ongoing, 'Happens On' + free-text times, 'X through Y', 'Until', 'Register by' (incl. one already past)."
+}

@@ -66,3 +66,18 @@ sources:
       default_category: food_drink.restaurant_opening
       default_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Beer_Permit_Locations_Feature_Layer_view/FeatureServer/0
       extras: { signal: beer_permit_application }
+
+  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
+sources:
+  - id: hands_on_nashville
+    adapter: handsonconnect
+    name: Hands On Nashville
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://handson.unitedwaygreaternashville.org/calendar
+    expect_min_records: 1
+    params:
+      base_url: https://handson.unitedwaygreaternashville.org   # hon.org redirects here
+      block_id: 2009
+      horizon_days: 14
+      window_days: 2

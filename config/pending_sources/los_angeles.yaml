@@ -1,0 +1,38 @@
+# Pending sources for los_angeles (config/cities/los_angeles.yaml is being created by another agent).
+# Merge: append these entries to the city file's `sources:` list. Same SourceConfig schema.
+sources:
+  - id: volo_los_angeles
+    adapter: volo
+    name: Volo Sports Los Angeles
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/los-angeles?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: los-angeles
+      include_fees: true      # Volo 307-redirects LA to includeFees=true; asking for it keeps ?page=N
+      max_pages: 6
+  - id: la_works
+    adapter: handsonconnect
+    name: L.A. Works
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://volunteer.laworks.com/calendar
+    expect_min_records: 1
+    params:
+      base_url: https://volunteer.laworks.com   # no calendar-search-block-id on this tenant; works without one
+      horizon_days: 14
+      window_days: 2
+  - id: luma_venice_book_club
+    adapter: ics
+    name: Venice Book Club (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/la
+    expect_min_records: 1
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-E8al8GRIz3vkQrj
+      horizon_days: 60
+      organizer: Venice Book Club
+      default_category: arts.books

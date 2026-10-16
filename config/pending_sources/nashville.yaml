@@ -1,0 +1,15 @@
+# Pending sources for nashville (config/cities/nashville.yaml is being created by another agent).
+# Merge: append these entries to the city file's `sources:` list. Same SourceConfig schema.
+sources:
+  - id: hands_on_nashville
+    adapter: handsonconnect
+    name: Hands On Nashville
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://handson.unitedwaygreaternashville.org/calendar
+    expect_min_records: 1
+    params:
+      base_url: https://handson.unitedwaygreaternashville.org   # hon.org redirects here
+      block_id: 2009
+      horizon_days: 14
+      window_days: 2

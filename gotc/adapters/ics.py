@@ -75,6 +75,9 @@ class IcsAdapter(Adapter):
             per_uid[uid] += 1
             desc = clean_text(ev.get("DESCRIPTION"), 4000)
             location = clean_text(ev.get("LOCATION"), 300)
+            location_url = _url(location)
+            if location_url:  # Luma & co. put the event page here when the address is hidden until RSVP
+                location = None
             cats = _categories(ev)
             category = next((cmap[c] for c in cats if c in cmap), None)
             if not category:
@@ -93,7 +96,7 @@ class IcsAdapter(Adapter):
                 rid,
                 title=title,
                 description=desc,
-                url=_url(ev.get("URL")) or p.get("default_url"),
+                url=_url(ev.get("URL")) or location_url or p.get("default_url"),
                 kind="recurring" if rrule or per_uid[uid] > 1 else p.get("kind", "one_off"),
                 category=category,
                 source_categories=cats,

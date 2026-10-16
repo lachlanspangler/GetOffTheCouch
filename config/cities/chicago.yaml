@@ -238,3 +238,18 @@ sources:
       max: 200
       organizer: University of Chicago
       default_category: learning.networking
+
+  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
+sources:
+  - id: luma_mhub_chicago
+    adapter: ics
+    name: mHUB Events (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/chicago
+    expect_min_records: 1
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-2MaopjwQTRbceSD
+      horizon_days: 60
+      organizer: mHUB
+      default_category: learning.tech

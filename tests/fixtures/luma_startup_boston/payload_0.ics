@@ -1,0 +1,1277 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Luma//Startup Boston//EN
+X-WR-CALNAME:Startup Boston
+X-WR-CALDESC:Luma Calendar
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:20240122T223000Z
+DTEND:20240123T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Luma Event":MAILTO:calendar-invite@lu.ma
+UID:evt-MG1d6GiZZAnYUEn@events.lu.ma
+SUMMARY:Cofounder Matching
+DESCRIPTION:Get up-to-date information at: https://luma.com/cfm\n\nAddress
+ :\nCIC Cambridge @ 1 Broadway\nBring a government-issued photo ID to pass 
+ through building security.\nCambridge, Massachusetts\nUnited States
+LOCATION:CIC Cambridge @ 1 Broadway, 1 Broadway, Cambridge, MA 02142, USA
+GEO:42.362912;-71.083929
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240130T223000Z
+DTEND:20240131T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-m9qazknjsJBtm0C@events.lu.ma
+SUMMARY:Money Matters Magic: Laying Your Business’ Financial Foundation
+DESCRIPTION:Get up-to-date information at: https://luma.com/moneymagic\n\n
+ Address:\nSuffolk University Law School\nRight on Boston Common, accessibl
+ e by the T, car or train to South Station. Located on the 5th Floor. There
+  will be folks from the Startup Boston team to guide you!\nBoston, Massach
+ usetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:Suffolk University Law School, 120 Tremont St, Boston, MA 02108, 
+ USA
+GEO:42.356823;-71.061228
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240306T223000Z
+DTEND:20240307T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-PCqizW2odt6dnwu@events.lu.ma
+SUMMARY:Mentor Matching for First-Time Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/mentor-matchin
+ g\n\nAddress:\nCheck event page for more details.\n\nHosted by Stephanie R
+ oulic
+LOCATION:https://luma.com/event/evt-PCqizW2odt6dnwu
+GEO:42.360592690487024;-71.0564841869972
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240313T130000Z
+DTEND:20240313T143000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-VYWGtSmbtgGVphx@events.lu.ma
+SUMMARY:Startup Boston's Dealflow Mixer, Featuring Underrepresented Founde
+ rs
+DESCRIPTION:Get up-to-date information at: https://luma.com/dfm\n\nAddress
+ :\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-VYWGtSmbtgGVphx
+GEO:42.358969710453614;-71.05866585528452
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240408T213047Z
+DTEND:20240408T230047Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Vivek Udaykumar":MAILTO:calendar-invite@lu.ma
+UID:evt-AGjcmrDASvfFp0N@events.lu.ma
+SUMMARY:Cofounder Matching
+DESCRIPTION:Get up-to-date information at: https://luma.com/cfm_april8\n\n
+ Address:\nCheck event page for more details.\n\nHosted by Vivek Udaykumar 
+ & Katie Bailey
+LOCATION:https://luma.com/event/evt-AGjcmrDASvfFp0N
+GEO:42.35700207013522;-71.05733890594588
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240430T133000Z
+DTEND:20240430T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-20dTi2NfALJciEz@events.lu.ma
+SUMMARY:Startup Boston's Dealflow Mixer, Featuring CIC's Social Impact Coh
+ ort
+DESCRIPTION:Get up-to-date information at: https://luma.com/dfm_social-imp
+ act\n\nAddress:\nCheck event page for more details.\n\nHosted by Stephanie
+  Roulic & Kat Lazell, CIC Social Impact Cohort Program Manager
+LOCATION:https://luma.com/event/evt-20dTi2NfALJciEz
+GEO:42.360930575030956;-71.08256086432071
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240606T130057Z
+DTEND:20240606T143057Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Jax":MAILTO:calendar-invite@lu.ma
+UID:evt-r7JJPNScJblA6MK@events.lu.ma
+SUMMARY:Startup Boston's Dealflow Mixer, Featuring Series A B2B SaaS Start
+ ups
+DESCRIPTION:Get up-to-date information at: https://luma.com/dfm_june6\n\nA
+ ddress:\nCheck event page for more details.\n\nHosted by Jax & Aruna Mandu
+ lapalli
+LOCATION:https://luma.com/event/evt-r7JJPNScJblA6MK
+GEO:42.35324232962208;-71.05323344975196
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240606T213000Z
+DTEND:20240606T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-afAUMeDBsHI5u5E@events.lu.ma
+SUMMARY:Panel, Networking and Tabling, Oh My!: The Greater Boston Accelera
+ tor Scene
+DESCRIPTION:Get up-to-date information at: https://luma.com/accelerator\n
+ \nAddress:\n120 Tremont St\nHosted at Suffolk University's Law School on t
+ he 5th Floor - Startup Boston Staff will be there to greet you! \nBoston, 
+ Massachusetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:120 Tremont St, Boston, MA 02108, USA
+GEO:42.356722;-71.061444
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240715T213026Z
+DTEND:20240715T230026Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Adham":MAILTO:calendar-invite@lu.ma
+UID:evt-VdS9eEswezCqAU9@events.lu.ma
+SUMMARY:Cofounder Matching
+DESCRIPTION:Get up-to-date information at: https://luma.com/eve9enb9\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Adham & Josh Poiri
+ er, CIC
+LOCATION:https://luma.com/event/evt-VdS9eEswezCqAU9
+GEO:42.36338515872248;-71.08586905487306
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240807T213000Z
+DTEND:20240807T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-HSl9KXmM5ESCUkd@events.lu.ma
+SUMMARY:Help an Entrepreneur Out: Elevate the Startup Community Together
+DESCRIPTION:Get up-to-date information at: https://luma.com/jc0p1s9y\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Shanice Wallace
+LOCATION:https://luma.com/event/evt-HSl9KXmM5ESCUkd
+GEO:42.36085589574513;-71.06112502916424
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241203T223000Z
+DTEND:20241204T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-KLZveMmksIcMwvI@events.lu.ma
+SUMMARY:FounderConnect: Startup Resources & Networking Expo
+DESCRIPTION:Get up-to-date information at: https://luma.com/22gnfeuw\n\nAd
+ dress:\nOne Broadway\n5th Floor; Venture Cafe\nCambridge, Massachusetts\nU
+ nited States\n\nHosted by Stephanie Roulic, Kat Lazell, CIC Social Impact 
+ Cohort Program Manager & Sam Garcia
+LOCATION:One Broadway, 1 Broadway, Cambridge, MA 02142, USA
+GEO:42.362782;-71.083538
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250129T223000Z
+DTEND:20250130T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-kBv3Fx36KiPJZfm@events.lu.ma
+SUMMARY:All Industries, One Night: Meet Boston’s Startup Networking Scen
+ e
+DESCRIPTION:Get up-to-date information at: https://luma.com/5bu0e1fp\n\nAd
+ dress:\n120 Tremont St\nHosted at Suffolk University's Law School on the 5
+ th Floor - Startup Boston Staff will be there to greet you! \nBoston, Mass
+ achusetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:120 Tremont St, Boston, MA 02108, USA
+GEO:42.356722;-71.061444
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250226T223000Z
+DTEND:20250227T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-UYyZMK3i1iCArd1@events.lu.ma
+SUMMARY:Mentor Matching for First-Time Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/8nflghbe\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-UYyZMK3i1iCArd1
+GEO:42.35575530244198;-71.05934165224417
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250325T213000Z
+DTEND:20250325T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-BHuOxfjeHAJ4nnJ@events.lu.ma
+SUMMARY:FounderConnect: Startup Resources & Networking Expo
+DESCRIPTION:Get up-to-date information at: https://luma.com/a6gjb1u2\n\nAd
+ dress:\nOne Broadway\n5th Floor; Venture Cafe\nCambridge, Massachusetts\nU
+ nited States\n\nHosted by Stephanie Roulic, Kat Lazell, CIC Social Impact 
+ Cohort Program Manager & Sam Garcia
+LOCATION:One Broadway, 1 Broadway, Cambridge, MA 02142, USA
+GEO:42.362782;-71.083538
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250414T213000Z
+DTEND:20250414T230000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-oqiqxvoubJpBIWV@events.lu.ma
+SUMMARY:Cofounder Matching
+DESCRIPTION:Get up-to-date information at: https://luma.com/ndq7ij5z\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-oqiqxvoubJpBIWV
+GEO:42.475766970422995;-71.19184732019076
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250501T133000Z
+DTEND:20250501T153000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-X4Jj6jXJENZxLet@events.lu.ma
+SUMMARY:Startup Boston's Dealflow Mixer, Featuring CIC's Social Impact Coh
+ ort
+DESCRIPTION:Get up-to-date information at: https://luma.com/l2iipeyt\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-X4Jj6jXJENZxLet
+GEO:42.361547198709474;-71.08581462587043
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250514T213000Z
+DTEND:20250514T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-IGd0d9hUKbDElQy@events.lu.ma
+SUMMARY:Backing the Future: How to Become an Angel Investor
+DESCRIPTION:Get up-to-date information at: https://luma.com/vwrjphvt\n\nAd
+ dress:\nOne Kendall Square\nBuilding 200, Suite B2106\nCambridge, Massachu
+ setts\nUnited States\n\nHosted by Stephanie Roulic, Candace MacDonald & El
+ izabeth Thomas
+LOCATION:One Kendall Square, 1 Kendall Square, Cambridge, MA 02139, USA
+GEO:42.367304;-71.090121
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250604T213000Z
+DTEND:20250604T230000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-7BT9JjHNPAYMWSL@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/td5ex6uz\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Johnny Rice
+LOCATION:https://luma.com/event/evt-7BT9JjHNPAYMWSL
+GEO:42.357327593938855;-71.06117282755669
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250623T213000Z
+DTEND:20250623T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-rmJ8idiFTqXsHPt@events.lu.ma
+SUMMARY:Meet the Accelerators: Find the Right Program for Your Startup
+DESCRIPTION:Get up-to-date information at: https://luma.com/pyhixvbn\n\nAd
+ dress:\n53 State St\nBring your Government-Issued ID (such as a Drivers Li
+ cense) for check-in at the desk in the Lobby.\nThe event is hosted at Sili
+ con Valley Bank (28th Floor).\nBoston, Massachusetts\nUnited States\n\nHos
+ ted by Stephanie Roulic
+LOCATION:53 State St, Boston, MA 02109, USA
+GEO:42.35876;-71.05627
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250805T220000Z
+DTEND:20250806T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-bD2rFZyG2vIrEIT@events.lu.ma
+SUMMARY:RAG in the Real World: Lessons from Implementing AI Agents in Busi
+ ness Workflows
+DESCRIPTION:Get up-to-date information at: https://luma.com/z7aw9gel\n\nAd
+ dress:\nWorkbar Boston\nBring your I.D. to show at the security desk!\nBos
+ ton, Massachusetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:Workbar Boston, 24 School St 2nd floor, Boston, MA 02108, USA
+GEO:42.3575797;-71.0592159
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250818T213000Z
+DTEND:20250818T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-jbgqrsN5gkm8gBG@events.lu.ma
+SUMMARY:Cofounder Matching
+DESCRIPTION:Get up-to-date information at: https://luma.com/s4y0ujup\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-jbgqrsN5gkm8gBG
+GEO:42.34697122354585;-71.10661071965328
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250909T213000Z
+DTEND:20250909T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-dwDZTA3jg9ezEyx@events.lu.ma
+SUMMARY:Growth-Stage Startup Leadership Mixer
+DESCRIPTION:Get up-to-date information at: https://luma.com/o2sjuo8h\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Lily Volper
+LOCATION:https://luma.com/event/evt-dwDZTA3jg9ezEyx
+GEO:42.35771696379064;-71.05300742143173
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251014T213000Z
+DTEND:20251014T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-1OfMURoS6K13RHB@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/o4hhy4ak\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-1OfMURoS6K13RHB
+GEO:42.364204616696966;-71.08452674368743
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251015T220000Z
+DTEND:20251016T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-31nW2bqskCP0A7G@events.lu.ma
+SUMMARY:B2B Founders' Dinner
+DESCRIPTION:Get up-to-date information at: https://luma.com/1qofogc3\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic, 
+ Drew Parten & rachel
+LOCATION:https://luma.com/event/evt-31nW2bqskCP0A7G
+GEO:42.3681782751801;-71.05774530837893
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251021T213000Z
+DTEND:20251021T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-fyGe2wihxlUmFDA@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/ty4u7try\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-fyGe2wihxlUmFDA
+GEO:42.359534161892135;-71.05948007405715
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251027T220000Z
+DTEND:20251028T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-5HA70D8gBQfHJXp@events.lu.ma
+SUMMARY:Pitching Boston’s Future: A Climatetech Showcase for Underrepres
+ ented Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/aq1rb4p6\n\nAd
+ dress:\nBoston City Hall\nBoston, Massachusetts\nUnited States\n\nHosted b
+ y Stephanie Roulic
+LOCATION:Boston City Hall, 1 City Hall Square, Boston, MA 02201, USA
+GEO:42.360406;-71.057993
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251105T230000Z
+DTEND:20251106T010000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-0WqOtjdaEO09xKS@events.lu.ma
+SUMMARY:B2B Tech Founders' Dinner
+DESCRIPTION:Get up-to-date information at: https://luma.com/m35qdzg1\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic, 
+ Jaclyn Jussif & Ben Hron
+LOCATION:https://luma.com/event/evt-0WqOtjdaEO09xKS
+GEO:42.360532274784994;-71.0553276356286
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251106T230000Z
+DTEND:20251107T010000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-LUuVMStV29OgPnu@events.lu.ma
+SUMMARY:Lifting as We Climb: Building Community and Capital for Underrepre
+ sented Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/u3o2jurk\n\nAd
+ dress:\nCivic Pavilion\nBoston, Massachusetts\nUnited States\n\nHosted by 
+ Stephanie Roulic
+LOCATION:Civic Pavilion, 5 Congress St, Boston, MA 02203, USA
+GEO:42.3610286;-71.05819050000001
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251118T223000Z
+DTEND:20251119T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-oSIeqO7eQ0E7TTF@events.lu.ma
+SUMMARY:FounderConnect: Startup Resources & Networking Expo
+DESCRIPTION:Get up-to-date information at: https://luma.com/w1gkzhtl\n\nAd
+ dress:\nOne Broadway\n5th Floor; Venture Cafe\nCambridge, Massachusetts\nU
+ nited States\n\nHosted by Stephanie Roulic
+LOCATION:One Broadway, 1 Broadway, Cambridge, MA 02142, USA
+GEO:42.362782;-71.083538
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251119T223000Z
+DTEND:20251120T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-VoyUDqCNAQjIscO@events.lu.ma
+SUMMARY:Hands-On Workshop: Building a Voice-Enabled AI Agent That Actually
+  Understands You
+DESCRIPTION:Get up-to-date information at: https://luma.com/ku4115ck\n\nAd
+ dress:\nWorkbar Boston\nBring your I.D. to show at the security desk!\nBos
+ ton, Massachusetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:Workbar Boston, 24 School St 2nd floor, Boston, MA 02108, USA
+GEO:42.3575797;-71.0592159
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251210T143000Z
+DTEND:20251210T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-pktJoFnZVsyx1vH@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/sq9qcnq7\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-pktJoFnZVsyx1vH
+GEO:42.35749698707843;-71.05450374566439
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260112T223000Z
+DTEND:20260113T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-7zQlZduqhIEbRCY@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/qxhxvsv1\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-7zQlZduqhIEbRCY
+GEO:42.361244066876246;-71.06118416718475
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260114T143000Z
+DTEND:20260114T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-GAogwmd2MjbfXEt@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/3ufo8moa\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-GAogwmd2MjbfXEt
+GEO:42.35856742752337;-71.0538284885545
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260129T140000Z
+DTEND:20260129T170000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-GeSGMDAzm6UWLXh@events.lu.ma
+SUMMARY:Quarterly Ecosystem Leaders Roundtable
+DESCRIPTION:Get up-to-date information at: https://luma.com/exi33cvc\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Elena LoBianco
+LOCATION:https://luma.com/event/evt-GeSGMDAzm6UWLXh
+GEO:42.357566260158386;-71.05808263346243
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260130T143000Z
+DTEND:20260130T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-WCg0fXspy8KFaUh@events.lu.ma
+SUMMARY:Dealflow Mixer: Connecting Investors & Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/pmf2zgkf\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-WCg0fXspy8KFaUh
+GEO:42.35959571270411;-71.05654452581989
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260203T223000Z
+DTEND:20260204T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-fZf81xrPgVkx0lD@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/87umu7xd\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-fZf81xrPgVkx0lD
+GEO:42.29573967763659;-71.26549928330948
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260209T223000Z
+DTEND:20260210T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-8zhWteEMEgL4P7J@events.lu.ma
+SUMMARY:All Industries, One Night: Meet Boston’s Startup Networking Grou
+ ps
+DESCRIPTION:Get up-to-date information at: https://luma.com/0kyxv5e7\n\nAd
+ dress:\nNutter McClennen & Fish LLP\nBoston, Massachusetts\nUnited States
+ \n\nHosted by Stephanie Roulic
+LOCATION:Nutter McClennen & Fish LLP, 155 Seaport Blvd, Boston, MA 02210, 
+ USA
+GEO:42.349609699999995;-71.0427217
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260211T143000Z
+DTEND:20260211T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-tVPLdDrPhMBGTfG@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/6843s351\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Ben Maitland-Lewis (SVB / YC alum)
+LOCATION:https://luma.com/event/evt-tVPLdDrPhMBGTfG
+GEO:42.36046780268565;-71.0569715343309
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260227T143000Z
+DTEND:20260227T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-mydUcJa1Y7f6d2F@events.lu.ma
+SUMMARY:Dealflow Mixer: Connecting Investors & Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/kz49kluj\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic, 
+ Asha Patel & Sophia Kambanis
+LOCATION:https://luma.com/event/evt-mydUcJa1Y7f6d2F
+GEO:42.35752907674311;-71.05881628290956
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260302T223000Z
+DTEND:20260303T003000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-77M5I3aQLF0cCZU@events.lu.ma
+SUMMARY:Cofounder Matching: Life Science & Biomedical Edition
+DESCRIPTION:Get up-to-date information at: https://luma.com/4dduqrng\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-77M5I3aQLF0cCZU
+GEO:42.347683780420766;-71.07695999268411
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260304T143000Z
+DTEND:20260304T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-czzHR6yEzXHbB9q@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/k0a5nyjv\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Ben Maitland-Lewis (SVB / YC alum)
+LOCATION:https://luma.com/event/evt-czzHR6yEzXHbB9q
+GEO:42.35718509496666;-71.05744992505683
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260304T230000Z
+DTEND:20260305T010000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-x9pPRHEbFlKKAqh@events.lu.ma
+SUMMARY:Founder or Operator? Finding Your Path in Startups
+DESCRIPTION:Get up-to-date information at: https://luma.com/g2w3a037\n\nAd
+ dress:\n120 Tremont St\n5th floor - Commons Room (Suffolk University)\nBos
+ ton, Massachusetts\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:120 Tremont St, Boston, MA 02108, USA
+GEO:42.3569939;-71.0612915
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260310T213000Z
+DTEND:20260310T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-sELfVzQlHaHO2zQ@events.lu.ma
+SUMMARY:FounderConnect: Startup Resources & Networking Expo
+DESCRIPTION:Get up-to-date information at: https://luma.com/by31ynee\n\nAd
+ dress:\n1 Broadway\n5th Floor; Venture Cafe\nCambridge, Massachusetts\nUni
+ ted States\n\nHosted by Stephanie Roulic
+LOCATION:1 Broadway, Cambridge, MA 02142, USA
+GEO:42.362782;-71.083538
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260323T213000Z
+DTEND:20260323T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-dviKe5szVBwVNCj@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/ts2vn30y\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-dviKe5szVBwVNCj
+GEO:42.3614492116032;-71.05894171195858
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260324T220000Z
+DTEND:20260325T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-qEYhbrUqEyuXA3G@events.lu.ma
+SUMMARY:Founders' Dinner
+DESCRIPTION:Get up-to-date information at: https://luma.com/3dz0vqcs\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Drew Parten
+LOCATION:https://luma.com/event/evt-qEYhbrUqEyuXA3G
+GEO:42.35668577004867;-71.05467034970535
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260327T133000Z
+DTEND:20260327T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-7QvAzaGCgykMOpj@events.lu.ma
+SUMMARY:Dealflow Mixer: Connecting Investors & Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/fn56iizh\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-7QvAzaGCgykMOpj
+GEO:42.362966700234416;-71.05822635259774
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260330T213000Z
+DTEND:20260330T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-FYV5SYp7MKnOssL@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/u5x15n58\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-FYV5SYp7MKnOssL
+GEO:42.35570732412399;-71.0589481066534
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260408T133000Z
+DTEND:20260408T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-mRsDqKMMgRr3NEV@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/pxj9fw8t\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Ben Maitland-Lewis (SVB / YC alum)
+LOCATION:https://luma.com/event/evt-mRsDqKMMgRr3NEV
+GEO:42.35698097343842;-71.0566898967535
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260414T213000Z
+DTEND:20260414T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-FZilB0JBBFjIAo5@events.lu.ma
+SUMMARY:Built in Boston: A Student Founder Pitch Showcase
+DESCRIPTION:Get up-to-date information at: https://luma.com/w02dy6dj\n\nAd
+ dress:\nBoston City Hall\nBoston, Massachusetts\nUnited States\n\nHosted b
+ y Stephanie Roulic
+LOCATION:Boston City Hall, 1 City Hall Square, Boston, MA 02201, USA
+GEO:42.360406;-71.057993
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260416T160000Z
+DTEND:20260416T180000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-ZiU4DQKBWUckrET@events.lu.ma
+SUMMARY:Founders' Lunch
+DESCRIPTION:Get up-to-date information at: https://luma.com/tz2n2gb7\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic, 
+ Drew Parten & Adam Fisk
+LOCATION:https://luma.com/event/evt-ZiU4DQKBWUckrET
+GEO:42.35493838711936;-71.05317302843338
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260427T213000Z
+DTEND:20260427T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-I594oGJvWC1pF6N@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/lmr80umd\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-I594oGJvWC1pF6N
+GEO:42.358926468702016;-71.0602326120731
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260429T130000Z
+DTEND:20260429T140000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-4ozHiXIKj16fcww@events.lu.ma
+SUMMARY:How to Become an Angel Investor
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://startupboston.registration.goldcast.io/webinar/040e2fac-d
+ 58a-4010-afb8-279525e69ecc
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260430T130000Z
+DTEND:20260430T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-i1rQWHcTsg9D4AN@events.lu.ma
+SUMMARY:Quarterly Ecosystem Leaders Roundtable
+DESCRIPTION:Get up-to-date information at: https://luma.com/dvlld966\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Elena LoBianco
+LOCATION:https://luma.com/event/evt-i1rQWHcTsg9D4AN
+GEO:42.357351755587985;-71.05778108933973
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260504T213000Z
+DTEND:20260504T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-jDMwVMQF0tPP8wk@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/or1d3kq4\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-jDMwVMQF0tPP8wk
+GEO:42.3506389346908;-71.05396096756654
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260506T133000Z
+DTEND:20260506T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-JIW2SpQOS3hPJe2@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/wyp0f9ir\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-JIW2SpQOS3hPJe2
+GEO:42.358094279231125;-71.05851656578625
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260506T213000Z
+DTEND:20260506T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-xayL7ArGDvLUYs2@events.lu.ma
+SUMMARY:From Vibe-Coding to Viable Products: How AI-Native Teams Ship
+DESCRIPTION:Get up-to-date information at: https://luma.com/fzfjzetn\n\nAd
+ dress:\n24 School St\nBoston, MA\nUnited States\n\nHosted by Stephanie Rou
+ lic
+LOCATION:24 School St, Boston, MA 02108, USA
+GEO:42.357596199999996;-71.0592206
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260521T133000Z
+DTEND:20260521T153000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-qKJUzNtVEGaZw3x@events.lu.ma
+SUMMARY:Startup Boston's Dealflow Mixer, Featuring CIC's Social Impact Coh
+ ort
+DESCRIPTION:Get up-to-date information at: https://luma.com/apsvn8bf\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-qKJUzNtVEGaZw3x
+GEO:42.36271176696976;-71.0813327016814
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260526T213000Z
+DTEND:20260527T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-RdI0zNyqdP9Jcec@events.lu.ma
+SUMMARY:Test Early-Stage Startups IRL #BOSTechWeek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/ne4II9Tl18u9TFtppGi5
+GEO:42.36;-71.06
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260526T220000Z
+DTEND:20260527T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-4taACKIISyxAuxR@events.lu.ma
+SUMMARY:UGLY TALK: BOSTON TECH FOUNDER OPEN MIC + MIXER #BOSTechWeek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/ULaZqmUgUxWA36bJEluK
+GEO:42.36;-71.06
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260527T220000Z
+DTEND:20260528T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-pcMLXvGRvY6FXGs@events.lu.ma
+SUMMARY:Ugly Talk: Building and Scaling Tech Companies in Boston #BOSTechW
+ eek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/4woX7YBtWcTRd0u8r8dX
+GEO:42.35;-71.08
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260528T200000Z
+DTEND:20260528T230000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="TBD Angels":MAILTO:calendar-invite@lu.ma
+UID:calev-ZKTZvKwkDnxDa4Y@events.lu.ma
+SUMMARY:TBD Angels @ Boston Tech Week 2026 - #BOSTechWeek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/tpDpzv8okndu6S4eKRir
+GEO:42.35;-71.07
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260529T160000Z
+DTEND:20260529T180000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-OoiackUhPNYUGHn@events.lu.ma
+SUMMARY:Female founders and funders lunch - #BOSTechWeek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/sDlEo3UpFBjEpLAdby4z
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260529T180000Z
+DTEND:20260529T200000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Startup Boston":MAILTO:calendar-invite@lu.ma
+UID:calev-WYI72R1rs706nx8@events.lu.ma
+SUMMARY:Ugly Talk: Growing Pains for Tech Companies #BOSTechWeek
+DESCRIPTION:Find more information on https://luma.com/startupbosorg
+LOCATION:https://partiful.com/e/shukXUXpQsVnJHEFGicA
+GEO:42.36;-71.08
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260601T213000Z
+DTEND:20260601T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-opilOj9aRujc6vV@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/p1u7k048\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-opilOj9aRujc6vV
+GEO:42.34974728503779;-71.04990960254723
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260608T213000Z
+DTEND:20260608T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-HFS4U9kyN7joIQ1@events.lu.ma
+SUMMARY:Meet the Accelerators & Incubators of Boston's Startup Scene
+DESCRIPTION:Get up-to-date information at: https://luma.com/vs5e87pz\n\nAd
+ dress:\nFoley & Lardner LLP: Alicia Dorner\nBring your photo I.D. for the 
+ security desk!\nBoston, MA\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:Foley & Lardner LLP: Alicia Dorner, 111 Huntington Ave Suite 2500
+ , Boston, MA 02199, USA
+GEO:42.346095999999996;-71.081451
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260610T133000Z
+DTEND:20260610T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-jT6UC99AH15iHKK@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/pckwt21r\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-jT6UC99AH15iHKK
+GEO:42.360526673607474;-71.05662927904432
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260611T133000Z
+DTEND:20260611T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-S5JBlVYMFIGEkgx@events.lu.ma
+SUMMARY:Dealflow Mixer: Connecting Investors & Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/ymp69g6z\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-S5JBlVYMFIGEkgx
+GEO:42.354137171273315;-71.04399211575745
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260615T213000Z
+DTEND:20260615T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-w9gLuq2oW7bfDTf@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/gal1fa06\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-w9gLuq2oW7bfDTf
+GEO:42.359816519905806;-71.05678999465316
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260617T130000Z
+DTEND:20260617T143000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-nZFjB4cdAaLacaK@events.lu.ma
+SUMMARY:Founders' Breakfast: Life Science & BioTech Edition
+DESCRIPTION:Get up-to-date information at: https://luma.com/m6ideb7t\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  3 others
+LOCATION:https://luma.com/event/evt-nZFjB4cdAaLacaK
+GEO:42.362224988193425;-71.08379067222448
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260715T133000Z
+DTEND:20260715T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-81WhCtZJ7lqgbie@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/ycgw9ebm\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-81WhCtZJ7lqgbie
+GEO:42.35872849431247;-71.05381609041346
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260730T130000Z
+DTEND:20260730T160000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-AFr6NMjM6L7OZN2@events.lu.ma
+SUMMARY:Quarterly Ecosystem Leaders Roundtable
+DESCRIPTION:Get up-to-date information at: https://luma.com/540zh79q\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-AFr6NMjM6L7OZN2
+GEO:42.360521829105345;-71.05583126914487
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260803T213000Z
+DTEND:20260803T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-qjThREX5ZMHzTUU@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/2s6ssa73\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-qjThREX5ZMHzTUU
+GEO:42.35929852869145;-71.05877746653223
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260810T213000Z
+DTEND:20260810T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-6XT3JpnhN2oNvqe@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/wyrga6dd\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-6XT3JpnhN2oNvqe
+GEO:42.35105266680041;-71.04947339837281
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260812T133000Z
+DTEND:20260812T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-N3KUrnCuBQnJA3m@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/c682cv9k\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-N3KUrnCuBQnJA3m
+GEO:42.36050260791897;-71.05570282453995
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260915T220000Z
+DTEND:20260916T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-Qe3AFZZvIFqzvaD@events.lu.ma
+SUMMARY:Founders' Dinner @ Startup Boston Week
+DESCRIPTION:Get up-to-date information at: https://luma.com/ofnz0h5j\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Elena LoBianco
+LOCATION:https://luma.com/event/evt-Qe3AFZZvIFqzvaD
+GEO:42.347906937131235;-71.10780319873098
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260916T220000Z
+DTEND:20260917T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-IArycDQk6dVHtlY@events.lu.ma
+SUMMARY:Founders' Dinner @ Startup Boston Week
+DESCRIPTION:Get up-to-date information at: https://luma.com/hlhxeqc8\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  3 others
+LOCATION:https://luma.com/event/evt-IArycDQk6dVHtlY
+GEO:42.34760855657015;-71.10784486606002
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260918T160000Z
+DTEND:20260918T173000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-WxfTHbqW3jWWNId@events.lu.ma
+SUMMARY:Life Science Ecosystem Lunch @ SBW2026
+DESCRIPTION:Get up-to-date information at: https://luma.com/pvyg8cr4\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Elena LoBianco
+LOCATION:https://luma.com/event/evt-WxfTHbqW3jWWNId
+GEO:42.36035582257647;-71.05609645725607
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261002T220000Z
+DTEND:20261003T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-B0xiBbNKKyvF6EA@events.lu.ma
+SUMMARY:Cross University Student Innovators Mixer (CUSI)
+DESCRIPTION:Get up-to-date information at: https://luma.com/y2x4zjue\n\nAd
+ dress:\n200 College Ave\nTsungming Tu Complex - Patio and Atrium (Tufts Un
+ iversity)\nMedford, MA\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:200 College Ave, Medford, MA 02155, USA
+GEO:42.406158399999995;-71.11724439999999
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261013T213000Z
+DTEND:20261013T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-VBSobsEvBjtZmxT@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/znp27zjt\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-VBSobsEvBjtZmxT
+GEO:42.36195390309824;-71.08606931980226
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261014T133000Z
+DTEND:20261014T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-gUehFX1OYKLMEfW@events.lu.ma
+SUMMARY:She Builds Boston: brewing bold ideas
+DESCRIPTION:Get up-to-date information at: https://luma.com/0fammudz\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-gUehFX1OYKLMEfW
+GEO:42.35915821639365;-71.0586205650905
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261016T133000Z
+DTEND:20261016T150000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-wBCPpBwK3kHmHYE@events.lu.ma
+SUMMARY:Dealflow Mixer: Connecting Investors & Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/dmjcmwu9\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-wBCPpBwK3kHmHYE
+GEO:42.357042101251;-71.05951337872327
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261019T213000Z
+DTEND:20261019T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-dquHN2UodKT4ekf@events.lu.ma
+SUMMARY:Mentor Matching for Early-Stage Founders
+DESCRIPTION:Get up-to-date information at: https://luma.com/fkboay13\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-dquHN2UodKT4ekf
+GEO:42.343232464154;-71.10045063886727
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261020T220000Z
+DTEND:20261021T000000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-RnHdLuSNFs0e27h@events.lu.ma
+SUMMARY:Founders' Dinner @ Startup Boston Week
+DESCRIPTION:Get up-to-date information at: https://luma.com/v1wfa1if\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic
+LOCATION:https://luma.com/event/evt-RnHdLuSNFs0e27h
+GEO:42.3523448438355;-71.04473066414496
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261102T213000Z
+DTEND:20261102T233000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-CrktmP39reeyzXs@events.lu.ma
+SUMMARY:Cofounder Matching: Meet Your Future Founding Team
+DESCRIPTION:Get up-to-date information at: https://luma.com/q5rqgq46\n\nAd
+ dress:\nBabson College\nKnight Auditorium (will send directions prior!)\nW
+ ellesley, Massachusetts\nUnited States\n\nHosted by Stephanie Roulic & Nac
+ hiket Rane
+LOCATION:Babson College, 231 Forest St, Babson Park, MA 02457, USA
+GEO:42.2970915;-71.26492019999999
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261105T140000Z
+DTEND:20261105T170000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-BMmxCyL76q3Zxp0@events.lu.ma
+SUMMARY:Quarterly Ecosystem Leaders Roundtable
+DESCRIPTION:Get up-to-date information at: https://luma.com/u1lstd6u\n\nAd
+ dress:\nCheck event page for more details.\n\nHosted by Stephanie Roulic &
+  Elena LoBianco
+LOCATION:https://luma.com/event/evt-BMmxCyL76q3Zxp0
+GEO:42.357209630714905;-71.05750672359495
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261105T230000Z
+DTEND:20261106T010000Z
+DTSTAMP:20261016T052125Z
+ORGANIZER;CN="Stephanie Roulic":MAILTO:calendar-invite@lu.ma
+UID:evt-5FGxBzcpHLY61V5@events.lu.ma
+SUMMARY:AI Is Changing Entry-Level Jobs. So WTF Should Students Learn?
+DESCRIPTION:Get up-to-date information at: https://luma.com/3o5kpi6c\n\nAd
+ dress:\nKlaviyo\nPlease bring a Photo ID for the security desk.\nBoston, M
+ A\nUnited States\n\nHosted by Stephanie Roulic
+LOCATION:Klaviyo, 125 Summer St Fl 7, Boston, MA 02111, USA
+GEO:42.3531058;-71.0574147
+SEQUENCE:214291285
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

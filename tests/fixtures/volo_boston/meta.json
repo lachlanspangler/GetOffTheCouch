@@ -1,0 +1,9 @@
+{
+  "unit": "volo_boston@boston",
+  "recorded_at": "2026-10-16T05:06:30+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; trimmed to the 'N ways to play' counter + results grid + pagination (markup unmodified; head/scripts/footer dropped to keep the repo small)",
+  "urls": {
+    "payload_0.html": "https://www.volosports.com/discover/boston?category=leagues&includeFees=true"
+  }
+}

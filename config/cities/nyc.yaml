@@ -162,3 +162,65 @@ sources:
       max: 200
       organizer: New York University
       default_category: learning.networking
+
+  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
+sources:
+  - id: volo_nyc
+    adapter: volo
+    name: Volo Sports New York
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/new-york-metro-area?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: new-york-metro-area
+      max_pages: 7
+  - id: nyc_service
+    adapter: handsonconnect
+    name: NYC Service
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.nycservice.org/calendar
+    expect_min_records: 1
+    params:
+      base_url: https://www.nycservice.org
+      block_id: 2073
+      horizon_days: 14
+      window_days: 2
+  - id: luma_lit_club_nyc
+    adapter: ics
+    name: Lit Club NYC (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/nyc
+    expect_min_records: 1
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-ItTR6nQ7r4wIvFf
+      horizon_days: 45
+      organizer: Lit Club NYC
+      default_category: arts.books
+  - id: luma_ny_philosophy_club
+    adapter: ics
+    name: The New York Philosophy Club (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/nyc
+    expect_min_records: 1
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-dGP82mVkrg1FRmr
+      horizon_days: 45
+      organizer: The New York Philosophy Club
+      default_category: arts.books
+  - id: luma_corgi_nyc
+    adapter: ics
+    name: Corgi NYC (Luma)
+    data_type: recurring
+    cadence_hours: 12
+    homepage: https://luma.com/nyc
+    expect_min_records: 0
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-H1FY60pnZtchaf4
+      horizon_days: 45
+      organizer: Corgi NYC
+      default_category: fitness.run_club

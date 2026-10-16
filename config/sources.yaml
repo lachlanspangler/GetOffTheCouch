@@ -34,3 +34,36 @@ sources:
     homepage: https://platform.seatgeek.com/
     expect_min_records: 5
     params: { horizon_days: 120, max_pages: 20 }
+
+  # UpcomingCons: national list pages with schema.org Event microdata; each city keeps its own cons (locality +
+  # state match against the city name/aliases). One global source instead of 10 identical per-city entries.
+  - id: upcomingcons
+    adapter: upcomingcons
+    name: UpcomingCons
+    data_type: conventions
+    scope: all_cities
+    cadence_hours: 168
+    min_interval_s: 3
+    homepage: https://www.upcomingcons.com/
+    expect_min_records: 0       # a city with no con on the list is normal, not a failure
+    params:
+      base_url: https://www.upcomingcons.com
+      pages: [anime-cons, comic-conventions, gaming-conventions, science-fiction-conventions]  # union, deduped
+      extra_localities:
+        chicago: [Rosemont, Schaumburg]
+
+  # Maker Faire global map JSON. Keyless + robots-allowed, but Cloudflare serves our client a 403 challenge
+  # (2026-10-16) — disabled until Make: confirms access. Never work around the challenge.
+  - id: makerfaire
+    adapter: makerfaire
+    name: Maker Faire
+    data_type: conventions
+    scope: all_cities
+    cadence_hours: 168
+    enabled: false
+    homepage: https://makerfaire.com/globalmap/
+    expect_min_records: 0
+    notes: "403 Cloudflare challenge to PoliteClient on 2026-10-16 (robots.txt allows /query/)."
+    params:
+      url: https://makerfaire.com/query/?type=map
+      categories: [Featured, Flagship, Mini]

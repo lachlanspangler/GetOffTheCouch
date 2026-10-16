@@ -1,0 +1,666 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Luma//ZOMA House//EN
+X-WR-CALNAME:ZOMA House
+X-WR-CALDESC:Luma Calendar
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:20260307T170000Z
+DTEND:20260307T190000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-e9SwX0l7jVpLOlZ@events.lu.ma
+SUMMARY:The Kitchen Table (with Patience Lekien)
+DESCRIPTION:Get up-to-date information at: https://luma.com/m6sf0sy2\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260318T230000Z
+DTEND:20260319T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-hO04qAaGVI1NEMI@events.lu.ma
+SUMMARY:Work in Progress Screening
+DESCRIPTION:Get up-to-date information at: https://luma.com/8c8wyo1u\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260321T170000Z
+DTEND:20260321T210000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-69hMEFkq78JKAkK@events.lu.ma
+SUMMARY:Spring Clothing Swap
+DESCRIPTION:Get up-to-date information at: https://luma.com/pv0cdqdc\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260325T230000Z
+DTEND:20260326T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-NEvpc1zCMMnHT8n@events.lu.ma
+SUMMARY:Mmanwu Animatic Screening
+DESCRIPTION:Get up-to-date information at: https://luma.com/4xaxippo\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260328T010000Z
+DTEND:20260328T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-0cdo6jZnicsY9HE@events.lu.ma
+SUMMARY:The Living Room (ft. Obi Original)
+DESCRIPTION:Get up-to-date information at: https://luma.com/swgxrkly\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260404T160000Z
+DTEND:20260404T180000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-4p9F08QuRqBXG9v@events.lu.ma
+SUMMARY:The Kitchen Table (with Nicole Crowder)
+DESCRIPTION:Get up-to-date information at: https://luma.com/tla6c5pu\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260410T233000Z
+DTEND:20260411T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-OoEsGKMJWg1CQOd@events.lu.ma
+SUMMARY:Home Theater
+DESCRIPTION:Get up-to-date information at: https://luma.com/x4b59714\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260415T000000Z
+DTEND:20260415T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-5wbunxx3GpdBZAE@events.lu.ma
+SUMMARY:Deep Cuts: Open Aux Listening Party
+DESCRIPTION:Get up-to-date information at: https://luma.com/wyuj60v3\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260419T000000Z
+DTEND:20260419T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-PGplcRFTGOxIrok@events.lu.ma
+SUMMARY:The Crafter Party: Slumber Party Edition
+DESCRIPTION:Get up-to-date information at: https://luma.com/romn71om\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260425T010000Z
+DTEND:20260425T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-KXSdMoD7nw0HAMO@events.lu.ma
+SUMMARY:The Living Room (ft. GR3G)
+DESCRIPTION:Get up-to-date information at: https://luma.com/bitoeawr\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260426T170000Z
+DTEND:20260426T210000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-yF6PI289zlfASLT@events.lu.ma
+SUMMARY:Sista Sunday
+DESCRIPTION:Get up-to-date information at: https://luma.com/bf5jvu21\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, Minnesota\nUnited States\n\nHosted by
+  ZOMA House
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260502T160000Z
+DTEND:20260502T180000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-W5Bhxizgg0gIPkP@events.lu.ma
+SUMMARY:The Kitchen Table (with Ryan Stopera)
+DESCRIPTION:Get up-to-date information at: https://luma.com/i4bnz2rg\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260506T000000Z
+DTEND:20260506T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-IvIavVNHwWbr3Wz@events.lu.ma
+SUMMARY:Game Night
+DESCRIPTION:Get up-to-date information at: https://luma.com/leyloyn9\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260513T000000Z
+DTEND:20260513T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-lDmorUooIL8r2hK@events.lu.ma
+SUMMARY:Deep Cuts: Open Aux Listening Party
+DESCRIPTION:Get up-to-date information at: https://luma.com/dzbo0nkq\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260516T170000Z
+DTEND:20260516T220000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-cbY5UnDWqnbsUBM@events.lu.ma
+SUMMARY:Family Day
+DESCRIPTION:Get up-to-date information at: https://luma.com/weqxwdd6\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260520T000000Z
+DTEND:20260520T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-phpIzNy7uAKBU8q@events.lu.ma
+SUMMARY:Craft Night
+DESCRIPTION:Get up-to-date information at: https://luma.com/pusd9oyx\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260520T210000Z
+DTEND:20260520T230000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-iZ3E7nF2ebz5CJj@events.lu.ma
+SUMMARY:B.Y.O.B - Bring Your Own Book: Kids Storytime
+DESCRIPTION:Get up-to-date information at: https://luma.com/wa1cko22\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260527T000000Z
+DTEND:20260527T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-Q7ZM9IHP5MldzKf@events.lu.ma
+SUMMARY:Karaoke Night
+DESCRIPTION:Get up-to-date information at: https://luma.com/c8yhke70\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260530T010000Z
+DTEND:20260530T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-n2d9kfLdpXFoxmr@events.lu.ma
+SUMMARY:The Living Room (ft. Jada Lynn)
+DESCRIPTION:Get up-to-date information at: https://luma.com/7ydyyiyn\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260531T170000Z
+DTEND:20260531T220000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-tmqfxH2nw4AhHOm@events.lu.ma
+SUMMARY:Doodle Day with Miku
+DESCRIPTION:Get up-to-date information at: https://luma.com/em47qcg1\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260606T160000Z
+DTEND:20260606T180000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-ziIpVgSchFbdrTZ@events.lu.ma
+SUMMARY:The Kitchen Table (with Leslie Barlow)
+DESCRIPTION:Get up-to-date information at: https://luma.com/10s3c4fe\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260624T233000Z
+DTEND:20260625T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-vTACu77KK896Mf1@events.lu.ma
+SUMMARY:Home Theater
+DESCRIPTION:Get up-to-date information at: https://luma.com/2gmek2at\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260627T010000Z
+DTEND:20260627T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-5JZoad958gSerZP@events.lu.ma
+SUMMARY:The Living Room (ft. Vinny Franco)
+DESCRIPTION:Get up-to-date information at: https://luma.com/xh3oeqyc\n\nAd
+ dress:\n1426 W Lake St\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA H
+ ouse
+LOCATION:1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260701T230000Z
+DTEND:20260702T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-dwi4YjGzNQ5w5pb@events.lu.ma
+SUMMARY:DJ Class: Session 1
+DESCRIPTION:Get up-to-date information at: https://luma.com/7o06lyvi\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260702T230000Z
+DTEND:20260703T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-GSb9dMU3xhXbGrI@events.lu.ma
+SUMMARY:The Kitchen Table (with Tall Paul)
+DESCRIPTION:Get up-to-date information at: https://luma.com/al6dn4q3\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260708T230000Z
+DTEND:20260709T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-aMHP98qEPOWmaOw@events.lu.ma
+SUMMARY:DJ Class: Session 2
+DESCRIPTION:Get up-to-date information at: https://luma.com/6w608zux\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260711T020000Z
+DTEND:20260711T050000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-E97wFYJY4WQH5Yr@events.lu.ma
+SUMMARY:Late Night Open Mic: Home Edition
+DESCRIPTION:Get up-to-date information at: https://luma.com/cwl8plxk\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260715T230000Z
+DTEND:20260716T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-nFkJDWaTqvea89d@events.lu.ma
+SUMMARY:DJ Class: Session 3
+DESCRIPTION:Get up-to-date information at: https://luma.com/d3465rx0\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260722T230000Z
+DTEND:20260723T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-0IOE61b3CcwdxZC@events.lu.ma
+SUMMARY:DJ Class: Session 4
+DESCRIPTION:Get up-to-date information at: https://luma.com/6r9f7ltp\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260724T220000Z
+DTEND:20260725T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-rMocJfcHfEXbuZe@events.lu.ma
+SUMMARY:Family Day
+DESCRIPTION:Get up-to-date information at: https://luma.com/oazr5auh\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260729T230000Z
+DTEND:20260730T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-89qtAw1ejCkFRHC@events.lu.ma
+SUMMARY:DJ Class: Session 5
+DESCRIPTION:Get up-to-date information at: https://luma.com/ixvsm9eh\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260807T010000Z
+DTEND:20260807T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-eDKKgGIDpXt7JKD@events.lu.ma
+SUMMARY:Aya of Yop City Screening
+DESCRIPTION:Get up-to-date information at: https://luma.com/pw7nlf05\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260808T000000Z
+DTEND:20260808T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-t4BvwCuPUILqeT0@events.lu.ma
+SUMMARY:Aya Of Yop City: Immersive Film Experience
+DESCRIPTION:Get up-to-date information at: https://luma.com/mwsf7cgi\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260829T010000Z
+DTEND:20260829T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-mPaiKzSxWxno8fq@events.lu.ma
+SUMMARY:The Living Room (ft. Jandeltha Rae)
+DESCRIPTION:Get up-to-date information at: https://luma.com/0ygrrlym\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260905T230000Z
+DTEND:20260906T010000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-ZwvBLCDXiGT9Bff@events.lu.ma
+SUMMARY:The Kitchen Table (with Fancy Lanier-Duncan)
+DESCRIPTION:Get up-to-date information at: https://luma.com/ludh16u9\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260913T210000Z
+DTEND:20260913T230000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-VziwmkOAgLalEiJ@events.lu.ma
+SUMMARY:BIPOC Improv Jam
+DESCRIPTION:Get up-to-date information at: https://luma.com/b11owoz8\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260926T010000Z
+DTEND:20260926T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-WKTYT8m1a2zykDR@events.lu.ma
+SUMMARY:The Living Room (ft. Juice Lord)
+DESCRIPTION:Get up-to-date information at: https://luma.com/lj68w9a9\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260927T010000Z
+DTEND:20260927T050000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-0HdNF1ucUdH2w3W@events.lu.ma
+SUMMARY:Late Night Open Mic 002
+DESCRIPTION:Get up-to-date information at: https://luma.com/qjfuqvnf\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261010T220000Z
+DTEND:20261011T020000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-FMTznbQkNnorwu6@events.lu.ma
+SUMMARY:ZOMA House 1st Birthday Party
+DESCRIPTION:Get up-to-date information at: https://luma.com/zomahouse-79fb
+ \n\nAddress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA
+  House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T000000Z
+DTEND:20261017T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-KkY27KxaAZGGTFo@events.lu.ma
+SUMMARY:Flavors of Home: The WAZOBIA Experience
+DESCRIPTION:Get up-to-date information at: https://luma.com/77rcslil\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261018T000000Z
+DTEND:20261018T030000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-CmsOxBEuyMoDzLr@events.lu.ma
+SUMMARY:Flavors of Home: The WAZOBIA Experience
+DESCRIPTION:Get up-to-date information at: https://luma.com/xrib36s7\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261018T210000Z
+DTEND:20261018T230000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-E4GFHXc0wvGRinA@events.lu.ma
+SUMMARY:BIPOC Improv Jam
+DESCRIPTION:Get up-to-date information at: https://luma.com/slscumjn\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261021T233000Z
+DTEND:20261022T023000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-doJYGh3Ag4tuh25@events.lu.ma
+SUMMARY:Home Theater: Music Video Edition
+DESCRIPTION:Get up-to-date information at: https://luma.com/zomahouse-4kna
+ \n\nAddress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA
+  House & TDM5 COLLECTIVE
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261031T010000Z
+DTEND:20261031T033000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-N2yixf6f4qEkk1Y@events.lu.ma
+SUMMARY:The Living Room ft. Mack OC
+DESCRIPTION:Get up-to-date information at: https://luma.com/zomahouse-jkdr
+ \n\nAddress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA
+  House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261108T220000Z
+DTEND:20261109T000000Z
+DTSTAMP:20261016T050318Z
+ORGANIZER;CN="ZOMA House":MAILTO:calendar-invite@lu.ma
+UID:evt-sDWgw0lPbHhFrkj@events.lu.ma
+SUMMARY:BIPOC Improv Jam
+DESCRIPTION:Get up-to-date information at: https://luma.com/kiz89zos\n\nAd
+ dress:\nZOMA House\nMinneapolis, MN\nUnited States\n\nHosted by ZOMA House
+LOCATION:ZOMA House, 1426 W Lake St, Minneapolis, MN 55408, USA
+GEO:44.948546799999995;-93.2988084
+SEQUENCE:214290198
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR
