@@ -1,0 +1,13 @@
+{
+  "unit": "upcomingcons@austin",
+  "recorded_at": "2026-10-16T05:19:30+00:00",
+  "payloads": 4,
+  "note": "real responses recorded with `gotc record --max-payloads 4`; unmodified. NB the site's category pages are inconsistent: several returned the anime list (see adapter docstring).",
+  "urls": {
+    "payload_0.html": "https://www.upcomingcons.com/anime-cons",
+    "payload_1.html": "https://www.upcomingcons.com/comic-conventions",
+    "payload_2.html": "https://www.upcomingcons.com/gaming-conventions",
+    "payload_3.html": "https://www.upcomingcons.com/science-fiction-conventions"
+  },
+  "research_2026-10-15_anime-cons.html": "docs/research/samples/upcomingcons-anime-cons.html (5 Event blocks, unmodified)"
+}

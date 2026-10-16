@@ -8,5 +8,6 @@ from gotc.adapters import (  # noqa: F401
     ics,
     socrata,
     ticketing,
+    upcomingcons,
     volo,
 )
