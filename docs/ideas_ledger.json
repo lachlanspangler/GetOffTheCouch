@@ -812,12 +812,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "auto: 0 trivia nights events in Minneapolis right now",
    "source": "auto",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 33 trivia events via Downtown Council/Luma"
+   ]
   },
   {
    "id": "I-055",
@@ -952,12 +954,14 @@
    "value": 3,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "robots disallows /api/ and /datastore/* but not /dataset/<slug>/resource/<id>/download/*.csv. A CSV adapter (shared with FL DBPR) would restore special-event licenses and food-license openings — confirm the path is allowed first.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: boston_food_openings_csv"
+   ]
   },
   {
    "id": "I-064",
@@ -1250,12 +1254,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "auto: 0 trivia nights events in Denver right now",
    "source": "auto",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: Team Trivia + Challenge (168 games)"
+   ]
   },
   {
    "id": "I-084",
@@ -1292,12 +1298,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "auto: 0 concerts events in Denver right now",
    "source": "auto",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: Cervantes, Larimer, Globe Hall, Lost Lake, Denver Arts & Venues"
+   ]
   },
   {
    "id": "I-087",
@@ -1534,12 +1542,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.6,
-   "status": "open",
+   "status": "blocked",
    "why": "AEG's Next.js venue sites (Mission Ballroom, Bluebird, Ogden, Gothic, Fiddler's Green; Showbox/Neumos in Seattle) read a public JSON blob per venue (aegwebprod…/json/events/<id>/events.json) with face-value prices, on-sale dates and door times. Its terms didn't render to us, so we skipped it. A permission e-mail to AEG could unlock ~10 big venues in 3+ cities with one adapter.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 blocked: needs the user to contact AEG Presents"
+   ]
   },
   {
    "id": "I-104",
@@ -1548,12 +1558,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "rss_events covers any carbonhouse venue at /events/rss. The Ryman (Nashville) answered with 76 events; other cities' arenas/theatres on carbonhouse were not surveyed. Pure YAML per venue.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 10 carbonhouse venues added"
+   ]
   },
   {
    "id": "I-105",
@@ -1590,12 +1602,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "SIDEARM Sports athletics sites (gohuskies.com, denverpioneers.com) publish calendar.ashx/calendar.ics for all sports; home games are filterable by LOCATION. Most NCAA schools use SIDEARM: Minnesota, Northwestern/DePaul/Loyola, BU/BC/Northeastern, UCLA/USC, Miami, Vanderbilt/Belmont, Columbia/Fordham.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: 8 schools added"
+   ]
   },
   {
    "id": "I-108",
