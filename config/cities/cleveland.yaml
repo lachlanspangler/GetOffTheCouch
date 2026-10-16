@@ -1,0 +1,142 @@
+# Cleveland, OH. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city cleveland --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * Cleveland Public Library (LibCal): the public ICS (cid 8758) returns the first 500 events from a month ago,
+#     so it never reaches the future — unusable. Cuyahoga County PL (Communico) and Heights Libraries (LibCal) are used.
+#   * universities: case.edu robots.txt answers 403 (= disallow); Cleveland State only via athletics.
+#   * openings: no Socrata/ArcGIS license data with a newness date found.
+#   * volunteering: United Way of Greater Cleveland's Tribe calendar is empty; Greater Cleveland Volunteers has no
+#     known platform feed.
+#   * leagues/trivia: no Volo market; Team Trivia "ne-ohio" lists 0 venues; no Challenge shows in range.
+#   * Grog Shop, Huntington Bank Field, Holden Forests & Gardens (Cloudflare); Great Lakes Science Center (robots 403).
+slug: cleveland
+name: Cleveland
+state: OH
+timezone: America/New_York
+center: [41.4993, -81.6944]
+radius_km: 20
+aliases: [Lakewood, Cleveland Heights, University Heights, Shaker Heights, East Cleveland, Euclid, South Euclid,
+          Parma, Parma Heights, Brooklyn, Brook Park, Garfield Heights, Maple Heights, Bedford, Warrensville Heights,
+          Independence, Seven Hills, Middleburg Heights, Fairview Park, Rocky River, Beachwood, Lyndhurst,
+          Mayfield Heights, Berea, Westlake, North Olmsted, Bay Village]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 41.4993, lon: -81.6944 }
+  - { name: The Flats, lat: 41.4970, lon: -81.7030 }
+  - { name: Warehouse District, lat: 41.4990, lon: -81.7000 }
+  - { name: Playhouse Square, lat: 41.5015, lon: -81.6810 }
+  - { name: Ohio City, lat: 41.4850, lon: -81.7050 }
+  - { name: Tremont, lat: 41.4770, lon: -81.6900 }
+  - { name: Detroit-Shoreway / Gordon Square, lat: 41.4850, lon: -81.7300 }
+  - { name: Edgewater, lat: 41.4880, lon: -81.7460 }
+  - { name: Midtown, lat: 41.5030, lon: -81.6600 }
+  - { name: University Circle, lat: 41.5080, lon: -81.6060 }
+  - { name: Little Italy, lat: 41.5080, lon: -81.5970 }
+  - { name: Collinwood / Waterloo, lat: 41.5640, lon: -81.5700 }
+  - { name: Slavic Village, lat: 41.4640, lon: -81.6420 }
+  - { name: Lakewood, lat: 41.4820, lon: -81.7980 }
+  - { name: Cleveland Heights / Coventry, lat: 41.5100, lon: -81.5800 }
+sources:
+  # ── arenas / theatres: carbonhouse events RSS ──
+  - id: rocket_arena
+    adapter: rss_events
+    name: Rocket Arena (Cavaliers, Monsters, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.rocketarena.com/events
+    expect_min_records: 15
+    notes: "The Cavaliers' arena site; carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.rocketarena.com/events/rss
+      horizon_days: 180
+      venue: {name: Rocket Arena, address: "1 Center Ct, Cleveland, OH 44115"}
+      organizer: Rocket Arena
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Cavaliers": sports_watch.game
+        "Monsters": sports_watch.game
+  - id: playhouse_square
+    adapter: rss_events
+    name: Playhouse Square (State, Connor Palace, Ohio, Allen, Hanna theatres)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.playhousesquare.org/events
+    expect_min_records: 30
+    notes: >-
+      Non-profit performing-arts center's carbonhouse /events/rss (robots allows all). Broadway, concerts, comedy,
+      dance. E.J. Thomas Hall (Akron) and streaming items are skipped.
+    params:
+      url: https://www.playhousesquare.org/events/rss
+      horizon_days: 180
+      venue: {name: Playhouse Square, address: "1501 Euclid Ave, Cleveland, OH 44115"}
+      exclude_location: '^(E\.J\. Thomas Hall|Streaming Event)'
+      organizer: Playhouse Square
+      default_category: arts.theater
+      category_map:
+        "Concert": music.concert
+        "Comedy": nightlife.comedy
+
+  # ── libraries ──
+  - id: ccpl_events
+    adapter: communico
+    name: Cuyahoga County Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://attend.cuyahogalibrary.org/events
+    expect_min_records: 50
+    notes: >-
+      Communico ("Attend") eeventcaldata JSON, the endpoint the library's own calendar loads (undocumented; robots
+      allows it). 27 suburban branches; the far-out ones are skipped by location.
+    params:
+      base_url: https://attend.cuyahogalibrary.org
+      horizon_days: 7
+      venue_label: Cuyahoga County Public Library
+      default_category: arts.books
+      skip_all_day: true
+      exclude_location: '^(Chagrin Falls|Gates Mills|Brecksville|North Royalton|Olmsted Falls|Strongsville|Solon|Orange)'
+      category_map:
+        Storytime: family.kids
+        Families: family.kids
+        Children: family.kids
+        Teens: family.kids
+        Book Club: arts.books
+        Technology: learning.tech
+  - id: heights_libraries_events
+    adapter: ics
+    name: Heights Libraries events (Cleveland Heights–University Heights)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://events.heightslibrary.org/
+    expect_min_records: 20
+    notes: >-
+      LibCal public-calendar ICS (ical_subscribe.php, cid 16443 from the site's own links). LibCal robots asks for
+      Crawl-delay 10 (PoliteClient honours it). The feed is capped at 500 events starting ~30 days back, which
+      reaches ~10 days ahead for this system. Rooms have no addresses, so they're pinned to the Lee Road branch.
+    params:
+      url: https://events.heightslibrary.org/ical_subscribe.php?src=p&cid=16443
+      horizon_days: 30
+      max_occurrences: 4
+      organizer: Heights Libraries
+      default_category: arts.books
+      exclude_location: '^(Online Event)'
+      fallback_point: { lat: 41.5040, lon: -81.5660, label: "Heights Libraries, Lee Road branch (approximate)" }
+
+  # ── college athletics: SIDEARM ICS (home games only) ──
+  - id: cleveland_state_athletics
+    adapter: ics
+    name: Cleveland State Vikings athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://csuvikings.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Cleveland" is kept.
+    params:
+      url: https://csuvikings.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Cleveland State Vikings
+      exclude_location: '^(?!Cleveland\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 41.5020, lon: -81.6750, label: "Cleveland State University campus (approximate)" }

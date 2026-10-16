@@ -101,3 +101,4 @@ sources:
         seattle: "98101"
         detroit: "48226"      # batch C: downtown / city-hall ZIPs
         columbus: "43215"
+        cleveland: "44114"
