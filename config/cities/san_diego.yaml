@@ -1,0 +1,173 @@
+# San Diego, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 with `gotc run --city san_diego --no-geocode` (docs/SOURCES.md "Batch B").
+# Not usable (2026-10-16): San Diego Public Library moved from BiblioCommons to Vega (gateway 410; no adapter);
+# sandiego.gov, sandiego.org (tourism), Chula Vista, El Cajon, Coronado and National City answer robots.txt with
+# HTTP 403 (= disallow all); the city's business-tax-certificate CSVs live on seshat.datasd.org, whose robots.txt
+# is 403 too; CA ABC licence reports sit behind a Cloudflare challenge; San Diego Reader's events calendar has
+# rich JSON-LD but its terms say "You may not scrape or otherwise copy our content without permission"; The
+# Observatory North Park is a Live Nation venue; Casbah, Music Box, Mad House Comedy and San Diego Opera answer a
+# Cloudflare challenge; Coronado Visitor Center's calendar had only 2 upcoming events; Team Trivia's San Diego region lists 0 venues; Volunteer San Diego resets the connection.
+slug: san_diego
+name: San Diego
+state: CA
+timezone: America/Los_Angeles
+center: [32.7157, -117.1611]
+radius_km: 25
+aliases: [La Jolla, Chula Vista, National City, La Mesa, El Cajon, Lemon Grove, Coronado, Santee, Spring Valley,
+          Imperial Beach, Bonita, Del Mar, Solana Beach, Poway]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Gaslamp, lat: 32.7115, lon: -117.1597 }
+  - { name: East Village, lat: 32.7120, lon: -117.1530 }
+  - { name: Little Italy, lat: 32.7237, lon: -117.1690 }
+  - { name: Barrio Logan, lat: 32.6990, lon: -117.1450 }
+  - { name: Hillcrest, lat: 32.7480, lon: -117.1640 }
+  - { name: North Park, lat: 32.7480, lon: -117.1300 }
+  - { name: South Park, lat: 32.7260, lon: -117.1290 }
+  - { name: Normal Heights, lat: 32.7630, lon: -117.1150 }
+  - { name: Old Town, lat: 32.7540, lon: -117.1970 }
+  - { name: Mission Valley, lat: 32.7700, lon: -117.1600 }
+  - { name: Point Loma, lat: 32.7300, lon: -117.2300 }
+  - { name: Ocean Beach, lat: 32.7490, lon: -117.2490 }
+  - { name: Mission Beach, lat: 32.7700, lon: -117.2520 }
+  - { name: Pacific Beach, lat: 32.7980, lon: -117.2400 }
+  - { name: La Jolla, lat: 32.8328, lon: -117.2713 }
+  - { name: University City, lat: 32.8680, lon: -117.2100 }
+sources:
+  - id: sdcl_events
+    adapter: bibliocommons
+    name: San Diego County Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://sdcl.bibliocommons.com/v2/events
+    expect_min_records: 20
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). The county system serves the suburbs and unincorporated
+      areas (the City of San Diego's own library is on Vega); `cities` keeps branches within ~25 km.
+    params:
+      library: sdcl
+      horizon_days: 10
+      max_pages: 20
+      venue_label: San Diego County Library
+      cities: [El Cajon, La Mesa, Lemon Grove, Spring Valley, Santee, Lakeside, Imperial Beach, Bonita, Del Mar,
+               Solana Beach, Poway, Rancho San Diego, Casa de Oro]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Author Visit: arts.books
+        Music: music.concert
+        Gaming: trivia_games.board_games
+        "Crafts & DIY": arts.workshop
+        Computers and Technology: learning.tech
+        English as a Second Language (ESL): learning.language
+        Laubach Literacy: learning.language
+        Healthy Meals: food_drink.class
+        Birth to Five: family.kids
+        Kids: family.kids
+        Afterschool: family.kids
+
+  - id: ucsd_events
+    adapter: localist
+    name: UC San Diego events (open to visitors)
+    data_type: events
+    min_interval_s: 2
+    homepage: https://calendar.ucsd.edu/
+    expect_min_records: 20
+    notes: >-
+      Localist API (robots allows it, Crawl-delay 1). Server-side filtered to the "Visitors" audience
+      (event_audiences id 49100427894911), which drops most student/staff-only items.
+    params:
+      fallback_point: { lat: 32.8801, lon: -117.2340, label: "UC San Diego campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.ucsd.edu
+      type: "49100427894911"
+      horizon_days: 21
+      max_pages: 4
+      max_occurrences: 2
+      organizer: UC San Diego
+      default_category: learning.networking
+
+  - id: balboa_park_events
+    adapter: tribe
+    name: Balboa Park events (Balboa Park Conservancy)
+    data_type: events
+    min_interval_s: 2
+    homepage: https://balboapark.org/events/
+    expect_min_records: 30
+    notes: Park-wide calendar for the museums, gardens and theatres of Balboa Park; WordPress The Events Calendar REST.
+    params:
+      base_url: https://balboapark.org
+      horizon_days: 21
+      max_pages: 12
+      organizer: Balboa Park
+      default_category: arts.museum
+
+  - id: pechanga_arena
+    adapter: tribe
+    name: Pechanga Arena San Diego
+    data_type: events
+    min_interval_s: 2
+    homepage: https://pechangaarenasd.com/
+    expect_min_records: 5
+    notes: >-
+      City-owned arena (Sports Arena Blvd); WordPress The Events Calendar REST. San Diego Gulls (AHL), Sockers,
+      concerts, WWE. Ticket links go to Ticketmaster/AXS; we only read the venue's own calendar.
+    params:
+      spectator_venue: true
+      base_url: https://pechangaarenasd.com
+      horizon_days: 150
+      max_pages: 4
+      venue: {name: Pechanga Arena San Diego, address: "3500 Sports Arena Blvd, San Diego, CA 92110"}
+      organizer: Pechanga Arena San Diego
+      default_category: sports_watch.game
+      classify_description: false
+
+  - id: usd_toreros_athletics
+    adapter: ics
+    name: San Diego Toreros athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://usdtoreros.com/calendar
+    expect_min_records: 5
+    notes: >-
+      University of San Diego's SIDEARM Sports subscription calendar (robots allows it, Crawl-delay 30 — one
+      request a day). Only events whose LOCATION starts with "San Diego" are kept.
+    params:
+      url: https://usdtoreros.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: San Diego Toreros
+      exclude_location: '^(?!San Diego\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 32.7719, lon: -117.1880, label: "University of San Diego campus" }
+
+  - id: ucsd_tritons_athletics
+    adapter: ics
+    name: UC San Diego Tritons athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://ucsdtritons.com/calendar
+    expect_min_records: 5
+    notes: >-
+      UC San Diego's SIDEARM Sports subscription calendar (robots allows it, Crawl-delay 30). Only events whose
+      LOCATION starts with "La Jolla" (the campus) are kept.
+    params:
+      url: https://ucsdtritons.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: UC San Diego Tritons
+      exclude_location: '^(?!La Jolla\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 32.8801, lon: -117.2340, label: "UC San Diego campus" }
+
+  - id: volo_san_diego
+    adapter: volo
+    name: Volo Sports San Diego
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/san-diego?category=leagues
+    expect_min_records: 1
+    notes: The discover page 307-redirects to add includeFees=true (77 "ways to play" on 2026-10-16).
+    params:
+      base_url: https://www.volosports.com
+      city_slug: san-diego
+      include_fees: true
+      max_pages: 6

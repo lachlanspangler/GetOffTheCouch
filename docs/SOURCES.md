@@ -345,3 +345,31 @@ Tried and not added (Salt Lake City):
 | Tracy Aviary, Hogle Zoo (Tribe) | SLC | 0 / 2 upcoming events | REST probe |
 | City Weekly events | SLC | CloudFront 403 | probe |
 | Kilby Court, Metro Music Hall (Squarespace), The Complex (AEG), State Room Presents (AXS), Saltair | SLC | no JSON-LD/Tribe, or AEG/AXS denylist | probe |
+
+### San Diego
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sdcl_events` | san_diego | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sdcl/rss/events | none | ≤20 pages/day | gateway host has no robots.txt | as `hclib_events`; `cities` keeps branches within ~25 km | events · 24h | A- | 200 |
+| `ucsd_events` | san_diego | Localist / `localist` | https://calendar.ucsd.edu/api/2/events?type=49100427894911 | none | ≤4 pages/day, Crawl-delay 1 | allowed | as `usc_events`; "Visitors" audience server-side + `audience_filter` | events · 24h | B+ | 182 |
+| `volo_san_diego` | san_diego | Volo HTML / `volo` | https://www.volosports.com/discover/san-diego?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows | as `volo_boston` (includeFees redirect) | leagues · 24h | B | 77 |
+| `balboa_park_events` | san_diego | WP The Events Calendar / `tribe` | https://balboapark.org/wp-json/tribe/events/v1/events | none | ≤12 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 71 |
+| `pechanga_arena` | san_diego | WP The Events Calendar / `tribe` | https://pechangaarenasd.com/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed; city-owned arena | as `mprb_events`; spectator venue | events · 24h | B+ | 48 |
+| `usd_toreros_athletics` | san_diego | SIDEARM ICS / `ics` | https://usdtoreros.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "San Diego" | events · 24h | B | 26 |
+| `ucsd_tritons_athletics` | san_diego | SIDEARM ICS / `ics` | https://ucsdtritons.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "La Jolla" | events · 24h | B | 26 |
+
+Tried and not added (San Diego):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San Diego Public Library | SD | moved to Vega (BiblioCommons gateway 410); no Vega adapter | gateway |
+| sandiego.gov, sandiego.org, Chula Vista, El Cajon, Coronado city, National City | SD | robots.txt answers 403 (disallow all) | probe 2026-10-16 |
+| City business tax certificates CSV (seshat.datasd.org) | SD | robots.txt 403 on the S3 host; PoliteClient treats it as disallow | probe |
+| San Diego Reader events (76 JSON-LD events) | SD | terms: "You may not scrape or otherwise copy our content without permission" | /terms/ |
+| The Observatory North Park | SD | Live Nation venue | page markup |
+| Casbah, Music Box, Mad House Comedy, San Diego Opera | SD | Cloudflare challenge, not attempted | probe |
+| Belly Up, The Sound, Rady Shell / SD Symphony, Humphreys, American Comedy Co, Comedy Store La Jolla, SOMA | SD | no JSON-LD or Tribe endpoint | probe |
+| Team Trivia San Diego | SD | region page lists 0 venues | probe |
+| Coronado Visitor Center (Tribe) | SD | 2 upcoming events; removed after the live run | `gotc run` |
+| Volunteer San Diego | SD | connection reset; Galaxy slugs bad | probe |
+| SDSU events, GoAztecs ICS | SD | custom calendar; SIDEARM ICS 404 | probe |
