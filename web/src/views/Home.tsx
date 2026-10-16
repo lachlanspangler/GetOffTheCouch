@@ -15,7 +15,7 @@ export function Home() {
         <p class="kicker">Your city, made easy.</p>
         <h1>Everything worth leaving the house for, and every deadline you'd otherwise miss.</h1>
         <p class="lede">
-          Rec leagues, block parties, concerts with live prices, volunteering, trivia, cons and faires, in one place for each city. We pull it
+          Rec leagues, block parties, concerts (with prices wherever venues publish them), volunteering, trivia, cons and faires, in one place for each city. We pull it
           from official calendars and venues, check it every few hours, and tell you where every listing came from.
         </p>
         <CitySearch />
