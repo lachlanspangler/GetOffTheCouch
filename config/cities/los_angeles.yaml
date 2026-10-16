@@ -131,3 +131,13 @@ sources:
       horizon_days: 60
       organizer: Venice Book Club
       default_category: arts.books
+
+  - id: curated_los_angeles
+    adapter: curated
+    name: GetOffTheCouch curated (verified by hand)
+    data_type: leagues
+    cadence_hours: 24      # page-watch re-verifies quotes daily
+    sla_hours: 336         # an entry unverified for 2 weeks shows as stale
+    min_interval_s: 3
+    expect_min_records: 1
+    notes: config/registry/los_angeles.yaml (evidence-quoted entries; page-watch checks the quotes still exist)

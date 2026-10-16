@@ -94,16 +94,19 @@ def registry_path(city: str) -> Any:
 
 
 def evidence_present(evidence: str, page_text: str) -> bool:
-    """Every fragment of the quote ('…' / '...' separate elisions) must appear in the page text."""
-    norm = _norm(page_text)
-    frags = [f.strip() for f in re.split(r"\.\.\.|…", evidence) if len(f.strip()) >= 8]
-    return bool(frags) and all(_norm(f) in norm for f in frags)
+    """Every fragment of the quote ('…' / '...' separate elisions) must appear in the page text.
+
+    Comparison is on lowercase alphanumerics only, so markup that splits words (drop-caps: "S<span>herwood"),
+    whitespace, punctuation and curly-vs-straight quotes can't cause false "page changed" alarms.
+    """
+    norm = _compact(page_text)
+    frags = [f.strip() for f in re.split(r"\.\.\.|…", evidence) if len(_compact(f)) >= 8]
+    return bool(frags) and all(_compact(f) in norm for f in frags)
 
 
-def _norm(s: str) -> str:
-    s = html.unescape(re.sub(r"<[^>]+>", " ", s))
-    s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"').replace("–", "-").replace("—", "-")
-    return re.sub(r"\s+", " ", s).strip().lower()
+def _compact(s: str) -> str:
+    s = html.unescape(re.sub(r"<[^>]+>", "", s))
+    return re.sub(r"[^a-z0-9]+", "", s.lower())
 
 
 @register

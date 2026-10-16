@@ -128,3 +128,10 @@ _Note (merge, 2026-10-16 05:10 UTC): the idea ids in the entry above were renumb
 **Next:** merge pending sources into the city files; ask Make: and the Galaxy tenants for access/keys.  **Ideas:** I-046..I-052 added.
 
 _Note (merge): idea ids in the entry above were renumbered on merge (see ledger titles)._
+- 2026-10-16 05:44 UTC · run 10 ok: units[35 disabled, 35 ok, 39 skipped] → 9837 events in 10 cities
+- 2026-10-16 05:48 UTC · run 11 ok: units[1 ok] → 1385 events in 1 cities
+- 2026-10-16 05:48 UTC · run 12 ok: units[1 ok] → 658 events in 1 cities
+- 2026-10-16 05:48 UTC · run 13 ok: units[1 ok] → 589 events in 1 cities
+- 2026-10-16 05:48 UTC · run 14 ok: units[1 ok] → 300 events in 1 cities
+- 2026-10-16 05:48 UTC · run 15 ok: units[1 ok] → 779 events in 1 cities
+- 2026-10-16 05:49 UTC · run 16 ok: units[1 ok] → 658 events in 1 cities

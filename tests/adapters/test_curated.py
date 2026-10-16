@@ -57,6 +57,11 @@ def run_parse(tmp_path, pages: dict[str, tuple[int, str]]):
     return {ev.record_id: ev for ev, _ in parsed.valid}
 
 
+def test_evidence_survives_drop_cap_markup():
+    page = "18th Annual S<span>herwood</span> F<span>orest</span> Faire Open Weekends: March 6 &ndash; April 25, 2027"
+    assert evidence_present("18th Annual Sherwood Forest Faire ... Open Weekends: March 6 ... April 25, 2027", page)
+
+
 def test_evidence_check_handles_elisions_markup_and_quotes():
     page = "<p>Two sessions starting   Nov 16 and Jan 25.</p><b>$50&nbsp;+ tax</b> it’s"
     assert evidence_present("sessions starting Nov 16 ... $50 + tax", page)

@@ -1,75 +1,125 @@
 # Health
 
-_Generated 2026-10-16T05:21:28+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-16T05:49:28+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
-**64 units** — ⚪ disabled: 25 · 🟢 healthy: 39
+**114 units** — ⚪ disabled: 35 · 🟢 healthy: 79
 
-| State | Unit | Last success | Records | Fails | Note |
-|---|---|---|---|---|---|
-| 🟢 healthy | `austin_convention_center_events@austin` | 0.4h | 65 | 0 |  |
-| 🟢 healthy | `bpl_events@boston` | 0.4h | 440 | 0 |  |
-| 🟢 healthy | `chicago_liquor_openings@chicago` | 0.4h | 38 | 0 |  |
-| 🟢 healthy | `chicago_park_adult_classes@chicago` | 0.1h | 87 | 0 |  |
-| 🟢 healthy | `chicago_park_adult_leagues@chicago` | 0.1h | 9 | 0 |  |
-| 🟢 healthy | `chicago_park_events@chicago` | 0.4h | 318 | 0 |  |
-| 🟢 healthy | `chicago_park_permits@chicago` | 0.4h | 127 | 0 |  |
-| 🟢 healthy | `chicago_restaurant_openings@chicago` | 0.4h | 110 | 0 |  |
-| 🟢 healthy | `chipublib_events@chicago` | 0.4h | 969 | 0 |  |
-| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 0.4h | 22 | 0 |  |
-| 🟢 healthy | `curated_minneapolis@minneapolis` | 0.7h | 23 | 0 |  |
-| 🟢 healthy | `denver_liquor_openings@denver` | 0.4h | 10 | 0 |  |
-| 🟢 healthy | `denver_pending_food_openings@denver` | 0.4h | 71 | 0 |  |
-| 🟢 healthy | `downtown_boston_events@boston` | 0.4h | 187 | 0 |  |
-| 🟢 healthy | `downtown_seattle_events@seattle` | 0.3h | 7 | 0 |  |
-| 🟢 healthy | `fiu_events@miami` | 0.3h | 280 | 0 |  |
-| 🟢 healthy | `hclib_events@minneapolis` | 0.3h | 268 | 0 |  |
-| 🟢 healthy | `la_business_openings@los_angeles` | 0.3h | 105 | 0 |  |
-| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.3h | 10 | 0 |  |
-| 🟢 healthy | `mdpls_events@miami` | 0.3h | 490 | 0 |  |
-| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.3h | 110 | 0 |  |
-| 🟢 healthy | `mprb_events@minneapolis` | 1.4h | 53 | 0 |  |
-| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.3h | 14 | 0 |  |
-| 🟢 healthy | `northeastern_events@boston` | 0.4h | 124 | 0 |  |
-| 🟢 healthy | `nyc_parks_events@nyc` | 0.3h | 781 | 0 |  |
-| 🟢 healthy | `nyc_permitted_events@nyc` | 0.3h | 549 | 0 |  |
-| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.3h | 984 | 0 |  |
-| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.3h | 218 | 0 |  |
-| 🟢 healthy | `nyu_events@nyc` | 0.3h | 92 | 0 |  |
-| 🟢 healthy | `seattle_business_openings@seattle` | 0.3h | 33 | 0 |  |
-| 🟢 healthy | `spl_events@seattle` | 0.3h | 189 | 0 |  |
-| 🟢 healthy | `tabc_new_licenses_austin@austin` | 0.4h | 33 | 0 |  |
-| 🟢 healthy | `tabc_pending_openings_austin@austin` | 0.4h | 18 | 0 |  |
-| 🟢 healthy | `uchicago_events@chicago` | 0.4h | 92 | 0 |  |
-| 🟢 healthy | `umn_events@minneapolis` | 0.3h | 54 | 0 |  |
-| 🟢 healthy | `usc_events@los_angeles` | 0.4h | 442 | 0 |  |
-| 🟢 healthy | `utaustin_events@austin` | 0.4h | 600 | 0 |  |
-| 🟢 healthy | `uw_events@seattle` | 0.3h | 115 | 0 |  |
-| 🟢 healthy | `vanderbilt_events@nashville` | 0.3h | 181 | 0 |  |
-| ⚪ disabled | `boston_food_openings@boston` | never | – | 0 | disabled in config |
-| ⚪ disabled | `boston_special_events@boston` | never | – | 0 | disabled in config |
-| ⚪ disabled | `meet_boston_events@boston` | never | – | 0 | disabled in config |
-| ⚪ disabled | `seatgeek@austin` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@boston` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@chicago` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@denver` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@los_angeles` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@miami` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@minneapolis` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@nashville` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@nyc` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `seatgeek@seattle` | never | – | 0 | needs SEATGEEK_CLIENT_ID |
-| ⚪ disabled | `ticketmaster@austin` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@boston` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@chicago` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@denver` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@los_angeles` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@miami` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@minneapolis` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@nashville` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@nyc` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `ticketmaster@seattle` | never | – | 0 | needs TICKETMASTER_API_KEY |
-| ⚪ disabled | `visit_austin_events@austin` | never | – | 0 | disabled in config |
-| ⚪ disabled | `visit_denver_events@denver` | never | – | 0 | disabled in config |
+| State | Unit | Last success | Records | Fails | Reliability (30d) | Note |
+|---|---|---|---|---|---|---|
+| 🟢 healthy | `austin_convention_center_events@austin` | 0.9h | 65 | 0 | – (1 runs) |  |
+| 🟢 healthy | `boston_cares@boston` | 0.3h | 541 | 0 | – (1 runs) |  |
+| 🟢 healthy | `bpl_events@boston` | 0.8h | 440 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chicago_liquor_openings@chicago` | 0.8h | 38 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chicago_park_adult_classes@chicago` | 0.6h | 87 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chicago_park_adult_leagues@chicago` | 0.5h | 9 | 0 | A (100) |  |
+| 🟢 healthy | `chicago_park_events@chicago` | 0.8h | 318 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chicago_park_permits@chicago` | 0.8h | 127 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chicago_restaurant_openings@chicago` | 0.8h | 110 | 0 | – (1 runs) |  |
+| 🟢 healthy | `chipublib_events@chicago` | 0.8h | 969 | 0 | – (1 runs) |  |
+| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 0.8h | 22 | 0 | – (1 runs) |  |
+| 🟢 healthy | `curated_austin@austin` | 0.0h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_boston@boston` | 0.0h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `curated_los_angeles@los_angeles` | 0.0h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `curated_minneapolis@minneapolis` | 1.2h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_nashville@nashville` | 0.0h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `curated_seattle@seattle` | 0.0h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `denver_liquor_openings@denver` | 0.8h | 10 | 0 | – (1 runs) |  |
+| 🟢 healthy | `denver_pending_food_openings@denver` | 0.8h | 71 | 0 | – (1 runs) |  |
+| 🟢 healthy | `downtown_boston_events@boston` | 0.8h | 187 | 0 | – (1 runs) |  |
+| 🟢 healthy | `downtown_seattle_events@seattle` | 0.8h | 7 | 0 | – (1 runs) |  |
+| 🟢 healthy | `fiu_events@miami` | 0.8h | 280 | 0 | – (1 runs) |  |
+| 🟢 healthy | `hands_on_nashville@nashville` | 0.2h | 405 | 0 | – (1 runs) |  |
+| 🟢 healthy | `handson_twin_cities@minneapolis` | 0.2h | 35 | 0 | – (1 runs) |  |
+| 🟢 healthy | `hclib_events@minneapolis` | 0.8h | 268 | 0 | – (1 runs) |  |
+| 🟢 healthy | `la_business_openings@los_angeles` | 0.8h | 105 | 0 | – (1 runs) |  |
+| 🟢 healthy | `la_works@los_angeles` | 0.3h | 244 | 0 | – (1 runs) |  |
+| 🟢 healthy | `ladbs_special_events@los_angeles` | 0.8h | 10 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_atx_backgammon@austin` | 0.3h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_corgi_nyc@nyc` | 0.2h | 9 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_lit_club_nyc@nyc` | 0.2h | 7 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_mana_tech@miami` | 0.2h | 10 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_mhub_chicago@chicago` | 0.3h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_minnestar@minneapolis` | 0.2h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_mpls_journaling_club@minneapolis` | 0.2h | 2 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_ny_philosophy_club@nyc` | 0.2h | 13 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_run_gables@miami` | 0.2h | 6 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_sew_it_together@minneapolis` | 0.2h | 22 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_startup_boston@boston` | 0.3h | 6 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_venice_book_club@los_angeles` | 0.2h | 6 | 0 | – (1 runs) |  |
+| 🟢 healthy | `luma_zoma_house@minneapolis` | 0.2h | 6 | 0 | – (1 runs) |  |
+| 🟢 healthy | `mdpls_events@miami` | 0.8h | 490 | 0 | – (1 runs) |  |
+| 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.8h | 110 | 0 | – (1 runs) |  |
+| 🟢 healthy | `mprb_events@minneapolis` | 1.9h | 53 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.8h | 14 | 0 | – (1 runs) |  |
+| 🟢 healthy | `northeastern_events@boston` | 0.8h | 124 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nyc_parks_events@nyc` | 0.8h | 781 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nyc_permitted_events@nyc` | 0.8h | 549 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nyc_service@nyc` | 0.2h | 168 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nys_sla_new_licenses@nyc` | 0.8h | 984 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nys_sla_pending_openings@nyc` | 0.8h | 218 | 0 | – (1 runs) |  |
+| 🟢 healthy | `nyu_events@nyc` | 0.8h | 92 | 0 | – (1 runs) |  |
+| 🟢 healthy | `seattle_business_openings@seattle` | 0.8h | 33 | 0 | – (1 runs) |  |
+| 🟢 healthy | `spl_events@seattle` | 0.8h | 189 | 0 | – (1 runs) |  |
+| 🟢 healthy | `tabc_new_licenses_austin@austin` | 0.8h | 33 | 0 | – (1 runs) |  |
+| 🟢 healthy | `tabc_pending_openings_austin@austin` | 0.8h | 18 | 0 | – (1 runs) |  |
+| 🟢 healthy | `uchicago_events@chicago` | 0.8h | 92 | 0 | – (1 runs) |  |
+| 🟢 healthy | `umn_events@minneapolis` | 0.8h | 54 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@austin` | 0.3h | 0 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@boston` | 0.3h | 2 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@chicago` | 0.3h | 2 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@denver` | 0.3h | 0 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@los_angeles` | 0.3h | 2 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@miami` | 0.2h | 1 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@minneapolis` | 0.2h | 3 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@nashville` | 0.2h | 0 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@nyc` | 0.2h | 0 | 0 | – (1 runs) |  |
+| 🟢 healthy | `upcomingcons@seattle` | 0.2h | 2 | 0 | – (1 runs) |  |
+| 🟢 healthy | `usc_events@los_angeles` | 0.8h | 442 | 0 | – (1 runs) |  |
+| 🟢 healthy | `utaustin_events@austin` | 0.9h | 600 | 0 | – (1 runs) |  |
+| 🟢 healthy | `uw_austin_volunteer@austin` | 0.3h | 0 | 0 | – (1 runs) |  |
+| 🟢 healthy | `uw_events@seattle` | 0.8h | 115 | 0 | – (1 runs) |  |
+| 🟢 healthy | `uwkc_volunteer@seattle` | 0.2h | 15 | 0 | – (1 runs) |  |
+| 🟢 healthy | `vanderbilt_events@nashville` | 0.8h | 181 | 0 | – (1 runs) |  |
+| 🟢 healthy | `volo_boston@boston` | 0.3h | 91 | 0 | – (1 runs) |  |
+| 🟢 healthy | `volo_denver@denver` | 0.3h | 98 | 0 | – (1 runs) |  |
+| 🟢 healthy | `volo_los_angeles@los_angeles` | 0.3h | 47 | 0 | – (1 runs) |  |
+| 🟢 healthy | `volo_miami@miami` | 0.2h | 17 | 0 | – (1 runs) |  |
+| 🟢 healthy | `volo_nyc@nyc` | 0.2h | 123 | 0 | – (1 runs) |  |
+| ⚪ disabled | `boston_food_openings@boston` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `boston_special_events@boston` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@austin` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@boston` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@chicago` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@denver` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@los_angeles` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@miami` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@minneapolis` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@nashville` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@nyc` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `makerfaire@seattle` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `meet_boston_events@boston` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `seatgeek@austin` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@boston` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@chicago` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@denver` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@los_angeles` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@miami` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@minneapolis` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@nashville` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@nyc` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `seatgeek@seattle` | never | – | 0 | – | needs SEATGEEK_CLIENT_ID |
+| ⚪ disabled | `ticketmaster@austin` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@boston` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@chicago` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@denver` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@los_angeles` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@miami` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@minneapolis` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@nashville` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@nyc` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `ticketmaster@seattle` | never | – | 0 | – | needs TICKETMASTER_API_KEY |
+| ⚪ disabled | `visit_austin_events@austin` | never | – | 0 | – | disabled in config |
+| ⚪ disabled | `visit_denver_events@denver` | never | – | 0 | – | disabled in config |
 
 ## Rejected records (last 48h)
 
