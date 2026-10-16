@@ -1,0 +1,320 @@
+# Fresno, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 (batch B onboarding; docs/SOURCES.md "Batch B cities").
+# Thin, honestly: no open data for events/permits/licenses (no Socrata tenant; the City's ArcGIS server publishes
+# no public services; CA ABC reports are behind a Cloudflare challenge), Fresno State's calendar is an OmniCMS web
+# component with no documented feed (no adapter), Save Mart Center / Fresno Convention Center (ASM) publish no
+# Event JSON-LD or RSS, Fulton 55 is an Eventbrite widget, and there is no Galaxy Digital / HandsOn volunteer
+# tenant, Volo market, Team Trivia region or Challenge metro for Fresno.
+# Fresno County Public Library runs one LibCal calendar per branch; the in-radius branches are separate units so
+# each room ("Story Room") can be pinned to its branch address.
+slug: fresno
+name: Fresno
+state: CA
+timezone: America/Los_Angeles
+center: [36.7378, -119.7871]
+radius_km: 15
+aliases: [Clovis, Pinedale, Fig Garden, Calwa, Easton]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 36.7378, lon: -119.7871 }
+  - { name: Tower District, lat: 36.7590, lon: -119.7990 }
+  - { name: Mayfair, lat: 36.7660, lon: -119.7550 }
+  - { name: McLane, lat: 36.7790, lon: -119.7600 }
+  - { name: Fresno High / Roeding, lat: 36.7650, lon: -119.8200 }
+  - { name: Fig Garden, lat: 36.8200, lon: -119.8300 }
+  - { name: Bullard, lat: 36.8230, lon: -119.8100 }
+  - { name: Fresno State / University, lat: 36.8130, lon: -119.7460 }
+  - { name: Pinedale, lat: 36.8400, lon: -119.7900 }
+  - { name: River Park, lat: 36.8530, lon: -119.7860 }
+  - { name: Woodward Park, lat: 36.8700, lon: -119.7650 }
+  - { name: Old Town Clovis, lat: 36.8250, lon: -119.7030 }
+  - { name: Sunnyside, lat: 36.7370, lon: -119.7000 }
+  - { name: Roosevelt / Southeast, lat: 36.7300, lon: -119.7450 }
+  - { name: Southwest Fresno, lat: 36.7120, lon: -119.8200 }
+sources:
+  - id: fresno_state_athletics
+    adapter: ics
+    name: Fresno State Bulldogs athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gobulldogs.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM subscription calendar (robots allows it; Crawl-delay 30, one request a day). Only events whose
+      LOCATION starts with "Fresno" are kept (Save Mart Center, Valley Children's Stadium, Margie Wright Diamond…).
+    params:
+      url: https://gobulldogs.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Fresno State Bulldogs
+      exclude_location: '^(?!Fresno\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 36.8130, lon: -119.7460, label: "Fresno State campus" }
+
+  - id: visit_fresno_county_events
+    adapter: simpleview
+    name: Visit Fresno County events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://www.visitfresnocounty.org/events/
+    expect_min_records: 10
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the token endpoint answered 200 but the events API answered HTTP 403 "Access Denied" (CDN
+      bot protection) on the first live run, although robots.txt allows it (Crawl-delay 2). We don't work around it;
+      re-enable only with the board's permission.
+    params:
+      base_url: https://www.visitfresnocounty.org
+      board: Visit Fresno County
+      horizon_days: 21
+      default_category: community.festival
+
+  - id: fcpl_woodward_park
+    adapter: ics
+    name: Fresno County Public Library — Woodward Park Regional Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11204
+    expect_min_records: 15
+    notes: LibCal branch calendar ICS (cid 11204); rooms pinned to the branch address (944 E. Perrin Ave, Fresno, CA 93720).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11204
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_rules:   # uncategorized items: "Computer Tutor" is help for patrons, not a volunteer opening
+        - { match: "(?i)\\btutor", category: learning.tech }
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.8719, lon: -119.7652, label: "Woodward Park Regional Library, 944 E. Perrin Ave, Fresno, CA 93720" }
+
+  - id: fcpl_sunnyside
+    adapter: ics
+    name: Fresno County Public Library — Sunnyside Regional Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11014
+    expect_min_records: 10
+    notes: LibCal branch calendar ICS (cid 11014); rooms pinned to the branch address (5566 E. Kings Canyon Rd, Fresno, CA 93727).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11014
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.7358, lon: -119.7011, label: "Sunnyside Regional Library, 5566 E. Kings Canyon Rd, Fresno, CA 93727" }
+
+  - id: fcpl_fig_garden
+    adapter: ics
+    name: Fresno County Public Library — Fig Garden Regional Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11039
+    expect_min_records: 10
+    notes: LibCal branch calendar ICS (cid 11039); rooms pinned to the branch address (3071 W. Bullard Ave, Fresno, CA 93711).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11039
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.8226, lon: -119.8453, label: "Fig Garden Regional Library, 3071 W. Bullard Ave, Fresno, CA 93711" }
+
+  - id: fcpl_betty_rodriguez
+    adapter: ics
+    name: Fresno County Public Library — Betty Rodriguez Regional Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11003
+    expect_min_records: 8
+    notes: LibCal branch calendar ICS (cid 11003); rooms pinned to the branch address (3040 N Cedar Ave, Fresno, CA 93703).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11003
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.7785, lon: -119.7543, label: "Betty Rodriguez Regional Library, 3040 N Cedar Ave, Fresno, CA 93703" }
+
+  - id: fcpl_gillis
+    adapter: ics
+    name: Fresno County Public Library — Gillis Branch Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11202
+    expect_min_records: 5
+    notes: LibCal branch calendar ICS (cid 11202); rooms pinned to the branch address (629 W. Dakota Ave, Fresno, CA 93705).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11202
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.7865, lon: -119.8189, label: "Gillis Branch Library, 629 W. Dakota Ave, Fresno, CA 93705" }
+
+  - id: fcpl_politi
+    adapter: ics
+    name: Fresno County Public Library — Politi Branch Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11201
+    expect_min_records: 4
+    notes: LibCal branch calendar ICS (cid 11201); rooms pinned to the branch address (5771 N. First St, Fresno, CA 93710).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11201
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.8214, lon: -119.7723, label: "Politi Branch Library, 5771 N. First St, Fresno, CA 93710" }
+
+  - id: fcpl_clovis
+    adapter: ics
+    name: Fresno County Public Library — Clovis Regional Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=11006
+    expect_min_records: 4
+    notes: LibCal branch calendar ICS (cid 11006); rooms pinned to the branch address (1155 5th St, Clovis, CA 93612).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=11006
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.824, lon: -119.6946, label: "Clovis Regional Library, 1155 5th St, Clovis, CA 93612" }
+
+  - id: fcpl_west_fresno
+    adapter: ics
+    name: Fresno County Public Library — West Fresno Branch Library
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fresnolibrary.libcal.com/calendar?cid=10986
+    expect_min_records: 2
+    notes: LibCal branch calendar ICS (cid 10986); rooms pinned to the branch address (188 E. California Ave, Fresno, CA 93706).
+    params:
+      url: https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=10986
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Fresno County Public Library
+      default_category: arts.books
+      category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
+        Storytimes: family.kids
+        Read to a Dog: family.kids
+        Homework Help: family.kids
+        Arts & Crafts: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        Movie Showing: arts.film
+        Book Lovers: arts.books
+        Performance Arts: arts.theater
+        Genealogy/Local History: learning
+        Jobs/Career: learning.networking
+        Adult Literacy: learning.language
+        Health/Wellness: fitness
+        Volunteer-Led: learning   # led BY volunteers (tutors, crochet circles) — not a volunteer opportunity
+      fallback_point: { lat: 36.7213, lon: -119.8102, label: "West Fresno Branch Library, 188 E. California Ave, Fresno, CA 93706" }
+

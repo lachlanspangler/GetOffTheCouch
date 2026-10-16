@@ -532,3 +532,23 @@ Tried and not added (Riverside):
 | Fontana CivicPlus iCalendar | RIV | ~20 items, mostly commission meetings | ICS |
 | Rancho Cucamonga library (Drupal), California Theatre (Wix) | RIV | no JSON-LD or feed | probe |
 | Galaxy Digital slugs (ieuw, inlandempire, rivco, riverside, sbcounty, uwfm, …) | RIV | "Bad Domain" | probe |
+
+### Fresno
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `fcpl_woodward_park`, `fcpl_sunnyside`, `fcpl_fig_garden`, `fcpl_gillis`, `fcpl_betty_rodriguez`, `fcpl_politi`, `fcpl_clovis`, `fcpl_west_fresno` | fresno | LibCal per-branch ICS / `ics` | https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=<branch> (11204, 11014, 11039, 11202, 11003, 11201, 11006, 10986) | none | 8 requests/day (Crawl-delay 10) | robots: only named crawlers disallowed | SUMMARY, DTSTART, CATEGORIES → category_map ("Volunteer-Led" ≠ volunteering), `category_rules` for uncategorized tutoring, room pinned to the branch address from fresnolibrary.org/branch/all.html | events · 24h | B+ (official, per branch) | 107 / 76 / 58 / 41 / 39 / 25 / 24 / 17 |
+| `fresno_state_athletics` | fresno | SIDEARM ICS / `ics` | https://gobulldogs.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as `ucr_athletics` (home = "Fresno") | events · 24h | B | 35 |
+| `visit_fresno_county_events` | fresno | Simpleview / `simpleview` (disabled) | https://www.visitfresnocounty.org/events/ | none | — | robots allows; token 200, events API 403 | — | events · 24h | D | 0 |
+
+Tried and not added (Fresno):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| City of Fresno ArcGIS server (gis4u) | FRE | folders publish no public services | REST |
+| Fresno State calendar | FRE | OmniCMS web component, no documented feed | calendar.js |
+| Save Mart Center, Fresno Convention Center (eventsfresno.com) | FRE | no Event JSON-LD or RSS | probe 2026-10-16 |
+| Fulton 55 | FRE | Eventbrite widget | HTML |
+| Fresno Philharmonic, fresno.gov WP, downtownfresno.org | FRE | no Tribe plugin / not WordPress | wp-json |
+| Fresno County Public Library Central branch (cid 11000) | FRE | empty ICS | probe |
+| Galaxy Digital slugs (fresno, …) | FRE | "Bad Domain" | probe |
