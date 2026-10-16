@@ -352,12 +352,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "Better attendance estimates from real capacities",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: dup of I-050; shipped"
+   ]
   },
   {
    "id": "I-025",
@@ -560,12 +562,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "doing",
    "why": "Every new resident has the same 10 deadlines; nobody lists them",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 doing: pipeline+UI shipped; state data being researched"
+   ]
   },
   {
    "id": "I-039",
@@ -718,12 +722,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "doing",
    "why": "Every new resident has the same deadlines; state rules are public",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 doing: pipeline+UI shipped; state data being researched"
+   ]
   },
   {
    "id": "I-050",
