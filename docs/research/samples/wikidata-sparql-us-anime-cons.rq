@@ -1,0 +1,8 @@
+SELECT ?con ?conLabel ?cityLabel ?coord ?website ?edition ?editionLabel ?start ?end WHERE {
+  ?con wdt:P31/wdt:P279* wd:Q548126 ; wdt:P17 wd:Q30 .
+  OPTIONAL { ?con wdt:P131 ?city . }
+  OPTIONAL { ?con wdt:P625 ?coord . }
+  OPTIONAL { ?con wdt:P856 ?website . }
+  OPTIONAL { ?edition wdt:P31 ?editionClass . ?edition (wdt:P179|wdt:P361) ?con . ?edition wdt:P580 ?start . OPTIONAL { ?edition wdt:P582 ?end } FILTER(YEAR(?start) >= 2026) }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}

@@ -1,0 +1,134 @@
+{
+  "_note": "DOCUMENTATION-DERIVED SHAPE, NOT LIVE DATA. Built 2026-10-15 from the Ticketmaster Discovery API v2 docs (https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/), section 'Event Search' (GET https://app.ticketmaster.com/discovery/v2/events.json?apikey=...). Values are type placeholders, not real events. Fields marked in _optional_fields are documented in the event response structure but often absent from real payloads (priceRanges in particular is frequently missing). Use this only to build parsers/fixtures; record real fixtures from a keyed call before trusting it.",
+  "_optional_fields": [
+    "_embedded.events[].priceRanges",
+    "_embedded.events[].ticketLimit",
+    "_embedded.events[].accessibility",
+    "_embedded.events[].products",
+    "_embedded.events[].seatmap",
+    "_embedded.events[].sales.presales",
+    "_embedded.events[].info",
+    "_embedded.events[].pleaseNote",
+    "_embedded.events[].promoters",
+    "_embedded.events[].outlets",
+    "_embedded.events[].place (only when there is no venue)",
+    "_embedded.events[].ageRestrictions (not confirmed in the fetched docs; seen in community payloads)"
+  ],
+  "_links": {
+    "self": { "href": "<string>", "templated": "<boolean>" },
+    "next": { "href": "<string>", "templated": "<boolean>" }
+  },
+  "_embedded": {
+    "events": [
+      {
+        "name": "<string>",
+        "type": "event",
+        "id": "<string>",
+        "test": "<boolean>",
+        "url": "<string: ticketmaster.com purchase URL; affiliate tracking is added when an Impact publisher ID is linked to the developer account>",
+        "locale": "<string>",
+        "images": [
+          { "ratio": "<string: 16_9 | 3_2 | 4_3>", "url": "<string>", "width": "<integer>", "height": "<integer>", "fallback": "<boolean>" }
+        ],
+        "info": "<string>",
+        "pleaseNote": "<string>",
+        "sales": {
+          "public": { "startDateTime": "<ISO-8601 UTC>", "startTBD": "<boolean>", "endDateTime": "<ISO-8601 UTC>" },
+          "presales": [
+            { "name": "<string>", "description": "<string>", "url": "<string>", "startDateTime": "<ISO-8601 UTC>", "endDateTime": "<ISO-8601 UTC>" }
+          ]
+        },
+        "dates": {
+          "start": {
+            "localDate": "<YYYY-MM-DD>",
+            "localTime": "<HH:MM:SS>",
+            "dateTime": "<ISO-8601 UTC>",
+            "dateTBD": "<boolean>",
+            "dateTBA": "<boolean>",
+            "timeTBA": "<boolean>",
+            "noSpecificTime": "<boolean>"
+          },
+          "end": { "localDate": "<YYYY-MM-DD>", "dateTime": "<ISO-8601 UTC>", "approximate": "<boolean>", "noSpecificTime": "<boolean>" },
+          "access": { "startDateTime": "<ISO-8601 UTC>", "startApproximate": "<boolean>", "endDateTime": "<ISO-8601 UTC>", "endApproximate": "<boolean>" },
+          "timezone": "<IANA tz, e.g. America/Chicago>",
+          "status": { "code": "<enum: onsale | offsale | canceled | postponed | rescheduled>" },
+          "spanMultipleDays": "<boolean>"
+        },
+        "classifications": [
+          {
+            "primary": "<boolean>",
+            "segment": { "id": "<string>", "name": "<string, e.g. Music>" },
+            "genre": { "id": "<string>", "name": "<string>" },
+            "subGenre": { "id": "<string>", "name": "<string>" },
+            "type": { "id": "<string>", "name": "<string>" },
+            "subType": { "id": "<string>", "name": "<string>" },
+            "family": "<boolean>"
+          }
+        ],
+        "promoter": { "id": "<string>", "name": "<string>", "description": "<string>" },
+        "promoters": [ { "id": "<string>", "name": "<string>", "description": "<string>" } ],
+        "priceRanges": [
+          { "type": "<enum: standard>", "currency": "<ISO-4217>", "min": "<number: face value, typically excluding fees>", "max": "<number>" }
+        ],
+        "ticketLimit": { "info": "<string, free text such as a per-order ticket cap>" },
+        "accessibility": { "info": "<string>" },
+        "products": [ { "name": "<string>", "id": "<string>", "url": "<string>", "type": "<string, e.g. Parking>" } ],
+        "productType": "<string>",
+        "seatmap": { "staticUrl": "<string>" },
+        "outlets": [ { "url": "<string>", "type": "<string>" } ],
+        "_links": {
+          "self": { "href": "<string>" },
+          "attractions": [ { "href": "<string>" } ],
+          "venues": [ { "href": "<string>" } ]
+        },
+        "_embedded": {
+          "venues": [
+            {
+              "name": "<string>",
+              "type": "venue",
+              "id": "<string>",
+              "test": "<boolean>",
+              "url": "<string>",
+              "locale": "<string>",
+              "postalCode": "<string>",
+              "timezone": "<IANA tz>",
+              "city": { "name": "<string>" },
+              "state": { "name": "<string>", "stateCode": "<string>" },
+              "country": { "name": "<string>", "countryCode": "<string>" },
+              "address": { "line1": "<string>" },
+              "location": { "longitude": "<string: decimal degrees as string>", "latitude": "<string: decimal degrees as string>" },
+              "markets": [ { "id": "<string>", "name": "<string>" } ],
+              "dmas": [ { "id": "<integer>" } ],
+              "boxOfficeInfo": { "phoneNumberDetail": "<string>", "openHoursDetail": "<string>", "acceptedPaymentDetail": "<string>", "willCallDetail": "<string>" },
+              "parkingDetail": "<string>",
+              "accessibleSeatingDetail": "<string>",
+              "generalInfo": { "generalRule": "<string>", "childRule": "<string>" },
+              "upcomingEvents": { "_total": "<integer>", "ticketmaster": "<integer>" },
+              "_links": { "self": { "href": "<string>" } }
+            }
+          ],
+          "attractions": [
+            {
+              "name": "<string>",
+              "type": "attraction",
+              "id": "<string>",
+              "test": "<boolean>",
+              "url": "<string>",
+              "locale": "<string>",
+              "externalLinks": { "spotify": [ { "url": "<string>" } ], "musicbrainz": [ { "id": "<string>" } ], "homepage": [ { "url": "<string>" } ] },
+              "images": [ { "ratio": "<string>", "url": "<string>", "width": "<integer>", "height": "<integer>", "fallback": "<boolean>" } ],
+              "classifications": [ { "primary": "<boolean>", "segment": { "id": "<string>", "name": "<string>" }, "genre": { "id": "<string>", "name": "<string>" }, "subGenre": { "id": "<string>", "name": "<string>" } } ],
+              "upcomingEvents": { "_total": "<integer>" },
+              "_links": { "self": { "href": "<string>" } }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "page": { "size": "<integer>", "totalElements": "<integer>", "totalPages": "<integer>", "number": "<integer>" },
+  "_error_shapes_observed_2026_10_15": {
+    "no_apikey_401": { "fault": { "faultstring": "Failed to resolve API Key variable request.queryparam.apikey", "detail": { "errorcode": "steps.oauth.v2.FailedToResolveAPIKey" } } },
+    "bad_apikey_401": { "fault": { "faultstring": "Invalid ApiKey", "detail": { "errorcode": "oauth.v2.InvalidApiKey" } } }
+  }
+}

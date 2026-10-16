@@ -1,0 +1,37 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff format
+        entry: .venv/bin/ruff format
+        language: system
+        types: [python]
+      - id: ruff-lint
+        name: ruff lint
+        entry: .venv/bin/ruff check --fix
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy (strict)
+        entry: .venv/bin/mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: no-secrets
+        name: no API keys in staged files
+        entry: bash -c 'if git diff --cached -U0 | grep -E "^\+.*(apikey=|client_id=)[A-Za-z0-9]{12,}"; then echo "possible secret staged"; exit 1; fi'
+        language: system
+        pass_filenames: false
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+        exclude: ^web/tsconfig
+      - id: end-of-file-fixer
+        exclude: ^docs/research/samples/
+      - id: trailing-whitespace
+        exclude: ^docs/research/samples/
+      - id: check-added-large-files
+        args: [--maxkb=800]
+      - id: detect-private-key

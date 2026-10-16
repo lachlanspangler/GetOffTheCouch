@@ -1,0 +1,306 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//University of Minnesota Twin Cities//NONSGML v1.0//EN
+X-WR-CALNAME:University of Minnesota Twin Cities Events
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:DAYLIGHT
+TZNAME:CDT
+DTSTART:20260308T080000
+RDATE:20260308T080000
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:STANDARD
+TZNAME:CST
+DTSTART:20261101T070000
+RDATE:20261101T070000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:7485 Rolling Acres Road Victoria\, MN 55386
+GEO:44.868265;-93.636109
+SUMMARY:AppleHouse | University of Minnesota Landscape Arboretum
+DESCRIPTION:Many of the University of Minnesota's introduced apple variet
+ ies (https://mnhardy.umn.edu/apples/varieties) are for sale\, along with 
+ gourmet packaged foods\, frozen pies\, pastries\, fudge\, gifts and — i
+ n the fall — pumpkins\, squash and gourds\, also grown at the Arboretum
+ . While supplies last\, the AppleHouse also offers delicious Goldy's Smok
+ ehouse meats\, ice cream and Bee Lab honey from the University of Minneso
+ ta College of Food\, Agricultural and Natural Resource Science (CFANS).&#
+ 160\;Nov. 6-Dec. 20: The AppleHouse transforms into a Holiday Boutique! O
+ pen 9 a.m.-5 p.m. daily.&#160\;
+X-ALT-DESC;FMTTYPE=text/html:<p>  Many of the <a href="https://mnhardy.um
+ n.edu/apples/varieties">University of Minnesota's introduced apple variet
+ ies</a> are for sale\, along with gourmet packaged foods\, frozen pies\, 
+ pastries\, fudge\, gifts and — in the fall — pumpkins\, squash and go
+ urds\, also grown at the Arboretum. While supplies last\, the AppleHouse 
+ also offers delicious Goldy's Smokehouse meats\, ice cream and Bee Lab ho
+ ney from the University of Minnesota College of Food\, Agricultural and N
+ atural Resource Science (CFANS).&#160\;</p><p><strong>Nov. 6-Dec. 20:</st
+ rong> The AppleHouse transforms into a Holiday Boutique! Open 9 a.m.-5 p.
+ m. daily.&#160\;</p>
+UID:20261016T050000Z-27722@events.tc.umn.edu
+DTSTAMP:20260807T100451Z
+URL:https://events.tc.umn.edu/landscape-arboretum/event/27722-applehouse-
+ university-of-minnesota-landscape
+CATEGORIES:Agriculture and Food,Environment, Sustainability, and Natural 
+ Resource Science,Exhibition,Extension
+LAST-MODIFIED:20260923T191524Z
+ATTACH:https://events.tc.umn.edu/live/image/gid/346/width/80/height/80/cr
+ op/1/src_region/0,0,3024,2852/1697_Haralson_apples_Photo_by_Pat_Petersen.
+ rev.1659381978.jpg
+X-LIVEWHALE-TYPE:events
+X-LIVEWHALE-ID:27722
+X-LIVEWHALE-TIMEZONE:America/Chicago
+X-LIVEWHALE-IMAGE:https://events.tc.umn.edu/live/image/gid/346/width/80/h
+ eight/80/crop/1/src_region/0\,0\,3024\,2852/1697_Haralson_apples_Photo_by
+ _Pat_Petersen.rev.1659381978.jpg
+X-LIVEWHALE-IMAGE-CAPTION:AppleHouse
+X-LIVEWHALE-ALL-DAY:1
+X-LIVEWHALE-CONTACT-INFO:<p>\n  University of Minnesota Landscape Arboret
+ um<br />\n  3675 Arboretum Drive<br />\n  Chaska\, MN 55318<br />\n  612-
+ 624-2200<br />\n  <a href="http://arb.umn.edu/">Arb.umn.edu</a>\n</p>
+X-LIVEWHALE-SUMMARY:<p>\n  Just 1.5 miles west of the main Arboretum entr
+ ance on Highway 5\, the University of Minnesota Landscape Arboretum Apple
+ House is an iconic seasonal destination\, featuring <a href="https://arb.
+ umn.edu/AppleHouse/apples" data-entity-type="node" data-entity-uuid="508f
+ ffd4-5616-4fc4-bab4-d7ed26b97841" data-entity-substitution="canonical">Mi
+ nnesota-grown apples</a>\, including varieties grown at the Arboretum's n
+ earby Horticultural Research Center.&#160\;\n</p>
+X-LIVEWHALE-TAGS:Arboretum
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:333 E. River Road\, Minneapolis\, MN 55455
+GEO:44.979381;-93.236654
+SUMMARY:Ebb/Flow: Pritika Chowdhry\, Chotsani Elaine Dean and Courtney M.
+  Leonard
+DESCRIPTION:&#160\;  The phrase "ebb and flow" is defined as a recurrent 
+ or rhythmical pattern of coming and going or decline and regrowth. It is 
+ often used to evoke a sense of calm by suggesting that lows will be follo
+ wed by highs in an endless and certain course. This usage\, however\, bel
+ ies the fact that ebbing and flowing also describes the often fierce dyna
+ mism and unpredictability of natural and emotional reality.  &#160\;  Cro
+ ssing boundaries of traditional studio ceramics\, sculpture\, and concept
+ ual and political art\, the Ebb/Flow multimedia installations deepen acce
+ ss to and interrogate sites of historical and cultural upheaval. In addit
+ ion\, they add to the material and subject diversity of the Weisman's not
+ able ceramics and American art collections. As such\, the Weisman proudly
+  presents these works to evoke reflection on and discussion of some of th
+ e most important and resounding issues of our time.  &#160\;  Banner (L t
+ o R): Courtney M. Leonard\, Breach Logbook 22: Cull (detail)\, installati
+ on view\, 2022. Ceramic\, paint\, and video. Weisman Art Museum commissio
+ n.\; Pritika Chowdhry\, Silent Waters (detail)\, 2009. Ceramic\, wax\, an
+ d sound. 2015.2.1.1-2015.2.1.101\; Chotsani Elaine Dean\, Comptoir de com
+ merce: saadje\, navigeren\, waarde\, 2022. Ceramic\, resin\, and seeds. L
+ ent by the artist.
+X-ALT-DESC;FMTTYPE=text/html:<p>  &#160\;</p><p>  The phrase "ebb and flo
+ w" is defined as a recurrent or rhythmical pattern of coming and going or
+  decline and regrowth. It is often used to evoke a sense of calm by sugge
+ sting that lows will be followed by highs in an endless and certain cours
+ e. This usage\, however\, belies the fact that ebbing and flowing also de
+ scribes the often fierce dynamism and unpredictability of natural and emo
+ tional reality.</p><p>  &#160\;</p><p>  Crossing boundaries of traditiona
+ l studio ceramics\, sculpture\, and conceptual and political art\, the <e
+ m><strong>Ebb/Flow</strong></em> multimedia installations deepen access t
+ o and interrogate sites of historical and cultural upheaval. In addition\
+ , they add to the material and subject diversity of the Weisman's notable
+  ceramics and American art collections. As such\, the Weisman proudly pre
+ sents these works to evoke reflection on and discussion of some of the mo
+ st important and resounding issues of our time.</p><p>  &#160\;</p><p>  B
+ anner (L to R): Courtney M. Leonard\, <em>Breach Logbook 22: Cull</em> (d
+ etail)\, installation view\, 2022. Ceramic\, paint\, and video. Weisman A
+ rt Museum commission.\; Pritika Chowdhry\, <em>Silent Waters</em> (detail
+ )\, 2009. Ceramic\, wax\, and sound. 2015.2.1.1-2015.2.1.101\; Chotsani E
+ laine Dean\, <em>Comptoir de commerce: saadje\, navigeren\, waarde\,</em>
+  2022. Ceramic\, resin\, and seeds. Lent by the artist.</p>
+UID:20261016T050000Z-26525@events.tc.umn.edu
+DTSTAMP:20260311T150320Z
+URL:https://events.tc.umn.edu/weisman-art-museum/event/26525-ebbflow-prit
+ ika-chowdhry-chotsani-elaine-dean-and
+CATEGORIES:Arts, Culture, Architecture, and Design,Diversity, Equity, and
+  Multicultural,Exhibition
+LAST-MODIFIED:20260311T200348Z
+ATTACH:https://events.tc.umn.edu/live/image/gid/517/width/80/height/80/cr
+ op/1/src_region/0,0,1920,1274/5571_ebbflownew1.rev.1773259197.jpg
+X-LIVEWHALE-TYPE:events
+X-LIVEWHALE-ID:26525
+X-LIVEWHALE-TIMEZONE:America/Chicago
+X-LIVEWHALE-IMAGE:https://events.tc.umn.edu/live/image/gid/517/width/80/h
+ eight/80/crop/1/src_region/0\,0\,1920\,1274/5571_ebbflownew1.rev.17732591
+ 97.jpg
+X-LIVEWHALE-ALL-DAY:1
+X-LIVEWHALE-COST:Free
+X-LIVEWHALE-SUMMARY:<p>\n  Addressing the violence of separation\, the pr
+ actice of keeping memories and the invasive effects of colonialism\, <str
+ ong>Pritika Chowdhry</strong>\, <strong>Chotsani Elaine Dean</strong> and
+  <strong>Courtney M. Leonard</strong> contemplate the past\, the present 
+ and possible futures in their large scale\, ceramic-based installation wo
+ rks. The individual works poetically contemplate the 1947 partition of In
+ dia\, the manual and psychological labor of enslaved and free African Ame
+ ricans and the changed environments and indigenous lifeways brought on by
+  outside occupation and settlement.\n</p>
+X-LIVEWHALE-TAGS:Art History|Art|Exhibit|Weisman Art Museum
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:333 E. River Road\, Minneapolis\, MN 55455
+GEO:44.979381;-93.236654
+SUMMARY:More Various\, More Beautiful\, and More Terrible
+DESCRIPTION:&#160\;  From its origins in 1934 as the University Gallery\,
+  Weisman Art Museum has been committed to collecting the work of American
+  artists. Critically considering the history and nature of that commitmen
+ t\, this new Woodhouse Family Gallery installation highlights the variety
+  and relevance of the museum's holdings of United States art with a focus
+  on the many contested terrains at play in American art\, history\, and e
+ xperience.  &#160\;Find more about this exhibition\, and see a sampling o
+ f artwork images\, on the Weisman's website &gt\;&gt\; (https://wam.umn.e
+ du/more-various-more-beautiful-and-more-terrible)
+X-ALT-DESC;FMTTYPE=text/html:<p>  &#160\;</p><p>  From its origins in 193
+ 4 as the University Gallery\, Weisman Art Museum has been committed to co
+ llecting the work of American artists. Critically considering the history
+  and nature of that commitment\, this new Woodhouse Family Gallery instal
+ lation highlights the variety and relevance of the museum's holdings of U
+ nited States art with a focus on the many contested terrains at play in A
+ merican art\, history\, and experience.</p><p>  &#160\;</p><p><a href="ht
+ tps://wam.umn.edu/more-various-more-beautiful-and-more-terrible">Find mor
+ e about this exhibition\, and see a sampling of artwork images\, on the W
+ eisman's website &gt\;&gt\;</a></p>
+UID:20261016T050000Z-19113@events.tc.umn.edu
+DTSTAMP:20240815T131701Z
+URL:https://events.tc.umn.edu/weisman-art-museum/event/19113-more-various
+ -more-beautiful-and-more-terrible
+CATEGORIES:Arts, Culture, Architecture, and Design,Diversity, Equity, and
+  Multicultural,Exhibition
+LAST-MODIFIED:20260311T194709Z
+ATTACH:https://events.tc.umn.edu/live/image/gid/517/width/80/height/80/cr
+ op/1/src_region/0,0,1920,600/3842_more-beautiful-more-terrible-more-vario
+ us-homepage-1.rev.1723745583.png
+X-LIVEWHALE-TYPE:events
+X-LIVEWHALE-ID:19113
+X-LIVEWHALE-TIMEZONE:America/Chicago
+X-LIVEWHALE-IMAGE:https://events.tc.umn.edu/live/image/gid/517/width/80/h
+ eight/80/crop/1/src_region/0\,0\,1920\,600/3842_more-beautiful-more-terri
+ ble-more-various-homepage-1.rev.1723745583.png
+X-LIVEWHALE-ALL-DAY:1
+X-LIVEWHALE-COST:Free
+X-LIVEWHALE-SUMMARY:<p>\n  In his <a href="https://www.zinnedproject.org/
+ materials/baldwin-talk-to-teachers" target="_blank" rel="noopener">"A Tal
+ k to Teachers"</a> from 1963\, James Baldwin opined that "American histor
+ y is longer\, larger\, more various\, more beautiful\, and more terrible 
+ than anything anyone has ever said about it." This exhibition\, which dra
+ ws its title from Baldwin's description\, showcases works from the Weisma
+ n's collection by American artists that demonstrate\, confound\, and prob
+ e these aspects of the American experience. Featuring artistic expression
+ s by Indigenous creators\, the descendants of the earliest European colon
+ izers\, as well as enslaved Africans\, and the work of artists who came t
+ o the United States through immigration\, this set of objects from the We
+ isman collection presents a rich and complex panorama of American art.\n<
+ /p>
+X-LIVEWHALE-TAGS:Art History|Art|Exhibit|Weisman Art Museum
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:3675 Arboretum Drive\, Chaska\, MN 55318
+GEO:44.861593;-93.615104
+SUMMARY:The Brightness of Being | Cafe Gallery | University of Minnesota 
+ Landscape Arboretum
+DESCRIPTION:This is a curated celebration of the light that resides withi
+ n the playful\, the small and the spirited. In a world that often feels h
+ eavy\, this exhibition serves as a sanctuary of illumination — focusing
+  on the literal brightness of the sun-drenched sky and the figurative bri
+ ghtness of the human and animal spirit.
+X-ALT-DESC;FMTTYPE=text/html:<p>  This is a curated celebration of the li
+ ght that resides within the playful\, the small and the spirited. In a wo
+ rld that often feels heavy\, this exhibition serves as a sanctuary of ill
+ umination — focusing on the literal brightness of the sun-drenched sky 
+ and the figurative brightness of the human and animal spirit.</p>
+UID:20261016T050000Z-27723@events.tc.umn.edu
+DTSTAMP:20260807T101429Z
+URL:https://events.tc.umn.edu/landscape-arboretum/event/27723-the-brightn
+ ess-of-being-cafe-gallery-university
+CATEGORIES:Arts, Culture, Architecture, and Design
+LAST-MODIFIED:20260807T151429Z
+ATTACH:https://events.tc.umn.edu/live/image/gid/346/width/80/height/80/cr
+ op/1/src_region/0,0,770,450/5885_BOB_770x450.rev.1786115582.jpg
+X-LIVEWHALE-TYPE:events
+X-LIVEWHALE-ID:27723
+X-LIVEWHALE-TIMEZONE:America/Chicago
+X-LIVEWHALE-IMAGE:https://events.tc.umn.edu/live/image/gid/346/width/80/h
+ eight/80/crop/1/src_region/0\,0\,770\,450/5885_BOB_770x450.rev.1786115582
+ .jpg
+X-LIVEWHALE-ALL-DAY:1
+X-LIVEWHALE-CONTACT-INFO:<p>University of Minnesota Landscape Arboretum<b
+ r />\n3675 Arboretum Drive<br />\nChaska\, MN 55318<br />\n612-624-2200<b
+ r />\n<a href="http://arb.umn.edu/">Arb.umn.edu</a></p>
+X-LIVEWHALE-SUMMARY:<p>The Brightness of Being is an invitation to leave 
+ your serious art-critic hat at the door and rediscover the world through 
+ the eyes of Anne Spooner\, Leigh Bauer\, Liya Oertel and Nicky Torkzadeh.
+ &#160\;</p>
+X-LIVEWHALE-TAGS:Arboretum|art
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+LOCATION:West Bank Skyway
+GEO:44.97246;-93.243304
+SUMMARY:UMN\, Farm Aid\, & Activism | West Bank Skyway
+DESCRIPTION:Highlighting the 40-year history of Farm Aid (https://www.far
+ maid.org/festival/)\, this exhibit led by History Professor Andrew Kobaya
+ shi Deckrow (mailto:adeckrow@umn.edu) explores University of Minnesota's 
+ response to the farm crisis through music\, activism\, and Minnesota-base
+ d partnerships. The project compiles work from undergraduate students in 
+ the History 3001: Public History course from fall of 2025\, as well as th
+ e History Department's second annual History Lab in the spring of 2026.  
+ All are invited to the opening reception in the West Bank Skyway on April
+  29 from 2-4 p.m.  Questions? Contact Professor Andre Kobayashi Deckrow: 
+ adeckrow@umn.edu (mailto:adeckrow@umn.edu)
+X-ALT-DESC;FMTTYPE=text/html:<p>  Highlighting the 40-year history of <a 
+ href="https://www.farmaid.org/festival/">Farm Aid</a>\, this exhibit led 
+ by History Professor <a href="mailto:adeckrow@umn.edu">Andrew Kobayashi D
+ eckrow</a> explores University of Minnesota's response to the farm crisis
+  through music\, activism\, and Minnesota-based partnerships. The project
+  compiles work from undergraduate students in the History 3001: Public Hi
+ story course from fall of 2025\, as well as the History Department's seco
+ nd annual History Lab in the spring of 2026.</p><p>  All are invited to t
+ he opening reception in the West Bank Skyway on April 29 from 2-4 p.m.</p
+ ><p>  Questions? Contact Professor Andre Kobayashi Deckrow: <a class="Pro
+ semirrorEditor-link" href="mailto:adeckrow@umn.edu">adeckrow@umn.edu</a><
+ /p>
+UID:20261016T050000Z-26673@events.tc.umn.edu
+DTSTAMP:20260402T154312Z
+URL:https://events.tc.umn.edu/sua/event/26673-umn-farm-aid-activism-west-
+ bank-skyway
+CATEGORIES:Academics, Research, and Education,Agriculture and Food,Arts, 
+ Culture, Architecture, and Design,Exhibition,Law, Policy, and Public Affa
+ irs,Student Life
+LAST-MODIFIED:20260402T204312Z
+ATTACH:https://events.tc.umn.edu/live/image/gid/472/width/80/height/80/cr
+ op/1/src_region/0,0,833,833/5644_FY26_UMN_Farm_Aid_Activism_UMN_Events_Ca
+ l_2.rev.1775162357.jpg
+X-LIVEWHALE-TYPE:events
+X-LIVEWHALE-ID:26673
+X-LIVEWHALE-TIMEZONE:America/Chicago
+X-LIVEWHALE-IMAGE:https://events.tc.umn.edu/live/image/gid/472/width/80/h
+ eight/80/crop/1/src_region/0\,0\,833\,833/5644_FY26_UMN_Farm_Aid_Activism
+ _UMN_Events_Cal_2.rev.1775162357.jpg
+X-LIVEWHALE-IMAGE-CAPTION:Night-ime overhead view of a full Huntington Ba
+ nk stadium during Farm Aid 40
+X-LIVEWHALE-ALL-DAY:1
+X-LIVEWHALE-COST:Free
+X-LIVEWHALE-CONTACT-INFO:<p>gallery@umn.edu</p>
+X-LIVEWHALE-SUMMARY:<p>https://z.umn.edu/umn-farmaid-activism-umncal</p>
+X-LIVEWHALE-TAGS:activism|art gallery|Art|arts and culture|farm aid|history
+END:VEVENT
+END:VCALENDAR

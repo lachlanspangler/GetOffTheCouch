@@ -1,0 +1,247 @@
+{
+  "docs": {
+    "count": 266,
+    "docs": [
+      {
+        "_id": "6acc6654a9aea6f65a05b837",
+        "recid": "380255",
+        "title": "Boo at the Zoo",
+        "date": "2026-10-17T04:59:59.000Z",
+        "startDate": "2026-10-02T05:00:00.000Z",
+        "endDate": "2026-10-25T04:59:59.000Z",
+        "location": "Austin Zoo",
+        "address1": "10808 Rawhide Tr.",
+        "city": "Austin",
+        "zip": "78736",
+        "latitude": 30.2613524,
+        "longitude": -97.9377289,
+        "url": "/event/boo-at-the-zoo/380255/",
+        "categories": [
+          {
+            "catName": "Family Friendly",
+            "catId": "39"
+          },
+          {
+            "catName": "Holiday",
+            "catId": "41"
+          },
+          {
+            "catName": "Annual Events",
+            "catId": "42"
+          },
+          {
+            "catName": "Outdoors",
+            "catId": "64"
+          },
+          {
+            "catName": "Under 21",
+            "catId": "65"
+          }
+        ],
+        "admission": "$22",
+        "linkUrl": "https://austinzoo.org/calendar/",
+        "startTime": "18:30:00",
+        "endTime": "21:00:00",
+        "recurType": 3,
+        "recurrence": "Recurring weekly on Friday, Saturday",
+        "nextDate": "2026-10-17T04:59:59.000Z",
+        "listing": {
+          "title": "Austin Zoo"
+        }
+      },
+      {
+        "_id": "6acf2553e73a019242b2150f",
+        "recid": "384308",
+        "title": "Hot Luck Live Food & Music Festival",
+        "date": "2026-10-17T04:59:59.000Z",
+        "startDate": "2026-10-16T05:00:00.000Z",
+        "endDate": "2026-10-18T04:59:59.000Z",
+        "location": "Franklin BBQ",
+        "address1": "900 E. Eleventh St.",
+        "city": "Austin",
+        "zip": "78702",
+        "latitude": 30.2701348,
+        "longitude": -97.7312949,
+        "url": "/event/hot-luck-live-food-%26-music-festival/384308/",
+        "categories": [
+          {
+            "catName": "Live Music",
+            "catId": "34"
+          },
+          {
+            "catName": "Annual Events",
+            "catId": "42"
+          },
+          {
+            "catName": "Food & Drink",
+            "catId": "43"
+          },
+          {
+            "catName": "Community",
+            "catId": "48"
+          },
+          {
+            "catName": "LGBTQ+",
+            "catId": "59"
+          },
+          {
+            "catName": "Latino",
+            "catId": "60"
+          },
+          {
+            "catName": "Asian American & Pacific Islander",
+            "catId": "61"
+          },
+          {
+            "catName": "African American",
+            "catId": "62"
+          },
+          {
+            "catName": "Outdoors",
+            "catId": "64"
+          },
+          {
+            "catName": "Festivals",
+            "catId": "72"
+          }
+        ],
+        "admission": "$41-$373",
+        "linkUrl": "https://www.hotluckfest.com/",
+        "recurType": 1,
+        "recurrence": "Recurring daily",
+        "nextDate": "2026-10-17T04:59:59.000Z",
+        "listing": {
+          "title": "Franklin Barbecue"
+        }
+      },
+      {
+        "_id": "6acd475da9aea6f65a31b867",
+        "recid": "398576",
+        "title": "\"I Know You All...\" Multilingual Mixer",
+        "date": "2026-10-17T04:59:59.000Z",
+        "startDate": "2026-10-16T05:00:00.000Z",
+        "endDate": "2026-10-17T04:59:59.000Z",
+        "location": "Austin Scottish Rite Theater",
+        "address1": "207 W 18th St",
+        "city": "Austin",
+        "zip": "78701",
+        "latitude": 30.2799873,
+        "longitude": -97.7406802,
+        "url": "/event/i-know-you-all-multilingual-mixer/398576/",
+        "categories": [
+          {
+            "catName": "Annual Events",
+            "catId": "42"
+          },
+          {
+            "catName": "Theater",
+            "catId": "63"
+          },
+          {
+            "catName": "Performing Arts",
+            "catId": "67"
+          },
+          {
+            "catName": "Poetry & Literature",
+            "catId": "68"
+          },
+          {
+            "catName": "Public Arts",
+            "catId": "71"
+          }
+        ],
+        "admission": "Free",
+        "linkUrl": "https://tickets.atxtheatre.org/events/multilingual-shakespeare-mixer-i-know-you-all-10-16-2026",
+        "startTime": "19:00:00",
+        "endTime": "21:00:00",
+        "recurType": 0,
+        "nextDate": "2026-10-17T04:59:59.000Z"
+      },
+      {
+        "_id": "6accf280a9aea6f65a1e0ce3",
+        "recid": "397863",
+        "title": "333",
+        "date": "2026-10-17T04:59:59.000Z",
+        "startDate": "2026-10-16T05:00:00.000Z",
+        "endDate": "2026-10-17T04:59:59.000Z",
+        "location": "Tiny Minotaur Tavern",
+        "address1": "2701 E Cesar Chavez St",
+        "city": "Austin",
+        "zip": "78702",
+        "latitude": 30.2532499,
+        "longitude": -97.7140589,
+        "url": "/event/333/397863/",
+        "categories": [
+          {
+            "catName": "Community",
+            "catId": "48"
+          },
+          {
+            "catName": "LGBTQ+",
+            "catId": "59"
+          },
+          {
+            "catName": "Theater",
+            "catId": "63"
+          },
+          {
+            "catName": "Fashion",
+            "catId": "66"
+          },
+          {
+            "catName": "Performing Arts",
+            "catId": "67"
+          },
+          {
+            "catName": "Interactive/Media Arts",
+            "catId": "70"
+          },
+          {
+            "catName": "Public Arts",
+            "catId": "71"
+          }
+        ],
+        "admission": "$11",
+        "linkUrl": "https://www.exploretock.com/tinyminotaurtavern/event/567631/the-trans-era-presents-333-fantasy-drag",
+        "startTime": "19:00:00",
+        "endTime": "23:45:00",
+        "recurType": 0,
+        "nextDate": "2026-10-17T04:59:59.000Z",
+        "listing": {
+          "title": "The Tiny Minotaur"
+        }
+      },
+      {
+        "_id": "6ad05aa1e73a019242eb6168",
+        "recid": "398056",
+        "title": "AMADEUS",
+        "date": "2026-10-17T04:59:59.000Z",
+        "startDate": "2026-10-02T05:00:00.000Z",
+        "endDate": "2026-10-19T04:59:59.000Z",
+        "location": "Genesis Creative Collective",
+        "address1": "1507 Wilshire Blvd.",
+        "city": "Austin",
+        "zip": "78722",
+        "latitude": 30.2958973,
+        "longitude": -97.7108234,
+        "url": "/event/amadeus/398056/",
+        "categories": [
+          {
+            "catName": "Performing Arts",
+            "catId": "67"
+          }
+        ],
+        "admission": "$20-$35",
+        "linkUrl": "http://www.citytheatreaustin.org",
+        "startTime": "20:00:00",
+        "endTime": "22:00:00",
+        "recurType": 3,
+        "recurrence": "Recurring weekly on Sunday, Thursday, Friday, Saturday",
+        "nextDate": "2026-10-16T04:59:59.000Z",
+        "listing": {
+          "title": "The City Theatre"
+        }
+      }
+    ]
+  }
+}

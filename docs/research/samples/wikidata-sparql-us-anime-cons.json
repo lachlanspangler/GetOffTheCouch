@@ -1,0 +1,145 @@
+{
+ "head": {
+  "vars": [
+   "con",
+   "conLabel",
+   "cityLabel",
+   "coord",
+   "website",
+   "edition",
+   "editionLabel",
+   "start",
+   "end"
+  ]
+ },
+ "results": {
+  "bindings": [
+   {
+    "con": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q3469404"
+    },
+    "website": {
+     "type": "uri",
+     "value": "http://sakuracon.org/"
+    },
+    "coord": {
+     "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+     "type": "literal",
+     "value": "Point(-122.332764 47.611428)"
+    },
+    "conLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Sakura-Con"
+    },
+    "cityLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Washington"
+    }
+   },
+   {
+    "con": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q4765116"
+    },
+    "website": {
+     "type": "uri",
+     "value": "https://www.animazement.com/"
+    },
+    "coord": {
+     "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+     "type": "literal",
+     "value": "Point(-78.6411 35.7736)"
+    },
+    "conLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Animazement"
+    },
+    "cityLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "North Carolina"
+    }
+   },
+   {
+    "con": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q4765123"
+    },
+    "website": {
+     "type": "uri",
+     "value": "http://www.animenext.org/"
+    },
+    "coord": {
+     "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+     "type": "literal",
+     "value": "Point(-74.521 40.5379)"
+    },
+    "conLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "AnimeNEXT"
+    },
+    "cityLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "New Jersey"
+    }
+   },
+   {
+    "con": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q4765132"
+    },
+    "website": {
+     "type": "uri",
+     "value": "http://www.animebanzai.org/"
+    },
+    "coord": {
+     "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+     "type": "literal",
+     "value": "Point(-111.98061111 41.08436111)"
+    },
+    "conLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Anime Banzai"
+    },
+    "cityLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Utah"
+    }
+   },
+   {
+    "con": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q4765136"
+    },
+    "website": {
+     "type": "uri",
+     "value": "https://www.acen.org/"
+    },
+    "coord": {
+     "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+     "type": "literal",
+     "value": "Point(-87.8597 41.9792)"
+    },
+    "conLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Anime Central"
+    },
+    "cityLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Illinois"
+    }
+   }
+  ]
+ },
+ "_note": "source: query.wikidata.org/sparql, query docs/research (q: US anime conventions Q548126 + 2026+ editions), fetched 2026-10-15; trimmed to 5 bindings; 41 cons total, 0 had a 2026+ edition"
+}

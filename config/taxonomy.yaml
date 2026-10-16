@@ -1,0 +1,213 @@
+# GetOffTheCouch category taxonomy. Categories are ids, never free text.
+# Rules:
+#   * ids are dotted paths; a child inherits its parent's traits unless overridden
+#   * `social` (0–1) = prior for "good for meeting people" (see gotc/pipeline/enrich.py)
+#   * `attendance` = [p10, p50, p90] prior headcount when we know nothing else (used by the attendance model)
+#   * `match` = case-insensitive keywords/phrases used by gotc/taxonomy.py to classify free text
+#     when a source gives no usable category. Source-specific label maps live in the adapters' configs.
+#   * never delete an id: deprecate it with `deprecated: <replacement id>` so stored data stays valid
+version: 1
+
+categories:
+  music:
+    label: Music
+    icon: music
+    social: 0.35
+    attendance: [80, 600, 8000]
+    children:
+      concert: { label: Concerts, match: [concert, live music, tour, in concert], attendance: [150, 1200, 15000] }
+      festival: { label: Music festivals, match: [music festival, fest lineup], attendance: [1500, 8000, 60000], social: 0.5 }
+      open_mic: { label: Open mics & jams, match: [open mic, open-mic, jam session, bluegrass jam], attendance: [15, 40, 120], social: 0.7 }
+      dj_night: { label: DJ & dance nights, match: [dj set, dance party, " rave", silent disco, techno, house music], attendance: [80, 300, 1500], social: 0.55 }
+      classical: { label: Classical & opera, match: [symphony, orchestra, opera, philharmonic, chamber music, string quartet], attendance: [150, 800, 2500] }
+
+  sports_league:
+    label: Rec & beer leagues
+    icon: trophy
+    social: 0.9
+    attendance: [40, 150, 600]
+    children:
+      kickball: { label: Kickball, match: [kickball] }
+      softball: { label: Softball, match: [softball, slow pitch, slowpitch] }
+      volleyball: { label: Volleyball, match: [volleyball, sand volleyball, beach volleyball] }
+      pickleball: { label: Pickleball, match: [pickleball] }
+      bowling: { label: Bowling, match: [bowling league, bowling] }
+      broomball: { label: Broomball, match: [broomball] }
+      curling: { label: Curling, match: [curling, learn to curl, bonspiel] }
+      soccer: { label: Soccer, match: [soccer, futsal] }
+      flag_football: { label: Flag football, match: [flag football] }
+      basketball: { label: Basketball, match: [basketball, " hoops"] }
+      dodgeball: { label: Dodgeball, match: [dodgeball] }
+      cornhole: { label: Cornhole & bar games, match: [cornhole, skee-ball, skeeball, darts league, shuffleboard] }
+      ultimate: { label: Ultimate frisbee, match: [ultimate frisbee, " ultimate league", disc golf] }
+      hockey: { label: Hockey, match: [pond hockey, ice hockey league, adult hockey] }
+      tennis: { label: Tennis, match: [tennis league, tennis] }
+      other: { label: Other leagues, match: [adult league, rec league, sport & social, sports league] }
+
+  nightlife:
+    label: Parties & nightlife
+    icon: sparkles
+    social: 0.6
+    attendance: [60, 250, 1500]
+    children:
+      opening: { label: New openings, match: [grand opening, now open, soft opening, opening night, ribbon cutting], social: 0.5, attendance: [40, 150, 600] }
+      pub_crawl: { label: Pub & bar crawls, match: [pub crawl, bar crawl, santacon, zombie crawl], social: 0.85, attendance: [100, 500, 3000] }
+      rooftop: { label: Rooftop & patio, match: [rooftop, patio season, patio party], attendance: [80, 250, 800] }
+      holiday: { label: Holiday parties, match: [new year's eve, nye party, halloween party, st. patrick, st patrick, cinco de mayo, fourth of july, 4th of july, friendsgiving, ugly sweater], social: 0.65 }
+      comedy: { label: Comedy, match: [comedy, stand-up, standup, improv], attendance: [40, 150, 800], social: 0.4 }
+      drag: { label: Drag & cabaret, match: [drag show, drag brunch, cabaret, burlesque], social: 0.55 }
+      singles: { label: Singles & mixers, match: [singles, speed dating, mixer, meet new people, make new friends], social: 0.95, attendance: [20, 60, 200] }
+
+  community:
+    label: Community & festivals
+    icon: users
+    social: 0.6
+    attendance: [100, 800, 10000]
+    children:
+      block_party: { label: Block parties & street fairs, match: [block party, street fair, street festival, plaza event], attendance: [150, 800, 8000], social: 0.7 }
+      festival: { label: Festivals, match: [festival, fest, fair, parade, celebration], attendance: [500, 3000, 50000] }
+      market: { label: Markets, match: [farmers market, farmer's market, flea market, night market, craft fair, makers market, greenmarket], attendance: [200, 1000, 6000], social: 0.45 }
+      neighborhood: { label: Neighborhood meetings, match: [community meeting, neighborhood association, town hall, community board], attendance: [15, 50, 200], social: 0.5 }
+      cultural: { label: Cultural celebrations, match: [heritage, diwali, lunar new year, juneteenth, pride, dia de los muertos, día de los muertos, oktoberfest], attendance: [300, 2000, 30000] }
+
+  food_drink:
+    label: Food & drink
+    icon: utensils
+    social: 0.5
+    attendance: [30, 150, 2000]
+    children:
+      tasting: { label: Tastings, match: [beer tasting, wine tasting, tasting, beer fest, beer festival, wine walk, cider], social: 0.6 }
+      food_festival: { label: Food festivals, match: [food festival, taste of, food truck, chili cook-off, bbq fest], attendance: [500, 3000, 30000] }
+      class: { label: Cooking classes, match: [cooking class, baking class, pasta making, cocktail class], attendance: [8, 16, 40], social: 0.6 }
+      restaurant_opening: { label: New restaurants & bars, match: [new restaurant, new bar, liquor license], attendance: [30, 100, 400] }
+
+  volunteer:
+    label: Volunteer
+    icon: heart
+    social: 0.8
+    attendance: [5, 25, 150]
+    children:
+      one_off: { label: One-day volunteering, match: [volunteer, cleanup, clean-up, clean up, tree planting, food packing, service day] }
+      recurring: { label: Ongoing volunteering, match: [weekly volunteer, ongoing volunteer, mentor, tutor] }
+      board: { label: Boards & civic, match: [board member, commission, civic, poll worker, election judge] }
+
+  niche:
+    label: Cons, faires & niche
+    icon: wand
+    social: 0.7
+    attendance: [200, 2000, 20000]
+    children:
+      furry_con: { label: Furry cons, match: [furry con, furcon, furry convention, fursuit, anthrocon, megaplex, furry weekend, midwest furfest] }
+      anime_con: { label: Anime cons, match: [anime con, anime convention, anime expo, otakon, cosplay convention, anime] }
+      comic_con: { label: Comic cons, match: [comic con, comic-con, comicon, comics festival, pop culture con, fan expo] }
+      gaming_con: { label: Gaming & tabletop cons, match: [gaming convention, board game convention, tabletop, game day, lan party, " pax "] }
+      ren_faire: { label: Renaissance faires, match: [renaissance faire, renaissance festival, ren faire, ren fest, medieval faire, pirate festival] }
+      car_show: { label: Car shows, match: [car show, cars and coffee, cars & coffee, auto show, car meet, motorcycle show] }
+      maker_faire: { label: Maker faires, match: [maker faire, makerfaire, mini maker, hackathon, maker fest] }
+      sci_fi: { label: Sci-fi & fantasy cons, match: [sci-fi con, science fiction convention, worldcon, fantasy convention, star trek, dragon con] }
+      hobby: { label: Hobby expos, match: [expo, model train, train show, gem show, mineral show, record fair, vinyl fair, stamp show, doll show] }
+
+  trivia_games:
+    label: Trivia & games
+    icon: brain
+    social: 0.85
+    attendance: [20, 60, 150]
+    children:
+      trivia: { label: Trivia nights, match: [trivia, pub quiz, quiz night, geeks who drink, music bingo] }
+      board_games: { label: Board game nights, match: [board game night, game night, d&d, dungeons & dragons, mahjong, chess club] }
+      karaoke: { label: Karaoke, match: [karaoke] }
+      bingo: { label: Bingo, match: [bingo, drag bingo] }
+
+  fitness:
+    label: Run clubs & fitness
+    icon: run
+    social: 0.75
+    attendance: [15, 40, 200]
+    children:
+      run_club: { label: Run clubs, match: [run club, running club, group run, social run, fun run] }
+      race: { label: Races, match: [5k, 10k, half marathon, marathon, turkey trot, triathlon, " race"], attendance: [200, 1500, 30000], social: 0.45 }
+      ride: { label: Group rides, match: [group ride, bike ride, critical mass, slow roll, cycling club] }
+      yoga: { label: Outdoor yoga & classes, match: [yoga, pilates, bootcamp, tai chi, zumba, fitness class, dance class] }
+      climbing: { label: Climbing & bouldering, match: [climbing, bouldering] }
+
+  outdoors:
+    label: Outdoors
+    icon: tree
+    social: 0.5
+    attendance: [10, 40, 300]
+    children:
+      hike: { label: Hikes & walks, match: [hike, nature walk, guided walk, bird walk, birding, walking tour, " walk "] }
+      water: { label: On the water, match: [kayak, paddle, canoe, sailing, rowing] }
+      winter: { label: Winter fun, match: [skating, sledding, ice skating, snowshoe, cross-country ski, skiing, winter carnival] }
+      park: { label: Park programs, match: [park program, nature center, garden tour, stargazing, astronomy] }
+
+  arts:
+    label: Arts & culture
+    icon: palette
+    social: 0.4
+    attendance: [30, 200, 2000]
+    children:
+      museum: { label: Museums & exhibits, match: [exhibit, exhibition, museum, gallery opening, art walk, art crawl, first friday, first thursday] }
+      theater: { label: Theater & dance, match: [theater, theatre, musical, ballet, play, dance performance, shakespeare] }
+      film: { label: Film, match: [film screening, movie night, film festival, outdoor movie, movies in the park, cinema] }
+      workshop: { label: Workshops & classes, match: [workshop, class, craft, pottery, painting class, sip and paint, paint and sip], attendance: [8, 20, 60], social: 0.6 }
+      books: { label: Books & talks, match: [book club, author talk, reading, poetry, lecture, storytime, library], attendance: [10, 40, 300] }
+
+  sports_watch:
+    label: Pro & college sports
+    icon: stadium
+    social: 0.45
+    attendance: [3000, 18000, 65000]
+    children:
+      game: { label: Games, match: [] }  # only from ticketing classifications; free text is too ambiguous
+      watch_party: { label: Watch parties, match: [watch party, viewing party], attendance: [30, 120, 1000], social: 0.7 }
+
+  family:
+    label: Family & kids
+    icon: balloon
+    social: 0.35
+    attendance: [20, 120, 1500]
+    children:
+      kids: { label: Kids activities, match: [kids, children, family, toddler, teen, storytime] }
+
+  learning:
+    label: Learning & professional
+    icon: book
+    social: 0.55
+    attendance: [15, 60, 400]
+    children:
+      networking: { label: Networking, match: [networking, meetup, happy hour networking, career fair, startup] }
+      tech: { label: Tech meetups, match: [tech meetup, hackathon, python, javascript, ai meetup, devs] }
+      language: { label: Language exchange, match: [language exchange, conversation group, esl, spanish conversation] , social: 0.85 }
+
+  other:
+    label: Other
+    icon: dot
+    social: 0.4
+    attendance: [20, 100, 1000]
+    children:
+      uncategorized: { label: Uncategorized, match: [] }
+
+# Tags are a closed vocabulary too. The pipeline derives most of them; adapters may set them when the source says so.
+tags:
+  free: Free
+  outdoor: Outdoors
+  indoor: Indoors
+  "21+": 21+
+  all_ages: All ages
+  family_friendly: Family friendly
+  beginner_friendly: Beginner friendly
+  solo_friendly: Good to go solo
+  free_agent: Free-agent signup
+  team_signup: Team signup
+  recurring: Recurring
+  accessible: Accessible venue
+  lgbtq: LGBTQ+
+  dog_friendly: Dog friendly
+  selling_fast: Selling fast
+  new_venue: New venue
+  weather_dependent: Weather dependent
+  registration_required: Registration required
+  early_bird: Early-bird pricing
+  sober_friendly: Sober friendly
+  nightlife: Late night

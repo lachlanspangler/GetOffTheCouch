@@ -1,0 +1,36 @@
+# Global source registry + freshness SLAs. City-specific sources live in config/cities/<slug>.yaml.
+#
+# sla_hours: how old data of each type may be before the UI marks it stale. A unit's default fetch cadence
+# equals its SLA (override with cadence_hours). Ticket prices move hourly; cons/faires barely move weekly.
+sla_hours:
+  ticket_prices: 4
+  concerts: 12
+  events: 24
+  recurring: 48
+  leagues: 24
+  volunteer: 24
+  openings: 24
+  conventions: 168
+
+sources:
+  - id: ticketmaster
+    adapter: ticketmaster
+    name: Ticketmaster
+    data_type: ticket_prices
+    scope: all_cities
+    cadence_hours: 6          # 10 cities × ~12 calls = ~480 calls/run, well under 5,000/day at 4 runs/day
+    requires: [TICKETMASTER_API_KEY]
+    homepage: https://developer.ticketmaster.com/
+    expect_min_records: 5
+    params: { horizon_days: 120, window_days: 14 }
+
+  - id: seatgeek
+    adapter: seatgeek
+    name: SeatGeek
+    data_type: ticket_prices
+    scope: all_cities
+    cadence_hours: 4
+    requires: [SEATGEEK_CLIENT_ID]
+    homepage: https://platform.seatgeek.com/
+    expect_min_records: 5
+    params: { horizon_days: 120, max_pages: 20 }

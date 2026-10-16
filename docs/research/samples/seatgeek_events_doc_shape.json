@@ -1,0 +1,101 @@
+{
+  "_note": "DOCUMENTATION-DERIVED SHAPE, NOT LIVE DATA. Built 2026-10-15 for GET https://api.seatgeek.com/2/events?client_id=... . CAVEAT: the current SeatGeek developer portal (developer.seatgeek.com, a Kong portal; portal config reports is_public:false) requires login to read docs, so this shape could NOT be re-verified against the live docs today. Field names come from the long-standing public platform.seatgeek.com docs (pre-portal-migration) and widely used client libraries. Values are type placeholders. Confirm against a recorded keyed response before relying on any field, especially the stats.* keys.",
+  "_unverified_fields": [
+    "events[].stats.visible_listing_count",
+    "events[].stats.dq_bucket_counts",
+    "events[].stats.median_price",
+    "events[].stats.lowest_sg_base_price",
+    "events[].stats.lowest_sg_base_price_good_deals",
+    "events[].stats.lowest_price_good_deals"
+  ],
+  "events": [
+    {
+      "id": "<integer>",
+      "type": "<string taxonomy slug, e.g. concert | nba | theater>",
+      "title": "<string>",
+      "short_title": "<string>",
+      "url": "<string: seatgeek.com event URL; append aid/rid (and Impact params) for partner attribution>",
+      "datetime_local": "<YYYY-MM-DDTHH:MM:SS, venue-local, no offset>",
+      "datetime_utc": "<YYYY-MM-DDTHH:MM:SS, UTC, no offset>",
+      "visible_until_utc": "<YYYY-MM-DDTHH:MM:SS>",
+      "announce_date": "<YYYY-MM-DDTHH:MM:SS>",
+      "created_at": "<YYYY-MM-DDTHH:MM:SS>",
+      "date_tbd": "<boolean>",
+      "datetime_tbd": "<boolean>",
+      "time_tbd": "<boolean>",
+      "enddatetime_utc": "<YYYY-MM-DDTHH:MM:SS | null>",
+      "is_open": "<boolean>",
+      "status": "<string, e.g. normal>",
+      "score": "<number 0..1, SeatGeek relevance/popularity score>",
+      "popularity": "<number 0..1>",
+      "description": "<string>",
+      "links": [],
+      "stats": {
+        "listing_count": "<integer | null: number of resale listings (not tickets)>",
+        "visible_listing_count": "<integer | null>",
+        "average_price": "<number | null, USD>",
+        "median_price": "<number | null, USD>",
+        "lowest_price": "<number | null, USD; historically all-in incl. fees>",
+        "highest_price": "<number | null, USD>",
+        "lowest_price_good_deals": "<number | null, USD; lowest among listings rated a good deal>",
+        "lowest_sg_base_price": "<number | null, USD; price before fees>",
+        "lowest_sg_base_price_good_deals": "<number | null, USD>",
+        "dq_bucket_counts": ["<integer: count of listings per deal-quality bucket>"]
+      },
+      "taxonomies": [
+        { "id": "<integer>", "name": "<string, e.g. concert>", "parent_id": "<integer | null>", "rank": "<integer>" }
+      ],
+      "performers": [
+        {
+          "id": "<integer>",
+          "name": "<string>",
+          "short_name": "<string>",
+          "slug": "<string>",
+          "type": "<string>",
+          "url": "<string>",
+          "image": "<string>",
+          "images": { "huge": "<string>" },
+          "primary": "<boolean>",
+          "score": "<number>",
+          "has_upcoming_events": "<boolean>",
+          "num_upcoming_events": "<integer>",
+          "home_venue_id": "<integer | null>",
+          "genres": [ { "id": "<integer>", "name": "<string>", "slug": "<string>", "primary": "<boolean>" } ],
+          "taxonomies": [ { "id": "<integer>", "name": "<string>", "parent_id": "<integer | null>" } ]
+        }
+      ],
+      "venue": {
+        "id": "<integer>",
+        "name": "<string>",
+        "slug": "<string>",
+        "url": "<string>",
+        "address": "<string>",
+        "extended_address": "<string, e.g. Chicago, IL 60614>",
+        "city": "<string>",
+        "state": "<string, 2-letter>",
+        "postal_code": "<string>",
+        "country": "<string, e.g. US>",
+        "display_location": "<string, e.g. Chicago, IL>",
+        "location": { "lat": "<number>", "lon": "<number>" },
+        "timezone": "<IANA tz>",
+        "capacity": "<integer, often 0 when unknown>",
+        "score": "<number>",
+        "popularity": "<number>",
+        "has_upcoming_events": "<boolean>",
+        "num_upcoming_events": "<integer>"
+      }
+    }
+  ],
+  "meta": {
+    "total": "<integer>",
+    "took": "<integer ms>",
+    "page": "<integer>",
+    "per_page": "<integer>",
+    "geolocation": "<object | null: present when lat/lon, geoip or postal_code is used; has lat, lon, city, state, country, postal_code, display_name, range>"
+  },
+  "_error_shapes_observed_2026_10_15": {
+    "no_client_id_403": { "status": 403, "message": "Client is required - visit \"https://seatgeek.com/account/develop\"", "errors": [ { "message": "Client is required - visit \"https://seatgeek.com/account/develop\"", "code": 40307 } ], "meta": { "status": 403 } },
+    "bad_client_id_403": { "status": 403, "message": "Invalid client credentials", "errors": [ { "message": "Invalid client credentials", "code": 40302 } ], "meta": { "status": 403 } },
+    "rate_limit_headers": { "ratelimit-limit": "100", "x-ratelimit-limit-minute": "100", "ratelimit-remaining": "<integer>", "ratelimit-reset": "<seconds>" }
+  }
+}

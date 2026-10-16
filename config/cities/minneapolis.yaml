@@ -1,0 +1,39 @@
+# Minneapolis, MN. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+slug: minneapolis
+name: Minneapolis
+state: MN
+timezone: America/Chicago
+center: [44.9778, -93.2650]
+radius_km: 20
+aliases: [Mpls, Twin Cities, St. Paul, Saint Paul, Edina, St Louis Park, Richfield, Bloomington, Golden Valley, Roseville]
+neighborhoods:
+  - { name: Downtown, lat: 44.9765, lon: -93.2700 }
+  - { name: North Loop, lat: 44.9880, lon: -93.2770 }
+  - { name: Northeast, lat: 45.0030, lon: -93.2550 }
+  - { name: Uptown, lat: 44.9490, lon: -93.2980 }
+  - { name: Lyn-Lake, lat: 44.9480, lon: -93.2880 }
+  - { name: Loring Park, lat: 44.9690, lon: -93.2840 }
+  - { name: Whittier, lat: 44.9560, lon: -93.2780 }
+  - { name: Powderhorn, lat: 44.9410, lon: -93.2550 }
+  - { name: Longfellow, lat: 44.9400, lon: -93.2200 }
+  - { name: Seward, lat: 44.9600, lon: -93.2350 }
+  - { name: Dinkytown / U of M, lat: 44.9810, lon: -93.2360 }
+  - { name: Linden Hills, lat: 44.9250, lon: -93.3150 }
+  - { name: Nokomis, lat: 44.9100, lon: -93.2400 }
+  - { name: Near North, lat: 44.9950, lon: -93.3000 }
+  - { name: St. Paul (Downtown), lat: 44.9537, lon: -93.0900 }
+sources:
+  - id: mprb_events
+    adapter: tribe
+    name: Minneapolis Park & Recreation Board
+    data_type: events
+    homepage: https://www.minneapolisparks.org/event-calendar/
+    expect_min_records: 5
+    params:
+      base_url: https://www.minneapolisparks.org
+      horizon_days: 60
+      organizer: Minneapolis Park & Recreation Board
+      default_category: outdoors.park
+      category_map:
+        Environmental Volunteer Opportunities: volunteer.one_off
+        Volunteer Opportunities: volunteer.one_off

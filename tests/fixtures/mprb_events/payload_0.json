@@ -1,0 +1,1545 @@
+{
+ "events": [
+  {
+   "id": 10014621,
+   "global_id": "www.minneapolisparks.org?id=10014621",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014621"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-04-16 08:57:04",
+   "date_utc": "2026-04-16 13:57:04",
+   "modified": "2026-09-21 09:15:00",
+   "modified_utc": "2026-09-21 14:15:00",
+   "url": "https://www.minneapolisparks.org/event-calendar/lake-harriet-buckthorn-slaying/2026-10-15/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014621",
+   "title": "Lake Harriet Buckthorn Slaying",
+   "description": "<p><strong>Help clear buckthorn around Lake Harriet!</strong></p>\n<p><strong>Dates:</strong> Tuesdays and Thursdays 9-11am, May-September</p>\n<p><strong>Location:</strong> West side of Lake Harriet, between West 42nd and West 44th</p>\n<p><strong>Supplies:</strong> Bring your own water bottle, safety glasses, work gloves, and wear a long sleeve shirt and long pants. We will supply training and tools. If you prefer to bring your own tools (loppers, hand saws, and pruners are permitted) please mark them with your name.</p>\n<p><strong>Host:</strong> Lake Harriet Environmental Committee</p>\n<p><strong>Email Jim Nicholas to get involved <a href=\"mailto:jnicholas5329@gmail.com\">jnicholas5329@gmail.com</a></strong></p>",
+   "excerpt": "",
+   "slug": "lake-harriet-buckthorn-slaying",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-15 09:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "09",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-15 11:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "11",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-15 14:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "14",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-15 16:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 89645,
+    "author": "38",
+    "status": "publish",
+    "date": "2026-04-16 08:56:56",
+    "date_utc": "0000-00-00 00:00:00",
+    "modified": "2026-04-16 08:56:56",
+    "modified_utc": "0000-00-00 00:00:00",
+    "url": "https://www.minneapolisparks.org/venue/4291-queen-ave-s-minneapolis-mn-55410/",
+    "venue": "4291 Queen Ave S, Minneapolis, MN 55410",
+    "slug": "4291-queen-ave-s-minneapolis-mn-55410",
+    "address": "4291 Queen Ave S",
+    "city": "Minneapolis",
+    "province": "MN",
+    "zip": "55410",
+    "stateprovince": "MN",
+    "geo_lat": 44.9246459,
+    "geo_lng": -93.3110986,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=89645",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=89645"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10014568,
+   "global_id": "www.minneapolisparks.org?id=10014568",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014568"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-08-13 15:22:54",
+   "date_utc": "2026-08-13 20:22:54",
+   "modified": "2026-08-13 16:19:22",
+   "modified_utc": "2026-08-13 21:19:22",
+   "url": "https://www.minneapolisparks.org/event-calendar/knitting-in-nature/2026-10-15/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014568",
+   "title": "Knitting in Nature",
+   "description": "<p>First and third Thursday of September and October from 4 \u2013 5:30 pm.</p>\n<p>Bring your projects and join fellow crafters in the garden for knitting, crocheting, and crafting in community as Autumn settles in the Garden.</p>\n<p>All experience levels are welcome!</p>\n<p><em>Some chairs provided. No registration necessary, meet at the Visitor Shelter.</em></p>",
+   "excerpt": "",
+   "slug": "knitting-in-nature",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-15 16:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-15 17:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "17",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-15 21:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "21",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-15 22:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "15",
+    "hour": "22",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Events- All",
+     "slug": "events-all",
+     "term_group": 0,
+     "term_taxonomy_id": 316,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 438,
+     "filter": "raw",
+     "id": 316,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/316",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Events- MPRB",
+     "slug": "events",
+     "term_group": 0,
+     "term_taxonomy_id": 275,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 366,
+     "filter": "raw",
+     "id": 275,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/275",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Eloise Butler Wildflower Garden",
+     "slug": "eloise-butler-wildflower-garden",
+     "term_group": 0,
+     "term_taxonomy_id": 542,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 180,
+     "filter": "raw",
+     "id": 542,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags/542",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 37453,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:29",
+    "date_utc": "2019-12-16 19:37:29",
+    "modified": "2019-12-16 16:40:42",
+    "modified_utc": "2019-12-16 22:40:42",
+    "url": "https://www.minneapolisparks.org/venue/eloise-butler-wildflower-garden/",
+    "venue": "Eloise Butler Wildflower Garden",
+    "slug": "eloise-butler-wildflower-garden",
+    "address": "1 Theodore Wirth Pkwy",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55405",
+    "stateprovince": "MN",
+    "geo_lat": 44.9745452,
+    "geo_lng": -93.3218818,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37453",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37453"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013781,
+   "global_id": "www.minneapolisparks.org?id=10013781",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013781"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-06-25 16:49:05",
+   "date_utc": "2026-06-25 21:49:05",
+   "modified": "2026-06-25 16:49:05",
+   "modified_utc": "2026-06-25 21:49:05",
+   "url": "https://www.minneapolisparks.org/event-calendar/rose-garden-volunteering/2026-10-17/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013781",
+   "title": "Rose Garden Volunteering",
+   "description": "<p><strong>Calling all rose lovers! Join the Deadheaders and develop skills while supporting care of the historic rose garden. Each gardening day will focus on a different topic related to the seasonal maintenance of Lyndale Park Rose Garden.</strong></p>\n<p><strong>Dates:</strong> 1st and 3rd Saturday &amp; select Thursdays, May-October, 9-11am</p>\n<p><strong>Location:</strong> Lyndale Park Rose Garden<br />\nMeet near the Heffelfinger fountain</p>\n<p><strong>Supplies:</strong> Gloves, tools and parking passes will be provided</p>\n<p><strong>Weather:</strong> We work in light rain but will suspend or cancel work in severe weather</p>\n<p>NO EXPERIENCE NECESSARY &#8211; ALL ARE WELCOME!</p>\n<p><a href=\"https://www.signupgenius.com/go/60B0F48ADA928A2F58-60446456-rose\" target=\"_blank\" rel=\"noopener\">Sign-up here</a></p>",
+   "excerpt": "",
+   "slug": "rose-garden-volunteering",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-17 09:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "09",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-17 11:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "11",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-17 14:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "14",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-17 16:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 37328,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:08",
+    "date_utc": "2019-12-16 19:37:08",
+    "modified": "2019-12-16 16:40:32",
+    "modified_utc": "2019-12-16 22:40:32",
+    "url": "https://www.minneapolisparks.org/venue/lyndale-park-rose-garden/",
+    "venue": "Lyndale Park/Rose Garden",
+    "slug": "lyndale-park-rose-garden",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "stateprovince": "MN",
+    "geo_lat": 44.9275251,
+    "geo_lng": -93.2953725,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37328",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37328"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013435,
+   "global_id": "www.minneapolisparks.org?id=10013435",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013435"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-03-10 10:13:02",
+   "date_utc": "2026-03-10 15:13:02",
+   "modified": "2026-08-13 16:27:49",
+   "modified_utc": "2026-08-13 21:27:49",
+   "url": "https://www.minneapolisparks.org/event-calendar/early-birders-october/2026-10-17/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013435",
+   "title": "Early Birders &#8211; October",
+   "description": "<p>Saturdays in October 9:30-11:30am</p>\n<p>Learn to observe and identify birds by sound and sight as you walk through the Garden and Wirth Park with a Garden Naturalist.</p>\n<p><em>No registration necessary, meet at the Garden\u2019s parking lot.</em></p>",
+   "excerpt": "",
+   "slug": "early-birders-october",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-17 09:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "09",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-17 11:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "11",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-17 14:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "14",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-17 16:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "16",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Events- All",
+     "slug": "events-all",
+     "term_group": 0,
+     "term_taxonomy_id": 316,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 438,
+     "filter": "raw",
+     "id": 316,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/316",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Events- MPRB",
+     "slug": "events",
+     "term_group": 0,
+     "term_taxonomy_id": 275,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 366,
+     "filter": "raw",
+     "id": 275,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/275",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Eloise Butler Wildflower Garden",
+     "slug": "eloise-butler-wildflower-garden",
+     "term_group": 0,
+     "term_taxonomy_id": 542,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 180,
+     "filter": "raw",
+     "id": 542,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags/542",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 37453,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:29",
+    "date_utc": "2019-12-16 19:37:29",
+    "modified": "2019-12-16 16:40:42",
+    "modified_utc": "2019-12-16 22:40:42",
+    "url": "https://www.minneapolisparks.org/venue/eloise-butler-wildflower-garden/",
+    "venue": "Eloise Butler Wildflower Garden",
+    "slug": "eloise-butler-wildflower-garden",
+    "address": "1 Theodore Wirth Pkwy",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55405",
+    "stateprovince": "MN",
+    "geo_lat": 44.9745452,
+    "geo_lng": -93.3218818,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37453",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37453"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10014638,
+   "global_id": "www.minneapolisparks.org?id=10014638",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014638"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-09-28 11:24:20",
+   "date_utc": "2026-09-28 16:24:20",
+   "modified": "2026-09-28 11:24:50",
+   "modified_utc": "2026-09-28 16:24:50",
+   "url": "https://www.minneapolisparks.org/event-calendar/minnehaha-park-invasive-plant-management-3/2026-10-17/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014638",
+   "title": "Minnehaha Park Invasive Plant Management",
+   "description": "<p><strong>Join us for buckthorn removal (and other restoration activities) in Minnehaha Regional Park!</strong></p>\n<p><strong>Dates:</strong> Saturdays 10-noon, through October</p>\n<p><strong>Location:</strong> Meet at 4749 46th Ave S, parking lot. Wabun Park Maintenance Facility.</p>\n<p><strong>Supplies:</strong> Tools and instruction provided. Bring a water bottle, gloves, close-toed shoes, long pants, and clothes that can get dirty.</p>\n<p><strong>Host:</strong> Friends of Minnehaha Park</p>\n<p><a href=\"https://www.friendsofminnehahapark.org/\" target=\"_blank\" rel=\"noopener\">Learn more here</a>.</p>\n<p><a href=\"https://www.facebook.com/profile.php?id=100092254982352\" target=\"_blank\" rel=\"noopener\">Updates will be posted to Facebook</a>.</p>",
+   "excerpt": "",
+   "slug": "minnehaha-park-invasive-plant-management-3",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-17 10:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "10",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-17 12:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "12",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-17 15:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "15",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-17 17:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "17",
+    "hour": "17",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 37151,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:36:44",
+    "date_utc": "2019-12-16 19:36:44",
+    "modified": "2019-12-16 16:40:19",
+    "modified_utc": "2019-12-16 22:40:19",
+    "url": "https://www.minneapolisparks.org/venue/minnehaha-regional-park/",
+    "venue": "Minnehaha Regional Park",
+    "slug": "minnehaha-regional-park",
+    "address": "4801 South Minnehaha Drive",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55417",
+    "stateprovince": "MN",
+    "geo_lat": 44.9161006,
+    "geo_lng": -93.2109865,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37151",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37151"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10014418,
+   "global_id": "www.minneapolisparks.org?id=10014418",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014418"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-07-10 10:21:21",
+   "date_utc": "2026-07-10 15:21:21",
+   "modified": "2026-08-18 09:16:17",
+   "modified_utc": "2026-08-18 14:16:17",
+   "url": "https://www.minneapolisparks.org/event-calendar/title-east-river-trail-buckthorn-removal/2026-10-18/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014418",
+   "title": "Minnehaha Regional Park Buckthorn Removal",
+   "description": "<p><strong>Dates:</strong> Every Sunday 10-noon, July 12th-October 25th</p>\n<p><strong>Location:</strong> <span data-olk-copy-source=\"MessageBody\">Minnehaha Regional Park. Sign up below. A link to the exact location will be included in your confirmation email.</span></p>\n<p><strong>Supplies:</strong> Please bring loppers and work gloves if you have them. Bring water and wear long clothing.</p>\n<p><strong>Host:</strong> Buckthorn Removal Singles Club</p>\n<p><strong><a href=\"https://mplsbrsc.com/\" target=\"_blank\" rel=\"noopener\">Learn more here</a></strong></p>",
+   "excerpt": "",
+   "slug": "title-east-river-trail-buckthorn-removal",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-18 10:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "10",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-18 12:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "12",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-18 15:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "15",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-18 17:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "17",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": [],
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10014580,
+   "global_id": "www.minneapolisparks.org?id=10014580",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014580"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-08-13 16:13:31",
+   "date_utc": "2026-08-13 21:13:31",
+   "modified": "2026-08-13 16:13:31",
+   "modified_utc": "2026-08-13 21:13:31",
+   "url": "https://www.minneapolisparks.org/event-calendar/brush-with-nature-2/2026-10-18/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014580",
+   "title": "Brush with Nature",
+   "description": "<p><strong>Brush with Nature</strong></p>\n<p>Sunday, October 11 and 18 from 1-3:30 pm.</p>\n<p>Gather in community and get creative with watercolors inspired by the autumn colors</p>\n<p>around you! Naturalist-led instruction and introduction to watercolors offered on the hour. Take to the trails and get creative. All skill levels welcome! <em>Some basic materials provided. Gather outside the Visitor Shelter.</em></p>\n<p><strong>October 18th:</strong> Meet Presley Martin, a local artist, amateur mycologist, and Minnesota water steward, who creates art with objects found while exploring area forests and the Mississippi River. Presley will demonstrate his unique \u201cmushroom markers\u201d, and visitors can experience more of his work at the American Swedish Institute through October 25.</p>\n<p>&nbsp;</p>",
+   "excerpt": "",
+   "slug": "brush-with-nature-2",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-18 13:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "13",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-18 15:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "15",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-18 18:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "18",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-18 20:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "18",
+    "hour": "20",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Events- All",
+     "slug": "events-all",
+     "term_group": 0,
+     "term_taxonomy_id": 316,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 438,
+     "filter": "raw",
+     "id": 316,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/316",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Events- MPRB",
+     "slug": "events",
+     "term_group": 0,
+     "term_taxonomy_id": 275,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 366,
+     "filter": "raw",
+     "id": 275,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/275",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Eloise Butler Wildflower Garden",
+     "slug": "eloise-butler-wildflower-garden",
+     "term_group": 0,
+     "term_taxonomy_id": 542,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 180,
+     "filter": "raw",
+     "id": 542,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags/542",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 37453,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:29",
+    "date_utc": "2019-12-16 19:37:29",
+    "modified": "2019-12-16 16:40:42",
+    "modified_utc": "2019-12-16 22:40:42",
+    "url": "https://www.minneapolisparks.org/venue/eloise-butler-wildflower-garden/",
+    "venue": "Eloise Butler Wildflower Garden",
+    "slug": "eloise-butler-wildflower-garden",
+    "address": "1 Theodore Wirth Pkwy",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55405",
+    "stateprovince": "MN",
+    "geo_lat": 44.9745452,
+    "geo_lng": -93.3218818,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37453",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37453"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013346,
+   "global_id": "www.minneapolisparks.org?id=10013346",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013346"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-01-16 09:55:22",
+   "date_utc": "2026-01-16 15:55:22",
+   "modified": "2026-03-09 09:19:54",
+   "modified_utc": "2026-03-09 14:19:54",
+   "url": "https://www.minneapolisparks.org/event-calendar/peace-garden-volunteering/2026-10-19/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013346",
+   "title": "Peace Garden Volunteering",
+   "description": "<p><strong>Join the Peacekeepers for staff-led volunteering in the Peace Garden! This fun and friendly group meets twice a week to care for this beloved garden. Activities include planting, weeding, light pruning, and general garden maintenance.</strong></p>\n<p><strong>Dates:\u00a0</strong>Mondays and Wednesdays, 9:30-11:30am through October.</p>\n<p><strong>Location:\u00a0</strong>Lyndale Park Peace Garden. Meet your host Jacob\u00a0in the parking lot.</p>\n<p><strong>Supplies:</strong>\u00a0Gloves, tools and parking passes will be provided.</p>\n<p><strong>Weather:\u00a0</strong>We work in light rain but will suspend or cancel work in severe weather.</p>\n<p><a href=\"https://www.signupgenius.com/go/60B0F48ADA928A2F58-60114564-peace#/\" target=\"_blank\" rel=\"noopener\">Sign-up here</a></p>",
+   "excerpt": "",
+   "slug": "peace-garden-volunteering",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-19 09:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "19",
+    "hour": "09",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-19 11:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "19",
+    "hour": "11",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-19 14:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "19",
+    "hour": "14",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-19 16:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "19",
+    "hour": "16",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 59010,
+    "author": "14",
+    "status": "publish",
+    "date": "2022-06-22 13:19:10",
+    "date_utc": "2022-06-22 18:19:10",
+    "modified": "2022-06-22 13:19:10",
+    "modified_utc": "2022-06-22 18:19:10",
+    "url": "https://www.minneapolisparks.org/venue/lyndale-park-peace-garden/",
+    "venue": "Lyndale Park Peace Garden",
+    "slug": "lyndale-park-peace-garden",
+    "address": "4124 Roseway Road",
+    "city": "Minneapolis",
+    "country": "United States",
+    "state": "MN",
+    "zip": "55409",
+    "stateprovince": "MN",
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=59010",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=59010"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10014622,
+   "global_id": "www.minneapolisparks.org?id=10014622",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10014622"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-04-16 08:57:04",
+   "date_utc": "2026-04-16 13:57:04",
+   "modified": "2026-09-21 09:15:00",
+   "modified_utc": "2026-09-21 14:15:00",
+   "url": "https://www.minneapolisparks.org/event-calendar/lake-harriet-buckthorn-slaying/2026-10-20/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10014622",
+   "title": "Lake Harriet Buckthorn Slaying",
+   "description": "<p><strong>Help clear buckthorn around Lake Harriet!</strong></p>\n<p><strong>Dates:</strong> Tuesdays and Thursdays 9-11am, May-September</p>\n<p><strong>Location:</strong> West side of Lake Harriet, between West 42nd and West 44th</p>\n<p><strong>Supplies:</strong> Bring your own water bottle, safety glasses, work gloves, and wear a long sleeve shirt and long pants. We will supply training and tools. If you prefer to bring your own tools (loppers, hand saws, and pruners are permitted) please mark them with your name.</p>\n<p><strong>Host:</strong> Lake Harriet Environmental Committee</p>\n<p><strong>Email Jim Nicholas to get involved <a href=\"mailto:jnicholas5329@gmail.com\">jnicholas5329@gmail.com</a></strong></p>",
+   "excerpt": "",
+   "slug": "lake-harriet-buckthorn-slaying",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-20 09:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "09",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-20 11:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "11",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-20 14:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "14",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-20 16:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 89645,
+    "author": "38",
+    "status": "publish",
+    "date": "2026-04-16 08:56:56",
+    "date_utc": "0000-00-00 00:00:00",
+    "modified": "2026-04-16 08:56:56",
+    "modified_utc": "0000-00-00 00:00:00",
+    "url": "https://www.minneapolisparks.org/venue/4291-queen-ave-s-minneapolis-mn-55410/",
+    "venue": "4291 Queen Ave S, Minneapolis, MN 55410",
+    "slug": "4291-queen-ave-s-minneapolis-mn-55410",
+    "address": "4291 Queen Ave S",
+    "city": "Minneapolis",
+    "province": "MN",
+    "zip": "55410",
+    "stateprovince": "MN",
+    "geo_lat": 44.9246459,
+    "geo_lng": -93.3110986,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=89645",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=89645"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013390,
+   "global_id": "www.minneapolisparks.org?id=10013390",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013390"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-02-05 15:22:09",
+   "date_utc": "2026-02-05 21:22:09",
+   "modified": "2026-02-05 15:22:31",
+   "modified_utc": "2026-02-05 21:22:31",
+   "url": "https://www.minneapolisparks.org/event-calendar/help-out-in-the-jd-rivers-childrens-garden/2026-10-20/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013390",
+   "title": "Help out in the JD Rivers&#8217; Children&#8217;s Garden!",
+   "description": "<p><strong>Help out in the JD Rivers&#8217; Children&#8217;s Garden!</strong></p>\n<p>Tasks will vary depending on the time of year, but may include: weeding, planting, watering, garden clean-up, soil transportation and more.</p>\n<p><strong>Dates:</strong> Spring and Fall dates, morning and evening times<br />\n<strong><br />\nLocation: </strong>JD Rivers&#8217; Children&#8217;s Garden. 2900 Glenwood Ave, Minneapolis, MN. 55405<br />\n<strong><br />\nParking: </strong>Parking is available on the south side of Glenwood Ave and perpendicular streets</p>\n<p><strong>Supplies: </strong>Gloves and tools will be provided</p>\n<p><strong>Weather: </strong>We work in light rain but will suspend or cancel work in severe weather</p>\n<p>NO EXPERIENCE NECESSARY &#8211; ALL ARE WELCOME!</p>\n<p>Children are welcome, but must be accompanied by an adult. You will be asked to sign a volunteer waiver upon arrival.</p>\n<p><a href=\"https://www.signupgenius.com/go/60B0F48ADA928A2F58-61698365-help\" target=\"_blank\" rel=\"noopener\">Sign-up here</a></p>",
+   "excerpt": "",
+   "slug": "help-out-in-the-jd-rivers-childrens-garden",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-20 10:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "10",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-20 12:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "12",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-20 15:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "15",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-20 17:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "17",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 37594,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:48",
+    "date_utc": "2019-12-16 19:37:48",
+    "modified": "2019-12-16 16:40:52",
+    "modified_utc": "2019-12-16 22:40:52",
+    "url": "https://www.minneapolisparks.org/venue/jd-rivers-childrens-garden-2/",
+    "venue": "JD Rivers Children&#8217;s Garden",
+    "slug": "jd-rivers-childrens-garden-2",
+    "address": "2900 Glenwood Ave",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55405",
+    "stateprovince": "MN",
+    "geo_lat": 44.9811089,
+    "geo_lng": -93.3171077,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37594",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37594"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013824,
+   "global_id": "www.minneapolisparks.org?id=10013824",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013824"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-06-25 16:49:15",
+   "date_utc": "2026-06-25 21:49:15",
+   "modified": "2026-06-25 16:49:15",
+   "modified_utc": "2026-06-25 21:49:15",
+   "url": "https://www.minneapolisparks.org/event-calendar/tuesday-habitat-restoration-in-theo-wirth/2026-10-20/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013824",
+   "title": "Habitat Restoration in Theo Wirth",
+   "description": "<p><strong>Join us to remove invasive species, including buckthorn, in Theodore Wirth Park!</strong> Volunteer activities include cutting, pulling, and hauling buckthorn and other invasive species. No experience is necessary. All instructions and equipment will be provided.</p>\n<p><strong>Dates:</strong> First and third Tuesdays of each month, May through October, 5:30-7:00</p>\n<p><strong>Location:</strong> Meet in front of the Trailhead</p>\n<p><strong>Supplies:</strong> Please bring your own work gloves if you have them, long sleeves, close-toed shoes, and a water bottle.</p>\n<p><strong>Host:\u00a0</strong>This event is hosted by the Loppet</p>\n<p><a href=\"https://runsignup.com/Race/Volunteer/MN/Minneapolis/VolunteerRestorationEvents\" target=\"_blank\" rel=\"noopener\"><strong>Learn more and sign-up</strong></a></p>",
+   "excerpt": "",
+   "slug": "tuesday-habitat-restoration-in-theo-wirth",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-20 17:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "17",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-20 19:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "19",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-20 22:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "20",
+    "hour": "22",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-21 00:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "21",
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 37333,
+    "author": "11",
+    "status": "publish",
+    "date": "2019-12-16 13:37:11",
+    "date_utc": "2019-12-16 19:37:11",
+    "modified": "2026-06-16 09:14:32",
+    "modified_utc": "2026-06-16 14:14:32",
+    "url": "https://www.minneapolisparks.org/venue/the-trailhead/",
+    "venue": "The Trailhead",
+    "slug": "the-trailhead",
+    "address": "1221 Theodore Wirth Parkway",
+    "city": "Minneapolis",
+    "country": "United States",
+    "province": "MN",
+    "state": "MN",
+    "zip": "55411",
+    "stateprovince": "MN",
+    "geo_lat": 44.9898452,
+    "geo_lng": -93.3268367,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=37333",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=37333"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 10013347,
+   "global_id": "www.minneapolisparks.org?id=10013347",
+   "global_id_lineage": [
+    "www.minneapolisparks.org?id=10013347"
+   ],
+   "author": "38",
+   "status": "publish",
+   "date": "2026-01-16 09:55:22",
+   "date_utc": "2026-01-16 15:55:22",
+   "modified": "2026-03-09 09:19:54",
+   "modified_utc": "2026-03-09 14:19:54",
+   "url": "https://www.minneapolisparks.org/event-calendar/peace-garden-volunteering/2026-10-21/",
+   "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/10013347",
+   "title": "Peace Garden Volunteering",
+   "description": "<p><strong>Join the Peacekeepers for staff-led volunteering in the Peace Garden! This fun and friendly group meets twice a week to care for this beloved garden. Activities include planting, weeding, light pruning, and general garden maintenance.</strong></p>\n<p><strong>Dates:\u00a0</strong>Mondays and Wednesdays, 9:30-11:30am through October.</p>\n<p><strong>Location:\u00a0</strong>Lyndale Park Peace Garden. Meet your host Jacob\u00a0in the parking lot.</p>\n<p><strong>Supplies:</strong>\u00a0Gloves, tools and parking passes will be provided.</p>\n<p><strong>Weather:\u00a0</strong>We work in light rain but will suspend or cancel work in severe weather.</p>\n<p><a href=\"https://www.signupgenius.com/go/60B0F48ADA928A2F58-60114564-peace#/\" target=\"_blank\" rel=\"noopener\">Sign-up here</a></p>",
+   "excerpt": "",
+   "slug": "peace-garden-volunteering",
+   "image": false,
+   "all_day": false,
+   "start_date": "2026-10-21 09:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "21",
+    "hour": "09",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-10-21 11:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "21",
+    "hour": "11",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-10-21 14:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "21",
+    "hour": "14",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-10-21 16:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "10",
+    "day": "21",
+    "hour": "16",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "America/Chicago",
+   "timezone_abbr": "CDT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Environmental Volunteer Opportunities",
+     "slug": "environmental-volunteer-opportunities",
+     "term_group": 0,
+     "term_taxonomy_id": 552,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 302,
+     "filter": "raw",
+     "id": 552,
+     "urls": {
+      "self": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories/552",
+      "collection": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [],
+   "venue": {
+    "id": 59010,
+    "author": "14",
+    "status": "publish",
+    "date": "2022-06-22 13:19:10",
+    "date_utc": "2022-06-22 18:19:10",
+    "modified": "2022-06-22 13:19:10",
+    "modified_utc": "2022-06-22 18:19:10",
+    "url": "https://www.minneapolisparks.org/venue/lyndale-park-peace-garden/",
+    "venue": "Lyndale Park Peace Garden",
+    "slug": "lyndale-park-peace-garden",
+    "address": "4124 Roseway Road",
+    "city": "Minneapolis",
+    "country": "United States",
+    "state": "MN",
+    "zip": "55409",
+    "stateprovince": "MN",
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.minneapolisparks.org?id=59010",
+    "global_id_lineage": [
+     "www.minneapolisparks.org?id=59010"
+    ]
+   },
+   "organizer": [],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  }
+ ],
+ "rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/?page=1&per_page=50&start_date=2026-10-15 00:00:00&end_date=2026-12-14 23:59:59&status=publish",
+ "next_rest_url": "https://www.minneapolisparks.org/wp-json/tribe/events/v1/events/?per_page=50&start_date=2026-10-15+00%3A00%3A00&end_date=2026-12-14+23%3A59%3A59&status=publish&page=2",
+ "total": 53,
+ "total_pages": 2
+}

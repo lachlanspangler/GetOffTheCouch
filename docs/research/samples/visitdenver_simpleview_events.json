@@ -1,0 +1,164 @@
+{
+  "docs": {
+    "count": 510,
+    "docs": [
+      {
+        "_id": "6aca5db2a9aea6f65aaed378",
+        "recid": "146776",
+        "title": "50% off:  Orpheus Chamber Orchestra with pianist Isata Kanneh-Mason",
+        "date": "2026-10-17T05:59:59.000Z",
+        "startDate": "2026-09-23T06:00:00.000Z",
+        "endDate": "2026-11-16T06:59:59.000Z",
+        "location": "Friends of Chamber Music",
+        "address1": "2344 E. Iliff Ave.",
+        "city": "Denver",
+        "latitude": 39.6741942,
+        "longitude": -104.9600116,
+        "url": "/event/50%25-off%3a-orpheus-chamber-orchestra-with-pianist-isata-kanneh-mason/146776/",
+        "categories": [
+          {
+            "catName": "Denver Arts Week Deals",
+            "catId": "53"
+          }
+        ],
+        "admission": "$40",
+        "linkUrl": "https://newmancenter.evenue.net/promotions/FCM50DAW",
+        "startTime": "16:00:00",
+        "endTime": "18:00:00",
+        "recurType": 1,
+        "nextDate": "2026-10-11T05:59:59.000Z"
+      },
+      {
+        "_id": "6accc86ba9aea6f65a15db62",
+        "recid": "145601",
+        "title": "90s Til Dawn @ Tailgate Tavern",
+        "date": "2026-10-17T05:59:59.000Z",
+        "startDate": "2026-10-16T06:00:00.000Z",
+        "endDate": "2026-10-17T05:59:59.000Z",
+        "location": "Tailgate Tavern Bar and Grill",
+        "address1": "19552 Mainstreet",
+        "city": "Parker",
+        "latitude": 39.5183311,
+        "longitude": -104.7626405,
+        "url": "/event/90s-til-dawn-%40-tailgate-tavern/145601/",
+        "categories": [
+          {
+            "catName": "Dance",
+            "catId": "52"
+          },
+          {
+            "catName": "Free Events",
+            "catId": "58"
+          },
+          {
+            "catName": "Music",
+            "catId": "64"
+          }
+        ],
+        "admission": "Free",
+        "linkUrl": "https://www.facebook.com/events/1592664539149394",
+        "startTime": "20:30:00",
+        "endTime": "00:30:00",
+        "recurType": 0,
+        "nextDate": "2026-10-17T05:59:59.000Z"
+      },
+      {
+        "_id": "6ac9ed0da9aea6f65a9e315e",
+        "recid": "148159",
+        "title": "A 1920s Mystery",
+        "date": "2026-10-17T05:59:59.000Z",
+        "startDate": "2026-10-16T06:00:00.000Z",
+        "endDate": "2026-10-17T05:59:59.000Z",
+        "location": "Denver Union Station",
+        "address1": "1701 Wynkoop St.",
+        "city": "Denver",
+        "latitude": 39.7532628,
+        "longitude": -105.0001704,
+        "url": "/event/a-1920s-mystery/148159/",
+        "categories": [
+          {
+            "catName": "Food & Drink",
+            "catId": "57"
+          },
+          {
+            "catName": "Theater",
+            "catId": "69"
+          },
+          {
+            "catName": "Immersive Art & Experiences",
+            "catId": "109"
+          }
+        ],
+        "admission": "$38",
+        "linkUrl": "https://www.denverunionstation.com/events/a-1920s-mystery-at-the-station/",
+        "startTime": "19:00:00",
+        "endTime": "21:00:00",
+        "listing": {
+          "title": "Denver Union Station"
+        },
+        "recurType": 0,
+        "nextDate": "2026-10-17T05:59:59.000Z"
+      },
+      {
+        "_id": "6ace3661e73a01924282c2ec",
+        "recid": "148376",
+        "title": "Adulti-Verse Howl-O-Ween",
+        "date": "2026-10-17T05:59:59.000Z",
+        "startDate": "2026-10-16T06:00:00.000Z",
+        "endDate": "2026-10-17T05:59:59.000Z",
+        "location": "Meow Wolf Denver",
+        "address1": "1338 1st St.",
+        "city": "Denver",
+        "latitude": 39.7408167,
+        "longitude": -105.0156548,
+        "url": "/event/adulti-verse-howl-o-ween/148376/",
+        "categories": [
+          {
+            "catName": "Food & Drink",
+            "catId": "57"
+          },
+          {
+            "catName": "Music",
+            "catId": "64"
+          }
+        ],
+        "admission": "$36.75",
+        "linkUrl": "https://tickets.meowwolf.com/denver/events/adulti-verse-howl-o-ween/",
+        "startTime": "18:00:00",
+        "listing": {
+          "title": "Meow Wolf Denver"
+        },
+        "recurType": 0,
+        "nextDate": "2026-10-17T05:59:59.000Z"
+      },
+      {
+        "_id": "6acf3327e73a019242b3db14",
+        "recid": "143373",
+        "title": "Afrojack",
+        "date": "2026-10-17T05:59:59.000Z",
+        "startDate": "2026-10-16T06:00:00.000Z",
+        "endDate": "2026-10-17T05:59:59.000Z",
+        "location": "The Mission Ballroom",
+        "address1": "4242 Wynkoop St",
+        "city": "Denver",
+        "latitude": 39.776238,
+        "longitude": -104.9690144,
+        "url": "/event/afrojack/143373/",
+        "categories": [
+          {
+            "catName": "Music",
+            "catId": "64"
+          }
+        ],
+        "linkUrl": "https://www.axs.com/events/1477933/afrojack-tickets",
+        "startTime": "20:00:00",
+        "endTime": "22:00:00",
+        "listing": {
+          "title": "AEG Presents - The Mission Ballroom"
+        },
+        "recurType": 0,
+        "nextDate": "2026-10-17T05:59:59.000Z"
+      }
+    ]
+  }
+}
