@@ -45,3 +45,5 @@ All four were caught by tests or by looking at the real output.
 **Ideas:** I-001..I-010 done; I-011, I-012, I-014, I-015 done; 45 in the ledger, including 7 rejected with reasons.
 - 2026-10-16 04:39 UTC · run 2 ok: units[1 ok] → 74 events in 1 cities
 - 2026-10-16 04:40 UTC · run 3 ok: units[1 ok] → 74 events in 1 cities
+- 2026-10-16 04:48 UTC · doctor --fix: 0 errors, 0 fixed, 0 warnings
+- 2026-10-16 04:48 UTC · run 4 ok: units[2 disabled, 2 skipped] → 74 events in 1 cities

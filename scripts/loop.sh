@@ -24,5 +24,6 @@ if ! attempt; then
     exit 1
   fi
 fi
+step $PY -m gotc.autoideas || true
 echo "loop OK"
 tail -n 3 build.log

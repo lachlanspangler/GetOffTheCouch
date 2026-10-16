@@ -782,6 +782,62 @@
    "notes": [
     "2026-10-16 done: pipeline is_new + badge"
    ]
+  },
+  {
+   "id": "I-054",
+   "title": "Find a trivia nights source for Minneapolis",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "auto: 0 trivia nights events in Minneapolis right now",
+   "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-055",
+   "title": "Find a parties & openings source for Minneapolis",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "auto: 0 parties & openings events in Minneapolis right now",
+   "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-056",
+   "title": "Widen Minneapolis coverage (only 2 healthy sources)",
+   "area": "cities",
+   "value": 4,
+   "effort": 3,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "auto: thin coverage makes the city feel empty",
+   "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-057",
+   "title": "Find registration deadlines for Minneapolis",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "auto: the Deadlines view is empty — the core promise",
+   "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
   }
  ]
 }
