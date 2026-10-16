@@ -1,0 +1,123 @@
+# Indianapolis, IN. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city indianapolis --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * universities: IU's LiveWhale (events.iu.edu) mixes every IU campus and returns 100 events ≈ one day; the
+#     "IU Indianapolis Calendar" group path returned 0. Butler's events.butler.edu has no Localist/LiveWhale API.
+#     Only Butler athletics is used.
+#   * openings: no license dataset with a newness date found (data.indy.gov not probed beyond the catalog search).
+#   * venues: Old National Centre / Murat is Live Nation (skipped); Lucas Oil Stadium and Clowes Hall serve no
+#     ev: RSS; The Jazz Kitchen, ISO, IRT and Newfields expose no Tribe/JSON-LD event feed.
+#   * leagues: no Volo market; no Team Trivia region.
+slug: indianapolis
+name: Indianapolis
+state: IN
+timezone: America/Indiana/Indianapolis
+center: [39.7684, -86.1581]
+radius_km: 20
+aliases: [Indy, Speedway, Beech Grove, Lawrence, Carmel, Fishers, Greenwood, Southport, Zionsville, Plainfield,
+          Avon, Brownsburg, Castleton]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Mile Square, lat: 39.7684, lon: -86.1581 }
+  - { name: Mass Ave, lat: 39.7750, lon: -86.1500 }
+  - { name: Fountain Square, lat: 39.7510, lon: -86.1400 }
+  - { name: Fletcher Place, lat: 39.7580, lon: -86.1460 }
+  - { name: Lockerbie Square, lat: 39.7710, lon: -86.1470 }
+  - { name: Bates-Hendricks, lat: 39.7440, lon: -86.1490 }
+  - { name: Irvington, lat: 39.7720, lon: -86.0710 }
+  - { name: Broad Ripple, lat: 39.8670, lon: -86.1420 }
+  - { name: Meridian-Kessler, lat: 39.8420, lon: -86.1500 }
+  - { name: SoBro, lat: 39.8300, lon: -86.1450 }
+  - { name: Herron-Morton Place, lat: 39.7920, lon: -86.1530 }
+  - { name: Butler-Tarkington, lat: 39.8380, lon: -86.1720 }
+  - { name: Haughville, lat: 39.7770, lon: -86.2050 }
+  - { name: Speedway, lat: 39.8020, lon: -86.2490 }
+  - { name: Garfield Park, lat: 39.7330, lon: -86.1460 }
+sources:
+  - id: indypl_events
+    adapter: communico
+    name: Indianapolis Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://attend.indypl.org/events
+    expect_min_records: 40
+    notes: >-
+      Communico ("Attend") eeventcaldata JSON that the library's own calendar loads (undocumented; robots allows
+      it). Central Library + 24 branches, all in Marion County. IndyPL's BiblioCommons code (indypl) is catalog-only
+      (empty events channel).
+    params:
+      base_url: https://attend.indypl.org
+      horizon_days: 7
+      venue_label: Indianapolis Public Library
+      default_category: arts.books
+      skip_all_day: true
+      category_map:
+        Storytime: family.kids
+        Babies and Toddlers: family.kids
+        Preschoolers: family.kids
+        School-Age Kids: family.kids
+        Teens: family.kids
+        Book Club: arts.books
+        Computer: learning.tech
+  - id: gainbridge_fieldhouse
+    adapter: rss_events
+    name: Gainbridge Fieldhouse (Pacers, Fever, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.gainbridgefieldhouse.com/events
+    expect_min_records: 15
+    notes: "carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.gainbridgefieldhouse.com/events/rss
+      horizon_days: 180
+      venue: {name: Gainbridge Fieldhouse, address: "125 S Pennsylvania St, Indianapolis, IN 46204"}
+      organizer: Gainbridge Fieldhouse
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Pacers": sports_watch.game
+        "Fever": sports_watch.game
+        "Basketball": sports_watch.game
+  - id: butler_athletics
+    adapter: ics
+    name: Butler Bulldogs athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://butlersports.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Indianapolis" is kept (Hinkle…).
+    params:
+      url: https://butlersports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Butler Bulldogs
+      exclude_location: '^(?!Indianapolis\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.8390, lon: -86.1690, label: "Butler University campus (approximate)" }
+  - id: volunteer_central_indiana
+    adapter: handsonconnect
+    name: Volunteer Central Indiana (United Way of Central Indiana)
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteercentralindiana.org/calendar
+    expect_min_records: 1
+    notes: >-
+      HandsOn Connect tenant linked from uwci.org/volunteer (robots.txt 404 = no rules). The page's block id (617)
+      returned no items; without a block id the calendar returns the tenant's shifts.
+    params:
+      base_url: https://www.volunteercentralindiana.org
+      horizon_days: 14
+      window_days: 3
+  - id: challenge_trivia_indianapolis
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Indianapolis)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 10
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-central-indiana within 2× the radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [central-indiana]
