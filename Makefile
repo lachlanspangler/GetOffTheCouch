@@ -45,7 +45,7 @@ test: test-py test-web  ## all tests
 check: lint typecheck test  ## everything CI runs (run before every commit)
 
 pipeline:      ## live: fetch due units → build → export → HEALTH.md
-	$(PY) -m gotc run -v
+	$(PY) -m gotc -v run
 
 build:         ## offline: rebuild + export from the DB
 	$(PY) -m gotc build
