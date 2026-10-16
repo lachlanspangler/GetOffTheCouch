@@ -306,3 +306,21 @@ sources:
       venue: {name: ACL Live at The Moody Theater, address: "310 W Willie Nelson Blvd, Austin, TX 78701"}
       organizer: ACL Live
       default_category: music.concert
+  - id: heb_center
+    adapter: rss_events
+    name: H-E-B Center at Cedar Park (Texas Stars, Austin Spurs, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.hebcenter.com/events
+    expect_min_records: 15
+    notes: "City of Cedar Park's arena; carbonhouse events RSS (/events/rss with the ev: module). robots allows it."
+    params:
+      url: https://www.hebcenter.com/events/rss
+      horizon_days: 120
+      venue: {name: H-E-B Center at Cedar Park, address: "2100 Avenue of the Stars, Cedar Park, TX 78613"}
+      organizer: H-E-B Center
+      default_category: music.concert
+      category_map:   # title keywords
+        " vs": sports_watch.game
+        "Texas Stars": sports_watch.game
+        "Austin Spurs": sports_watch.game
