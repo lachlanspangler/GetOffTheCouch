@@ -557,3 +557,36 @@ Rejected / not used (Providence):
 - pclib.libcal.com (linked from pclib.org) is **Poplar Creek Public Library (IL)** — name collision, not Providence.
 - Galaxy tenants `uwri`, `unitedwayri`, `serveri`, `volunteerri` → "Bad Domain".
 - Lupo's / Live Nation-ticketed rooms: not probed (ToS denylist).
+
+### Hartford
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `hfd_public_library_events` | hartford | Communico `eeventcaldata` / `communico` | https://hplct.libnet.info/eeventcaldata | none | 14 requests/day (one per day of horizon, ~85 KB each) | **undocumented** front-end JSON (linked from hplct.org); robots disallows only /results*, /sitesearch* | title, description, local start/end, branch, room, tags, ages, registration; staff contact never mapped | events · 24h | B (official library data via an undocumented endpoint) | 244 |
+| `hfd_trinity_arts_events` | hartford | LiveWhale JSON / `livewhale` (`/group/Cinestudio\|Austin Arts Center/`) | https://events.trincoll.edu/live/json/events/group/Cinestudio%7CAustin%20Arts%20Center/max/200 | none | 1 request/day | robots disallows only `*?replytocom` | title, date_iso, location, event types, cost, group | events · 24h | B (official; group filter keeps the public cinema + arts center, drops student-club items) | 26 (1 rejected: end before start in source) |
+| `hfd_ct_museum_history` | hartford | WP The Events Calendar / `tribe` | https://chs.org/wp-json/tribe/events/v1/events | none | ≤ 3 pages/day; robots Crawl-delay 10 | REST allowed (`Disallow:` empty) | as MPRB | events · 24h | B+ (Connecticut Museum of Culture and History, staff-edited) | 29 |
+| `hfd_mark_twain_house` | hartford | WP The Events Calendar / `tribe` | https://marktwainhouse.org/wp-json/tribe/events/v1/events | none | ≤ 2 pages/day | REST allowed (robots blocks only HTML `/events/…` permutations and `?tribe*` query views) | as MPRB | events · 24h | B | 15 |
+| `hfd_bushnell` | hartford | carbonhouse events RSS / `rss_events` | https://www.bushnell.org/events/rss | none | 1 request / 12 h | `User-agent: *` with no disallows | title, ev:startdate/enddate, ev:location (hall), ev:type, link | concerts · 12h | A- (nonprofit performing-arts center; also the Hartford Symphony's home) | 44 |
+| `hfd_peoplesbank_arena` | hartford | carbonhouse events RSS / `rss_events` | https://www.peoplesbankarena.com/events/rss | none | 1 request / 12 h | `User-agent: *` with no disallows | as Bushnell | events · 12h | A- (arena's own feed: UConn basketball/hockey, Hartford Wolf Pack, tours) | 63 |
+| `hfd_comedy_craft_beer` | hartford | schema.org JSON-LD / `jsonld` | https://www.comedycraftbeer.com/calendar | none | 1 request/day; robots Crawl-Delay 3 (we use 5) | `User-agent: *` Allow: / | ComedyEvent name, startDate, location+address, offers | events · 24h | C (promoter page; statewide rooms, only Hartford-area addresses kept) | 5 |
+| `hfd_trinity_bantams` | hartford | SIDEARM calendar.ics / `ics` | https://bantamsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots Crawl-delay 30 | no rule on /calendar* | SUMMARY, DTSTART, LOCATION (home = starts with "Hartford") | events · 24h | B+ | 31 |
+| `hfd_hartford_hawks` | hartford | SIDEARM calendar.ics / `ics` | https://hartfordhawks.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; Crawl-delay 30 | as above | as above (home = "West Hartford") | events · 24h | B+ | 21 |
+| `hfd_uconn_football_east_hartford` | hartford | SIDEARM calendar.ics / `ics` | https://uconnhuskies.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | as above | as above (kept: "East Hartford" = Pratt & Whitney Stadium; arena games come from the arena feed, Storrs is out of radius) | events · 24h | B+ (seasonal) | 4 |
+| `hfd_ct_liquor_openings` | hartford | Socrata `ngch-56tr` (data.ct.gov) / `socrata` | https://data.ct.gov/d/ngch-56tr | none (optional app token) | Socrata throttling | CT Open Data ToU | credentialid, businessname (legal entity; org-looking names only), credential class, status, **issuedate** (first issue; renewals change effectivedate), address, city | openings · 24h | A- (state DCP register; no DBA, so titles are LLC names) | 6 |
+| `hfd_wethersfield_library_events` | hartford | LibCal ICS / `ics` | https://wethersfieldlibrary.libcal.com/ical_subscribe.php?src=p&cid=15232 | none | Crawl-delay 10 | robots allows (`*`: Crawl-delay 10, /process_ only) | — | events · 24h | D for us (disabled: 39/46 items are "LIBRARY CLOSED", the talks are virtual with no LOCATION) | disabled |
+
+Rejected (Hartford):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| CT Liquor Permits `gwv2-eswx` | Hartford | no newness date: `effective_date` is a renewal-cycle text date, pending new applications are undated | Socrata probe 2026-10-16 |
+| Hartford food establishment licenses (ArcGIS `HartfordOpenDataTables/FeatureServer/2`) | Hartford | no date column (snapshot-diff only) | layer metadata 2026-10-16 |
+| hartford.com (Hartford Business Improvement District events), riverfront.org, handsonhartford.org | Hartford | Cloudflare "Just a moment…" challenge | probe 2026-10-16 |
+| West Hartford Public Library, Windsor Public Library (LibraryMarket / librarycalendar.com) | Hartford | robots.txt answers 403 → treated as disallow-all | `*.librarymarket.com/robots.txt`, `*.librarycalendar.com/robots.txt` |
+| ctconventions.com (CT Convention Center) | Hartford | robots.txt 403 | probe 2026-10-16 |
+| Glastonbury library page, Elizabeth Park, Hill-Stead, Hartford Marathon (`/wp-json/`) | Hartford | robots disallows the path | probe 2026-10-16 |
+| University of Hartford Trumba `Uhart-Home-Page-Public-Calendar` | Hartford | 410 Gone (spud still on hartford.edu/calendar) | trumba.com 2026-10-16 |
+| United Way of Central & Northeastern CT volunteering | Hartford | e-CImpact login portal only; no Galaxy/HandsOn tenant (`uwcnct` → "Bad Domain") | unitedwayinc.org 2026-10-16 |
+| Infinity Music Hall, Hartford Stage, Hartford Symphony, Real Art Ways, TheaterWorks | Hartford | no Event JSON-LD / no Tribe REST / no ICS | probe 2026-10-16 |
+| Sea Tea Comedy | Hartford | tickets on Eventbrite (excluded platform) | homepage |
+| hartfordct.gov events | Hartford | events listing is empty (data-total-results="0") | homepage |
