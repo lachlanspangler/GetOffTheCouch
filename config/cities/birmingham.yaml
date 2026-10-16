@@ -1,0 +1,338 @@
+# Birmingham, AL. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Researched and verified live 2026-10-16 (batch D). Not used, with reasons (docs/SOURCES.md "Batch D cities"):
+#   - Hands On Birmingham (handsonbirmingham.org) and United Way of Central Alabama (uwca.org): Cloudflare 403;
+#     volunteer.handsonbirmingham.org: Cloudflare 525. No volunteer source as a result.
+#   - Birmingham Botanical Gardens: robots.txt disallows everything. Birmingham Museum of Art: Cloudflare challenge.
+#   - data.birminghamal.gov (CKAN): robots disallows /api/ and /datastore/*; the only license dataset
+#     ("New Business Licenses Issued") stops in 2017. No openings source found (no ABC Board bulk data).
+#   - Iron City, WorkPlay, Avondale Brewing: no Event JSON-LD / feed (HTML only). Birmingham Zoo Tribe feed: one
+#     daily exhibit + 2 events. Railroad Park: no machine-readable calendar.
+slug: birmingham
+name: Birmingham
+state: AL
+timezone: America/Chicago
+center: [33.5186, -86.8104]
+radius_km: 20
+aliases: [Magic City, Hoover, Homewood, Vestavia Hills, Mountain Brook, Irondale, Bessemer, Fairfield, Midfield, Tarrant, Center Point, Gardendale, Leeds, Trussville, Jefferson County]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 33.5160, lon: -86.8080 }
+  - { name: Southside / UAB, lat: 33.5030, lon: -86.8040 }
+  - { name: Five Points South, lat: 33.4990, lon: -86.7950 }
+  - { name: Lakeview, lat: 33.5070, lon: -86.7880 }
+  - { name: Avondale, lat: 33.5230, lon: -86.7700 }
+  - { name: Parkside / Railroad Park, lat: 33.5090, lon: -86.8120 }
+  - { name: Loft District / Civil Rights District, lat: 33.5160, lon: -86.8150 }
+  - { name: Highland Park, lat: 33.5010, lon: -86.7770 }
+  - { name: Forest Park, lat: 33.5180, lon: -86.7530 }
+  - { name: Crestwood, lat: 33.5290, lon: -86.7350 }
+  - { name: East Lake, lat: 33.5650, lon: -86.7230 }
+  - { name: Woodlawn, lat: 33.5340, lon: -86.7490 }
+  - { name: Ensley, lat: 33.5180, lon: -86.8840 }
+  - { name: Homewood, lat: 33.4720, lon: -86.8010 }
+  - { name: Mountain Brook, lat: 33.4880, lon: -86.7480 }
+  - { name: Vestavia Hills, lat: 33.4490, lon: -86.7880 }
+  - { name: Hoover, lat: 33.4050, lon: -86.8110 }
+sources:
+  # ── library ──
+  - id: bham_bpl_events
+    adapter: trumba
+    name: Birmingham Public Library events
+    data_type: events
+    homepage: https://www.cobpl.org/calendar/
+    expect_min_records: 30
+    notes: >-
+      The library's own Trumba calendar (webName BPL-calendar, the spud embedded on cobpl.org/calendar). trumba.com
+      robots allows all. Staff contact name/e-mail custom fields are never mapped (the adapter reads only the
+      category, room and registration fields).
+    params:
+      webname: BPL-calendar
+      horizon_days: 14
+      venue_label: Birmingham Public Library
+      organizer: Birmingham Public Library
+      category_fields: [Event Type]
+      category_map:   # "Event Type" values seen in the live feed, checked in this order
+        Storytime: family.kids
+        Film: arts.film
+        "Music & Performing Arts": music.concert
+        Games and Gaming: trivia_games.board_games
+        "Computers & Technology": learning.tech
+        Book Clubs: arts.books
+        "Art & Exhibits": arts.museum
+        "Arts & Crafts": arts.workshop
+      default_category: arts.books
+
+  - id: bham_homewood_library_events
+    adapter: communico
+    name: Homewood Public Library events
+    data_type: events
+    homepage: https://homewood.libnet.info/events
+    expect_min_records: 10
+    notes: Undocumented Communico calendar JSON the library's own page loads (robots disallows only search/results).
+    params:
+      base_url: https://homewood.libnet.info
+      horizon_days: 7
+      venue_label: Homewood Public Library
+      default_category: arts.books
+      category_map:
+        Computer Classes: learning.tech
+        Digital Literacy: learning.tech
+        Kid Events: family.kids
+
+  - id: bham_hoover_library_events
+    adapter: communico
+    name: Hoover Public Library events
+    data_type: events
+    homepage: https://events.hooverlibrary.org/events
+    expect_min_records: 10
+    notes: Undocumented Communico calendar JSON (events.hooverlibrary.org; robots disallows only search/results).
+    params:
+      base_url: https://events.hooverlibrary.org
+      horizon_days: 7
+      venue_label: Hoover Public Library
+      default_category: arts.books
+      category_map:   # tags here are verbs ("Read, Play, Listen"), so ages decide kids' events
+        Preschool: family.kids
+        Kids: family.kids
+        Read: arts.books
+
+  # ── university ──
+  - id: bham_uab_events
+    adapter: localist
+    name: UAB events
+    data_type: events
+    homepage: https://calendar.uab.edu/
+    expect_min_records: 20
+    notes: Localist API (robots Crawl-Delay 1; /api/ allowed). ~680 items in 30 days, mostly internal; filtered to public.
+    params:
+      fallback_point: { lat: 33.5021, lon: -86.8064, label: "UAB campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      # athletics come from bham_uab_athletics (home games only); employee screenings / Microsoft trainings skipped
+      exclude_location: '\bUAB (Men|Women)''s [A-Za-z& ]+ (at|vs\.?) |\b(Wellscreens?|Copilot|Teams Meetings|Microsoft)\b'
+      base_url: https://calendar.uab.edu
+      horizon_days: 30
+      max_pages: 8
+      organizer: University of Alabama at Birmingham
+      default_category: learning.networking
+
+  # ── concerts / venues ──
+  - id: bham_bjcc_concerts
+    adapter: jsonld
+    name: BJCC concerts — Legacy Arena, Concert Hall, Theatre, Protective Stadium (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.bjcc.org/contact/news/mec-category/concerts/
+    expect_min_records: 5
+    notes: >-
+      Birmingham-Jefferson Civic Center Authority's WordPress (Modern Events Calendar) category lists embed Event
+      JSON-LD (12 per page, ~2 months). One unit per BJCC category so the venue's own label sets the category
+      (the shared "all events" list mixes cheer competitions, expos and concerts). The "Family" category is not used: BJCC tags bowl games, orchestras and cheer meets as Family too, so it would mislabel events shared with the other lists. JSON-LD clock times are wrong
+      (e.g. "14:00-05:00" for a 7:00 pm show), so only dates are kept; offers carry a placeholder price 0 and
+      validFrom = the event date, so neither is trusted. robots (Yoast) allows everything. Season placeholders
+      ("UAB Blazers 2026 Schedule") are skipped.
+    params:
+      urls: [https://www.bjcc.org/contact/news/mec-category/concerts/]
+      horizon_days: 180
+      date_only: true
+      trust_valid_from: false
+      zero_is_free: false
+      spectator_venue: true
+      exclude_location: '\bSchedule$'
+      venue: {name: BJCC, address: "2100 Richard Arrington Jr Blvd N, Birmingham, AL 35203"}
+      organizer: BJCC
+      default_category: music.concert
+      category_map: {Event: music.concert}
+
+  - id: bham_bjcc_comedy
+    adapter: jsonld
+    name: BJCC comedy — Legacy Arena, Concert Hall, Theatre, Protective Stadium (venue calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.bjcc.org/contact/news/mec-category/comedy/
+    expect_min_records: 1
+    notes: As bjcc_concerts (same platform and caveats), BJCC category "Comedy".
+    params:
+      urls: [https://www.bjcc.org/contact/news/mec-category/comedy/]
+      horizon_days: 180
+      date_only: true
+      trust_valid_from: false
+      zero_is_free: false
+      spectator_venue: true
+      exclude_location: '\bSchedule$'
+      venue: {name: BJCC, address: "2100 Richard Arrington Jr Blvd N, Birmingham, AL 35203"}
+      organizer: BJCC
+      default_category: nightlife.comedy
+      category_map: {Event: nightlife.comedy}
+
+  - id: bham_bjcc_performing_arts
+    adapter: jsonld
+    name: BJCC performing arts — Legacy Arena, Concert Hall, Theatre, Protective Stadium (venue calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.bjcc.org/contact/news/mec-category/performing-arts/
+    expect_min_records: 5
+    notes: As bjcc_concerts (same platform and caveats), BJCC category "Performing Arts".
+    params:
+      urls: [https://www.bjcc.org/contact/news/mec-category/performing-arts/]
+      horizon_days: 180
+      date_only: true
+      trust_valid_from: false
+      zero_is_free: false
+      spectator_venue: true
+      exclude_location: '\bSchedule$'
+      venue: {name: BJCC, address: "2100 Richard Arrington Jr Blvd N, Birmingham, AL 35203"}
+      organizer: BJCC
+      default_category: arts.theater
+      category_map: {Event: arts.theater}
+
+  - id: bham_bjcc_sports
+    adapter: jsonld
+    name: BJCC sports — Legacy Arena, Concert Hall, Theatre, Protective Stadium (venue calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.bjcc.org/contact/news/mec-category/sports/
+    expect_min_records: 5
+    notes: As bjcc_concerts (same platform and caveats), BJCC category "Sports".
+    params:
+      urls: [https://www.bjcc.org/contact/news/mec-category/sports/]
+      horizon_days: 180
+      date_only: true
+      trust_valid_from: false
+      zero_is_free: false
+      spectator_venue: true
+      exclude_location: '\bSchedule$'
+      venue: {name: BJCC, address: "2100 Richard Arrington Jr Blvd N, Birmingham, AL 35203"}
+      organizer: BJCC
+      default_category: sports_watch.game
+      category_map: {Event: sports_watch.game}
+
+  - id: bham_alabama_theatre
+    adapter: tribe
+    name: Alabama Theatre (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://alabamatheatre.com/events/
+    expect_min_records: 5
+    notes: Birmingham Landmarks' WordPress The Events Calendar REST API (robots has no rules). Concerts and classic films.
+    params:
+      base_url: https://alabamatheatre.com
+      horizon_days: 150
+      per_page: 50
+      max_pages: 4
+      organizer: Alabama Theatre
+      default_category: music.concert
+      category_map: {Movies: arts.film, Comedy: nightlife.comedy, Ballet: arts.theater, Concerts: music.concert}
+      classify_description: false
+
+  - id: bham_lyric_theatre
+    adapter: tribe
+    name: Lyric Theatre (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://lyricbham.com/
+    expect_min_records: 5
+    notes: Birmingham Landmarks' second house; The Events Calendar REST API (robots has no rules).
+    params:
+      base_url: https://lyricbham.com
+      horizon_days: 150
+      per_page: 50
+      max_pages: 4
+      organizer: Lyric Theatre
+      default_category: music.concert
+      category_map: {Comedy: nightlife.comedy, Drag: nightlife.drag, Ballet: arts.theater, Concert: music.concert}
+      classify_description: false
+
+  - id: bham_saturn
+    adapter: jsonld
+    name: Saturn (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.saturnbirmingham.com/
+    expect_min_records: 10
+    notes: >-
+      Avondale club on the Opendate platform; each /shows/ page carries MusicEvent JSON-LD (UTC start). robots
+      lists only the sitemap. Homepage lists ~60 upcoming shows; we follow the first 40.
+    params:
+      urls: [https://www.saturnbirmingham.com/]
+      follow: 'saturnbirmingham\.com/shows/[^/?#]+/$'
+      max_follow: 40
+      horizon_days: 120
+      venue: {name: Saturn}
+      organizer: Saturn
+      default_category: music.concert
+
+  - id: bham_stardome
+    adapter: jsonld
+    name: StarDome Comedy Club (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.stardome.com/
+    expect_min_records: 5
+    notes: >-
+      SeatEngine site (Hoover); each show page carries Event JSON-LD (UTC start, no offers). robots has no rules.
+    params:
+      urls: [https://www.stardome.com/]
+      follow: 'stardome\.com/events/\d+$'
+      max_follow: 25
+      horizon_days: 60
+      venue: {name: StarDome Comedy Club}
+      organizer: StarDome Comedy Club
+      default_category: nightlife.comedy
+      category_map: {Event: nightlife.comedy}
+
+  # ── college athletics, home games only (SIDEARM calendar.ics) ──
+  - id: bham_uab_athletics
+    adapter: ics
+    name: UAB Blazers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://uabsports.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM subscription calendar (robots blocks only named bots). Only LOCATION starting "Birmingham" is kept.
+    params:
+      url: https://uabsports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: UAB Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!Birmingham\b)'
+      fallback_point: { lat: 33.5021, lon: -86.8064, label: "UAB campus" }
+
+  - id: bham_samford_athletics
+    adapter: ics
+    name: Samford Bulldogs athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://samfordsports.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM subscription calendar (robots Crawl-delay 2, allows all). Samford is in Homewood; its ICS says "Birmingham".
+    params:
+      url: https://samfordsports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Samford Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Birmingham|Homewood)\b)'
+      fallback_point: { lat: 33.4651, lon: -86.7930, label: "Samford University campus" }
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page) ──
+  - id: challenge_trivia_birmingham
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Birmingham)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 15
+    notes: >-
+      One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows). Birmingham shows are classed
+      metro-north-alabama; the adapter keeps those within 2× the city radius (62 shows on 2026-10-16).
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [north-alabama]

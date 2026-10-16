@@ -447,3 +447,44 @@ Rejected / not used (Memphis):
 - **Memphis Zoo:** wp-json 403, Crawl-delay 30.
 - **Shelby Farms Park:** /events 404. **Graceland:** no Tribe.
 - **No Team Trivia or Volo market.**
+
+### Birmingham
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `bham_bpl_events` | birmingham | Trumba JSON / `trumba` | https://www.trumba.com/calendars/BPL-calendar.json | none | 1 request/day (startdate + 14 days, ~0.4 MB) | trumba.com robots allows all; the library's own embedded calendar (cobpl.org/calendar spud) | title, description, wall-clock start/end + offset, branch, Event Type, registration flags; staff contact fields never mapped | events · 24h | A- (official; no geo, branch names geocoded later) | 134 |
+| `bham_homewood_library_events` | birmingham | Communico `eeventcaldata` / `communico` | https://homewood.libnet.info/eeventcaldata | none | 7 requests/day | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | as MDPLS | events · 24h | B | 34 |
+| `bham_hoover_library_events` | birmingham | Communico `eeventcaldata` / `communico` | https://events.hooverlibrary.org/eeventcaldata | none | 7 requests/day | as Homewood | as MDPLS (tags are verbs, so ages decide kids' events) | events · 24h | B | 24 |
+| `bham_uab_events` | birmingham | Localist / `localist` | https://calendar.uab.edu/api/2/events | none | ≤ 8 pages/day; robots `Crawl-Delay: 1` | allowed (wildcard disallows cover only HTML calendar/search views) | as USC; `audience_filter: institution`; athletics + employee screenings/trainings skipped | events · 24h | B (≈680 items/30 d, mostly internal) | 245 |
+| `bham_bjcc_concerts` | birmingham | WP Modern Events Calendar JSON-LD / `jsonld` | https://www.bjcc.org/contact/news/mec-category/concerts/ | none | 1 page/12h | robots (Yoast) allows all; BJCC is a public civic-center authority | name, date (clock time wrong in JSON-LD → `date_only`), location room; placeholder price 0 / validFrom ignored | concerts · 12h | B- (12 per list ≈ 2 months; dates only) | 12 |
+| `bham_bjcc_comedy` | birmingham | as above | https://www.bjcc.org/contact/news/mec-category/comedy/ | none | 1 page/12h | as above | as above | events · 12h | B- | 3 |
+| `bham_bjcc_performing_arts` | birmingham | as above | https://www.bjcc.org/contact/news/mec-category/performing-arts/ | none | 1 page/12h | as above | as above (Broadway in Birmingham, Alabama Ballet) | events · 12h | B- | 11 |
+| `bham_bjcc_sports` | birmingham | as above | https://www.bjcc.org/contact/news/mec-category/sports/ | none | 1 page/12h | as above | as above; "… Schedule" season placeholders skipped | events · 12h | B- | 12 |
+| `bham_alabama_theatre` | birmingham | WP The Events Calendar / `tribe` | https://alabamatheatre.com/wp-json/tribe/events/v1/events | none | 1 request/12h | robots has no rules | as MPRB; categories Movies/Comedy/Ballet/Concerts mapped | concerts · 12h | B+ | 32 |
+| `bham_lyric_theatre` | birmingham | WP The Events Calendar / `tribe` | https://lyricbham.com/wp-json/tribe/events/v1/events | none | 1 request/12h | robots has no rules | as MPRB; Comedy/Drag/Ballet/Concert mapped | concerts · 12h | B+ | 19 |
+| `bham_saturn` | birmingham | Opendate show pages JSON-LD / `jsonld` | https://www.saturnbirmingham.com/ (+ ≤ 40 /shows/ pages) | none | ≤ 41 pages/12h, ≥ 2 s apart | robots lists only the sitemap | MusicEvent name, UTC start, location, url | concerts · 12h | B | 40 |
+| `bham_stardome` | birmingham | SeatEngine show pages JSON-LD / `jsonld` | https://www.stardome.com/ (+ ≤ 25 /events/ pages) | none | ≤ 26 pages/day | robots has no active rules | Event name, UTC start, url (no offers in JSON-LD) | events · 24h | B | 75 |
+| `bham_uab_athletics` | birmingham | SIDEARM ICS / `ics` | https://uabsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots `Crawl-delay: 30` | robots disallows only assets/admin (calendar.ashx allowed) | SUMMARY, DTSTART, LOCATION (home = starts "Birmingham") | events · 24h | B+ | 20 |
+| `bham_samford_athletics` | birmingham | SIDEARM ICS / `ics` | https://samfordsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots `Crawl-delay: 30` | as UAB | as UAB (home = "Birmingham"/"Homewood") | events · 24h | B+ | 24 |
+| `challenge_trivia_birmingham` | birmingham | Challenge show-finder JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all; no terms page | as other Challenge units; `metros: [north-alabama]` within 2× radius | recurring · 48h | C (undocumented) | 233 |
+| `upcomingcons` (global) | birmingham | upcomingcons | — | none | — | — | — | conventions · 168h | — | 0 for Birmingham |
+| Hands On Birmingham / United Way of Central Alabama | birmingham | — | handsonbirmingham.org, uwca.org, volunteer.handsonbirmingham.org | — | — | **Cloudflare 403 / 525** to our client 2026-10-16; not worked around | — | — | D for us | not added |
+| Birmingham Botanical Gardens | birmingham | — | https://www.bbgardens.org/ | — | — | **robots.txt disallows all** | — | — | D for us | not added |
+| Birmingham Museum of Art | birmingham | — | https://www.artsbma.org/ | — | — | Cloudflare "Just a moment" challenge | — | — | D for us | not added |
+| City of Birmingham open data (CKAN) | birmingham | `ckan` | https://data.birminghamal.gov/ | — | robots Crawl-delay 10 | robots disallows /api/ and /datastore/*; "New Business Licenses Issued" CSVs end in 2017 | — | openings | D (dead + robots) | not added |
+| BJCC "Family" list | birmingham | `jsonld` | https://www.bjcc.org/contact/news/mec-category/family/ | none | — | allowed | — | — | dropped: the Family label is applied to bowl games, orchestras and cheer meets, mislabeling events shared with the other BJCC lists | not added |
+
+Rejected / not used (Birmingham):
+
+- bham_bjcc_events (single "all events" list) → replaced by per-category units (forgotten in the DB).
+- bham_bjcc_family → removed: BJCC tags bowl games, TSO and cheer meets as Family, so merged events got family.kids.
+- Hands On Birmingham (handsonbirmingham.org 403, volunteer.handsonbirmingham.org Cloudflare 525), United Way of
+  Central Alabama (uwca.org 403); Galaxy tenant `handsonbirmingham` → "Galaxy Digital: Bad Domain".
+- Birmingham Botanical Gardens: robots disallows all. Birmingham Museum of Art: Cloudflare challenge.
+- data.birminghamal.gov: CKAN, robots `Disallow: /api/` + `/datastore/*`; "New Business Licenses Issued" ends 2017.
+  ArcGIS Hub search for "Birmingham Alabama open data": no site.
+- Iron City (Ticketmaster links, Hive terms; no Event JSON-LD on detail pages), WorkPlay (Yoast graph only),
+  Avondale Brewing (Squarespace page, no events JSON-LD, ?format=ical returns HTML): HTML-only, skipped.
+- Birmingham Zoo (Tribe): 17 of 19 items are one daily exhibit; skipped. Railroad Park: no machine-readable calendar.
+- Sloss Furnaces: TLS chain failed verification from our client (not retried with verify off).
+- Samford events page: no calendar platform fingerprint.
