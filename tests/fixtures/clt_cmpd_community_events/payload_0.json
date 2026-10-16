@@ -1,0 +1,166 @@
+{
+ "displayFieldName": "STREETNAME",
+ "fieldAliases": {
+  "OBJECTID": "OBJECTID",
+  "DIVISION": "Division",
+  "EVENTDESCRIPTION": "EVENTDESCRIPTION",
+  "DEPARTMENTDIVISION": "DEPARTMENTDIVISION",
+  "DEPARTMENTCONTACTPHONE": "DEPARTMENTCONTACTPHONE",
+  "CATEGORY": "CATEGORY",
+  "CANCELLED": "CANCELLED",
+  "VIRTUAL": "VIRTUAL",
+  "EVENTSTARTDATETIME": "EVENTSTARTDATETIME",
+  "EVENTENDDATETIME": "EVENTENDDATETIME",
+  "NOTES": "NOTES",
+  "LOCATIONDESCRIPTION": "LOCATIONDESCRIPTION",
+  "STREETNUM": "STREETNUM",
+  "STREETDIR": "STREETDIR",
+  "STREETNAME": "STREETNAME",
+  "STREETTYPE": "STREETTYPE",
+  "STREETSUFFIX": "STREETSUFFIX",
+  "MODIFIED_DATE": "MODIFIED_DATE"
+ },
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID"
+  },
+  {
+   "name": "DIVISION",
+   "type": "esriFieldTypeString",
+   "alias": "Division",
+   "length": 25
+  },
+  {
+   "name": "EVENTDESCRIPTION",
+   "type": "esriFieldTypeString",
+   "alias": "EVENTDESCRIPTION",
+   "length": 255
+  },
+  {
+   "name": "DEPARTMENTDIVISION",
+   "type": "esriFieldTypeString",
+   "alias": "DEPARTMENTDIVISION",
+   "length": 100
+  },
+  {
+   "name": "DEPARTMENTCONTACTPHONE",
+   "type": "esriFieldTypeString",
+   "alias": "DEPARTMENTCONTACTPHONE",
+   "length": 12
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "OBJECTID": 1154,
+    "DIVISION": "North Tryon",
+    "EVENTDESCRIPTION": "SHANNON PARK COMMUNITY MEETING",
+    "DEPARTMENTDIVISION": "North Tryon Division",
+    "DEPARTMENTCONTACTPHONE": "7044322461",
+    "CATEGORY": "Community Meeting",
+    "CANCELLED": "N",
+    "VIRTUAL": "N",
+    "EVENTSTARTDATETIME": 1792447200000,
+    "EVENTENDDATETIME": 1792450800000,
+    "NOTES": null,
+    "LOCATIONDESCRIPTION": "GREATER BETHEL AME CHURCH",
+    "STREETNUM": "5232",
+    "STREETDIR": null,
+    "STREETNAME": "The Plaza",
+    "STREETTYPE": null,
+    "STREETSUFFIX": null,
+    "MODIFIED_DATE": 1775148406000
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 1048,
+    "DIVISION": "Metro",
+    "EVENTDESCRIPTION": "ENDERLY PARK",
+    "DEPARTMENTDIVISION": "Metro Division",
+    "DEPARTMENTCONTACTPHONE": "704-336-8300",
+    "CATEGORY": "Community Meeting",
+    "CANCELLED": "N",
+    "VIRTUAL": "N",
+    "EVENTSTARTDATETIME": 1792533600000,
+    "EVENTENDDATETIME": 1792537200000,
+    "NOTES": null,
+    "LOCATIONDESCRIPTION": "BETTE RAE THOMAS RECREATION CENTER",
+    "STREETNUM": "2921",
+    "STREETDIR": null,
+    "STREETNAME": "Tuckaseegee",
+    "STREETTYPE": "RD",
+    "STREETSUFFIX": null,
+    "MODIFIED_DATE": 1775140927000
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 1060,
+    "DIVISION": "Metro",
+    "EVENTDESCRIPTION": "ELEANOR HEIGHTS",
+    "DEPARTMENTDIVISION": "Metro Division",
+    "DEPARTMENTCONTACTPHONE": "704-336-8300",
+    "CATEGORY": "Community Meeting",
+    "CANCELLED": "N",
+    "VIRTUAL": "N",
+    "EVENTSTARTDATETIME": 1792533600000,
+    "EVENTENDDATETIME": 1792537200000,
+    "NOTES": null,
+    "LOCATIONDESCRIPTION": null,
+    "STREETNUM": "2900",
+    "STREETDIR": null,
+    "STREETNAME": "Clyde ",
+    "STREETTYPE": "DR",
+    "STREETSUFFIX": null,
+    "MODIFIED_DATE": 1775140913000
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 866,
+    "DIVISION": "Metro",
+    "EVENTDESCRIPTION": "LINCOLN HEIGHTS COMMUNITY MEETING",
+    "DEPARTMENTDIVISION": "Metro Division",
+    "DEPARTMENTCONTACTPHONE": "704-336-8300",
+    "CATEGORY": "Community Meeting",
+    "CANCELLED": "N",
+    "VIRTUAL": "N",
+    "EVENTSTARTDATETIME": 1792533600000,
+    "EVENTENDDATETIME": 1792537200000,
+    "NOTES": null,
+    "LOCATIONDESCRIPTION": "THE LASALLE AT LINCOLN HEIGHTS",
+    "STREETNUM": "2120",
+    "STREETDIR": null,
+    "STREETNAME": "Lasalle ",
+    "STREETTYPE": "ST",
+    "STREETSUFFIX": null,
+    "MODIFIED_DATE": 1775140946000
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 883,
+    "DIVISION": "Metro",
+    "EVENTDESCRIPTION": "UNIVERSITY PARK",
+    "DEPARTMENTDIVISION": "Metro Division",
+    "DEPARTMENTCONTACTPHONE": "704-336-8300",
+    "CATEGORY": "Community Meeting",
+    "CANCELLED": "N",
+    "VIRTUAL": "N",
+    "EVENTSTARTDATETIME": 1792533600000,
+    "EVENTENDDATETIME": 1792537200000,
+    "NOTES": null,
+    "LOCATIONDESCRIPTION": "WEST CHARLOTTE REC CENTER",
+    "STREETNUM": "2401",
+    "STREETDIR": null,
+    "STREETNAME": "kendall",
+    "STREETTYPE": "DR",
+    "STREETSUFFIX": null,
+    "MODIFIED_DATE": 1775140958000
+   }
+  }
+ ]
+}

@@ -347,3 +347,38 @@ Rejected / not used (Jacksonville):
 | Jacksonville open data | no Socrata tenant; ArcGIS Online search found no events/permit/license layers from COJ | catalog + arcgis search 2026-10-16 |
 | Jacksonville Symphony, MOSH | no machine-readable calendar (Elementor / no JSON-LD) | probe |
 | Challenge Entertainment | no shows within 60 km | national feed 2026-10-16 |
+
+### Charlotte
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `clt_cmlibrary_events` | charlotte | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/cmlibrary/rss/events | none | ~20 pages/day (horizon 10 days); gateway host has no robots.txt | published RSS feed linked from cmlibrary.org | title, description, bc:start/end local, branch address+geo, categories, registration | events · 24h | A- (official; countywide, filtered to Charlotte, Matthews, Mint Hill, Huntersville, Pineville) | 440 |
+| `clt_uncc_events` | charlotte | Localist / `localist` | https://campusevents.charlotte.edu/api/2/events | none | ≤ 5 pages/day; robots `Crawl-Delay: 1` | allowed (disallows only HTML calendar permutations) | title, instances, venue+geo, filters, free/ticket url; 49ers games excluded (see athletics unit) | events · 24h | B (official; mostly student life) | 172 |
+| `clt_49ers_athletics` | charlotte | SIDEARM calendar.ics / `ics` | https://charlotte49ers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots Crawl-delay 30 | allowed (robots blocks admin/assets only) | SUMMARY, DTSTART, LOCATION (home games only: LOCATION starts with "Charlotte") | events · 24h | A- | 22 |
+| `clt_cmpd_community_events` | charlotte | ArcGIS Server MapServer table / `arcgis` (`format: json`, `respect_robots: true`) | https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDEvents_tb/MapServer/0 | none | 1 request/day | self-hosted city server, robots.txt 404 (no rules); listed on data.charlottenc.gov; DEPARTMENTCONTACTPHONE dropped by the privacy scrub | description, category, division, start/end (epoch ms), location description, street number/name, notes; cancelled and virtual rows filtered server-side | events · 24h | B+ (official police-division community meetings/outreach; no geometry, geocoded) | 168 |
+| `clt_spectrum_center` | charlotte | carbonhouse events RSS / `rss_events` | https://www.spectrumcentercharlotte.com/events/rss | none | 1 request/12h | robots `User-agent: *` with no rules | title, ev:startdate, link (Hornets games → sports_watch.game) | concerts · 12h | B+ | 65 |
+| `clt_blumenthal_arts` | charlotte | carbonhouse events RSS / `rss_events` | https://www.blumenthalarts.org/events/rss | none | 1 request/day | robots `User-agent: *` with no rules | title, ev:startdate, ev:location (room → address for the four PAC theaters; off-site rooms keep their name), ev:type → category | concerts · 24h | A- (nonprofit PAC; Broadway, symphony, ballet, comedy) | 93 |
+| `clt_amos_southend` | charlotte | Rockhouse WordPress JSON-LD / `jsonld` | https://amossouthend.com/ (+ ≤ 40 event pages) | none | ≤ 41 pages/12h, 2 s apart | robots disallows only /wp-admin/ | Event name, startDate (offset), location, Etix offer url (price 0 = unknown) | concerts · 12h | B | 15 |
+| `clt_comedy_zone` | charlotte | SeatEngine JSON-LD / `jsonld` | https://www.cltcomedyzone.com/ | none | 1 page/day | robots.txt rules all commented out (allows all) | Event name, startDate (UTC), location (events nested in the Place block) | events · 24h | B | 68 |
+| `teamtrivia_charlotte` | charlotte | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-charlotte/ | none | region page + ≤ 60 venue pages / 48h, 3 s apart | allowed and in the site's sitemap (gate helpers never touched) | dated games (JSON-LD), venue, geo | recurring · 48h | B | 80 |
+
+Rejected / not used (Charlotte):
+
+- Neighborhood Theatre, Middle C Jazz: Cloudflare "Just a moment…" 403 — not touched further.
+- Hands On Charlotte (handsoncharlotte.org): legacy Salesforce HOC site; calendar page still shows 2015 — dead.
+- Galaxy Digital guesses (handsoncharlotte, volunteercharlotte, sharecharlotte, unitedwaygreaterclt, uwgc,
+  cltvolunteers): all "Bad Domain" (607-byte page). United Way of Greater Charlotte links no volunteer platform.
+- Queens University /events/, CPCC /events: robots-disallowed. calendar.charlotte.edu is WordPress, not Localist
+  (the Localist tenant is campusevents.charlotte.edu).
+- boplex.com (Bojangles Coliseum / Ovens Auditorium): Next.js page, no RSS/JSON-LD (tickets via Ticketmaster).
+- Visulite Theatre (no JSON-LD on show pages), Snug Harbor (WP without Tribe/LD), Evening Muse (Eventbrite — ToS),
+  uptowncharlotte.com events (loaded from /_feeds/, robots-disallowed), Mint Museum / Whitewater Center (WP
+  without Tribe), Charlotte Symphony (redirect loop; its concerts arrive via Blumenthal's feed anyway),
+  bankofamericastadium.com/events/rss (404), Charlotte Checkers (no LD).
+- Mecklenburg Park & Rec: calendar.mecknc.gov is public-meeting notices only; programs presumably in a
+  registration system (not probed; manual ToS review per SCALING §2.6).
+- Openings: NC has no city business license; NC ABC "Permanent Permit Notifications" (abc2.nc.gov/Permit/Subscribe)
+  is an e-mail list for local officials; abc2 Search/Permit is an interactive form; city/county ArcGIS orgs have
+  no license layers (Mobile Food Vendor Permit / Special Use Permits are zoning). Luma has no Charlotte page
+  (luma.com/charlotte → /discover). Volo: no market. Challenge: 0 shows within 50 km.
+- LN/TM/AEG venues skipped by policy: Fillmore, The Underground, PNC Music Pavilion, Skyla Amphitheatre.

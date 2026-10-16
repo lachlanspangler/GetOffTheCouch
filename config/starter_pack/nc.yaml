@@ -1,0 +1,30 @@
+# Official new-resident deadlines for North Carolina. Every fact is quoted verbatim from source_url.
+state: NC
+items:
+  - id: nc-drivers-license
+    title: "Get a North Carolina driver license"
+    kind: license
+    days_after_move: 60
+    summary: "Within 60 days of establishing a permanent residence in North Carolina, drivers must get a North Carolina driver license at an NCDMV driver license office."
+    action_url: https://www.ncdot.gov/dmv/help/moving/Pages/new-residents.aspx
+    evidence: "Within 60 days of establishing a permanent residence in North Carolina, if you plan to operate a motor vehicle, you must get a North Carolina driver license, as well as title and register your vehicles with the N.C. Division of Motor Vehicles."
+    source_url: https://www.ncdot.gov/dmv/help/moving/Pages/new-residents.aspx
+    verified_at: 2026-10-16
+  - id: nc-vehicle-title-registration
+    title: "Title and register your vehicle in North Carolina"
+    kind: vehicle
+    days_after_move: 60
+    summary: "Within 60 days of establishing a permanent residence, title and register your vehicles with NCDMV (get your NC license first)."
+    action_url: https://www.ncdot.gov/dmv/help/moving/Pages/new-residents.aspx
+    evidence: "Within 60 days of establishing a permanent residence in North Carolina, if you plan to operate a motor vehicle, you must get a North Carolina driver license, as well as title and register your vehicles with the N.C. Division of Motor Vehicles."
+    source_url: https://www.ncdot.gov/dmv/help/moving/Pages/new-residents.aspx
+    verified_at: 2026-10-16
+  - id: nc-voter-registration
+    title: "Register to vote in North Carolina"
+    kind: voting
+    days_after_move: null
+    summary: "The deadline to register to vote in North Carolina is 25 days before Election Day."
+    action_url: https://www.ncsbe.gov/registering/how-register
+    evidence: "The deadline to register to vote in North Carolina is 25 days before Election Day."
+    source_url: https://www.ncsbe.gov/registering/how-register
+    verified_at: 2026-10-16
