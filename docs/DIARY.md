@@ -136,3 +136,42 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 - 2026-10-16 05:48 UTC · run 15 ok: units[1 ok] → 779 events in 1 cities
 - 2026-10-16 05:49 UTC · run 16 ok: units[1 ok] → 658 events in 1 cities
 - 2026-10-16 05:58 UTC · run 17 ok: units[1 ok] → 519 events in 1 cities
+
+## 2026-10-16 08:15 UTC: real-data relevance pass, more deadlines, payload split, geocoding
+**Did:**
+- **Relevance (prompted by NYC's feed showing NYU-internal items):**
+  - cancelled/postponed detection
+  - an opt-in "institution" audience filter, where skipped items are counted rather than rejected
+  - a geofence plus per-source location excludes (NYU's overseas campuses)
+  - multi-site programs collapse into one series
+  - an "Ongoing" section for exhibits
+  - timed events before all-day ones
+  - crowd estimates on cards only at medium+ confidence
+- **Deadlines:**
+  - Chicago Park District adult leagues + classes, with registration windows: "opens" reported, closes derived (labeled).
+  - Library registration counts became the first *reported* % left ("17 of 20 spots taken"), shown in 4 cities.
+  - HandsOn volunteer shifts report spots left (schema 1.3.0).
+  - The Deadlines view now separates published deadlines from derived "sign up before it starts".
+- **Minneapolis openings** via first-seen liquor licenses: the first run is a silent baseline.
+- **Merged the second adapter branch:** Volo, HandsOn Connect, Galaxy Digital, UpcomingCons, Luma, Maker Faire. Curated registries are now wired in 6 cities.
+- **Payload split:** a lean card feed plus lazy `.details.json` (NYC cards 6.5 → 4.8 MB).
+- **Census batch geocoding** with place-name variants (Miami 20% → 64%).
+- **Smaller additions:** reliability scores from run history; free-food/accessibility tag filters; neighborhood vibes; shared lists; cadence jitter; `gotc forget`.
+
+**Broke:**
+1. **Duplicate event ids after a cluster split.** The fallback id hashed to the same string as the original. It's now collision-proof with a salt loop, and a regression test covers it.
+2. **One city's build crash killed every city's export.** Builds are now isolated per city, logged as `build@city` health events.
+3. **My fold of `pending_sources` silently replaced 9 cities' source lists.** The cause was a second top-level `sources:` key, which YAML resolves last-key-wins. Tests caught it. The config loader now **rejects duplicate keys**.
+4. **A drop-cap on the Sherwood Forest page** ("S<span>herwood") triggered a false "page changed". The evidence check now compares alphanumerics only.
+5. **`mark_gone` missed items that started earlier today**, so filtered-out all-day items lingered.
+
+**Decided (and why):**
+- **Derived deadlines get no countdown.** The card shows "Registration required" or "3 of 15 spots left" instead. A fake countdown would be a lie.
+- **The health system is right to refuse deletions after a 128 → 9 volume drop.** For deliberate config changes, the operator runs `gotc forget <unit>`.
+
+**Verified:**
+- Screenshots: NYC (before/after the relevance fixes), Denver deadlines and timeline, Boston volunteering, Chicago in dark mobile.
+- Clean-clone `make setup && make check`: 276 tests green.
+- e2e: 24/24 including axe.
+
+**Next:** the concert-venue agent's results; another full live run; then STATUS.
