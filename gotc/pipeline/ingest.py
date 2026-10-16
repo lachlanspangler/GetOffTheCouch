@@ -112,7 +112,7 @@ def run_unit(
 ) -> UnitResult:
     key = unit.key
     h = hstore.load_health(db, key)
-    cadence = timedelta(hours=reg.cadence_hours(unit.source))
+    cadence = jittered(timedelta(hours=reg.cadence_hours(unit.source)), key)
 
     if not unit.source.enabled:
         with db.tx():
@@ -200,6 +200,12 @@ def run_unit(
             result.error = verdict.health.last_error
         _record_run_unit(db, run_id, key, now, result)
     return result
+
+
+def jittered(cadence: timedelta, key: str) -> timedelta:
+    """Up to 10% earlier, deterministic per unit, so units that ran together don't all come due together."""
+    frac = int(hashlib.sha1(key.encode()).hexdigest()[:4], 16) / 0xFFFF
+    return cadence * (1 - 0.1 * frac)
 
 
 def apply_rate_limit(http: PoliteClient, unit: Unit) -> None:

@@ -73,3 +73,12 @@ def test_staleness():
     assert is_stale(Health(), T0, CAD)
     assert not is_stale(Health(last_success_at=T0 - timedelta(hours=1)), T0, CAD)
     assert is_stale(Health(last_success_at=T0 - timedelta(hours=25)), T0, CAD)
+
+
+def test_jitter_is_deterministic_and_bounded():
+    from gotc.pipeline.ingest import jittered
+
+    a = jittered(CAD, "mprb_events@minneapolis")
+    assert a == jittered(CAD, "mprb_events@minneapolis")
+    assert CAD * 0.9 <= a <= CAD
+    assert len({jittered(CAD, f"u{i}@c") for i in range(20)}) > 10
