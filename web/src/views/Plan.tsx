@@ -2,6 +2,7 @@
 import { useMemo, useState } from "preact/hooks";
 import { EventCard } from "../components/EventCard";
 import { StarterPack } from "../components/StarterPack";
+import { share } from "../components/EventDrawer";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
 import { catIcon, children, families, hue } from "../lib/categories";
@@ -171,6 +172,18 @@ export function Plan({ events }: { events: Event[] }) {
         </div>
         <div class="row">
           <button class="btn btn-ghost" onClick={() => setEditing(true)}>Edit preferences</button>
+          {uniq.length > 0 && (
+            <button
+              class="btn btn-ghost"
+              onClick={async (ev) => {
+                const t = ev.currentTarget;
+                const url = `${location.origin}${location.pathname}#/${feed.city}/saved?ids=${uniq.map((e) => e.id).join(",")}`;
+                t.textContent = await share(`My first month in ${feed.city_name}`, url);
+              }}
+            >
+              <Icon name="share" size={16} /> Share plan
+            </button>
+          )}
           {uniq.length > 0 && (
             <button class="btn" onClick={() => download(`${feed.city}-first-30-days.ics`, calendar(uniq, { name: `My first month in ${feed.city_name}` }))}>
               <Icon name="calendar" size={16} /> Add plan to calendar

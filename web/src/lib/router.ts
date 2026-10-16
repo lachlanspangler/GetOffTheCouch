@@ -13,6 +13,7 @@ export interface Route {
   eventId: string | null;
   filters: Filters;
   day: string | null; // calendar day selection
+  ids: string[]; // a shared list of event ids (#/city/saved?ids=a,b)
 }
 
 export function parse(hash: string): Route {
@@ -37,7 +38,7 @@ export function parse(hash: string): Route {
     radiusKm: q.get("r") ? Number(q.get("r")) : DEFAULT_FILTERS.radiusKm,
     tags: q.get("tags")?.split(",").filter(Boolean) ?? [],
   };
-  return { city, view, eventId, filters: f, day: q.get("day") };
+  return { city, view, eventId, filters: f, day: q.get("day"), ids: q.get("ids")?.split(",").filter(Boolean) ?? [] };
 }
 
 export function build(r: Partial<Route> & { city: string | null }): string {
@@ -54,6 +55,7 @@ export function build(r: Partial<Route> & { city: string | null }): string {
   if (f.near && f.radiusKm !== DEFAULT_FILTERS.radiusKm) q.set("r", String(f.radiusKm));
   if (f.tags.length) q.set("tags", f.tags.join(","));
   if (r.day) q.set("day", r.day);
+  if (r.ids?.length) q.set("ids", r.ids.join(","));
   const path = r.eventId ? `${r.city}/event/${encodeURIComponent(r.eventId)}` : `${r.city ?? ""}${r.city ? `/${r.view ?? "feed"}` : ""}`;
   const s = q.toString();
   return `#/${path}${s ? `?${s}` : ""}`;
