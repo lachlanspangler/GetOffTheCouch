@@ -1,0 +1,6 @@
+{
+  "unit": "dallas_parks_events@dallas",
+  "recorded_at": "2026-10-16T22:03:18+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; trimmed to the VTIMEZONE blocks + the 8 soonest VEVENTs"
+}

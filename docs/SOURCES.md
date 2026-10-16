@@ -248,3 +248,38 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 | "aurora" BiblioCommons library | DEN | It is Aurora, **Ontario** | feed `bc:state` |
 | Levitt Pavilion Denver | DEN | Squarespace, season over (0 upcoming); revisit in spring | probe |
 | Westminster / Lakewood / Littleton city calendars (CivicPlus, Granicus OpenCities) | DEN | Usable (CivicPlus iCalendar), but tiny (≤ 10 events each) | probe |
+
+## Batch A cities
+
+Onboarded 2026-10-16 (dallas). Every unit ran live once with
+`gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
+valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
+automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `downtown_dallas_events` | dallas | WP The Events Calendar / `tribe` | https://www.downtowndallas.com/wp-json/tribe/events/v1/events | none | ≤6 pages/day; robots `Crawl-delay: 10` (honored) | REST allowed by robots | as `mprb_events` (happy hours, markets, museum programs, comedy, fitness) | events · 24h | B+ (business-district calendar) | 163 |
+| `dallas_parks_events` | dallas | CivicPlus iCalendar / `ics` | https://www.dallasparks.org/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar (+ catID 39, 31) | none | 3 requests/day | robots disallows only admin/search/`RSS.aspx`; the iCalendar module is allowed | SUMMARY, TZID DTSTART/DTEND, LOCATION; park-board meetings skipped | events · 24h | A- (official, small: ~30 dated items) | 86 |
+| `dallas_arboretum` | dallas | WordPress + Event JSON-LD / `jsonld` (listing only) | https://www.dallasarboretum.org/events-activities/ | none | 1 page/day | robots allows it | name, start (offset), garden area | events · 24h | B- (season-long programs, ~13) | 13 |
+| `utdallas_events` | dallas | Localist / `localist` (`type` = Target audience "General Public") | https://calendar.utdallas.edu/api/2/events | none | ≤4 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events`; campus fallback point | events · 24h | B (public filter cuts 660 → ~90 items) | 59 |
+| `uta_events` | dallas | Localist / `localist` (`type` = "Events for: Local Community") | https://events.uta.edu/api/2/events | none | ≤4 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events`; event types → categories | events · 24h | B- | 72 |
+| `smu_athletics` | dallas | SIDEARM ICS / `ics` | https://smumustangs.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (robots `Crawl-delay: 30`) | robots allows it; subscription feed | SUMMARY, DTSTART, LOCATION (home = starts with "Dallas") | events · 24h | B | 45 |
+| `american_airlines_center` | dallas | carbonhouse RSS / `rss_events` | https://www.americanairlinescenter.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (Mavericks, Stars, arena concerts) | 93 |
+| `tabc_pending_openings_dallas` | dallas | Socrata `mxm5-tdpj` (data.texas.gov) / `socrata` | https://data.texas.gov/d/mxm5-tdpj | none | Socrata throttling | as `tabc_pending_openings_austin`; Dallas + 11 inner-ring cities | as Austin | openings · 24h | A | 32 |
+| `tabc_new_licenses_dallas` | dallas | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as `tabc_new_licenses_austin` | as Austin (**original_issue_date**) | openings · 24h | A | 48 |
+| `teamtrivia_dallas` | dallas | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-dallas-fort-worth/ | none | 1 region page + ≤60 venue pages / 48h, ≥3 s | region/venue pages allowed and in the site's sitemap; zip gate never used | as `teamtrivia_denver` | recurring · 48h | B | 64 |
+| `challenge_trivia_dallas` | dallas | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | as `challenge_trivia_nashville`; metro-dallas-ft-worth within 60 km | recurring · 48h | C+ (undocumented JSON) | 176 |
+
+**Tried and not added (batch A).**
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| Dallas Public Library (LibraryMarket `dallaslibrary.librarymarket.com`) | dallas | robots.txt answers HTTP 403, which RFC 9309 (and PoliteClient) treat as disallow-all | probe 2026-10-16 |
+| dallasopendata.com (Socrata) | dallas | No current event, special-event or license datasets (newest building-permit data 2020; inspections end 2024) | catalog API `domains=www.dallasopendata.com` |
+| Volunteer Now (`www.volunteernow.org/need/rss/`) | dallas | The Galaxy Digital RSS on that domain is titled "Center for Volunteer & Nonprofit Leadership" and its needs are in Santa Rosa, CA (wrong tenant); `volunteernow.galaxydigital.com` is Washington County | need 1330101 address |
+| Dallas Symphony Orchestra | dallas | Cloudflare challenge (403) — not attempted | probe |
+| AT&T Performing Arts Center (attpac.org) | dallas | No RSS/Tribe/JSON-LD on listing or event pages | probe |
+| Granada Theater, Kessler Theater, Klyde Warren Park (Squarespace / custom) | dallas | No Event JSON-LD, no Tribe | probe |
+| Addison Improv (improvtx.com) | dallas | JSON-LD only on detail pages and the listing shows ~6 shows; not worth the scrape yet | probe |
+| Frisco Public Library (BiblioCommons `friscolibrary`) | dallas | Works (6 items / 2 days) but Frisco is ~42 km from the center, outside the 30 km circle | gateway RSS |
+| Fair Park, Deep Ellum (deepellumtexas.com), Texas Live! | dallas | No feed (404 / WordPress without Tribe / Netlify site without events JSON) | probe |

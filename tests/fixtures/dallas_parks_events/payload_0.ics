@@ -1,0 +1,124 @@
+BEGIN:VCALENDAR
+PRODID:iCalendar-Ruby
+VERSION:2.0
+X-WR-TIMEZONE:America/Chicago
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+X-LIC-LOCATION:America/Chicago
+BEGIN:STANDARD
+DTSTART:20241103T020000
+RRULE:FREQ=YEARLY;BYDAY=1SU;BYMONTH=11
+TZNAME:CST
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20250309T020000
+RRULE:FREQ=YEARLY;BYDAY=2SU;BYMONTH=3
+TZNAME:CDT
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+DESCRIPTION: https://www.dallasparks.org/calendar.aspx?EID=4035
+DTEND;TZID=America/Chicago:20261023T200000
+DTSTAMP;TZID=America/Chicago:20260924T111446
+DTSTART;TZID=America/Chicago:20261023T180000
+LAST-MODIFIED;TZID=America/Chicago:20260924T111446
+LOCATION:Fireside Recreation Center - 8601 Fireside  Dallas TX 75217
+SEQUENCE:0
+SUMMARY:Fright or Delight
+UID:4035
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Join us every Thursday in October for Bingo on the Green at Mai
+ n Street Garden with prizes from Downtown businesses! https://www.dallaspa
+ rks.org/calendar.aspx?EID=4039
+DTEND;TZID=America/Chicago:20261022T210000
+DTSTAMP;TZID=America/Chicago:20261008T162345
+DTSTART;TZID=America/Chicago:20261022T190000
+LAST-MODIFIED;TZID=America/Chicago:20261008T162345
+LOCATION:Main Street Garden Park - 1920 Main Street  Dallas TX 75201
+SEQUENCE:0
+SUMMARY:Bingo Night @ Main Street Garden
+UID:4039
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Park Board Meeting https://www.dallasparks.org/calendar.aspx?EI
+ D=2876
+DTEND;TZID=America/Chicago:20261022T120000
+DTSTAMP;TZID=America/Chicago:20251201T112844
+DTSTART;TZID=America/Chicago:20261022T100000
+LAST-MODIFIED;TZID=America/Chicago:20251201T112844
+LOCATION:Dallas City Hall - 1500 Marilla 6FN Dallas TX 75201
+SEQUENCE:0
+SUMMARY:Park Board Meeting
+UID:2876
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://www.dallasparks.org/calendar.aspx?EID=4032
+DTEND;VALUE=DATE:20261022
+DTSTAMP;TZID=America/Chicago:20260923T113934
+DTSTART;VALUE=DATE:20261022
+LAST-MODIFIED;TZID=America/Chicago:20260923T113934
+LOCATION:Bachman Recreation Center - 2750 Bachman Dr  Dallas TX 75220
+SEQUENCE:0
+SUMMARY:Fall Festival at Bachman Recreation Center
+UID:4032
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://www.dallasparks.org/calendar.aspx?EID=4034
+DTEND;TZID=America/Chicago:20261020T193000
+DTSTAMP;TZID=America/Chicago:20260924T110510
+DTSTART;TZID=America/Chicago:20261020T180000
+LAST-MODIFIED;TZID=America/Chicago:20260924T110510
+LOCATION:Fireside Recreation Center - 8601 Fireside  Dallas TX 75217
+SEQUENCE:0
+SUMMARY:Pumpkin Carving Class
+UID:4034
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://www.dallasparks.org/calendar.aspx?EID=4036
+DTEND;TZID=America/Chicago:20261017T140000
+DTSTAMP;TZID=America/Chicago:20260930T104100
+DTSTART;TZID=America/Chicago:20261017T100000
+LAST-MODIFIED;TZID=America/Chicago:20260930T104100
+LOCATION:Singing Hills Recreation Center - 6805 Patrol Way  Dallas TX 75241
+SEQUENCE:0
+SUMMARY:Wellness Block Party at Singing Hills Recreation Center
+UID:4036
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Goat Yoga https://www.dallasparks.org/calendar.aspx?EID=4045
+DTEND;TZID=America/Chicago:20261017T110000
+DTSTAMP;TZID=America/Chicago:20261008T165222
+DTSTART;TZID=America/Chicago:20261017T100000
+LAST-MODIFIED;TZID=America/Chicago:20261008T165222
+LOCATION:Harwood Park - 408 S. Harwood  Dallas TX 75201
+SEQUENCE:0
+SUMMARY:Goat Yoga @ Harwood Park
+UID:4045
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Join DDI in Main Street Garden\, Fridays in October for the mos
+ t frightful films around! https://www.dallasparks.org/calendar.aspx?EID=40
+ 42
+DTEND;TZID=America/Chicago:20261016T210000
+DTSTAMP;TZID=America/Chicago:20261008T163124
+DTSTART;TZID=America/Chicago:20261016T190000
+LAST-MODIFIED;TZID=America/Chicago:20261008T163124
+LOCATION:Main Street Garden Park - 1920 Main Street  Dallas TX 75201
+SEQUENCE:0
+SUMMARY:Movie Night @ Main Street Garden
+UID:4042
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+END:VCALENDAR

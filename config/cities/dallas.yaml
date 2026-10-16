@@ -1,0 +1,262 @@
+# Dallas, TX. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Dallas Public Library (LibraryMarket host dallaslibrary.librarymarket.com answers robots.txt with HTTP
+# 403 = disallow all); dallasopendata.com Socrata (no current events/license datasets; newest permit data 2020);
+# Dallas Symphony (Cloudflare challenge); AT&T Performing Arts Center (no feed, no JSON-LD); Volunteer Now's
+# Galaxy Digital domain serves a California tenant's needs (wrong city). Fort Worth/Frisco are outside 30 km.
+slug: dallas
+name: Dallas
+state: TX
+timezone: America/Chicago
+center: [32.7767, -96.7970]
+radius_km: 30
+aliases: [Big D, DFW, Arlington, Irving, Plano, Garland, Richardson, Mesquite, Grand Prairie, Carrollton, Addison, Farmers Branch, University Park, Highland Park, Duncanville, DeSoto, Cedar Hill, Coppell]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 32.7790, lon: -96.8000 }
+  - { name: Deep Ellum, lat: 32.7840, lon: -96.7810 }
+  - { name: Uptown, lat: 32.8000, lon: -96.8010 }
+  - { name: Victory Park, lat: 32.7880, lon: -96.8100 }
+  - { name: Design District, lat: 32.7960, lon: -96.8230 }
+  - { name: Oak Lawn, lat: 32.8130, lon: -96.8150 }
+  - { name: Knox-Henderson, lat: 32.8200, lon: -96.7900 }
+  - { name: Lower Greenville, lat: 32.8130, lon: -96.7700 }
+  - { name: Lakewood, lat: 32.8160, lon: -96.7420 }
+  - { name: Fair Park, lat: 32.7790, lon: -96.7600 }
+  - { name: The Cedars, lat: 32.7660, lon: -96.7960 }
+  - { name: Bishop Arts District, lat: 32.7490, lon: -96.8280 }
+  - { name: Oak Cliff, lat: 32.7400, lon: -96.8300 }
+  - { name: Trinity Groves, lat: 32.7770, lon: -96.8360 }
+  - { name: University Park (SMU), lat: 32.8410, lon: -96.7840 }
+  - { name: Preston Hollow, lat: 32.8790, lon: -96.8060 }
+sources:
+  # ── business district + parks ──
+  - id: downtown_dallas_events
+    adapter: tribe
+    name: Downtown Dallas, Inc. events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.downtowndallas.com/events/
+    expect_min_records: 40
+    notes: >-
+      The Events Calendar REST API of the downtown business-district association (robots allows it,
+      Crawl-delay 10, honored by PoliteClient). Happy hours, markets, museum programs, comedy, fitness.
+    params:
+      base_url: https://www.downtowndallas.com
+      horizon_days: 30
+      per_page: 50
+      max_pages: 6
+      organizer: Downtown Dallas, Inc.
+      default_category: community.festival
+      category_map:   # categories seen in the live feed (checked in order)
+        Comedy: nightlife.comedy
+        Happy Hour: nightlife.rooftop
+        Fitness: fitness
+        Live Music: music.concert
+        Music: music.concert
+        Charity: community.festival
+        Games: trivia_games.board_games
+
+  - id: dallas_parks_events
+    adapter: ics
+    name: Dallas Park & Recreation calendar
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.dallasparks.org/calendar.aspx
+    expect_min_records: 5
+    notes: >-
+      CivicPlus iCalendar exports of the department's Main Calendar (CID 14), City Park (39) and Outdoor Adventures
+      (31). robots disallows only admin/search/RSS.aspx paths; /common/modules/iCalendar/ is allowed.
+    params:
+      url:
+        - https://www.dallasparks.org/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar
+        - https://www.dallasparks.org/common/modules/iCalendar/iCalendar.aspx?catID=39&feed=calendar
+        - https://www.dallasparks.org/common/modules/iCalendar/iCalendar.aspx?catID=31&feed=calendar
+      horizon_days: 60
+      max_occurrences: 4
+      organizer: Dallas Park & Recreation
+      default_category: outdoors.park
+      exclude_location: '\b(Board|Commission|Committee) Meeting\b'   # governance meetings (matches the title too)
+
+  - id: dallas_arboretum
+    adapter: jsonld
+    name: Dallas Arboretum and Botanical Garden events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.dallasarboretum.org/events-activities/
+    expect_min_records: 5
+    notes: WordPress listing page with one schema.org Event block per program (offsets included). robots allows it.
+    params:
+      urls: [https://www.dallasarboretum.org/events-activities/]
+      horizon_days: 120
+      venue: {name: Dallas Arboretum and Botanical Garden, address: "8525 Garland Rd, Dallas, TX 75218"}
+      organizer: Dallas Arboretum
+      default_category: outdoors.park
+
+  # ── universities (public items only) ──
+  - id: utdallas_events
+    adapter: localist
+    name: UT Dallas events
+    data_type: events
+    homepage: https://calendar.utdallas.edu/
+    expect_min_records: 20
+    params:
+      fallback_point: { lat: 32.9857, lon: -96.7502, label: "UT Dallas campus (Richardson)" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.utdallas.edu
+      type: 30645182548918   # Localist filter "Target audience: General Public" (GET /api/2/events/filters)
+      horizon_days: 30
+      max_pages: 4
+      organizer: The University of Texas at Dallas
+      default_category: learning.networking
+
+  - id: uta_events
+    adapter: localist
+    name: UT Arlington events
+    data_type: events
+    homepage: https://events.uta.edu/
+    expect_min_records: 10
+    params:
+      fallback_point: { lat: 32.7292, lon: -97.1152, label: "UT Arlington campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.uta.edu
+      type: 84377   # Localist filter "Events for: Local Community" (GET /api/2/events/filters)
+      horizon_days: 30
+      max_pages: 4
+      organizer: The University of Texas at Arlington
+      default_category: learning.networking
+      category_map:   # UTA "event types" (the "Parents & Family" audience label otherwise wins → family.kids)
+        Athletics: sports_watch.game
+        Arts & Culture: arts.museum   # galleries + recitals; better than the audience label's family.kids
+        Talks & Lectures: learning.networking
+        Workshops: arts.workshop
+        Volunteer: volunteer.one_off
+        Recreation & Fun: community.festival
+        Social: community.festival
+        Science & Technology: learning.tech
+
+  - id: smu_athletics
+    adapter: ics
+    name: SMU Mustangs athletics (home games — Moody Coliseum, Ford Stadium, Westcott Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://smumustangs.com/calendar
+    expect_min_records: 8
+    notes: >-
+      SMU's SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30, one request a day).
+      Only events whose LOCATION starts with "Dallas" are kept (away/neutral games skipped).
+    params:
+      url: https://smumustangs.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: SMU Mustangs
+      exclude_location: '^(?!Dallas\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 32.8412, lon: -96.7845, label: "SMU campus" }
+
+  # ── big venue: carbonhouse /events/rss ──
+  - id: american_airlines_center
+    adapter: rss_events
+    name: American Airlines Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.americanairlinescenter.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Mavericks, Stars, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.americanairlinescenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "American Airlines Center", address: "2500 Victory Ave, Dallas, TX 75219"}
+      organizer: American Airlines Center
+      default_category: music.concert
+
+  # ── openings: Texas Alcoholic Beverage Commission (data.texas.gov Socrata) ──
+  - id: tabc_pending_openings_dallas
+    adapter: socrata
+    name: TABC pending original on-premises applications (Dallas area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/mxm5-tdpj
+    expect_min_records: 5
+    notes: >-
+      Original (not renewal) applications. MB = mixed beverage, BG = wine & beer on-premise, BE = beer on-premise.
+      gun_sign RED = 51%+ of revenue from alcohol (a bar). The owner column is dropped (may be a person).
+    params:
+      domain: data.texas.gov
+      dataset: mxm5-tdpj
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('DALLAS','IRVING','GARLAND','RICHARDSON','ADDISON','FARMERS BRANCH','CARROLLTON','MESQUITE',
+        'GRAND PRAIRIE','ARLINGTON','UNIVERSITY PARK','HIGHLAND PARK') AND license_type in('MB','BG','BE')
+        AND submission_date >= '{today}'
+      order: submission_date DESC
+      fields: { record_id: primary_license_id, title: trade_name, start: submission_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission received an original
+        {license_type} on-premises license application for this address on {date} (status: {applicationstatus}).
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/mxm5-tdpj
+      extras: { signal: liquor_license_application }
+
+  - id: tabc_new_licenses_dallas
+    adapter: socrata
+    name: TABC newly issued on-premises licenses (Dallas area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/7hf9-qc9f
+    expect_min_records: 5
+    notes: original_issue_date = first issuance (not current_issued_date, which moves on renewal).
+    params:
+      domain: data.texas.gov
+      dataset: 7hf9-qc9f
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('DALLAS','IRVING','GARLAND','RICHARDSON','ADDISON','FARMERS BRANCH','CARROLLTON','MESQUITE',
+        'GRAND PRAIRIE','ARLINGTON','UNIVERSITY PARK','HIGHLAND PARK') AND license_type in('MB','BG','BE')
+        AND original_issue_date >= '{today}'
+      order: original_issue_date DESC
+      fields: { record_id: license_id, title: trade_name, start: original_issue_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission first issued a
+        {license_type} on-premises license for this address on {date}.
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/7hf9-qc9f
+      extras: { signal: liquor_license_issued }
+
+  # ── trivia ──
+  - id: teamtrivia_dallas
+    adapter: teamtrivia
+    name: Team Trivia (Dallas–Fort Worth)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-dallas-fort-worth/
+    expect_min_records: 10
+    notes: >-
+      Region page → venue pages, each with the next dated games in JSON-LD. Never uses the zip-code gate or
+      /getlocation.php (robots-disallowed). Fort Worth-side venues fall outside the 30 km circle.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { dallas: dallas-fort-worth }
+      max_venues: 60
+
+  - id: challenge_trivia_dallas
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Dallas)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 10
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-dallas-ft-worth within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [dallas-ft-worth]
