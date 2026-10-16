@@ -343,6 +343,7 @@ class Event(Strict):
     provenance: dict[str, FieldProvenance] = Field(default_factory=dict)
     first_seen: AwareDatetime
     last_checked: AwareDatetime
+    is_new: bool = False  # first listed in the last 72h (and not part of a source's initial backfill)
     stale: bool = False
     stale_reason: str | None = None
     is_demo: bool = False

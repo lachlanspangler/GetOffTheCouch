@@ -181,6 +181,8 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .badge-warn { background: var(--warn-soft); color: var(--warn); }
 .badge-info { background: var(--info-soft); color: var(--info); }
 .badge-social { background: var(--social-soft); color: var(--social); }
+.badge-new { background: var(--accent); color: #fff; }
+.card-top .badge { margin-left: auto; }
 .badge-stale { background: var(--warn-soft); color: var(--warn); }
 .badge-muted, .badge-ghost { background: transparent; border: 1px dashed var(--line); color: var(--muted); font-weight: 600; }
 .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-right: 6px; }

@@ -54,6 +54,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
             <Icon name={catIcon(e.category, index.taxonomy)} size={14} />
             {catLabel(e.category, index.taxonomy)}
           </span>
+          {e.is_new && <span class="badge badge-new" title="First listed in the last 3 days">New</span>}
           {e.stale && (
             <span class="badge badge-stale" title={e.stale_reason ?? "data may be out of date"}>
               <Icon name="alert" size={12} /> stale

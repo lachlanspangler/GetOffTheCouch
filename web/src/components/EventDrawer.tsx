@@ -42,6 +42,12 @@ export async function share(title: string, url: string): Promise<string> {
   }
 }
 
+/** I-052: a prefilled GitHub issue, so corrections need no account system of our own. */
+function reportUrl(e: Event): string {
+  const body = `Event: ${e.title}\nID: ${e.id}\nCity: ${e.city}\nSources: ${e.sources.map((s) => `${s.source_id} ${s.url ?? ""}`).join(", ")}\n\nWhat's wrong?\n`;
+  return `https://github.com/lachlanspangler/GetOffTheCouch/issues/new?labels=data-report&title=${encodeURIComponent(`Data report: ${e.title}`)}&body=${encodeURIComponent(body)}`;
+}
+
 export function EventDrawer({ e }: { e: Event }) {
   const { feed, go, index, saved, toggleSave, sourceNames, now, byId } = useApp();
   const ref = useRef<HTMLDivElement>(null);
@@ -272,6 +278,9 @@ export function EventDrawer({ e }: { e: Event }) {
             </p>
           )}
           <p class="muted small">First seen {age(e.first_seen, now)}. We never invent data: estimates are labeled and always show a range.</p>
+          <p class="small">
+            <a href={reportUrl(e)} target="_blank" rel="noopener noreferrer">Something wrong? Report it</a>
+          </p>
         </section>
       </aside>
     </div>

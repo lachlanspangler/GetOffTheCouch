@@ -20,6 +20,7 @@ export type End = string | null;
 export type FirstSeen = string;
 export type Id = string;
 export type IsDemo = boolean;
+export type IsNew = boolean;
 /**
  * This interface was referenced by `CityFeed`'s JSON-Schema
  * via the `definition` "EventKind".
@@ -234,6 +235,7 @@ export interface Event {
   first_seen: FirstSeen;
   id: Id;
   is_demo?: IsDemo;
+  is_new?: IsNew;
   kind: EventKind;
   last_checked: LastChecked;
   location: Location;

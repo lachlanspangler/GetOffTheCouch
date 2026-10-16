@@ -143,6 +143,11 @@
           "title": "Is Demo",
           "type": "boolean"
         },
+        "is_new": {
+          "default": false,
+          "title": "Is New",
+          "type": "boolean"
+        },
         "kind": {
           "$ref": "#/$defs/EventKind"
         },

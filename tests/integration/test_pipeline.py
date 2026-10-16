@@ -155,3 +155,20 @@ def test_canonical_ids_are_stable_across_runs(db, settings):
     )
     ids2 = {e.id for e in feed(settings).events}
     assert ids1 == ids2
+
+
+def test_new_badge_only_for_records_after_initial_backfill(db, settings):
+    data = mprb()
+    held_back = data["events"].pop(4)
+    first = FixtureTransport()
+    first.add(r"minneapolisparks\.org/wp-json", data)
+    first.add(r"cal\.example/feed\.ics", fixture_bytes("synthetic/dup_calendar.ics"))
+    run(db, REG, settings, client=fast_client(first), now=NOW, geocode=False)
+    assert not any(e.is_new for e in feed(settings).events), "initial backfill is not 'new'"
+    data["events"].append(held_back)
+    later = FixtureTransport()
+    later.add(r"minneapolisparks\.org/wp-json", data)
+    later.add(r"cal\.example/feed\.ics", fixture_bytes("synthetic/dup_calendar.ics"))
+    run(db, REG, settings, client=fast_client(later), now=NOW + timedelta(hours=25), geocode=False, force=True)
+    new = [e for e in feed(settings).events if e.is_new]
+    assert [s.record_id for e in new for s in e.sources] == [str(held_back["id"])]

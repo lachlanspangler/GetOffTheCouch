@@ -151,6 +151,13 @@ def build_city(
     venue_by_id = {v.id: v for v in venues}
 
     merged = [(merge(eid, cl, city, now, tax, db, reg), cl) for eid, cl in ided]
+    baselines = {
+        r["source_id"]: datetime.fromisoformat(r["t"])
+        for r in db.all("SELECT source_id, MIN(first_seen) t FROM source_records WHERE city = ? GROUP BY source_id", (city.slug,))
+    }
+    for ev, _ in merged:
+        base = min((baselines[s.source_id] for s in ev.sources if s.source_id in baselines), default=now)
+        ev.is_new = ev.first_seen >= base + timedelta(hours=6) and now - ev.first_seen < timedelta(hours=72)
     assign_series([ev for ev, _ in merged], now)
 
     events: list[tuple[Event, Cluster]] = []

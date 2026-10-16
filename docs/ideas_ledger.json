@@ -148,12 +148,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "MPRB and many calendars put the place only in the body",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: shipped in bootstrap commit (normalize.py / build.assign_series)"
+   ]
   },
   {
    "id": "I-012",
@@ -162,12 +164,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "'Sign up here' links are the most actionable thing on a volunteer card",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: shipped in bootstrap commit (normalize.py / build.assign_series)"
+   ]
   },
   {
    "id": "I-013",
@@ -176,12 +180,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.9,
-   "status": "open",
+   "status": "done",
    "why": "Feeds list weekly things 8×; list view should show one card",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: shipped in bootstrap commit (normalize.py / build.assign_series)"
+   ]
   },
   {
    "id": "I-014",
@@ -190,12 +196,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Avoid 'price unknown' noise on volunteer cards",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: shipped in bootstrap commit (normalize.py / build.assign_series)"
+   ]
   },
   {
    "id": "I-015",
@@ -462,12 +470,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.9,
-   "status": "open",
+   "status": "doing",
    "why": "Exactly the 'block party' pitch, keyless",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 doing: worktree agent building NYC config"
+   ]
   },
   {
    "id": "I-033",
@@ -662,12 +672,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Shipped inside curated adapter; generalize to venue capacities and recurring schedules",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: curated adapter page-watch"
+   ]
   },
   {
    "id": "I-047",
