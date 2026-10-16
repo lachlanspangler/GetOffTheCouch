@@ -1,0 +1,197 @@
+[
+ {
+  "objectid": "27528396",
+  "case_num": "1453910",
+  "case_name": "Castro Night Market Series 2026",
+  "type": "Special Event",
+  "status": "Permitted",
+  "start_date": "2026-10-16T00:00:00.000",
+  "start_time": "11:00:00",
+  "start_dt": "2026-10-16T11:00:00.000",
+  "end_date": "2026-10-17T00:00:00.000",
+  "end_time": "01:00:00",
+  "end_dt": "2026-10-17T01:00:00.000",
+  "loc_desc": "18TH ST between CASTRO ST and HARTFORD ST",
+  "cnn": "891000",
+  "street": "18TH ST",
+  "from_st": "HARTFORD ST",
+  "to_st": "CASTRO ST",
+  "direction": "both",
+  "veh_imp": "all-lanes-closed",
+  "start_utc": "2026-10-16T18:00:00.000",
+  "end_utc": "2026-10-17T08:00:00.000",
+  "shape": {
+   "type": "LineString",
+   "coordinates": [
+    [
+     -122.433903579,
+     37.760954739
+    ],
+    [
+     -122.435000702,
+     37.760888933
+    ]
+   ]
+  },
+  "data_as_of": "2026-10-16T00:03:37.000",
+  "data_loaded_at": "2026-10-16T13:07:12.766",
+  "created_date": "2026-10-16T00:03:37.000",
+  "last_edited_date": "2026-10-16T00:03:37.000"
+ },
+ {
+  "objectid": "27528670",
+  "case_num": "1453910",
+  "case_name": "Castro Night Market Series 2026",
+  "type": "Special Event",
+  "status": "Permitted",
+  "start_date": "2026-10-16T00:00:00.000",
+  "start_time": "11:00:00",
+  "start_dt": "2026-10-16T11:00:00.000",
+  "end_date": "2026-10-17T00:00:00.000",
+  "end_time": "01:00:00",
+  "end_dt": "2026-10-17T01:00:00.000",
+  "loc_desc": "18TH ST between COLLINGWOOD ST and CASTRO ST",
+  "cnn": "892000",
+  "street": "18TH ST",
+  "from_st": "CASTRO ST",
+  "to_st": "COLLINGWOOD ST",
+  "direction": "both",
+  "veh_imp": "all-lanes-closed",
+  "start_utc": "2026-10-16T18:00:00.000",
+  "end_utc": "2026-10-17T08:00:00.000",
+  "shape": {
+   "type": "LineString",
+   "coordinates": [
+    [
+     -122.435000702,
+     37.760888933
+    ],
+    [
+     -122.436114108,
+     37.760823995
+    ]
+   ]
+  },
+  "data_as_of": "2026-10-16T00:03:37.000",
+  "data_loaded_at": "2026-10-16T13:07:12.766",
+  "created_date": "2026-10-16T00:03:37.000",
+  "last_edited_date": "2026-10-16T00:03:37.000"
+ },
+ {
+  "objectid": "27509291",
+  "case_num": "1522782",
+  "case_name": "Bearrison Street Fair",
+  "type": "Special Event",
+  "status": "Permitted",
+  "start_date": "2026-10-17T00:00:00.000",
+  "start_time": "06:00:00",
+  "start_dt": "2026-10-17T06:00:00.000",
+  "end_date": "2026-10-17T00:00:00.000",
+  "end_time": "21:00:00",
+  "end_dt": "2026-10-17T21:00:00.000",
+  "loc_desc": "HARRISON ST between 10TH ST and 13TH ST",
+  "cnn": "6736000",
+  "street": "HARRISON ST",
+  "from_st": "10TH ST",
+  "to_st": "11TH ST",
+  "direction": "both",
+  "veh_imp": "all-lanes-closed",
+  "start_utc": "2026-10-17T13:00:00.000",
+  "end_utc": "2026-10-18T04:00:00.000",
+  "shape": {
+   "type": "LineString",
+   "coordinates": [
+    [
+     -122.411277937,
+     37.771578677
+    ],
+    [
+     -122.412479935,
+     37.770629854
+    ]
+   ]
+  },
+  "data_as_of": "2026-10-16T00:03:37.000",
+  "data_loaded_at": "2026-10-16T13:07:12.766",
+  "created_date": "2026-10-16T00:03:37.000",
+  "last_edited_date": "2026-10-16T00:03:37.000"
+ },
+ {
+  "objectid": "27505370",
+  "case_num": "1429598",
+  "case_name": "North Beach Farmers Market 2026",
+  "type": "Special Event",
+  "status": "Permitted",
+  "start_date": "2026-10-17T00:00:00.000",
+  "start_time": "06:00:00",
+  "start_dt": "2026-10-17T06:00:00.000",
+  "end_date": "2026-10-17T00:00:00.000",
+  "end_time": "15:00:00",
+  "end_dt": "2026-10-17T15:00:00.000",
+  "loc_desc": "GREENWICH ST between COLUMBUS AVE and POWELL ST",
+  "cnn": "6496000",
+  "street": "GREENWICH ST",
+  "from_st": "POWELL ST",
+  "to_st": "VIA BUFANO",
+  "direction": "both",
+  "veh_imp": "all-lanes-closed",
+  "start_utc": "2026-10-17T13:00:00.000",
+  "end_utc": "2026-10-17T22:00:00.000",
+  "shape": {
+   "type": "LineString",
+   "coordinates": [
+    [
+     -122.411202592,
+     37.802100726
+    ],
+    [
+     -122.411600022,
+     37.802050231
+    ]
+   ]
+  },
+  "data_as_of": "2026-10-16T00:03:37.000",
+  "data_loaded_at": "2026-10-16T13:07:12.766",
+  "created_date": "2026-10-16T00:03:37.000",
+  "last_edited_date": "2026-10-16T00:03:37.000"
+ },
+ {
+  "objectid": "27512444",
+  "case_num": "1429598",
+  "case_name": "North Beach Farmers Market 2026",
+  "type": "Special Event",
+  "status": "Permitted",
+  "start_date": "2026-10-17T00:00:00.000",
+  "start_time": "06:00:00",
+  "start_dt": "2026-10-17T06:00:00.000",
+  "end_date": "2026-10-17T00:00:00.000",
+  "end_time": "15:00:00",
+  "end_dt": "2026-10-17T15:00:00.000",
+  "loc_desc": "GREENWICH ST between COLUMBUS AVE and POWELL ST",
+  "cnn": "6497000",
+  "street": "GREENWICH ST",
+  "from_st": "VIA BUFANO",
+  "to_st": "COLUMBUS AVE",
+  "direction": "both",
+  "veh_imp": "all-lanes-closed",
+  "start_utc": "2026-10-17T13:00:00.000",
+  "end_utc": "2026-10-17T22:00:00.000",
+  "shape": {
+   "type": "LineString",
+   "coordinates": [
+    [
+     -122.411600022,
+     37.802050231
+    ],
+    [
+     -122.412541278,
+     37.801930637
+    ]
+   ]
+  },
+  "data_as_of": "2026-10-16T00:03:37.000",
+  "data_loaded_at": "2026-10-16T13:07:12.766",
+  "created_date": "2026-10-16T00:03:37.000",
+  "last_edited_date": "2026-10-16T00:03:37.000"
+ }
+]

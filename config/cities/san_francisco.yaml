@@ -1,0 +1,421 @@
+# San Francisco, CA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Radius 20 km covers SF plus the inner East Bay (Oakland, Berkeley, Emeryville, Alameda), northern San Mateo
+# County and southern Marin. Sources verified live 2026-10-16 (batch B onboarding; docs/SOURCES.md "Batch B cities").
+# Not available: SF Public Library (sfpl.org robots.txt answers 403 = disallow-all; its BiblioCommons gateway has
+# no events), SF Travel (robots disallows), CA ABC licensing reports (Cloudflare challenge), most music venues
+# (Cloudflare challenges, Live Nation/AEG/APE ownership, or no machine-readable calendar). No Team Trivia or
+# Challenge Entertainment market in the Bay Area.
+slug: san_francisco
+name: San Francisco
+state: CA
+timezone: America/Los_Angeles
+center: [37.7749, -122.4194]
+radius_km: 20
+aliases: [SF, Oakland, Berkeley, Emeryville, Alameda, Piedmont, Albany, Daly City, Brisbane, Colma,
+          South San Francisco, Sausalito, Mill Valley, Treasure Island]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Union Square, lat: 37.7880, lon: -122.4075 }
+  - { name: SoMa, lat: 37.7785, lon: -122.4056 }
+  - { name: Mission, lat: 37.7599, lon: -122.4148 }
+  - { name: Castro, lat: 37.7609, lon: -122.4350 }
+  - { name: Haight-Ashbury, lat: 37.7692, lon: -122.4481 }
+  - { name: Hayes Valley, lat: 37.7759, lon: -122.4245 }
+  - { name: North Beach, lat: 37.8061, lon: -122.4103 }
+  - { name: Marina, lat: 37.8037, lon: -122.4368 }
+  - { name: Nob Hill, lat: 37.7930, lon: -122.4161 }
+  - { name: Richmond, lat: 37.7802, lon: -122.4800 }
+  - { name: Sunset, lat: 37.7530, lon: -122.4900 }
+  - { name: Noe Valley, lat: 37.7502, lon: -122.4337 }
+  - { name: Potrero Hill / Dogpatch, lat: 37.7605, lon: -122.3950 }
+  - { name: Bernal Heights, lat: 37.7390, lon: -122.4156 }
+  - { name: Downtown Oakland, lat: 37.8044, lon: -122.2712 }
+  - { name: Downtown Berkeley, lat: 37.8697, lon: -122.2685 }
+sources:
+  # ── city open data (data.sf.gov, Socrata; the old data.sfgov.org host redirects there) ──
+  - id: sf_special_events
+    adapter: socrata
+    name: SF special-event street closures (block parties, street fairs, farmers markets)
+    data_type: events
+    homepage: https://data.sf.gov/d/8x25-yybr
+    expect_min_records: 20
+    notes: >-
+      SFMTA/ISCOTT temporary street closures, type "Special Event" with status Permitted only (applications in
+      review or pending payment are left out). One row per closed street segment and day; record ids are
+      case number + start, so segments of the same event on the same day collapse to one record.
+      Private-looking items (memorials, client events) are excluded by title.
+    params:
+      domain: data.sf.gov
+      dataset: 8x25-yybr
+      horizon_days: 60
+      where: >-
+        type = 'Special Event' AND status = 'Permitted' AND start_dt >= '{today}' AND start_dt < '{horizon}'
+      order: start_dt
+      page_size: 1000
+      max_pages: 3
+      fields: { record_id: case_num, title: case_name, start: start_dt, end: end_dt, address: loc_desc,
+                lat: shape.coordinates.0.1, lon: shape.coordinates.0.0 }
+      exclude_title: ["(?i)\\b(celebration of life|memorial|client event|filming|construction|private|wedding|closure|rain date)\\b"]
+      category_rules:
+        - { match: "(?i)farmers'? market|night market|flea|marketplace|crafts fair|art (&|and) crafts", category: community.market }
+        - { match: "(?i)marathon|\\b5k\\b|\\b10k\\b|fun run|race\\b", category: fitness.race }
+        - { match: "(?i)halloween|trick[- ]or[- ]treat|treat or treat|haunt|scare", category: nightlife.holiday }
+        - { match: "(?i)festival|fair\\b|sunday streets|parade", category: community.festival }
+        - { match: "(?i)block part", category: community.block_party }
+      default_category: community.block_party
+      default_url: https://data.sf.gov/d/8x25-yybr
+      tags: [outdoor]
+
+  - id: sf_business_openings
+    adapter: socrata
+    name: SF new food & drink business locations (Treasurer & Tax Collector)
+    data_type: openings
+    homepage: https://data.sf.gov/d/g8m3-pdis
+    expect_min_records: 10
+    notes: >-
+      Registered Business Locations. location_start_date = when this business location started (new registrations;
+      a new owner of an existing bar also registers a new location). NAICS 7224 = drinking places, 7225 =
+      restaurants. ownership_name (may be a person) is only used if it looks like an organisation; mailing
+      columns are dropped by the PII filter.
+    params:
+      domain: data.sf.gov
+      dataset: g8m3-pdis
+      kind: opening
+      lookback_days: 60
+      horizon_days: 240
+      where: >-
+        (starts_with(self_reported_naics_code, '7224') OR starts_with(self_reported_naics_code, '7225'))
+        AND city = 'San Francisco' AND location_start_date >= '{today}' AND location_start_date < '{horizon}'
+      order: location_start_date DESC
+      page_size: 1000
+      max_pages: 2
+      max_future_days: 240
+      fields: { record_id: uniqueid, title: [dba_name, ownership_name], start: location_start_date,
+                category: self_reported_naics_code, address: [full_business_address, city, business_zip],
+                neighborhood: neighborhoods_analysis_boundaries,
+                lat: location.coordinates.1, lon: location.coordinates.0 }
+      entity_only_fields: [ownership_name]
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas station|vending|catering|commissary)\\b"]
+      title_template: "{title} — new business registration"
+      description_template: >-
+        License signal, not a confirmed opening date. This food or drink business location (NAICS
+        {self_reported_naics_code}) was registered with the SF Treasurer & Tax Collector with a start date of {date}.
+      category_rules:
+        - { match: "\\b7224\\d*\\b", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.sf.gov/d/g8m3-pdis
+      extras: { signal: business_registration }
+
+  - id: sf_recpark_events
+    adapter: ics
+    name: SF Recreation & Parks calendar (main, Civic Center plazas, volunteer)
+    data_type: events
+    homepage: https://sfrecpark.org/Calendar.aspx
+    expect_min_records: 10
+    notes: >-
+      CivicPlus iCalendar feeds (/common/modules/iCalendar/iCalendar.aspx; robots allows them, it disallows only
+      admin/search/RSS.aspx). catID 14 = Main Calendar, 40 = UN Plaza / Fulton / Civic Center Plaza, 29 =
+      Volunteer Calendar. Holiday markers (Veterans Day, Thanksgiving…) on the main calendar are skipped.
+    params:
+      url:
+        - https://sfrecpark.org/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar
+        - https://sfrecpark.org/common/modules/iCalendar/iCalendar.aspx?catID=40&feed=calendar
+        - https://sfrecpark.org/common/modules/iCalendar/iCalendar.aspx?catID=29&feed=calendar
+      horizon_days: 60
+      organizer: SF Recreation & Parks
+      default_url: https://sfrecpark.org/Calendar.aspx
+      default_category: outdoors.park
+      exclude_location: "\\b(Veterans|Thanksgiving|Columbus|Presidents'?|Memorial|Labor|Independence|Christmas|New Year'?s|Martin Luther King Jr\\.?|Juneteenth|Cesar Chavez|Indigenous Peoples'?) Day\\b"
+
+  # ── parks, gardens, plazas (The Events Calendar REST API) ──
+  - id: gggp_events
+    adapter: tribe
+    name: SF Botanical Garden & Conservatory of Flowers (Golden Gate Park conservancy)
+    data_type: events
+    homepage: https://gggp.org/events/
+    expect_min_records: 10
+    notes: Classes, garden walks, sound baths and volunteer mornings at the SF Botanical Garden and the Conservatory of Flowers.
+    params:
+      base_url: https://gggp.org
+      horizon_days: 60
+      max_pages: 4
+      organizer: Golden Gate Park conservancy (gggp.org)
+      default_category: outdoors.park
+      venue: {name: San Francisco Botanical Garden, address: "1199 9th Ave, San Francisco, CA 94122"}
+
+  - id: ybg_festival
+    adapter: tribe
+    name: Yerba Buena Gardens Festival (free outdoor performances)
+    data_type: events
+    min_interval_s: 3   # robots Crawl-delay: 3
+    homepage: https://ybgfestival.org/
+    expect_min_records: 1
+    notes: Free outdoor concerts/dance May–October plus seasonal events; few items off-season.
+    params:
+      base_url: https://ybgfestival.org
+      horizon_days: 90
+      max_pages: 2
+      organizer: Yerba Buena Gardens Festival
+      default_category: music.concert
+      venue: {name: Yerba Buena Gardens, address: "750 Howard St, San Francisco, CA 94103"}
+      tags: [outdoor]
+
+  # ── live music: venues' own calendars ──
+  - id: mr_tipples
+    adapter: tribe
+    name: Mr. Tipple's Recording Studio (jazz club)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://mrtipplessf.com/
+    expect_min_records: 20
+    params:
+      base_url: https://mrtipplessf.com
+      horizon_days: 45
+      max_pages: 4
+      organizer: Mr. Tipple's
+      default_category: music.concert
+      classify_description: false
+      venue: {name: "Mr. Tipple's Recording Studio", address: "39 Fell St, San Francisco, CA 94102"}
+
+  - id: bird_and_beckett
+    adapter: tribe
+    name: Bird & Beckett Books & Records (jazz, readings)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 10   # robots Crawl-delay: 10
+    homepage: https://birdbeckett.com/
+    expect_min_records: 5
+    params:
+      base_url: https://birdbeckett.com
+      horizon_days: 60
+      max_pages: 2
+      organizer: Bird & Beckett
+      default_category: music.concert
+      classify_description: false
+      venue: {name: "Bird & Beckett Books & Records", address: "653 Chenery St, San Francisco, CA 94131"}
+
+  - id: madrone_art_bar
+    adapter: tribe
+    name: Madrone Art Bar (live music, DJ nights)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://madroneartbar.com/
+    expect_min_records: 20
+    params:
+      base_url: https://madroneartbar.com
+      horizon_days: 45
+      max_pages: 4
+      organizer: Madrone Art Bar
+      default_category: music.concert
+      classify_description: false
+      venue: {name: Madrone Art Bar, address: "500 Divisadero St, San Francisco, CA 94117"}
+
+  - id: dna_lounge
+    adapter: ics
+    name: DNA Lounge (club & concert calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.dnalounge.com/calendar/
+    expect_min_records: 20
+    notes: >-
+      The venue's own published iCal feed (linked from /calendar/ as rel=alternate; robots disallows only
+      /calendar/export.cgi and similar CGIs, not the CDN .ics).
+    params:
+      url: https://cdn.dnalounge.com/calendar/dnalounge.ics
+      horizon_days: 60
+      organizer: DNA Lounge
+      default_category: music.concert
+
+  - id: sweetwater_music_hall
+    adapter: jsonld
+    name: Sweetwater Music Hall, Mill Valley (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://sweetwatermusichall.org/events/
+    expect_min_records: 15
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://sweetwatermusichall.org/events/]
+      follow: 'sweetwatermusichall\.org/event/[^/]+/sweetwater-music-hall/mill-valley-california/$'
+      max_follow: 40
+      exclude_location: '(?i)closed for (a )?private event'
+      venue: {name: Sweetwater Music Hall, address: "19 Corte Madera Ave, Mill Valley, CA 94941"}
+      organizer: Sweetwater Music Hall
+      default_category: music.concert
+
+  # ── library (Oakland; SFPL is robots-disallowed) ──
+  - id: oakland_library_events
+    adapter: bibliocommons
+    name: Oakland Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://oaklandlibrary.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: BiblioCommons events RSS (gateway host, no robots.txt). All branches are in Oakland.
+    params:
+      library: oaklandlibrary
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Oakland Public Library
+      cities: [Oakland]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytime: family.kids
+        Crafts & DIY: arts.workshop
+        Art at the Library: arts.workshop
+        Computers & Technology: learning.tech
+        Computer & Technology Support: learning.tech
+        "Film Screening ": arts.film
+        Gaming: trivia_games.board_games
+        Chess: trivia_games.board_games
+        Gardening: outdoors.park
+        Fitness: fitness.yoga
+        Exhibit: arts.museum
+        Friends & Volunteers: volunteer.one_off
+        Birth to 5: family.kids
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        Grade Schoolers: family.kids
+        Kids: family.kids
+
+  # ── universities ──
+  - id: berkeley_events
+    adapter: livewhale
+    name: UC Berkeley events
+    data_type: events
+    homepage: https://events.berkeley.edu/
+    expect_min_records: 10
+    notes: >-
+      LiveWhale v2 JSON. The install ignores type filters and serves 100 items (≈ the next 1–2 days) per request,
+      so this is a rolling short window. Rec-sports building hours/open-rec slots and Cal athletics (covered by
+      cal_athletics) are skipped.
+    params:
+      fallback_point: { lat: 37.8719, lon: -122.2585, label: "UC Berkeley campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      exclude_location: "\\b(Building Hours|Open Rec|Field Use|Lap Swim|IA (Swim|MWP|WWP) Practice|Online via Zoom|Virtual - Zoom)\\b|\\bCalifornia (Men|Women)[’']s\\b|\\bCalifornia (Rugby|Volleyball|Football)\\b"
+      base_url: https://events.berkeley.edu
+      path: "/live/json/events/max/{max}/response_fields/location,event_types,tags,group_title,cost,summary"
+      max: 200
+      organizer: UC Berkeley
+      default_category: learning.networking
+      category_map:
+        Performing Arts: arts.theater
+        Films: arts.film
+        Exhibits: arts.museum
+        Lectures: learning.networking
+
+  - id: cal_athletics
+    adapter: ics
+    name: Cal Golden Bears athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 30   # robots Crawl-delay: 30
+    homepage: https://calbears.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM calendar.ics (robots allows it). Home = LOCATION starts with "Berkeley" or names a Cal venue with
+      the city left blank (", Haas Pavilion"); Chase Center (SF) neutral games kept.
+    params:
+      url: https://calbears.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Cal Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!\s*(Berkeley\b|,\s*(Haas Pavilion|Spieker Aquatics Complex|Edwards Stadium|Maxwell Family Field|Chase Center)))'
+      fallback_point: { lat: 37.8697, lon: -122.2620, label: "UC Berkeley athletics venues" }
+
+  - id: usf_athletics
+    adapter: ics
+    name: USF Dons athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 30   # robots Crawl-delay: 30
+    homepage: https://usfdons.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM calendar.ics (robots allows it). Only LOCATION starting with "San Francisco" is kept.
+    params:
+      url: https://usfdons.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: USF Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!\s*San Francisco\b)'
+      fallback_point: { lat: 37.7765, lon: -122.4505, label: "University of San Francisco campus" }
+
+  # ── leagues / volunteering ──
+  - id: volo_san_francisco
+    adapter: volo
+    name: Volo Sports San Francisco
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/san-francisco?category=leagues
+    expect_min_records: 1
+    notes: The discover page 307-redirects to add includeFees=true (48 programs on 2026-10-16).
+    params:
+      base_url: https://www.volosports.com
+      city_slug: san-francisco
+      include_fees: true
+      max_pages: 4
+
+  - id: handson_bay_area
+    adapter: handsonconnect
+    name: HandsOn Bay Area
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.handsonbayarea.org/calendar
+    expect_min_records: 1
+    notes: HandsOn Connect tenant; calendar-search-block-id 573 on /calendar (2026-10-16).
+    params:
+      base_url: https://www.handsonbayarea.org
+      block_id: 573
+      horizon_days: 14
+      window_days: 2
+      # the tenant spans the whole Bay Area; South Bay / Peninsula shifts belong to san_jose
+      exclude_location: "\\b(Santa Clara|San Jose|Sunnyvale|Mountain View|Palo Alto|Milpitas|Cupertino|Campbell|Los Gatos|Saratoga|Morgan Hill|Gilroy|Fremont|Newark|Union City|Hayward|San Leandro|San Mateo|Redwood City|Menlo Park|Belmont|San Carlos|Foster City|Burlingame|Millbrae|San Bruno|Los Altos|East Palo Alto|Concord|Walnut Creek|Pleasanton|Livermore|Dublin|San Ramon|Antioch|Vallejo|San Rafael|Novato|Petaluma|Santa Rosa|Napa)\\b"
+
+  # ── community calendars on Luma (org calendars found via luma.com/sf __NEXT_DATA__; ICS, robots-allowed) ──
+  - id: luma_the_made
+    adapter: ics
+    name: The MADE — Museum of Art and Digital Entertainment, Oakland (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/themade
+    expect_min_records: 3
+    notes: Game nights, LAN parties, game-dev meetups and fight nights at the video-game museum in Oakland.
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-BIfGjPFqLuLbZvX
+      horizon_days: 60
+      organizer: The MADE
+      default_category: trivia_games.board_games
+
+  - id: luma_tiat
+    adapter: ics
+    name: tiat — the intersection of art & technology (Luma)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://luma.com/tiat
+    expect_min_records: 3
+    notes: Art/tech space in SF (exhibitions, screenings, workshops, open mics).
+    params:
+      url: https://api.lu.ma/ics/get?entity=calendar&id=cal-twiOosdGMMY66DI
+      horizon_days: 60
+      organizer: tiat
+      default_category: arts.museum
+
+  # ── tourism board (East Bay) ──
+  - id: visit_oakland_events
+    adapter: simpleview
+    name: Visit Oakland events
+    data_type: events
+    homepage: https://www.visitoakland.com/events/
+    expect_min_records: 10
+    notes: Simpleview CVB events API (undocumented; robots allows it with Crawl-delay 2).
+    params:
+      base_url: https://www.visitoakland.com
+      board: Visit Oakland
+      horizon_days: 14
+      default_category: community.festival

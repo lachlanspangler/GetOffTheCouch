@@ -373,3 +373,44 @@ Tried and not added (San Diego):
 | Coronado Visitor Center (Tribe) | SD | 2 upcoming events; removed after the live run | `gotc run` |
 | Volunteer San Diego | SD | connection reset; Galaxy slugs bad | probe |
 | SDSU events, GoAztecs ICS | SD | custom calendar; SIDEARM ICS 404 | probe |
+
+### San Francisco
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sf_special_events` | san_francisco | Socrata `8x25-yybr` / `socrata` | https://data.sf.gov/d/8x25-yybr | none | Socrata throttling | SF Open Data ToU | case_name, start_dt/end_dt (local), loc_desc, LineString first vertex; type = Special Event, status = Permitted; id = case + day | events · 24h | A- (block parties, street fairs, farmers markets) | 130 |
+| `sf_business_openings` | san_francisco | Socrata `g8m3-pdis` / `socrata` | https://data.sf.gov/d/g8m3-pdis | none | Socrata throttling | SF Open Data ToU; ownership_name only if an organisation, mail_* dropped | dba_name, NAICS 7224/7225, address, neighborhood, location_start_date, point | openings · 24h | B+ (registration; new owners of old bars also appear) | 98 |
+| `sf_recpark_events` | san_francisco | CivicPlus iCalendar / `ics` | https://sfrecpark.org/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar (+ catID 40, 29) | none | 3 requests/day | robots allows (disallows admin/search/RSS.aspx) | SUMMARY, DTSTART (TZID), LOCATION; holiday markers skipped | events · 24h | B+ (official, small) | 37 |
+| `gggp_events` | san_francisco | WP The Events Calendar / `tribe` | https://gggp.org/wp-json/tribe/events/v1/events | none | 1 page/day | REST allowed | as `mprb_events` | events · 24h | B+ | 35 |
+| `ybg_festival` | san_francisco | WP The Events Calendar / `tribe` | https://ybgfestival.org/wp-json/tribe/events/v1/events | none | 1 page/day (Crawl-delay 3) | REST allowed | as above | events · 24h | B (seasonal) | 6 |
+| `mr_tipples` | san_francisco | WP The Events Calendar / `tribe` | https://mrtipplessf.com/wp-json/tribe/events/v1/events | none | ≤4 pages/12h | REST allowed | as above + cost | concerts · 12h | B+ | 86 |
+| `madrone_art_bar` | san_francisco | WP The Events Calendar / `tribe` | https://madroneartbar.com/wp-json/tribe/events/v1/events | none | ≤3 pages/12h | REST allowed | as above | concerts · 12h | B | 80 |
+| `bird_and_beckett` | san_francisco | WP The Events Calendar / `tribe` | https://birdbeckett.com/wp-json/tribe/events/v1/events | none | 1 page/day (Crawl-delay 10) | REST allowed | as above | concerts · 24h | B | 43 |
+| `dna_lounge` | san_francisco | venue iCal / `ics` | https://cdn.dnalounge.com/calendar/dnalounge.ics | none | 1 request/12h | published rel=alternate feed; robots disallows only CGIs | SUMMARY, DTSTART, LOCATION | concerts · 12h | B+ | 60 |
+| `sweetwater_music_hall` | san_francisco | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://sweetwatermusichall.org/events/ | none | 1 listing + ≤40 details at ≥2 s | robots: wp-admin only | name, start (offset), Etix link; "closed for private event" skipped | concerts · 12h | C+ (Mill Valley) | 40 |
+| `oakland_library_events` | san_francisco | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/oaklandlibrary/rss/events | none | ≤20 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 169 |
+| `berkeley_events` | san_francisco | LiveWhale v2 JSON / `livewhale` | https://events.berkeley.edu/live/json/events/max/200/… | none | 1 request/day | allowed | title, date_iso, location, event_types, group; rec-sports slots / athletics skipped | events · 24h | B- (rolling ~1–2-day window: 100 items per request) | 27 |
+| `cal_athletics` | san_francisco | SIDEARM ICS / `ics` | https://calbears.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = Berkeley / Cal venue | events · 24h | B | 38 |
+| `usf_athletics` | san_francisco | SIDEARM ICS / `ics` | https://usfdons.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = San Francisco | events · 24h | B | 22 |
+| `volo_san_francisco` | san_francisco | Volo HTML / `volo` | https://www.volosports.com/discover/san-francisco?category=leagues | none | ≤4 pages/day, ≥3 s | robots allows; includeFees redirect | as `volo_boston` | leagues · 24h | B | 48 |
+| `handson_bay_area` | san_francisco | HandsOn Connect / `handsonconnect` | https://www.handsonbayarea.org/calendar (block 573) | none | 7 windows/day, ≥3 s | robots.txt 404 (no rules) | as `boston_cares`; South Bay / Peninsula shifts excluded | volunteer · 24h | B+ | 104 |
+| `luma_the_made` | san_francisco | Luma ICS / `ics` | https://api.lu.ma/ics/get?entity=calendar&id=cal-BIfGjPFqLuLbZvX | none | 1 request/12h | api.lu.ma robots: /insights/ only | as other Luma units | events · 12h | B | 11 |
+| `luma_tiat` | san_francisco | Luma ICS / `ics` | https://api.lu.ma/ics/get?entity=calendar&id=cal-twiOosdGMMY66DI | none | 1 request/12h | as above | as above | events · 12h | B | 15 |
+| `visit_oakland_events` | san_francisco | Simpleview CVB / `simpleview` | https://www.visitoakland.com/events/ | none (token endpoint) | a few requests/day, Crawl-delay 2 | robots allows; undocumented API | as `meet_boston_events` | events · 24h | C+ (undocumented; other boards 403) | 97 |
+
+Tried and not added (San Francisco):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San Francisco Public Library | SF | robots.txt answers 403 (disallow all); its BiblioCommons gateway channel has no events | probe 2026-10-16 |
+| SF Travel, Exploratorium, SF Parks Alliance, Parks Conservancy, Booksmith, Freight & Salvage, Commonwealth Club, SFCM, SF War Memorial, SF Comedy Oasis, Theatre Parkside, Amnesia, Noe Valley, Dogpatch, One Brick | SF | robots.txt disallows | probe |
+| The Independent, Bimbo's, August Hall, SFJAZZ, Fort Mason, FAMSF, Asian Art Museum, Ferry Building, Castro Theatre, Gray Area, Neck of the Woods, SF City Guides, Geeks Who Drink | SF | Cloudflare challenge, not attempted | probe |
+| Cobb's, Punch Line, Fillmore, Masonic (Live Nation); Warfield, Regency (AEG); Fox Oakland (Another Planet) | SF | ToS / ownership denylist | ownership |
+| Great Northern, Monarch, Setup comedy, Balboa, El Rio, Ivy Room, Club Fugazi, Kilowatt, The Lab, Throckmorton | SF | Squarespace, no JSON-LD or feed | probe |
+| Chapel, Bottom of the Hill, Café du Nord, Brick & Mortar, GAMH, New Parish, Yoshi's, Black Cat, Hotel Utah, UC Theatre, Roxie, Cornerstone | SF | no JSON-LD / Tribe; ticket widgets only (Ticketweb, SeeTickets, Etix, Opendate, Eventbrite, Prekindle) | probe |
+| Our415 events (`8i3s-ih2a`) | SF | semester-long youth classes, not events | sample |
+| SF active entertainment permits (`86e8-rfem`) | SF | no dates | sample |
+| USF, UCSF, SFSU calendars | SF | robots 403 / timeout / no DNS | probe |
+| Read in the Park (Luma) | SF | mixes SF and South Bay with hidden locations | ICS |
+| SF Symphony | SF | Queue-it waiting room | probe |
+| San Mateo County Libraries (BiblioCommons) | SF | works, but few branches inside 20 km | probe |

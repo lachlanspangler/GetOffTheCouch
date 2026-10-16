@@ -1,0 +1,603 @@
+BEGIN:VCALENDAR
+PRODID:iCalendar-Ruby
+VERSION:2.0
+X-WR-TIMEZONE:America/Los_Angeles
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+X-LIC-LOCATION:America/Los_Angeles
+BEGIN:STANDARD
+DTSTART:20241103T020000
+RRULE:FREQ=YEARLY;BYDAY=1SU;BYMONTH=11
+TZNAME:PST
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20250309T020000
+RRULE:FREQ=YEARLY;BYDAY=2SU;BYMONTH=3
+TZNAME:PDT
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10477
+DTEND;TZID=America/Los_Angeles:20270613T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270613T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10477
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10470
+DTEND;TZID=America/Los_Angeles:20270612T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270612T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10470
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10483
+DTEND;TZID=America/Los_Angeles:20270601T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270601T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10483
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10476
+DTEND;TZID=America/Los_Angeles:20270509T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270509T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10476
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10469
+DTEND;TZID=America/Los_Angeles:20270508T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270508T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10469
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10482
+DTEND;TZID=America/Los_Angeles:20270501T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270501T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10482
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10475
+DTEND;TZID=America/Los_Angeles:20270411T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270411T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10475
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10468
+DTEND;TZID=America/Los_Angeles:20270410T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270410T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10468
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10481
+DTEND;TZID=America/Los_Angeles:20270401T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270401T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10481
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10474
+DTEND;TZID=America/Los_Angeles:20270314T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270314T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10474
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10467
+DTEND;TZID=America/Los_Angeles:20270313T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270313T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10467
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10480
+DTEND;TZID=America/Los_Angeles:20270301T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270301T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10480
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10473
+DTEND;TZID=America/Los_Angeles:20270214T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270214T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10473
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10466
+DTEND;TZID=America/Los_Angeles:20270213T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270213T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10466
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10479
+DTEND;TZID=America/Los_Angeles:20270201T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270201T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10479
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10472
+DTEND;TZID=America/Los_Angeles:20270110T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20270110T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10472
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10465
+DTEND;TZID=America/Los_Angeles:20270109T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20270109T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10465
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10478
+DTEND;TZID=America/Los_Angeles:20270101T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20270101T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10478
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the 2nd Sunday of the month for a C
+ ommunity Cleanup Day from 1 pm - 3 pm https://sfrecpark.org/calendar.aspx?
+ EID=10420
+DTEND;TZID=America/Los_Angeles:20261213T150000
+DTSTAMP;TZID=America/Los_Angeles:20260709T095420
+DTSTART;TZID=America/Los_Angeles:20261213T130000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260709T095420
+LOCATION:<p>Sunset Dunes and Upper Great Highway</p> - 1611 Upper Great Hig
+ hway  San Francisco CA 94122
+SEQUENCE:0
+SUMMARY:Sunset Dunes Community Cleanup
+UID:10420
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10414
+DTEND;TZID=America/Los_Angeles:20261213T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20261213T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10414
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10408
+DTEND;TZID=America/Los_Angeles:20261212T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20261212T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10408
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10424
+DTEND;TZID=America/Los_Angeles:20261201T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20261201T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10424
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on every 2nd Saturday of the month for
+  Zumba and Shake The Fog https://sfrecpark.org/calendar.aspx?EID=10407
+DTEND;TZID=America/Los_Angeles:20261114T111500
+DTSTAMP;TZID=America/Los_Angeles:20260715T092002
+DTSTART;TZID=America/Los_Angeles:20261114T103000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092002
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Zumba and Shake The Fog
+UID:10407
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the 2nd Sunday of the month for a C
+ ommunity Cleanup Day from 1 pm - 3 pm https://sfrecpark.org/calendar.aspx?
+ EID=10419
+DTEND;TZID=America/Los_Angeles:20261108T150000
+DTSTAMP;TZID=America/Los_Angeles:20260709T095420
+DTSTART;TZID=America/Los_Angeles:20261108T130000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260709T095420
+LOCATION:<p>Sunset Dunes and Upper Great Highway</p> - 1611 Upper Great Hig
+ hway  San Francisco CA 94122
+SEQUENCE:0
+SUMMARY:Sunset Dunes Community Cleanup
+UID:10419
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes for 2nd Sunday Serenades on every 2nd 
+ Sunday of the month from noon to 2 pm https://sfrecpark.org/calendar.aspx?
+ EID=10413
+DTEND;TZID=America/Los_Angeles:20261108T140000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092120
+DTSTART;TZID=America/Los_Angeles:20261108T120000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092120
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:2nd Sunday Serenades
+UID:10413
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to Sunset Dunes on the first Sunday of the month for C
+ hair Yoga at 1400 Upper Great Highway from 2:00 pm - 3:00 pm https://sfrec
+ park.org/calendar.aspx?EID=10423
+DTEND;TZID=America/Los_Angeles:20261101T150000
+DTSTAMP;TZID=America/Los_Angeles:20260715T092251
+DTSTART;TZID=America/Los_Angeles:20261101T140000
+LAST-MODIFIED;TZID=America/Los_Angeles:20260715T092251
+LOCATION:Sunset Dunes - Great Highway\, between Lincoln and Sloat  San Fran
+ cisco CA 94122
+SEQUENCE:0
+SUMMARY:Chair Yoga
+UID:10423
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Come out to the San Francisco Zoo and Gardens on Saturday\, Oct
+ ober 31 from 10 am to 3 pm for Boo at the Zoo https://sfrecpark.org/calend
+ ar.aspx?EID=10827
+DTEND;TZID=America/Los_Angeles:20261031T150000
+DTSTAMP;TZID=America/Los_Angeles:20261013T091524
+DTSTART;TZID=America/Los_Angeles:20261031T100000
+LAST-MODIFIED;TZID=America/Los_Angeles:20261013T091524
+LOCATION:San Francisco Zoo - 1 Zoo Road  San Francisco CA 94132
+SEQUENCE:0
+SUMMARY:Boo at the Zoo
+UID:10827
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Volunteer Opportunity https://sfrecpark.org/calendar.aspx?EID=1
+ 0820
+DTEND;TZID=America/Los_Angeles:20261030T210000
+DTSTAMP;TZID=America/Los_Angeles:20261009T105206
+DTSTART;TZID=America/Los_Angeles:20261030T150000
+LAST-MODIFIED;TZID=America/Los_Angeles:20261009T105206
+LOCATION:Sigmund Stern Grove - 19th Avenue and Sloat Boulevard  San Francis
+ co CA 94132
+SEQUENCE:0
+SUMMARY:Volunteer at Scaregrove
+UID:10820
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Free Halloween fun for the entire family! https://sfrecpark.org
+ /calendar.aspx?EID=10822
+DTEND;TZID=America/Los_Angeles:20261030T210000
+DTSTAMP;TZID=America/Los_Angeles:20261001T171246
+DTSTART;TZID=America/Los_Angeles:20261030T150000
+LAST-MODIFIED;TZID=America/Los_Angeles:20261001T171246
+LOCATION:Sigmund Stern Grove - 19th Avenue and Sloat Boulevard  San Francis
+ co CA 94132
+SEQUENCE:0
+SUMMARY:Scaregrove Halloween Event
+UID:10822
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=62
+DTEND;VALUE=DATE:20171123
+DTSTAMP;TZID=America/Los_Angeles:20160304T123753
+DTSTART;VALUE=DATE:20171123
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123753
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Thanksgiving Day
+UID:62
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=27
+DTEND;VALUE=DATE:20171111
+DTSTAMP;TZID=America/Los_Angeles:20160304T122026
+DTSTART;VALUE=DATE:20171111
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T122026
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Veterans Day
+UID:27
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=57
+DTEND;VALUE=DATE:20171009
+DTSTAMP;TZID=America/Los_Angeles:20160304T123713
+DTSTART;VALUE=DATE:20171009
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123713
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Columbus Day
+UID:57
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=52
+DTEND;VALUE=DATE:20170904
+DTSTAMP;TZID=America/Los_Angeles:20160304T123043
+DTSTART;VALUE=DATE:20170904
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123043
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Labor Day
+UID:52
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=22
+DTEND;VALUE=DATE:20170704
+DTSTAMP;TZID=America/Los_Angeles:20160304T121946
+DTSTART;VALUE=DATE:20170704
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T121946
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Independence Day
+UID:22
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=47
+DTEND;VALUE=DATE:20170529
+DTSTAMP;TZID=America/Los_Angeles:20160304T123033
+DTSTART;VALUE=DATE:20170529
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123033
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Memorial Day
+UID:47
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=42
+DTEND;VALUE=DATE:20170220
+DTSTAMP;TZID=America/Los_Angeles:20160304T122710
+DTSTART;VALUE=DATE:20170220
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T122710
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Presidents' Day
+UID:42
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=37
+DTEND;VALUE=DATE:20170116
+DTSTAMP;TZID=America/Los_Angeles:20160304T122251
+DTSTART;VALUE=DATE:20170116
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T122251
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Birthday of Martin Luther King\, Jr.
+UID:37
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=11
+DTEND;VALUE=DATE:20170101
+DTSTAMP;TZID=America/Los_Angeles:20160304T121714
+DTSTART;VALUE=DATE:20170101
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T121714
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:New Year's Day
+UID:11
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=31
+DTEND;VALUE=DATE:20161225
+DTSTAMP;TZID=America/Los_Angeles:20160304T123011
+DTSTART;VALUE=DATE:20161225
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123011
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Christmas Day
+UID:31
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=61
+DTEND;VALUE=DATE:20161124
+DTSTAMP;TZID=America/Los_Angeles:20160304T123753
+DTSTART;VALUE=DATE:20161124
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123753
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Thanksgiving Day
+UID:61
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=26
+DTEND;VALUE=DATE:20161111
+DTSTAMP;TZID=America/Los_Angeles:20160304T122026
+DTSTART;VALUE=DATE:20161111
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T122026
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Veterans Day
+UID:26
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION: https://sfrecpark.org/calendar.aspx?EID=56
+DTEND;VALUE=DATE:20161010
+DTSTAMP;TZID=America/Los_Angeles:20160304T123713
+DTSTART;VALUE=DATE:20161010
+LAST-MODIFIED;TZID=America/Los_Angeles:20160304T123713
+LOCATION: -     
+SEQUENCE:0
+SUMMARY:Columbus Day
+UID:56
+URL:/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID=14
+END:VEVENT
+END:VCALENDAR
