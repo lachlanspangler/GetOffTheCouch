@@ -70,14 +70,29 @@ describe("highlights", () => {
       ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-18T00:00:00Z" }),
       ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-19T00:00:00Z" }),
       ev({ category: "sports_league.kickball", social: { score: 0.9 }, location: loc, start: "2026-10-20T00:00:00Z" }),
-      ev({ category: "music.concert", social: { score: 0.4 }, location: loc, start: "2026-10-21T00:00:00Z" }),
+      ev({ category: "music.concert", social: { score: 0.75 }, location: loc, start: "2026-10-21T00:00:00Z" }),
       ev({ category: "volunteer.one_off", social: { score: 0.85 }, location: {}, start: "2026-10-21T00:00:00Z" }), // no place
       ev({ category: "arts.museum", social: { score: 0.5 }, location: loc, start: "2026-11-30T00:00:00Z" }), // too far out
     ];
+    evs.forEach((e, i) => (e.sources = [{ source_id: `src${i}`, record_id: "r", fetched_at: "2026-10-16T00:00:00Z" }]));
     const h = highlights(evs, {}, NOW, 3);
     const fams = h.map((s) => s.event.category.split(".")[0]);
     expect(new Set(fams).size).toBe(3);
     expect(fams).not.toContain("volunteer");
     expect(fams).not.toContain("arts");
+  });
+});
+
+describe("highlights source diversity", () => {
+  it("caps any single source at two picks", () => {
+    const loc = { venue_name: "Lib" };
+    const evs = ["trivia_games.trivia", "fitness.yoga", "arts.workshop", "learning.language"].map((c, i) =>
+      ev({ category: c, social: { score: 0.9 }, location: loc, start: `2026-10-1${7 + i}T00:00:00Z` }),
+    );
+    expect(highlights(evs, {}, NOW, 4)).toHaveLength(2);
+  });
+  it("demotes kids/teen programs for adults", () => {
+    const s = scoreEvent(ev({ category: "arts.books", tags: ["kids_teens"] }), DEFAULT_PROFILE, {}, {}, NOW)!;
+    expect(s.reasons.some((r) => r.text === "Aimed at kids or teens" && r.weight < 0)).toBe(true);
   });
 });

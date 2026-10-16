@@ -203,3 +203,13 @@ export function isOngoing(e: Event, now: Date = new Date()): boolean {
   const end = new Date(e.end).getTime();
   return end - start > 36 * 3600_000 && start < now.getTime() + 86_400_000;
 }
+
+/** Availability as of *now* in the viewer's browser: data is refreshed hourly, deadlines don't wait. */
+export function liveAvailability(e: Event, now: Date = new Date()): string | undefined {
+  const a = e.tickets?.availability;
+  const closes = e.registration?.closes_at;
+  if (closes && e.registration?.method !== "derived" && new Date(closes) < now && (a === "registration_open" || a === "unknown" || !a)) {
+    return "registration_closed";
+  }
+  return a;
+}

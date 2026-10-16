@@ -1,5 +1,6 @@
 import type { Event } from "../lib/types";
 import { useApp } from "../lib/ctx";
+import { liveAvailability } from "../lib/filters";
 import { catIcon, catLabel, hue } from "../lib/categories";
 import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel } from "../lib/format";
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
@@ -71,7 +72,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
   const tz = e.timezone;
   const p = parts(e.start, tz);
   const price = priceLabel(e);
-  const avail = availabilityLabel(e.tickets?.availability);
+  const avail = availabilityLabel(liveAvailability(e, now));
   const att = estimateLabel(e.attendance);
   const hasSpots = e.tickets?.spots_left != null && e.registration?.method !== "derived";
   const isSaved = saved.includes(e.id);
@@ -144,7 +145,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
           {avail && !["No ticket needed", "On sale"].includes(avail) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
             <span class="badge">{avail}</span>
           )}
-          {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && (
+          {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && e.tickets?.spots_total == null && (
             <span class="badge badge-ghost" title={e.attendance?.method}>
               <Icon name="users" size={12} /> {att}
             </span>

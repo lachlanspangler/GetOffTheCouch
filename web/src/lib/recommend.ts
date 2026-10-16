@@ -4,7 +4,7 @@
 // "why is this here?". Nothing here is learned from other users; it's transparent rules over your choices.
 
 import type { Event } from "./types";
-import { km } from "./filters";
+import { km, liveAvailability } from "./filters";
 import { hoursUntil, parts } from "./time";
 
 export type Goal = "meet_people" | "stay_active" | "culture" | "party" | "give_back" | "nerd_out";
@@ -70,8 +70,9 @@ export function scoreEvent(
   neighborhoods: Record<string, [number, number]>,
   now: Date = new Date(),
 ): Scored | null {
-  const avail = e.tickets?.availability;
+  const avail = liveAvailability(e, now);
   if (avail === "cancelled" || avail === "sold_out" || avail === "postponed") return null;
+  if (avail === "registration_closed" && (e.kind === "season" || e.registration?.closes_at)) return null;
   const reasons: Reason[] = [];
   const add = (weight: number, text: string) => reasons.push({ weight, text });
   const cats = [e.category, ...(e.categories ?? [])];
@@ -120,6 +121,9 @@ export function scoreEvent(
 
   // 6. going solo / becoming a regular
   const tags = e.tags ?? [];
+  const wantsFamily = profile.interests.some((i) => i === "family" || i.startsWith("family."));
+  if (tags.includes("kids_teens") && !wantsFamily) add(-0.9, "Aimed at kids or teens");
+  if (tags.includes("campus")) add(-0.25, "Campus event (may be student-focused)");
   if (profile.solo && (tags.includes("solo_friendly") || tags.includes("free_agent"))) add(0.35, "Easy to show up solo");
   if (tags.includes("beginner_friendly")) add(0.15, "Beginner friendly");
   if (e.series_id || e.kind === "recurring") add(0.2, "Repeats — you can become a regular");
@@ -254,12 +258,17 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
   const out: Scored[] = [];
   const fams = new Map<string, number>();
   const series = new Set<string>();
+  const perSource = new Map<string, number>();
   for (const s of ranked) {
+    if (s.score <= 0) break;
     const f = family(s.event.category);
+    const src = s.event.sources[0]?.source_id ?? "";
     if ((fams.get(f) ?? 0) >= 1 && out.length < n - 1) continue; // one per family until the last slot
+    if ((perSource.get(src) ?? 0) >= 2) continue; // no single source dominates the front page
     if (s.event.series_id && series.has(s.event.series_id)) continue;
     out.push(s);
     fams.set(f, (fams.get(f) ?? 0) + 1);
+    perSource.set(src, (perSource.get(src) ?? 0) + 1);
     if (s.event.series_id) series.add(s.event.series_id);
     if (out.length >= n) break;
   }

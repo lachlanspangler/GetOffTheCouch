@@ -243,6 +243,9 @@ def build_city(
         ev.is_new = ev.first_seen >= base + timedelta(hours=6) and now - ev.first_seen < timedelta(hours=72)
     assign_series([ev for ev, _ in merged], now)
 
+    campus_sources = {
+        u.source.id for u in reg.units(city=city.slug) if u.source.params.get("audience_filter") == "institution"
+    }
     events: list[tuple[Event, Cluster]] = []
     for ev, cl in merged:
         v = venue_by_id.get(cl.venue_id or "")
@@ -255,8 +258,18 @@ def build_city(
             ev, tax, v.capacity if v else None, v.capacity_source if v else None, reported
         )
         apply_spots(ev, cl.members)
+        if (
+            ev.registration
+            and ev.registration.closes_at
+            and ev.registration.closes_at < now
+            and ev.registration.method != Method.DERIVED
+            and ev.tickets.availability in (Availability.REGISTRATION_OPEN, Availability.UNKNOWN)
+        ):
+            ev.tickets.availability = Availability.REGISTRATION_CLOSED  # the deadline passed since the fetch
         text = " ".join(filter(None, [ev.title, *(m.description or "" for m in cl.members)]))
         ev.tags = derive_tags(ev, text, tax)
+        if all(s.source_id in campus_sources for s in ev.sources):
+            ev.tags = tax.valid_tags([*ev.tags, "campus"])
         ev.social = social_score(ev, tax)
         if ev.registration and ev.registration.method == Method.EXTRACTED:
             stats.deadlines_extracted += 1

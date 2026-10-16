@@ -191,6 +191,11 @@ _TXT = {
     "dog_friendly": re.compile(r"\b(dog[- ]friendly|dogs welcome|pups?)\b", re.I),
     "lgbtq": re.compile(r"\b(lgbtq\+?|queer|pride|drag)\b", re.I),
     "sober_friendly": re.compile(r"\b(sober|alcohol[- ]free|zero[- ]proof|mocktails?)\b", re.I),
+    "kids_teens": re.compile(
+        r"\b(teens?|tweens?|kids?|children'?s?|toddlers?|bab(y|ies)|preschool(ers)?|storytimes?|story time|"
+        r"homeschool|youth|grades? \d|ages \d{1,2}\s*(-|–|to)\s*1[0-7]|lego club|baby ?time)\b",
+        re.I,
+    ),
     "free_food": re.compile(
         r"\b(free (pizza|food|snacks|lunch|breakfast|dinner|refreshments|tacos|coffee|donuts|bagels)|"
         r"(pizza|food|snacks|lunch|breakfast|dinner|refreshments) (will be )?(provided|served|included)|light refreshments)\b",
@@ -215,7 +220,7 @@ def derive_tags(ev: Event, text: str, tax: Taxonomy) -> list[str]:
     ):
         tags.add("outdoor")
     if top == "family":
-        tags.add("family_friendly")
+        tags.update({"family_friendly", "kids_teens"})
     if ev.category in ("nightlife.opening", "food_drink.restaurant_opening"):
         tags.add("new_venue")
     for tag, pat in _TXT.items():

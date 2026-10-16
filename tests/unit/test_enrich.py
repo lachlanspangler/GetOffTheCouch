@@ -102,3 +102,10 @@ def test_free_food_tag():
     e = event(category="learning.tech")
     assert "free_food" in derive_tags(e, "Talk + Q&A. Pizza provided!", taxonomy())
     assert "free_food" not in derive_tags(e, "Food trucks on site", taxonomy())
+
+
+def test_kids_teens_tag():
+    e = event(category="arts.books")
+    assert "kids_teens" in derive_tags(e, "Teen Library Advisory Committee", taxonomy())
+    assert "kids_teens" in derive_tags(e, "Toddler Storytime", taxonomy())
+    assert "kids_teens" not in derive_tags(e, "Gentle Yoga with Melanie", taxonomy())

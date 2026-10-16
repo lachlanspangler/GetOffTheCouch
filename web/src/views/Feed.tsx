@@ -40,6 +40,7 @@ export function Feed({ events }: { events: Event[] }) {
   const f = route.filters;
   const unfiltered = !f.q && !f.cats.length && !f.tags.length && !f.free && !f.social && !f.near && f.size === "any" && f.maxPrice == null && f.when === DEFAULT_FILTERS.when;
   const tops = unfiltered ? highlights(feed.events, labels, now) : [];
+  const topIds = new Set(tops.length >= 3 ? tops.map((s) => s.event.id) : []);
   return (
     <div class="feed">
       {tops.length >= 3 && (
@@ -59,7 +60,7 @@ export function Feed({ events }: { events: Event[] }) {
             <span class="muted"> · {gs.length}</span>
           </h2>
           <div class="grid">
-            {gs.map((g) => (
+            {gs.filter((g) => !topIds.has(g.event.id)).map((g) => (
               <EventCard key={g.event.id} e={g.event} more={g.more} />
             ))}
           </div>
