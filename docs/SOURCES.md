@@ -285,3 +285,33 @@ Rejected / not used (Tampa):
 - Open data: Socrata catalog `q=tampa` → only USDOT/VA datasets; ArcGIS Online search (Tampa/Hillsborough/Pinellas × event/permit/license) → no events/special-event/business-license layers (only building/historic permits, floods, trails).
 - Galaxy Digital guesses (uwsuncoast, unitedwaysuncoast, volunteertampabay, hillsborough) → "Bad Domain"; the real platform is HandsOn Connect (volunteersuncoast.org).
 - Live Nation-owned MidFlorida Credit Union Amphitheatre: skipped by policy.
+
+### Orlando
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `ocls_events` | orlando | Communico `eeventcaldata` (attend.ocls.org) / `communico` | https://attend.ocls.org/eeventcaldata | none | 10 requests/day (one per day of horizon, ~150 KB each) | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | title, description, local start/end, branch, tags, ages, registration (close, capacity, registrants), cost; staff contact never mapped | events · 24h | B (official library data via an undocumented endpoint; online classes, social-worker hours and studio reservations skipped) | 381 |
+| `ucf_events` | orlando | UNIFY events ICS / `ics` | https://events.ucf.edu/calendar/1/events-at-ucf/this-month/feed.ics (+ `/upcoming/feed.ics`) | none | 2 requests/day | robots.txt 404 (no rules); feeds linked from the calendar page | summary, start/end, location, URL, description | events · 24h | B (official; no audience field, institution filter screens internal items; "this-month" thins out late in the month) | 60 (4 rejected: invalid URL) |
+| `orlando_museum_of_art` | orlando | WP The Events Calendar / `tribe` | https://omart.org/wp-json/tribe/events/v1/events | none | ≤ 4 pages/day | robots disallows only /wp-admin/ and `*ical=*` | as MPRB | events · 24h | B+ | 38 |
+| `ivanhoe_village_events` | orlando | WP The Events Calendar / `tribe` | https://ivanhoevillage.org/wp-json/tribe/events/v1/events | none | Crawl-delay 3 | **robots `Disallow: /*?`** covers the API query string | — | events · 24h | D for us (disabled) | disabled |
+| `kia_center` | orlando | carbonhouse events RSS / `rss_events` | https://www.kiacenter.com/events/rss | none | 2 requests/day | robots `User-agent: *` with no rules; city-owned (Orlando Venues) | title, ev:startdate/enddate, link, description ticket links | concerts · 12h | A- (Magic and Solar Bears games → spectator sports) | 104 |
+| `camping_world_stadium` | orlando | carbonhouse events RSS / `rss_events` | https://www.campingworldstadium.com/events/rss | none | 1 request/day | as Kia Center | as Kia Center | events · 24h | B+ (few, big events) | 7 |
+| `challenge_trivia_orlando` | orlando | Challenge show-finder JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all; no terms page | as Nashville | recurring · 48h | C (undocumented) | 36 |
+| `orlando_restaurant_openings` | orlando | Socrata `7388-4re5` (data.cityoforlando.net) / `socrata` | https://data.cityoforlando.net/d/7388-4re5 | none | Socrata throttling | City of Orlando open data; owner/phone/e-mail/mailing address dropped | business name, license type (RESTAURANT / TAKE OUT RESTAU), address, neighborhood, point, **business_open_date** | openings · 24h | A- | 9 |
+| `fl_dbpr_openings_orlando` | orlando | Florida DBPR ABT CSV / `csvfile` | https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv | none | 1 download/day (~14 MB, Last-Modified honoured) | robots allows /sto/ | as Miami; Location County 58 (Orange) + 69 (Seminole), COP series | openings · 24h | A | 59 |
+
+Rejected / not used (Orlando):
+
+- Dr. Phillips Center: `/events/rss` → 403 Bunny Shield "Establishing a secure connection" challenge (and robots `Disallow: /*?*`).
+- Heart of Florida United Way (hfuw.org): robots.txt answers 403 → treated as disallow-all. Its portal volunteer.hfuw.org is **Golden Volunteer** (cdn.goldenvolunteer.com), no adapter. Galaxy guesses hfuw / volunteerorlando / heartofflorida → "Galaxy Digital: Bad Domain".
+- UCF Knights athletics: not SIDEARM; `calendar.ashx/calendar.ics` and `/calendar` → 404.
+- Plaza Live: Webflow, JSON-LD is injected by client-side JS; tickets on AXS (AEG).
+- Will's Pub: own WP site with TicketWeb listings but no Event JSON-LD (Crawl-delay 10).
+- The Social / The Beacham: Duda sites with a tkx.live widget, no JSON-LD.
+- orlando.gov/Events and downtownorlando.com/Fun/Events: Granicus OpenCities HTML, no ICS/RSS/JSON-LD.
+- Orlando Science Center (tribe works, 487 events) — skipped: daily building hours/exhibit schedule, would flood the feed.
+- Orlando Shakes tribe: 0 events. Lake Nona, Leu Gardens, Mills 50, downtownorlando: no tribe route.
+- Timucua: robots `Disallow: /`. Winter Park Library, Seminole County library pages: robots disallow. City of Winter Park, SAK Comedy Lab: Cloudflare.
+- Rollins (calendar./events. Localist/LiveWhale probes) and Valencia Localist: connection timeouts; rollins.edu/events has no feed links.
+- Orlando sidewalk café permits (6sbc-v4b9): only ~8 applications in 3.5 months and contact-heavy; not added.
+- Volo: no Orlando market. Team Trivia: no Orlando region.

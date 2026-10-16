@@ -1,0 +1,240 @@
+# Orlando, FL (Orange + south Seminole). Neighborhood points are approximate centroids, used only for "near me"
+# distance filters. Sources verified live 2026-10-16 (batch D onboarding; see docs/SOURCES.md "Batch D cities").
+# Not used: Dr. Phillips Center (Bunny Shield 403 challenge), Heart of Florida United Way (robots.txt answers 403
+# = disallow all; its volunteer portal is Golden Volunteer, no adapter), Plaza Live (JSON-LD injected by JS; AXS
+# ticketing), Will's Pub (no Event JSON-LD), orlando.gov events (Granicus OpenCities HTML, no feed/JSON-LD),
+# UCF Knights athletics (not SIDEARM; calendar.ics 404), Timucua (robots Disallow: /), SAK Comedy Lab (Cloudflare).
+slug: orlando
+name: Orlando
+state: FL
+timezone: America/New_York
+center: [28.5384, -81.3789]
+radius_km: 25
+aliases: [Winter Park, Maitland, Altamonte Springs, Winter Springs, Oviedo, Apopka, Ocoee, Winter Garden, Windermere, Kissimmee, Lake Buena Vista, Casselberry, Longwood, Orange County, Lake Nona, Dr. Phillips]
+neighborhoods:  # approximate centroids
+  - { name: Downtown Orlando, lat: 28.5420, lon: -81.3790 }
+  - { name: Thornton Park / Lake Eola, lat: 28.5420, lon: -81.3680 }
+  - { name: Mills 50, lat: 28.5560, lon: -81.3640 }
+  - { name: Ivanhoe Village, lat: 28.5660, lon: -81.3720 }
+  - { name: College Park, lat: 28.5720, lon: -81.3900 }
+  - { name: Audubon Park, lat: 28.5720, lon: -81.3450 }
+  - { name: Baldwin Park, lat: 28.5680, lon: -81.3280 }
+  - { name: Milk District, lat: 28.5430, lon: -81.3450 }
+  - { name: SoDo, lat: 28.5200, lon: -81.3770 }
+  - { name: Parramore, lat: 28.5410, lon: -81.3900 }
+  - { name: Winter Park, lat: 28.5990, lon: -81.3510 }
+  - { name: Dr. Phillips / Restaurant Row, lat: 28.4500, lon: -81.4900 }
+  - { name: International Drive, lat: 28.4430, lon: -81.4700 }
+  - { name: Lake Nona, lat: 28.3950, lon: -81.2450 }
+  - { name: UCF / Alafaya, lat: 28.6020, lon: -81.2000 }
+  - { name: Conway, lat: 28.5000, lon: -81.3300 }
+sources:
+  # ── library (Communico "Attend"; robots disallows only /results*, /sitesearch*) ──
+  - id: ocls_events
+    adapter: communico
+    name: Orange County Library System events
+    data_type: events
+    homepage: https://ocls.org/classes-events/
+    expect_min_records: 40
+    notes: >-
+      Communico calendar JSON on attend.ocls.org (undocumented front-end endpoint, ~150 KB/day); one request per
+      day of horizon, daily. Online classes are skipped by the generic online filter.
+    params:
+      base_url: https://attend.ocls.org
+      horizon_days: 10
+      venue_label: Orange County Library System
+      # not events you'd go to: online classes titled "Online: …" (the location is a branch), on-site social-worker
+      # office hours, studio reservations (location_skip matches venue + address + title)
+      exclude_location: '\bOnline: |\bSocial Worker @ the Library\b|\b(Studio|Melrose) Reservation\b'
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Storytime: family.kids
+        "Authors - Books - Writing": arts.books
+        "Music - Movies - Live Performances": music.concert
+        "Arts & Crafting": arts.workshop
+        Maker/DIY: arts.workshop
+        Photography: arts.workshop
+        Graphic Design: learning.tech
+        Video Production: learning.tech
+        Audio Production: learning.tech
+        "Game Design & Virtual Reality": learning.tech
+        Basic Tech Skills: learning.tech
+        Language Learning: learning.language
+        "Business & Careers": learning.networking
+        "Games & Activities": trivia_games.board_games
+        "Health & Wellness": fitness.yoga
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        Kids: family.kids
+
+  # ── universities ──
+  - id: ucf_events
+    adapter: ics
+    name: UCF events (events.ucf.edu)
+    data_type: events
+    homepage: https://events.ucf.edu/
+    expect_min_records: 20
+    notes: >-
+      UCF's own UNIFY events system publishes ICS per range; "this-month" plus "upcoming" (the next few days, so
+      the turn of the month is covered). robots.txt is a 404 (no rules). No audience field, so the generic
+      institution filter screens student/faculty-only items.
+    params:
+      url:
+        - https://events.ucf.edu/calendar/1/events-at-ucf/this-month/feed.ics
+        - https://events.ucf.edu/calendar/1/events-at-ucf/upcoming/feed.ics
+      horizon_days: 45
+      max_occurrences: 2
+      organizer: University of Central Florida
+      default_category: learning.networking
+      audience_filter: institution
+      fallback_point: { lat: 28.6024, lon: -81.2001, label: "UCF main campus" }   # unmappable rooms → campus, labeled approximate
+
+  # ── museums / districts (WordPress The Events Calendar REST API) ──
+  - id: orlando_museum_of_art
+    adapter: tribe
+    name: Orlando Museum of Art events
+    data_type: events
+    homepage: https://omart.org/events/
+    expect_min_records: 10
+    params:
+      base_url: https://omart.org
+      horizon_days: 60
+      per_page: 50
+      max_pages: 4
+      organizer: Orlando Museum of Art
+      venue: {name: Orlando Museum of Art, address: "2416 N Mills Ave, Orlando, FL 32803"}
+      default_category: arts.museum
+  - id: ivanhoe_village_events
+    adapter: tribe
+    name: Ivanhoe Village Main Street events
+    data_type: events
+    min_interval_s: 3   # robots Crawl-delay: 3
+    enabled: false
+    homepage: https://ivanhoevillage.org/events/
+    expect_min_records: 1
+    notes: >-
+      DISABLED 2026-10-16: robots.txt has `Disallow: /*?` for all agents, which covers the REST API's query
+      string (Python's robotparser ignores the wildcard, so the first live run fetched it once: 5 events). Main
+      Street district calendar (business mixers, brewery nights, Jingle Eve). Re-enable only with permission.
+    params:
+      base_url: https://ivanhoevillage.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 2
+      organizer: Ivanhoe Village Main Street
+      default_category: community.festival
+
+  # ── big venues via carbonhouse /events/rss (City of Orlando venues; robots allows) ──
+  - id: kia_center
+    adapter: rss_events
+    name: Kia Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.kiacenter.com/events
+    expect_min_records: 10
+    notes: City-owned arena (Orlando Venues); carbonhouse events RSS. Magic and Solar Bears games are spectator sports.
+    params:
+      spectator_venue: true
+      url: https://www.kiacenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Kia Center", address: "400 W Church St, Orlando, FL 32801"}
+      organizer: Kia Center
+      default_category: music.concert
+  - id: camping_world_stadium
+    adapter: rss_events
+    name: Camping World Stadium (venue calendar)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.campingworldstadium.com/events
+    expect_min_records: 2
+    notes: City-owned stadium (Orlando Venues); carbonhouse events RSS (bowl games, concerts, Monster Jam).
+    params:
+      spectator_venue: true
+      url: https://www.campingworldstadium.com/events/rss
+      horizon_days: 240
+      venue: {name: "Camping World Stadium", address: "1 Citrus Bowl Pl, Orlando, FL 32805"}
+      organizer: Camping World Stadium
+      default_category: sports_watch.game
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page) ──
+  - id: challenge_trivia_orlando
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Orlando)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 5
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-orlando within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [orlando]
+
+  # ── openings ──
+  - id: orlando_restaurant_openings
+    adapter: socrata
+    name: City of Orlando new restaurant business tax receipts
+    data_type: openings
+    homepage: https://data.cityoforlando.net/d/7388-4re5
+    expect_min_records: 5
+    notes: >-
+      Business Tax Receipts (updated daily). business_open_date = the opening date the business reported when it
+      registered (a newness date; renewals keep the original). Restaurants and take-out only; the same case often
+      also has a "BAR/PACKAGE SALES" row, which is skipped so each place appears once. business_owner_name,
+      phone, e-mail and mailing address are dropped by the privacy scrub.
+    params:
+      domain: data.cityoforlando.net
+      dataset: 7388-4re5
+      kind: opening
+      lookback_days: 60
+      horizon_days: 120
+      where: >-
+        license_category = 'RESTAU' AND license_type IN ('RESTAURANT', 'TAKE OUT RESTAU')
+        AND business_open_date >= '{today}' AND business_open_date < '{horizon}'
+      order: business_open_date DESC
+      max_future_days: 120
+      fields: { record_id: case_number, title: business_name, start: business_open_date, category: license_type,
+                address: business_address, neighborhood: neighborhood_name,
+                lat: geocoded_column.coordinates.1, lon: geocoded_column.coordinates.0 }
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|convenience|supermarket|gas|vending|catering|commissary)\\b"]
+      title_template: "{title} — new restaurant license"
+      description_template: >-
+        License signal, not a confirmed opening date. This business ({license_type}) registered a City of Orlando
+        business tax receipt with an opening date of {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.cityoforlando.net/d/7388-4re5
+      extras: { signal: business_tax_receipt }
+
+  - id: fl_dbpr_openings_orlando
+    adapter: csvfile
+    name: Florida DBPR new on-premises liquor licenses (Orange + Seminole)
+    data_type: openings
+    homepage: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+    expect_min_records: 5
+    notes: >-
+      Same statewide extract as fl_dbpr_openings_miami (bd4006lic.csv). Location County codes verified in the
+      file on 2026-10-16: 58 = Orange (Orlando, Winter Park, Apopka, Winter Garden), 69 = Seminole (Altamonte
+      Springs, Sanford, Oviedo). Osceola (59, Kissimmee) is mostly outside the radius. Newness date = "Original
+      Licensure Date". Convenience stores and smoke shops with a beer/wine COP license are excluded by title.
+    params:
+      url: https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv
+      encoding: [utf-8-sig, cp1252]
+      kind: opening
+      lookback_days: 60
+      window: { field: original_licensure_date }
+      legal_name_copies: { dba: owner_name }
+      include: { profession: ["4006"], location_county: ["58", "69"] }
+      include_regex: { series: "COP$" }
+      exclude_regex: { location_city: "(?i)no city code", location_address_1: "(?i)^inactive|\\bescrow\\b" }
+      exclude_title: ["(?i)\\b(mini ?mart|food mart|smoke|vape|convenience|grocery|gas|market|liquor store|package|beverage depot)\\b"]
+      reject_future_start: true
+      fields: { record_id: license_number, title: [dba, dba_legal], start: original_licensure_date,
+                category: series, address: [location_address_1, location_address_2, location_city, location_state] }
+      entity_only_fields: [dba_legal]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Florida DBPR first licensed this business to serve alcohol
+        on the premises (series {series}) on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+      extras: { signal: liquor_license_original_licensure }
