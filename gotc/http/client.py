@@ -161,7 +161,8 @@ class PoliteClient:
         conditional: bool,
         redact: tuple[str, ...],
     ) -> Response:
-        full = str(httpx.URL(url, params=dict(params or {})))
+        # merge, don't replace: httpx.URL(url, params={}) silently drops an existing ?query (Luma ICS, Maker Faire)
+        full = str(httpx.URL(url).copy_merge_params(dict(params)) if params else httpx.URL(url))
         safe = _redact(full, redact)
         if respect_robots:
             self._check_robots(full)

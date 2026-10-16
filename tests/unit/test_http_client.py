@@ -130,6 +130,14 @@ def test_post_redacts_secrets_in_errors(tmp_path):
     assert "S3CRET" not in str(e.value) and e.value.kind == "forbidden"
 
 
+def test_existing_query_string_is_kept_and_params_are_merged(tmp_path):
+    t = FixtureTransport().add_fn(r"/ics/get", lambda req: httpx.Response(200, content=str(req.url).encode()))
+    c = client(t, tmp_path)
+    url = "https://api.example.com/ics/get?entity=calendar&id=cal-1"
+    assert c.get(url, respect_robots=False).text == url
+    assert c.get(url, params={"page": 2}, respect_robots=False).text == url + "&page=2"
+
+
 def test_cookies_are_never_stored(tmp_path):
     """Volo/Galaxy redirect cookie-carrying requests to a remembered view (dropping ?page=N)."""
 
