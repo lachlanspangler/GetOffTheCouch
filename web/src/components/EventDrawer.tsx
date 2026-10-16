@@ -18,6 +18,7 @@ import {
 } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
 import { similar } from "../lib/recommend";
+import { absolute, eventPath } from "../lib/site";
 import { age, fmtDateLong, fmtDay, fmtTime, relative } from "../lib/time";
 import { DeadlineBadge } from "./EventCard";
 import { Icon } from "./Icon";
@@ -97,7 +98,7 @@ export function EventDrawer({ e }: { e: Event }) {
         : e.url
           ? { url: e.url, label: "Event page", icon: "external" }
           : null;
-  const shareUrl = `${location.origin}${location.pathname}#/${e.city}/event/${e.id}`;
+  const shareUrl = absolute(eventPath(e.city, e.id, e.title));
   return (
     <div class="drawer-wrap" onClick={(ev) => ev.target === ev.currentTarget && close()}>
       <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabIndex={-1} ref={ref} style={{ "--h": hue(e.category) }}>

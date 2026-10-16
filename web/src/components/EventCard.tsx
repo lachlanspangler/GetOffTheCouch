@@ -4,6 +4,7 @@ import { liveAvailability } from "../lib/filters";
 import { catIcon, catLabel, hue } from "../lib/categories";
 import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel } from "../lib/format";
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
+import { eventPath, url } from "../lib/site";
 import { Icon } from "./Icon";
 
 /** "$39–$89 · 3 sellers": how many places sell it, shown only when more than one actually does. */
@@ -115,7 +116,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
           )}
         </div>
         <h3 class="card-title">
-          <a href={`#/${feed?.city ?? e.city}/event/${e.id}`} onClick={(ev) => { ev.preventDefault(); open(); }}>
+          <a href={url(eventPath(feed?.city ?? e.city, e.id, e.title))} onClick={(ev) => { ev.preventDefault(); open(); }}>
             {e.title}
           </a>
         </h3>

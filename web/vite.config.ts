@@ -1,9 +1,28 @@
 import preact from "@preact/preset-vite";
-import { defineConfig } from "vitest/config";
+import { copyFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { defineConfig, type Plugin } from "vitest/config";
+
+// GOTC_BASE: "/GetOffTheCouch/" on the GitHub Pages project site, "/" on a custom domain and in dev.
+const base = process.env.GOTC_BASE ?? "/";
+const origin = process.env.GOTC_SITE_ORIGIN ?? "https://lachlanspangler.github.io";
+
+/** Pages serves 404.html for unknown paths: the app shell routes them client-side (never a blank page). */
+function spaFallback(): Plugin {
+  return {
+    name: "gotc-404",
+    apply: "build",
+    closeBundle() {
+      const dist = resolve(__dirname, "dist");
+      copyFileSync(resolve(dist, "index.html"), resolve(dist, "404.html"));
+    },
+  };
+}
 
 export default defineConfig({
-  base: "./", // works on GitHub Pages project sites and any static host
-  plugins: [preact()],
+  base,
+  define: { __SITE_ORIGIN__: JSON.stringify(origin) },
+  plugins: [preact(), spaFallback()],
   build: { target: "es2020", sourcemap: true },
   test: {
     environment: "jsdom",

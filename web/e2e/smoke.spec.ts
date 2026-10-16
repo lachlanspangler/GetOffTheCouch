@@ -7,26 +7,26 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("home lists the demo city and flags demo data", async ({ page }) => {
-  await page.goto("/?demo=1#/");
+  await page.goto("/?demo=1");
   await expect(page.getByRole("status")).toContainText("DEMO DATA");
   await expect(page.getByRole("button", { name: /Demoville/ })).toBeVisible();
 });
 
 test("feed shows cards, filters narrow them, and the URL keeps state", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/feed");
+  await page.goto("/demoville/feed/?demo=1");
   const cards = page.getByTestId("event-card");
   await expect(cards.first()).toBeVisible();
   const before = await cards.count();
   const toggle = page.getByRole("button", { name: /^Filters/ });
   if (await toggle.isVisible()) await toggle.click(); // mobile keeps filters behind a toggle
   await page.getByRole("button", { name: "Free only" }).click();
-  await expect(page).toHaveURL(/free=1/);
+  await expect(page).toHaveURL(/\/demoville\/free\/$/);
   expect(await cards.count()).toBeLessThan(before);
   await expect(page.getByText("Tuesday Trivia").first()).toBeVisible();
 });
 
 test("event drawer shows merged sources, price comparison and provenance", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/feed");
+  await page.goto("/demoville/feed/?demo=1");
   await page.getByRole("link", { name: /Placeholder Band/ }).first().click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
@@ -39,7 +39,7 @@ test("event drawer shows merged sources, price comparison and provenance", async
 });
 
 test("deadlines view sorts by urgency and offers calendar export", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/deadlines");
+  await page.goto("/demoville/deadlines/?demo=1");
   await expect(page.getByRole("heading", { name: "Next 48 hours" })).toBeVisible();
   await expect(page.getByText("Fall Kickball League").first()).toBeVisible();
   const download = page.waitForEvent("download");
@@ -48,7 +48,7 @@ test("deadlines view sorts by urgency and offers calendar export", async ({ page
 });
 
 test("new-in-town onboarding builds an explained plan", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/plan");
+  await page.goto("/demoville/plan/?demo=1");
   await page.getByRole("button", { name: "Trivia & games" }).click();
   await page.getByRole("button", { name: "Rec & beer leagues" }).click();
   for (let i = 0; i < 3; i++) await page.getByRole("button", { name: "Next" }).click();
@@ -58,13 +58,13 @@ test("new-in-town onboarding builds an explained plan", async ({ page }) => {
 });
 
 test("health page explains source states", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/health");
+  await page.goto("/demoville/health/?demo=1");
   await expect(page.getByRole("heading", { name: /Data health/ })).toBeVisible();
   await expect(page.getByText("Demo source A")).toBeVisible();
 });
 
 test("map view renders pins", async ({ page }) => {
-  await page.goto("/?demo=1#/demoville/map");
+  await page.goto("/demoville/map/?demo=1");
   await expect(page.locator(".leaflet-overlay-pane canvas").first()).toBeVisible({ timeout: 10_000 });
   await expect(page.getByText(/on the map/)).toContainText(/^[1-9]\d* on the map/);
 });

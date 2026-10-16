@@ -15,7 +15,7 @@ for (const [label, vp] of [["desktop", { width: 1280, height: 900 }], ["mobile",
   p.on("pageerror", (e) => errors.push(`${label}: ${e}`));
   for (const c of cities) {
     for (const v of label === "mobile" ? ["feed"] : views) {
-      await p.goto(`${base}/#/${c}/${v}`);
+      await p.goto(`${base}/${c}/${v}/`);
       await p.waitForTimeout(v === "map" ? 1800 : 900);
       await p.screenshot({ path: `${out}/${c}-${v}-${label}.png` });
     }

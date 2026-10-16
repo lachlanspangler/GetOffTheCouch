@@ -3,6 +3,7 @@ import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
 import { calendar, download } from "../lib/ics";
 import { share } from "../components/EventDrawer";
+import { absolute } from "../lib/site";
 
 export function Saved() {
   const { saved, byId, feed, route, go, toggleSave } = useApp();
@@ -10,7 +11,7 @@ export function Saved() {
   const shared = route.ids.length > 0;
   const ids = shared ? route.ids : saved;
   const events = ids.map((id) => byId.get(id)).filter((e) => e != null).sort((a, b) => a.start.localeCompare(b.start));
-  const shareUrl = `${location.origin}${location.pathname}#/${feed.city}/saved?ids=${saved.join(",")}`;
+  const shareUrl = absolute(`${feed.city}/saved/?ids=${saved.join(",")}`);
   const gone = saved.length - events.length;
   return (
     <div>

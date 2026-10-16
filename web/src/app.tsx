@@ -6,7 +6,8 @@ import { Icon } from "./components/Icon";
 import { Ctx, type AppCtx } from "./lib/ctx";
 import { isDemo, loadCity, loadIndex } from "./lib/data";
 import { applyFilters, deadlines } from "./lib/filters";
-import { useRoute, type View } from "./lib/router";
+import { build, setTitleLookup, useRoute, type View } from "./lib/router";
+import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
 import { age } from "./lib/time";
 import type { CityFeed, Index } from "./lib/types";
@@ -49,7 +50,7 @@ export function App() {
     return () => clearInterval(t);
   }, []);
   useEffect(() => {
-    if (!route.city && lastCity && index?.cities.some((c) => c.slug === lastCity) && !location.hash) {
+    if (!route.city && lastCity && index?.cities.some((c) => c.slug === lastCity) && location.pathname === url() && !location.search) {
       go({ city: lastCity, view: "feed" }, true);
     }
   }, [index]);
@@ -82,6 +83,7 @@ export function App() {
     const sourceNames: Record<string, string> = {};
     for (const s of feed?.sources ?? []) sourceNames[s.source_id] = s.name;
     const byId = new Map((feed?.events ?? []).map((e) => [e.id, e]));
+    setTitleLookup((id) => byId.get(id)?.title);
     return {
       index,
       feed,
@@ -117,9 +119,9 @@ export function App() {
 
   return (
     <Ctx.Provider value={ctx}>
-      {demo && <div class="demo-banner" role="status">DEMO DATA: made-up examples for trying the interface. <a href={location.pathname}>Switch to real data</a></div>}
+      {demo && <div class="demo-banner" role="status">DEMO DATA: made-up examples for trying the interface. <a href={`${url()}?demo=0`} target="_self">Switch to real data</a></div>}
       <header class="top">
-        <a class="brand" href="#/" onClick={() => go({ city: null, eventId: null })} aria-label="GetOffTheCouch home">
+        <a class="brand" href={url()} aria-label="GetOffTheCouch home">
           <span class="logo"><Icon name="sofa" size={22} /></span>
           <span class="brand-text">
             <strong>GetOffTheCouch</strong>
@@ -148,7 +150,7 @@ export function App() {
           {TABS.map((t) => (
             <a
               key={t.view}
-              href={`#/${route.city}/${t.view}`}
+              href={build({ city: route.city, view: t.view })}
               class={view === t.view && !route.eventId ? "on" : ""}
               aria-current={view === t.view ? "page" : undefined}
               onClick={(e) => {
@@ -186,8 +188,8 @@ export function App() {
       <footer class="foot">
         <p>
           <strong>GetOffTheCouch</strong> · no made-up data: every card names its source and when we last checked.{" "}
-          <a href={route.city ? `#/${route.city}/about` : "#/about"} onClick={(e) => { e.preventDefault(); go({ view: "about", eventId: null }); }}>How it works</a> ·{" "}
-          <a href={route.city ? `#/${route.city}/health` : "#/"} onClick={(e) => { e.preventDefault(); route.city && go({ view: "health", eventId: null }); }}>Data health</a>
+          <a href={url("about/")}>How it works</a> ·{" "}
+          <a href={route.city ? build({ city: route.city, view: "health" }) : url("health/")}>Data health</a>
         </p>
         <p class="muted small">Map data © OpenStreetMap contributors. Event data © the original publishers, linked on every card.</p>
       </footer>

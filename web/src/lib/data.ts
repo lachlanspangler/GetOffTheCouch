@@ -5,8 +5,21 @@ import type { CityFeed, HealthDoc, Index } from "./types";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
+// ?demo=1 sticks for the tab (sessionStorage) so in-app navigation keeps showing demo data; ?demo=0 clears it.
+const DEMO = (() => {
+  if (typeof location === "undefined") return false;
+  try {
+    const q = new URLSearchParams(location.search).get("demo");
+    if (q === "1") sessionStorage.setItem("gotc:demo", "1");
+    if (q === "0") sessionStorage.removeItem("gotc:demo");
+    return sessionStorage.getItem("gotc:demo") === "1";
+  } catch {
+    return new URLSearchParams(location.search).get("demo") === "1";
+  }
+})();
+
 export function isDemo(): boolean {
-  return new URLSearchParams(location.search).get("demo") === "1";
+  return DEMO;
 }
 
 function root(): string {
