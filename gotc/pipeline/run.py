@@ -88,8 +88,9 @@ def run(
             )
         if build:
             geocoder = Geocoder(db, http if geocode and not settings.offline else None)
+            touched = {u.city.slug for u in units} if source else None  # --source X: rebuild only its cities
             for c in reg.cities.values():
-                if c.enabled and (city is None or c.slug == city):
+                if c.enabled and (city is None or c.slug == city) and (touched is None or c.slug in touched):
                     try:
                         report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
                     except Exception as e:  # one city's bug must not blank every city's dashboard
