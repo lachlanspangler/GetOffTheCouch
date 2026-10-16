@@ -101,3 +101,11 @@ Scoring is a transparent sum of rules, each with the sentence it adds: interests
 The 30-day plan is greedy per week: up to 3 picks, with no time overlaps, one occurrence per series, and a −0.45 diversity penalty per repeated category family.
 
 Nothing is learned from other users. Preferences stay on the device.
+
+## Openings (new bars and restaurants)
+These come from government license data. They're always presented as a *signal*, not a confirmed opening date.
+- **Newness dates.** Where a dataset has a real newness date (original issue, application or pending date), that's the date shown. Openings stay visible for 60 days.
+- **No newness date.** Some datasets only carry renewal dates (Minneapolis On_Sale_Liquor), so `openings_by_first_seen` applies:
+  - The first snapshot is a silent baseline. Existing businesses aren't news.
+  - A license that appears later is shown with the day we first saw it, labeled "First appeared in the city's license data on …".
+- **Privacy.** Personal-data columns (owners, applicants, phones, e-mails) are dropped before mapping (`gotc/adapters/mapped.py`).
