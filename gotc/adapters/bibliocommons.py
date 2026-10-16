@@ -46,6 +46,8 @@ def safe_xml(content: bytes) -> ET.Element:
     """Parse untrusted feed XML. Refuses DTDs/entities outright (see module docstring)."""
     if _UNSAFE.search(content):
         raise ValueError("refusing XML with a DOCTYPE/ENTITY declaration")
+    # some CMSes (Florida Theatre's carbonhouse feed) emit a blank line before "<?xml"; expat rejects that
+    content = content.lstrip()
     try:
         return ET.fromstring(content)
     except ET.ParseError:

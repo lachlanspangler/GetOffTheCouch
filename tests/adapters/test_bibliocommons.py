@@ -109,3 +109,11 @@ def test_safe_xml_repairs_bare_ampersands_and_refuses_garbage():
     assert root.find("channel/item/title").text == "Hall & Oates & friends ©"
     with _pt.raises(ValueError, match="not well-formed"):
         safe_xml(b"<rss><channel><item></channel>")
+
+
+def test_safe_xml_tolerates_leading_whitespace_before_declaration():
+    from gotc.adapters.bibliocommons import safe_xml
+
+    # Florida Theatre (Jacksonville) carbonhouse feed starts with "\r\n" before "<?xml"
+    root = safe_xml(b'\r\n<?xml version="1.0" encoding="utf-8"?><rss><channel><item/></channel></rss>')
+    assert root.tag == "rss" and len(root.findall("channel/item")) == 1

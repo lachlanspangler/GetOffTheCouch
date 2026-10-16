@@ -1,0 +1,31 @@
+# Official new-resident deadlines for Connecticut. Every fact is quoted verbatim from source_url
+# (portal.ct.gov, fetched with the GetOffTheCouch UA on 2026-10-16; robots allows these pages).
+state: CT
+items:
+  - id: ct-drivers-license
+    title: "Get a Connecticut driver's license"
+    kind: license
+    days_after_move: 90
+    summary: "Once you establish residency in Connecticut you have 90 days to transfer your out-of-state license (commercial licenses: 30 days)."
+    action_url: https://portal.ct.gov/dmv/licenses-permits-ids/transfer-out-of-state-license
+    evidence: "Once you establish residency, you have 90 days to transfer your out-of-state license to Connecticut."
+    source_url: https://portal.ct.gov/dmv/licenses-permits-ids/transfer-out-of-state-license
+    verified_at: 2026-10-16
+  - id: ct-vehicle-registration
+    title: "Register your vehicle in Connecticut"
+    kind: vehicle
+    days_after_move: 90
+    summary: "New residents must transfer their out-of-state vehicle registration to Connecticut within 90 days of establishing residency."
+    action_url: https://portal.ct.gov/dmv/vehicle-services/transfer-registration-ct
+    evidence: "Once you’ve established residency in Connecticut, you have 90 days to transfer your vehicle registration"
+    source_url: https://portal.ct.gov/dmv/vehicle-services/transfer-registration-ct
+    verified_at: 2026-10-16
+  - id: ct-voter-registration
+    title: "Register to vote in Connecticut"
+    kind: voting
+    days_after_move: null
+    summary: "The pre-election registration cutoff is 18 days before Election Day; Connecticut also has Same Day Registration on Election Day."
+    action_url: http://voterregistration.ct.gov/OLVR/
+    evidence: "The pre-election voter registration cutoff deadline is eighteen (18) days before Election Day. Connecticut also has Same Day Registration on Election Day itself for voters who need it"
+    source_url: https://portal.ct.gov/sots/election-services/voter-information/voter-registration-information
+    verified_at: 2026-10-16

@@ -1,0 +1,265 @@
+# Tampa Bay, FL (Tampa + St. Petersburg + Clearwater). Neighborhood points are approximate centroids, used only
+# for "near me" distance filters. Sources verified live 2026-10-16 (batch D onboarding; docs/SOURCES.md
+# "Batch D cities").
+# Not used (evidence in docs/SOURCES.md): St. Petersburg Library System (robots `User-agent: * / Disallow: /`),
+# Clearwater Public Library LibraryMarket (robots.txt answers 403 → treated as disallow-all), USF events
+# (www.usf.edu robots disallows /calendar; events.usf.edu answers 503), tampa.gov (403 to our client),
+# Straz Center (redirect loop on robots.txt), no Socrata/ArcGIS event, permit or license dataset found for
+# the City of Tampa, Hillsborough or Pinellas (openings come from the statewide DBPR extract instead).
+slug: tampa
+name: Tampa
+state: FL
+timezone: America/New_York
+center: [27.9506, -82.4572]
+radius_km: 25
+aliases: [Tampa Bay, St. Petersburg, St Petersburg, Saint Petersburg, St. Pete, Clearwater, Brandon, Temple Terrace,
+          Largo, Pinellas Park, Riverview, Lutz, Town 'n' Country, Seminole, Dunedin, Safety Harbor, Oldsmar,
+          Valrico, Seffner, Gulfport, Wesley Chapel, Ruskin]
+neighborhoods:  # approximate centroids
+  - { name: Downtown Tampa, lat: 27.9480, lon: -82.4580 }
+  - { name: Channel District / Water Street, lat: 27.9440, lon: -82.4510 }
+  - { name: Ybor City, lat: 27.9600, lon: -82.4370 }
+  - { name: Hyde Park, lat: 27.9380, lon: -82.4750 }
+  - { name: SoHo (South Howard), lat: 27.9330, lon: -82.4840 }
+  - { name: Tampa Heights, lat: 27.9660, lon: -82.4600 }
+  - { name: Seminole Heights, lat: 27.9950, lon: -82.4610 }
+  - { name: Davis Islands, lat: 27.9200, lon: -82.4530 }
+  - { name: Westshore, lat: 27.9540, lon: -82.5220 }
+  - { name: Palma Ceia, lat: 27.9200, lon: -82.4900 }
+  - { name: USF / University Area, lat: 28.0590, lon: -82.4140 }
+  - { name: Brandon, lat: 27.9378, lon: -82.2859 }
+  - { name: Downtown St. Petersburg, lat: 27.7710, lon: -82.6380 }
+  - { name: Grand Central / Kenwood (St. Pete), lat: 27.7700, lon: -82.6720 }
+  - { name: Old Northeast (St. Pete), lat: 27.7840, lon: -82.6290 }
+  - { name: Downtown Clearwater, lat: 27.9659, lon: -82.8001 }
+sources:
+  # ── library ──
+  - id: tampa_hcplc_events
+    adapter: communico
+    name: Tampa-Hillsborough County Public Library events
+    data_type: events
+    homepage: https://attend.hcplc.org/events
+    expect_min_records: 30
+    notes: >-
+      Undocumented Communico calendar JSON the library's own calendar loads (robots disallows only /results*
+      and /sitesearch*); one request per day of horizon, daily. ~25–60 events/day across ~30 branches.
+    params:
+      base_url: https://attend.hcplc.org
+      horizon_days: 7
+      venue_label: Tampa-Hillsborough County Public Library
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Art Exhibit: arts.museum
+        Story Time: family.kids
+        Books and Reading: arts.books
+        Technology and Makerspace: learning.tech
+        "ESOL (English for Speakers of Other Languages)": learning.language
+        Genealogy and History: learning.networking
+        Preschool: family.kids
+        Children: family.kids
+
+  # ── universities ──
+  - id: tampa_ut_events
+    adapter: trumba
+    name: University of Tampa events
+    data_type: events
+    homepage: https://www.ut.edu/campus-life/calendar
+    expect_min_records: 3
+    notes: >-
+      Trumba webName "ut-events" (spud on ut.edu/campus-life/calendar). The feed is ~90% "Student Event"
+      (club meetings, student fitness classes). Those are mapped to the default category, which the
+      institution catch-all skips, so only athletics, exhibitions, theatre, concerts and other public types remain.
+    params:
+      fallback_point: { lat: 27.9465, lon: -82.4660, label: "University of Tampa campus" }   # approximate
+      audience_filter: institution
+      webname: ut-events
+      horizon_days: 21
+      organizer: University of Tampa
+      category_fields: [Type of Event]
+      category_map:   # "Type of Event" values seen in the live feed
+        Student Event: learning.networking   # = default → skipped by the campus catch-all (student-only)
+        Art Exhibition: arts.museum
+        Theatre: arts.theater
+        Music Concerts: music.classical
+        Athletics: sports_watch.game
+      default_category: learning.networking
+
+  - id: tampa_usf_athletics
+    adapter: ics
+    name: USF Bulls athletics (home games — football at Raymond James, basketball at Yuengling Center, soccer)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gousfbulls.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics; robots blocks only named bots and
+      /admin/, /services/). Only events whose LOCATION starts with "Tampa" are kept (away/neutral skipped).
+    params:
+      url: https://gousfbulls.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: USF Athletics
+      exclude_location: '^(?!Tampa\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 28.0587, lon: -82.4139, label: "USF Tampa campus" }
+
+  # ── downtown ──
+  - id: tampa_downtown_events
+    adapter: jsonld
+    name: Tampa Downtown Partnership events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.tampasdowntown.com/all-events/
+    expect_min_records: 5
+    notes: >-
+      Business-district calendar; the listing page embeds one schema.org Event JSON-LD block per card
+      (date-only start/end, place name + address). robots allows all.
+    params:
+      urls: [https://www.tampasdowntown.com/all-events/]
+      horizon_days: 120
+      venue: {name: Downtown Tampa, address: "Tampa, FL 33602"}
+      organizer: Tampa Downtown Partnership
+      default_category: community.festival
+
+  # ── big venues ──
+  - id: tampa_benchmark_arena
+    adapter: tribe
+    name: Benchmark International Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.benchmarkintlarena.com/events/
+    expect_min_records: 10
+    notes: >-
+      County-owned arena (home of the Lightning, formerly Amalie Arena), run by Vinik Sports Group; The Events
+      Calendar REST API (robots allows all). Tickets are sold through Ticketmaster, but the site is the arena's own.
+    params:
+      spectator_venue: true
+      base_url: https://www.benchmarkintlarena.com
+      horizon_days: 180
+      per_page: 50
+      max_pages: 4
+      organizer: Benchmark International Arena
+      default_category: music.concert
+      classify_description: false
+
+  - id: tampa_yuengling_center
+    adapter: tribe
+    name: Yuengling Center at USF (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.yuenglingcenter.com/events/
+    expect_min_records: 5
+    notes: USF's arena (Bulls basketball/volleyball, concerts); The Events Calendar REST API; robots allows all.
+    params:
+      spectator_venue: true
+      base_url: https://www.yuenglingcenter.com
+      horizon_days: 180
+      per_page: 50
+      max_pages: 3
+      organizer: Yuengling Center
+      default_category: music.concert
+      classify_description: false
+
+  - id: tampa_ruth_eckerd_hall
+    adapter: rss_events
+    name: Ruth Eckerd Hall, Capitol Theatre & The BayCare Sound (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.rutheckerdhall.com/events
+    expect_min_records: 20
+    notes: >-
+      Nonprofit Ruth Eckerd Hall's carbonhouse /events/rss (robots allows all); also lists the Capitol Theatre
+      and The BayCare Sound (Clearwater) and a few co-promoted shows at Jannus Live and Tampa Theatre.
+    params:
+      spectator_venue: true
+      url: https://www.rutheckerdhall.com/events/rss
+      horizon_days: 180
+      venue: {name: "Ruth Eckerd Hall", address: "1111 McMullen Booth Rd, Clearwater, FL 33759"}
+      venues:
+        "Nancy & David Bilheimer Capitol Theatre": "405 Cleveland St, Clearwater, FL 33755"
+        "The BayCare Sound": "100 Coachman Park Dr, Clearwater, FL 33755"
+        "Jannus Live": "200 1st Ave N, St. Petersburg, FL 33701"
+        "Tampa Theatre": "711 N Franklin St, Tampa, FL 33602"
+      organizer: Ruth Eckerd Hall
+      default_category: music.concert
+
+  # ── volunteering ──
+  - id: tampa_volunteer_suncoast
+    adapter: handsonconnect
+    name: United Way Suncoast volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteersuncoast.org/calendar
+    expect_min_records: 1
+    notes: >-
+      HandsOn Connect tenant linked from unitedwaysuncoast.org (block id 1935 from the /calendar page;
+      robots.txt is a 404). Covers Hillsborough, Pinellas, Sarasota, Manatee and DeSoto; the city radius drops
+      the far-south shifts.
+    params:
+      base_url: https://www.volunteersuncoast.org
+      block_id: 1935
+      horizon_days: 14
+      window_days: 2
+
+  # ── trivia ──
+  - id: teamtrivia_tampa
+    adapter: teamtrivia
+    name: Team Trivia (Tampa Bay)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-tampa/
+    expect_min_records: 5
+    notes: Region page → venue pages with schema.org Event JSON-LD (in the site's own sitemap). Never uses the zip gate.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { tampa: tampa }
+      max_venues: 60
+
+  - id: challenge_trivia_tampa
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Tampa Bay)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 5
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-tampa within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [tampa]
+
+  # ── openings (Florida DBPR alcoholic-beverage license extract; csvfile adapter) ──
+  - id: fl_dbpr_openings_tampa
+    adapter: csvfile
+    name: Florida DBPR new on-premises liquor licenses (Hillsborough + Pinellas)
+    data_type: openings
+    homepage: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+    expect_min_records: 5
+    notes: >-
+      Same statewide extract as fl_dbpr_openings_miami (bd4006lic.csv; robots allows /sto/). Location County
+      39 = Hillsborough, 62 = Pinellas (checked against Location City in the file, 2026-10-16). Newness date =
+      "Original Licensure Date"; consumption-on-premises series only; "Owner Name" dropped.
+    params:
+      url: https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv
+      encoding: [utf-8-sig, cp1252]
+      kind: opening
+      lookback_days: 60
+      window: { field: original_licensure_date }
+      legal_name_copies: { dba: owner_name }
+      include: { profession: ["4006"], location_county: ["39", "62"] }
+      include_regex: { series: "COP$" }
+      exclude_regex: { location_city: "(?i)no city code", location_address_1: "(?i)^inactive|\\bescrow\\b" }
+      reject_future_start: true
+      fields: { record_id: license_number, title: [dba, dba_legal], start: original_licensure_date,
+                category: series, address: [location_address_1, location_address_2, location_city, location_state] }
+      entity_only_fields: [dba_legal]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Florida DBPR first licensed this business to serve alcohol
+        on the premises (series {series}) on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+      extras: { signal: liquor_license_original_licensure }

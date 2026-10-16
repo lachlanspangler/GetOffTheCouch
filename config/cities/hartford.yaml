@@ -1,0 +1,288 @@
+# Hartford, CT (Capitol Region). Neighborhood points are approximate centroids, used only for "near me" distance
+# filters. Sources verified live 2026-10-16 (batch D; docs/SOURCES.md "Batch D cities").
+# Not used (evidence in docs/SOURCES.md): hartford.com (HBID) and riverfront.org events, handsonhartford.org —
+# Cloudflare challenge; LibraryMarket/LibraryCalendar library calendars (West Hartford, Windsor) — robots.txt 403
+# (= disallow all); ctconventions.com — robots 403; University of Hartford Trumba calendar — 410 Gone; United Way
+# of Central & Northeastern CT volunteering — e-CImpact login only; Infinity Music Hall / Hartford Stage /
+# Hartford Symphony — no structured event data; hartfordct.gov events listing — empty. No Volo, Team Trivia or
+# Challenge market; CT liquor-permit dataset gwv2-eswx has no newness date (effective_date is a renewal-cycle
+# date, pending applications are undated), so openings come from the state credential register instead.
+slug: hartford
+name: Hartford
+state: CT
+timezone: America/New_York
+center: [41.7658, -72.6734]
+radius_km: 15
+aliases: [West Hartford, East Hartford, Wethersfield, Newington, Bloomfield, Windsor, Rocky Hill, Glastonbury, South Glastonbury, Farmington, Capitol Region]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 41.7663, lon: -72.6745 }
+  - { name: Asylum Hill, lat: 41.7710, lon: -72.6920 }
+  - { name: West End, lat: 41.7680, lon: -72.7080 }
+  - { name: Frog Hollow, lat: 41.7560, lon: -72.6860 }
+  - { name: Parkville, lat: 41.7580, lon: -72.7030 }
+  - { name: Sheldon-Charter Oak, lat: 41.7570, lon: -72.6690 }
+  - { name: Barry Square / Trinity, lat: 41.7450, lon: -72.6860 }
+  - { name: South End, lat: 41.7350, lon: -72.6820 }
+  - { name: Behind the Rocks, lat: 41.7440, lon: -72.6980 }
+  - { name: Clay Arsenal, lat: 41.7760, lon: -72.6800 }
+  - { name: Blue Hills, lat: 41.7990, lon: -72.7030 }
+  - { name: West Hartford Center, lat: 41.7620, lon: -72.7420 }
+  - { name: Elmwood, lat: 41.7470, lon: -72.7330 }
+  - { name: East Hartford, lat: 41.7820, lon: -72.6120 }
+  - { name: Old Wethersfield, lat: 41.7140, lon: -72.6530 }
+sources:
+  # ── library ──
+  - id: hfd_public_library_events
+    adapter: communico
+    name: Hartford Public Library events
+    data_type: events
+    homepage: https://hplct.libnet.info/events
+    expect_min_records: 30
+    notes: >-
+      Communico calendar JSON (eeventcaldata) linked from hplct.org; robots on hplct.libnet.info disallows only
+      /results* and /sitesearch*. ~35 events/day across the downtown library and neighborhood branches.
+    params:
+      base_url: https://hplct.libnet.info
+      horizon_days: 14
+      venue_label: Hartford Public Library
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Storytime: family.kids
+        Language: learning.language
+        Technology: learning.tech
+        STEM: learning.tech
+        Arts: arts.workshop
+        "Health & Wellness": fitness.yoga
+        Career: learning.networking
+        Business: learning.networking
+        "Reading & Writing": arts.books
+        Youth: family.kids
+        Family: family.kids
+
+  - id: hfd_wethersfield_library_events
+    adapter: ics
+    name: Wethersfield Library events
+    data_type: events
+    homepage: https://wethersfieldlibrary.libcal.com/calendar
+    expect_min_records: 5
+    min_interval_s: 10   # libcal robots Crawl-delay: 10
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the LibCal public calendar (baseCalendarId 15232) is almost entirely "LIBRARY CLOSED"
+      notices (39 of 46) plus virtual author talks that carry no LOCATION, so they would show as in-person
+      events; only 3 real in-person programs. Re-check if the library moves its programs onto this calendar.
+    params:
+      url: https://wethersfieldlibrary.libcal.com/ical_subscribe.php?src=p&cid=15232
+      horizon_days: 60
+      max_occurrences: 4
+      organizer: Wethersfield Library
+      default_category: arts.books
+      exclude_location: '\bLIBRARY CLOSED\b'
+      fallback_point: { lat: 41.7105, lon: -72.6620, label: "Wethersfield Library (approximate)" }
+
+  # ── university ──
+  - id: hfd_trinity_arts_events
+    adapter: livewhale
+    name: Trinity College — Cinestudio & Austin Arts Center (public arts calendar)
+    data_type: events
+    homepage: https://events.trincoll.edu/
+    expect_min_records: 5
+    notes: >-
+      LiveWhale JSON filtered to the two public-facing groups (the full feed is mostly student-club items).
+      robots disallows only ?replytocom.
+    params:
+      base_url: https://events.trincoll.edu
+      path: "/live/json/events/group/Cinestudio|Austin Arts Center/max/{max}"
+      max: 200
+      organizer: Trinity College   # no audience_filter: the two groups are public-facing by construction
+      fallback_point: { lat: 41.7470, lon: -72.6909, label: "Trinity College campus" }
+      default_category: arts.film
+      category_map:
+        Film: arts.film
+        Performance: arts.theater
+
+  # ── museums / culture (WP The Events Calendar REST) ──
+  - id: hfd_ct_museum_history
+    adapter: tribe
+    name: Connecticut Museum of Culture and History
+    data_type: events
+    homepage: https://chs.org/events/
+    expect_min_records: 5
+    params:
+      base_url: https://chs.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 3
+      organizer: Connecticut Museum of Culture and History
+      default_category: arts.museum
+
+  - id: hfd_mark_twain_house
+    adapter: tribe
+    name: The Mark Twain House & Museum
+    data_type: events
+    homepage: https://marktwainhouse.org/events/
+    expect_min_records: 3
+    params:
+      base_url: https://marktwainhouse.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 2
+      organizer: The Mark Twain House & Museum
+      default_category: arts.museum
+      category_map:
+        Ghost Tour: arts.museum
+        Workshops: arts.workshop
+        Writing Programs: arts.books
+
+  # ── concerts / big venues (carbonhouse /events/rss; robots allows) ──
+  - id: hfd_bushnell
+    adapter: rss_events
+    name: The Bushnell Center for the Performing Arts (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.bushnell.org/events
+    expect_min_records: 10
+    notes: Nonprofit performing-arts center (Belding, Mortensen, Autorino); also hosts the Hartford Symphony Orchestra.
+    params:
+      spectator_venue: true
+      url: https://www.bushnell.org/events/rss
+      horizon_days: 180
+      venue: {name: "The Bushnell", address: "166 Capitol Ave, Hartford, CT 06106"}
+      organizer: The Bushnell
+      default_category: music.concert
+      category_map:
+        Broadway: arts.theater
+        Comedy: nightlife.comedy
+        Symphony: music.classical
+        Concerts: music.concert
+        Dance: arts.theater
+        Family Shows: family.kids
+        Education: arts.workshop
+
+  - id: hfd_peoplesbank_arena
+    adapter: rss_events
+    name: PeoplesBank Arena (former XL Center; venue calendar)
+    data_type: events
+    cadence_hours: 12
+    homepage: https://www.peoplesbankarena.com/events
+    expect_min_records: 10
+    notes: Downtown arena — UConn basketball/hockey, Hartford Wolf Pack (AHL), touring shows. carbonhouse RSS.
+    params:
+      spectator_venue: true
+      url: https://www.peoplesbankarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "PeoplesBank Arena", address: "1 Civic Center Plaza, Hartford, CT 06103"}
+      organizer: PeoplesBank Arena
+      default_category: music.concert
+      category_map:
+        Wolf Pack: sports_watch.game
+        UConn: sports_watch.game
+
+  # ── comedy (venue JSON-LD) ──
+  - id: hfd_comedy_craft_beer
+    adapter: jsonld
+    name: Comedy Craft Beer (Wethersfield and other rooms)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 5   # robots Crawl-Delay: 5
+    homepage: https://www.comedycraftbeer.com/calendar
+    expect_min_records: 3
+    notes: >-
+      ComedyEvent JSON-LD on the calendar page. The promoter also books rooms across Connecticut; only shows
+      addressed in the Hartford area are kept (exclude_location negative lookahead).
+    params:
+      urls: [https://www.comedycraftbeer.com/calendar]
+      horizon_days: 120
+      organizer: Comedy Craft Beer
+      default_category: nightlife.comedy
+      exclude_location: '^(?!.*\b(Hartford|Wethersfield|Glastonbury|Rocky Hill|Newington|Bloomfield|Windsor)\b)'
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; no robots rule on /calendar*) ──
+  - id: hfd_trinity_bantams
+    adapter: ics
+    name: Trinity College Bantams athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://bantamsports.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://bantamsports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Trinity Bantams
+      force_category: sports_watch.game
+      exclude_location: '^(?!Hartford\b)'
+      fallback_point: { lat: 41.7470, lon: -72.6909, label: "Trinity College campus" }
+
+  - id: hfd_hartford_hawks
+    adapter: ics
+    name: University of Hartford Hawks athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://hartfordhawks.com/calendar
+    expect_min_records: 3
+    params:
+      url: https://hartfordhawks.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Hartford Hawks
+      force_category: sports_watch.game
+      exclude_location: '^(?!West Hartford\b)'
+      fallback_point: { lat: 41.7992, lon: -72.7158, label: "University of Hartford campus" }
+
+  - id: hfd_uconn_football_east_hartford
+    adapter: ics
+    name: UConn Huskies at Pratt & Whitney Stadium (East Hartford home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://uconnhuskies.com/calendar
+    expect_min_records: 0   # football only, in season
+    notes: >-
+      UConn's SIDEARM calendar, kept only for East Hartford (football at Rentschler Field). Arena games in Hartford
+      come from the PeoplesBank Arena feed; Storrs is outside the radius.
+    params:
+      url: https://uconnhuskies.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: UConn Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!East Hartford\b)'
+      fallback_point: { lat: 41.7598, lon: -72.6188, label: "Pratt & Whitney Stadium at Rentschler Field" }
+
+  # ── openings (CT DCP credential register; Socrata) ──
+  - id: hfd_ct_liquor_openings
+    adapter: socrata
+    name: Connecticut new on-premises liquor permits (Hartford area)
+    data_type: openings
+    homepage: https://data.ct.gov/d/ngch-56tr
+    expect_min_records: 1
+    notes: >-
+      "State Licenses and Credentials" (DCP eLicense). issuedate = first issue of the credential (renewals move
+      effectivedate, not issuedate; verified on long-lived credentials). Only on-premises restaurant/cafe/brew-pub/
+      hotel classes, business (non-individual) holders, not inactive/denied. The holder name is the legal entity
+      (no DBA column), so names that don't look like an organisation are never used as titles.
+    params:
+      domain: data.ct.gov
+      dataset: ngch-56tr
+      kind: opening
+      lookback_days: 60
+      where: >-
+        issuedate >= '{today}' AND type <> 'INDIVIDUAL' AND status NOT IN ('INACTIVE', 'DENIED', 'LAPSED')
+        AND upper(city) IN ('HARTFORD', 'WEST HARTFORD', 'EAST HARTFORD', 'WETHERSFIELD', 'NEWINGTON',
+        'BLOOMFIELD', 'WINDSOR', 'ROCKY HILL', 'GLASTONBURY', 'FARMINGTON')
+        AND credential IN ('RESTAURANT LIQUOR', 'CAFE LIQUOR', 'RESTAURANT WINE & BEER', 'CAFE WINE-BEER-CIDER',
+        'BREW PUB LIQUOR', 'RESTAURANT BEER', 'CONNECTICUT CRAFT CAFE LIQUOR', 'HOTEL LIQUOR',
+        'MANUFACTURER FOR BEER AND BREW PUB')
+      order: issuedate DESC
+      fields: { record_id: credentialid, title: businessname, start: issuedate, category: credential,
+                address: [address, city, state] }
+      entity_only_fields: [businessname]
+      title_template: "{title} — new liquor permit"
+      description_template: >-
+        License signal, not a confirmed opening date. The Connecticut Department of Consumer Protection first
+        issued a "{credential}" permit for this address on {date} (status: {status}).
+      category_rules:
+        - { match: "(?i)cafe|brew pub|craft cafe", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.ct.gov/d/ngch-56tr
+      extras: { signal: liquor_permit_issued }

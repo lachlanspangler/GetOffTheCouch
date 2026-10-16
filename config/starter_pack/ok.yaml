@@ -1,0 +1,32 @@
+# Official new-resident deadlines for Oklahoma. Every fact is quoted verbatim from source_url.
+# Service Oklahoma's pages say new residents must transfer their license and register vehicles but publish no
+# day count, so days_after_move is null for both (no deadline is invented).
+state: OK
+items:
+  - id: ok-drivers-license
+    title: "Transfer your driver license to Oklahoma"
+    kind: license
+    days_after_move: null
+    summary: "New residents who moved from another state need to transfer their license to an Oklahoma driver license."
+    action_url: https://oklahoma.gov/service/popular-services/out-of-state.html
+    evidence: "If you are a new resident of Oklahoma and have moved from another state, you will need to transfer your license to an Oklahoma Driver License, Learner Permit, or Commercial Driver License (CDL), and register your vehicles."
+    source_url: https://oklahoma.gov/service/popular-services/out-of-state.html
+    verified_at: 2026-10-16
+  - id: ok-vehicle-registration
+    title: "Register your vehicle in Oklahoma"
+    kind: vehicle
+    days_after_move: null
+    summary: "If you recently moved to Oklahoma from another state, you must register your vehicle."
+    action_url: https://oklahoma.gov/service/popular-services/vehicle-registration.html
+    evidence: "If you have recently moved to Oklahoma from another state, you must register your vehicle."
+    source_url: https://oklahoma.gov/service/popular-services/vehicle-registration.html
+    verified_at: 2026-10-16
+  - id: ok-voter-registration
+    title: "Register to vote in Oklahoma"
+    kind: voting
+    days_after_move: null
+    summary: "Voter registration applications must be received at least 25 days before an election to vote in it."
+    action_url: https://oklahoma.gov/elections/voter-registration/register-to-vote.html
+    evidence: "Voter Registration Applications can be accepted at any time, but must be received at least 25 days prior to an election in order to participate in that election."
+    source_url: https://oklahoma.gov/elections/voter-registration/register-to-vote.html
+    verified_at: 2026-10-16

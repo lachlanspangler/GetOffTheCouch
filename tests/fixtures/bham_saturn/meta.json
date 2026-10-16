@@ -1,0 +1,10 @@
+{
+  "unit": "bham_saturn@birmingham",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T22:22:00+00:00",
+  "files": {
+    "page_0.html": "https://www.saturnbirmingham.com/shows/robyn-hitchcock-november-21-2026-735609/",
+    "page_1.html": "https://www.saturnbirmingham.com/shows/heartchild-november-22-2026-745608/"
+  },
+  "note": "real Opendate show pages fetched live by `gotc run` 2026-10-16; only their JSON-LD blocks are kept (unmodified)"
+}

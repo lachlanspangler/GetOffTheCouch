@@ -1,0 +1,23 @@
+# Official new-resident deadlines for Alabama. Every fact is quoted verbatim from source_url.
+# Vehicle registration skipped: no revenue.alabama.gov page stating the new-resident registration window could
+# be found on 2026-10-16 (motor-vehicle division page, FAQs and sitemaps searched); add it once verified.
+state: AL
+items:
+  - id: al-drivers-license
+    title: "Get an Alabama driver license"
+    kind: license
+    days_after_move: 30
+    summary: "A new resident with a valid license from their previous state may drive on it for 30 days after becoming an Alabama resident."
+    action_url: https://www.alea.gov/dps/driver-license/driver-license-information
+    evidence: "A non-resident who has a valid driver license from the state of previous residence may drive without an Alabama license for 30 days after becoming a resident of the state."
+    source_url: https://www.alea.gov/dps/driver-license/driver-license-information
+    verified_at: 2026-10-16
+  - id: al-voter-registration
+    title: "Register to vote in Alabama"
+    kind: voting
+    days_after_move: null
+    summary: "Voter registration closes 14 days before each election and on election day."
+    action_url: https://www.sos.alabama.gov/alabama-votes/voter/register-to-vote
+    evidence: "Registration is closed during the fourteen days prior to an election and on election day."
+    source_url: https://www.sos.alabama.gov/alabama-votes/faqs
+    verified_at: 2026-10-16

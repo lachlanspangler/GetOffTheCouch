@@ -1,0 +1,276 @@
+# Jacksonville, FL (Duval County + the Beaches, Orange Park). Neighborhood points are approximate centroids, used
+# only for "near me" distance filters. Sources verified live 2026-10-16 (batch D onboarding; docs/SOURCES.md
+# "Batch D cities").
+# Not used (evidence in docs/SOURCES.md "Batch D cities"):
+#   - jaxpubliclibrary.org robots.txt answers 403 (= disallow all); the library's events live on its Communico
+#     tenant (jaxpubliclibrary.libnet.info, own robots.txt, allows /eeventcaldata), which is what we use.
+#   - Downtown Jacksonville (dtjax.com) runs The Events Calendar (721 events) but robots.txt has
+#     "Disallow: /*?*", and the REST API needs query parameters (start_date/page) → not used.
+#   - jaxevents.com (VyStar Veterans Memorial Arena, Times-Union Center/PAC, Ritz Theatre, ballpark, convention
+#     center) is run by Legends Global, whose Terms of Use forbid robots/spiders harvesting information.
+#   - Jack Rabbits / Underbelly: robots.txt disallows all. Cummer Museum: Cloudflare challenge.
+#   - City of Jacksonville (jacksonville.gov, events.jacksonville.gov): Kentico pages, no feed/JSON-LD.
+#   - No Socrata/ArcGIS events or business-license data from the City (catalog + ArcGIS search, 2026-10-16).
+slug: jacksonville
+name: Jacksonville
+state: FL
+timezone: America/New_York
+center: [30.3322, -81.6557]
+radius_km: 30
+aliases: [Jax, Duval, Duval County, Jacksonville Beach, Atlantic Beach, Neptune Beach, Ponte Vedra Beach, Ponte Vedra, Orange Park, Fleming Island, Mandarin, Arlington]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 30.3290, lon: -81.6600 }
+  - { name: Brooklyn / LaVilla, lat: 30.3220, lon: -81.6730 }
+  - { name: Springfield, lat: 30.3460, lon: -81.6560 }
+  - { name: San Marco, lat: 30.3050, lon: -81.6560 }
+  - { name: Riverside, lat: 30.3140, lon: -81.6880 }
+  - { name: Five Points, lat: 30.3160, lon: -81.6830 }
+  - { name: Avondale, lat: 30.2990, lon: -81.7030 }
+  - { name: Murray Hill, lat: 30.3080, lon: -81.7180 }
+  - { name: Ortega, lat: 30.2780, lon: -81.7070 }
+  - { name: Arlington, lat: 30.3420, lon: -81.5880 }
+  - { name: Southside / Town Center, lat: 30.2560, lon: -81.5260 }
+  - { name: Baymeadows, lat: 30.2210, lon: -81.5770 }
+  - { name: Mandarin, lat: 30.1610, lon: -81.6380 }
+  - { name: Northside, lat: 30.4300, lon: -81.6500 }
+  - { name: Atlantic Beach / Neptune Beach, lat: 30.3230, lon: -81.3980 }
+  - { name: Jacksonville Beach, lat: 30.2947, lon: -81.3931 }
+sources:
+  # ── library (Communico calendar JSON on the vendor host) ──
+  - id: jax_library_events
+    adapter: communico
+    name: Jacksonville Public Library events
+    data_type: events
+    homepage: https://jaxpubliclibrary.libnet.info/events
+    expect_min_records: 30
+    notes: >-
+      Undocumented Communico calendar JSON used by the library's own events page (page title "Events -
+      Jacksonville Public Library"); jaxpubliclibrary.libnet.info/robots.txt disallows only /results* and
+      /sitesearch*. One request per day of horizon. The library's main site (jaxpubliclibrary.org) is not touched.
+    params:
+      base_url: https://jaxpubliclibrary.libnet.info
+      horizon_days: 7
+      venue_label: Jacksonville Public Library
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Storytime: family.kids
+        "Authors, Books, and Writing": arts.books
+        Exhibits: arts.museum
+        "Music, Movies, and Dance": arts.film
+        Games: trivia_games.board_games
+        "Computers and Technology": learning.tech
+        "Arts and Crafts": arts.workshop
+        "Making and How-To": arts.workshop
+        Youth Program: family.kids
+        Early Childhood: family.kids
+        School Age: family.kids
+
+  # ── university (Localist; public-audience items only) ──
+  - id: unf_events
+    adapter: localist
+    name: University of North Florida events
+    data_type: events
+    homepage: https://events.unf.edu/
+    expect_min_records: 10
+    notes: >-
+      Localist API (robots Crawl-Delay 1; disallows only HTML ?types and old calendar pages). Server-side filter
+      type=41614676488110 = the calendar's "Event Audience: Public" filter (133 of 459 events in 30 days on
+      2026-10-16); without it the feed is mostly student-only rec-center classes.
+    params:
+      type: 41614676488110   # Event Audience → Public
+      fallback_point: { lat: 30.2696, lon: -81.5075, label: "UNF campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip student/faculty/staff-only items
+      base_url: https://events.unf.edu
+      horizon_days: 30
+      max_pages: 5
+      organizer: University of North Florida
+      default_category: learning.networking
+
+  # ── openings (Florida DBPR alcoholic-beverage license extract; csvfile adapter) ──
+  - id: fl_dbpr_openings_jacksonville
+    adapter: csvfile
+    name: Florida DBPR new on-premises liquor licenses (Duval + Clay)
+    data_type: openings
+    homepage: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+    expect_min_records: 5
+    notes: >-
+      Same statewide extract as fl_dbpr_openings_miami (bd4006lic.csv). Location County 26 = Duval (Jacksonville,
+      the Beaches) and 20 = Clay (Orange Park, Fleming Island), verified from the Location City column of the
+      CSV on 2026-10-16. St. Johns (65) is left out: most of it is outside the radius. Newness date = "Original
+      Licensure Date"; consumption-on-premises series only; "Owner Name" dropped by the privacy scrub.
+    params:
+      url: https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv
+      encoding: [utf-8-sig, cp1252]
+      kind: opening
+      lookback_days: 60
+      window: { field: original_licensure_date }
+      legal_name_copies: { dba: owner_name }
+      include: { profession: ["4006"], location_county: ["26", "20"] }
+      include_regex: { series: "COP$" }
+      exclude_regex: { location_city: "(?i)no city code", location_address_1: "(?i)^inactive|\\bescrow\\b" }
+      reject_future_start: true
+      fields: { record_id: license_number, title: [dba, dba_legal], start: original_licensure_date,
+                category: series, address: [location_address_1, location_address_2, location_city, location_state] }
+      entity_only_fields: [dba_legal]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Florida DBPR first licensed this business to serve alcohol
+        on the premises (series {series}) on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+      extras: { signal: liquor_license_original_licensure }
+
+  # ── concerts / comedy: venues' own public calendars ──
+  - id: florida_theatre_jax
+    adapter: rss_events
+    name: Florida Theatre (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.floridatheatre.com/events
+    expect_min_records: 20
+    notes: >-
+      Nonprofit historic theatre; carbonhouse /events/rss (robots allows). The feed starts with a blank line
+      before the XML declaration; safe_xml strips leading whitespace.
+    params:
+      spectator_venue: true
+      url: https://www.floridatheatre.com/events/rss
+      horizon_days: 180
+      venue: {name: "Florida Theatre", address: "128 E Forsyth St, Jacksonville, FL 32202"}
+      organizer: Florida Theatre
+      default_category: music.concert
+      category_map:   # ev:type values seen in the live feed
+        Comedy: nightlife.comedy
+        Family Shows: family.kids
+        Theater: arts.theater
+        Dance: arts.theater
+        Concerts: music.concert
+  - id: ponte_vedra_concert_hall
+    adapter: rss_events
+    name: Ponte Vedra Concert Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.pvconcerthall.com/events
+    expect_min_records: 10
+    notes: St. Johns County Cultural Events Division venue (~28 km from downtown); carbonhouse /events/rss, robots allows all.
+    params:
+      spectator_venue: true
+      url: https://www.pvconcerthall.com/events/rss
+      horizon_days: 180
+      venue: {name: "Ponte Vedra Concert Hall", address: "1050 A1A N, Ponte Vedra Beach, FL 32082"}
+      organizer: Ponte Vedra Concert Hall
+      default_category: music.concert
+      category_map:
+        Comedy: nightlife.comedy
+        Community Event: community.festival
+        Concert: music.concert
+  - id: comedy_zone_jax
+    adapter: jsonld
+    name: Comedy Zone Jacksonville (club calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.comedyzone.com/
+    expect_min_records: 20
+    notes: >-
+      The homepage embeds one schema.org Place JSON-LD with every upcoming show (Event nodes, UTC start times)
+      under a non-standard "Events" key. robots.txt has no rules; no terms page linked.
+    params:
+      urls: [https://www.comedyzone.com/]
+      horizon_days: 120
+      venue: {name: Comedy Zone Jacksonville, address: "3130 Hartley Rd, Jacksonville, FL 32257"}
+      organizer: Comedy Zone Jacksonville
+      default_category: nightlife.comedy
+
+  # ── spectator sports (team/college schedules; home games only) ──
+  - id: unf_athletics
+    adapter: ics
+    name: UNF Ospreys athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://unfospreys.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM calendar.ics (robots allows); only LOCATION starting "Jacksonville" (home) is kept.
+    params:
+      url: https://unfospreys.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: UNF Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!Jacksonville\b)'
+      fallback_point: { lat: 30.2696, lon: -81.5075, label: "UNF campus" }
+  - id: ju_athletics
+    adapter: ics
+    name: Jacksonville University Dolphins athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://judolphins.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM calendar.ics (robots allows); only LOCATION starting "Jacksonville" (home) is kept.
+    params:
+      url: https://judolphins.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: JU Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!Jacksonville\b)'
+      fallback_point: { lat: 30.3530, lon: -81.6060, label: "Jacksonville University campus" }
+  - id: jax_icemen
+    adapter: ics
+    name: Jacksonville Icemen (ECHL hockey, home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://jacksonvilleicemen.com/
+    expect_min_records: 3
+    notes: >-
+      The team's published home-schedule subscription (schedule-home.ics). SUMMARY is the promo-night name
+      ("Halloween"); the matchup is in DESCRIPTION.
+    params:
+      url: https://jacksonvilleicemen.com/schedule-home.ics
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Jacksonville Icemen
+      force_category: sports_watch.game
+
+  # ── volunteering (Galaxy Digital; tenant title "Needs on United Way of Northeast Florida") ──
+  - id: uw_nefl_volunteer
+    adapter: galaxydigital
+    name: United Way of Northeast Florida volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://uwnefl.galaxydigital.com/need/
+    expect_min_records: 3
+    params:
+      base_url: https://uwnefl.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+
+  # ── leagues ──
+  - id: volo_jacksonville
+    adapter: volo
+    name: Volo Sports Jacksonville
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/jacksonville?category=leagues
+    expect_min_records: 0   # market listed in Volo's sitemap but showed "0 ways to play" on 2026-10-16 (between seasons)
+    params:
+      base_url: https://www.volosports.com
+      city_slug: jacksonville
+      max_pages: 3
+
+  # ── trivia ──
+  - id: teamtrivia_jacksonville
+    adapter: teamtrivia
+    name: Team Trivia (Jacksonville)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-jacksonville-fl/
+    expect_min_records: 1
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the region page exists but lists "0 venues, 0 nights a week" (no Team Trivia games in
+      Jacksonville right now). Re-enable when the region page lists venues.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { jacksonville: jacksonville-fl }
+      max_venues: 60

@@ -1,0 +1,226 @@
+# Charlotte, NC (Mecklenburg County). Neighborhood points are approximate centroids, used only for "near me"
+# distance filters. Sources verified live 2026-10-16 (batch D onboarding; see docs/SOURCES.md "Batch D cities").
+# Gaps (checked 2026-10-16): no openings data (no city business license in NC; NC ABC permit notices are an
+# e-mail list for local officials only; nothing on the city/county ArcGIS orgs), no volunteer feed (Hands On
+# Charlotte's Salesforce calendar still shows 2015; Galaxy Digital guesses all "Bad Domain"), no Volo market,
+# no Challenge shows nearby. Neighborhood Theatre and Middle C Jazz serve Cloudflare challenges; Queens
+# University and CPCC event pages are robots-disallowed; Bojangles Coliseum / Ovens Auditorium (boplex.com)
+# publish no feed or JSON-LD.
+slug: charlotte
+name: Charlotte
+state: NC
+timezone: America/New_York
+center: [35.2271, -80.8431]
+radius_km: 25
+aliases: [Queen City, Mecklenburg County, Matthews, Mint Hill, Pineville, Huntersville, Belmont, Mount Holly, Indian Trail]
+neighborhoods:  # approximate centroids
+  - { name: Uptown, lat: 35.2271, lon: -80.8431 }
+  - { name: South End, lat: 35.2125, lon: -80.8590 }
+  - { name: NoDa, lat: 35.2470, lon: -80.8020 }
+  - { name: Plaza Midwood, lat: 35.2210, lon: -80.8100 }
+  - { name: Elizabeth, lat: 35.2150, lon: -80.8250 }
+  - { name: Dilworth, lat: 35.2080, lon: -80.8500 }
+  - { name: Myers Park, lat: 35.1880, lon: -80.8270 }
+  - { name: Fourth Ward, lat: 35.2330, lon: -80.8430 }
+  - { name: Optimist Park, lat: 35.2400, lon: -80.8240 }
+  - { name: Camp North End, lat: 35.2470, lon: -80.8340 }
+  - { name: Wesley Heights, lat: 35.2330, lon: -80.8650 }
+  - { name: Cotswold, lat: 35.1830, lon: -80.7960 }
+  - { name: SouthPark, lat: 35.1530, lon: -80.8290 }
+  - { name: University City, lat: 35.3070, lon: -80.7350 }
+  - { name: Ballantyne, lat: 35.0530, lon: -80.8490 }
+sources:
+  # ── library ──
+  - id: clt_cmlibrary_events
+    adapter: bibliocommons
+    name: Charlotte Mecklenburg Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://cmlibrary.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt; code `cmlibrary` from the cmlibrary.org footer
+      link). Countywide system; branches in Cornelius and Davidson (outside the radius) are dropped by `cities`.
+    params:
+      library: cmlibrary
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Charlotte Mecklenburg Library
+      cities: [Charlotte, Matthews, Mint Hill, Huntersville, Pineville]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytime: family.kids
+        Book Club: arts.books
+        Books/Literature: arts.books
+        Art Education: arts.workshop
+        STEAM: learning.tech
+        Gaming: trivia_games.board_games
+        History: arts.museum
+        Babies (0-2): family.kids
+        Toddlers (2-3): family.kids
+        Preschool (3-5): family.kids
+        School Age (5-11): family.kids
+
+  # ── university ──
+  - id: clt_uncc_events
+    adapter: localist
+    name: UNC Charlotte events
+    data_type: events
+    homepage: https://campusevents.charlotte.edu/
+    expect_min_records: 20
+    notes: >-
+      Localist API (robots Crawl-Delay 1; /api/ allowed). Charlotte 49ers games are dropped here because
+      clt_49ers_athletics carries them with home/away information.
+    params:
+      fallback_point: { lat: 35.3076, lon: -80.7351, label: "UNC Charlotte main campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://campusevents.charlotte.edu
+      horizon_days: 30
+      max_pages: 5
+      organizer: UNC Charlotte
+      exclude_location: '\bCharlotte 49ers (Men|Women)'
+      default_category: learning.networking
+
+  - id: clt_49ers_athletics
+    adapter: ics
+    name: Charlotte 49ers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://charlotte49ers.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics; robots allows it). Only events whose
+      LOCATION starts with "Charlotte" are kept (away/neutral games skipped).
+    params:
+      url: https://charlotte49ers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Charlotte 49ers
+      exclude_location: '^(?!Charlotte\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 35.3076, lon: -80.7351, label: "UNC Charlotte main campus" }
+
+  # ── city open data ──
+  - id: clt_cmpd_community_events
+    adapter: arcgis
+    name: CMPD community events calendar (Charlotte-Mecklenburg Police)
+    data_type: events
+    homepage: https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDEvents_tb/MapServer/0
+    expect_min_records: 10
+    notes: >-
+      City of Charlotte ArcGIS Server table (listed on data.charlottenc.gov, org 9Nl857LBlQVyzq54): police
+      division community meetings, outreach and community-service events. Self-hosted server whose robots.txt
+      is a 404 (no rules), so robots is honoured. DEPARTMENTCONTACTPHONE is dropped by the privacy scrub.
+    params:
+      respect_robots: true
+      service_url: https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDEvents_tb/MapServer/0
+      format: json
+      where: "EVENTSTARTDATETIME >= DATE '{today_date}' AND CANCELLED = 'N' AND VIRTUAL = 'N'"
+      order_by: EVENTSTARTDATETIME
+      fields: { record_id: OBJECTID, title: EVENTDESCRIPTION, start: EVENTSTARTDATETIME, end: EVENTENDDATETIME,
+                category: CATEGORY, description: NOTES, venue: LOCATIONDESCRIPTION,
+                address: [STREETNUM, STREETDIR, STREETNAME, STREETTYPE], organizer: DEPARTMENTDIVISION }
+      title_template: "{title} (CMPD {DIVISION} Division)"
+      default_category: community.neighborhood
+      free: true
+      default_url: https://www.charlottenc.gov/CMPD
+
+  # ── concerts / big venues (carbonhouse /events/rss; robots allows) ──
+  - id: clt_spectrum_center
+    adapter: rss_events
+    name: Spectrum Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.spectrumcentercharlotte.com/events
+    expect_min_records: 10
+    params:
+      spectator_venue: true
+      url: https://www.spectrumcentercharlotte.com/events/rss
+      horizon_days: 180
+      venue: {name: "Spectrum Center", address: "333 E Trade St, Charlotte, NC 28202"}
+      organizer: Spectrum Center
+      default_category: music.concert
+      category_map:   # title keywords
+        "Hornets vs": sports_watch.game
+        "Charlotte Hornets": sports_watch.game
+
+  - id: clt_blumenthal_arts
+    adapter: rss_events
+    name: Blumenthal Arts (Belk, Knight, Booth, Stage Door theaters)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.blumenthalarts.org/events
+    expect_min_records: 30
+    notes: "Nonprofit performing-arts center carbonhouse events RSS (/events/rss with the ev module); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.blumenthalarts.org/events/rss
+      horizon_days: 150
+      venue: {name: Blumenthal Arts}   # no default address: off-site shows (breweries, churches) keep their own place name
+      venues:
+        "Knight Theater": "430 S Tryon St, Charlotte, NC 28202"
+        "Belk Theater": "130 N Tryon St, Charlotte, NC 28202"
+        "Booth Playhouse": "130 N Tryon St, Charlotte, NC 28202"
+        "Stage Door Theater": "130 N Tryon St, Charlotte, NC 28202"
+      organizer: Blumenthal Arts
+      default_category: music.concert
+      classify_description: false
+      category_map:   # ev:type labels seen in the live feed
+        Broadway at Blumenthal: arts.theater
+        Theater: arts.theater
+        Dance: arts.theater
+        Comedy: nightlife.comedy
+        Family: family.kids
+        Speakers: learning.networking
+        Concerts: music.concert
+
+  - id: clt_amos_southend
+    adapter: jsonld
+    name: Amos' Southend (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://amossouthend.com/
+    expect_min_records: 8
+    notes: "Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link (price 0 means unknown)."
+    params:
+      urls: [https://amossouthend.com/]
+      follow: 'amossouthend\.com/event/[^/]+/amos-southend[^/]*/charlotte-north-carolina/$'
+      max_follow: 40
+      venue: {name: "Amos' Southend", address: "1423 S Tryon St, Charlotte, NC 28203"}
+      organizer: Amos' Southend
+      default_category: music.concert
+
+  - id: clt_comedy_zone
+    adapter: jsonld
+    name: The Comedy Zone Charlotte (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.cltcomedyzone.com/
+    expect_min_records: 15
+    notes: >-
+      SeatEngine club site (like Cap City Comedy); the homepage carries one Event JSON-LD record per show
+      nested in the Place block. robots.txt allows everything (its only rules are commented out). One page per run.
+    params:
+      urls: [https://www.cltcomedyzone.com/]
+      horizon_days: 60
+      venue: {name: "The Comedy Zone - Charlotte", address: "900 NC Music Factory Blvd, Charlotte, NC 28206"}
+      organizer: The Comedy Zone Charlotte
+      default_category: nightlife.comedy
+      category_map: {Event: nightlife.comedy}   # every record is a stand-up show
+
+  # ── trivia ──
+  - id: teamtrivia_charlotte
+    adapter: teamtrivia
+    name: Team Trivia (Charlotte)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-charlotte/
+    expect_min_records: 10
+    notes: Region page → venue pages with the next dated games in JSON-LD (see teamtrivia_denver).
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { charlotte: charlotte }
+      max_venues: 60

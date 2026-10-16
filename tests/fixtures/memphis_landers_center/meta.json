@@ -1,0 +1,6 @@
+{
+  "unit": "memphis_landers_center@memphis",
+  "recorded_at": "2026-10-16T22:35:22+00:00",
+  "payloads": 1,
+  "note": "real response recorded with gotc record; trimmed to the first 5 <item>s by hand. The feed starts with a newline before <?xml (carbonhouse variant)"
+}

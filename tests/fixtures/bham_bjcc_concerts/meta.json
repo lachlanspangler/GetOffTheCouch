@@ -1,0 +1,9 @@
+{
+  "unit": "bham_bjcc_concerts@birmingham",
+  "adapter": "jsonld",
+  "recorded_at": "2026-10-16T22:22:00+00:00",
+  "files": {
+    "page_0.html": "https://www.bjcc.org/contact/news/mec-category/concerts/"
+  },
+  "note": "real BJCC Modern Events Calendar category page fetched live by `gotc run` 2026-10-16; only the first 5 Event JSON-LD blocks are kept (each unmodified)"
+}
