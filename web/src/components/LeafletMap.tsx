@@ -1,6 +1,7 @@
 // Leaflet, lazy-loaded (it's the heaviest dependency; most visits never open the map).
 // Tiles: OpenStreetMap standard tiles with attribution, per the OSMF tile usage policy (light use).
 import { useEffect, useRef } from "preact/hooks";
+import type * as L from "leaflet";
 import type { Map as LMap } from "leaflet";
 
 export interface Pin {
@@ -36,6 +37,11 @@ export function LeafletMap({
     (async () => {
       const L = (await import("leaflet")).default;
       await import("leaflet/dist/leaflet.css");
+      if (pins.length > 150) {
+        (window as unknown as { L: unknown }).L = L; // the plugin attaches to the global L
+        await import("leaflet.markercluster");
+        await import("leaflet.markercluster/dist/MarkerCluster.css");
+      }
       if (cancelled || !el.current) return;
       if (!map.current) {
         map.current = L.map(el.current, { zoomControl: true, attributionControl: true, preferCanvas: true }).setView(center, zoom);
@@ -44,7 +50,15 @@ export function LeafletMap({
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map.current);
       }
-      const group = L.featureGroup();
+      const cluster = pins.length > 150 && typeof (L as unknown as { markerClusterGroup?: unknown }).markerClusterGroup === "function";
+      const group: L.FeatureGroup = cluster
+        ? (L as unknown as { markerClusterGroup: (o: object) => L.FeatureGroup }).markerClusterGroup({
+            showCoverageOnHover: false,
+            maxClusterRadius: 45,
+            iconCreateFunction: (c: { getChildCount: () => number }) =>
+              L.divIcon({ html: `<span>${c.getChildCount()}</span>`, className: "pin-cluster", iconSize: L.point(34, 34) }),
+          })
+        : L.featureGroup();
       for (const p of pins) {
         const m = L.circleMarker([p.lat, p.lon], {
           radius: 7,
