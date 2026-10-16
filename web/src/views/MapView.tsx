@@ -6,13 +6,14 @@ import { LeafletMap, type Pin } from "../components/LeafletMap";
 import { useApp } from "../lib/ctx";
 import { collapseSeries } from "../lib/filters";
 import { count } from "../lib/format";
+import { displayPlace, displayTitle, isLeadable, isUnderway } from "../lib/curate";
 import { fmtDay, fmtTime } from "../lib/time";
 import type { Event } from "../lib/types";
 
 export function MapView({ events }: { events: Event[] }) {
   const { feed } = useApp();
   const [hl, setHl] = useState<string | null>(null);
-  const items = useMemo(() => collapseSeries(events).map((g) => g.event), [events]);
+  const items = useMemo(() => collapseSeries(events.filter((e) => e.kind !== "opening" && isLeadable(e) && !isUnderway(e, new Date()))).map((g) => g.event), [events]);
   const pins = useMemo<Pin[]>(
     () =>
       items
@@ -22,7 +23,7 @@ export function MapView({ events }: { events: Event[] }) {
           lat: e.location.lat as number,
           lon: e.location.lon as number,
           hue: 0,
-          title: e.title,
+          title: displayTitle(e.title),
           href: eventHref(e, feed?.city),
           approx: (e.location.geocode_confidence ?? 1) < 0.5,
           sub: `${e.kind === "opening" ? "New license" : `${fmtDay(e.start, e.timezone)} · ${fmtTime(e.start, e.timezone)}`}${e.location.venue_name ? ` · ${e.location.venue_name}` : ""}`,
@@ -48,7 +49,7 @@ export function MapView({ events }: { events: Event[] }) {
           </p>
           <ul class="rows">
             {listed.map((e) => (
-              <CompactRow key={e.id} e={e} hl={hl === e.id} onHover={setHl} time={e.kind === "opening" ? "New" : fmtDay(e.start, e.timezone)} sub={e.location.venue_name ?? undefined} />
+              <CompactRow key={e.id} e={e} hl={hl === e.id} onHover={setHl} time={new Date(e.start) < new Date() ? "Ongoing" : fmtDay(e.start, e.timezone)} sub={displayPlace(e, feed.city_name) ?? undefined} />
             ))}
           </ul>
           {items.length > listed.length && <p class="small muted" style={{ marginTop: "8px" }}>Showing the first {listed.length}. Narrow the filters to see the rest.</p>}
@@ -56,6 +57,8 @@ export function MapView({ events }: { events: Event[] }) {
         <div class="map-pane">
           <LeafletMap
             center={feed.center as [number, number]}
+            zoom={12}
+            fit={pins.length <= 40}
             pins={pins}
             highlight={hl}
             label={`Map of ${count(pins.length)} events in ${feed.city_name}. The list has the same events.`}

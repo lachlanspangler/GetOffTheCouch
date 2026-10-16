@@ -2,7 +2,7 @@
 // provenance story next to the call to action.
 import { useEffect, useRef, useState } from "preact/hooks";
 import { Art } from "../components/Art";
-import { CompactRow, isDateOnly, StatusLine, Swatch } from "../components/EventRow";
+import { CompactRow, eventHref, isDateOnly, StatusLine, Swatch } from "../components/EventRow";
 import { Icon } from "../components/Icon";
 import { LeafletMap } from "../components/LeafletMap";
 import { Sparkline } from "../components/Sparkline";
@@ -21,6 +21,7 @@ import { age, fmtDateLong, fmtDay, fmtTime, fmtTimeRange, relative } from "../li
 import type { Event } from "../lib/types";
 import { REPO } from "../components/Footer";
 import { whyThis } from "../lib/why";
+import { displayPlace, displayTitle, displayVenue } from "../lib/curate";
 
 const METHOD_WORD: Record<string, string> = {
   reported: "reported by the source",
@@ -146,9 +147,9 @@ export function EventPage({ e }: { e: Event }) {
           <header class="event-head">
             <Art id={e.id} family={familyOf(e.category)} ratio="21/9" />
             <p class="cat"><Swatch category={e.category} /> {catLabel(e.category, index.taxonomy)}</p>
-            <h1 ref={h1} tabIndex={-1}>{e.title}</h1>
-            {(e.location.venue_name || e.location.neighborhood) && (
-              <p class="where">{[e.location.venue_name, e.location.neighborhood].filter(Boolean).join(" · ")}</p>
+            <h1 ref={h1} tabIndex={-1}>{displayTitle(e.title)}</h1>
+            {(displayPlace(e, feed?.city_name) || e.location.neighborhood) && (
+              <p class="where">{[displayPlace(e, feed?.city_name), e.location.neighborhood].filter(Boolean).join(" · ")}</p>
             )}
           </header>
           <div class="event-sections">
@@ -181,7 +182,7 @@ export function EventPage({ e }: { e: Event }) {
                     </dd>
                   </div>
                 )}
-                {e.attendance && (
+                {e.attendance && e.attendance.confidence >= 0.45 && (
                   <div>
                     <dt>Expected crowd</dt>
                     <dd>
@@ -195,7 +196,7 @@ export function EventPage({ e }: { e: Event }) {
                     <dt>Meeting people</dt>
                     <dd>
                       {e.social.score >= 0.75 ? "Very good" : e.social.score >= 0.5 ? "Good" : "So-so"} for meeting people
-                      {!!e.social.reasons?.length && <span class="how">{e.social.reasons.join(". ")}.</span>}
+                      {!!e.social.reasons?.length && <span class="how">{e.social.reasons.map((r) => r.charAt(0).toUpperCase() + r.slice(1)).join(". ")}.</span>}
                     </dd>
                   </div>
                 )}
@@ -208,7 +209,7 @@ export function EventPage({ e }: { e: Event }) {
                 {e.recurrence && (
                   <div>
                     <dt>Repeats</dt>
-                    <dd>{e.recurrence}</dd>
+                    <dd>{e.recurrence.replace(/\b(am|pm)\b/g, (m) => m.toUpperCase())}</dd>
                   </div>
                 )}
               </dl>
@@ -241,7 +242,7 @@ export function EventPage({ e }: { e: Event }) {
                 )}
               </section>
             )}
-            {(!!e.offers?.length || e.price_trend || e.tickets?.pct_left) && (
+            {((e.offers ?? []).some((o) => o.price_min != null || o.listing_count != null) || (e.price_trend && (e.price_trend.window_hours ?? 0) >= 24) || e.tickets?.pct_left) && (
               <section aria-labelledby="prices">
                 <h2 id="prices">Prices</h2>
                 {!!e.offers?.length && (
@@ -290,8 +291,10 @@ export function EventPage({ e }: { e: Event }) {
             {seriesEvents.length > 0 && (
               <section aria-labelledby="dates">
                 <h2 id="dates">More dates</h2>
-                <ul class="rows">
-                  {seriesEvents.slice(0, 8).map((x) => <CompactRow key={x.id} e={x} time={fmtDay(x.start, tz)} />)}
+                <ul class="chips" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {seriesEvents.slice(0, 12).map((x) => (
+                    <li key={x.id}><a class="chip" href={eventHref(x, city)}>{fmtDay(x.start, tz)}{isDateOnly(x) ? "" : `, ${fmtTime(x.start, tz)}`}</a></li>
+                  ))}
                 </ul>
               </section>
             )}
@@ -322,7 +325,7 @@ export function EventPage({ e }: { e: Event }) {
               <section aria-labelledby="sim">
                 <h2 id="sim">Similar this week</h2>
                 <ul class="rows">
-                  {sims.map((x) => <CompactRow key={x.id} e={x} time={`${fmtDay(x.start, tz)}`} sub={x.location.venue_name ?? undefined} />)}
+                  {sims.map((x) => <CompactRow key={x.id} e={x} time={`${fmtDay(x.start, tz)}`} sub={displayPlace(x, feed?.city_name) ?? undefined} />)}
                 </ul>
               </section>
             )}
@@ -343,12 +346,12 @@ export function EventPage({ e }: { e: Event }) {
                   )}
                 </dd>
               </div>
-              {(e.location.venue_name || e.location.address) && (
+              {(displayVenue(e, feed?.city_name) || e.location.address) && (
                 <div>
                   <dt>Where</dt>
                   <dd>
-                    {e.location.venue_name ?? e.location.address}
-                    {e.location.venue_name && e.location.address && <span class="small secondary" style={{ display: "block" }}>{e.location.address}</span>}
+                    {displayVenue(e, feed?.city_name) ?? displayPlace(e, feed?.city_name)}
+                    {displayVenue(e, feed?.city_name) && e.location.address && <span class="small secondary" style={{ display: "block" }}>{e.location.address}</span>}
                   </dd>
                 </div>
               )}
@@ -356,7 +359,7 @@ export function EventPage({ e }: { e: Event }) {
                 <dt>Price</dt>
                 <dd>
                   {sig.price ? <strong class={sig.price === "Free" ? "free" : ""}>{sig.price}</strong> : <span class="secondary">Not listed by the source</span>}
-                  {e.price.note && <span class="small secondary"> · {e.price.note}</span>}
+                  {e.price.note && !(e.price.is_free && /free/i.test(e.price.note)) && <span class="small secondary"> · {e.price.note}</span>}
                   {sellers.size > 0 && sig.price && sig.price !== "Free" && <span class="small secondary" style={{ display: "block" }}>via {[...sellers].join(", ")}</span>}
                 </dd>
               </div>
@@ -370,7 +373,7 @@ export function EventPage({ e }: { e: Event }) {
               )}
               <div class="row">
                 <SaveToggle e={e} />
-                <button class="btn btn-secondary" onClick={ics}><Icon name="calendarPlus" size={16} /> Calendar</button>
+                <button class="btn btn-secondary" onClick={ics}><Icon name="calendarPlus" size={16} /> Add to calendar</button>
               </div>
               <button class="btn btn-quiet" onClick={doShare}><Icon name="share" size={16} /> {shareMsg ?? "Share"}</button>
               {(e.registration?.closes_at && e.registration.method !== "derived") || (e.registration?.opens_at && new Date(e.registration.opens_at) > now) ? (

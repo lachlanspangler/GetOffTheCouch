@@ -47,7 +47,8 @@ sources:
       max_pages: 3
       fields: { record_id: event_id, title: event_name, start: start_date_time, end: end_date_time,
                 address: event_location, area: event_borough, category: event_type, organizer: event_agency }
-      exclude_title: ["(?i)\\b(closed|closure|wedding|contract work|filming|construction|private|rain date)\\b"]
+      exclude_title: ["(?i)\\b(closed|closure|wedding|contract work|filming|construction|private|rain date)\\b",
+                      "(?i)\\b(mobile (medical|unit|van|clinic|showroom)|truck|idnyc|outreach|office|sail structure|after ?school|sampling|promotion|activation|enrollment|vaccin\\w*|screening|testing site)\\b"]
       category_map:
         Block Party: community.block_party
         Street Event: community.block_party

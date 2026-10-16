@@ -48,7 +48,7 @@ function Wizard({ initial, onDone, events }: { initial: Profile; onDone: (p: Pro
                   <label class="pick" key={f}>
                     <input type="checkbox" checked={p.interests.includes(f)} onChange={() => setP({ ...p, interests: toggle(p.interests, f) })} />
                     <span class="lbl"><span class="swatch" style={{ "--art-h": ART_HUE[familyOf(f)] }} aria-hidden="true" />{index.taxonomy[f].label}</span>
-                    <span class="ex">{children(index.taxonomy, f).slice(0, 3).map((c) => index.taxonomy[c].label).join(", ")}</span>
+                    <span class="ex">{children(index.taxonomy, f).filter((c) => !/furry/i.test(index.taxonomy[c].label)).slice(0, 3).map((c) => index.taxonomy[c].label).join(", ")}</span>
                     <Icon name="check" size={16} class="tick" />
                   </label>
                 ))}

@@ -20,9 +20,10 @@ const STATE: Record<string, { label: string; cls: string; help: string }> = {
 function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) {
   const { now } = useApp();
   const rel = units.some((u) => u.reliability?.score != null);
+  const notes = units.some((u) => u.reason || u.last_error);
   return (
     <div class="table-wrap" tabIndex={0} role="region" aria-label="Sources">
-      <table class="data-table">
+      <table class="data-table stack-sm">
         <thead>
           <tr>
             <th scope="col">Source</th>
@@ -30,7 +31,7 @@ function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) 
             <th scope="col">Last success</th>
             <th scope="col">Listings</th>
             {rel && <th scope="col" title="Share of successful runs over 30 days, discounted by rejected records">Reliability</th>}
-            <th scope="col">Note</th>
+            {notes && <th scope="col">Note</th>}
           </tr>
         </thead>
         <tbody>
@@ -42,11 +43,11 @@ function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) 
                   <strong>{u.name}</strong>
                   <div class="mono">{u.source_id}{showCity ? ` · ${u.city}` : ""}</div>
                 </td>
-                <td><span class={`state ${st.cls}`} title={st.help}>{st.label}</span></td>
-                <td class="num">{u.last_success_at ? age(u.last_success_at, now) : "Never"}{u.stale && u.state !== "disabled" && <div class="small tone-caution">Behind schedule</div>}</td>
-                <td class="num">{count(u.records)}</td>
+                <td data-label="Status"><span class={`state ${st.cls}`} title={st.help}>{st.label}</span></td>
+                <td class="num" data-label="Last success">{u.last_success_at ? age(u.last_success_at, now) : "Never"}{u.stale && u.state !== "disabled" && <div class="small tone-caution">Behind schedule</div>}</td>
+                <td class="num" data-label="Listings">{count(u.records)}</td>
                 {rel && <td class="num">{u.reliability?.score != null ? `${Math.round(u.reliability.score)}%` : "Not enough runs"}</td>}
-                <td class="small secondary">{u.reason ?? u.last_error ?? ""}</td>
+                {notes && <td class="small secondary" data-label="Note">{u.reason ?? u.last_error ?? ""}</td>}
               </tr>
             );
           })}
@@ -85,7 +86,7 @@ export function Health() {
             <span>
               {behind.length
                 ? `${behind.length} of ${active.length} ${where}sources are behind. Their last good listings are still shown, marked as possibly out of date.`
-                : `All ${active.length} ${where}sources are up to date.`}
+                : `All ${active.length} ${where}sources are up to date: each one refreshed on its own schedule, usually every 6 to 24 hours.`}
             </span>
           </p>
           <p class="small muted" style={{ marginTop: "6px", marginLeft: "32px" }}>Last full rebuild: {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)} ({age(index.generated_at, now)})</p>

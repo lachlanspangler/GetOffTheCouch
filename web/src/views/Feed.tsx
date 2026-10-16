@@ -16,6 +16,7 @@ import { closesPhrase } from "../lib/signals";
 import { age, dayKey, dayHeader, weekendRange } from "../lib/time";
 import type { Event } from "../lib/types";
 import { familyOf } from "../lib/art";
+import { isAdminRole, isCampusOnly, isKids, isLeadable, isUnderway } from "../lib/curate";
 
 const PAGE = 50;
 
@@ -36,7 +37,8 @@ function DayGroups({ events, limit, hide, onMore }: { events: Event[]; limit: nu
     const k = new Date(g.event.start) < now ? dayKey(now, tz) : dayKey(g.event.start, tz);
     byDay.set(k, [...(byDay.get(k) ?? []), g]);
   }
-  for (const gs of byDay.values()) gs.sort((a, b) => Number(isAllDay(a.event)) - Number(isAllDay(b.event)) || a.event.start.localeCompare(b.event.start));
+  const t = (e: Event) => new Date(e.start).getTime();
+  for (const gs of byDay.values()) gs.sort((a, b) => Number(isAllDay(a.event)) - Number(isAllDay(b.event)) || t(a.event) - t(b.event));
   return (
     <>
       {[...byDay.entries()].map(([day, gs]) => {
@@ -76,16 +78,20 @@ function More({ total, shown, onMore }: { total: number; shown: number; onMore: 
 function ClosingSoon({ events, n = 4 }: { events: Event[]; n?: number }) {
   const { feed, now } = useApp();
   if (!feed) return null;
-  const items = deadlines(events, now).filter((d) => !d.derived && d.kind === "closes" && d.hours <= 24 * 14 && !(d.event.tags ?? []).includes("kids_teens"));
+  const items = deadlines(events, now).filter((d) => !d.derived && d.kind === "closes" && d.hours <= 24 * 14 && isLeadable(d.event));
   const seen = new Set<string>();
   const uniq = items.filter((d) => (seen.has(d.event.series_id ?? d.event.id) ? false : (seen.add(d.event.series_id ?? d.event.id), true))).slice(0, n);
   if (!uniq.length) return null;
   return (
-    <ul class="rows">
+    <section>
+      <h2>Closing soon</h2>
+      <ul class="rows">
       {uniq.map((d) => (
         <CompactRow key={d.event.id} e={d.event} time="" sub={`Registration closes ${closesPhrase(d.at, feed.timezone, now)}`} />
       ))}
-    </ul>
+      </ul>
+      <p class="small" style={{ marginTop: "10px" }}><a class="more-link" href={build({ city: feed.city, view: "deadlines" })}>All deadlines →</a></p>
+    </section>
   );
 }
 
@@ -96,12 +102,18 @@ export function Feed({ events }: { events: Event[] }) {
   const f = route.filters;
   const hub = route.hub ? HUB_BY_SLUG.get(route.hub) : undefined;
   const unfiltered = !hub && !f.q && activeCount(f) === 0 && f.when === DEFAULT_FILTERS.when;
-  const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events, labels, now, 3) : []), [feed, unfiltered, now]);
+  const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events.filter(isLeadable), labels, now, 3) : []), [feed, unfiltered, now]);
   if (!feed) return <div class="container"><SkeletonRows /></div>;
   const cov = coverage(feed, index.taxonomy, now);
-  const openings = events.filter((e) => e.kind === "opening");
-  const ongoing = events.filter((e) => e.kind !== "opening" && isOngoing(e, now));
-  const regular = events.filter((e) => e.kind !== "opening" && !isOngoing(e, now));
+  // Kids' programs, board/admin volunteer roles and campus club meetings stay one filter away, not in the lead.
+  const wantsKids = f.cats.some((c) => c === "family" || c.startsWith("family.")) || f.tags.includes("kids_teens");
+  const wantsVolunteer = f.cats.some((c) => c === "volunteer" || c.startsWith("volunteer."));
+  const searching = !!f.q;
+  const hiddenKids = searching || wantsKids ? 0 : events.filter((e) => e.kind !== "opening" && isKids(e)).length;
+  const shown = events.filter((e) => searching || ((wantsKids || !isKids(e)) && (wantsVolunteer || !isAdminRole(e)) && !isCampusOnly(e)));
+  const openings = shown.filter((e) => e.kind === "opening");
+  const ongoing = shown.filter((e) => e.kind !== "opening" && isOngoing(e, now));
+  const regular = shown.filter((e) => e.kind !== "opening" && !isOngoing(e, now) && !isUnderway(e, now));
   const topIds = new Set(tops.length >= 3 ? tops.map((s) => s.event.id) : []);
   const wk = weekendRange(now, feed.timezone);
   const stale = (feed.sources ?? []).filter((s) => s.stale && s.state !== "disabled");
@@ -141,12 +153,11 @@ export function Feed({ events }: { events: Event[] }) {
           <div class="section-head">
             <div>
               <h2 id="picks">Picks this week</h2>
-              <p class="small">Chosen for timing, quality and variety. Each one says why.</p>
             </div>
           </div>
           <div class="featured">
             {tops.map((s) => (
-              <FeaturedCard key={s.event.id} e={s.event} why={s.reasons.find((r) => r.weight > 0)?.text} />
+              <FeaturedCard key={s.event.id} e={s.event} />
             ))}
           </div>
         </section>
@@ -156,8 +167,8 @@ export function Feed({ events }: { events: Event[] }) {
           {unfiltered && (
             <h2 class="section" id="all" style={{ marginBottom: "0" }}>All upcoming events</h2>
           )}
-          <FilterBar resultCount={events.length} />
-          {!events.length ? (
+          <FilterBar resultCount={regular.length + ongoing.length} />
+          {!regular.length && !ongoing.length ? (
             <div class="empty">
               <h2>Nothing matches these filters.</h2>
               <p>Try a wider date range or remove a filter.</p>
@@ -167,6 +178,11 @@ export function Feed({ events }: { events: Event[] }) {
             </div>
           ) : (
             <DayGroups events={regular} limit={limit} hide={topIds} onMore={() => setLimit(limit + PAGE)} />
+          )}
+          {hiddenKids > 0 && (
+            <p class="small secondary" style={{ marginTop: "16px" }}>
+              {hiddenKids.toLocaleString("en-US")} family and kids' events aren't shown here. <a href={url(`${feed.city}/family/`)}>See family events</a>
+            </p>
           )}
           {ongoing.length > 0 && (
             <details class="day-group quiet-sec">
@@ -188,11 +204,7 @@ export function Feed({ events }: { events: Event[] }) {
           )}
         </div>
         <aside class="rail" aria-label="Closing soon and more">
-          <section>
-            <h2>Closing soon</h2>
-            <ClosingSoon events={feed.events} n={5} />
-            <p class="small" style={{ marginTop: "10px" }}><a class="more-link" href={build({ city: feed.city, view: "deadlines" })}>All deadlines →</a></p>
-          </section>
+          <ClosingSoon events={feed.events} n={5} />
           <section>
             <h2>Browse {feed.city_name}</h2>
             <ul class="rows">
@@ -211,7 +223,7 @@ export function Feed({ events }: { events: Event[] }) {
             <div class="section-head"><h2 id="browse">Browse by category</h2></div>
             <div class="cat-tiles">
               {HUBS.filter((h) => h.cats).map((h) => {
-                const n = feed.events.filter((e) => e.kind !== "opening" && h.cats!.some((c) => e.category === c || e.category.startsWith(`${c}.`))).length;
+                const n = feed.events.filter((e) => e.kind !== "opening" && !isUnderway(e, now) && new Date(e.start).getTime() < now.getTime() + 30 * 86_400_000 && h.cats!.some((c) => e.category === c || e.category.startsWith(`${c}.`))).length;
                 if (n < 3) return null;
                 return (
                   <div class="tile" key={h.slug}>

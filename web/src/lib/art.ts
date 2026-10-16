@@ -141,20 +141,25 @@ const MOTIFS: Record<Family, Motif> = {
 
   /** Linked rings: 3–5 overlapping circles in a row or a gentle arc; one is filled. */
   volunteer: (r) => {
-    const n = int(r, 3, 5),
-      k = between(r, 1.2, 1.6); // centre spacing / radius
-    const rad = Math.min(between(r, 15, 26), 146 / ((n - 1) * k + 2));
-    const dx = rad * k,
-      x0 = W / 2 - ((n - 1) * dx) / 2 + between(r, -4, 4);
-    const base = between(r, 40, 62),
-      arc = r() < 0.5 ? 0 : between(r, 6, 16);
-    const filled = Math.floor(r() * n);
-    const pts = Array.from({ length: n }, (_, i) => {
-      const t = (2 * i) / (n - 1) - 1;
-      return [x0 + i * dx, base - arc * (1 - t * t)] as const;
-    });
-    const [fx, fy] = pts[filled];
-    return circle(fx, fy, rad, fill(T.acc)) + g(stroke(T.ink, between(r, 2.5, 4)), pts.map(([x, y]) => circle(x, y, rad)).join(""));
+    // Stepping stones: a rising path of separate stones, one picked out. (Not interlocking rings, which read as a logo.)
+    const n = int(r, 5, 8);
+    const x0 = between(r, 14, 26),
+      x1 = W - between(r, 14, 26);
+    const y0 = between(r, 66, 84),
+      y1 = between(r, 18, 34);
+    const sag = between(r, -10, 10);
+    const pick = Math.floor(r() * n);
+    let body = "";
+    let acc = "";
+    for (let i = 0; i < n; i++) {
+      const t = i / (n - 1);
+      const x = x0 + (x1 - x0) * t;
+      const y = y0 + (y1 - y0) * t + sag * Math.sin(Math.PI * t);
+      const rad = Math.min(((x1 - x0) / (n - 1)) * 0.38, between(r, 6, 12));
+      if (i === pick) acc = circle(x, y, rad * 1.15, fill(T.acc));
+      else body += circle(x, y, rad);
+    }
+    return g(fill(T.ink), body) + acc;
   },
 
   /** Table: one big plate, 2–4 small circles and one rounded bar (utensil-like, abstract). */

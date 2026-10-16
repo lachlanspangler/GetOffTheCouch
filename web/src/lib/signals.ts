@@ -10,7 +10,7 @@ export type Tone = "critical" | "caution" | "positive" | "muted" | "secondary";
 export interface Status {
   text: string;
   tone: Tone;
-  icon: "clock" | "users" | "alert" | "ticket" | "check";
+  icon: "clock" | "users" | "alert" | "ticket" | null;
 }
 
 export interface CardSignals {
@@ -66,11 +66,12 @@ export function statusLine(e: Event, now: Date): Status | null {
       return { text: total ? `${t.spots_left} of ${total} spots left` : `${t.spots_left} spot${t.spots_left === 1 ? "" : "s"} left`, tone: "caution", icon: "users" };
     }
   }
-  if (t?.selling_fast) return { text: "Selling quickly", tone: "caution", icon: "ticket" };
+  // "selling quickly" only from a real ticket signal on ticketed events (DESIGN.md §4.6 rule 7)
+  if (t?.selling_fast && isTicketed(e) && t.spots_left == null) return { text: "Selling quickly", tone: "caution", icon: "ticket" };
   if (r?.opens_at && hoursUntil(r.opens_at, now) > 0) {
     return { text: `${isTicketed(e) ? "Tickets go on sale" : "Registration opens"} ${closesPhrase(r.opens_at, tz, now)}`, tone: "secondary", icon: "clock" };
   }
-  if (r && r.method === "derived") return { text: "Registration required", tone: "secondary", icon: "check" };
+  if (r && r.method === "derived") return { text: "Registration required", tone: "secondary", icon: null };
   if (published) return { text: `Registration open until ${fmtDay(published, tz)}`, tone: "secondary", icon: "clock" };
   return null;
 }

@@ -4,7 +4,8 @@ import { CompactRow } from "../components/EventRow";
 import { FilterBar } from "../components/FilterBar";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
-import { collapseSeries } from "../lib/filters";
+import { collapseSeries, isOngoing } from "../lib/filters";
+import { displayTitle, isLeadable } from "../lib/curate";
 import { dayKey, fmtDateLong, parts } from "../lib/time";
 import type { Event } from "../lib/types";
 
@@ -38,7 +39,7 @@ export function Calendar({ events }: { events: Event[] }) {
   const daysIn = new Date(Date.UTC(year, month, 0)).getUTCDate();
   const byDay = new Map<string, Event[]>();
   for (const e of events) {
-    if (e.kind === "opening") continue;
+    if (e.kind === "opening" || !isLeadable(e)) continue;
     const k = dayKey(e.start, tz);
     byDay.set(k, [...(byDay.get(k) ?? []), e]);
   }
@@ -48,10 +49,18 @@ export function Calendar({ events }: { events: Event[] }) {
     go({ day: `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-01` }, true);
   };
   const monthName = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric", timeZone: "UTC" }).format(first);
-  const selEvents = collapseSeries(byDay.get(sel) ?? []);
+  const selAll = collapseSeries(byDay.get(sel) ?? []);
+  const selOngoing = selAll.filter((g) => isOngoing(g.event, new Date(`${sel}T12:00:00Z`)) || g.event.all_day);
+  const selTimed = selAll.filter((g) => !selOngoing.includes(g));
   const cells: (number | null)[] = [...Array.from({ length: startWd }, () => null), ...Array.from({ length: daysIn }, (_, i) => i + 1)];
   while (cells.length % 7) cells.push(null);
-  const weeks = Array.from({ length: cells.length / 7 }, (_, i) => cells.slice(i * 7, i * 7 + 7));
+  const allWeeks = Array.from({ length: cells.length / 7 }, (_, i) => cells.slice(i * 7, i * 7 + 7));
+  // in the current month, start at this week: past weeks are just empty boxes
+  const thisMonth = today.year === year && today.month === month;
+  const weeks = thisMonth ? allWeeks.filter((wk) => wk.some((d) => d != null && d >= today.day - today.weekday) || wk.every((d) => d == null)) : allWeeks;
+  const counts = [...byDay.values()].map((v) => collapseSeries(v).length).sort((a, b) => a - b);
+  const q = (p: number) => counts[Math.floor(p * (counts.length - 1))] ?? 0;
+  const [q1, q2] = [q(0.33), q(0.66)];
   const onKey = (e: KeyboardEvent) => {
     const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7, PageUp: -30, PageDown: 30 }[e.key];
     if (step) {
@@ -89,7 +98,8 @@ export function Calendar({ events }: { events: Event[] }) {
                     const evs = collapseSeries(byDay.get(k) ?? []);
                     const isToday = today.year === year && today.month === month && today.day === d;
                     const past = k < todayKey;
-                    const dots = evs.length === 0 ? 0 : evs.length < 5 ? 1 : evs.length < 15 ? 2 : 3;
+                    const dots = evs.length === 0 ? 0 : evs.length <= q1 ? 1 : evs.length <= q2 ? 2 : 3;
+                    const top = evs.find((g) => !g.event.all_day) ?? evs[0];
                     return (
                       <td key={di} class={di === 0 || di === 6 ? "wkend" : ""}>
                         <button
@@ -101,8 +111,8 @@ export function Calendar({ events }: { events: Event[] }) {
                           onClick={() => go({ day: k }, true)}
                         >
                           <span class="dn">{d}</span>
-                          {evs.slice(0, 2).map((g) => <span class="ev" key={g.event.id}>{g.event.title}</span>)}
-                          {evs.length > 2 && <span class="more">+{evs.length - 2} more</span>}
+                          {top && <span class="ev">{displayTitle(top.event.title)}</span>}
+                          {evs.length > 1 && <span class="more">{evs.length} events</span>}
                           <span class="dots" aria-hidden="true">{Array.from({ length: dots }, (_, i) => <i key={i} />)}</span>
                         </button>
                       </td>
@@ -112,14 +122,24 @@ export function Calendar({ events }: { events: Event[] }) {
               ))}
             </tbody>
           </table>
-          <p class="small muted" style={{ marginTop: "8px" }}>Use the arrow keys to move between days. Times are in {feed.city_name} time.</p>
+          <p class="small muted" style={{ marginTop: "8px" }}>Times are in {feed.city_name} time.<span class="kbd-hint"> Use the arrow keys to move between days.</span></p>
         </div>
         <section class="cal-agenda" aria-labelledby="agenda-h">
           <h2 id="agenda-h">{fmtDateLong(`${sel}T12:00:00Z`, "UTC").replace(/, \d{4}$/, "")}</h2>
-          {selEvents.length ? (
-            <ul class="rows">
-              {selEvents.map((g) => <CompactRow key={g.event.id} e={g.event} sub={g.event.location.venue_name ?? undefined} />)}
-            </ul>
+          {selAll.length ? (
+            <>
+              <ul class="rows">
+                {selTimed.map((g) => <CompactRow key={g.event.id} e={g.event} sub={g.event.location.venue_name ?? undefined} />)}
+              </ul>
+              {selOngoing.length > 0 && (
+                <details class="quiet-sec" open={!selTimed.length} style={{ marginTop: "16px" }}>
+                  <summary class="small" style={{ fontWeight: 600 }}>All day and ongoing ({selOngoing.length})</summary>
+                  <ul class="rows">
+                    {selOngoing.map((g) => <CompactRow key={g.event.id} e={g.event} time="" sub={g.event.location.venue_name ?? undefined} />)}
+                  </ul>
+                </details>
+              )}
+            </>
           ) : (
             <p class="secondary">Nothing listed on this day{events.length < (feed.events.length) ? " with these filters" : ""}.</p>
           )}

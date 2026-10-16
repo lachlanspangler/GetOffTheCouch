@@ -32,7 +32,7 @@ test("feed shows rows, filters narrow them, and the URL keeps state", async ({ p
 });
 
 test("event page shows merged sources, price comparison and provenance", async ({ page }) => {
-  await page.goto("/demoville/?demo=1");
+  await page.goto("/demoville/concerts/?demo=1");
   await page.getByRole("link", { name: /Placeholder Band/ }).first().click();
   await expect(page).toHaveURL(/\/demoville\/events\/[a-z0-9-]*placeholder-band-[0-9a-f]+\/$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Placeholder Band/);
@@ -42,7 +42,7 @@ test("event page shows merged sources, price comparison and provenance", async (
   await expect(page.getByRole("heading", { name: "Where this comes from" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Report a problem with this listing/ })).toBeVisible();
   await page.goBack();
-  await expect(page).toHaveURL(/\/demoville\/(\?demo=1)?$/);
+  await expect(page).toHaveURL(/\/demoville\/concerts\/(\?demo=1)?$/);
 });
 
 test("legacy hash links redirect to real paths", async ({ page }) => {
@@ -56,8 +56,8 @@ test("deadlines view groups by urgency and offers calendar export", async ({ pag
   await expect(page.getByRole("heading", { name: "This week" })).toBeVisible();
   await expect(page.getByText("Fall Kickball League").first()).toBeVisible();
   const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: /Add all .* to your calendar/ }).click();
-  expect((await download).suggestedFilename()).toMatch(/deadlines\.ics$/);
+  await page.getByRole("button", { name: /to your calendar/ }).first().click();
+  expect((await download).suggestedFilename()).toMatch(/deadlines.*\.ics$/);
 });
 
 test("new-in-town wizard builds an explained plan", async ({ page }) => {

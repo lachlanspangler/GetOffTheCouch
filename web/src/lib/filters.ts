@@ -20,7 +20,7 @@ export interface Filters {
 export const DEFAULT_FILTERS: Filters = {
   q: "",
   cats: [],
-  when: "month",
+  when: "week",
   free: false,
   maxPrice: null,
   social: false,

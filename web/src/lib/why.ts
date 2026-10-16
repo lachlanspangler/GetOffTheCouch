@@ -16,7 +16,7 @@ export function whyThis(e: Event, now: Date): string[] {
   const out: string[] = [];
   const f = family(e.category);
   if (FAMILY_WHY[f]) out.push(FAMILY_WHY[f]);
-  if (e.recurrence || (e.series_dates?.length ?? 0) > 2) out.push(`It repeats${e.recurrence ? ` (${e.recurrence.replace(/^Every /, "every ")})` : ""}, so you can become a regular`);
+  if (e.recurrence || (e.series_dates?.length ?? 0) > 2) out.push(`It repeats${e.recurrence ? ` (${e.recurrence.replace(/^Every /, "every ").replace(/\b(am|pm)\b/g, (m) => m.toUpperCase())})` : ""}, so you can become a regular`);
   if ((e.tags ?? []).includes("solo_friendly")) out.push("The listing says it's fine to come on your own");
   if ((e.tags ?? []).includes("beginner_friendly")) out.push("Beginners are welcome, according to the listing");
   if (e.price.is_free) out.push("It's free");

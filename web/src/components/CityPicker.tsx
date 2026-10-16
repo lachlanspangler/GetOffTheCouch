@@ -33,7 +33,7 @@ function CityList({ q, active, onPick, listId }: { q: string; active: number; on
         >
           <span class="nm">{c.name}</span>
           <span class="st">{c.state}{c.slug === route.city && <Icon name="check" size={16} class="tick" />}</span>
-          <span class="sub">{c.events ? `${count(c.upcoming_7d)} events this week · ${count(c.deadlines)} deadlines` : "Coming soon"}</span>
+          <span class="sub">{c.events ? `${count(c.upcoming_7d)} events this week${c.deadlines ? ` · ${count(c.deadlines)} deadline${c.deadlines === 1 ? "" : "s"}` : ""}` : "Coming soon"}</span>
         </button>
       ))}
       {!list.length && <p class="muted small" style={{ padding: "10px" }}>No city by that name yet.</p>}

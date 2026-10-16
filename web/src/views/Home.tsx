@@ -30,10 +30,10 @@ export function Home() {
         <div class="tiles cities">
           {cities.map((c) => (
             <div class="tile" key={c.slug}>
-              <CityArt slug={c.slug} ratio="16/9" />
+              <CityArt slug={c.slug} ratio="3/1" />
               <h3><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></h3>
               <p class="sub">
-                {c.events > 0 ? `${count(c.upcoming_7d)} events this week · ${count(c.deadlines)} deadlines` : "Coming soon"}
+                {c.events > 0 ? `${count(c.upcoming_7d)} events this week${c.deadlines ? ` · ${count(c.deadlines)} deadline${c.deadlines === 1 ? "" : "s"}` : ""}` : "Coming soon"}
               </p>
               <Icon name="right" size={18} class="chev" />
             </div>

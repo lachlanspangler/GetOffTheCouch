@@ -5,6 +5,7 @@ import { useApp } from "../lib/ctx";
 import { catLabel } from "../lib/categories";
 import { familyOf, ART_HUE } from "../lib/art";
 import { cardSignals, type Status } from "../lib/signals";
+import { displayPlace, displayTitle, distanceNote } from "../lib/curate";
 import { eventPath, url } from "../lib/site";
 import { dayKey, fmtDay, fmtTime, monthShort, parts, weekdayShort } from "../lib/time";
 import type { Event } from "../lib/types";
@@ -31,7 +32,7 @@ export function StatusLine({ s, tag }: { s: Status | null; tag?: string | null }
     <p class="status">
       {s && (
         <span class={`status tone-${s.tone}`}>
-          <Icon name={s.icon} size={14} />
+          {s.icon && <Icon name={s.icon} size={14} />}
           {s.text}
         </span>
       )}
@@ -84,13 +85,15 @@ function TimeCell({ e }: { e: Event }) {
   );
 }
 
-function metaLine(e: Event, price: string | null, more: number): ComponentChildren[] {
+function metaLine(e: Event, price: string | null, more: number, cityName?: string, center?: [number, number]): ComponentChildren[] {
   const bits: ComponentChildren[] = [];
-  const venue = e.location.venue_name ?? e.location.address ?? null;
+  const venue = displayPlace(e, cityName);
   if (venue) bits.push(venue);
+  const far = distanceNote(e, center);
+  if (far) bits.push(far);
   if (price) bits.push(price === "Free" ? <span class="free">Free</span> : price);
   if (more > 0) bits.push(`+${more} more date${more > 1 ? "s" : ""}`);
-  else if (e.recurrence) bits.push(e.recurrence);
+  else if (e.recurrence) bits.push(e.recurrence.replace(/\b(am|pm)\b/g, (m) => m.toUpperCase()));
   return bits.flatMap((b, i) => (i ? [" · ", b] : [b]));
 }
 
@@ -110,9 +113,9 @@ export function EventRow({ e, more = 0, dated = false, past = false }: { e: Even
             <span>{catLabel(e.category, index.taxonomy)}{hood ? ` · ${hood}` : ""}{dated && !isDateOnly(e) && e.kind !== "opening" ? ` · ${fmtTime(e.start, e.timezone)}` : ""}</span>
           </p>
           <h3 class="erow-title" id={id}>
-            <a href={eventHref(e, feed?.city)}>{e.title}</a>
+            <a href={eventHref(e, feed?.city)}>{displayTitle(e.title)}</a>
           </h3>
-          <p class="erow-meta">{e.kind === "opening" ? <>License signal, not a confirmed opening date{e.location.address ? ` · ${e.location.address}` : ""}</> : metaLine(e, sig.price, more)}</p>
+          <p class="erow-meta">{e.kind === "opening" ? <>New liquor or business license{e.location.address ? ` · ${displayPlace(e, feed?.city_name)}` : ""}</> : metaLine(e, sig.price, more, feed?.city_name, feed?.center as [number, number] | undefined)}</p>
           {past ? <p class="status tone-muted">Took place {fmtDay(e.start, e.timezone)}</p> : <StatusLine s={sig.status} tag={sig.tag} />}
         </div>
         <div class="erow-actions">
@@ -140,7 +143,7 @@ export function CompactRow({ e, sub, time, onHover, hl }: { e: Event; sub?: stri
         </span>
       )}
       <span class="ti">
-        <a href={eventHref(e, feed?.city)}>{e.title}</a>
+        <a href={eventHref(e, feed?.city)}>{displayTitle(e.title)}</a>
       </span>
       <span class="p">{sig.price === "Free" ? <span class="free">Free</span> : sig.price}</span>
       {sub && <span class="sub">{sub}</span>}
@@ -154,14 +157,14 @@ export function FeaturedCard({ e, why }: { e: Event; why?: string }) {
   const sig = cardSignals(e, now);
   const tz = e.timezone;
   const when = `${dayKey(e.start, tz) === dayKey(now, tz) ? "Today" : fmtDay(e.start, tz)}${isDateOnly(e) ? "" : ` · ${fmtTime(e.start, tz)}`}`;
-  const meta = [e.location.neighborhood ?? e.location.venue_name, sig.price].filter(Boolean).join(" · ");
+  const meta = [e.location.neighborhood ?? displayPlace(e, feed?.city_name), distanceNote(e, feed?.center as [number, number] | undefined), sig.price].filter(Boolean).join(" · ");
   return (
     <article class="fcard" data-testid="event-card">
-      <Art id={e.id} family={familyOf(e.category)} />
+      <Art id={e.id} family={familyOf(e.category)} ratio="2/1" />
       <SaveButton e={e} />
       <p class="eyebrow">{when}</p>
       <h3>
-        <a href={eventHref(e, feed?.city)}>{e.title}</a>
+        <a href={eventHref(e, feed?.city)}>{displayTitle(e.title)}</a>
       </h3>
       {meta && <p class="meta">{meta}</p>}
       {why ? <p class="why">{why}</p> : sig.status && <StatusLine s={sig.status} />}

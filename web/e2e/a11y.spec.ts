@@ -19,7 +19,7 @@ for (const scheme of ["light", "dark"] as const) {
   test(`no serious accessibility violations (${scheme}): event page`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: scheme });
     await page.clock.setFixedTime(ANCHOR);
-    await page.goto("/demoville/?demo=1");
+    await page.goto("/demoville/concerts/?demo=1");
     await page.getByRole("link", { name: /Placeholder Band/ }).first().click();
     await page.waitForLoadState("networkidle");
     const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();

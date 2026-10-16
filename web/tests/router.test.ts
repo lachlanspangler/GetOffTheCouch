@@ -13,7 +13,8 @@ describe("router", () => {
   });
 
   it("uses clean landing paths for hub presets", () => {
-    expect(build({ city: "chicago", view: "feed", filters: { ...DEFAULT_FILTERS, cats: ["music"] } })).toBe("/chicago/concerts/");
+    expect(build({ city: "chicago", view: "feed", filters: { ...DEFAULT_FILTERS, cats: ["music"], when: "month" } })).toBe("/chicago/concerts/");
+    expect(parsePath("/chicago/concerts/")).toMatchObject({ filters: { cats: ["music"], when: "month" } });
     expect(build({ city: "chicago", view: "feed", filters: { ...DEFAULT_FILTERS, when: "weekend" } })).toBe("/chicago/this-weekend/");
     expect(build({ city: "chicago", view: "feed", filters: DEFAULT_FILTERS })).toBe("/chicago/");
     expect(parsePath("/chicago/free/")).toMatchObject({ city: "chicago", view: "feed", hub: "free", filters: { free: true } });

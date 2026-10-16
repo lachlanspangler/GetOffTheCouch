@@ -29,6 +29,7 @@ export function LeafletMap({
   label = "Map",
   still = false,
   highlight = null,
+  fit = true,
 }: {
   center: [number, number];
   pins: Pin[];
@@ -37,6 +38,7 @@ export function LeafletMap({
   label?: string;
   still?: boolean;
   highlight?: string | null;
+  fit?: boolean;
 }) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<LMap | null>(null);
@@ -110,7 +112,7 @@ export function LeafletMap({
       }
       group.addTo(map.current);
       layer = group;
-      if (pins.length > 1) map.current.fitBounds(group.getBounds().pad(0.12), { maxZoom: 14 });
+      if (pins.length > 1 && fit) map.current.fitBounds(group.getBounds().pad(0.12), { maxZoom: 14 });
       else if (pins.length === 1) map.current.setView([pins[0].lat, pins[0].lon], zoom >= 14 ? zoom : 15);
     })();
     return () => {

@@ -11,7 +11,7 @@ export const NAV: { view: View; label: string; short: string; icon: string }[] =
   { view: "deadlines", label: "Deadlines", short: "Deadlines", icon: "clock" },
   { view: "calendar", label: "Calendar", short: "Calendar", icon: "calendar" },
   { view: "map", label: "Map", short: "Map", icon: "map" },
-  { view: "plan", label: "New in town", short: "New here", icon: "compass" },
+  { view: "plan", label: "New in town", short: "New in town", icon: "compass" },
 ];
 
 function current(view: View, eventId: string | null, v: View): "page" | undefined {

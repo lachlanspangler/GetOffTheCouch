@@ -73,7 +73,7 @@ function SearchBox({ f, set }: { f: Filters; set: (p: Partial<Filters>) => void 
     <label class="search">
       <Icon name="search" size={16} />
       <span class="sr-only">Search events</span>
-      <input ref={ref} type="search" placeholder="Search events, venues, neighborhoods" value={q} onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
+      <input ref={ref} type="search" placeholder="Search events" value={q} onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
       {q ? (
         <button class="icon-btn clear" aria-label="Clear search" onClick={() => { setQ(""); set({ q: "" }); }}>
           <Icon name="x" size={16} />
