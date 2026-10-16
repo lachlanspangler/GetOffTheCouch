@@ -19,6 +19,7 @@ from gotc.config import CityConfig, Registry
 from gotc.health.reliability import reliability
 from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
+from gotc.pipeline.rankprep import annotate
 from gotc.pipeline.starter_pack import load as load_starter_pack
 from gotc.pipeline.starter_pack import with_status
 from gotc.schema import (
@@ -142,6 +143,10 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
         if not city.enabled:
             continue
         feed = city_feed(db, reg, city, now, include_demo)
+        scores = {
+            s.source_id: (r.score if (r := rel.get(f"{s.source_id}@{city.slug}")) else None) for s in feed.sources
+        }
+        feed = feed.model_copy(update={"events": annotate(feed.events, scores, now)})  # before summaries are cut
         CityFeed.model_validate(feed.model_dump())  # belt and braces: never export an invalid document
         cards, details = split_feed(feed)
         _write(out_dir / "cities" / f"{city.slug}.json", cards.model_dump_json(exclude_none=True))

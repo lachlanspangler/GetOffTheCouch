@@ -108,4 +108,5 @@ def test_kids_teens_tag():
     e = event(category="arts.books")
     assert "kids_teens" in derive_tags(e, "Teen Library Advisory Committee", taxonomy())
     assert "kids_teens" in derive_tags(e, "Toddler Storytime", taxonomy())
+    assert "kids_teens" in derive_tags(e, "Homework Help at Sheridan Library (3rd-12th Grade)", taxonomy())
     assert "kids_teens" not in derive_tags(e, "Gentle Yoga with Melanie", taxonomy())

@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.4.0"
+SCHEMA_VERSION = "1.5.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -256,6 +256,23 @@ class SocialScore(Strict):
     reasons: list[str] = Field(default_factory=list)
 
 
+class RankHints(Strict):
+    """Profile-independent ranking hints precomputed at export (gotc/pipeline/rankprep.py, RANKING.md §5.1).
+
+    Short keys keep the card feed lean. Every value is derived from the event's own fields or run history.
+    """
+
+    fp: str = Field(description="near-duplicate fingerprint: equal fp = same listing (title|venue|local date)")
+    group: str | None = Field(default=None, description="multi-site group id: same program, same day, 2+ venues")
+    group_n: Annotated[int, Field(ge=1)] = Field(default=1, description="venues in the multi-site group")
+    desc_len: Annotated[int, Field(ge=0)] = Field(default=0, description="full description length in chars")
+    flags: list[str] = Field(default_factory=list, description="quality flags (admin, no_info, no_place, ...)")
+    lowq: Confidence = Field(default=0.0, description="low-quality score: sum of flag weights, capped at 1")
+    complete: Confidence = Field(default=0.0, description="completeness: share of 7 key fields present")
+    quality: Confidence = Field(default=0.0, description="complete × (1 − lowq)")
+    src_rel: Confidence | None = Field(default=None, description="best source unit's 30-day reliability, 0–1")
+
+
 # ───────────────────────────── adapter output ─────────────────────────────
 
 
@@ -349,6 +366,7 @@ class Event(Strict):
     stale: bool = False
     stale_reason: str | None = None
     is_demo: bool = False
+    rank: RankHints | None = None  # precomputed ranking hints (schema 1.5.0)
 
 
 class SourceStatus(Strict):

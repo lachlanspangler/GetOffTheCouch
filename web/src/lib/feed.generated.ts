@@ -91,6 +91,42 @@ export type FetchedAt1 = string;
 export type Method2 = "reported" | "derived" | "extracted" | "estimated" | "curated";
 export type Note1 = string | null;
 export type Source = string;
+/**
+ * completeness: share of 7 key fields present
+ */
+export type Complete = number;
+/**
+ * full description length in chars
+ */
+export type DescLen = number;
+/**
+ * quality flags (admin, no_info, no_place, ...)
+ */
+export type Flags = string[];
+/**
+ * near-duplicate fingerprint: equal fp = same listing (title|venue|local date)
+ */
+export type Fp = string;
+/**
+ * multi-site group id: same program, same day, 2+ venues
+ */
+export type Group = string | null;
+/**
+ * venues in the multi-site group
+ */
+export type GroupN = number;
+/**
+ * low-quality score: sum of flag weights, capped at 1
+ */
+export type Lowq = number;
+/**
+ * complete × (1 − lowq)
+ */
+export type Quality = number;
+/**
+ * best source unit's 30-day reliability, 0–1
+ */
+export type SrcRel = number | null;
 export type Recurrence = string | null;
 export type ClosesAt = string | null;
 export type Confidence2 = number;
@@ -259,6 +295,7 @@ export interface Event {
   price: Price;
   price_trend?: PriceTrend | null;
   provenance?: Provenance;
+  rank?: RankHints | null;
   recurrence?: Recurrence;
   registration?: Registration | null;
   series_dates?: SeriesDates;
@@ -373,6 +410,25 @@ export interface FieldProvenance {
   method?: Method2;
   note?: Note1;
   source: Source;
+}
+/**
+ * Profile-independent ranking hints precomputed at export (gotc/pipeline/rankprep.py, RANKING.md §5.1).
+ *
+ * Short keys keep the card feed lean. Every value is derived from the event's own fields or run history.
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "RankHints".
+ */
+export interface RankHints {
+  complete?: Complete;
+  desc_len?: DescLen;
+  flags?: Flags;
+  fp: Fp;
+  group?: Group;
+  group_n?: GroupN;
+  lowq?: Lowq;
+  quality?: Quality;
+  src_rel?: SrcRel;
 }
 /**
  * Deadlines. ``closes_at`` is the headline 'register by' date.
