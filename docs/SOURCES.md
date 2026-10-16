@@ -319,3 +319,29 @@ Tried and not added (Las Vegas):
 | Henderson Libraries (hdpl.org), Thomas & Mack | LV | TLS certificate errors | probe |
 | Laugh Factory, Comedy Cellar LV, Las Vegas Philharmonic, Neon Museum, Springs Preserve, Downtown Container Park | LV | no Tribe or Event JSON-LD | probe |
 | Visit Las Vegas (Simpleview) | LV | same platform that answers 403 elsewhere; not added | — |
+
+### Salt Lake City
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `now_playing_utah` | salt_lake_city | WordPress apollo calendar-subscribe ICS / `ics` | https://nowplayingutah.com/wp-json/apollo/v1/calendar/subscribe/all | none | 1 request/day (~11 MB), Crawl-delay 5 | route listed in the public /wp-json index; robots allows it (disallows only print and /api/v1/syndication/); no terms page found | SUMMARY, DESCRIPTION, floating DTSTART (Mountain), LOCATION, URL; SLC-area allowlist, 7-day horizon | events · 24h | B- (statewide nonprofit arts calendar; feed isn't linked, so ask them) | 368 |
+| `slcolibrary_events` | salt_lake_city | Communico `eeventcaldata` / `communico` | https://slcls.libnet.info/eeventcaldata | none | 7 requests/day, ≥2 s | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | as `mdpls_events`; 20 county branches | events · 24h | B | 238 |
+| `slcpl_events` | salt_lake_city | Communico `eeventcaldata` / `communico` | https://slcpl.libnet.info/eeventcaldata | none | 14 requests/day, ≥2 s | same | as `mdpls_events` | events · 24h | B | 99 |
+| `maverik_center` | salt_lake_city | WP The Events Calendar / `tribe` | https://maverikcenter.com/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed; West Valley City–owned arena | as `mprb_events`; spectator venue | events · 24h | B+ | 39 |
+| `utah_utes_athletics` | salt_lake_city | SIDEARM ICS / `ics` | https://utahutes.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Salt Lake City") | events · 24h | B | 26 |
+| `gallivan_center_events` | salt_lake_city | WP The Events Calendar / `tribe` | https://thegallivancenter.com/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as `mprb_events` | events · 24h | B (city RDA plaza) | 13 |
+| `visit_salt_lake_events` | salt_lake_city | Simpleview / `simpleview` (disabled) | https://www.visitsaltlake.com/events/ | none | Crawl-delay 2 | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Salt Lake City):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| University of Utah events (LiveWhale), slc.gov events/parks, Delta Center, Soundwell, Geeks Who Drink, Hogle Zoo pages | SLC | Cloudflare challenge, not attempted | probe 2026-10-16 |
+| dld.utah.gov, dmv.utah.gov, vote.utah.gov | SLC | Cloudflare challenge; the UT starter pack quotes the Utah Code on le.utah.gov instead | probe |
+| artsaltlake.org / eccles.com (Eccles, Abravanel, Capitol, Kingsbury), The Leonardo, Clark Planetarium | SLC | TLS verification fails (incomplete certificate chain) | probe |
+| United Way of Salt Lake volunteering | SLC | Golden Volunteer platform, no adapter; Galaxy slugs uwsl/userveutah/unitedwaysaltlake/slco/utahfoodbank are "Bad Domain" | probe |
+| Utah / SLC license data | SLC | opendata.utah.gov isn't Socrata; SLC's ArcGIS org has no license layers | catalog searches |
+| SLCC Localist | SLC | mostly repeated gallery exhibits and student items (~18/month open to the public) | API probe |
+| Tracy Aviary, Hogle Zoo (Tribe) | SLC | 0 / 2 upcoming events | REST probe |
+| City Weekly events | SLC | CloudFront 403 | probe |
+| Kilby Court, Metro Music Hall (Squarespace), The Complex (AEG), State Room Presents (AXS), Saltair | SLC | no JSON-LD/Tribe, or AEG/AXS denylist | probe |

@@ -102,3 +102,4 @@ sources:
         # batch B (2026-10-16): downtown / city-hall ZIPs
         phoenix: "85003"
         las_vegas: "89101"
+        salt_lake_city: "84111"

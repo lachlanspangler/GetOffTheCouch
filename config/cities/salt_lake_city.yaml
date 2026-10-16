@@ -1,0 +1,192 @@
+# Salt Lake City, UT. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 with `gotc run --city salt_lake_city --no-geocode` (docs/SOURCES.md "Batch B").
+# Not usable (2026-10-16): University of Utah events (LiveWhale) and slc.gov (events/parks) answer a Cloudflare
+# challenge; Salt Lake County Arts & Culture (artsaltlake.org: Eccles, Abravanel, Capitol Theatre, Kingsbury Hall),
+# The Leonardo and Clark Planetarium fail TLS verification (incomplete certificate chain); Delta Center, Soundwell
+# and Geeks Who Drink answer a Cloudflare challenge; United Way of Salt Lake volunteering runs on Golden (no
+# adapter); no Utah liquor/business-license open data was found (opendata.utah.gov is not on Socrata, SLC's ArcGIS
+# org has no license layers). No Team Trivia / Challenge / Volo market here.
+slug: salt_lake_city
+name: Salt Lake City
+state: UT
+timezone: America/Denver
+center: [40.7608, -111.8910]
+radius_km: 20
+aliases: [SLC, South Salt Lake, Murray, Millcreek, Holladay, Taylorsville, West Valley City, Cottonwood Heights,
+          Midvale, North Salt Lake, Bountiful, Woods Cross, Magna, Kearns, West Jordan, Sandy, South Jordan]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 40.7608, lon: -111.8910 }
+  - { name: Granary District, lat: 40.7520, lon: -111.9000 }
+  - { name: Central City, lat: 40.7530, lon: -111.8770 }
+  - { name: 9th and 9th, lat: 40.7500, lon: -111.8650 }
+  - { name: Sugar House, lat: 40.7234, lon: -111.8584 }
+  - { name: Liberty Wells, lat: 40.7310, lon: -111.8800 }
+  - { name: Ballpark, lat: 40.7430, lon: -111.8960 }
+  - { name: The Avenues, lat: 40.7770, lon: -111.8730 }
+  - { name: Capitol Hill, lat: 40.7800, lon: -111.8930 }
+  - { name: Marmalade, lat: 40.7790, lon: -111.8990 }
+  - { name: Fairpark, lat: 40.7740, lon: -111.9200 }
+  - { name: Rose Park, lat: 40.7930, lon: -111.9310 }
+  - { name: Glendale, lat: 40.7380, lon: -111.9300 }
+  - { name: University of Utah / East Bench, lat: 40.7649, lon: -111.8421 }
+  - { name: Yalecrest / Foothill, lat: 40.7480, lon: -111.8400 }
+sources:
+  # ── libraries (Communico eeventcaldata, like mdpls_events) ──
+  - id: slcpl_events
+    adapter: communico
+    name: The City Library (Salt Lake City Public Library) events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://events.slcpl.org/events
+    expect_min_records: 20
+    notes: >-
+      Undocumented Communico calendar JSON on the library's libnet.info tenant (slcpl.libnet.info; robots
+      disallows only /results*, /sitesearch*). One request per day of horizon, daily. The library's own
+      events.slcpl.org front end embeds the same tenant.
+    params:
+      base_url: https://slcpl.libnet.info
+      horizon_days: 14
+      venue_label: The City Library
+      default_category: arts.books
+      category_map:   # tag labels seen in the live feed; checked in this order
+        Used Book Sales: community.market
+        Festivals: community.festival
+        Storytimes: family.kids
+        Book Clubs: arts.books
+        "Books & Reading": arts.books
+        Workshops: arts.workshop
+        "Fun & Games": trivia_games.board_games
+        "Arts & Creativity": arts.workshop
+        Music: music.concert
+        Film: arts.film
+        Movies: arts.film
+
+  - id: slcolibrary_events
+    adapter: communico
+    name: Salt Lake County Library events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://www.slcolibrary.org/
+    expect_min_records: 30
+    notes: >-
+      Undocumented Communico calendar JSON (slcls.libnet.info, the tenant the county library's site embeds;
+      robots disallows only /results*, /sitesearch*). ~45 events/day across 20 branches, so the horizon is short.
+    params:
+      base_url: https://slcls.libnet.info
+      horizon_days: 7
+      venue_label: Salt Lake County Library
+      default_category: arts.books
+      category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
+        Storytime: family.kids
+        "Play & Learn": family.kids
+        Book Club: arts.books
+        Writing: arts.books
+        "Arts & Crafts": arts.workshop
+        "Make & Take": arts.workshop
+        Gaming: trivia_games.board_games
+        STEM: learning.tech
+        Technology: learning.tech
+        "Jobs & Careers": learning.networking
+        "Spanish/Espanol": learning.language
+        Movement: fitness.yoga
+        "Pre-K (ages 0 to 5 yrs)": family.kids
+        "School Age (ages 6 to 9 yrs)": family.kids
+        "Tween (ages 10 to 11 yrs)": family.kids
+
+  # ── statewide arts & culture calendar (Utah Cultural Alliance) ──
+  - id: now_playing_utah
+    adapter: ics
+    name: Now Playing Utah (Utah Cultural Alliance arts & culture calendar)
+    data_type: events
+    homepage: https://nowplayingutah.com/events/
+    expect_min_records: 100
+    notes: >-
+      The site's calendar-subscription feed (WordPress REST route apollo/v1/calendar/subscribe/all, listed in the
+      public /wp-json index; robots allows it, Crawl-delay 5; robots disallows only the print and
+      /api/v1/syndication/ endpoints, which we never call). ~11 MB, statewide, one request a day. Times are
+      floating local (X-WR-TIMEZONE America/Boise = Mountain). Only Salt Lake City / South Salt Lake / Murray /
+      Millcreek / Holladay addresses are kept, with a 7-day horizon so one feed stays under half the city (exhibits and runs are listed once per date). DTEND equals DTSTART (no real end time).
+    params:
+      url: https://nowplayingutah.com/wp-json/apollo/v1/calendar/subscribe/all
+      horizon_days: 7
+      max_occurrences: 1
+      organizer: Now Playing Utah
+      default_category: community.cultural
+      exclude_location: >-
+        ^(?!.*\b(Salt Lake City|South Salt Lake|Murray|Millcreek|Holladay)\b, UT)
+
+  # ── city spaces and arenas ──
+  - id: gallivan_center_events
+    adapter: tribe
+    name: The Gallivan Center (downtown plaza) events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://thegallivancenter.com/
+    expect_min_records: 5
+    notes: Downtown public plaza run by Salt Lake City's Redevelopment Agency; food trucks, concerts, skating, markets.
+    params:
+      base_url: https://thegallivancenter.com
+      horizon_days: 45
+      max_pages: 6
+      venue: {name: The Gallivan Center, address: "239 S Main St, Salt Lake City, UT 84111"}
+      organizer: The Gallivan Center
+      default_category: community.festival
+
+  - id: maverik_center
+    adapter: tribe
+    name: Maverik Center (West Valley City arena)
+    data_type: events
+    min_interval_s: 2
+    homepage: https://maverikcenter.com/
+    expect_min_records: 5
+    notes: >-
+      City-owned arena (West Valley City); WordPress The Events Calendar REST. Utah Grizzlies hockey, Salt Lake
+      City Stars, concerts. Tickets link out to Ticketmaster; we only read the venue's own calendar.
+    params:
+      spectator_venue: true
+      base_url: https://maverikcenter.com
+      horizon_days: 150
+      max_pages: 4
+      venue: {name: Maverik Center, address: "3200 S Decker Lake Dr, West Valley City, UT 84119"}
+      organizer: Maverik Center
+      default_category: sports_watch.game
+      classify_description: false
+      category_map: {Concerts: music.concert, Family: family.kids}
+
+  - id: utah_utes_athletics
+    adapter: ics
+    name: Utah Utes athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://utahutes.com/calendar
+    expect_min_records: 5
+    notes: >-
+      University of Utah's SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics; robots allows it,
+      Crawl-delay 30 — one request a day). Only events whose LOCATION starts with "Salt Lake City" are kept.
+    params:
+      url: https://utahutes.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Utah Utes
+      exclude_location: '^(?!Salt Lake City\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 40.7649, lon: -111.8421, label: "University of Utah campus" }
+
+  # ── tourism board ──
+  - id: visit_salt_lake_events
+    adapter: simpleview
+    name: Visit Salt Lake events
+    data_type: events
+    homepage: https://www.visitsaltlake.com/events/
+    expect_min_records: 20
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our
+      PoliteClient on the first live run, although robots.txt allows it (Crawl-delay 2) — same as Visit Denver,
+      Meet Boston and Visit Austin. We don't work around it; re-enable only with the board's permission.
+    params:
+      base_url: https://www.visitsaltlake.com
+      board: Visit Salt Lake
+      horizon_days: 7
+      skip_daily_ongoing_days: 60
+      default_category: community.festival
