@@ -89,6 +89,19 @@ def test_long_span_and_recurring_noise():
     assert low_quality(["noise_recurring", "no_place", "no_info"]) == 1.0
 
 
+def test_service_desks_and_specific_audiences():
+    assert "service_desk" in flags(event(title="Drop-in Tech Help"))  # hclib_events
+    assert "service_desk" in flags(event(title="MNsure Help and Enrollment"))  # hclib_events
+    assert "service_desk" in flags(event(title="ESL Practice: English Conversation Group"))  # chipublib_events
+    assert "service_desk" in flags(event(title="Tenants' Rights Free Legal Clinic"))  # kcls_events
+    assert "service_desk" not in flags(event(title="Spanish Conversation Group"))  # a language exchange is social
+    assert "service_desk" not in flags(event(title="In-Person Volunteer Literacy Tutors Needed for Fall 2026!"))
+    assert "audience_specific" in flags(event(title="URGENT: High School students Needed for Holocaust Storytelling"))
+    assert "audience_specific" in flags(event(title="Russian-Speaking Food Pantry Guest Support Volunteer"))
+    assert "audience_specific" in flags(event(title="Chicago's First Responder Yoga at Ridge"))
+    assert "audience_specific" not in flags(event(title="Trivia Mafia at Inbound"))
+
+
 def test_completeness_bits():
     full = event(end=T + timedelta(hours=2))
     assert completeness(full, 120) == 1.0

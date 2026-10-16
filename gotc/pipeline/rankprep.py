@@ -41,6 +41,22 @@ GENERIC_VENUE = re.compile(
 )
 ONLINE = re.compile(r"\b(online|virtual|zoom|webinar|livestream)\b", re.I)
 EMOJI_RUN = re.compile(r"[☀-➿\U0001F300-\U0001FAFF★☆✨]{3,}")
+# Library/agency services (help desks, clinics, enrollment, ESL classes): real and useful, but not something to
+# get off the couch for. Added 2026-10-16 after labeling the eval pools; "volunteer" titles are exempt (tutors needed).
+SERVICE = re.compile(
+    r"\b(tech (help|support|tutors?)|computer (help|tutors?|basics|essentials)|(adult )?tutoring|tutors|legal clinics?|"
+    r"notary|(open )?enrollment|medicare|health insurance|information desk|help desk|esl|ell|"
+    r"english[- ]language learn\w*|english (conversation|grammar)|citizenship|homework help|tax help|resumes?|"
+    r"job search|job seekers?)\b",
+    re.I,
+)
+# Listings aimed at one specific group: not low quality, just not a pick for a general newcomer list.
+AUDIENCE = re.compile(
+    r"\b(high school students|students only|graduate students|postdocs|first responders?|for seniors|"
+    r"seniors['’]? circle|older adults|must speak|\w+-speaking|teen leaders|memory caf[eé]|neurodiverse|adaptive|"
+    r"blind|deaf|wheelchair)\b",
+    re.I,
+)
 # daily-ish is normal here; volunteer shifts added 2026-10-16 (food-pantry shifts are habits, not noise)
 HABIT_FAMILIES = {"trivia_games", "fitness", "sports_league", "volunteer"}
 
@@ -55,6 +71,8 @@ WEIGHTS = {
     "promo": 0.3,
     "long_span": 0.3,
     "noise_recurring": 0.6,
+    "service_desk": 0.6,
+    "audience_specific": 0.5,
 }
 HARD_NOISE = "hard_noise"  # ≥ 2 admin phrases, or a cancelled title: the browser drops these outright
 
@@ -143,6 +161,10 @@ def quality_flags(e: Event, desc_len: int, series_30d: int) -> list[str]:
         exhibit = e.category in ("arts.museum",) and real_venue(e)
         if not exhibit:
             flags.append("long_span")
+    if SERVICE.search(title) and not re.search(r"\bvolunteer", title, re.I):
+        flags.append("service_desk")
+    if AUDIENCE.search(title):
+        flags.append("audience_specific")
     if series_30d > 12 and e.category.split(".")[0] not in HABIT_FAMILIES:
         flags.append("noise_recurring")
     return flags
