@@ -826,12 +826,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.7,
-   "status": "open",
+   "status": "done",
    "why": "auto: 0 parties & openings events in Minneapolis right now",
    "source": "auto",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: via I-058"
+   ]
   },
   {
    "id": "I-056",
@@ -870,12 +872,14 @@
    "value": 3,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "The ArcGIS layer's issueDate includes renewals and there is no original-issue date; a licenseNumber not seen in yesterday's full snapshot (654 rows) is a genuinely new place. Needs a small stateful diff step (first-seen date per license).",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: openings_by_first_seen"
+   ]
   },
   {
    "id": "I-059",
