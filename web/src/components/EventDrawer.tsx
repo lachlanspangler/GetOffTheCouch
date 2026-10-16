@@ -17,6 +17,7 @@ import {
   weatherLabel,
 } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
+import { similar } from "../lib/recommend";
 import { age, fmtDateLong, fmtDay, fmtTime, relative } from "../lib/time";
 import { DeadlineBadge } from "./EventCard";
 import { Icon } from "./Icon";
@@ -260,6 +261,23 @@ export function EventDrawer({ e }: { e: Event }) {
             </div>
           </section>
         )}
+
+        {(() => {
+          const sims = similar(e, [...byId.values()], now);
+          return sims.length > 0 ? (
+            <section class="panel">
+              <h3>Similar this week</h3>
+              <ul class="similar">
+                {sims.map((x) => (
+                  <li key={x.id}>
+                    <button class="link" onClick={() => go({ city: x.city, eventId: x.id })}>{x.title}</button>
+                    <span class="muted small"> · {fmtDay(x.start, tz)}{x.all_day ? "" : ` ${fmtTime(x.start, tz)}`}{x.location.venue_name ? ` · ${x.location.venue_name}` : ""}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null;
+        })()}
 
         {summary && (
           <section class="panel">

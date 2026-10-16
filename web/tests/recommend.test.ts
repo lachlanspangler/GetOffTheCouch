@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildPlan, DEFAULT_PROFILE, highlights, rank, scoreEvent } from "../src/lib/recommend";
+import { buildPlan, DEFAULT_PROFILE, highlights, rank, scoreEvent, similar } from "../src/lib/recommend";
 import { ev, NOW } from "./helpers";
 
 const labels = { "trivia_games.trivia": "Trivia nights", trivia_games: "Trivia & games", music: "Music" };
@@ -108,5 +108,16 @@ describe("habits", () => {
     ];
     const p = buildPlan(evs, { ...DEFAULT_PROFILE, interests: ["trivia_games", "fitness", "family"] }, {}, {}, NOW);
     expect(p.habits.map((h) => h.event.category).sort()).toEqual(["fitness.run_club", "trivia_games.trivia"]);
+  });
+});
+
+describe("similar", () => {
+  it("same family, this week, nearest first, one per series", () => {
+    const base = ev({ category: "music.concert", location: { lat: 44.98, lon: -93.27 } });
+    const near = ev({ category: "music.concert", location: { lat: 44.981, lon: -93.271 }, start: "2026-10-18T00:00:00Z" });
+    const far = ev({ category: "music.festival", location: { lat: 45.2, lon: -93.0 }, start: "2026-10-18T00:00:00Z" });
+    const other = ev({ category: "trivia_games.trivia", start: "2026-10-18T00:00:00Z" });
+    const later = ev({ category: "music.concert", start: "2026-12-01T00:00:00Z" });
+    expect(similar(base, [base, far, near, other, later], NOW).map((x) => x.id)).toEqual([near.id, far.id]);
   });
 });

@@ -299,3 +299,31 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
   }
   return out;
 }
+
+/** "Similar this week": same family, upcoming within 7 days, nearest first when we know where both are. */
+export function similar(e: Event, events: Event[], now: Date = new Date(), n = 4): Event[] {
+  const fam = family(e.category);
+  const t0 = now.getTime();
+  const week = t0 + 7 * 86_400_000;
+  const here = e.location.lat != null && e.location.lon != null ? ([e.location.lat, e.location.lon] as [number, number]) : null;
+  const seen = new Set<string>([e.series_id ?? e.id]);
+  return events
+    .filter((x) => x.id !== e.id && family(x.category) === fam && x.kind !== "opening")
+    .filter((x) => {
+      const t = new Date(x.start).getTime();
+      return t >= t0 && t <= week && liveAvailability(x, now) !== "cancelled";
+    })
+    .map((x) => ({
+      x,
+      d: here && x.location.lat != null && x.location.lon != null ? km(here, [x.location.lat, x.location.lon]) : 50,
+    }))
+    .sort((a, b) => a.d - b.d || a.x.start.localeCompare(b.x.start))
+    .map((r) => r.x)
+    .filter((x) => {
+      const k = x.series_id ?? x.id;
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    })
+    .slice(0, n);
+}

@@ -427,3 +427,5 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
   .more-filters.open { display: grid; }
   .filters { position: relative; }
 }
+.similar { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.similar .link { padding: 0; text-align: left; }
