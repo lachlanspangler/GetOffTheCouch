@@ -96,3 +96,17 @@ describe("highlights source diversity", () => {
     expect(s.reasons.some((r) => r.text === "Aimed at kids or teens" && r.weight < 0)).toBe(true);
   });
 });
+
+describe("habits", () => {
+  it("suggests recurring social things, one per series, no kids programs", () => {
+    const evs = [
+      ev({ category: "trivia_games.trivia", series_id: "t", social: { score: 0.9 }, start: "2026-10-20T00:00:00Z" }),
+      ev({ category: "trivia_games.trivia", series_id: "t", social: { score: 0.9 }, start: "2026-10-27T00:00:00Z" }),
+      ev({ category: "fitness.run_club", kind: "recurring", social: { score: 0.8 }, start: "2026-10-18T13:00:00Z" }),
+      ev({ category: "family.kids", series_id: "k", social: { score: 0.8 }, tags: ["kids_teens"] }),
+      ev({ category: "music.concert", social: { score: 0.4 } }),
+    ];
+    const p = buildPlan(evs, { ...DEFAULT_PROFILE, interests: ["trivia_games", "fitness", "family"] }, {}, {}, NOW);
+    expect(p.habits.map((h) => h.event.category).sort()).toEqual(["fitness.run_club", "trivia_games.trivia"]);
+  });
+});

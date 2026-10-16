@@ -200,6 +200,17 @@ export function Plan({ events }: { events: Event[] }) {
           </div>
         </section>
       )}
+      {plan.habits.length > 0 && (
+        <section class="plan-block habits">
+          <h3><Icon name="users" size={18} /> Pick a weekly habit</h3>
+          <p class="muted small">Going to the same thing every week is how strangers become friends. These repeat, and they're good for meeting people.</p>
+          <div class="grid">
+            {plan.habits.map((s) => (
+              <EventCard key={s.event.id} e={s.event} why={[s.event.recurrence ?? "Repeats", ...s.reasons.filter((r) => r.weight > 0).map((r) => r.text)]} />
+            ))}
+          </div>
+        </section>
+      )}
       {plan.weeks.map((w) => (
         <section key={w.from} class="plan-block">
           <h3>

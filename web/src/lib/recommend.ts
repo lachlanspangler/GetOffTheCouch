@@ -167,6 +167,7 @@ export interface PlanWeek {
 
 export interface Plan {
   weeks: PlanWeek[];
+  habits: Scored[]; // recurring social things to become a regular at
   deadlines: Scored[]; // registrations to act on soon
   openings: Scored[]; // new places to try
 }
@@ -240,7 +241,19 @@ export function buildPlan(
     .filter((s, i, arr) => !s.event.series_id || arr.findIndex((x) => x.event.series_id === s.event.series_id) === i)
     .slice(0, 6);
   const openings = ranked.filter((s) => s.event.kind === "opening").slice(0, 5);
-  return { weeks, deadlines, openings };
+  // weekly habits: the fastest way to know people in a new city is seeing the same faces every week
+  const seenSeries = new Set<string>();
+  const habits = ranked
+    .filter((s) => (s.event.series_id || s.event.kind === "recurring") && (s.event.social?.score ?? 0) >= 0.7)
+    .filter((s) => !(s.event.tags ?? []).includes("kids_teens"))
+    .filter((s) => {
+      const k = s.event.series_id ?? s.event.title;
+      if (seenSeries.has(k)) return false;
+      seenSeries.add(k);
+      return true;
+    })
+    .slice(0, 3);
+  return { weeks, deadlines, openings, habits };
 }
 
 /** Default highlights for someone who hasn't set preferences: social, concrete, soon, diverse. */
