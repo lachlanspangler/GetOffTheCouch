@@ -48,7 +48,7 @@ export function Home() {
           <ul class="city-index">
             {[...cities].sort((a, b) => a.name.localeCompare(b.name)).map((c) => (
               <li key={c.slug}>
-                <a href={build({ city: c.slug, view: "feed" })}>{c.name}</a>
+                <a href={build({ city: c.slug, view: "feed" })}>{c.name}{c.tier === "beta" && <span class="sub"> · beta</span>}</a>
                 <span class="sub">{citySub(c)}</span>
               </li>
             ))}

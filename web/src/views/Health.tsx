@@ -69,6 +69,7 @@ export function Health() {
   const off = all.filter((u) => u.state === "disabled");
   const behind = active.filter((u) => u.stale || u.state === "quarantined" || u.state === "degraded");
   const tz = feed?.timezone ?? "America/New_York";
+  const summary = feed ? index.cities.find((c) => c.slug === feed.city) : undefined;
   const where = feed ? `${feed.city_name} ` : "";
   const sorted = [...active].sort((a, b) => Number(!b.stale) - Number(!a.stale) || a.name.localeCompare(b.name));
   return (
@@ -99,6 +100,29 @@ export function Health() {
                 </div>
               ))}
             </div>
+          )}
+          {feed && summary?.coverage?.criteria && (
+            <section class="section" aria-labelledby="bar">
+              <h2 id="bar">Quality bar</h2>
+              <p class="secondary" style={{ margin: "6px 0 12px" }}>
+                A city is listed as live once it clears every check below; until then it's marked beta.{" "}
+                {feed.city_name} is <strong>{summary.tier === "beta" ? "in beta" : "live"}</strong>.
+              </p>
+              <div class="table-wrap">
+                <table class="data-table stack-sm">
+                  <thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Needed</th></tr></thead>
+                  <tbody>
+                    {Object.entries(summary.coverage.criteria).map(([id, c]) => (
+                      <tr key={id}>
+                        <td>{c.label}{c.note && <div class="small muted">{c.note}</div>}</td>
+                        <td data-label="Result"><span class={`state ${c.pass_hard === false ? "bad" : c.pass_soft === false ? "warn" : "ok"}`}>{c.pass_hard === false ? "Not yet" : c.pass_soft === false ? "Close" : "Pass"}</span>{c.value != null && <span class="muted small"> · {Math.round(Number(c.value) * 100) / 100}</span>}</td>
+                        <td class="small secondary" data-label="Needed">{c.threshold}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
           )}
           <section class="section" aria-labelledby="srcs">
             <h2 id="srcs" style={{ marginBottom: "12px" }}>Sources</h2>

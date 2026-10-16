@@ -449,6 +449,15 @@ table { border-collapse: collapse; }
 .toast { position: fixed; left: 50%; bottom: calc(24px + var(--bottom-nav-h)); transform: translateX(-50%); z-index: var(--z-toast); background: var(--color-text); color: var(--color-text-inverse); padding: 10px 16px; border-radius: var(--radius-md); font-size: var(--fs-sm); box-shadow: var(--shadow-3); display: flex; gap: 12px; align-items: center; }
 .toast button { background: none; border: 0; color: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
 
+.coverage { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--color-text-secondary); }
+.coverage .pillar { display: inline-flex; align-items: center; gap: 6px; }
+.coverage .pillar i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--color-text-secondary); }
+.coverage .pillar.strong i { background: var(--color-text-secondary); }
+.coverage .pillar.thin i { background: linear-gradient(90deg, var(--color-text-secondary) 50%, transparent 50%); }
+.coverage .pillar.none { color: var(--color-text-muted); }
+.coverage .pillar.none i { border-color: var(--color-text-muted); border-style: dashed; }
+.beta-chip { display: inline-block; vertical-align: middle; margin-left: 12px; font: 600 12px/1 var(--font-sans); letter-spacing: .04em; padding: 5px 8px; border-radius: var(--radius-xs); border: 1px solid var(--color-border-strong); color: var(--color-text-secondary); }
+
 /* art */
 .art { --art-bg: oklch(var(--art-bg-l) var(--art-bg-c) var(--art-h));
   --art-mid: oklch(var(--art-mid-l) var(--art-mid-c) var(--art-h));

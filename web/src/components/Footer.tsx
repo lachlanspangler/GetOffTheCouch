@@ -76,7 +76,7 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
         </div>
         <div class="fine">
           <span>
-            Event details belong to their organizers; every listing links to the original. Map data © OpenStreetMap contributors.
+            Event details belong to their organizers; every listing links to the original. Map data and some locations © OpenStreetMap contributors.
             {" "}Updated {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)}.
           </span>
           <span class="theme-pick" role="group" aria-label="Appearance">

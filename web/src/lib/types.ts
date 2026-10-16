@@ -11,6 +11,8 @@ export type {
   PricePoint,
   FieldProvenance,
 } from "./feed.generated";
+import type { CityCoverage } from "./feed.generated";
+export type { CityCoverage };
 
 export interface TaxonomyEntry {
   label: string;
@@ -31,6 +33,8 @@ export interface CitySummary {
   sources_total: number;
   sources_disabled?: number;
   stale_sources: number;
+  tier?: "live" | "beta" | "hidden";
+  coverage?: CityCoverage;
 }
 
 export interface Index {

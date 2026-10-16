@@ -12,6 +12,7 @@ import { count } from "../lib/format";
 import { forYou, highlights, type Profile } from "../lib/recommend";
 import { usePersistent } from "../lib/store";
 import { WhyThis } from "../components/WhyThis";
+import { CoverageStrip, strongestText } from "../components/Coverage";
 import { build } from "../lib/router";
 import { HUB_BY_SLUG, HUBS, url } from "../lib/site";
 import { closesPhrase } from "../lib/signals";
@@ -114,6 +115,7 @@ export function Feed({ events }: { events: Event[] }) {
   }, [feed, unfiltered, profile, saved.length, tops, now]);
   if (!feed) return <div class="container"><SkeletonRows /></div>;
   const cov = coverage(feed, index.taxonomy, now);
+  const summary = index.cities.find((c) => c.slug === feed.city);
   // Kids' programs, board/admin volunteer roles and campus club meetings stay one filter away, not in the lead.
   const wantsKids = f.cats.some((c) => c === "family" || c.startsWith("family.")) || f.tags.includes("kids_teens");
   const wantsVolunteer = f.cats.some((c) => c === "volunteer" || c.startsWith("volunteer."));
@@ -135,7 +137,10 @@ export function Feed({ events }: { events: Event[] }) {
             <li aria-current="page">{hub.label}</li>
           </ol>
         )}
-        <h1>{cityHeadline(route.hub, feed.city_name)}</h1>
+        <h1>
+          {cityHeadline(route.hub, feed.city_name)}
+          {summary?.tier === "beta" && <span class="beta-chip" title="We're still adding sources here">Beta</span>}
+        </h1>
         <p class="lede">
           {hub?.when === "weekend"
             ? `${wk.label}. Leagues, shows, parties and volunteer shifts, from ${cov.sources} local sources.`
@@ -144,10 +149,23 @@ export function Feed({ events }: { events: Event[] }) {
               : "What's on this week, and what's due."}
         </p>
         <p class="meta">
-          Updated {age(index.generated_at, now)} · {cov.text}
+          Updated {age(index.generated_at, now)} · {summary?.coverage ? `${summary.coverage.sources_healthy} sources${strongestText(summary.coverage) ? `, strongest in ${strongestText(summary.coverage)}` : ""}` : cov.text}
           {" · "}<a class="quiet-link" href={build({ city: feed.city, view: "health" })}>Data status</a>
         </p>
+        {!hub && summary?.coverage && <CoverageStrip c={summary.coverage} />}
       </header>
+      {summary?.tier === "beta" && !hub && (
+        <p class="notice" role="note">
+          <Icon name="info" size={16} />
+          <span>{feed.city_name} is new here. We're still adding sources, so some categories are thin. What's listed is real and checked; it's just not everything yet.</span>
+        </p>
+      )}
+      {summary?.coverage?.banner && summary.tier !== "beta" && (
+        <p class="notice notice-caution" role="note">
+          <Icon name="alert" size={16} />
+          <span>Coverage in {feed.city_name} has dropped below our usual bar. {summary.coverage.reasons?.[0] ?? ""} <a href={build({ city: feed.city, view: "health" })}>Details</a></span>
+        </p>
+      )}
       {stale.length > 0 && (
         <p class="notice notice-caution" role="status">
           <Icon name="alert" size={16} />
