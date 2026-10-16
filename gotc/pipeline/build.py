@@ -153,7 +153,9 @@ def build_city(
     merged = [(merge(eid, cl, city, now, tax, db, reg), cl) for eid, cl in ided]
     baselines = {
         r["source_id"]: datetime.fromisoformat(r["t"])
-        for r in db.all("SELECT source_id, MIN(first_seen) t FROM source_records WHERE city = ? GROUP BY source_id", (city.slug,))
+        for r in db.all(
+            "SELECT source_id, MIN(first_seen) t FROM source_records WHERE city = ? GROUP BY source_id", (city.slug,)
+        )
     }
     for ev, _ in merged:
         base = min((baselines[s.source_id] for s in ev.sources if s.source_id in baselines), default=now)

@@ -1,6 +1,7 @@
 // "New in town": pick interests → a personalized first-30-days plan that explains every pick.
 import { useMemo, useState } from "preact/hooks";
 import { EventCard } from "../components/EventCard";
+import { StarterPack } from "../components/StarterPack";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
 import { catIcon, children, families, hue } from "../lib/categories";
@@ -159,6 +160,7 @@ export function Plan({ events }: { events: Event[] }) {
           )}
         </div>
       </header>
+      <StarterPack />
       {plan.deadlines.length > 0 && (
         <section class="plan-block act-now">
           <h3><Icon name="clock" size={18} /> Act now: deadlines for things you'd like</h3>

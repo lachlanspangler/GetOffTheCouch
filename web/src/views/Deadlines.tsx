@@ -1,5 +1,6 @@
 import { DeadlineBadge } from "../components/EventCard";
 import { Icon } from "../components/Icon";
+import { StarterPack } from "../components/StarterPack";
 import { useApp } from "../lib/ctx";
 import { catIcon, catLabel, hue } from "../lib/categories";
 import { deadlines, urgency } from "../lib/filters";
@@ -41,6 +42,7 @@ export function Deadlines({ events }: { events: Event[] }) {
           </button>
         )}
       </header>
+      <StarterPack />
       {!items.length && (
         <div class="empty">
           <Icon name="check" size={36} />

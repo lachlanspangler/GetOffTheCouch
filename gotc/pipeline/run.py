@@ -89,6 +89,11 @@ def run(
             for c in reg.cities.values():
                 if c.enabled and (city is None or c.slug == city):
                     report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
+            if geocode and not settings.offline:
+                from gotc.pipeline import starter_pack
+
+                for st in sorted({c.state for c in reg.cities.values() if c.enabled}):
+                    starter_pack.verify(db, http, starter_pack.load(st), now or utcnow())
             export_all(db, reg, settings.web_data_dir, now or utcnow(), include_demo=include_demo)
             (settings.docs_dir / "HEALTH.md").write_text(render(db, reg, now or utcnow()))
         failed = [u for u in report.units if u.status == "failed"]

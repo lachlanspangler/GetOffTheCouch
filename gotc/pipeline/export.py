@@ -17,6 +17,8 @@ from typing import Any
 from gotc.config import CityConfig, Registry
 from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
+from gotc.pipeline.starter_pack import load as load_starter_pack
+from gotc.pipeline.starter_pack import with_status
 from gotc.schema import SCHEMA_VERSION, CityFeed, Event, NeighborhoodPoint, SourceStatus
 from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
@@ -78,6 +80,7 @@ def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, incl
         is_demo=include_demo,
         venues=[v for v in venues_for_export(db, city.slug) if v.id in used_venues],
         sources=source_statuses(db, reg, city, now),
+        starter_pack=with_status(db, load_starter_pack(city.state)),
     )
 
 

@@ -172,12 +172,24 @@ export type SourceId2 = string;
 export type Stale1 = boolean;
 export type State = "healthy" | "degraded" | "quarantined" | "recovering" | "disabled" | "never_run";
 export type Sources1 = SourceStatus[];
+export type ActionUrl = string;
+export type CheckStatus = "evidence_present" | "page_changed" | "unchecked";
+export type DaysAfterMove = number | null;
+export type Evidence1 = string;
+export type Id1 = string;
+export type Kind = "license" | "vehicle" | "voting" | "id" | "inspection" | "other";
+export type LastChecked1 = string | null;
+export type SourceUrl = string;
+export type Summary1 = string;
+export type Title1 = string;
+export type VerifiedAt = string;
+export type StarterPack = StarterItem[];
 export type State1 = string;
 export type Timezone1 = string;
 export type Address1 = string | null;
 export type Capacity = number | null;
 export type CapacitySource = string | null;
-export type Id1 = string;
+export type Id2 = string;
 export type Lat2 = number | null;
 export type Lon2 = number | null;
 export type Name2 = string;
@@ -215,6 +227,7 @@ export interface CityFeed {
   neighborhoods?: Neighborhoods;
   schema_version?: SchemaVersion;
   sources?: Sources1;
+  starter_pack?: StarterPack;
   state: State1;
   timezone: Timezone1;
   venues?: Venues;
@@ -448,6 +461,25 @@ export interface SourceStatus {
   state: State;
 }
 /**
+ * An official new-resident deadline/to-do (e.g. "license within 60 days"), quoted from a .gov page.
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "StarterItem".
+ */
+export interface StarterItem {
+  action_url: ActionUrl;
+  check_status?: CheckStatus;
+  days_after_move?: DaysAfterMove;
+  evidence: Evidence1;
+  id: Id1;
+  kind: Kind;
+  last_checked?: LastChecked1;
+  source_url: SourceUrl;
+  summary: Summary1;
+  title: Title1;
+  verified_at: VerifiedAt;
+}
+/**
  * This interface was referenced by `CityFeed`'s JSON-Schema
  * via the `definition` "Venue".
  */
@@ -455,7 +487,7 @@ export interface Venue {
   address?: Address1;
   capacity?: Capacity;
   capacity_source?: CapacitySource;
-  id: Id1;
+  id: Id2;
   lat?: Lat2;
   lon?: Lon2;
   name: Name2;

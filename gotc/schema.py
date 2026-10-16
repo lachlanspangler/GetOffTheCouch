@@ -17,13 +17,13 @@ The dashboard's TypeScript types are generated from ``CityFeed.model_json_schema
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime
 from enum import StrEnum
 from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.1.0"
+SCHEMA_VERSION = "1.2.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -362,6 +362,22 @@ class SourceStatus(Strict):
     reason: str | None = None  # e.g. "needs TICKETMASTER_API_KEY"
 
 
+class StarterItem(Strict):
+    """An official new-resident deadline/to-do (e.g. "license within 60 days"), quoted from a .gov page."""
+
+    id: str = Field(pattern=r"^[a-z0-9-]+$")
+    title: str
+    kind: Literal["license", "vehicle", "voting", "id", "inspection", "other"]
+    days_after_move: Annotated[int, Field(ge=0, le=730)] | None = None
+    summary: str
+    action_url: HttpUrl
+    evidence: str = Field(min_length=12)
+    source_url: HttpUrl
+    verified_at: date
+    check_status: Literal["evidence_present", "page_changed", "unchecked"] = "unchecked"
+    last_checked: AwareDatetime | None = None
+
+
 class NeighborhoodPoint(Strict):
     name: str
     lat: float
@@ -382,4 +398,5 @@ class CityFeed(Strict):
     events: list[Event]
     venues: list[Venue] = Field(default_factory=list)
     sources: list[SourceStatus] = Field(default_factory=list)
+    starter_pack: list[StarterItem] = Field(default_factory=list)  # state new-resident deadlines
     is_demo: bool = False

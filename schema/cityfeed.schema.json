@@ -1123,6 +1123,110 @@
       "title": "SourceStatus",
       "type": "object"
     },
+    "StarterItem": {
+      "additionalProperties": false,
+      "description": "An official new-resident deadline/to-do (e.g. \"license within 60 days\"), quoted from a .gov page.",
+      "properties": {
+        "action_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Action Url",
+          "type": "string"
+        },
+        "check_status": {
+          "default": "unchecked",
+          "enum": [
+            "evidence_present",
+            "page_changed",
+            "unchecked"
+          ],
+          "title": "Check Status",
+          "type": "string"
+        },
+        "days_after_move": {
+          "anyOf": [
+            {
+              "maximum": 730,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Days After Move"
+        },
+        "evidence": {
+          "minLength": 12,
+          "title": "Evidence",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z0-9-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "license",
+            "vehicle",
+            "voting",
+            "id",
+            "inspection",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "last_checked": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Checked"
+        },
+        "source_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source Url",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "verified_at": {
+          "format": "date",
+          "title": "Verified At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "kind",
+        "summary",
+        "action_url",
+        "evidence",
+        "source_url",
+        "verified_at"
+      ],
+      "title": "StarterItem",
+      "type": "object"
+    },
     "TicketSignal": {
       "additionalProperties": false,
       "properties": {
@@ -1322,7 +1426,7 @@
       "type": "object"
     }
   },
-  "$id": "https://getoffthecouch.app/schema/cityfeed-1.1.0.json",
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.2.0.json",
   "additionalProperties": false,
   "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
   "properties": {
@@ -1373,7 +1477,7 @@
       "type": "array"
     },
     "schema_version": {
-      "default": "1.1.0",
+      "default": "1.2.0",
       "title": "Schema Version",
       "type": "string"
     },
@@ -1382,6 +1486,13 @@
         "$ref": "#/$defs/SourceStatus"
       },
       "title": "Sources",
+      "type": "array"
+    },
+    "starter_pack": {
+      "items": {
+        "$ref": "#/$defs/StarterItem"
+      },
+      "title": "Starter Pack",
       "type": "array"
     },
     "state": {

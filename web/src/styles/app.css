@@ -370,3 +370,10 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 
 .prose { max-width: 70ch; margin: 24px auto; }
 .prose li { margin-bottom: 6px; }
+
+.starter { background: var(--info-soft); border-radius: var(--r); padding: 16px; }
+.starter-list { list-style: none; padding: 0; margin: 8px 0 12px; display: grid; gap: 10px; }
+.starter-item { display: grid; grid-template-columns: 22px 1fr; gap: 10px; background: var(--surface); border-radius: var(--r-sm); padding: 10px 12px; border: 1px solid var(--line); }
+.starter-item p { margin: 2px 0; }
+.starter-item.overdue { border-color: var(--hot); }
+.starter input[type="date"] { font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
