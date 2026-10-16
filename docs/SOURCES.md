@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -269,6 +269,20 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `tabc_new_licenses_dallas` | dallas | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as `tabc_new_licenses_austin` | as Austin (**original_issue_date**) | openings · 24h | A | 48 |
 | `teamtrivia_dallas` | dallas | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-dallas-fort-worth/ | none | 1 region page + ≤60 venue pages / 48h, ≥3 s | region/venue pages allowed and in the site's sitemap; zip gate never used | as `teamtrivia_denver` | recurring · 48h | B | 64 |
 | `challenge_trivia_dallas` | dallas | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | as `challenge_trivia_nashville`; metro-dallas-ft-worth within 60 km | recurring · 48h | C+ (undocumented JSON) | 176 |
+| `hcpl_events` | houston | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/hcpl/rss/events | none | ≤20 pages/day, 10-day horizon | gateway host has no robots.txt; published feed (code confirmed by the channel title "Harris County Public Library") | as `hclib_events`; `cities` keeps Houston + inner-ring branches | events · 24h | A- | 260 |
+| `buffalo_bayou_events` | houston | WP The Events Calendar / `tribe` | https://buffalobayou.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` (tours, paddles, volunteer workdays) | events · 24h | B+ | 41 |
+| `hermann_park_events` | houston | WP The Events Calendar / `tribe` | https://www.hermannpark.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above | events · 24h | B | 9 |
+| `levy_park_events` | houston | WP The Events Calendar / `tribe` | https://www.levyparkhouston.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as above; blank venues → the park | events · 24h | B+ (free fitness classes, markets) | 57 |
+| `memorial_park_events` | houston | WP The Events Calendar / `tribe` | https://www.memorialparkconservancy.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above | events · 24h | B | 26 |
+| `houston_arboretum_events` | houston | WP The Events Calendar / `tribe` | https://houstonarboretum.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above; blank venues → the arboretum | events · 24h | B | 30 |
+| `rice_events` | houston | LiveWhale JSON / `livewhale` | https://events.rice.edu/live/json/events/max/300 | none | 1 request/day | allowed | as `umn_events` (audience filter; the type-path filter is ignored by this install) | events · 24h | B | 72 |
+| `uh_athletics` | houston | SIDEARM ICS / `ics` | https://uhcougars.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (robots `Crawl-delay: 30`) | robots allows it; subscription feed | SUMMARY, DTSTART, LOCATION (home = starts with "Houston") | events · 24h | B | 38 |
+| `rice_athletics` | houston | SIDEARM ICS / `ics` | https://riceowls.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (robots `Crawl-delay: 30`) | as above | home = "Houston…" or a Rice venue | events · 24h | B | 29 |
+| `toyota_center` | houston | carbonhouse RSS / `rss_events` | https://www.toyotacenter.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ | 65 |
+| `volunteer_houston` | houston | Galaxy Digital / `galaxydigital` | https://www.volunteerhou.org/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title "Needs on Volunteer Houston" and Houston addresses | volunteer · 24h | B+ | 15 |
+| `tabc_pending_openings_houston` | houston | Socrata `mxm5-tdpj` (data.texas.gov) / `socrata` | https://data.texas.gov/d/mxm5-tdpj | none | Socrata throttling | as Austin; Houston + 10 inner-ring cities | as Austin | openings · 24h | A | 47 |
+| `tabc_new_licenses_houston` | houston | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as Austin | as Austin (**original_issue_date**) | openings · 24h | A | 76 |
+| `challenge_trivia_houston` | houston | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-houston within 60 km | recurring · 48h | C+ | 86 |
 
 **Tried and not added (batch A).**
 
@@ -283,3 +297,12 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Addison Improv (improvtx.com) | dallas | JSON-LD only on detail pages and the listing shows ~6 shows; not worth the scrape yet | probe |
 | Frisco Public Library (BiblioCommons `friscolibrary`) | dallas | Works (6 items / 2 days) but Frisco is ~42 km from the center, outside the 30 km circle | gateway RSS |
 | Fair Park, Deep Ellum (deepellumtexas.com), Texas Live! | dallas | No feed (404 / WordPress without Tribe / Netlify site without events JSON) | probe |
+| data.houstontx.gov (CKAN) | houston | robots.txt `Disallow: /api/` and `/datastore/*` (Crawl-delay 10) | robots.txt 2026-10-16 |
+| Houston Public Library (LibCal `calendar.houstonlibrary.org`, cid 15272) | houston | robots allows it (Crawl-delay 10), but `ical_subscribe.php` returns a fixed 500 items starting a month back (all past); the `ct=` filter is ignored. Needs a LibCal JSON adapter (idea) | ICS DTSTART range 2026-09-16…09-24 |
+| Team Trivia (trivia-in-houston) | houston | region page lists 0 venues today (live run: empty results) | region page |
+| Discovery Green | houston | robots.txt disallows `/wp-json/` | robots |
+| MFAH (mfah.org) | houston | robots.txt answers 403 (disallow-all) | probe |
+| Hobby Center | houston | Cloudflare challenge — not attempted | probe |
+| Smart Financial Centre | houston | redirects to ATG Tickets (no feed) | probe |
+| McGonigel's Mucky Duck, Houston Symphony, Da Camera, Menil | houston | no Event JSON-LD / no Tribe | probe |
+| Warehouse Live, calendar.uh.edu | houston | TLS certificate errors (can't verify robots) | probe |

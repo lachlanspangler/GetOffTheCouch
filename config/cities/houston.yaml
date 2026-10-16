@@ -1,0 +1,309 @@
+# Houston, TX. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: data.houstontx.gov (CKAN; robots disallows /api/ and /datastore/*); Houston Public Library's LibCal
+# ICS (ical_subscribe.php caps at 500 items starting a month back, so it holds no future events); Discovery Green
+# (robots disallows /wp-json/); MFAH (robots.txt → 403); Hobby Center (Cloudflare challenge); Smart Financial
+# Centre (ATG Tickets site); Live Nation houses (House of Blues, 713 Music Hall, Bayou Music Center, White Oak).
+# Team Trivia's trivia-in-houston region page lists 0 venues today (unit removed after an empty live run).
+slug: houston
+name: Houston
+state: TX
+timezone: America/Chicago
+center: [29.7604, -95.3698]
+radius_km: 30
+aliases: [H-Town, Pasadena, Bellaire, West University Place, South Houston, Galena Park, Jacinto City, Pearland, Missouri City, Stafford, Humble, Sugar Land, Aldine]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 29.7589, lon: -95.3677 }
+  - { name: Midtown, lat: 29.7410, lon: -95.3780 }
+  - { name: Montrose, lat: 29.7440, lon: -95.3910 }
+  - { name: Museum District, lat: 29.7230, lon: -95.3900 }
+  - { name: The Heights, lat: 29.7980, lon: -95.3980 }
+  - { name: Washington Avenue, lat: 29.7680, lon: -95.3930 }
+  - { name: EaDo (East Downtown), lat: 29.7520, lon: -95.3500 }
+  - { name: East End / Second Ward, lat: 29.7450, lon: -95.3250 }
+  - { name: Third Ward, lat: 29.7280, lon: -95.3600 }
+  - { name: Rice Village, lat: 29.7160, lon: -95.4180 }
+  - { name: Texas Medical Center, lat: 29.7070, lon: -95.4010 }
+  - { name: River Oaks, lat: 29.7560, lon: -95.4220 }
+  - { name: Upper Kirby, lat: 29.7370, lon: -95.4180 }
+  - { name: Galleria / Uptown, lat: 29.7390, lon: -95.4610 }
+  - { name: Memorial Park, lat: 29.7650, lon: -95.4400 }
+  - { name: Garden Oaks / Oak Forest, lat: 29.8250, lon: -95.4220 }
+sources:
+  # ── library ──
+  - id: hcpl_events
+    adapter: bibliocommons
+    name: Harris County Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://hcpl.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). Countywide system; `cities` keeps branches in Houston
+      and the inner-ring cities (Kingwood, Tomball, Cypress, Katy branches are outside the circle).
+    params:
+      library: hcpl
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Harris County Public Library
+      cities: [Houston, Galena Park, South Houston, Bellaire, Pasadena, Jacinto City, Humble]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in order (event types before audiences)
+        Storytime: family.kids
+        Book Club: arts.books
+        Arts and Crafts: arts.workshop
+        Technology: learning.tech
+        STEAM: learning.tech
+        ESL: learning.language
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        Kids: family.kids
+        Tweens: family.kids
+
+  # ── parks conservancies (The Events Calendar REST) ──
+  - id: buffalo_bayou_events
+    adapter: tribe
+    name: Buffalo Bayou Partnership events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://buffalobayou.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Tours, paddles, nature walks, volunteer workdays.
+    params:
+      base_url: https://buffalobayou.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Buffalo Bayou Partnership
+      venue: {name: Buffalo Bayou Park, address: "105 Sabine St, Houston, TX 77007"}
+      default_category: outdoors.park
+      category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
+  - id: hermann_park_events
+    adapter: tribe
+    name: Hermann Park Conservancy events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.hermannpark.org/events/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it).
+    params:
+      base_url: https://www.hermannpark.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 2
+      organizer: Hermann Park Conservancy
+      venue: {name: Hermann Park, address: "6001 Fannin St, Houston, TX 77030"}
+      default_category: outdoors.park
+  - id: levy_park_events
+    adapter: tribe
+    name: Levy Park events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.levyparkhouston.org/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Free fitness classes, markets, concerts in Upper Kirby.
+    params:
+      base_url: https://www.levyparkhouston.org
+      horizon_days: 30
+      per_page: 50
+      max_pages: 4
+      organizer: Levy Park Conservancy
+      venue: {name: Levy Park, address: "3801 Eastside St, Houston, TX 77098"}
+      default_category: outdoors.park
+  - id: memorial_park_events
+    adapter: tribe
+    name: Memorial Park Conservancy events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.memorialparkconservancy.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Wellness walks, volunteer workdays, races.
+    params:
+      base_url: https://www.memorialparkconservancy.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Memorial Park Conservancy
+      venue: {name: Memorial Park, address: "6501 Memorial Dr, Houston, TX 77007"}
+      default_category: outdoors.park
+      category_map: { Volunteer: volunteer.one_off }
+  - id: houston_arboretum_events
+    adapter: tribe
+    name: Houston Arboretum & Nature Center events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://houstonarboretum.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it); venue left blank on most items → the arboretum.
+    params:
+      base_url: https://houstonarboretum.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Houston Arboretum & Nature Center
+      venue: {name: Houston Arboretum & Nature Center, address: "4501 Woodway Dr, Houston, TX 77024"}
+      default_category: outdoors.hike
+
+  # ── university ──
+  - id: rice_events
+    adapter: livewhale
+    name: Rice University events
+    data_type: events
+    homepage: https://events.rice.edu/
+    expect_min_records: 20
+    params:
+      fallback_point: { lat: 29.7174, lon: -95.4018, label: "Rice University campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.rice.edu
+      max: 300
+      organizer: Rice University
+      default_category: learning.networking
+      category_map:   # LiveWhale event types seen in the live feed
+        Performances: music.concert
+        Arts and Entertainment: arts.theater
+        Athletics: sports_watch.game
+
+  - id: uh_athletics
+    adapter: ics
+    name: Houston Cougars athletics (home games — Fertitta Center, TDECU Stadium, softball, swimming)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://uhcougars.com/calendar
+    expect_min_records: 8
+    notes: >-
+      University of Houston's SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30, one request a
+      day). Only events whose LOCATION starts with "Houston" are kept (away/neutral/TBA skipped).
+    params:
+      url: https://uhcougars.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Houston Cougars
+      exclude_location: '^(?!Houston\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 29.7199, lon: -95.3422, label: "University of Houston campus" }
+  - id: rice_athletics
+    adapter: ics
+    name: Rice Owls athletics (home games — Tudor Fieldhouse, Rice Stadium, Reckling Park)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://riceowls.com/calendar
+    expect_min_records: 5
+    notes: >-
+      Rice's SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with
+      "Houston" or a Rice venue name (baseball lists only "Reckling Park").
+    params:
+      url: https://riceowls.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Rice Owls
+      exclude_location: '^(?!(Houston|Reckling Park|Rice Stadium|Tudor Fieldhouse|Holloway Field)\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 29.7174, lon: -95.4018, label: "Rice University campus" }
+
+  # ── big venue: carbonhouse /events/rss ──
+  - id: toyota_center
+    adapter: rss_events
+    name: Toyota Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.toyotacenter.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Rockets, concerts, shows.
+    params:
+      spectator_venue: true
+      url: https://www.toyotacenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Toyota Center", address: "1510 Polk St, Houston, TX 77002"}
+      organizer: Toyota Center
+      default_category: music.concert
+
+  # ── volunteering ──
+  - id: volunteer_houston
+    adapter: galaxydigital
+    name: Volunteer Houston
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteerhou.org/need/
+    expect_min_records: 1
+    notes: >-
+      Galaxy Digital "Get Connected" portal of Volunteer Houston (linked from volunteerhouston.org; RSS title
+      "Needs on Volunteer Houston"). robots allows the need pages.
+    params:
+      base_url: https://www.volunteerhou.org
+      max_details: 15
+      max_shifts: 6
+
+  # ── openings: Texas Alcoholic Beverage Commission (data.texas.gov Socrata) ──
+  - id: tabc_pending_openings_houston
+    adapter: socrata
+    name: TABC pending original on-premises applications (Houston area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/mxm5-tdpj
+    expect_min_records: 5
+    notes: >-
+      Original (not renewal) applications. MB = mixed beverage, BG = wine & beer on-premise, BE = beer on-premise.
+      gun_sign RED = 51%+ of revenue from alcohol (a bar). The owner column is dropped (may be a person).
+    params:
+      domain: data.texas.gov
+      dataset: mxm5-tdpj
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('HOUSTON','PASADENA','BELLAIRE','WEST UNIVERSITY PLACE','SOUTH HOUSTON','GALENA PARK',
+        'JACINTO CITY','PEARLAND','MISSOURI CITY','STAFFORD','HUMBLE') AND license_type in('MB','BG','BE')
+        AND submission_date >= '{today}'
+      order: submission_date DESC
+      fields: { record_id: primary_license_id, title: trade_name, start: submission_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission received an original
+        {license_type} on-premises license application for this address on {date} (status: {applicationstatus}).
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/mxm5-tdpj
+      extras: { signal: liquor_license_application }
+
+  - id: tabc_new_licenses_houston
+    adapter: socrata
+    name: TABC newly issued on-premises licenses (Houston area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/7hf9-qc9f
+    expect_min_records: 5
+    notes: original_issue_date = first issuance (not current_issued_date, which moves on renewal).
+    params:
+      domain: data.texas.gov
+      dataset: 7hf9-qc9f
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('HOUSTON','PASADENA','BELLAIRE','WEST UNIVERSITY PLACE','SOUTH HOUSTON','GALENA PARK',
+        'JACINTO CITY','PEARLAND','MISSOURI CITY','STAFFORD','HUMBLE') AND license_type in('MB','BG','BE')
+        AND original_issue_date >= '{today}'
+      order: original_issue_date DESC
+      fields: { record_id: license_id, title: trade_name, start: original_issue_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission first issued a
+        {license_type} on-premises license for this address on {date}.
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/7hf9-qc9f
+      extras: { signal: liquor_license_issued }
+
+  # ── trivia ──
+  - id: challenge_trivia_houston
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Houston)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 5
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-houston within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [houston]
