@@ -729,13 +729,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Every new resident has the same deadlines; state rules are public",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": [
-    "2026-10-16 doing: pipeline+UI shipped; state data being researched"
+    "2026-10-16 doing: pipeline+UI shipped; state data being researched",
+    "2026-10-16 done: 10 states, 34 items"
    ]
   },
   {
