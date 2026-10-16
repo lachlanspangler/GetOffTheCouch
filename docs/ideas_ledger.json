@@ -1060,12 +1060,14 @@
    "value": 3,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Social without accounts",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: gotc/health/reliability.py"
+   ]
   },
   {
    "id": "I-072",

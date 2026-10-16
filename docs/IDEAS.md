@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 23 · **doing** 2 · **done** 41 · **rejected** 7 · **blocked** 2
+**open** 22 · **doing** 2 · **done** 42 · **rejected** 7 · **blocked** 2
 
 ## Up next (open, by score)
 
@@ -24,7 +24,6 @@ unless docs/HEALTH.md has something red.
 | I-057 | Find registration deadlines for Minneapolis | sources | 4 | 2 | 1.4 | open | auto: the Deadlines view is empty — the core promise |
 | I-058 | Minneapolis new liquor licenses by snapshot-diffing On_Sale_Liquor licenseNumber | sources | 3 | 2 | 1.2 | open | The ArcGIS layer's issueDate includes renewals and there is no original-issue date; a licenseNumber not seen in yesterday's full snapshot (654 rows) is a genuinely new place. Needs a small stateful diff step (first-seen date per license). |
 | I-063 | Boston openings/events via data.boston.gov resource CSV downloads instead of the robots-disallowed CKAN API | sources | 3 | 2 | 1.2 | open | robots disallows /api/ and /datastore/* but not /dataset/<slug>/resource/<id>/download/*.csv. A CSV adapter (shared with FL DBPR) would restore special-event licenses and food-license openings — confirm the path is allowed first. |
-| I-071 | Shared plan links: encode picks in URL so a friend can see overlaps | features | 3 | 2 | 1.2 | open | Social without accounts |
 | I-073 | Friendsgiving / holiday-alone finder for first holidays in a new city | features | 3 | 2 | 1.2 | open | First holidays in a new city are the loneliest; curate + classify |
 | I-033 | Map view clustering + 'near me' by neighborhood | ux | 4 | 3 | 1.07 | open | Distance filter in the pitch |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
@@ -48,6 +47,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-071 | Shared plan links: encode picks in URL so a friend can see overlaps | features | 3 | 2 | 1.2 | done | Social without accounts — 2026-10-16 done: gotc/health/reliability.py |
 | I-069 | Accessibility + sober-friendly filters from tags (wheelchair, ASL, alcohol-free) | ux | 4 | 1 | 3.2 | done | Tags already derived; expose as filter chips — 2026-10-16 done: FilterBar tag chips |
 | I-068 | 'Free food' detector (pizza provided, free snacks) as a tag + filter | features | 3 | 1 | 2.4 | done | Real newcomer budget hack; text patterns are reliable — 2026-10-16 done: enrich free_food |
 | I-061 | Chicago Park District adult sports registration deadlines (tn7v-6rnw type=Program) | sources | 4 | 2 | 1.6 | done | Program rows include Sports - Volleyball/Basketball/Soccer with fee, age_range and registration_date: real beer-league deadlines from official data. Same Socrata adapter; needs registration.closes_at mapping in mapped.py. — 2026-10-16 done: chicago_park_adult_leagues + _classes |
