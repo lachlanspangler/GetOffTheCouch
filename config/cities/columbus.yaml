@@ -1,0 +1,174 @@
+# Columbus, OH. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city columbus --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * Columbus Metropolitan Library: robots.txt answers 403 to our client (= disallow). Suburban libraries are used.
+#   * Ohio State's public events calendar: no Localist/LiveWhale/Trumba endpoint found (osu.edu/events loops on
+#     redirects; events.osu.edu / calendar.osu.edu don't resolve). Only athletics (SIDEARM ICS) is used.
+#   * openings: no Socrata/ArcGIS license data for the city; Ohio liquor permits have no open-data feed we found.
+#   * volunteering: no HandsOn/Galaxy tenant found (handsoncentralohio.galaxydigital.com = "Bad Domain").
+#   * leagues/trivia: no Volo market, no Team Trivia region, no Challenge shows in range.
+#   * PromoWest venues (Newport, KEMBA Live) are AEG-owned (skipped until I-092); Short North Arts District
+#     robots.txt 403; Columbus Symphony (Cloudflare); Wexner Center robots disallows /wp-json/.
+slug: columbus
+name: Columbus
+state: OH
+timezone: America/New_York
+center: [39.9612, -82.9988]
+radius_km: 20
+aliases: [Bexley, Grandview Heights, Upper Arlington, Worthington, Westerville, Whitehall, Gahanna, Hilliard,
+          Reynoldsburg, Dublin, Grove City, Groveport, Canal Winchester, Clintonville]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 39.9612, lon: -82.9988 }
+  - { name: Short North, lat: 39.9780, lon: -83.0030 }
+  - { name: Arena District, lat: 39.9690, lon: -83.0060 }
+  - { name: German Village, lat: 39.9480, lon: -82.9930 }
+  - { name: Brewery District, lat: 39.9500, lon: -83.0030 }
+  - { name: Italian Village, lat: 39.9760, lon: -82.9920 }
+  - { name: Victorian Village, lat: 39.9800, lon: -83.0120 }
+  - { name: Olde Towne East, lat: 39.9630, lon: -82.9750 }
+  - { name: Franklinton, lat: 39.9570, lon: -83.0200 }
+  - { name: University District, lat: 40.0000, lon: -83.0100 }
+  - { name: Clintonville, lat: 40.0400, lon: -83.0170 }
+  - { name: Old North Columbus, lat: 40.0130, lon: -83.0090 }
+  - { name: Merion Village, lat: 39.9370, lon: -82.9930 }
+  - { name: Grandview Heights, lat: 39.9790, lon: -83.0410 }
+  - { name: Bexley, lat: 39.9690, lon: -82.9380 }
+sources:
+  # ── arenas: carbonhouse events RSS ──
+  - id: nationwide_arena
+    adapter: rss_events
+    name: Nationwide Arena (Blue Jackets, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.nationwidearena.com/events
+    expect_min_records: 10
+    notes: "carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.nationwidearena.com/events/rss
+      horizon_days: 180
+      venue: {name: Nationwide Arena, address: "200 W Nationwide Blvd, Columbus, OH 43215"}
+      organizer: Nationwide Arena
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Blue Jackets": sports_watch.game
+  - id: schottenstein_center
+    adapter: rss_events
+    name: Schottenstein Center / Value City Arena (Ohio State)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.schottensteincenter.com/events
+    expect_min_records: 10
+    notes: "Ohio State arena; carbonhouse /events/rss (robots allows all). Buckeye basketball/hockey, concerts, shows."
+    params:
+      spectator_venue: true
+      url: https://www.schottensteincenter.com/events/rss
+      horizon_days: 180
+      venue: {name: Schottenstein Center, address: "555 Borror Dr, Columbus, OH 43210"}
+      organizer: Schottenstein Center
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Basketball": sports_watch.game
+        "Hockey": sports_watch.game
+        "Volleyball": sports_watch.game
+        "Wrestling": sports_watch.game
+
+  # ── downtown park calendar: WordPress The Events Calendar ──
+  - id: columbus_commons
+    adapter: tribe
+    name: Columbus Commons events (downtown park)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://columbuscommons.org/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Free movies, festivals, Wanderlights, fitness classes.
+    params:
+      base_url: https://columbuscommons.org
+      horizon_days: 75
+      per_page: 50
+      max_pages: 4
+      organizer: Columbus Commons
+      venue: {name: Columbus Commons, address: "160 S High St, Columbus, OH 43215"}
+      default_category: community.festival
+      tags: [outdoor]
+
+  # ── libraries ──
+  - id: westerville_library_events
+    adapter: bibliocommons
+    name: Westerville Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://westervillelibrary.bibliocommons.com/v2/events
+    expect_min_records: 15
+    notes: BiblioCommons events RSS (gateway host, no robots.txt). Single-branch library in Westerville (NE suburb).
+    params:
+      library: westervillelibrary
+      horizon_days: 10
+      max_pages: 10
+      venue_label: Westerville Public Library
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Club: arts.books
+        Kids: family.kids
+        Teens: family.kids
+  - id: grandview_library_events
+    adapter: communico
+    name: Grandview Heights Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://ghpl.libnet.info/events
+    expect_min_records: 0
+    notes: >-
+      Communico eeventcaldata JSON (undocumented; robots disallows only search/results pages). Name check: the
+      tenant's location field is "Grandview Heights" (not another GHPL). Small: ~1–3 programs a day.
+    params:
+      base_url: https://ghpl.libnet.info
+      horizon_days: 7
+      venue_label: Grandview Heights Public Library
+      default_category: arts.books
+      skip_all_day: true
+
+  # ── college athletics: SIDEARM subscription calendar (home games only) ──
+  - id: ohio_state_athletics
+    adapter: ics
+    name: Ohio State Buckeyes athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://ohiostatebuckeyes.com/calendar
+    expect_min_records: 10
+    notes: >-
+      SIDEARM calendar.ics (robots allows it). Only events whose LOCATION starts with "Columbus" are kept (Ohio
+      Stadium, Jesse Owens, Covelli, Schottenstein…).
+    params:
+      url: https://ohiostatebuckeyes.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Ohio State Buckeyes
+      exclude_location: '^(?!Columbus\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 40.0017, lon: -83.0197, label: "Ohio State main campus (approximate)" }
+
+  # ── tourism board (Simpleview). Boston/Austin/Denver boards answered 403 at the CDN; tried here once. ──
+  - id: experience_columbus_events
+    adapter: simpleview
+    name: Experience Columbus events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://www.experiencecolumbus.com/events/
+    expect_min_records: 20
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the Simpleview events API answered HTTP 403 "You don't have permission to access" (CDN bot
+      protection) on the first live run, like Meet Boston / Visit Austin / Visit Denver, although robots.txt allows
+      it (Crawl-delay 2). We don't work around it; re-enable only with the board's permission.
+    params:
+      base_url: https://www.experiencecolumbus.com
+      board: Experience Columbus
+      horizon_days: 7
+      default_category: community.festival
