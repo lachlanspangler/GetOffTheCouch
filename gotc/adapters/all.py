@@ -6,6 +6,7 @@ from gotc.adapters import (  # noqa: F401
     galaxydigital,
     handsonconnect,
     ics,
+    makerfaire,
     socrata,
     ticketing,
     upcomingcons,
