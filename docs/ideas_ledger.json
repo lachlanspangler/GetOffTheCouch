@@ -1116,12 +1116,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Per-request geocoding is slow; batch API is keyless",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: Geocoder.batch + variants"
+   ]
   },
   {
    "id": "I-075",
