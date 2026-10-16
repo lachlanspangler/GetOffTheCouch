@@ -144,11 +144,12 @@ class PoliteClient:
         headers: Mapping[str, str] | None = None,
         respect_robots: bool = True,
         redact: tuple[str, ...] = REDACT_KEYS,
+        files: Mapping[str, tuple[str, bytes, str]] | None = None,
     ) -> Response:
-        """Form-encoded POST (search endpoints that only accept POST). Same robots check, per-host throttle,
+        """Form-encoded (or multipart, with ``files``) POST (search endpoints that only accept POST). Same robots check, per-host throttle,
         retry/backoff and URL redaction as ``get``; never cached (POST responses aren't conditional-GETable).
         Only use for read-only search/query endpoints — never to submit anything on a user's behalf."""
-        return self._request("POST", url, params, headers, dict(data or {}), respect_robots, False, redact)
+        return self._request("POST", url, params, headers, dict(data or {}), respect_robots, False, redact, files)
 
     def _request(
         self,
@@ -160,6 +161,7 @@ class PoliteClient:
         respect_robots: bool,
         conditional: bool,
         redact: tuple[str, ...],
+        files: Mapping[str, tuple[str, bytes, str]] | None = None,
     ) -> Response:
         # merge, don't replace: httpx.URL(url, params={}) silently drops an existing ?query (Luma ICS, Maker Faire)
         full = str(httpx.URL(url).copy_merge_params(dict(params)) if params else httpx.URL(url))
@@ -181,7 +183,7 @@ class PoliteClient:
             self._throttle(full)
             t0 = time.monotonic()
             try:
-                r = self._client.request(method, full, headers=hdrs, data=form)
+                r = self._client.request(method, full, headers=hdrs, data=form, files=dict(files) if files else None)
             except httpx.TimeoutException:
                 last_exc = FetchTimeout(f"timeout fetching {safe}", safe)
             except httpx.HTTPError as e:

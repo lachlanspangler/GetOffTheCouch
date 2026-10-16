@@ -151,6 +151,9 @@ def build_city(
 
     if geocoder:
         geocoder.lookups = 0  # the live-lookup budget is per city, so early cities can't starve later ones
+        stats.geocoded += geocoder.batch(
+            [r.location.address for r in records if r.location.lat is None and r.location.address], city
+        )
         for rec in records:
             if rec.location.lat is None and (rec.location.address or rec.location.venue_name):
                 q = rec.location.address or rec.location.venue_name or ""
