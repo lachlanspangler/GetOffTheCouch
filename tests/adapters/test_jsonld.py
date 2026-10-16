@@ -438,3 +438,16 @@ def test_real_fixture_parses_without_rejects(source_id: str):
     assert not parsed.rejects, parsed.rejects[:3]
     for ev, _ in parsed.valid:
         assert ev.start.tzinfo is not None and ev.category and ev.url is not None
+
+
+def test_cervantes_rockhouse_detail_pages():
+    parsed = _real("cervantes_denver")
+    assert len(parsed.valid) == 4
+    for ev, _ in parsed.valid:
+        assert ev.category == "music.concert" and not ev.all_day
+        assert ev.location.address == "2637 Welton Street, Denver, Colorado"
+        assert ev.start.utcoffset() is not None and ev.start.utcoffset().total_seconds() == -6 * 3600
+        assert any(o.seller == "Etix" for o in ev.offers)
+    first = min((ev for ev, _ in parsed.valid), key=lambda e: e.start)
+    assert first.title.startswith("Zach Nugent’s Dead Set")  # &#8217; unescaped
+    assert first.price.min is None  # Rockhouse sends "price": 0 for "see the ticket page"

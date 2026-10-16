@@ -190,3 +190,81 @@ sources:
       venue: {name: Lost Lake Lounge}
       organizer: Lost Lake Lounge
       default_category: music.concert
+  # ── session 2: Denver / Seattle / Austin coverage (2026-10-16; docs/SOURCES.md "session 2") ──
+  - id: jeffco_library_events
+    adapter: bibliocommons
+    name: Jefferson County Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://jeffcolibrary.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). Branches in Lakewood, Arvada, Wheat Ridge, Golden,
+      Edgewater and Littleton only; the mountain branches (Evergreen, Conifer) are outside the city radius.
+    params:
+      library: jeffcolibrary
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Jefferson County Public Library
+      cities: [Lakewood, Arvada, Wheat Ridge, Golden, Edgewater, Littleton]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Story Times: family.kids
+        Book Club: arts.books
+        Writing: arts.books
+        DIY and Crafting: arts.workshop
+        Science and Technology: learning.tech
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        School Age: family.kids
+        Tweens: family.kids
+  - id: arapahoe_library_events
+    adapter: bibliocommons
+    name: Arapahoe Libraries events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://arapahoelibraries.bibliocommons.com/v2/events
+    expect_min_records: 30
+    notes: >-
+      BiblioCommons events RSS. Branches in Centennial, Englewood, Littleton, Sheridan and the Denver-addressed
+      branches (Eloise May, Sheridan); the far-east rural branches (Deer Trail, Byers) are dropped by `cities`.
+    params:
+      library: arapahoelibraries
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Arapahoe Libraries
+      cities: [Centennial, Denver, Englewood, Littleton, Sheridan, Greenwood Village, Aurora]
+      exclude_location: '\b(Board of Trustees|Trustees Meeting)\b'   # governance meetings, not events
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytimes: family.kids
+        "Book & Movie Clubs": arts.books
+        "Literature & Writing": arts.books
+        "Authors & Speakers": arts.books
+        "Crafts & Hobbies": arts.workshop
+        Language Learning: learning.language
+        Computer Classes: learning.tech
+        "Technology & Innovation": learning.tech
+        "Children (0–5)": family.kids
+        "Kids (5–8)": family.kids
+        "Tweens (9–12)": family.kids
+  - id: cervantes_denver
+    adapter: jsonld
+    name: Cervantes' Masterpiece Ballroom & Other Side (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://cervantesmasterpiece.com/
+    expect_min_records: 15
+    notes: >-
+      Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link. The
+      homepage also lists shows the promoter books elsewhere (Ogden, Mission Ballroom, Red Rocks, Steamboat);
+      `follow` keeps Denver-addressed rooms only.
+    params:
+      urls: [https://cervantesmasterpiece.com/]
+      follow: 'cervantesmasterpiece\.com/event/[^/]+/cervantes[^/]*/denver-colorado/$'
+      max_follow: 40
+      venue: {name: "Cervantes' Masterpiece Ballroom", address: "2637 Welton St, Denver, CO 80205"}
+      organizer: Cervantes' Masterpiece
+      default_category: music.concert
