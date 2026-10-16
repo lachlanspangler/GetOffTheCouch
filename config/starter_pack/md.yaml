@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Maryland. Every fact is quoted verbatim from source_url.
+state: MD
+items:
+  - id: md-drivers-license
+    title: "Get a Maryland driver's license"
+    kind: license
+    days_after_move: 60
+    summary: "You must get a Maryland driver's license within 60 days of becoming a Maryland resident."
+    action_url: https://mva.maryland.gov/your-mva-guide/new-maryland-residents
+    evidence: "You must obtain your Maryland driver’s license and Maryland vehicle title and registration within 60 days of becoming a Maryland resident."
+    source_url: https://mva.maryland.gov/your-mva-guide/new-maryland-residents
+    verified_at: 2026-10-16
+  - id: md-vehicle-registration
+    title: "Title and register your vehicle in Maryland"
+    kind: vehicle
+    days_after_move: 60
+    summary: "Your vehicle's Maryland title and registration are due within 60 days of becoming a resident (a Maryland safety inspection comes first for most used vehicles)."
+    action_url: https://mva.maryland.gov/your-mva-guide/new-maryland-residents
+    evidence: "You must obtain your Maryland driver’s license and Maryland vehicle title and registration within 60 days of becoming a Maryland resident."
+    source_url: https://mva.maryland.gov/your-mva-guide/new-maryland-residents
+    verified_at: 2026-10-16
+  - id: md-voter-registration
+    title: "Register to vote in Maryland"
+    kind: voting
+    days_after_move: null
+    summary: "If you're eligible but not yet registered, you can register and vote in person during early voting at a center in your county, bringing proof of where you live."
+    action_url: https://elections.maryland.gov/voter_registration/index.html
+    evidence: "Registered voters have always been able to vote during early voting, but now individuals who are eligible but not yet registered can register and vote. To register and vote during early voting, go to an early voting center in the county where you live and bring a document that proves where you live."
+    source_url: https://elections.maryland.gov/voting/early_voting.html
+    verified_at: 2026-10-16

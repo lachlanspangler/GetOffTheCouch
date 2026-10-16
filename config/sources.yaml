@@ -90,6 +90,7 @@ sources:
       max_pages: 5
       zipcodes:   # a downtown ZIP per city; radius = the city's radius_km in miles
         austin: "78701"
+        baltimore: "21202"
         boston: "02108"
         chicago: "60602"
         dallas: "75201"

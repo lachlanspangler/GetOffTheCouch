@@ -56,6 +56,7 @@ class IcsAdapter(Adapter):
         max_occ = int(p.get("max_occurrences", 4))
         per_uid: dict[str, int] = defaultdict(int)
         cmap: dict[str, str] = p.get("category_map", {})
+        _fix_x_wr_timezone(cal, ctx.city.timezone)
         occurrences = recurring_ical_events.of(cal).between(start_window, end_window)
         occurrences = sorted(occurrences, key=lambda e: _as_dt(e.get("DTSTART").dt, tz))
         for ev in occurrences:
@@ -120,6 +121,38 @@ class IcsAdapter(Adapter):
                 availability="cancelled" if status == "CANCELLED" else ("free_no_ticket" if free else "unknown"),
                 _html=str(ev.get("X-ALT-DESC") or ev.get("DESCRIPTION") or ""),
             )
+
+
+#: Rails/ActiveSupport display names some calendar generators put in X-WR-TIMEZONE (Enoch Pratt's calendar sends
+#: "Eastern Time (US & Canada)"); Windows zone names are mapped by icalendar's own table.
+_RAILS_ZONES = {
+    "Eastern Time (US & Canada)": "America/New_York",
+    "Central Time (US & Canada)": "America/Chicago",
+    "Mountain Time (US & Canada)": "America/Denver",
+    "Pacific Time (US & Canada)": "America/Los_Angeles",
+    "Alaska": "America/Juneau",
+    "Hawaii": "Pacific/Honolulu",
+    "Arizona": "America/Phoenix",
+    "Indiana (East)": "America/Indiana/Indianapolis",
+}
+
+
+def _fix_x_wr_timezone(cal: Any, city_tz: str) -> None:
+    """X-WR-TIMEZONE must be an IANA key for recurring_ical_events (it raises ZoneInfoNotFoundError otherwise and the
+    whole feed is lost). Map Rails/Windows display names to IANA; anything else unknown falls back to the city's zone,
+    which is also how naive times are read everywhere else."""
+    raw = cal.get("X-WR-TIMEZONE")
+    if raw is None:
+        return
+    name = str(raw).strip()
+    try:
+        ZoneInfo(name)
+        return
+    except (ValueError, KeyError):  # ZoneInfoNotFoundError subclasses KeyError; odd strings raise ValueError
+        pass
+    from icalendar.timezone.windows_to_olson import WINDOWS_TO_OLSON
+
+    cal["X-WR-TIMEZONE"] = _RAILS_ZONES.get(name) or WINDOWS_TO_OLSON.get(name) or city_tz
 
 
 def _as_dt(value: date | datetime, tz: ZoneInfo) -> datetime:

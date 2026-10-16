@@ -1,0 +1,235 @@
+# Baltimore, MD. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Baltimore City liquor licenses (ArcGIS layer LIquor_Licenses: LicenseDate is the annual license term,
+# 0 rows in the last 60 days — not a newness date); Hippodrome (robots.txt → 403); calendar.jhu.edu (robots → 403);
+# Baltimore Soundstage (Ticketmaster links, no JSON-LD); Rams Head Live / Pier Six (Live Nation); CFG Bank Arena's
+# /events/rss answers an empty body; no Challenge Entertainment shows inside the circle.
+slug: baltimore
+name: Baltimore
+state: MD
+timezone: America/New_York
+center: [39.2904, -76.6122]
+radius_km: 20
+aliases: [Charm City, Towson, Catonsville, Dundalk, Essex, Parkville, Pikesville, Glen Burnie, Halethorpe, Arbutus, Lutherville, Owings Mills]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Inner Harbor, lat: 39.2858, lon: -76.6131 }
+  - { name: Harbor East, lat: 39.2830, lon: -76.6000 }
+  - { name: Fells Point, lat: 39.2830, lon: -76.5930 }
+  - { name: Canton, lat: 39.2800, lon: -76.5760 }
+  - { name: Federal Hill, lat: 39.2780, lon: -76.6120 }
+  - { name: Locust Point, lat: 39.2700, lon: -76.5950 }
+  - { name: Mount Vernon, lat: 39.2980, lon: -76.6150 }
+  - { name: Station North, lat: 39.3080, lon: -76.6130 }
+  - { name: Charles Village, lat: 39.3200, lon: -76.6170 }
+  - { name: Hampden, lat: 39.3300, lon: -76.6340 }
+  - { name: Remington, lat: 39.3200, lon: -76.6260 }
+  - { name: Highlandtown, lat: 39.2880, lon: -76.5700 }
+  - { name: Patterson Park, lat: 39.2900, lon: -76.5820 }
+  - { name: Bolton Hill, lat: 39.3070, lon: -76.6290 }
+  - { name: Roland Park, lat: 39.3550, lon: -76.6370 }
+  - { name: Towson, lat: 39.4015, lon: -76.6019 }
+sources:
+  # ── library ──
+  - id: pratt_library_events
+    adapter: ics
+    name: Enoch Pratt Free Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://calendar.prattlibrary.org/
+    expect_min_records: 40
+    notes: >-
+      The library calendar's published iCalendar subscription (calendar/1.ics, linked as "webcal://" on
+      calendar.prattlibrary.org; robots allows it, Crawl-delay 1). ~2,000 VEVENTs a year in one 1.7 MB file.
+      LOCATION is the branch name only ("Hamilton", "Light Street"), so places geocode to the neighborhood.
+    params:
+      url: https://calendar.prattlibrary.org/calendar/1.ics
+      horizon_days: 10
+      max_occurrences: 2
+      organizer: Enoch Pratt Free Library
+      default_category: arts.books
+
+  # ── university ──
+  - id: towson_events
+    adapter: localist
+    name: Towson University events (open to the general public)
+    data_type: events
+    homepage: https://events.towson.edu/
+    expect_min_records: 10
+    params:
+      fallback_point: { lat: 39.3929, lon: -76.6097, label: "Towson University campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.towson.edu
+      type: 6344   # Localist filter "Target audience: General Public" (GET /api/2/events/filters)
+      horizon_days: 30
+      max_pages: 3
+      organizer: Towson University
+      default_category: learning.networking
+  - id: towson_athletics
+    adapter: ics
+    name: Towson Tigers athletics (home games — SECU Arena, Johnny Unitas Stadium)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://towsontigers.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Towson".
+    params:
+      url: https://towsontigers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Towson Tigers
+      exclude_location: '^(?!Towson\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.3929, lon: -76.6097, label: "Towson University campus" }
+  - id: jhu_athletics
+    adapter: ics
+    name: Johns Hopkins Blue Jays athletics (home games — Homewood Field, Goldfarb Gym)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://hopkinssports.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Baltimore" or a Homewood venue.
+    params:
+      url: https://hopkinssports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Johns Hopkins Blue Jays
+      exclude_location: '^(?!(Baltimore\b|, Goldfarb|Homewood))'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.3299, lon: -76.6205, label: "Johns Hopkins Homewood campus" }
+
+  # ── arts / districts (The Events Calendar REST) ──
+  - id: creative_alliance_events
+    adapter: tribe
+    name: Creative Alliance (Highlandtown) events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.creativealliance.org/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Concerts, film, workshops, exhibitions at The Patterson.
+    params:
+      base_url: https://www.creativealliance.org
+      horizon_days: 60
+      per_page: 50
+      max_pages: 3
+      organizer: Creative Alliance
+      venue: {name: Creative Alliance at The Patterson, address: "3134 Eastern Ave, Baltimore, MD 21224"}
+      default_category: arts.theater
+  - id: downtown_baltimore_events
+    adapter: tribe
+    name: Downtown Partnership of Baltimore events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.godowntownbaltimore.com/events/
+    expect_min_records: 10
+    notes: The Events Calendar REST API of the downtown business district (robots allows it).
+    params:
+      base_url: https://www.godowntownbaltimore.com
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Downtown Partnership of Baltimore
+      default_category: community.festival
+
+  # ── venues ──
+  - id: lyric_baltimore
+    adapter: rss_events
+    name: The Lyric Baltimore (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.lyricbaltimore.com/events
+    expect_min_records: 5
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Concerts, comedy, touring shows.
+    params:
+      spectator_venue: true
+      url: https://www.lyricbaltimore.com/events/rss
+      horizon_days: 180
+      venue: {name: "The Lyric Baltimore", address: "140 W Mount Royal Ave, Baltimore, MD 21201"}
+      organizer: The Lyric Baltimore
+      default_category: music.concert
+  - id: the_8x10
+    adapter: jsonld
+    name: The 8x10 (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3
+    homepage: https://the8x10.com/
+    expect_min_records: 10
+    notes: WordPress homepage with schema.org Event JSON-LD for every listed show (Tixr offers, UTC times). robots allows it (Crawl-delay 3).
+    params:
+      urls: [https://the8x10.com/]
+      horizon_days: 180
+      venue: {name: The 8x10, address: "10 E Cross St, Baltimore, MD 21230"}
+      organizer: The 8x10
+      default_category: music.concert
+      classify_description: false
+  - id: ottobar
+    adapter: jsonld
+    name: Ottobar (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://theottobar.com/
+    expect_min_records: 5
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page. Season passes are skipped by `follow`.
+    params:
+      urls: [https://theottobar.com/]
+      follow: 'theottobar\.com/event/(?!20\d\d-ottobar-season)[^/]+/[^/]+/baltimore-maryland/$'
+      max_follow: 40
+      venue: {name: Ottobar, address: "2549 N Howard St, Baltimore, MD 21218"}
+      organizer: Ottobar
+      default_category: music.concert
+      classify_description: false
+
+  # ── volunteering ──
+  - id: uwcm_volunteer
+    adapter: galaxydigital
+    name: United Way of Central Maryland volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://uwcm.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: Galaxy Digital portal; tenant verified by the RSS title "Volunteer Opportunities on United Way of Central Maryland".
+    params:
+      base_url: https://uwcm.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+  - id: baltimore_county_volunteer
+    adapter: galaxydigital
+    name: Baltimore County Volunteers
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://baltimorecounty.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: Galaxy Digital portal; tenant verified by the RSS title "Needs on Baltimore County Volunteers".
+    params:
+      base_url: https://baltimorecounty.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+
+  # ── leagues / trivia ──
+  - id: volo_baltimore
+    adapter: volo
+    name: Volo Sports Baltimore
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/baltimore?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: baltimore
+      max_pages: 6
+  - id: teamtrivia_baltimore
+    adapter: teamtrivia
+    name: Team Trivia (Baltimore / Delaware)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-baltimore-delaware/
+    expect_min_records: 3
+    notes: >-
+      Region page (23 venues across central Maryland and Delaware) → venue pages with dated games in JSON-LD. Never uses
+      the zip-code gate or /getlocation.php (robots-disallowed). Bel Air/Delaware venues fall outside the circle.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { baltimore: baltimore-delaware }
+      max_venues: 40

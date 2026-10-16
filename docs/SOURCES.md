@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -304,6 +304,19 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `montgomery_volunteer` | washington_dc | Galaxy Digital / `galaxydigital` | https://montgomerycountymd.galaxydigital.com/need/rss/ | none | as above | as above | as above; "Opportunities on Montgomery County Volunteer Center" | volunteer · 24h | B+ | 15 |
 | `volo_washington_dc` | washington_dc | Volo discover pages / `volo` | https://www.volosports.com/discover/washington-dc?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 107 |
 | `challenge_trivia_washington_dc` | washington_dc | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-dc-metro-area-{northern-virginia,maryland} within 40 km | recurring · 48h | C+ | 58 |
+| `pratt_library_events` | baltimore | iCalendar subscription / `ics` | https://calendar.prattlibrary.org/calendar/1.ics | none | 1 request/day (1.7 MB) | robots allows it (Crawl-delay 1); the feed is linked as webcal:// on the calendar | SUMMARY, DTSTART (UTC), LOCATION (branch, room split off); feed's non-IANA X-WR-TIMEZONE mapped (adapter fix + test) | events · 24h | A- (official) | 118 |
+| `towson_events` | baltimore | Localist / `localist` (`type` = "Target audience: General Public") | https://events.towson.edu/api/2/events | none | ≤3 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events` | events · 24h | B | 101 |
+| `towson_athletics` | baltimore | SIDEARM ICS / `ics` | https://towsontigers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = LOCATION starts with "Towson" | events · 24h | B | 21 |
+| `jhu_athletics` | baltimore | SIDEARM ICS / `ics` | https://hopkinssports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = "Baltimore…" or a Homewood venue | events · 24h | B | 34 |
+| `creative_alliance_events` | baltimore | WP The Events Calendar / `tribe` | https://www.creativealliance.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events`; blank venues → The Patterson | events · 24h | B+ | 95 |
+| `downtown_baltimore_events` | baltimore | WP The Events Calendar / `tribe` | https://www.godowntownbaltimore.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above | events · 24h | B | 50 |
+| `lyric_baltimore` | baltimore | carbonhouse RSS / `rss_events` | https://www.lyricbaltimore.com/events/rss | none | 1 request/day | robots allows all | title, link, ev:startdate (UTC) | concerts · 24h | B+ | 23 |
+| `the_8x10` | baltimore | Event JSON-LD on the homepage / `jsonld` | https://the8x10.com/ | none | 1 page/12h (Crawl-delay 3) | robots allows it | name, start (UTC), Tixr offers (face value when listed) | concerts · 12h | B- | 44 |
+| `ottobar` | baltimore | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://theottobar.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), room, ticket link | concerts · 12h | C+ | 9 |
+| `uwcm_volunteer` | baltimore | Galaxy Digital / `galaxydigital` | https://uwcm.galaxydigital.com/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title (United Way of Central Maryland) | volunteer · 24h | B+ | 30 (1 rejected: need without a date line) |
+| `baltimore_county_volunteer` | baltimore | Galaxy Digital / `galaxydigital` | https://baltimorecounty.galaxydigital.com/need/rss/ | none | as above | as above | as above ("Needs on Baltimore County Volunteers") | volunteer · 24h | B+ | 15 |
+| `volo_baltimore` | baltimore | Volo discover pages / `volo` | https://www.volosports.com/discover/baltimore?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows all but /rfo /admin /staff | as `volo_denver` | leagues · 24h | B | 83 |
+| `teamtrivia_baltimore` | baltimore | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-baltimore-delaware/ | none | 1 region + ≤40 venue pages / 48h, ≥3 s | region/venue pages allowed and in the sitemap; zip gate never used | as `teamtrivia_denver` | recurring · 48h | B | 109 |
 
 **Tried and not added (batch A).**
 
@@ -345,3 +358,9 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Georgetown BID (Tribe) | washington_dc | Works (157 items/30 days) but nearly all are daily retail promotions (cupcakes, trunk shows, student promos) | category "Community Events" only |
 | Black Cat, DC Improv (SeatEngine), Blues Alley (Wix), Warner Theatre | washington_dc | no Event JSON-LD / feed | probe |
 | EagleBank Arena (carbonhouse RSS works) | washington_dc | George Mason campus in Fairfax is ~25 km out, beyond the 20 km circle | RSS probe |
+| Baltimore City liquor licenses (ArcGIS `LIquor_Licenses`, owner baltimore_city) | baltimore | `LicenseDate` is the annual license term (0 rows dated in the last 60 days), not a newness date; no application/first-issue column | layer fields + count query |
+| Hippodrome Theatre; calendar.jhu.edu | baltimore | robots.txt answers 403 (disallow-all) | probe |
+| CFG Bank Arena `/events/rss` | baltimore | answers 200 with an empty body | probe |
+| Baltimore Soundstage, Baltimore Symphony (my.bsomusic.org) | baltimore | no Event JSON-LD (Ticketmaster / Tessitura links) | probe |
+| Rams Head Live, Pier Six Pavilion | baltimore | Live Nation venues (ToS) — via Ticketmaster API once keyed | — |
+| Pratt Library BiblioCommons / BCPL / AACPL codes | baltimore | not BiblioCommons tenants (gateway 404); Pratt is served by its own ICS instead | gateway probes |
