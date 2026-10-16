@@ -1,0 +1,221 @@
+# Memphis, TN (Shelby County + DeSoto County, MS). Neighborhood points are approximate centroids, used only for
+# "near me" distance filters. Researched and verified live 2026-10-16 (batch D; docs/SOURCES.md "Batch D cities").
+# Not available: Memphis Public Libraries, memphistn.gov events, Crosstown Arts and the Cannon Center answer with
+# Cloudflare challenges; Germantown, Collierville and Bartlett Library sites 403 robots.txt (= disallow all).
+# The City of Memphis moved off Socrata (data.memphistn.gov is gone) to ArcGIS (orgId saWmpKJIUAjyyNVc), which
+# publishes no events, permits-for-events or business/liquor-license layers, so there is no openings source.
+slug: memphis
+name: Memphis
+state: TN
+timezone: America/Chicago
+center: [35.1495, -90.0490]
+radius_km: 20
+aliases: [Shelby County, Germantown, Bartlett, Collierville, Cordova, Millington, Southaven, Horn Lake, Olive Branch, West Memphis, Lakeland]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Beale Street, lat: 35.1400, lon: -90.0510 }
+  - { name: South Main, lat: 35.1330, lon: -90.0580 }
+  - { name: Harbor Town / Mud Island, lat: 35.1620, lon: -90.0560 }
+  - { name: Uptown / Pinch, lat: 35.1580, lon: -90.0470 }
+  - { name: Medical District, lat: 35.1400, lon: -90.0290 }
+  - { name: Victorian Village, lat: 35.1460, lon: -90.0340 }
+  - { name: Midtown, lat: 35.1370, lon: -89.9900 }
+  - { name: Cooper-Young, lat: 35.1190, lon: -89.9900 }
+  - { name: Overton Square, lat: 35.1490, lon: -89.9940 }
+  - { name: Crosstown, lat: 35.1520, lon: -90.0150 }
+  - { name: Binghampton, lat: 35.1420, lon: -89.9540 }
+  - { name: East Memphis, lat: 35.1080, lon: -89.9000 }
+  - { name: University District, lat: 35.1190, lon: -89.9370 }
+  - { name: Soulsville / South Memphis, lat: 35.1150, lon: -90.0310 }
+  - { name: Orange Mound, lat: 35.1160, lon: -89.9640 }
+  - { name: Germantown, lat: 35.0870, lon: -89.8100 }
+sources:
+  # ── arenas via carbonhouse /events/rss (public syndication feed; robots allows all) ──
+  - id: memphis_fedexforum
+    adapter: rss_events
+    name: FedExForum (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.fedexforum.com/events
+    expect_min_records: 10
+    notes: Grizzlies home games plus concerts; carbonhouse events RSS (robots has no rules for any agent).
+    params:
+      spectator_venue: true
+      url: https://www.fedexforum.com/events/rss
+      horizon_days: 180
+      venue: {name: "FedExForum", address: "191 Beale St, Memphis, TN 38103"}
+      organizer: FedExForum
+      default_category: music.concert
+      category_map:
+        Memphis Grizzlies: sports_watch.game
+        Memphis Tigers: sports_watch.game
+  - id: memphis_landers_center
+    adapter: rss_events
+    name: Landers Center, Southaven MS (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.landerscenter.com/events
+    expect_min_records: 5
+    notes: Arena ~20 km south of downtown (concerts, Mid-South Monarchs, festivals); carbonhouse events RSS, robots allows all.
+    params:
+      spectator_venue: true
+      url: https://www.landerscenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Landers Center", address: "4560 Venture Dr, Southaven, MS 38671"}
+      organizer: Landers Center
+      default_category: music.concert
+      category_map:
+        Monarchs: sports_watch.game
+
+  # ── concerts / arts: venues' own Squarespace calendars (Event JSON-LD per event page) ──
+  - id: memphis_overton_park_shell
+    adapter: jsonld
+    name: Overton Park Shell (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://overtonparkshell.org/eventpage
+    expect_min_records: 5
+    notes: >-
+      Nonprofit outdoor bandshell in Overton Park (free Orion concert series, Shell on Wheels pop-ups, fitness
+      classes). Squarespace; the listing shows upcoming events first, each detail page has Event JSON-LD with
+      offsets. robots (Squarespace default) disallows ?format=/?view= query URLs; `follow` only takes plain paths.
+    params:
+      urls: [https://overtonparkshell.org/eventpage]
+      follow: 'overtonparkshell\.org/eventpage/\d{4}/\d{1,2}/\d{1,2}/[^?#]+$'
+      max_follow: 25
+      venue: {name: Overton Park Shell, address: "1928 Poplar Ave, Memphis, TN 38104"}
+      organizer: Overton Park Shell
+      default_category: music.concert
+  - id: memphis_symphony
+    adapter: jsonld
+    name: Memphis Symphony Orchestra (concert calendar)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://memphissymphony.org/calendar
+    expect_min_records: 5
+    notes: Squarespace; Event JSON-LD per concert page (Cannon Center, Germantown, Lindenwood, Botanic Garden…).
+    params:
+      urls: [https://memphissymphony.org/calendar]
+      follow: 'memphissymphony\.org/calendar/[^/?#]+$'
+      max_follow: 30
+      venue: {name: Memphis Symphony Orchestra}
+      organizer: Memphis Symphony Orchestra
+      default_category: music.classical
+  - id: memphis_gpac
+    adapter: jsonld
+    name: Germantown Performing Arts Centre (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.gpacweb.com/event-list
+    expect_min_records: 5
+    notes: Squarespace; Event JSON-LD per event page (jazz, roots, dance, theatre; some school matinees).
+    params:
+      urls: [https://www.gpacweb.com/event-list]
+      follow: 'gpacweb\.com/event-list/[^/?#]+$'
+      max_follow: 30
+      venue: {name: Germantown Performing Arts Centre, address: "1801 Exeter Rd, Germantown, TN 38138"}
+      organizer: Germantown Performing Arts Centre
+      default_category: music.concert
+  - id: memphis_river_parks
+    adapter: jsonld
+    name: Memphis River Parks Partnership (Tom Lee Park, River Garden, Fourth Bluff)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.memphisriverparks.org/events
+    expect_min_records: 5
+    notes: >-
+      Nonprofit that runs the downtown riverfront parks for the City; free fitness classes, walks, kids'
+      festivals. Squarespace Event JSON-LD per event page; query URLs are robots-disallowed and never followed.
+    params:
+      urls: [https://www.memphisriverparks.org/events]
+      follow: 'memphisriverparks\.org/events/[^/?#]+$'
+      max_follow: 30
+      venue: {name: Tom Lee Park, address: "Riverside Dr, Memphis, TN 38103"}
+      organizer: Memphis River Parks Partnership
+      default_category: outdoors.park
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots Crawl-delay 30, path allowed) ──
+  - id: memphis_tigers_athletics
+    adapter: ics
+    name: Memphis Tigers athletics (home games — FedExForum, Simmons Bank Liberty Stadium, Elma Roane…)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 30
+    homepage: https://gotigersgo.com/calendar
+    expect_min_records: 5
+    notes: University of Memphis SIDEARM subscription calendar. Only events whose LOCATION starts with "Memphis" are kept.
+    params:
+      url: https://gotigersgo.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Memphis Tigers
+      exclude_location: '^(?!Memphis\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 35.1187, lon: -89.9375, label: "University of Memphis campus" }
+
+  # ── volunteering (Galaxy Digital tenant of United Way of the Mid-South; linked from uwmidsouth.org/volunteer) ──
+  - id: memphis_uw_midsouth_volunteer
+    adapter: galaxydigital
+    name: United Way of the Mid-South volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 10   # robots Crawl-delay: 10
+    homepage: https://uwmidsouth.galaxydigital.com/need/
+    expect_min_records: 1
+    params:
+      base_url: https://uwmidsouth.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all) ──
+  - id: challenge_trivia_memphis
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Memphis)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 5
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-memphis within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [memphis]
+
+  # ── taprooms: The Events Calendar REST API (weekly trivia, run/ride clubs, shows; robots allows /wp-json/) ──
+  - id: memphis_wiseacre
+    adapter: tribe
+    name: Wiseacre Brewing (HQ taproom calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://wiseacrebrew.com/events/
+    expect_min_records: 5
+    notes: >-
+      Downtown HQ taproom (Union Ave): trivia nights, free workout series, Critical Mass rides, seasonal parties.
+      Pint-night specials repeat for years, so the horizon is short and each series is capped at 4 dates.
+    params:
+      base_url: https://wiseacrebrew.com
+      horizon_days: 35
+      per_page: 50
+      max_pages: 3
+      organizer: Wiseacre Brewing
+      default_category: food_drink.tasting
+      classify_description: false
+  - id: memphis_meddlesome
+    adapter: tribe
+    name: Meddlesome Brewing (taproom calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://meddlesomebrewing.com/events/
+    expect_min_records: 5
+    notes: Cordova taproom; trivia, poker night, songwriter Sundays, drag/burlesque shows. robots disallows only /page/ and /events/list/page/ (not the REST API).
+    params:
+      base_url: https://meddlesomebrewing.com
+      horizon_days: 35
+      per_page: 50
+      max_pages: 3
+      organizer: Meddlesome Brewing
+      default_category: food_drink.tasting
+      classify_description: false

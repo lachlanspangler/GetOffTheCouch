@@ -413,3 +413,37 @@ Rejected / not used (Raleigh):
 - City SpecialEvents permit-application layer (`service_48a189…`): 392 rows, none in the future, and full of applicant PII columns. Not used.
 - Socrata: no Raleigh/NC tenant (catalog `q=raleigh` → 0). No Volo market, no Challenge shows nearby.
 - Not probed: Visit Raleigh (Simpleview, the same CDN blocks seen elsewhere), Meredith/Shaw/Wake Tech calendars, NC ABC Commission permits.
+
+### Memphis
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `memphis_fedexforum` | memphis | carbonhouse RSS / `rss_events` | https://www.fedexforum.com/events/rss | none | 1 request/12h | robots: `User-agent: *`, no rules | title, ev:startdate (UTC), link; Grizzlies/Tigers titles → sports_watch.game | concerts · 12h | A- (official venue feed; mostly Grizzlies games) | 61 |
+| `memphis_landers_center` | memphis | carbonhouse RSS / `rss_events` | https://www.landerscenter.com/events/rss | none | 1 request/12h | robots: `User-agent: *`, no rules | as FedExForum; Monarchs → sports_watch.game. Feed starts with a newline before `<?xml` (needs the safe_xml lstrip) | concerts · 12h | B+ (Southaven MS, ~20 km out) | 58 |
+| `memphis_overton_park_shell` | memphis | Squarespace Event JSON-LD / `jsonld` | https://overtonparkshell.org/eventpage | none | listing + ≤25 detail pages/day, ≥2 s | Squarespace robots: `?format=`/`?view=`… query URLs disallowed (wildcards); plain event paths allowed | name, startDate/endDate with offset, location name+address | concerts · 24h | B+ (nonprofit bandshell; free concerts, fitness, pop-ups) | 19 |
+| `memphis_symphony` | memphis | Squarespace Event JSON-LD / `jsonld` | https://memphissymphony.org/calendar | none | listing + ≤30 detail pages/day | as above | as above | concerts · 24h | B+ | 16 |
+| `memphis_gpac` | memphis | Squarespace Event JSON-LD / `jsonld` | https://www.gpacweb.com/event-list | none | listing + ≤30 detail pages/day | as above (AI-crawler names blocked; `*` gets Squarespace defaults) | as above | concerts · 24h | B+ (Germantown) | 30 |
+| `memphis_river_parks` | memphis | Squarespace Event JSON-LD / `jsonld` | https://www.memphisriverparks.org/events | none | listing + ≤30 detail pages/day | as above | as above | events · 24h | B (riverfront parks nonprofit: fitness, walks, kids' festivals) | 22 |
+| `memphis_tigers_athletics` | memphis | SIDEARM ICS / `ics` | https://gotigersgo.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots Crawl-delay 30 (min_interval_s 30) | robots allows `/calendar.ashx` (disallows /common/, /services/, `*.js$`…) | SUMMARY, DTSTART, LOCATION (home = starts "Memphis") | events · 24h | A- | 29 |
+| `memphis_uw_midsouth_volunteer` | memphis | Galaxy Digital / `galaxydigital` | https://uwmidsouth.galaxydigital.com/need/rss/ | none | RSS + ≤15 detail pages/day, 10 s apart (Crawl-delay 10) | robots `*`: allowed; linked from uwmidsouth.org/volunteer | need title, date/shifts, address, agency, register-by | volunteer · 24h | B (some needs in outlying counties; geofence drops those) | 15 |
+| `challenge_trivia_memphis` | memphis | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | Yoast robots allows all; no terms page | show title, venue+geo, day/time, next_date | recurring · 48h | C (undocumented) | 84 |
+| `memphis_wiseacre` | memphis | WP The Events Calendar / `tribe` | https://wiseacrebrew.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | robots disallows only /wp/wp-admin/ | title, start/end+tz, venue, cost, categories | events · 24h | B- (taproom: trivia, workouts, rides, parties; pint-night specials) | 30 |
+| `memphis_meddlesome` | memphis | WP The Events Calendar / `tribe` | https://meddlesomebrewing.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | robots disallows /page/, /events/list/page/ only | as Wiseacre | events · 24h | B- (Cordova taproom: trivia, poker, songwriters, drag) | 30 |
+
+Rejected / not used (Memphis):
+
+- **Memphis Public Libraries** (memphislibrary.org): Cloudflare "Just a moment" 403. BiblioCommons codes `memphis` and `memphislibrary` return 404. memphislibrary.libnet.info 302s to google (no tenant). memphislibrary.libcal.com says "site no longer online".
+- **City of Memphis** events (memphistn.gov/events): Cloudflare 403.
+- **data.memphistn.gov:** Socrata answers "Domain not found". The city is on ArcGIS now (orgId `saWmpKJIUAjyyNVc`, 37 services). None are events, event permits, or business/beer/liquor licenses. Shelby County's hub is 911 data only. **Result: no openings source.**
+- **Germantown, Collierville, Bartlett Library:** robots.txt answers 403 (Akamai), which counts as disallow-all.
+- **Cannon Center:** Cloudflare challenge plus robots disallow. **Crosstown Arts:** Cloudflare 403.
+- **University of Memphis /calendar:** a static OmniUpdate page with no feed. calendar.memphis.edu and events.memphis.edu timed out. libcal.memphis.edu (campus library) exists but is campus-facing, so it was skipped.
+- **Rhodes College:** 25Live Publisher (Trumba) ICS `25livepub.collegenet.com/calendars/rhodes-college-calendar.ics` has 200 events, but about 75% are "Student Led". Not public-facing, so skipped. The Trumba JSON for that webname 404s on www.trumba.com.
+- **Orpheum Theatre:** a nonprofit Craft CMS site. Its event JSON-LD has no startDate, so it can't be used without an HTML scraper.
+- **Dixon Gallery:** Event JSON-LD exists, but it is one record per open day of an exhibition, and the times are local times mislabeled `+00:00`.
+- **Hi-Tone:** tickets go through Etix, whose event pages answer 202 with an empty body (bot challenge). The Hi-Tone site itself has no event JSON-LD.
+- **Other dead ends:** minglewoodhall.com is a hijacked spam domain. Chuckles Comedy is a static clone with no feed. Downtown Memphis Commission's calendar is a JS app on ctycms with no public feed. memphis901fc.com redirects to a SportsEngine template.
+- **Timed out from our client:** Memphis Botanic Garden, Stax, Pink Palace.
+- **Memphis Zoo:** wp-json 403, Crawl-delay 30.
+- **Shelby Farms Park:** /events 404. **Graceland:** no Tribe.
+- **No Team Trivia or Volo market.**
