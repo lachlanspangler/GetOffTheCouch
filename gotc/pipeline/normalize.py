@@ -111,11 +111,26 @@ _INTERNAL = re.compile(
 )
 
 
+_ONLINE = re.compile(
+    r"^\s*(virtual|online|zoom|webinar|livestream|live ?stream|microsoft teams|teams meeting|google meet)\b"
+    r"|\b(online only|virtual only|virtual event|zoom meeting)\b",
+    re.I,
+)
+
+
 def location_skip(rec: dict[str, Any], pattern: str | None) -> str | None:
-    """Per-source exclude list for places outside the city (e.g. a university's overseas campuses)."""
+    """Skip events that aren't somewhere you can go: online-only (always) and per-source excluded places
+    (e.g. a university's overseas campuses or away games)."""
+    loc = rec.get("location") or {}
+    where = f"{loc.get('venue_name') or ''} | {loc.get('address') or ''}"
+    if (
+        _ONLINE.search(loc.get("venue_name") or "")
+        or _ONLINE.search(loc.get("address") or "")
+        or re.search(r"\((virtual|online)\)|\bwebinar\b", str(rec.get("title") or ""), re.I)
+    ):
+        return f"online-only: {where.strip(' |')[:60]!r}"
     if not pattern:
         return None
-    loc = rec.get("location") or {}
     text = f"{loc.get('venue_name') or ''} {loc.get('address') or ''} {rec.get('title') or ''}"
     m = re.search(pattern, text, re.I)
     return f"outside the city: {m.group(0)!r}" if m else None

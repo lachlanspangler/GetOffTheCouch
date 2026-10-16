@@ -65,6 +65,7 @@ sources:
     homepage: https://calendar.utexas.edu/
     expect_min_records: 20
     params:
+      exclude_location: '\b(Okla|Calif|Ariz|Kan|Ark|Ala|Miss|Fla|Ga|La|Colo|Neb|Tenn|Ky|Ind|Mich|Wis|Minn|Ore|Wash|Va|Md|Pa|Mass|Conn)\.|\b(N\.M|N\.C|S\.C|W\.Va|N\.Y)\.|\b(Lubbock|Waco|Fort Worth|Stillwater|Norman|Bakersfield|Fayetteville|Ames)\b'   # away games (AP state abbreviations always end in a period)
       audience_filter: institution   # skip faculty/student-only items
       base_url: https://calendar.utexas.edu
       horizon_days: 30

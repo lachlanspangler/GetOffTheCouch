@@ -198,6 +198,10 @@ def variants(query: str, city: CityConfig) -> list[str]:
     """The raw place text first, then friendlier forms: "Miami-Dade Public Library – West Kendall Regional"
     → "West Kendall Regional Library"."""
     out = [_clean(query, city)]
+    no_room = re.sub(r"\s*\([^)]*\)", "", query).strip()  # "Northgate Branch (Meeting Room)" → "Northgate Branch"
+    if no_room != query:
+        out.append(_clean(no_room, city))
+    query = no_room
     parts = re.split(r"\s+[–—-]\s+", query, maxsplit=1)
     if len(parts) == 2:
         left, right = parts

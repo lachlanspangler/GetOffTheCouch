@@ -73,3 +73,15 @@ def test_institution_audience_filter_is_opt_in():
     assert audience_skip({"title": "Talk", "description": "For current graduate students only"}, "institution")
     assert audience_skip(public, "institution") is None
     assert audience_skip(internal, None) is None
+
+
+def test_online_only_events_are_skipped_globally():
+    from gotc.pipeline.normalize import location_skip
+
+    assert location_skip({"location": {"venue_name": "Virtual"}}, None)
+    assert location_skip({"location": {"address": "Online via Zoom"}}, None)
+    assert location_skip({"title": "Resume Workshop (Virtual)", "location": {}}, None)
+    assert location_skip({"title": "Trivia", "location": {"venue_name": "Virtue Cider"}}, None) is None
+    assert location_skip(
+        {"title": "Game", "location": {"venue_name": "Norman, Okla., Tennis Center"}}, r"\b(Okla)\b\.?"
+    )
