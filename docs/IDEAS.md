@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 18 · **doing** 2 · **done** 26 · **rejected** 7
+**open** 16 · **doing** 2 · **done** 28 · **rejected** 7
 
 ## Up next (open, by score)
 
@@ -13,8 +13,6 @@ unless docs/HEALTH.md has something red.
 |---|---|---|---|---|---|---|---|
 | I-032 | NYC permitted events (block parties, street fairs) via Socrata | sources | 5 | 1 | 4.5 | doing | Exactly the 'block party' pitch, keyless — 2026-10-16 doing: worktree agent building NYC config |
 | I-020 | Curated league registry (YAML) with verified dates + page-watch to detect changes | sources | 5 | 3 | 1.33 | doing | Beer leagues have no APIs; curated + monitored is the honest path — 2026-10-16 doing: curated adapter + page-watch shipped; Volo adapter in progress |
-| I-053 | Diff alerts: 'new this week' badge from first_seen | ux | 4 | 1 | 3.2 | open | first_seen is tracked already; newcomers love fresh stuff |
-| I-052 | Per-card 'report a problem' link → prefilled GitHub issue | data-quality | 3 | 1 | 2.4 | open | Crowd-sourced correction loop without accounts |
 | I-031 | Library systems via BiblioCommons RSS (Hennepin, Chicago, Boston) | sources | 4 | 2 | 1.6 | open | Free classes, clubs, talks — high-quality keyless data |
 | I-038 | City onboarding checklist (DMV, voter registration, library card, transit pass) as deadlines | features | 4 | 2 | 1.6 | open | Every new resident has the same 10 deadlines; nobody lists them |
 | I-048 | Rainy-day swap: suggest an indoor alternative when an outdoor pick has ≥60% rain | features | 4 | 2 | 1.6 | open | Weather is attached now; plans can self-adjust |
@@ -36,6 +34,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-053 | Diff alerts: 'new this week' badge from first_seen | ux | 4 | 1 | 3.2 | done | first_seen is tracked already; newcomers love fresh stuff — 2026-10-16 done: pipeline is_new + badge |
+| I-052 | Per-card 'report a problem' link → prefilled GitHub issue | data-quality | 3 | 1 | 2.4 | done | Crowd-sourced correction loop without accounts — 2026-10-16 done: prefilled GitHub issue link in drawer |
 | I-046 | Evidence-quote page-watch as a generic verifier for any curated fact | data-quality | 5 | 2 | 2.0 | done | Shipped inside curated adapter; generalize to venue capacities and recurring schedules — 2026-10-16 done: curated adapter page-watch |
 | I-035 | Freshness SLA per field shown on cards ('checked 2h ago') | ux | 4 | 1 | 3.6 | done | Trust — 2026-10-16 done: 'checked 2h ago' on every card + stale badges |
 | I-034 | Recorded-fixture adapter tests (tests never hit the internet) | infra | 5 | 2 | 2.25 | done | Engineering bar — 2026-10-16 done: tests/fixtures + FixtureTransport; never hits network |

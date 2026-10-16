@@ -758,12 +758,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Crowd-sourced correction loop without accounts",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: prefilled GitHub issue link in drawer"
+   ]
   },
   {
    "id": "I-053",
@@ -772,12 +774,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "first_seen is tracked already; newcomers love fresh stuff",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: pipeline is_new + badge"
+   ]
   }
  ]
 }
