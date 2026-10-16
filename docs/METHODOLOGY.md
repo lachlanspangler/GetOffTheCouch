@@ -47,6 +47,11 @@ No legitimate source gives third parties real seat inventory, so these are label
   - the lowest price up ≥ 20% in the trend window
 - **Price trend.** The lowest listed price over the last 7 days of snapshots. Under 5% change counts as flat.
 
+### Reported spots (the one real "% left")
+Library systems publish capacity and registration counts per program. When a source reports both, `pct_left` is exact. For example, "17 of 20 spots taken (reported by hclib_events)" gives low = mid = high, with confidence 0.9.
+
+Attendance is then anchored on actual signups: the band runs from registered × 0.75 to capacity. With ≤ 20% of spots left, the event is marked selling fast. At 0 left, registration is marked closed.
+
 ## Deadlines
 Deadlines come from structured registration fields first. Otherwise they're extracted from descriptions with phrase patterns ("register by", "registration closes", "deadline:", "early-bird … ends", "registration opens"). Guards:
 - The date must parse.
@@ -55,6 +60,10 @@ Deadlines come from structured registration fields first. Otherwise they're extr
 - A date without a time means 11:59 pm.
 
 The earliest match wins. The sentence it came from is shown.
+
+**Derived deadlines.** Some programs require registration but publish no close date, such as league programs with only an "opens" date, or library programs flagged "registration required". These get `closes_at = start` with `method: derived`, confidence 0.5, and an evidence sentence saying no close date is published.
+
+The UI never shows a countdown for derived deadlines. It shows "Registration required" or "3 of 15 spots left". In the Deadlines view, they sit apart from published deadlines under "Sign up before it starts".
 
 ## Good for meeting people (0–1)
 The score starts from the category prior in `taxonomy.yaml` (leagues 0.9, trivia 0.85, volunteering 0.8, big concerts 0.35…), then adjusts:
