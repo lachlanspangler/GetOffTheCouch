@@ -46,7 +46,10 @@ def test_end_to_end_dedup_export_and_health(db, settings):
     assert rose[0].title == "Rose Garden Volunteering"  # most-trusted / first source's title
     # deadline extracted from the ICS description, with evidence + extracted provenance
     assert rose[0].registration and rose[0].registration.closes_at
-    assert rose[0].provenance["registration"].method == "extracted"
+    from gotc.schema import CityDetails
+
+    det = CityDetails.model_validate_json((settings.web_data_dir / "cities" / "minneapolis.details.json").read_text())
+    assert det.events[rose[0].id].provenance["registration"].method == "extracted"
     # weekly trivia expanded into a series, collapsed via series_id
     trivia = [e for e in f.events if e.title == "Tuesday Trivia"]
     assert len(trivia) >= 2 and len({e.series_id for e in trivia}) == 1

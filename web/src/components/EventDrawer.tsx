@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { loadDetails } from "../lib/data";
+import type { EventDetail } from "../lib/details.generated";
 import type { Event } from "../lib/types";
 import { useApp } from "../lib/ctx";
 import { catIcon, catLabel, hue } from "../lib/categories";
@@ -51,6 +53,15 @@ function reportUrl(e: Event): string {
 export function EventDrawer({ e }: { e: Event }) {
   const { feed, go, index, saved, toggleSave, sourceNames, now, byId } = useApp();
   const ref = useRef<HTMLDivElement>(null);
+  const [detail, setDetail] = useState<EventDetail | null>(null);
+  useEffect(() => {
+    setDetail(null);
+    loadDetails(e.city)
+      .then((d) => setDetail(d.events[e.id] ?? null))
+      .catch(() => setDetail(null)); // cards still work; provenance just stays summarized
+  }, [e.id]);
+  const summary = detail?.summary ?? e.summary;
+  const provenance = detail?.provenance ?? e.provenance;
   const close = () => go({ city: feed?.city ?? e.city, eventId: null });
   useEffect(() => {
     ref.current?.focus();
@@ -250,10 +261,10 @@ export function EventDrawer({ e }: { e: Event }) {
           </section>
         )}
 
-        {e.summary && (
+        {summary && (
           <section class="panel">
             <h3>About</h3>
-            <p class="desc">{e.summary}</p>
+            <p class="desc">{summary}</p>
           </section>
         )}
 
@@ -276,9 +287,9 @@ export function EventDrawer({ e }: { e: Event }) {
               </li>
             ))}
           </ul>
-          {e.provenance && (
+          {provenance && Object.keys(provenance).length > 0 && (
             <p class="muted small">
-              {Object.entries(e.provenance).map(([field, p]) => `${field}: ${METHOD_WORD[p.method ?? "reported"] ?? p.method} (${sourceName(p.source, sourceNames)})`).join(" · ")}
+              {Object.entries(provenance).map(([field, p]) => `${field}: ${METHOD_WORD[p.method ?? "reported"] ?? p.method} (${sourceName(p.source, sourceNames)})`).join(" · ")}
             </p>
           )}
           <p class="muted small">First seen {age(e.first_seen, now)}. We never invent data: estimates are labeled and always show a range.</p>

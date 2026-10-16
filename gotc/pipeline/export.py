@@ -20,7 +20,16 @@ from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
 from gotc.pipeline.starter_pack import load as load_starter_pack
 from gotc.pipeline.starter_pack import with_status
-from gotc.schema import SCHEMA_VERSION, CityFeed, Event, Method, NeighborhoodPoint, SourceStatus
+from gotc.schema import (
+    SCHEMA_VERSION,
+    CityDetails,
+    CityFeed,
+    Event,
+    EventDetail,
+    Method,
+    NeighborhoodPoint,
+    SourceStatus,
+)
 from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
 
@@ -85,6 +94,25 @@ def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, incl
     )
 
 
+CARD_SUMMARY_CHARS = 240
+
+
+def split_feed(feed: CityFeed) -> tuple[CityFeed, CityDetails]:
+    """Cards keep what lists/filters/maps need; provenance + full summaries go to the lazy details file."""
+    details: dict[str, EventDetail] = {}
+    cards = []
+    for e in feed.events:
+        details[e.id] = EventDetail(summary=e.summary, provenance=e.provenance)
+        short = e.summary
+        if short and len(short) > CARD_SUMMARY_CHARS:
+            short = short[: CARD_SUMMARY_CHARS - 1].rsplit(" ", 1)[0] + "…"
+        cards.append(e.model_copy(update={"provenance": {}, "summary": short}))
+    return (
+        feed.model_copy(update={"events": cards}),
+        CityDetails(generated_at=feed.generated_at, city=feed.city, events=details),
+    )
+
+
 def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, include_demo: bool = False) -> dict[str, Any]:
     tax = taxonomy()
     index: dict[str, Any] = {
@@ -105,7 +133,9 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
             continue
         feed = city_feed(db, reg, city, now, include_demo)
         CityFeed.model_validate(feed.model_dump())  # belt and braces: never export an invalid document
-        _write(out_dir / "cities" / f"{city.slug}.json", feed.model_dump_json(exclude_none=True))
+        cards, details = split_feed(feed)
+        _write(out_dir / "cities" / f"{city.slug}.json", cards.model_dump_json(exclude_none=True))
+        _write(out_dir / "cities" / f"{city.slug}.details.json", details.model_dump_json(exclude_none=True))
         upcoming = [e for e in feed.events if e.start >= now - timedelta(hours=3)]
         index["cities"].append(
             {

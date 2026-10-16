@@ -1,0 +1,118 @@
+{
+  "$defs": {
+    "EventDetail": {
+      "additionalProperties": false,
+      "description": "Heavy per-event fields, moved out of the card feed and loaded when a card is opened.",
+      "properties": {
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FieldProvenance"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "title": "EventDetail",
+      "type": "object"
+    },
+    "FieldProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "method": {
+          "$ref": "#/$defs/Method",
+          "default": "reported"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "fetched_at"
+      ],
+      "title": "FieldProvenance",
+      "type": "object"
+    },
+    "Method": {
+      "description": "How a value was obtained. Shown in the UI next to every non-reported value.",
+      "enum": [
+        "reported",
+        "derived",
+        "extracted",
+        "estimated",
+        "curated"
+      ],
+      "title": "Method",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "``web/public/data/cities/<slug>.details.json``: EventDetail by event id.",
+  "properties": {
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "events": {
+      "additionalProperties": {
+        "$ref": "#/$defs/EventDetail"
+      },
+      "title": "Events",
+      "type": "object"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "1.4.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "generated_at",
+    "city",
+    "events"
+  ],
+  "title": "CityDetails",
+  "type": "object"
+}

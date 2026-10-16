@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.3.0"
+SCHEMA_VERSION = "1.4.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -402,3 +402,19 @@ class CityFeed(Strict):
     sources: list[SourceStatus] = Field(default_factory=list)
     starter_pack: list[StarterItem] = Field(default_factory=list)  # state new-resident deadlines
     is_demo: bool = False
+
+
+class EventDetail(Strict):
+    """Heavy per-event fields, moved out of the card feed and loaded when a card is opened."""
+
+    summary: str | None = None
+    provenance: dict[str, FieldProvenance] = Field(default_factory=dict)
+
+
+class CityDetails(Strict):
+    """``web/public/data/cities/<slug>.details.json``: EventDetail by event id."""
+
+    schema_version: str = SCHEMA_VERSION
+    generated_at: AwareDatetime
+    city: str
+    events: dict[str, EventDetail]

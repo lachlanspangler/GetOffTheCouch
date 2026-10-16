@@ -62,16 +62,24 @@ def check_feed(doc: dict, *, demo: bool) -> None:
 
 def test_fresh_fixture_export_honours_the_contract(db, settings):
     run(db, REG, settings, client=fast_client(healthy_transport()), geocode=False)
-    for f in (settings.web_data_dir / "cities").glob("*.json"):
-        check_feed(json.loads(f.read_text()), demo=False)
+    from gotc.schema import CityDetails
+
+    feeds = [f for f in (settings.web_data_dir / "cities").glob("*.json") if not f.name.endswith(".details.json")]
+    for f in feeds:
+        doc = json.loads(f.read_text())
+        check_feed(doc, demo=False)
+        det = CityDetails.model_validate_json(f.with_name(f.stem + ".details.json").read_text())
+        assert set(det.events) == {e["id"] for e in doc["events"]}, "every card has details"
+        assert all(not e.get("provenance") for e in doc["events"]), "provenance lives in the details file"
+        assert any(d.provenance for d in det.events.values())
     index = json.loads((settings.web_data_dir / "index.json").read_text())
     assert index["schema_version"] == SCHEMA_VERSION and index["cities"]
     health = json.loads((settings.web_data_dir / "health.json").read_text())
     assert {"units", "log", "generated_at"} <= health.keys()
 
 
-EXPORTS = sorted((ROOT / "web" / "public" / "data" / "cities").glob("*.json"))
-DEMOS = sorted((ROOT / "web" / "public" / "demo" / "cities").glob("*.json"))
+EXPORTS = sorted(p for p in (ROOT / "web" / "public" / "data" / "cities").glob("*.json") if ".details" not in p.name)
+DEMOS = sorted(p for p in (ROOT / "web" / "public" / "demo" / "cities").glob("*.json") if ".details" not in p.name)
 
 
 @pytest.mark.parametrize("path", EXPORTS, ids=[p.stem for p in EXPORTS])

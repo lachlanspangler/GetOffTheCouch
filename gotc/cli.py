@@ -156,8 +156,11 @@ def cmd_doctor(a: argparse.Namespace, s: Settings) -> int:
 
 def cmd_schema(a: argparse.Namespace, s: Settings) -> int:
     """Write the CityFeed JSON Schema (source of truth for the dashboard's TypeScript types)."""
-    from gotc.schema import SCHEMA_VERSION, CityFeed
+    from gotc.schema import SCHEMA_VERSION, CityDetails, CityFeed
 
+    (ROOT / "schema").mkdir(exist_ok=True)
+    details = CityDetails.model_json_schema()
+    (ROOT / "schema" / "citydetails.schema.json").write_text(json.dumps(details, indent=2, sort_keys=True) + "\n")
     schema = CityFeed.model_json_schema()
     schema["$id"] = f"https://getoffthecouch.app/schema/cityfeed-{SCHEMA_VERSION}.json"
     out = ROOT / "schema" / "cityfeed.schema.json"
