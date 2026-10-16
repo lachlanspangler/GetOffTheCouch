@@ -6,6 +6,7 @@ from gotc.adapters import (  # noqa: F401
     calendars,
     ckan,
     communico,
+    csvfile,
     curated,
     demo,
     galaxydigital,

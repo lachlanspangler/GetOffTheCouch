@@ -1,0 +1,7 @@
+{
+  "unit": "fl_dbpr_openings_miami@miami",
+  "recorded_at": "2026-10-16T07:19:00+00:00",
+  "payloads": 1,
+  "request": "GET https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv (14,129,288 bytes, Last-Modified Thu, 15 Oct 2026 10:45:17 GMT, UTF-8)",
+  "note": "real file; trimmed to the header + 13 unmodified lines (file lines 1, 63, 51836, 51849, 52083, 52197, 52350, 52498, 52880, 53021, 53161, 53165, 49263, 48933) chosen to cover a non-Dade row, an undated row, a package store, inactive/escrow quota licenses, a non-ASCII DBA, a DBA that repeats a person's legal name, and recent on-premises licenses"
+}
