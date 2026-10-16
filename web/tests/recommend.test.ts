@@ -50,3 +50,15 @@ describe("buildPlan", () => {
     expect(r[0].event.category).toBe("trivia_games.trivia");
   });
 });
+
+describe("weather", () => {
+  it("demotes rainy outdoor picks and explains why", () => {
+    const wet = ev({ category: "fitness.run_club", weather: { short: "Rain", precip_pct: 80, source: "nws", fetched_at: "2026-10-16T00:00:00Z" } as never });
+    const dry = ev({ category: "fitness.run_club", weather: { short: "Sunny", precip_pct: 0, source: "nws", fetched_at: "2026-10-16T00:00:00Z" } as never });
+    const p = { ...DEFAULT_PROFILE, interests: ["fitness"] };
+    const sw = scoreEvent(wet, p, labels, {}, NOW)!;
+    const sd = scoreEvent(dry, p, labels, {}, NOW)!;
+    expect(sw.score).toBeLessThan(sd.score);
+    expect(sw.reasons.some((r) => r.text.includes("80% chance of rain"))).toBe(true);
+  });
+});

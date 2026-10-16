@@ -131,6 +131,9 @@ export function scoreEvent(
     if (h > 0 && h < 24 * 14) add(0.25, `Registration closes in ${Math.max(1, Math.round(h / 24))} day${h < 36 ? "" : "s"}`);
   }
   if (e.tickets?.selling_fast) add(0.1, "Selling fast");
+  const rain = e.weather?.precip_pct ?? null;
+  if (rain != null && rain >= 60) add(-0.4, `${Math.round(rain)}% chance of rain (NWS)`);
+  else if (e.weather && rain != null && rain < 20 && /sunny|clear/i.test(e.weather.short)) add(0.1, `Forecast: ${e.weather.short.toLowerCase()}`);
   if (e.stale) add(-0.3, "Details may be out of date");
 
   const score = reasons.reduce((s, r) => s + r.weight, 0);
