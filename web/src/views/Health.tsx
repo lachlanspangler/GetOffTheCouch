@@ -43,7 +43,7 @@ export function Health() {
       <div class="table-wrap" tabIndex={0} role="region" aria-label="Source health table">
         <table class="health-table">
           <thead>
-            <tr><th>Source</th><th>State</th><th>Last success</th><th>Freshness SLA</th><th>Records</th><th>Note</th></tr>
+            <tr><th>Source</th><th>State</th><th>Last success</th><th>Freshness SLA</th><th>Records</th><th title="30-day success rate × (1 − reject rate)">Reliability</th><th>Note</th></tr>
           </thead>
           <tbody>
             {units.map((u) => (
@@ -53,6 +53,9 @@ export function Health() {
                 <td>{u.last_success_at ? age(u.last_success_at, now) : "never"}{u.stale && u.state !== "disabled" && <span class="badge badge-stale">stale</span>}</td>
                 <td>{u.sla_hours}h</td>
                 <td>{u.records}</td>
+                <td title={u.reliability ? `${u.reliability.attempts} runs in 30 days` : "not enough runs yet"}>
+                  {u.reliability?.score != null ? `${u.reliability.grade} · ${Math.round(u.reliability.score)}` : "–"}
+                </td>
                 <td class="small">{u.reason ?? u.last_error ?? ""}</td>
               </tr>
             ))}

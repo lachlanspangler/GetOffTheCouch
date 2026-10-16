@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from gotc.config import CityConfig, Registry
+from gotc.health.reliability import reliability
 from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
 from gotc.pipeline.starter_pack import load as load_starter_pack
@@ -98,6 +99,7 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
         "cities": [],
     }
     health: dict[str, Any] = {"generated_at": iso(now), "units": []}
+    rel = reliability(db, now)
     for city in reg.cities.values():
         if not city.enabled:
             continue
@@ -126,7 +128,14 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
             }
         )
         for s in feed.sources:
-            health["units"].append({"city": city.slug, **json.loads(s.model_dump_json())})
+            r = rel.get(f"{s.source_id}@{city.slug}")
+            health["units"].append(
+                {
+                    "city": city.slug,
+                    **json.loads(s.model_dump_json()),
+                    "reliability": None if r is None else {"grade": r.grade, "score": r.score, "attempts": r.attempts},
+                }
+            )
     _write(out_dir / "index.json", json.dumps(index, separators=(",", ":")))
     log_rows = db.all("SELECT at, unit, level, kind, message FROM health_log ORDER BY id DESC LIMIT 200")
     health["log"] = [dict(r) for r in log_rows]

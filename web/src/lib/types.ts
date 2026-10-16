@@ -53,6 +53,7 @@ export interface HealthUnit {
   records: number;
   last_error?: string;
   reason?: string;
+  reliability?: { grade: string; score: number | null; attempts: number } | null;
 }
 
 export interface HealthDoc {

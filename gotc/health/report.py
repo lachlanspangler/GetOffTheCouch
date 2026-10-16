@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 
 from gotc.config import Registry
+from gotc.health.reliability import Reliability, reliability
 from gotc.health.store import load_health
 from gotc.storage.db import Database, iso
 
@@ -34,6 +35,12 @@ ACTION = {
 }
 
 
+def _rel(r: Reliability | None) -> str:
+    if r is None:
+        return "–"
+    return f"{r.grade} ({r.score:.0f})" if r.score is not None else f"– ({r.attempts} runs)"
+
+
 def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None = None) -> str:
     lines = [
         "# Health",
@@ -42,6 +49,7 @@ def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None =
         "",
     ]
     units = reg.units()
+    rel = reliability(db, now)
     rows = []
     counts: dict[str, int] = {}
     for u in units:
@@ -62,6 +70,7 @@ def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None =
                 }[h.state],
                 f"| {ICON[h.state]} {h.state} | `{u.key}` | {age}{' ⚠️ stale' if stale else ''} | "
                 f"{h.last_count if h.last_count is not None else '–'} | {h.consecutive_failures} | "
+                f"{_rel(rel.get(u.key))} | "
                 f"{(h.reason or h.last_error or '').replace('|', '/')[:120]} |",
                 h,
                 u.key,
@@ -69,7 +78,10 @@ def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None =
         )
     summary = " · ".join(f"{ICON[k]} {k}: {v}" for k, v in sorted(counts.items()))
     lines += [f"**{len(units)} units** — {summary}", ""]
-    lines += ["| State | Unit | Last success | Records | Fails | Note |", "|---|---|---|---|---|---|"]
+    lines += [
+        "| State | Unit | Last success | Records | Fails | Reliability (30d) | Note |",
+        "|---|---|---|---|---|---|---|",
+    ]
     lines += [r[1] for r in sorted(rows, key=lambda r: (r[0], r[3]))]
     problems = [(r[2], r[3]) for r in rows if r[2].state in ("quarantined", "degraded")]
     if problems:
