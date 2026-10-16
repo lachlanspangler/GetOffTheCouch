@@ -102,7 +102,9 @@ class Taxonomy:
 
 # Phrases that mean something in a title but are noise in a description ("meet new people" is in half of all
 # club blurbs; "walk" matches "walk-in hours").
-_WEAK_IN_BODY = frozenset({"meet new people", "make new friends", "mixer", "social", "networking", "party", "show", "games"})
+_WEAK_IN_BODY = frozenset(
+    {"meet new people", "make new friends", "mixer", "social", "networking", "party", "show", "games"}
+)
 
 
 def _strong_in_body(phrase: str) -> bool:
