@@ -129,8 +129,7 @@ sources:
       default_url: https://data.colorado.gov/d/htyp-tqzh
       extras: { signal: liquor_license_issued }
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: volo_denver
     adapter: volo
     name: Volo Sports Denver

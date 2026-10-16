@@ -126,19 +126,18 @@ sources:
       default_url: https://data.texas.gov/d/7hf9-qc9f
       extras: { signal: liquor_license_issued }
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: uw_austin_volunteer
     adapter: handsonconnect
     name: United Way for Greater Austin
     data_type: volunteer
     min_interval_s: 3
     homepage: https://volunteer.uwatx.org/calendar
-    expect_min_records: 0   # calendar returned 0 items for 14 days on 2026-10-16 (with and without block id)
-    notes: "Empty calendar on 2026-10-16; the code==200/items check in fetch still catches endpoint breakage."
+    expect_min_records: 0
+    notes: Empty calendar on 2026-10-16; the code==200/items check in fetch still catches endpoint breakage.
     params:
       base_url: https://volunteer.uwatx.org
-      block_id: 447           # without a block id this tenant returns 0 items
+      block_id: 447
       horizon_days: 14
       window_days: 3
   - id: luma_atx_backgammon

@@ -19,6 +19,27 @@ from gotc.schema import DataType
 from gotc.settings import CONFIG_DIR, Settings
 
 
+class _StrictLoader(yaml.SafeLoader):
+    """SafeLoader that rejects duplicate keys (plain YAML silently keeps the last one — a real bug we hit)."""
+
+
+def _no_dupes(loader: _StrictLoader, node: yaml.MappingNode, deep: bool = False) -> dict[Any, Any]:
+    seen: set[Any] = set()
+    for key_node, _ in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in seen:
+            raise yaml.constructor.ConstructorError(None, None, f"duplicate key {key!r}", key_node.start_mark)
+        seen.add(key)
+    return loader.construct_mapping(node, deep)
+
+
+_StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_dupes)
+
+
+def load_yaml(text: str) -> Any:
+    return yaml.load(text, Loader=_StrictLoader)
+
+
 class _Cfg(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -121,10 +142,10 @@ class Registry(BaseModel):
 
 
 def load_registry(config_dir: Path = CONFIG_DIR) -> Registry:
-    sources_file = SourcesFile.model_validate(yaml.safe_load((config_dir / "sources.yaml").read_text()))
+    sources_file = SourcesFile.model_validate(load_yaml((config_dir / "sources.yaml").read_text()))
     cities: dict[str, CityConfig] = {}
     for path in sorted((config_dir / "cities").glob("*.yaml")):
-        city = CityConfig.model_validate(yaml.safe_load(path.read_text()))
+        city = CityConfig.model_validate(load_yaml(path.read_text()))
         if city.slug != path.stem:
             raise ValueError(f"{path.name}: slug {city.slug!r} must match file name")
         cities[city.slug] = city

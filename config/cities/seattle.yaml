@@ -109,8 +109,7 @@ sources:
       organizer: Downtown Seattle Association
       default_category: community.festival
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: uwkc_volunteer
     adapter: galaxydigital
     name: United Way of King County
@@ -119,6 +118,6 @@ sources:
     homepage: https://volunteer.uwkc.org/need/
     expect_min_records: 1
     params:
-      base_url: https://volunteer.uwkc.org   # uwkc.galaxydigital.com 301s here
+      base_url: https://volunteer.uwkc.org
       max_details: 15
       max_shifts: 6

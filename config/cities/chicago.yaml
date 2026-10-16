@@ -239,8 +239,7 @@ sources:
       organizer: University of Chicago
       default_category: learning.networking
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: luma_mhub_chicago
     adapter: ics
     name: mHUB Events (Luma)

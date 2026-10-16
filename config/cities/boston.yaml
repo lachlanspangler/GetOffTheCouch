@@ -143,8 +143,7 @@ sources:
       organizer: Northeastern University
       default_category: learning.networking
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: volo_boston
     adapter: volo
     name: Volo Sports Boston
@@ -155,7 +154,7 @@ sources:
     params:
       base_url: https://www.volosports.com
       city_slug: boston
-      include_fees: true      # Volo 307-redirects Boston to includeFees=true; asking for it keeps ?page=N
+      include_fees: true
       max_pages: 6
   - id: boston_cares
     adapter: handsonconnect
@@ -166,7 +165,7 @@ sources:
     expect_min_records: 1
     params:
       base_url: https://www.bostoncares.org
-      block_id: 589             # <input name="calendar-search-block-id"> on /calendar (verified 2026-10-16)
+      block_id: 589
       horizon_days: 14
       window_days: 2
   - id: luma_startup_boston

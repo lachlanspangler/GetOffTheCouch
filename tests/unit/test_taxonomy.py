@@ -59,3 +59,13 @@ def test_bad_attendance_prior_rejected(tmp_path):
     p.write_text("version: 1\ncategories:\n  a: {attendance: [10, 5, 20]}\n  other: {children: {uncategorized: {}}}\n")
     with pytest.raises(ValueError, match="ordered"):
         load_taxonomy(p)
+
+
+def test_config_yaml_rejects_duplicate_keys():
+    import yaml as _y
+
+    from gotc.config import load_yaml
+
+    with pytest.raises(_y.YAMLError, match="duplicate key"):
+        load_yaml("sources: [a]\nname: x\nsources: [b]\n")
+    assert load_yaml("a: 1\nb: {c: 2}\n") == {"a": 1, "b": {"c": 2}}

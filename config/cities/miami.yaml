@@ -68,8 +68,7 @@ sources:
       organizer: Florida International University
       default_category: learning.networking
 
-  # ── merged from config/pending_sources (leagues / volunteering / Luma) ──` list. Same SourceConfig schema.
-sources:
+  # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: volo_miami
     adapter: volo
     name: Volo Sports Miami
