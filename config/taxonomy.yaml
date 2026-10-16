@@ -150,7 +150,7 @@ categories:
       museum: { label: Museums & exhibits, match: [exhibit, exhibition, museum, gallery opening, art walk, art crawl, first friday, first thursday] }
       theater: { label: Theater & dance, match: [theater, theatre, musical, ballet, play, dance performance, shakespeare] }
       film: { label: Film, match: [film screening, movie night, film festival, outdoor movie, movies in the park, cinema] }
-      workshop: { label: Workshops & classes, match: [workshop, class, craft, pottery, painting class, sip and paint, paint and sip], attendance: [8, 20, 60], social: 0.6 }
+      workshop: { label: Workshops & classes, match: [workshop, class, esl, english language learners, ell class, craft, pottery, painting class, sip and paint, paint and sip], attendance: [8, 20, 60], social: 0.6 }
       books: { label: Books & talks, match: [book club, author talk, reading, poetry, lecture, storytime, library], attendance: [10, 40, 300] }
 
   sports_watch:
@@ -178,7 +178,7 @@ categories:
     children:
       networking: { label: Networking, match: [networking, meetup, happy hour networking, career fair, startup] }
       tech: { label: Tech meetups, match: [tech meetup, hackathon, python, javascript, ai meetup, devs] }
-      language: { label: Language exchange, match: [language exchange, conversation group, esl, spanish conversation] , social: 0.85 }
+      language: { label: Language exchange, match: [language exchange, conversation group, conversation club, spanish conversation, french conversation, conversation hour] , social: 0.85 }
 
   other:
     label: Other

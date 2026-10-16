@@ -252,7 +252,9 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
       !e.all_day &&
       new Date(e.start).getTime() >= now.getTime() &&
       new Date(e.start).getTime() <= week &&
-      !!(e.location.venue_name || e.location.address),
+      !!(e.location.venue_name || e.location.address) &&
+      !/^(usa|united states|us|online|tbd|tba)$/i.test((e.location.venue_name ?? "").trim()) &&
+      !(e.tags ?? []).some((t) => t === "campus" || t === "kids_teens"),
   );
   const ranked = rank(pool, { ...DEFAULT_PROFILE, interests: [] }, labels, {}, now);
   const out: Scored[] = [];
@@ -265,6 +267,8 @@ export function highlights(events: Event[], labels: Record<string, string>, now:
     const src = s.event.sources[0]?.source_id ?? "";
     if ((fams.get(f) ?? 0) >= 1 && out.length < n - 1) continue; // one per family until the last slot
     if ((perSource.get(src) ?? 0) >= 2) continue; // no single source dominates the front page
+    const isLibrary = /\blibrary\b/i.test(`${s.event.location.venue_name ?? ""} ${s.event.organizer ?? ""}`);
+    if (isLibrary && out.some((o) => /\blibrary\b/i.test(`${o.event.location.venue_name ?? ""} ${o.event.organizer ?? ""}`))) continue;
     if (s.event.series_id && series.has(s.event.series_id)) continue;
     out.push(s);
     fams.set(f, (fams.get(f) ?? 0) + 1);
