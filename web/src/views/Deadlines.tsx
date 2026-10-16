@@ -1,5 +1,6 @@
 import { DeadlineBadge } from "../components/EventCard";
 import { Icon } from "../components/Icon";
+import { RegistrationWaves } from "../components/RegistrationWaves";
 import { StarterPack } from "../components/StarterPack";
 import { useApp } from "../lib/ctx";
 import { catIcon, catLabel, hue } from "../lib/categories";
@@ -42,6 +43,7 @@ export function Deadlines({ events }: { events: Event[] }) {
           </button>
         )}
       </header>
+      <RegistrationWaves events={events} />
       <StarterPack />
       {!items.length && (
         <div class="empty">
