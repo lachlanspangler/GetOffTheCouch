@@ -1,6 +1,7 @@
 """A polite HTTP client: rate-limited per host, robots-aware, retrying with backoff, conditional-GET cached.
 
-Every adapter fetches through this. Tests inject an ``httpx.MockTransport`` (see tests/fixtures.py) so the
+Every adapter fetches through this. ``get`` for pages/feeds/APIs; ``post`` only for read-only search
+endpoints that require it (HandsOn Connect). Cookies are never stored (stateless, first-visit view). Tests inject an ``httpx.MockTransport`` (see tests/fixtures.py) so the
 suite never touches the live internet.
 
 Errors are typed so the health system can tell *why* a source failed:
@@ -17,6 +18,7 @@ import time
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from email.utils import parsedate_to_datetime
+from http.cookiejar import CookieJar, DefaultCookiePolicy
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
@@ -25,6 +27,17 @@ from urllib.robotparser import RobotFileParser
 import httpx
 
 from gotc.settings import Settings
+
+REDACT_KEYS = ("apikey", "client_id", "client_secret", "app_id", "token", "key")
+
+
+class _NoCookies(DefaultCookiePolicy):
+    """Stateless crawling: never store cookies. Some sites (Volo, Galaxy Digital) redirect cookie-carrying
+    requests to a 'remembered' view (dropping ?page=N or the detail page), so a cookie jar silently changes
+    what we fetch. Every request is made as a first-time visitor."""
+
+    def set_ok(self, cookie: Any, request: Any) -> bool:
+        return False
 
 
 class FetchError(Exception):
@@ -99,6 +112,7 @@ class PoliteClient:
             transport=transport,
             timeout=timeout_s,
             follow_redirects=True,
+            cookies=CookieJar(policy=_NoCookies()),
             headers={"User-Agent": self.settings.user_agent, "Accept-Encoding": "gzip, deflate"},
         )
         self.min_interval_s = min_interval_s
@@ -118,12 +132,40 @@ class PoliteClient:
         headers: Mapping[str, str] | None = None,
         respect_robots: bool = True,
         conditional: bool = True,
-        redact: tuple[str, ...] = ("apikey", "client_id", "client_secret", "app_id", "token", "key"),
+        redact: tuple[str, ...] = REDACT_KEYS,
+    ) -> Response:
+        return self._request("GET", url, params, headers, None, respect_robots, conditional, redact)
+
+    def post(
+        self,
+        url: str,
+        data: Mapping[str, str | int | float] | None = None,
+        params: Mapping[str, str | int | float] | None = None,
+        headers: Mapping[str, str] | None = None,
+        respect_robots: bool = True,
+        redact: tuple[str, ...] = REDACT_KEYS,
+    ) -> Response:
+        """Form-encoded POST (search endpoints that only accept POST). Same robots check, per-host throttle,
+        retry/backoff and URL redaction as ``get``; never cached (POST responses aren't conditional-GETable).
+        Only use for read-only search/query endpoints — never to submit anything on a user's behalf."""
+        return self._request("POST", url, params, headers, dict(data or {}), respect_robots, False, redact)
+
+    def _request(
+        self,
+        method: str,
+        url: str,
+        params: Mapping[str, str | int | float] | None,
+        headers: Mapping[str, str] | None,
+        data: dict[str, str | int | float] | None,
+        respect_robots: bool,
+        conditional: bool,
+        redact: tuple[str, ...],
     ) -> Response:
         full = str(httpx.URL(url, params=dict(params or {})))
+        safe = _redact(full, redact)
         if respect_robots:
             self._check_robots(full)
-        cache_key = hashlib.sha256(_redact(full, redact).encode()).hexdigest()[:24]
+        cache_key = hashlib.sha256(safe.encode()).hexdigest()[:24]
         cached = self._cache_load(cache_key) if conditional else None
         hdrs = dict(headers or {})
         if cached:
@@ -131,23 +173,24 @@ class PoliteClient:
                 hdrs["If-None-Match"] = etag
             if lm := cached["headers"].get("last-modified"):
                 hdrs["If-Modified-Since"] = lm
+        form = {k: str(v) for k, v in data.items()} if data is not None else None
 
         last_exc: FetchError | None = None
         for attempt in range(1, self.max_attempts + 1):
             self._throttle(full)
             t0 = time.monotonic()
             try:
-                r = self._client.get(full, headers=hdrs)
+                r = self._client.request(method, full, headers=hdrs, data=form)
             except httpx.TimeoutException:
-                last_exc = FetchTimeout(f"timeout fetching {_redact(full, redact)}", _redact(full, redact))
+                last_exc = FetchTimeout(f"timeout fetching {safe}", safe)
             except httpx.HTTPError as e:
-                last_exc = FetchError(f"{type(e).__name__}: {e}", _redact(full, redact))
+                last_exc = FetchError(f"{type(e).__name__}: {e}", safe)
             else:
                 self.request_count += 1
                 ms = int((time.monotonic() - t0) * 1000)
                 if r.status_code == 304 and cached:
                     body = (self._cache_dir / f"{cache_key}.body").read_bytes()
-                    return Response(_redact(full, redact), 200, cached["headers"], body, from_cache=True, elapsed_ms=ms)
+                    return Response(safe, 200, cached["headers"], body, from_cache=True, elapsed_ms=ms)
                 if r.status_code < 400:
                     resp = Response(
                         _redact(str(r.url), redact), r.status_code, dict(r.headers), r.content, elapsed_ms=ms
@@ -155,7 +198,7 @@ class PoliteClient:
                     if conditional:
                         self._cache_store(cache_key, resp)
                     return resp
-                last_exc = HttpStatusError(r.status_code, _redact(full, redact), r.text)
+                last_exc = HttpStatusError(r.status_code, safe, r.text)
                 if r.status_code not in (408, 425, 429, 500, 502, 503, 504):
                     raise last_exc
                 if attempt < self.max_attempts:
