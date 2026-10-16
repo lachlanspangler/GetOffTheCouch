@@ -1,37 +1,44 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { CityPicker } from "./components/CityPicker";
-import { EventDrawer } from "./components/EventDrawer";
-import { FilterBar } from "./components/FilterBar";
+import { Footer, type Theme } from "./components/Footer";
+import { Header } from "./components/Header";
 import { Icon } from "./components/Icon";
+import { SkeletonRows } from "./components/EventRow";
 import { Ctx, type AppCtx } from "./lib/ctx";
 import { isDemo, loadCity, loadIndex } from "./lib/data";
 import { applyFilters, deadlines } from "./lib/filters";
-import { build, setTitleLookup, useRoute, type View } from "./lib/router";
+import { setTitleLookup, useRoute, type View } from "./lib/router";
 import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
-import { age } from "./lib/time";
+import { fmtDay } from "./lib/time";
 import type { CityFeed, Index } from "./lib/types";
-import { About } from "./views/About";
+import { About, Methodology, Privacy } from "./views/About";
 import { Calendar } from "./views/Calendar";
 import { Deadlines } from "./views/Deadlines";
-import { Feed } from "./views/Feed";
+import { EventPage } from "./views/EventPage";
+import { Feed, cityHeadline } from "./views/Feed";
 import { Health } from "./views/Health";
 import { Home } from "./views/Home";
 import { MapView } from "./views/MapView";
 import { Plan } from "./views/Plan";
 import { Saved } from "./views/Saved";
 
-const TABS: { view: View; label: string; icon: string }[] = [
-  { view: "feed", label: "Feed", icon: "list" },
-  { view: "deadlines", label: "Deadlines", icon: "clock" },
-  { view: "calendar", label: "Calendar", icon: "calendar" },
-  { view: "map", label: "Map", icon: "map" },
-  { view: "plan", label: "New in town", icon: "compass" },
-  { view: "saved", label: "Saved", icon: "bookmark" },
-  { view: "health", label: "Health", icon: "activity" },
-];
+const SITE = "Get Off the Couch";
+const VIEW_TITLE: Partial<Record<View, string>> = {
+  deadlines: "Deadlines",
+  calendar: "Calendar",
+  map: "Map",
+  plan: "New in town",
+  saved: "Saved",
+  health: "Data status",
+  about: "About",
+  methodology: "How we get the data",
+  privacy: "Privacy",
+};
 
-const FILTERED_VIEWS: View[] = ["feed", "calendar", "map"];
+function applyTheme(t: Theme): void {
+  const dark = t === "dark" || (t === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+}
 
 export function App() {
   const [route, go] = useRoute();
@@ -41,7 +48,8 @@ export function App() {
   const [now, setNow] = useState(() => new Date());
   const [lastCity, setLastCity] = usePersistent<string | null>("lastCity", null);
   const [saved, setSaved] = usePersistent<string[]>(`saved:${route.city ?? "_"}`, []);
-  const [theme, setTheme] = usePersistent<"auto" | "light" | "dark">("theme", "auto");
+  const [theme, setTheme] = usePersistent<Theme>("theme", "auto");
+  const [retry, setRetry] = useState(0);
   const demo = isDemo();
 
   useEffect(() => {
@@ -50,12 +58,17 @@ export function App() {
     return () => clearInterval(t);
   }, []);
   useEffect(() => {
-    if (!route.city && lastCity && index?.cities.some((c) => c.slug === lastCity) && location.pathname === url() && !location.search) {
+    if (!route.city && route.view === "feed" && lastCity && index?.cities.some((c) => c.slug === lastCity) && location.pathname === url() && !location.search) {
       go({ city: lastCity, view: "feed" }, true);
     }
   }, [index]);
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    applyTheme(theme);
+    if (theme !== "auto") return;
+    const mq = matchMedia("(prefers-color-scheme: dark)");
+    const on = () => applyTheme("auto");
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
   }, [theme]);
   useEffect(() => {
     if (!route.city) {
@@ -64,22 +77,20 @@ export function App() {
     }
     if (feed?.city === route.city) return;
     setFeed(null);
+    setError(null);
     loadCity(route.city)
       .then((f) => {
         setFeed(f);
         setLastCity(f.city);
       })
-      .catch((e: Error) => setError(`Couldn't load ${route.city}: ${e.message}`));
-  }, [route.city]);
-  useEffect(() => {
-    const city = feed ? `${feed.city_name} · ` : "";
-    document.title = `${city}GetOffTheCouch · ur city made easy`;
-  }, [feed]);
+      .catch((e: Error) => setError(e.message));
+  }, [route.city, retry]);
 
   const ctx = useMemo<AppCtx | null>(() => {
     if (!index) return null;
     const labels = Object.fromEntries(Object.entries(index.taxonomy).map(([k, v]) => [k, v.label]));
     const neighborhoods: Record<string, [number, number]> = {};
+    for (const n of feed?.neighborhoods ?? []) neighborhoods[n.name] = [n.lat, n.lon];
     const sourceNames: Record<string, string> = {};
     for (const s of feed?.sources ?? []) sourceNames[s.source_id] = s.name;
     const byId = new Map((feed?.events ?? []).map((e) => [e.id, e]));
@@ -100,99 +111,106 @@ export function App() {
     };
   }, [index, feed, route, saved, now]);
 
+  const event = route.eventId && ctx ? ctx.byId.get(route.eventId) : undefined;
+  useEffect(() => {
+    const cityName = feed?.city_name;
+    const page = event
+      ? `${event.title} · ${fmtDay(event.start, event.timezone)}`
+      : route.city && route.view === "feed"
+        ? route.hub && cityName ? cityHeadline(route.hub, cityName) : cityName ? `Things to do in ${cityName}` : null
+        : VIEW_TITLE[route.view] ?? null;
+    const parts = [page, route.city && cityName && (event || route.view !== "feed") ? cityName : null, SITE].filter(Boolean);
+    document.title = parts.length > 1 ? parts.join(" · ") : `${SITE} · Your city, made easy`;
+  }, [feed, route, event]);
+
   if (error && !index) {
     return (
       <main class="boot">
-        <h1>GetOffTheCouch</h1>
-        <p class="notice notice-warn">The data isn't available yet ({error}). Run <code>make pipeline</code>, or open <a href="?demo=1">the demo</a>.</p>
+        <h1>Get Off the Couch</h1>
+        <p class="notice notice-critical"><Icon name="alert" size={16} /> We couldn't load the listings. Your connection may have dropped ({error}).</p>
+        <p style={{ marginTop: "16px" }}><button class="btn" onClick={() => location.reload()}>Try again</button></p>
       </main>
     );
   }
-  if (!ctx || !index) return <main class="boot" aria-busy="true"><div class="spinner" /></main>;
+  if (!ctx || !index) {
+    return (
+      <main class="boot container" aria-busy="true">
+        <SkeletonRows n={4} />
+      </main>
+    );
+  }
 
-  for (const n of feed?.neighborhoods ?? []) ctx.neighborhoods[n.name] = [n.lat, n.lon];
   const filtered = feed ? applyFilters(feed.events, route.filters, feed.timezone, ctx.neighborhoods, now) : [];
-  const upcomingDeadlines = feed ? deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7 && !d.derived).length : 0;
-  const summary = index.cities.find((c) => c.slug === route.city);
-  const event = route.eventId ? ctx.byId.get(route.eventId) : undefined;
+  const soon = feed ? new Set(deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7 && !d.derived && d.kind === "closes").map((d) => d.event.series_id ?? d.event.id)).size : 0;
   const view = route.view;
+  const unknownCity = route.city && !index.cities.some((c) => c.slug === route.city);
+  const unknownHub = !!route.unknown;
 
   return (
     <Ctx.Provider value={ctx}>
-      {demo && <div class="demo-banner" role="status">DEMO DATA: made-up examples for trying the interface. <a href={`${url()}?demo=0`} target="_self">Switch to real data</a></div>}
-      <header class="top">
-        <a class="brand" href={url()} aria-label="GetOffTheCouch home">
-          <span class="logo"><Icon name="sofa" size={22} /></span>
-          <span class="brand-text">
-            <strong>GetOffTheCouch</strong>
-            <small>ur city made easy</small>
-          </span>
-        </a>
-        <CityPicker />
-        <div class="top-right">
-          {summary && (
-            <button class={`fresh ${summary.stale_sources ? "warn" : "ok"}`} onClick={() => go({ view: "health", eventId: null })} title="Data health">
-              <i /> Updated {age(index.generated_at, now)} · {summary.sources_ok}/{summary.sources_total} sources ok
-            </button>
-          )}
-          <button
-            class="icon-btn"
-            aria-label={`Theme: ${theme}`}
-            title={`Theme: ${theme}`}
-            onClick={() => setTheme(theme === "auto" ? "dark" : theme === "dark" ? "light" : "auto")}
-          >
-            <Icon name={theme === "dark" ? "moon" : "sun"} />
-          </button>
+      {demo && (
+        <div class="demo-bar" role="status">
+          Sample data. These events aren't real. <a href={`${url()}?demo=0`} target="_self">See live cities</a>
         </div>
-      </header>
-      {route.city && (
-        <nav class="tabs" aria-label="Views">
-          {TABS.map((t) => (
-            <a
-              key={t.view}
-              href={build({ city: route.city, view: t.view })}
-              class={view === t.view && !route.eventId ? "on" : ""}
-              aria-current={view === t.view ? "page" : undefined}
-              onClick={(e) => {
-                e.preventDefault();
-                go({ view: t.view, eventId: null });
-              }}
-            >
-              <Icon name={t.icon} size={16} />
-              <span>{t.label}</span>
-              {t.view === "deadlines" && upcomingDeadlines > 0 && <b class="count">{upcomingDeadlines}</b>}
-              {t.view === "saved" && saved.length > 0 && <b class="count muted">{saved.length}</b>}
-            </a>
-          ))}
-        </nav>
       )}
-      <main class="main" id="main">
-        {!route.city && (view === "about" ? <About /> : <Home />)}
-        {route.city && !feed && !error && <div class="spinner" aria-busy="true" />}
-        {route.city && error && !feed && <p class="notice notice-warn">{error}</p>}
-        {feed && (
+      <a class="skip" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById("main")?.focus(); }}>Skip to content</a>
+      <Header deadlineCount={soon} />
+      <main class="main" id="main" tabIndex={-1}>
+        {!route.city && view === "about" && <About />}
+        {!route.city && view === "methodology" && <Methodology />}
+        {!route.city && view === "privacy" && <Privacy />}
+        {!route.city && view === "health" && <Health />}
+        {!route.city && view === "feed" && <Home />}
+        {unknownCity && (
+          <div class="container empty">
+            <h2>We don't cover that city yet.</h2>
+            <p>Pick one of the cities we cover, or suggest yours from the link at the bottom of the page.</p>
+            <a class="btn btn-secondary" href={url()}>See all cities</a>
+          </div>
+        )}
+        {route.city && !unknownCity && !feed && !error && <div class="container" style={{ paddingTop: "32px" }}><SkeletonRows /></div>}
+        {route.city && !unknownCity && error && !feed && (
+          <div class="container empty">
+            <h2>We couldn't load {index.cities.find((c) => c.slug === route.city)?.name ?? route.city}'s events.</h2>
+            <p>Your connection may have dropped.</p>
+            <button class="btn btn-secondary" onClick={() => setRetry(retry + 1)}>Try again</button>
+          </div>
+        )}
+        {feed && route.eventId && !event && (
+          <div class="container empty">
+            <h2>This event has ended or moved.</h2>
+            <p>It's no longer listed by its source. Here's what's on in {feed.city_name} instead.</p>
+            <a class="btn btn-secondary" href={url(`${feed.city}/`)}>What's on in {feed.city_name}</a>
+          </div>
+        )}
+        {feed && event && <EventPage e={event} />}
+        {feed && !route.eventId && (
           <>
-            {FILTERED_VIEWS.includes(view) && <FilterBar resultCount={filtered.length} />}
-            {view === "feed" && <Feed events={filtered} />}
-            {view === "calendar" && <Calendar events={filtered} />}
-            {view === "map" && <MapView events={filtered} />}
-            {view === "deadlines" && <Deadlines events={feed.events} />}
-            {view === "plan" && <Plan events={feed.events} />}
-            {view === "saved" && <Saved />}
-            {view === "health" && <Health />}
-            {view === "about" && <About />}
+            {unknownHub ? (
+              <div class="container empty">
+                <h2>We couldn't find that page.</h2>
+                <p>It may have moved. Here's everything on in {feed.city_name}.</p>
+                <a class="btn btn-secondary" href={url(`${feed.city}/`)}>What's on in {feed.city_name}</a>
+              </div>
+            ) : (
+              <>
+                {view === "feed" && <Feed events={filtered} />}
+                {view === "calendar" && <Calendar events={filtered} />}
+                {view === "map" && <MapView events={filtered} />}
+                {view === "deadlines" && <Deadlines events={feed.events} />}
+                {view === "plan" && <Plan events={feed.events} />}
+                {view === "saved" && <Saved />}
+                {view === "health" && <Health />}
+                {view === "about" && <About />}
+                {view === "methodology" && <Methodology />}
+                {view === "privacy" && <Privacy />}
+              </>
+            )}
           </>
         )}
       </main>
-      {event && <EventDrawer e={event} />}
-      <footer class="foot">
-        <p>
-          <strong>GetOffTheCouch</strong> · no made-up data: every card names its source and when we last checked.{" "}
-          <a href={url("about/")}>How it works</a> ·{" "}
-          <a href={route.city ? build({ city: route.city, view: "health" }) : url("health/")}>Data health</a>
-        </p>
-        <p class="muted small">Map data © OpenStreetMap contributors. Event data © the original publishers, linked on every card.</p>
-      </footer>
+      <Footer theme={theme} setTheme={setTheme} />
     </Ctx.Provider>
   );
 }
+

@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`artSvg > arts: snapshot 1`] = `
+{
+  "hue": 95,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><rect x="0" y="72.4" width="160" height="27.6" fill="var(--art-mid)"/><path d="M21.6 72.4A66.3 66.3 0 0 1 154.2 72.4Z" fill="var(--art-mid)"/><path d="M34.1 72.4A53.8 53.8 0 0 1 141.6 72.4Z" fill="var(--art-ink)"/><path d="M46.6 72.4A41.3 41.3 0 0 1 129.1 72.4Z" fill="var(--art-acc)"/><path d="M59.1 72.4A28.7 28.7 0 0 1 116.6 72.4Z" fill="var(--art-bg)"/><rect x="0" y="71.6" width="160" height="1.5" fill="var(--art-ink)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > community: snapshot 1`] = `
+{
+  "hue": 75,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><g fill="var(--art-mid)"><path d="M0 0L26.7 0L0 25Z"/><path d="M53.3 0L80 25L53.3 25Z"/><path d="M106.7 25L81.7 25A25 25 0 0 0 106.7 50Z"/><path d="M133.3 75L158.3 75A25 25 0 0 0 133.3 50Z"/><path d="M80 100L55 100A25 25 0 0 1 80 75Z"/><path d="M80 75L106.7 75L106.7 100Z"/><path d="M106.7 75L131.7 75A25 25 0 0 1 106.7 100Z"/></g><g fill="var(--art-ink)"><path d="M26.7 0L53.3 0L26.7 25Z"/><path d="M106.7 25L131.7 25A25 25 0 0 0 106.7 0Z"/><path d="M26.7 25L51.7 25A25 25 0 0 1 26.7 50Z"/><path d="M133.3 25L133.3 50L106.7 50Z"/><path d="M133.3 25L160 50L133.3 50Z"/><path d="M26.7 75L1.7 75A25 25 0 0 1 26.7 50Z"/><path d="M53.3 50L53.3 75L26.7 75Z"/><path d="M0 100L25 100A25 25 0 0 0 0 75Z"/><path d="M133.3 75L160 75L160 100Z"/></g><g fill="var(--art-acc)"><path d="M133.3 0L158.3 0A25 25 0 0 1 133.3 25Z"/><path d="M80 50L80 75L53.3 75Z"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > family: snapshot 1`] = `
+{
+  "hue": 115,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><rect x="79.3" y="54.2" width="30.2" height="19.9" rx="10" fill="var(--art-mid)"/><rect x="87" y="12.5" width="40.8" height="15.5" rx="7.8" fill="var(--art-ink)"/><rect x="30" y="49.6" width="39.3" height="17.3" rx="8.7" fill="var(--art-mid)"/><rect x="48" y="73.2" width="27.3" height="11.6" rx="5.8" fill="var(--art-acc)"/><rect x="121" y="74.8" width="33.5" height="16.4" rx="8.2" fill="var(--art-mid)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > fitness: snapshot 1`] = `
+{
+  "hue": 175,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><g fill="none" stroke="var(--art-ink)" stroke-width="4.9" stroke-linecap="round"><line x1="-13.8" y1="81.8" x2="53.7" y2="55.9"/><line x1="8.2" y1="72.6" x2="74.5" y2="47.2"/><line x1="56.2" y1="81.9" x2="130.2" y2="53.5"/><line x1="89.7" y1="90.3" x2="146.9" y2="68.4"/><line x1="106" y1="75" x2="175.1" y2="48.5"/><line x1="133.8" y1="81" x2="158.2" y2="71.7"/><line x1="156.8" y1="84.2" x2="231.1" y2="55.7"/></g><g fill="none" stroke="var(--art-acc)" stroke-width="4.9" stroke-linecap="round"><line x1="33.7" y1="73.9" x2="98.3" y2="49.1"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > food_drink: snapshot 1`] = `
+{
+  "hue": 45,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><circle cx="95.9" cy="34.5" r="29.6" fill="var(--art-mid)"/><circle cx="95.9" cy="34.5" r="21.2" fill="none" stroke="var(--art-ink)" stroke-width="1.5"/><rect x="47.6" y="3.6" width="6.9" height="61.7" rx="3.5" fill="var(--art-ink)"/><circle cx="143.1" cy="76" r="6.7" fill="var(--art-acc)"/><circle cx="123.2" cy="71.2" r="8.2" fill="var(--art-ink)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > learning: snapshot 1`] = `
+{
+  "hue": 200,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><g fill="none" stroke="var(--art-mid)" stroke-width="1"><line x1="0" y1="8.7" x2="160" y2="8.7"/><line x1="0" y1="18.7" x2="160" y2="18.7"/><line x1="0" y1="28.7" x2="160" y2="28.7"/><line x1="0" y1="38.7" x2="160" y2="38.7"/><line x1="0" y1="48.7" x2="160" y2="48.7"/><line x1="0" y1="58.7" x2="160" y2="58.7"/><line x1="0" y1="68.7" x2="160" y2="68.7"/><line x1="0" y1="78.7" x2="160" y2="78.7"/><line x1="0" y1="88.7" x2="160" y2="88.7"/><line x1="0" y1="98.7" x2="160" y2="98.7"/></g><line x1="35.9" y1="0" x2="35.9" y2="100" fill="none" stroke="var(--art-acc)" stroke-width="1.5"/></g></svg>",
+}
+`;
+
+exports[`artSvg > music: snapshot 1`] = `
+{
+  "hue": 295,
+  "shift": -20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><circle cx="163.7" cy="-11.3" r="16.4" fill="none" stroke="var(--art-ink)" stroke-width="3"/><circle cx="163.7" cy="-11.3" r="32.7" fill="none" stroke="var(--art-acc)" stroke-width="8"/><circle cx="163.7" cy="-11.3" r="49.1" fill="none" stroke="var(--art-ink)" stroke-width="3"/><circle cx="163.7" cy="-11.3" r="65.4" fill="none" stroke="var(--art-mid)" stroke-width="8"/><circle cx="163.7" cy="-11.3" r="81.8" fill="none" stroke="var(--art-ink)" stroke-width="3"/><circle cx="163.7" cy="-11.3" r="98.1" fill="none" stroke="var(--art-mid)" stroke-width="8"/></g></svg>",
+}
+`;
+
+exports[`artSvg > niche: snapshot 1`] = `
+{
+  "hue": 275,
+  "shift": -20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><g fill="var(--art-mid)"><circle cx="103.4" cy="43.9" r="0.8"/><circle cx="23.7" cy="40.5" r="0.8"/><circle cx="144.9" cy="8.4" r="0.8"/><circle cx="59.3" cy="76.9" r="0.8"/><circle cx="112" cy="43.5" r="0.8"/><circle cx="98.9" cy="21.9" r="0.8"/><circle cx="59.2" cy="51.2" r="0.8"/><circle cx="157.6" cy="48.9" r="0.8"/><circle cx="70.8" cy="55.3" r="0.8"/><circle cx="39.6" cy="2.4" r="0.8"/><circle cx="90.3" cy="12.5" r="0.8"/></g><path d="M10.5 82.9L11.4 56.9L16.4 30.5L35.4 21L36.5 47.7L64.3 45.2L80.6 58.9L88.4 84.4L109.9 51.1L113.3 87.1" fill="none" stroke="var(--art-ink)" stroke-width="1"/><g fill="var(--art-ink)"><path d="M10.5 77.7Q10.5 82.9 15.7 82.9Q10.5 82.9 10.5 88.2Q10.5 82.9 5.2 82.9Q10.5 82.9 10.5 77.7Z"/><path d="M11.4 51.9Q11.4 56.9 16.4 56.9Q11.4 56.9 11.4 61.8Q11.4 56.9 6.5 56.9Q11.4 56.9 11.4 51.9Z"/><path d="M16.4 24.1Q16.4 30.5 22.8 30.5Q16.4 30.5 16.4 36.9Q16.4 30.5 10 30.5Q16.4 30.5 16.4 24.1Z"/><path d="M35.4 16.9Q35.4 21 39.6 21Q35.4 21 35.4 25.2Q35.4 21 31.3 21Q35.4 21 35.4 16.9Z"/><path d="M36.5 40.8Q36.5 47.7 43.3 47.7Q36.5 47.7 36.5 54.5Q36.5 47.7 29.6 47.7Q36.5 47.7 36.5 40.8Z"/><path d="M80.6 54.4Q80.6 58.9 85.1 58.9Q80.6 58.9 80.6 63.4Q80.6 58.9 76 58.9Q80.6 58.9 80.6 54.4Z"/><path d="M88.4 79.4Q88.4 84.4 93.3 84.4Q88.4 84.4 88.4 89.3Q88.4 84.4 83.4 84.4Q88.4 84.4 88.4 79.4Z"/><path d="M109.9 44.3Q109.9 51.1 116.7 51.1Q109.9 51.1 109.9 57.9Q109.9 51.1 103.2 51.1Q109.9 51.1 109.9 44.3Z"/><path d="M113.3 81.9Q113.3 87.1 118.4 87.1Q113.3 87.1 113.3 92.2Q113.3 87.1 108.1 87.1Q113.3 87.1 113.3 81.9Z"/></g><g fill="var(--art-acc)"><path d="M64.3 36.2Q64.3 45.2 73.4 45.2Q64.3 45.2 64.3 54.3Q64.3 45.2 55.3 45.2Q64.3 45.2 64.3 36.2Z"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > nightlife: snapshot 1`] = `
+{
+  "hue": 330,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><g fill="var(--art-ink)"><circle cx="9.5" cy="9.5" r="1.6"/><circle cx="9.5" cy="28.5" r="1.5"/><circle cx="9.5" cy="47.5" r="1.2"/><circle cx="9.5" cy="66.5" r="0.7"/><circle cx="28.5" cy="9.5" r="2.8"/><circle cx="28.5" cy="28.5" r="2.7"/><circle cx="28.5" cy="47.5" r="2.3"/><circle cx="28.5" cy="66.5" r="1.7"/><circle cx="28.5" cy="85.5" r="0.9"/><circle cx="47.5" cy="9.5" r="4"/><circle cx="47.5" cy="28.5" r="3.9"/><circle cx="47.5" cy="47.5" r="3.4"/><circle cx="47.5" cy="66.5" r="2.6"/><circle cx="47.5" cy="85.5" r="1.6"/><circle cx="66.5" cy="9.5" r="5.2"/><circle cx="66.5" cy="28.5" r="5"/><circle cx="66.5" cy="47.5" r="4.3"/><circle cx="66.5" cy="66.5" r="3.3"/><circle cx="66.5" cy="85.5" r="2.2"/><circle cx="85.5" cy="47.5" r="4.9"/><circle cx="85.5" cy="66.5" r="3.7"/><circle cx="85.5" cy="85.5" r="2.5"/><circle cx="104.5" cy="28.5" r="5.9"/><circle cx="104.5" cy="47.5" r="4.8"/><circle cx="104.5" cy="66.5" r="3.7"/><circle cx="104.5" cy="85.5" r="2.5"/><circle cx="123.5" cy="9.5" r="5.1"/><circle cx="123.5" cy="28.5" r="4.9"/><circle cx="123.5" cy="47.5" r="4.2"/><circle cx="123.5" cy="66.5" r="3.2"/><circle cx="123.5" cy="85.5" r="2.1"/><circle cx="142.5" cy="9.5" r="3.9"/><circle cx="142.5" cy="28.5" r="3.8"/><circle cx="142.5" cy="47.5" r="3.3"/><circle cx="142.5" cy="66.5" r="2.5"/><circle cx="142.5" cy="85.5" r="1.6"/></g><g fill="var(--art-acc)"><circle cx="85.5" cy="9.5" r="6.3"/><circle cx="85.5" cy="28.5" r="6"/><circle cx="104.5" cy="9.5" r="6.2"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > other: snapshot 1`] = `
+{
+  "hue": 70,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><rect x="109.7" y="31.2" width="59.1" height="49.6" rx="2" fill="var(--art-mid)"/><rect x="59.9" y="30.4" width="68.1" height="32" rx="2" fill="var(--art-ink)"/><rect x="63.2" y="73.4" width="44.9" height="30" rx="2" fill="var(--art-acc)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > outdoors: snapshot 1`] = `
+{
+  "hue": 135,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><g fill="none" stroke="var(--art-ink)" stroke-width="1.5" stroke-linejoin="round"><path d="M0 7.6L8 9L16 10.5L24 12.2L32 13.7L40 14.9L48 15.8L56 16.1L64 16L72 15.3L80 14.2L88 12.7L96 11.1L104 9.5L112 8.1L120 7L128 6.3L136 6.1L144 6.4L152 7.3L160 8.5"/><path d="M0 20.2L8 21.8L16 23.4L24 24.9L32 26.1L40 26.9L48 27.3L56 27L64 26.3L72 25.2L80 23.7L88 22.1L96 20.5L104 19.1L112 18L120 17.3L128 17.2L136 17.6L144 18.4L152 19.7L160 21.2"/><path d="M0 33L8 34.6L16 36.1L24 37.3L32 38.1L40 38.4L48 38.1L56 37.4L64 36.2L72 34.7L80 33.1L88 31.5L96 30.1L104 29L112 28.4L120 28.3L128 28.7L136 29.6L144 30.9L152 32.5L160 34.1"/><path d="M0 45.9L8 47.3L16 48.5L24 49.2L32 49.5L40 49.2L48 48.4L56 47.2L64 45.7L72 44.1L80 42.5L88 41.1L96 40.1L104 39.5L112 39.4L120 39.9L128 40.8L136 42.2L144 43.7L152 45.3L160 46.9"/><path d="M0 58.5L8 59.7L16 60.4L24 60.6L32 60.3L40 59.4L48 58.2L56 56.7L64 55.1L72 53.5L80 52.1L88 51.1L96 50.6L104 50.6L112 51.1L120 52L128 53.4L136 54.9L144 56.6L152 58.1L160 59.3" stroke="var(--art-acc)"/><path d="M0 70.9L8 71.5L16 71.7L24 71.3L32 70.5L40 69.2L48 67.7L56 66.1L64 64.5L72 63.2L80 62.2L88 61.7L96 61.7L104 62.2L112 63.2L120 64.6L128 66.2L136 67.8L144 69.3L152 70.5L160 71.4"/><path d="M0 82.7L8 82.8L16 82.4L24 81.5L32 80.2L40 78.7L48 77.1L56 75.5L64 74.2L72 73.3L80 72.8L88 72.8L96 73.4L104 74.4L112 75.8L120 77.4L128 79L136 80.5L144 81.7L152 82.5L160 82.8"/><path d="M0 93.9L8 93.4L16 92.5L24 91.2L32 89.7L40 88L48 86.5L56 85.2L64 84.3L72 83.9L80 84L88 84.6L96 85.7L104 87.1L112 88.6L120 90.3L128 91.7L136 92.9L144 93.7L152 93.9L160 93.6"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > sports_league: snapshot 1`] = `
+{
+  "hue": 155,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><g fill="var(--art-mid)"><rect x="0" y="12.5" width="160" height="12.5"/><rect x="0" y="37.5" width="160" height="12.5"/><rect x="0" y="62.5" width="160" height="12.5"/><rect x="0" y="87.5" width="160" height="12.5"/></g><g fill="none" stroke="var(--art-ink)" stroke-width="1.5"><rect x="10.4" y="10.4" width="139.2" height="79.2"/><line x1="80" y1="10.4" x2="80" y2="89.6"/><circle cx="80" cy="50" r="19.1"/><rect x="10.4" y="30.9" width="17.2" height="38.1"/><rect x="132.5" y="30.9" width="17.2" height="38.1"/></g><circle cx="80" cy="50" r="2.5" fill="var(--art-acc)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > sports_watch: snapshot 1`] = `
+{
+  "hue": 250,
+  "shift": -20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><path d="M0 27.5Q80 42.6 160 27.5" fill="none" stroke="var(--art-ink)" stroke-width="1.5"/><path d="M13.1 29.8L30.2 32.1L30.2 60.2L21.7 50.7L13.1 57.9Z" fill="var(--art-mid)"/><path d="M36.4 32.8L53.6 34.2L53.6 62.3L45 53.2L36.4 60.9Z" fill="var(--art-ink)"/><path d="M59.8 34.5L76.9 35L76.9 63.1L68.3 54.5L59.8 62.6Z" fill="var(--art-acc)"/><path d="M83.1 35L100.2 34.5L100.2 62.6L91.7 54.5L83.1 63.1Z" fill="var(--art-ink)"/><path d="M106.4 34.2L123.6 32.8L123.6 60.9L115 53.2L106.4 62.3Z" fill="var(--art-mid)"/><path d="M129.8 32.1L146.9 29.8L146.9 57.9L138.3 50.7L129.8 60.2Z" fill="var(--art-ink)"/></g></svg>",
+}
+`;
+
+exports[`artSvg > trivia_games: snapshot 1`] = `
+{
+  "hue": 225,
+  "shift": 0,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><g fill="var(--art-mid)"><rect x="2" y="2" width="16" height="16" rx="3"/><rect x="22" y="2" width="16" height="16" rx="3"/><rect x="82" y="2" width="16" height="16" rx="3"/><rect x="102" y="2" width="16" height="16" rx="3"/><rect x="122" y="2" width="16" height="16" rx="3"/><rect x="142" y="2" width="16" height="16" rx="3"/><rect x="2" y="22" width="16" height="16" rx="3"/><rect x="22" y="22" width="16" height="16" rx="3"/><rect x="42" y="22" width="16" height="16" rx="3"/><rect x="62" y="22" width="16" height="16" rx="3"/><rect x="82" y="22" width="16" height="16" rx="3"/><rect x="122" y="22" width="16" height="16" rx="3"/><rect x="142" y="22" width="16" height="16" rx="3"/><rect x="2" y="42" width="16" height="16" rx="3"/><rect x="22" y="42" width="16" height="16" rx="3"/><rect x="42" y="42" width="16" height="16" rx="3"/><rect x="62" y="42" width="16" height="16" rx="3"/><rect x="82" y="42" width="16" height="16" rx="3"/><rect x="102" y="42" width="16" height="16" rx="3"/><rect x="122" y="42" width="16" height="16" rx="3"/><rect x="2" y="62" width="16" height="16" rx="3"/><rect x="22" y="62" width="16" height="16" rx="3"/><rect x="42" y="62" width="16" height="16" rx="3"/><rect x="62" y="62" width="16" height="16" rx="3"/><rect x="82" y="62" width="16" height="16" rx="3"/><rect x="102" y="62" width="16" height="16" rx="3"/><rect x="122" y="62" width="16" height="16" rx="3"/><rect x="142" y="62" width="16" height="16" rx="3"/><rect x="2" y="82" width="16" height="16" rx="3"/><rect x="22" y="82" width="16" height="16" rx="3"/><rect x="42" y="82" width="16" height="16" rx="3"/><rect x="62" y="82" width="16" height="16" rx="3"/><rect x="82" y="82" width="16" height="16" rx="3"/><rect x="102" y="82" width="16" height="16" rx="3"/><rect x="122" y="82" width="16" height="16" rx="3"/><rect x="142" y="82" width="16" height="16" rx="3"/></g><g fill="var(--art-acc)"><rect x="42" y="2" width="16" height="16" rx="3"/><rect x="62" y="2" width="16" height="16" rx="3"/><rect x="102" y="22" width="16" height="16" rx="3"/><rect x="142" y="42" width="16" height="16" rx="3"/></g></g></svg>",
+}
+`;
+
+exports[`artSvg > volunteer: snapshot 1`] = `
+{
+  "hue": 10,
+  "shift": 20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(180 80 50)"><circle cx="24.5" cy="44.6" r="18.1" fill="var(--art-acc)"/><g fill="none" stroke="var(--art-ink)" stroke-width="3.4"><circle cx="24.5" cy="44.6" r="18.1"/><circle cx="51.9" cy="33.4" r="18.1"/><circle cx="79.3" cy="29.7" r="18.1"/><circle cx="106.8" cy="33.4" r="18.1"/><circle cx="134.2" cy="44.6" r="18.1"/></g></g></svg>",
+}
+`;
+
+exports[`cityArt > snapshot 1`] = `
+{
+  "hue": 295,
+  "shift": -20,
+  "svg": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="160" height="100" fill="var(--art-bg)"/><g transform="rotate(0 80 50)"><g fill="var(--art-mid)"><rect x="83.3" y="-6" width="46.9" height="56.1" rx="2"/><rect x="136.6" y="-6" width="29.4" height="56.1" rx="2"/><rect x="-6" y="56.4" width="44.8" height="49.6" rx="2"/><rect x="45.1" y="56.4" width="31.8" height="49.6" rx="2"/><rect x="83.3" y="56.4" width="46.9" height="49.6" rx="2"/><rect x="136.6" y="56.4" width="29.4" height="49.6" rx="2"/></g><g fill="var(--art-acc)"><rect x="-6" y="-6" width="44.8" height="56.1" rx="2"/><rect x="45.1" y="-6" width="31.8" height="56.1" rx="2"/></g><line x1="81.6" y1="-5" x2="110.6" y2="105" fill="none" stroke="var(--art-bg)" stroke-width="6.3"/></g></svg>",
+}
+`;

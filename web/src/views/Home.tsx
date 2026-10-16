@@ -1,44 +1,60 @@
+import { CityArt } from "../components/Art";
+import { CitySearch } from "../components/CityPicker";
 import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
+import { count } from "../lib/format";
+import { build } from "../lib/router";
 
 export function Home() {
-  const { index, go } = useApp();
+  const { index } = useApp();
   const cities = [...index.cities].sort((a, b) => b.events - a.events || a.name.localeCompare(b.name));
+  const total = index.cities.reduce((n, c) => n + c.events, 0);
   return (
-    <div class="home">
+    <div class="container">
       <section class="hero">
-        <h1>
-          New in town?<br />
-          <span class="accent">Get off the couch.</span>
-        </h1>
-        <p class="lead">
-          Everything worth leaving the house for in your new city: beer leagues, block parties, concerts with live prices, volunteering,
-          cons and faires, trivia and run clubs. Plus every deadline you'd otherwise miss.
+        <p class="kicker">Your city, made easy.</p>
+        <h1>Everything worth leaving the house for, and every deadline you'd otherwise miss.</h1>
+        <p class="lede">
+          Rec leagues, block parties, concerts with live prices, volunteering, trivia, cons and faires, in one place for each city. We pull it
+          from official calendars and venues, check it every few hours, and tell you where every listing came from.
         </p>
+        <CitySearch />
       </section>
-      <section>
-        <h2 class="section-title">Pick your city</h2>
-        <div class="city-grid">
+      <section class="section" aria-labelledby="cities" style={{ marginTop: "0" }}>
+        <div class="section-head">
+          <div>
+            <h2 id="cities">Cities</h2>
+            <p class="small">{count(total)} upcoming events across {index.cities.length} cities.</p>
+          </div>
+        </div>
+        <div class="tiles cities">
           {cities.map((c) => (
-            <button key={c.slug} class="city-card" onClick={() => go({ city: c.slug, view: "feed", eventId: null })}>
-              <span class="city-name">{c.name}<span class="muted">, {c.state}</span></span>
-              <span class="city-stats">
-                {c.events > 0 ? (
-                  <>
-                    <span><strong>{c.upcoming_7d}</strong> this week</span>
-                    <span><strong>{c.deadlines}</strong> deadlines</span>
-                  </>
-                ) : (
-                  <span class="muted">Sources coming soon</span>
-                )}
-              </span>
-              <span class="city-health">
-                <i class={c.sources_ok === c.sources_total ? "ok" : c.sources_ok ? "warn" : "off"} />
-                {c.sources_ok}/{c.sources_total} sources healthy{c.sources_disabled ? ` · ${c.sources_disabled} awaiting API keys` : ""}
-              </span>
-              <Icon name="right" size={18} class="city-go" />
-            </button>
+            <div class="tile" key={c.slug}>
+              <CityArt slug={c.slug} ratio="16/9" />
+              <h3><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></h3>
+              <p class="sub">
+                {c.events > 0 ? `${count(c.upcoming_7d)} events this week · ${count(c.deadlines)} deadlines` : "Coming soon"}
+              </p>
+              <Icon name="right" size={18} class="chev" />
+            </div>
           ))}
+        </div>
+      </section>
+      <section class="section" aria-labelledby="how">
+        <h2 id="how" class="sr-only">How it works</h2>
+        <div class="how">
+          <div>
+            <h3>From official sources</h3>
+            <p>Park districts, libraries, universities, venues and open-data portals. We use their published feeds and follow their rules.</p>
+          </div>
+          <div>
+            <h3>Checked every few hours</h3>
+            <p>Every listing says when we last checked it. If a source goes quiet, we say so instead of showing old events as new.</p>
+          </div>
+          <div>
+            <h3>Deadlines, not just dates</h3>
+            <p>League sign-ups, registration cutoffs, early-bird prices and the state paperwork for new residents, soonest first.</p>
+          </div>
         </div>
       </section>
     </div>

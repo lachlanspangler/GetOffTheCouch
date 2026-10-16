@@ -103,3 +103,32 @@ export function isWeekend(iso: string, tz: string): boolean {
   const p = parts(iso, tz);
   return p.weekday === 0 || p.weekday === 6 || (p.weekday === 5 && p.hour >= 17);
 }
+
+/** "7–10 PM", "11 AM–2 PM", "7:30 PM" (en dash, no spaces; one meridiem when both ends share it). */
+export function fmtTimeRange(start: string, end: string | null | undefined, tz: string): string {
+  const a = fmtTime(start, tz);
+  if (!end || dayKey(start, tz) !== dayKey(end, tz)) return a;
+  const b = fmtTime(end, tz);
+  if (a === b) return a;
+  const ma = a.slice(-2), mb = b.slice(-2);
+  return ma === mb ? `${a.slice(0, -3)}–${b}` : `${a}–${b}`;
+}
+
+/** Day group header: "Today · Fri, Oct 16", "Tomorrow · Sat, Oct 17", "Sun, Oct 18". */
+export function dayHeader(key: string, tz: string, now: Date): { label: string; date: string } {
+  const iso = `${key}T12:00:00Z`;
+  const date = fmtDay(iso, "UTC");
+  const today = dayKey(now, tz);
+  const tomorrow = dayKey(new Date(now.getTime() + 86_400_000), tz);
+  return { label: key === today ? "Today" : key === tomorrow ? "Tomorrow" : date, date: key === today || key === tomorrow ? date : "" };
+}
+
+/** "Fri, Oct 16 – Sun, Oct 18" for this weekend, in the city's zone. */
+export function weekendRange(now: Date, tz: string): { from: Date; to: Date; label: string } {
+  const p = parts(now, tz);
+  const day = 86_400_000;
+  const offFri = p.weekday === 0 ? -2 : p.weekday === 6 ? -1 : 5 - p.weekday;
+  const from = new Date(now.getTime() + offFri * day);
+  const to = new Date(from.getTime() + 2 * day);
+  return { from, to, label: `${fmtDay(from.toISOString(), tz)} – ${fmtDay(to.toISOString(), tz)}` };
+}

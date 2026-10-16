@@ -1,38 +1,67 @@
-import { useMemo } from "preact/hooks";
+// List + map split (DESIGN.md §4.9). The list is the accessible equivalent of the map.
+import { useMemo, useState } from "preact/hooks";
+import { CompactRow, eventHref } from "../components/EventRow";
+import { FilterBar } from "../components/FilterBar";
 import { LeafletMap, type Pin } from "../components/LeafletMap";
 import { useApp } from "../lib/ctx";
-import { hue } from "../lib/categories";
 import { collapseSeries } from "../lib/filters";
+import { count } from "../lib/format";
 import { fmtDay, fmtTime } from "../lib/time";
 import type { Event } from "../lib/types";
 
 export function MapView({ events }: { events: Event[] }) {
-  const { feed, go } = useApp();
+  const { feed } = useApp();
+  const [hl, setHl] = useState<string | null>(null);
+  const items = useMemo(() => collapseSeries(events).map((g) => g.event), [events]);
   const pins = useMemo<Pin[]>(
     () =>
-      collapseSeries(events)
-        .map((g) => g.event)
+      items
         .filter((e) => e.location.lat != null && e.location.lon != null)
         .map((e) => ({
           id: e.id,
           lat: e.location.lat as number,
           lon: e.location.lon as number,
-          hue: hue(e.category),
+          hue: 0,
           title: e.title,
+          href: eventHref(e, feed?.city),
           approx: (e.location.geocode_confidence ?? 1) < 0.5,
-          sub: `${e.kind === "opening" ? "New spot" : `${fmtDay(e.start, e.timezone)} · ${fmtTime(e.start, e.timezone)}`} · ${e.location.venue_name ?? ""}`,
+          sub: `${e.kind === "opening" ? "New license" : `${fmtDay(e.start, e.timezone)} · ${fmtTime(e.start, e.timezone)}`}${e.location.venue_name ? ` · ${e.location.venue_name}` : ""}`,
         })),
-    [events],
+    [items],
   );
   if (!feed) return null;
-  const missing = events.length - pins.length;
+  const missing = items.length - pins.length;
+  const mapped = new Set(pins.map((p) => p.id));
+  const listed = items.filter((e) => mapped.has(e.id)).slice(0, 200);
   return (
-    <div class="map-view">
-      <LeafletMap center={feed.center as [number, number]} pins={pins} onPick={(id) => go({ city: feed.city, eventId: id })} label={`Map of ${feed.city_name} events`} />
-      <p class="muted small map-note">
-        {pins.length} on the map{missing > 0 ? ` · ${missing} without a mappable address (see the list)` : ""}
-        {pins.some((p) => p.approx) && " · hollow pins are approximate (e.g. somewhere on a campus)"}
-      </p>
+    <div class="container">
+      <header class="page-head inner">
+        <h1>Map</h1>
+        <p class="lede">Where things are happening in {feed.city_name}.</p>
+      </header>
+      <FilterBar resultCount={events.length} />
+      <div class="map-split">
+        <div class="map-list">
+          <p class="small muted">
+            {count(pins.length)} on the map{missing > 0 ? ` · ${count(missing)} without a mappable address` : ""}
+            {pins.some((p) => p.approx) && " · faded pins are approximate"}
+          </p>
+          <ul class="rows">
+            {listed.map((e) => (
+              <CompactRow key={e.id} e={e} hl={hl === e.id} onHover={setHl} time={e.kind === "opening" ? "New" : fmtDay(e.start, e.timezone)} sub={e.location.venue_name ?? undefined} />
+            ))}
+          </ul>
+          {items.length > listed.length && <p class="small muted" style={{ marginTop: "8px" }}>Showing the first {listed.length}. Narrow the filters to see the rest.</p>}
+        </div>
+        <div class="map-pane">
+          <LeafletMap
+            center={feed.center as [number, number]}
+            pins={pins}
+            highlight={hl}
+            label={`Map of ${count(pins.length)} events in ${feed.city_name}. The list has the same events.`}
+          />
+        </div>
+      </div>
     </div>
   );
 }

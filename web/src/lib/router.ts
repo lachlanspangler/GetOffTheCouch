@@ -22,6 +22,7 @@ export interface Route {
   day: string | null; // calendar day selection
   ids: string[]; // a shared list of event ids (/city/saved/?ids=a,b)
   hub?: string | null; // the landing hub this route came from, if any
+  unknown?: boolean; // a path we don't recognise (rendered as a friendly "not found")
 }
 
 function readFilters(q: URLSearchParams, base: Filters): Filters {
@@ -50,6 +51,7 @@ export function parsePath(pathname: string, search = ""): Route {
   let view: View = "feed";
   let eventId: string | null = null;
   let hub: string | null = null;
+  let unknown = false;
   let base = DEFAULT_FILTERS;
   if (city && (SITE_VIEWS as string[]).includes(city) && seg.length === 1) {
     view = city as View;
@@ -64,8 +66,11 @@ export function parsePath(pathname: string, search = ""): Route {
     const h = HUB_BY_SLUG.get(seg[1])!;
     hub = h.slug;
     base = { ...DEFAULT_FILTERS, cats: h.cats ?? [], when: h.when ?? DEFAULT_FILTERS.when, free: !!h.free };
+  } else if (seg[1]) {
+    unknown = true;
   }
-  return { city, view, eventId, filters: readFilters(q, base), day: q.get("day"), ids: q.get("ids")?.split(",").filter(Boolean) ?? [], hub };
+  if (!eventId && seg.length > 2) unknown = true;
+  return { city, view, eventId, filters: readFilters(q, base), day: q.get("day"), ids: q.get("ids")?.split(",").filter(Boolean) ?? [], hub, unknown };
 }
 
 /** Legacy `#/city/view?…` links from before path routing. */
@@ -160,6 +165,7 @@ export function useRoute(initial?: Route): [Route, (r: Partial<Route>, replace?:
       const a = (ev.target as Element | null)?.closest?.("a");
       if (!a || a.target || a.hasAttribute("download") || a.origin !== location.origin) return;
       if (!a.pathname.startsWith(BASE) || /\.[a-z0-9]+$/i.test(a.pathname)) return;
+      if (a.hash && a.pathname === location.pathname && a.search === location.search) return; // in-page anchor
       ev.preventDefault();
       if (a.pathname.includes("/events/") && !live?.eventId) background = live;
       if (a.pathname + a.search !== location.pathname + location.search) history.pushState(null, "", a.pathname + a.search);
