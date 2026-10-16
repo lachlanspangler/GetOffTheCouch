@@ -1,0 +1,153 @@
+[
+ {
+  "location_account": "0002976970-0005-7",
+  "business_name": "JOE & THE JUICE NEW YORK LLC",
+  "street_address": "191 WORLD WAY",
+  "city": "LOS ANGELES",
+  "zip_code": "90045-",
+  "location_description": "191 WORLD  90045",
+  "mailing_address": "191 WORLD WAY SUITE #702",
+  "mailing_city": "LOS ANGELES",
+  "mailing_zip_code": "10012",
+  "naics": "722515",
+  "primary_naics_description": "Snack and Nonalcoholic Beverage Bars",
+  "council_district": "0",
+  "location_start_date": "2027-02-15T00:00:00.000",
+  "location_1": {
+   "latitude": "0.0",
+   "longitude": "0.0",
+   "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+  }
+ },
+ {
+  "location_account": "0003605423-0001-5",
+  "business_name": "P&P COFFEE LLC",
+  "dba_name": "OBAKE",
+  "street_address": "3773 GLENDON AVENUE",
+  "city": "LOS ANGELES",
+  "zip_code": "90034-6207",
+  "location_description": "3773 GLENDON 90034",
+  "mailing_address": "POST OFFICE BOX #46115",
+  "mailing_city": "WEST HOLLYWOOD",
+  "mailing_zip_code": "90046-0115",
+  "naics": "722514",
+  "primary_naics_description": "Cafeterias, Grill Buffets, and Buffets",
+  "council_district": "0",
+  "location_start_date": "2026-12-31T00:00:00.000",
+  "location_1": {
+   "latitude": "0.0",
+   "longitude": "0.0",
+   "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+  }
+ },
+ {
+  "location_account": "0003609124-0001-4",
+  "business_name": "NOTA HOSPITALITY GROUP LLC",
+  "dba_name": "SAMMIE'S",
+  "street_address": "68 N VENICE BLVD",
+  "city": "VENICE",
+  "zip_code": "90291-8997",
+  "location_description": "68 VENICE 90291-8997",
+  "mailing_address": "5127 11TH AVENUE",
+  "mailing_city": "LOS ANGELES",
+  "mailing_zip_code": "90043-4846",
+  "naics": "722515",
+  "primary_naics_description": "Snack and Nonalcoholic Beverage Bars",
+  "council_district": "11",
+  "location_start_date": "2026-12-31T00:00:00.000"
+ },
+ {
+  "location_account": "0003591726-0001-6",
+  "business_name": "WU LP",
+  "dba_name": "OCHA",
+  "street_address": "4941 YORK BLVD",
+  "city": "LOS ANGELES",
+  "zip_code": "90042-1609",
+  "location_description": "4941 YORK 90042",
+  "mailing_address": "946 FAIRVIEW AVENUE APT #3",
+  "mailing_city": "ARCADIA",
+  "mailing_zip_code": "91007-7136",
+  "naics": "722515",
+  "primary_naics_description": "Snack and Nonalcoholic Beverage Bars",
+  "council_district": "0",
+  "location_start_date": "2026-12-30T00:00:00.000",
+  "location_1": {
+   "latitude": "0.0",
+   "longitude": "0.0",
+   "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+  }
+ },
+ {
+  "location_account": "0003605886-0001-3",
+  "business_name": "PVM CENTURY CITY LLC",
+  "street_address": "10250 SANTA MONICA BLVD   SUITE #1395",
+  "city": "CENTURY CITY",
+  "zip_code": "90067-6492",
+  "location_description": "10250 SANTA MONICA 90067",
+  "mailing_address": "2916 N MIAMI AVENUE SUITE #1100",
+  "mailing_city": "MIAMI",
+  "mailing_zip_code": "33127-3965",
+  "naics": "722511",
+  "primary_naics_description": "Full-Service Restaurants",
+  "council_district": "0",
+  "location_start_date": "2026-12-30T00:00:00.000",
+  "location_1": {
+   "latitude": "0.0",
+   "longitude": "0.0",
+   "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+  }
+ },
+ {
+  "location_account": "0003604595-0001-1",
+  "business_name": "SACCO HOSPITALITY, INC",
+  "dba_name": "SACCO",
+  "street_address": "11677 SAN VICENTE BLVD   SUITE #119",
+  "city": "LOS ANGELES",
+  "zip_code": "90049-5126",
+  "location_description": "11677 SAN VICENTE 90049",
+  "mailing_address": "441 N CROFT AVENUE",
+  "mailing_city": "WEST HOLLYWOOD",
+  "mailing_zip_code": "90048-2508",
+  "naics": "722513",
+  "primary_naics_description": "Limited-Service Restaurants",
+  "council_district": "0",
+  "location_start_date": "2026-12-01T00:00:00.000",
+  "location_1": {
+   "latitude": "0.0",
+   "longitude": "0.0",
+   "human_address": "{\"address\": \"\", \"city\": \"\", \"state\": \"\", \"zip\": \"\"}"
+  }
+ },
+ {
+  "location_account": "0003599560-0001-5",
+  "business_name": "NEKST LLC",
+  "dba_name": "CODOS COFFEE",
+  "street_address": "4204 GLENCOE AVENUE SUITE #150",
+  "city": "MARINA DEL REY",
+  "zip_code": "90292-7839",
+  "location_description": "4204 GLENCOE 90292-7839",
+  "mailing_address": "2211 DEWEY STREET",
+  "mailing_city": "SANTA MONICA",
+  "mailing_zip_code": "90405-6035",
+  "naics": "722515",
+  "primary_naics_description": "Snack and Nonalcoholic Beverage Bars",
+  "council_district": "11",
+  "location_start_date": "2026-12-01T00:00:00.000"
+ },
+ {
+  "location_account": "0003570680-0001-2",
+  "business_name": "SUN CRUST LLC",
+  "dba_name": "SUN CRUST CA",
+  "street_address": "20212 HART STREET",
+  "city": "WINNETKA",
+  "zip_code": "91306-",
+  "location_description": "20212 HART 91306",
+  "mailing_address": "20212 HART STREET",
+  "mailing_city": "WINNETKA",
+  "mailing_zip_code": "91306",
+  "naics": "722513",
+  "primary_naics_description": "Limited-Service Restaurants",
+  "council_district": "0",
+  "location_start_date": "2026-12-01T00:00:00.000"
+ }
+]

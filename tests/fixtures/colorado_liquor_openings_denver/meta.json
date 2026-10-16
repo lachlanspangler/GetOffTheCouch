@@ -1,0 +1,6 @@
+{
+  "unit": "colorado_liquor_openings_denver@denver",
+  "source": "docs/research/samples/colorado_recently_approved_liquor_denver.json",
+  "recorded_at": "2026-10-15",
+  "note": "real response recorded during source research (docs/research/city_open_data.md); trimmed to <=5 records, otherwise unmodified"
+}
