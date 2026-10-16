@@ -59,6 +59,14 @@ class Parsed:
     skipped: int = 0  # valid records deliberately left out (e.g. not open to the public)
 
 
+def campus_catchall(rec: dict[str, Any], params: dict[str, Any]) -> bool:
+    """Institution feeds are noisy (benefits enrollment, fellowships, office notices). An item that only reached
+    the feed's catch-all category is skipped — precision over recall for campus calendars."""
+    if params.get("audience_filter") != "institution" or "_reject" in rec:
+        return False
+    return rec.get("category") in (params.get("default_category"), "other.uncategorized")
+
+
 def parse_payloads(
     adapter: Adapter, unit: Unit, payloads: list[tuple[Payload, int | None]], fetched_at: datetime
 ) -> Parsed:
@@ -77,8 +85,10 @@ def parse_payloads(
             if "_reject" in rec:
                 out.rejects.append((str(rec.get("_hint", ""))[:200], str(rec["_reject"]), raw_id))
                 continue
-            if audience_skip(rec, unit.source.params.get("audience_filter")) or location_skip(
-                rec, unit.source.params.get("exclude_location")
+            if (
+                campus_catchall(rec, unit.source.params)
+                or audience_skip(rec, unit.source.params.get("audience_filter"))
+                or location_skip(rec, unit.source.params.get("exclude_location"))
             ):
                 out.skipped += 1
                 continue

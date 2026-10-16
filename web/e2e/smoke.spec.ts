@@ -17,6 +17,8 @@ test("feed shows cards, filters narrow them, and the URL keeps state", async ({ 
   const cards = page.getByTestId("event-card");
   await expect(cards.first()).toBeVisible();
   const before = await cards.count();
+  const toggle = page.getByRole("button", { name: /^Filters/ });
+  if (await toggle.isVisible()) await toggle.click(); // mobile keeps filters behind a toggle
   await page.getByRole("button", { name: "Free only" }).click();
   await expect(page).toHaveURL(/free=1/);
   expect(await cards.count()).toBeLessThan(before);

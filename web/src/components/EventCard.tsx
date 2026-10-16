@@ -35,6 +35,12 @@ export function spotsLeft(e: Event): { left: number; cap: number | null } | null
   return { left: t.spots_left, cap: t.spots_total ?? null };
 }
 
+/** A midnight start with no end is almost always a date-only listing, not a 12 AM event. */
+export function isDateOnly(e: Event): boolean {
+  const p = parts(e.start, e.timezone);
+  return p.hour === 0 && p.minute === 0 && !e.end;
+}
+
 export function timeLeft(hours: number): string {
   if (hours < 1) return `${Math.max(1, Math.round(hours * 60))} min`;
   if (hours < 36) return `${Math.round(hours)} hr`;
@@ -117,7 +123,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
           {e.kind === "opening" ? (
             <span>License signal · {relative(e.start, now)}</span>
           ) : (
-            <span>{e.all_day ? "All day" : fmtTime(e.start, tz)}</span>
+            <span>{e.all_day || isDateOnly(e) ? "All day" : fmtTime(e.start, tz)}</span>
           )}
           {(e.location.venue_name || e.location.neighborhood) && (
             <span class="venue">
@@ -142,7 +148,7 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
               <Icon name="flame" size={12} /> Selling fast
             </span>
           )}
-          {avail && !["No ticket needed", "On sale"].includes(avail) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
+          {avail && !["No ticket needed", "On sale"].includes(avail) && !(avail === "Registration closed" && e.registration?.closes_at) && !(hasSpots && ["Few left", "Waitlist", "Registration open", "Registration closed"].includes(avail)) && (
             <span class="badge">{avail}</span>
           )}
           {att && e.kind !== "opening" && (e.attendance?.confidence ?? 0) >= 0.4 && e.tickets?.spots_total == null && (

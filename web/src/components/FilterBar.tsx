@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import { useApp } from "../lib/ctx";
 import { catIcon, families, hue } from "../lib/categories";
 import { DEFAULT_FILTERS, type Filters, SIZE_LABEL, type Size, type When, WHEN_LABEL } from "../lib/filters";
@@ -11,6 +12,7 @@ export function FilterBar({ resultCount }: { resultCount: number }) {
   const set = (patch: Partial<Filters>) => go({ filters: { ...f, ...patch } }, true);
   const fams = families(index.taxonomy);
   const toggleCat = (c: string) => set({ cats: f.cats.includes(c) ? f.cats.filter((x) => x !== c) : [...f.cats, c] });
+  const [open, setOpen] = useState(false);
   const active =
     f.cats.length + f.tags.length + (f.free ? 1 : 0) + (f.social ? 1 : 0) + (f.size !== "any" ? 1 : 0) + (f.near ? 1 : 0) + (f.q ? 1 : 0) + (f.maxPrice != null ? 1 : 0);
   return (
@@ -34,6 +36,10 @@ export function FilterBar({ resultCount }: { resultCount: number }) {
           ))}
         </div>
       </div>
+      <button class={`chip filter-toggle ${active ? "on" : ""}`} aria-expanded={open} aria-controls="more-filters" onClick={() => setOpen(!open)}>
+        <Icon name="filter" size={14} /> Filters{active ? ` (${active})` : ""} <span class="muted">· {resultCount} things</span>
+      </button>
+      <div id="more-filters" class={`more-filters ${open ? "open" : ""}`}>
       <div class="chips scroll" role="group" aria-label="Categories">
         {fams.map((c) => (
           <button
@@ -120,6 +126,7 @@ export function FilterBar({ resultCount }: { resultCount: number }) {
             Clear {active}
           </button>
         )}
+      </div>
       </div>
     </section>
   );

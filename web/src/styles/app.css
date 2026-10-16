@@ -417,3 +417,13 @@ code { font-size: 0.85em; background: var(--bg-2); padding: 0.1em 0.35em; border
 .vibe.on { border-color: var(--btn); background: var(--accent-soft); }
 .highlights { background: linear-gradient(180deg, var(--accent-soft), transparent 70%); border-radius: var(--r); padding: 4px 12px 12px; margin: 0 -12px 28px; }
 .highlights .day-head { background: none; position: static; }
+
+/* mobile: search + "when" stay visible; everything else sits behind "Filters (N)" */
+.filter-toggle { display: none; justify-self: start; }
+.more-filters { display: grid; gap: 10px; }
+@media (max-width: 700px) {
+  .filter-toggle { display: inline-flex; }
+  .more-filters { display: none; }
+  .more-filters.open { display: grid; }
+  .filters { position: relative; }
+}
