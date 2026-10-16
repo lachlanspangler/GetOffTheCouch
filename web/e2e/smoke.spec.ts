@@ -63,5 +63,6 @@ test("health page explains source states", async ({ page }) => {
 
 test("map view renders pins", async ({ page }) => {
   await page.goto("/?demo=1#/demoville/map");
-  await expect(page.locator(".leaflet-interactive").first()).toBeVisible({ timeout: 10_000 });
+  await expect(page.locator(".leaflet-overlay-pane canvas").first()).toBeVisible({ timeout: 10_000 });
+  await expect(page.getByText(/on the map/)).toContainText(/^[1-9]\d* on the map/);
 });
