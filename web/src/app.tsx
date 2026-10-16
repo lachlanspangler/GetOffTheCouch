@@ -110,7 +110,7 @@ export function App() {
 
   for (const n of feed?.neighborhoods ?? []) ctx.neighborhoods[n.name] = [n.lat, n.lon];
   const filtered = feed ? applyFilters(feed.events, route.filters, feed.timezone, ctx.neighborhoods, now) : [];
-  const upcomingDeadlines = feed ? deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7).length : 0;
+  const upcomingDeadlines = feed ? deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7 && !d.derived).length : 0;
   const summary = index.cities.find((c) => c.slug === route.city);
   const event = route.eventId ? ctx.byId.get(route.eventId) : undefined;
   const view = route.view;

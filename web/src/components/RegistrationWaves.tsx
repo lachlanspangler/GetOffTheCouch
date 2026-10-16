@@ -15,10 +15,11 @@ export function RegistrationWaves({ events }: { events: Event[] }) {
   const t1 = t0 + span;
   const rows = collapseSeries(events)
     .map((g) => g.event)
-    .filter((e) => (e.kind === "season" || /^(sports_league|niche|fitness)\./.test(e.category)) && e.registration?.closes_at)
+    .filter((e) => /^(sports_league|niche)\./.test(e.category) && e.registration?.closes_at)
+    .filter((e) => e.registration!.method !== "derived" || !!e.registration!.opens_at)
     .filter((e) => new Date(e.registration!.closes_at!).getTime() >= now.getTime())
     .sort((a, b) => a.registration!.closes_at!.localeCompare(b.registration!.closes_at!))
-    .slice(0, 12);
+    .slice(0, 10);
   if (!rows.length) return null;
   const x = (t: number) => `${Math.max(0, Math.min(100, ((t - t0) / span) * 100))}%`;
   const ticks = Array.from({ length: 4 }, (_, i) => t0 + ((i + 0.5) * span) / 4);

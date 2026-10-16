@@ -75,6 +75,16 @@ export function EventDrawer({ e }: { e: Event }) {
   const seriesEvents = series
     .map((d) => [...byId.values()].find((x) => x.series_id === e.series_id && x.start === d))
     .filter(Boolean) as Event[];
+  const regOffer = e.offers?.find((o) => o.kind === "registration");
+  const cta = e.registration?.url
+    ? { url: e.registration.url, label: "Register", icon: "check" }
+    : regOffer
+      ? { url: regOffer.url, label: "Register", icon: "check" }
+      : e.offers?.[0]
+        ? { url: e.offers[0].url, label: e.offers[0].kind === "rsvp" ? "RSVP" : "Get tickets", icon: "ticket" }
+        : e.url
+          ? { url: e.url, label: "Event page", icon: "external" }
+          : null;
   const shareUrl = `${location.origin}${location.pathname}#/${e.city}/event/${e.id}`;
   return (
     <div class="drawer-wrap" onClick={(ev) => ev.target === ev.currentTarget && close()}>
@@ -133,15 +143,9 @@ export function EventDrawer({ e }: { e: Event }) {
         )}
 
         <div class="drawer-actions">
-          {e.offers?.[0] && (
-            <a class="btn" href={e.offers[0].url} target="_blank" rel="noopener noreferrer">
-              <Icon name={e.offers[0].kind === "registration" ? "check" : "ticket"} size={16} />
-              {OFFER_KIND[e.offers[0].kind] === "Register" ? "Register" : e.offers[0].kind === "rsvp" ? "RSVP" : "Get tickets"}
-            </a>
-          )}
-          {!e.offers?.length && e.url && (
-            <a class="btn" href={e.url} target="_blank" rel="noopener noreferrer">
-              <Icon name="external" size={16} /> Event page
+          {cta && (
+            <a class="btn" href={cta.url} target="_blank" rel="noopener noreferrer">
+              <Icon name={cta.icon} size={16} /> {cta.label}
             </a>
           )}
           <button class="btn btn-ghost" onClick={() => download(`${slug(e.title)}.ics`, calendar([e], { name: e.title }))}>
@@ -169,7 +173,7 @@ export function EventDrawer({ e }: { e: Event }) {
             <h3>Deadlines</h3>
             <ul class="facts">
               {e.registration.opens_at && <li><span>Registration opens</span><strong>{fmtDay(e.registration.opens_at, tz)} · {relative(e.registration.opens_at, now)}</strong></li>}
-              {e.registration.closes_at && <li><span>Register by</span><strong>{fmtDay(e.registration.closes_at, tz)} {fmtTime(e.registration.closes_at, tz)} · <DeadlineBadge e={e} compact /></strong></li>}
+              {e.registration.closes_at && <li><span>{e.registration.method === "derived" ? "Register before" : "Register by"}</span><strong>{fmtDay(e.registration.closes_at, tz)} {fmtTime(e.registration.closes_at, tz)} · <DeadlineBadge e={e} compact /></strong></li>}
               {e.registration.early_bird_ends_at && <li><span>Early-bird ends</span><strong>{fmtDay(e.registration.early_bird_ends_at, tz)}</strong></li>}
               {!!e.registration.signup_types?.length && <li><span>Sign up as</span><strong>{e.registration.signup_types.map((s) => s.replace("_", " ")).join(", ")}</strong></li>}
               {!!e.registration.skill_levels?.length && <li><span>Skill level</span><strong>{e.registration.skill_levels.join(", ")}</strong></li>}
