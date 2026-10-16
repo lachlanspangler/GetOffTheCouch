@@ -1500,12 +1500,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "On-sale times are now reported deadlines; reminders make them useful",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: ics vonsaleFor"
+   ]
   },
   {
    "id": "I-102",
