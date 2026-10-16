@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 83 · **doing** 4 · **done** 78 · **rejected** 25 · **parked** 2 · **blocked** 12
+**open** 87 · **doing** 4 · **done** 78 · **rejected** 26 · **parked** 2 · **blocked** 13
 
 ## Up next (open, by score)
 
@@ -49,6 +49,8 @@ unless docs/HEALTH.md has something red.
 | I-195 | Mobilize public events adapter | sources | 4 | 2 | 1.6 | open | Documented keyless API; Oregon Food Bank shifts; fills volunteering gaps |
 | I-196 | LibCal multi-calendar discovery + JSON list adapter | cities | 4 | 2 | 1.6 | open | Phoenix needed 17 branch feeds; ICS caps at 500 past items |
 | I-197 | Squarespace ?format=json events adapter (check ToS first) | sources | 4 | 2 | 1.6 | open | ~a dozen Bay Area venues |
+| I-206 | LibCal date-window support | sources | 4 | 2 | 1.6 | open | Public ICS caps at 500 items starting a month back; Cleveland PL unusable |
+| I-208 | Venue-ownership denylist (Live Nation, AEG/PromoWest, FPC) | cities | 4 | 2 | 1.6 | open | Ownership judged by hand today for several venues |
 | I-096 | Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule | data-quality | 2 | 1 | 1.4 | open | Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources. |
 | I-084 | Find a volunteering source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 volunteering events in Denver right now |
 | I-085 | Find a cons & faires source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Denver right now |
@@ -74,10 +76,12 @@ unless docs/HEALTH.md has something red.
 | I-186 | Squarespace events preset for jsonld | sources | 3 | 2 | 1.2 | open | 4 of 11 Memphis units |
 | I-189 | Match 'X vs Y' games across arena and athletics feeds | pipeline | 3 | 2 | 1.2 | open | Providence Friars games duplicated |
 | I-190 | Curated league registries for league-empty metros | data-quality | 3 | 2 | 1.2 | open | Leagues are empty in Tampa, Hartford and most of batch D |
+| I-205 | Generic jsonfeed adapter (config-mapped JSON) | sources | 3 | 2 | 1.2 | open | Unlocks custom feeds like Wayne State's (~200 events) |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |
 | I-194 | Vega events adapter (San Diego Public Library moved off BiblioCommons) | sources | 4 | 3 | 1.07 | open | Libraries are migrating to Vega |
+| I-207 | First-seen diff for renewal-dated license files | sources | 4 | 3 | 1.07 | open | Milwaukee/Detroit carry only renewal dates; snapshot diff exposes new licensees |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -103,6 +107,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-209 | Michigan/Ohio SoS pages (robots 403): outreach or curated path | sources | 3 | 1 | 2.4 | blocked | No MI starter pack; OH voter registration missing |
 | I-202 | CA ABC license data access | sources | 4 | 1 | 3.2 | blocked | Only route to openings in six CA metros; reports page is Cloudflare-challenged |
 | I-201 | Simpleview tourism boards permission (Phoenix, Scottsdale, Salt Lake, Sacramento, Riverside, Fresno) | sources | 3 | 1 | 2.4 | blocked | Deliberate 403s; outreach only |
 | I-183 | Outreach: Memphis Public Libraries, Community Libraries of Providence, Hands On Birmingham, LibraryMarket | sources | 4 | 1 | 3.2 | blocked | Each is a city's primary official source and blocked today |
@@ -210,6 +215,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-210 | CivicPlus RSS adapter for Midwest metros | sources | 2 | 2 | 0.8 | rejected | Rejected: candidates tiny or mostly board meetings |
 | I-204 | SOLVE volunteer listings | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid data mining |
 | I-203 | San Diego Reader calendar | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid scraping |
 | I-193 | OKC garage-sale permits | sources | 1 | 1 | 0.8 | rejected | Rejected: private home addresses |
