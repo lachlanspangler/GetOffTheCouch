@@ -85,3 +85,19 @@ test("unknown paths render a friendly page, not a blank one", async ({ page }) =
   await page.goto("/demoville/no-such-page/?demo=1");
   await expect(page.getByRole("heading", { name: /couldn't find that page/ })).toBeVisible();
 });
+
+test("after the wizard, the city page has an explained For you section, and 'Not for me' can be undone", async ({ page }) => {
+  await page.goto("/demoville/plan/?demo=1");
+  await page.getByText("Trivia & games", { exact: true }).click();
+  for (let i = 0; i < 2; i++) await page.getByRole("button", { name: "Continue" }).click();
+  await page.getByRole("button", { name: "Make my plan" }).click();
+  await page.goto("/demoville/?demo=1");
+  const section = page.getByRole("region", { name: "For you" }).or(page.locator("section[aria-labelledby=foryou]"));
+  await expect(section).toBeVisible();
+  await section.getByText("Why this?").first().click();
+  await expect(section.getByText(/on your device/).first()).toBeVisible();
+  await section.getByTestId("event-card").first().getByRole("link").click();
+  await page.getByRole("button", { name: "Not for me" }).click();
+  await expect(page.getByRole("status").filter({ hasText: "fewer like this" })).toBeVisible();
+  await page.getByRole("button", { name: "Undo" }).click();
+});

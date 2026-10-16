@@ -9,7 +9,9 @@ import { useApp } from "../lib/ctx";
 import { coverage } from "../lib/coverage";
 import { collapseSeries, deadlines, DEFAULT_FILTERS, isOngoing } from "../lib/filters";
 import { count } from "../lib/format";
-import { highlights } from "../lib/recommend";
+import { forYou, highlights, type Profile } from "../lib/recommend";
+import { usePersistent } from "../lib/store";
+import { WhyThis } from "../components/WhyThis";
 import { build } from "../lib/router";
 import { HUB_BY_SLUG, HUBS, url } from "../lib/site";
 import { closesPhrase } from "../lib/signals";
@@ -103,6 +105,13 @@ export function Feed({ events }: { events: Event[] }) {
   const hub = route.hub ? HUB_BY_SLUG.get(route.hub) : undefined;
   const unfiltered = !hub && !f.q && activeCount(f) === 0 && f.when === DEFAULT_FILTERS.when;
   const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events.filter(isLeadable), labels, now, 3) : []), [feed, unfiltered, now]);
+  const [profile] = usePersistent<Profile | null>(`profile:${feed?.city ?? "_"}`, null);
+  const { neighborhoods, saved } = useApp();
+  const personal = useMemo(() => {
+    if (!feed || !unfiltered || !(profile?.interests.length || saved.length)) return [];
+    const topIds = new Set(tops.map((s) => s.event.id));
+    return forYou(feed.events, profile, labels, neighborhoods, now, 8).filter((s) => !topIds.has(s.event.id)).slice(0, 6);
+  }, [feed, unfiltered, profile, saved.length, tops, now]);
   if (!feed) return <div class="container"><SkeletonRows /></div>;
   const cov = coverage(feed, index.taxonomy, now);
   // Kids' programs, board/admin volunteer roles and campus club meetings stay one filter away, not in the lead.
@@ -157,9 +166,28 @@ export function Feed({ events }: { events: Event[] }) {
           </div>
           <div class="featured">
             {tops.map((s) => (
-              <FeaturedCard key={s.event.id} e={s.event} />
+              <FeaturedCard key={s.event.id} e={s.event} scored={s} />
             ))}
           </div>
+        </section>
+      )}
+      {personal.length > 0 && (
+        <section class="section" aria-labelledby="foryou">
+          <div class="section-head">
+            <div>
+              <h2 id="foryou">For you</h2>
+              <p class="small">Based on {profile?.interests.length ? "what you told us you like" : "what you've saved"}. Worked out on this device.</p>
+            </div>
+            <a class="more-link" href={build({ city: feed.city, view: "plan" })}>{profile?.interests.length ? "Change interests" : "Tell us what you like"}</a>
+          </div>
+          <ul class="rows">
+            {personal.map((s) => (
+              <li key={s.event.id} class="foryou-row">
+                <EventRow e={s.event} dated bare />
+                <WhyThis s={s} profile={profile} />
+              </li>
+            ))}
+          </ul>
         </section>
       )}
       <div class="with-rail">

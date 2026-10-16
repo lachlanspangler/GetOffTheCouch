@@ -11,6 +11,8 @@ import { dayKey, fmtDay, fmtTime, monthShort, parts, weekdayShort } from "../lib
 import type { Event } from "../lib/types";
 import { Art } from "./Art";
 import { Icon } from "./Icon";
+import { WhyThis } from "./WhyThis";
+import type { Scored } from "../lib/recommend";
 
 /** A midnight start with no end is almost always a date-only listing, not a 12 AM event. */
 export function isDateOnly(e: Event): boolean {
@@ -98,13 +100,12 @@ function metaLine(e: Event, price: string | null, more: number, cityName?: strin
 }
 
 /** List row: the default everywhere a list of events appears. `dated` shows the date block instead of the time. */
-export function EventRow({ e, more = 0, dated = false, past = false }: { e: Event; more?: number; dated?: boolean; past?: boolean }) {
+export function EventRow({ e, more = 0, dated = false, past = false, bare = false }: { e: Event; more?: number; dated?: boolean; past?: boolean; bare?: boolean }) {
   const { index, feed, now } = useApp();
   const sig = cardSignals(e, now);
   const hood = e.location.neighborhood;
   const id = `t-${e.id}`;
-  return (
-    <li>
+  const row = (
       <article class={`erow ${past ? "past" : ""}`} aria-labelledby={id} data-testid="event-card">
         {dated ? <DateBox iso={e.start} tz={e.timezone} now={now} /> : <TimeCell e={e} />}
         <div class="erow-body">
@@ -122,8 +123,8 @@ export function EventRow({ e, more = 0, dated = false, past = false }: { e: Even
           <SaveButton e={e} />
         </div>
       </article>
-    </li>
   );
+  return bare ? row : <li>{row}</li>;
 }
 
 /** Compact row: calendar agenda, map list, "similar", plan steps. */
@@ -152,7 +153,7 @@ export function CompactRow({ e, sub, time, onHover, hl }: { e: Event; sub?: stri
 }
 
 /** Featured card: at most 3–6 per page, with generated art. */
-export function FeaturedCard({ e, why }: { e: Event; why?: string }) {
+export function FeaturedCard({ e, why, scored }: { e: Event; why?: string; scored?: Scored }) {
   const { feed, now } = useApp();
   const sig = cardSignals(e, now);
   const tz = e.timezone;
@@ -168,6 +169,7 @@ export function FeaturedCard({ e, why }: { e: Event; why?: string }) {
       </h3>
       {meta && <p class="meta">{meta}</p>}
       {why ? <p class="why">{why}</p> : sig.status && <StatusLine s={sig.status} />}
+      {scored && <WhyThis s={scored} />}
     </article>
   );
 }

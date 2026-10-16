@@ -7,7 +7,7 @@ import { ART_HUE, familyOf } from "../lib/art";
 import { children, families } from "../lib/categories";
 import { useApp } from "../lib/ctx";
 import { calendar, download } from "../lib/ics";
-import { buildPlan, DEFAULT_PROFILE, GOALS, type Goal, type Profile, type Scored, type Slot } from "../lib/recommend";
+import { buildPlan, DEFAULT_PROFILE, GOALS, learnedSummary, resetAffinity, type Goal, type Profile, type Scored, type Slot } from "../lib/recommend";
 import { absolute } from "../lib/site";
 import { usePersistent } from "../lib/store";
 import { fmtDay } from "../lib/time";
@@ -203,6 +203,28 @@ export function Plan({ events }: { events: Event[] }) {
         </section>
       )}
       <div class="section"><StarterPack /></div>
+      <Learned />
     </div>
+  );
+}
+
+/** What the ranking has learned from this device's saves and clicks, with a way to forget it. */
+function Learned() {
+  const { labels } = useApp();
+  const [, bump] = useState(0);
+  const rows = learnedSummary(labels).filter((r) => Math.abs(r.lean) >= 0.05).slice(0, 8);
+  return (
+    <section class="plan-sec" aria-labelledby="p-learn">
+      <h2 id="p-learn">What we've learned on this device</h2>
+      <p>Picks adjust to what you save, open and add to your calendar. This stays in your browser and is never sent anywhere.</p>
+      {rows.length ? (
+        <>
+          <ul class="why-list">{rows.map((r) => <li key={r.key}>{r.text}</li>)}</ul>
+          <button class="btn btn-quiet btn-sm" style={{ marginTop: "12px" }} onClick={() => { resetAffinity(); bump((n) => n + 1); }}>Forget all of this</button>
+        </>
+      ) : (
+        <p class="small muted">Nothing yet. Save or open a few events and your picks will start to lean your way.</p>
+      )}
+    </section>
   );
 }

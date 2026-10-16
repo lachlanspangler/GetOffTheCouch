@@ -13,7 +13,7 @@ import { loadDetails } from "../lib/data";
 import type { EventDetail } from "../lib/details.generated";
 import { bandLabel, confidenceWord, count, OFFER_KIND, offerPrice, sourceName } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
-import { recordSignal, similar } from "../lib/recommend";
+import { dismiss, recordSignal, similar, undismiss } from "../lib/recommend";
 import { build } from "../lib/router";
 import { cardSignals } from "../lib/signals";
 import { absolute, eventPath } from "../lib/site";
@@ -83,6 +83,7 @@ export function EventPage({ e }: { e: Event }) {
   const [showSticky, setShowSticky] = useState(false);
   const [more, setMore] = useState(false);
   const [shareMsg, setShareMsg] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
   useEffect(() => {
     setDetail(null);
     loadDetails(e.city)
@@ -380,6 +381,7 @@ export function EventPage({ e }: { e: Event }) {
                 <button class="btn btn-secondary" onClick={ics}><Icon name="calendarPlus" size={16} /> Add to calendar</button>
               </div>
               <button class="btn btn-quiet" onClick={doShare}><Icon name="share" size={16} /> {shareMsg ?? "Share"}</button>
+              <button class="btn btn-quiet" onClick={() => { dismiss(e); setToast("Got it. You'll see fewer like this."); }}>Not for me</button>
               {(e.registration?.closes_at && e.registration.method !== "derived") || (e.registration?.opens_at && new Date(e.registration.opens_at) > now) ? (
                 <button class="btn btn-quiet" onClick={() => download(`${slug(e.title)}-deadline.ics`, calendar([e], { mode: "deadlines", name: "Deadline" }))}>
                   <Icon name="bell" size={16} /> Remind me before the deadline
@@ -390,6 +392,13 @@ export function EventPage({ e }: { e: Event }) {
           </aside>
         </div>
       </div>
+      {toast && (
+        <div class="toast" role="status">
+          {toast}
+          <button onClick={() => { undismiss(e); setToast(null); }}>Undo</button>
+          <button onClick={() => setToast(null)} aria-label="Dismiss message">×</button>
+        </div>
+      )}
       {cta && !ended && (
         <div class={`sticky-cta ${showSticky ? "show" : ""}`} aria-hidden={!showSticky}>
           <span class="price">{sig.price ?? e.title}</span>
