@@ -43,3 +43,38 @@ All four were caught by tests or by looking at the real output.
 **Next:** finish the commit, then the dashboard (Vite+Preact+TS), wider Minneapolis sources once city research lands (library, liquor licenses, curated leagues), then NYC.
 
 **Ideas:** I-001..I-010 done; I-011, I-012, I-014, I-015 done; 45 in the ledger, including 7 rejected with reasons.
+- 2026-10-16 04:28 UTC · run 1 partial: units[2 disabled, 1 failed, 4 ok] → 1330 events in 1 cities
+- 2026-10-16 04:35 UTC · run 2 ok: units[2 disabled, 6 ok] → 1498 events in 1 cities
+- 2026-10-16 04:36 UTC · run 3 ok: units[2 disabled, 4 ok] → 414 events in 1 cities
+- 2026-10-16 04:36 UTC · run 4 ok: units[2 disabled, 3 ok] → 464 events in 1 cities
+- 2026-10-16 04:37 UTC · run 5 ok: units[2 disabled, 2 ok] → 825 events in 1 cities
+- 2026-10-16 04:37 UTC · run 6 partial: units[2 disabled, 1 failed, 4 ok] → 628 events in 1 cities
+- 2026-10-16 04:37 UTC · run 7 partial: units[2 disabled, 3 failed, 1 ok] → 0 events in 1 cities
+- 2026-10-16 04:37 UTC · run 8 ok: units[2 disabled, 4 ok] → 300 events in 1 cities
+- 2026-10-16 04:38 UTC · run 9 partial: units[2 disabled, 1 failed, 1 ok] → 176 events in 1 cities
+- 2026-10-16 04:38 UTC · run 10 partial: units[2 disabled, 3 failed, 3 ok] → 751 events in 1 cities
+- 2026-10-16 04:41 UTC · run 11 ok: units[1 ok] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 12 ok: units[1 ok] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 13 ok: units[1 ok] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 14 ok: units[1 ok] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 15 ok: units[1 ok] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 16 ok: units[1 disabled] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 17 ok: units[1 disabled] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 18 ok: units[1 disabled] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 19 ok: units[1 disabled] → 6476 events in 10 cities
+- 2026-10-16 04:41 UTC · run 20 ok: units[1 disabled] → 6476 events in 10 cities
+- 2026-10-16 04:50 UTC · run 21 ok: units[1 ok] → 6473 events in 10 cities
+- 2026-10-16 04:50 UTC · run 22 ok: units[1 ok] → 6473 events in 10 cities
+- 2026-10-16 04:50 UTC · run 23 ok: units[1 ok] → 6473 events in 10 cities
+- 2026-10-16 04:50 UTC · run 24 ok: units[1 ok] → 6473 events in 10 cities
+- 2026-10-16 04:50 UTC · run 25 ok: units[1 ok] → 6418 events in 10 cities
+- 2026-10-16 04:50 UTC · run 26 ok: units[1 ok] → 6408 events in 10 cities
+- 2026-10-16 04:50 UTC · run 27 ok: units[1 ok] → 6401 events in 10 cities
+
+## 2026-10-16 05:00 UTC: ten cities, six new adapters, openings from license data
+**Did:** Added `arcgis`, `ckan`, `bibliocommons`, `trumba`, `simpleview` and `communico` adapters, plus `gotc/adapters/mapped.py`, the config-driven row mapper now shared by socrata/arcgis/ckan. It handles openings (all-day on the license's newness date, a bar-vs-restaurant split, a "License signal, not a confirmed opening date" description), drops personal-data columns, withholds person-like legal names, and has data-quality guards (`validate`, `reject_future_start`, `max_future_days`, `sane_coords`). Wrote configs for nyc, chicago, los_angeles, miami, austin, denver, seattle, nashville and boston, and added HCLib, the Downtown Council and UMN to minneapolis. Fixture tests for every adapter run on real samples and recorded payloads. Wrote docs/SOURCES.md.
+**Broke:** The NYU LiveWhale payload crashed `calendars._price` (numeric `cost`), which is fixed now. The PII column regex matched "busine**ssn**ame", so Boston food licenses lost their names; it's now anchored, with a regression test.
+**Decided (and why):** (1) Disabled Meet Boston, Visit Austin and Visit Denver. Their Simpleview APIs return 403 "Access Denied" (CDN bot protection) to PoliteClient even though robots allows them, and we don't evade bot protection. (2) Disabled the data.boston.gov CKAN units because robots says `Disallow: /api/`. (3) ArcGIS gets `respect_robots = False` like Socrata. It's a documented REST API, and `services*.arcgis.com/robots.txt` answers 403 "Invalid URL" (no policy), which PoliteClient would read as "disallow all". (4) Minneapolis liquor is skipped because the data has no original-issue date (I-046).
+**Verified:** Live run of all 10 cities: 36 healthy units, 5 disabled with reasons, 20 key-gated (TM/SeatGeek). Counts are in docs/SOURCES.md. In the exports, openings dated in the past never appear, because `build.load_live_records` drops records whose end is before now. Only the future-dated LA/Seattle registrations show up (24 + 9), and Denver exports 0 events. I couldn't fix this, since build.py belongs to another agent, so it's logged as I-047. I didn't run `make dev` or look at the dashboard: web/ belongs to another agent.
+**Next:** I-047 (openings display window), I-048 (FL DBPR CSV), I-054 (Denver events), I-049 (Chicago adult sports deadlines).
+**Ideas:** I-019, I-031, I-032 done; I-046..I-054 added.
