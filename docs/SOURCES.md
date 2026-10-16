@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -283,6 +283,17 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `tabc_pending_openings_houston` | houston | Socrata `mxm5-tdpj` (data.texas.gov) / `socrata` | https://data.texas.gov/d/mxm5-tdpj | none | Socrata throttling | as Austin; Houston + 10 inner-ring cities | as Austin | openings · 24h | A | 47 |
 | `tabc_new_licenses_houston` | houston | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as Austin | as Austin (**original_issue_date**) | openings · 24h | A | 76 |
 | `challenge_trivia_houston` | houston | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-houston within 60 km | recurring · 48h | C+ | 86 |
+| `hemisfair_events` | san_antonio | WP The Events Calendar / `tribe` | https://hemisfair.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ (park conservancy; markets, festivals) | 21 |
+| `carver_cultural_center` | san_antonio | WP The Events Calendar / `tribe` | https://www.thecarver.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above | events · 24h | B (city-owned arts center) | 15 |
+| `witte_museum_events` | san_antonio | WP The Events Calendar / `tribe` | https://www.wittemuseum.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above | events · 24h | B- (few items) | 5 |
+| `brackenridge_park_events` | san_antonio | WP The Events Calendar / `tribe` | https://www.brackenridgepark.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above (tours, tai chi, volunteer clean-ups) | events · 24h | B | 22 |
+| `pearl_events` | san_antonio | Event JSON-LD on event pages / `jsonld` (follow) | https://atpearl.com/events | none | 1 listing + ≤40 detail pages/day at ≥2 s | robots allows all | name, start (offset), shop/venue; title keywords → categories | events · 24h | B- (scrape of structured data) | 27 |
+| `frost_bank_center` | san_antonio | carbonhouse RSS / `rss_events` | https://www.frostbankcenter.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (Spurs, concerts) | 55 |
+| `alamodome` | san_antonio | carbonhouse RSS / `rss_events` | https://www.alamodome.com/events/rss | none | 1 request/day | robots allows all; city-owned | as above | events · 24h | B+ | 12 |
+| `uwsa_volunteer` | san_antonio | Galaxy Digital / `galaxydigital` | https://www.volunteersanantonio.org/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title (United Way of San Antonio and Bexar County) | volunteer · 24h | B+ | 14 (1 rejected: need without a date line) |
+| `tabc_pending_openings_san_antonio` | san_antonio | Socrata `mxm5-tdpj` (data.texas.gov) / `socrata` | https://data.texas.gov/d/mxm5-tdpj | none | Socrata throttling | as Austin; San Antonio + 12 enclave/inner-ring cities | as Austin | openings · 24h | A | 19 |
+| `tabc_new_licenses_san_antonio` | san_antonio | Socrata `7hf9-qc9f` (data.texas.gov) / `socrata` | https://data.texas.gov/d/7hf9-qc9f | none | Socrata throttling | as Austin | as Austin (**original_issue_date**) | openings · 24h | A | 31 |
+| `challenge_trivia_san_antonio` | san_antonio | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-san-antonio within 30 km (`max_km`) | recurring · 48h | C+ | 239 |
 
 **Tried and not added (batch A).**
 
@@ -306,3 +317,12 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Smart Financial Centre | houston | redirects to ATG Tickets (no feed) | probe |
 | McGonigel's Mucky Duck, Houston Symphony, Da Camera, Menil | houston | no Event JSON-LD / no Tribe | probe |
 | Warehouse Live, calendar.uh.edu | houston | TLS certificate errors (can't verify robots) | probe |
+| San Antonio Public Library (mysapl.org) | san_antonio | robots.txt `User-agent: * / Disallow: /` | robots.txt |
+| data.sanantonio.gov (CKAN) | san_antonio | robots.txt disallows `/api/` (Crawl-delay 10) | robots.txt |
+| sanantonio.gov Parks & Recreation events | san_antonio | robots disallows the path | probe |
+| Trinity University; San Antonio River Authority | san_antonio | robots.txt answers 403 (disallow-all) | probe |
+| San Antonio Botanical Garden; Market Square; La Villita | san_antonio | robots disallows `/wp-json/` | probe |
+| Floore's Country Store | san_antonio | Cloudflare challenge — not attempted | probe |
+| Majestic & Empire theatres | san_antonio | site redirects to ATG Tickets (no feed) | probe |
+| Tobin Center, Centro San Antonio calendar, Paper Tiger, McNay, SAMA, DoSeum | san_antonio | no Tribe and no Event JSON-LD on listing/detail pages | probe |
+| UTSA, UIW, St. Mary's, Texas A&M–San Antonio | san_antonio | no Localist/LiveWhale/Trumba calendar found (`calendar.*`/`events.*` don't resolve); goutsa.com isn't SIDEARM | probe |
