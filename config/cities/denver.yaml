@@ -312,3 +312,21 @@ sources:
       venue: {name: Denver Coliseum, address: "4600 Humboldt St, Denver, CO 80216"}
       organizer: Denver Arts & Venues
       default_category: sports_watch.game
+  - id: denver_pioneers_athletics
+    adapter: ics
+    name: Denver Pioneers athletics (home games — hockey at Magness Arena, basketball, soccer, gymnastics)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://denverpioneers.com/calendar
+    expect_min_records: 8
+    notes: >-
+      University of Denver's SIDEARM Sports subscription calendar (calendar.ashx/calendar.ics; robots allows it).
+      Only events whose LOCATION starts with "Denver" are kept (away/neutral games skipped).
+    params:
+      url: https://denverpioneers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Denver Pioneers
+      exclude_location: '^(?!Denver\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 39.6766, lon: -104.9619, label: "University of Denver campus" }
