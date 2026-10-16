@@ -342,3 +342,39 @@ sources:
       classify_description: false
       category_map: {Festival: music.concert, Film: arts.film, Education: arts.workshop}   # Earshot Jazz Festival shows are concerts
       exclude_location: '\b(Tacoma|Olympia|Everett|Port Townsend|Bellingham|Gig Harbor|Bremerton|Anacortes|Mount Vernon|Port Angeles|Langley|Whidbey|Vashon|Poulsbo|Lacey|Puyallup|Spokane|Portland)\b'
+  - id: laughs_comedy_seattle
+    adapter: tribe
+    name: Laughs Comedy Club (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://laughscomedyclub.com/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Stand-up club in the U District.
+    params:
+      base_url: https://laughscomedyclub.com
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Laughs Comedy Club
+      venue: {name: Laughs Comedy Club, address: "5220 Roosevelt Way NE, Seattle, WA 98105"}
+      default_category: nightlife.comedy
+      classify_description: false
+  - id: unexpected_productions
+    adapter: tribe
+    name: Unexpected Productions improv (Market Theater, Pike Place)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.unexpectedproductions.org/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Improv shows plus classes (classes classify as workshops).
+    params:
+      base_url: https://www.unexpectedproductions.org
+      horizon_days: 30
+      per_page: 50
+      max_pages: 4
+      organizer: Unexpected Productions
+      venue: {name: Market Theater, address: "1428 Post Alley, Seattle, WA 98101"}
+      default_category: nightlife.comedy
+      classify_description: false
