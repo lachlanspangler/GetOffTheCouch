@@ -514,7 +514,7 @@ table { border-collapse: collapse; }
 
 /* ===== Empty / skeleton ===== */
 .empty { max-width: 480px; padding: var(--space-8) 0; }
-.empty h2 { font-size: var(--fs-lg); }
+.empty h1, .empty h2 { font-size: var(--fs-lg); }
 .empty p { margin-top: 6px; color: var(--color-text-secondary); }
 .empty .btn { margin-top: var(--space-4); }
 .skel-row { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--color-divider); }

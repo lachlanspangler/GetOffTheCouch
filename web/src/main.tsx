@@ -25,6 +25,7 @@ async function boot(): Promise<void> {
       el.textContent = "";
     }
   }
+  if (el.dataset.ssr) el.textContent = ""; // e.g. an old #/ link landed on the pre-rendered home page
   render(<App />, el);
 }
 

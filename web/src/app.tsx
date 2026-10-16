@@ -156,7 +156,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
         {!route.city && view === "feed" && <Home />}
         {unknownCity && (
           <div class="container empty">
-            <h2>We don't cover that city yet.</h2>
+            <h1>We don't cover that city yet.</h1>
             <p>Pick one of the cities we cover, or suggest yours from the link at the bottom of the page.</p>
             <a class="btn btn-secondary" href={url()}>See all cities</a>
           </div>
@@ -164,14 +164,14 @@ export function App({ initial }: { initial?: Initial } = {}) {
         {route.city && !unknownCity && !feed && !error && <div class="container" style={{ paddingTop: "32px" }}><SkeletonRows /></div>}
         {route.city && !unknownCity && error && !feed && (
           <div class="container empty">
-            <h2>We couldn't load {index.cities.find((c) => c.slug === route.city)?.name ?? route.city}'s events.</h2>
+            <h1>We couldn't load {index.cities.find((c) => c.slug === route.city)?.name ?? route.city}'s events.</h1>
             <p>Your connection may have dropped.</p>
             <button class="btn btn-secondary" onClick={() => setRetry(retry + 1)}>Try again</button>
           </div>
         )}
         {feed && route.eventId && !event && (
           <div class="container empty">
-            <h2>This event has ended or moved.</h2>
+            <h1>This event has ended or moved.</h1>
             <p>It's no longer listed by its source. Here's what's on in {feed.city_name} instead.</p>
             <a class="btn btn-secondary" href={url(`${feed.city}/`)}>What's on in {feed.city_name}</a>
           </div>
@@ -181,7 +181,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
           <>
             {unknownHub ? (
               <div class="container empty">
-                <h2>We couldn't find that page.</h2>
+                <h1>We couldn't find that page.</h1>
                 <p>It may have moved. Here's everything on in {feed.city_name}.</p>
                 <a class="btn btn-secondary" href={url(`${feed.city}/`)}>What's on in {feed.city_name}</a>
               </div>
