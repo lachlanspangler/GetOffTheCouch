@@ -1,0 +1,10 @@
+{
+  "unit": "volo_nyc@nyc",
+  "recorded_at": "2026-10-16T05:06:55+00:00",
+  "payloads": 2,
+  "note": "real response recorded with `gotc record`; trimmed to the 'N ways to play' counter + results grid + pagination (markup unmodified; head/scripts/footer dropped to keep the repo small)",
+  "urls": {
+    "payload_0.html": "https://www.volosports.com/discover/new-york-metro-area?category=leagues",
+    "payload_1.html": "https://www.volosports.com/discover/new-york-metro-area?category=leagues&page=2"
+  }
+}

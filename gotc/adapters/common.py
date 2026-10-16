@@ -130,6 +130,59 @@ def end_or_default(start: datetime, end: datetime | None, hours: float = 2.0) ->
     return end
 
 
+def infer_year(month: int, day: int, ref: date, weekday: int | None = None, grace_days: int = 60) -> date | None:
+    """Resolve a year-less "M/D" to a full date. Rule (documented in METHODOLOGY via the adapters using it):
+
+    * the **next occurrence on or after ``ref``** (the fetch date in the city's timezone);
+    * if the source also shows a weekday (``weekday``: Mon=0) and that rule's date falls on a different
+      weekday, but this year's already-passed date (within ``grace_days``) matches, take the past date —
+      e.g. a league that started last week and still lists its first game.
+    Returns None for impossible dates (2/30).
+    """
+    cands: list[date] = []
+    for y in (ref.year - 1, ref.year, ref.year + 1):
+        try:
+            cands.append(date(y, month, day))
+        except ValueError:
+            continue
+    if not cands:
+        return None
+    nxt = next((d for d in cands if d >= ref), None)
+    if weekday is not None and (nxt is None or nxt.weekday() != weekday):
+        recent = [d for d in cands if d < ref and (ref - d).days <= grace_days and d.weekday() == weekday]
+        if recent:
+            return recent[-1]
+        later = [d for d in cands if d >= ref and d.weekday() == weekday]
+        if later:
+            return later[0]
+    return nxt
+
+
+US_STATES: dict[str, str] = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California", "CO": "Colorado",
+    "CT": "Connecticut", "DE": "Delaware", "DC": "District of Columbia", "FL": "Florida", "GA": "Georgia",
+    "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas",
+    "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland", "MA": "Massachusetts",
+    "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri", "MT": "Montana",
+    "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico",
+    "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma",
+    "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota",
+    "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia", "WA": "Washington",
+    "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
+}  # fmt: skip
+_STATE_BY_NAME = {v.lower(): k for k, v in US_STATES.items()}
+
+
+def us_state_code(value: str | None) -> str | None:
+    """'MN' / 'Minnesota' / 'minnesota' → 'MN'; anything else (UK, Ontario, USA) → None."""
+    if not value:
+        return None
+    v = value.strip().rstrip(".")
+    if v.upper() in US_STATES:
+        return v.upper()
+    return _STATE_BY_NAME.get(v.lower())
+
+
 def dig(obj: Any, path: str, default: Any = None) -> Any:
     """dig(d, 'a.b.0.c') — tolerant nested lookup used by config-driven field mappings."""
     cur = obj

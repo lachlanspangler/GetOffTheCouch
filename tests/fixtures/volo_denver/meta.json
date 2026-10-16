@@ -1,0 +1,10 @@
+{
+  "unit": "volo_denver@denver",
+  "recorded_at": "2026-10-16T05:06:38+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; trimmed to the 'N ways to play' counter + results grid + pagination (markup unmodified; head/scripts/footer dropped to keep the repo small)",
+  "urls": {
+    "payload_0.html": "https://www.volosports.com/discover/denver?category=leagues"
+  },
+  "research_2026-10-15.html": "docs/research/samples/volo-discover-denver-leagues.html \u2014 fetched 2026-10-15 by the research pass, first 5 cards, unmodified markup"
+}
