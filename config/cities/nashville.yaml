@@ -91,3 +91,16 @@ sources:
     min_interval_s: 3
     expect_min_records: 1
     notes: config/registry/nashville.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page) ──
+  - id: challenge_trivia_nashville
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Nashville)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 20
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-nashville within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [nashville]

@@ -158,3 +158,15 @@ sources:
       base_url: https://www.teamtrivia.com
       regions: { denver: denver }
       max_venues: 60
+
+  - id: challenge_trivia_denver
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Denver)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 3
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-denver within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [denver]

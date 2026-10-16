@@ -4,6 +4,7 @@ from gotc.adapters import (  # noqa: F401
     arcgis,
     bibliocommons,
     calendars,
+    challenge,
     ckan,
     communico,
     csvfile,
