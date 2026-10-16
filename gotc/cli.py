@@ -60,7 +60,7 @@ def cmd_build(a: argparse.Namespace, s: Settings) -> int:
             st = build_city(db, reg, c, now, geo)
             print(
                 f"{c.slug:14} records={st.records:<5} events={st.events:<5} merged={st.merged:<4} "
-                f"geocoded={st.geocoded:<4} venues={st.venues:<4} deadlines={st.deadlines_extracted}"
+                f"geocoded={st.geocoded:<4} venues={st.venues:<4} deadlines={st.deadlines_extracted} outside={st.outside}"
             )
     export_all(db, reg, s.web_data_dir, now)
     (s.docs_dir / "HEALTH.md").write_text(render(db, reg, now))

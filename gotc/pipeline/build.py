@@ -67,6 +67,7 @@ class BuildStats:
     deadlines_extracted: int = 0
     stale: int = 0
     weather: int = 0
+    outside: int = 0
 
 
 def load_live_records(db: Database, city: str, now: datetime) -> list[SourceEvent]:
@@ -134,6 +135,19 @@ def build_city(
                     rec.location.geocode_method = Method.DERIVED
                     rec.location.geocode_confidence = res.confidence
                     stats.geocoded += 1
+
+    from gotc.pipeline.textnorm import haversine_m
+
+    fence_m = city.radius_km * 1000 * 2.5
+    kept = [
+        r
+        for r in records
+        if r.location.lat is None
+        or r.location.lon is None
+        or haversine_m(r.location.lat, r.location.lon, *city.center) <= fence_m
+    ]
+    stats.outside = len(records) - len(kept)
+    records = kept
 
     venues = load_curated_venues(city.slug)
     if geocoder is not None:
@@ -263,23 +277,30 @@ def build_city(
 
 
 def assign_series(events: list[Event], now: datetime) -> None:
-    """Occurrences of one repeating thing (same source, title, place) share a series id (I-014).
+    """Occurrences of one repeating thing share a series id (I-014); the list shows one card per series.
 
-    The list view shows one card per series with its next dates; the calendar still shows every date.
+    Key = (source, normalized title, place). A program that runs at ≥3 different places under one title
+    (e.g. "Street Health Outreach" at 20 sites) is one series regardless of place.
     """
     from gotc.adapters.base import stable_id
     from gotc.pipeline.textnorm import norm_title
 
-    groups: dict[tuple[str, str, str], list[Event]] = {}
+    def place(ev: Event) -> str:
+        return ev.venue_id or norm_venue(ev.location.address) or ""
+
+    by_title: dict[tuple[str, str], list[Event]] = {}
     for ev in events:
-        place = ev.venue_id or norm_venue(ev.location.address) or ""
-        key = (ev.sources[0].source_id, norm_title(ev.title), place)
-        groups.setdefault(key, []).append(ev)
+        by_title.setdefault((ev.sources[0].source_id, norm_title(ev.title)), []).append(ev)
+    groups: dict[tuple[str, str, str], list[Event]] = {}
+    for (src, title), evs in by_title.items():
+        multi_site = len({place(e) for e in evs}) >= 3
+        for ev in evs:
+            groups.setdefault((src, title, "*" if multi_site else place(ev)), []).append(ev)
     for key, evs in groups.items():
         if len(evs) < 2:
             continue
         sid = f"ser_{stable_id(*key)}"
-        dates = sorted(e.start for e in evs if (e.end or e.start) >= now - timedelta(hours=2))[:8]
+        dates = sorted({e.start for e in evs if (e.end or e.start) >= now - timedelta(hours=2)})[:8]
         for e in evs:
             e.series_id = sid
             e.series_dates = dates

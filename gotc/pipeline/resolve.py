@@ -201,8 +201,10 @@ def assign_ids(db: Database, city: str, clusters: list[Cluster]) -> list[tuple[s
         if eid is None:
             anchor = c.members[0]
             eid = f"evt_{stable_id(city, anchor.source_id, anchor.record_id)}"
-            if eid in used:
-                eid = f"evt_{stable_id(city, *[_key(m) for m in c.members])}"
+            salt = 0
+            while eid in used:  # e.g. a former cluster split and its old id went to the other half
+                salt += 1
+                eid = f"evt_{stable_id(city, anchor.source_id, anchor.record_id, 'split', salt)}"
         used.add(eid)
         out.append((eid, c))
     return out

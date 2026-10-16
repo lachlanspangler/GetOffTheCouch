@@ -29,7 +29,7 @@ from gotc.config import Registry, Unit
 from gotc.health import store as hstore
 from gotc.health.state import Outcome, disabled, transition
 from gotc.http.client import FetchError, PoliteClient
-from gotc.pipeline.normalize import audience_skip, normalize_record
+from gotc.pipeline.normalize import audience_skip, location_skip, normalize_record
 from gotc.schema import SourceEvent
 from gotc.settings import Settings
 from gotc.storage.db import Database, iso
@@ -77,7 +77,9 @@ def parse_payloads(
             if "_reject" in rec:
                 out.rejects.append((str(rec.get("_hint", ""))[:200], str(rec["_reject"]), raw_id))
                 continue
-            if audience_skip(rec, unit.source.params.get("audience_filter")):
+            if audience_skip(rec, unit.source.params.get("audience_filter")) or location_skip(
+                rec, unit.source.params.get("exclude_location")
+            ):
                 out.skipped += 1
                 continue
             try:

@@ -156,6 +156,7 @@ sources:
     expect_min_records: 10
     params:
       audience_filter: institution   # skip faculty/student-only items
+      exclude_location: "\\b(Shanghai|Abu Dhabi|Florence|Paris|Accra|Berlin|Buenos Aires|London|Madrid|Prague|Sydney|Tel Aviv|Washington,? DC|Los Angeles)\\b"   # NYU global sites
       base_url: https://events.nyu.edu
       path: "/live/json/events/type/Open to the Public/max/{max}/response_fields/location,description,event_types,tags,group_title"
       max: 200

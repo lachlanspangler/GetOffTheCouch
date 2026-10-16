@@ -1,6 +1,6 @@
 # Health
 
-_Generated 2026-10-16T05:10:49+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-16T05:12:43+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
 **62 units** — ⚪ disabled: 25 · 🟢 healthy: 37
 
@@ -25,7 +25,7 @@ _Generated 2026-10-16T05:10:49+00:00 by `gotc` (do not edit by hand — regenera
 | 🟢 healthy | `ladbs_special_events@los_angeles` | 0.2h | 10 | 0 |  |
 | 🟢 healthy | `mdpls_events@miami` | 0.2h | 490 | 0 |  |
 | 🟢 healthy | `mpls_downtown_events@minneapolis` | 0.2h | 110 | 0 |  |
-| 🟢 healthy | `mprb_events@minneapolis` | 1.2h | 53 | 0 |  |
+| 🟢 healthy | `mprb_events@minneapolis` | 1.3h | 53 | 0 |  |
 | 🟢 healthy | `nashville_beer_permit_openings@nashville` | 0.2h | 14 | 0 |  |
 | 🟢 healthy | `northeastern_events@boston` | 0.2h | 124 | 0 |  |
 | 🟢 healthy | `nyc_parks_events@nyc` | 0.2h | 781 | 0 |  |

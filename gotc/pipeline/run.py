@@ -17,6 +17,7 @@ import httpx
 from gotc.config import Registry
 from gotc.health.report import render
 from gotc.health.store import load_health
+from gotc.health.store import log as hlog
 from gotc.http.client import PoliteClient
 from gotc.pipeline.build import BuildStats, build_city
 from gotc.pipeline.export import export_all
@@ -35,6 +36,7 @@ class RunReport:
     units: list[UnitResult] = field(default_factory=list)
     builds: list[BuildStats] = field(default_factory=list)
     status: str = "ok"
+    build_errors: list[str] = field(default_factory=list)
 
     def summary(self) -> str:
         by: dict[str, int] = {}
@@ -88,7 +90,19 @@ def run(
             geocoder = Geocoder(db, http if geocode and not settings.offline else None)
             for c in reg.cities.values():
                 if c.enabled and (city is None or c.slug == city):
-                    report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
+                    try:
+                        report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
+                    except Exception as e:  # one city's bug must not blank every city's dashboard
+                        log.exception("build failed for %s", c.slug)
+                        report.build_errors.append(f"{c.slug}: {type(e).__name__}: {e}")
+                        hlog(
+                            db,
+                            f"build@{c.slug}",
+                            "error",
+                            "build_error",
+                            f"{type(e).__name__}: {e}"[:500],
+                            now or utcnow(),
+                        )
             if geocode and not settings.offline:
                 from gotc.pipeline import starter_pack
 
@@ -97,7 +111,7 @@ def run(
             export_all(db, reg, settings.web_data_dir, now or utcnow(), include_demo=include_demo)
             (settings.docs_dir / "HEALTH.md").write_text(render(db, reg, now or utcnow()))
         failed = [u for u in report.units if u.status == "failed"]
-        report.status = "ok" if not failed else "partial"
+        report.status = "ok" if not failed and not report.build_errors else "partial"
     except BaseException:
         report.status = "failed"
         raise

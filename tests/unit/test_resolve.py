@@ -90,3 +90,21 @@ def test_venue_resolution_merges_aliases_by_name_and_proximity():
     ]
     vof = resolve_venues(items, make_city(), [])
     assert vof["a|1"] == vof["b|2"]
+
+
+def test_ids_stay_unique_when_a_cluster_splits(db):
+    from gotc.pipeline.resolve import Cluster, assign_ids
+
+    a = ev("ticketmaster", "1", "Big Thief", venue="First Avenue")
+    b = ev("seatgeek", "x", "Big Thief", venue="First Avenue")
+    first = assign_ids(db, "testville", [Cluster(members=[a, b], scores=[1, 1])])
+    ((eid, _),) = first
+    db.execute(
+        "INSERT INTO events (id, city, data, start_at, category, first_seen, updated_at) VALUES (?,?,?,?,?,?,?)",
+        (eid, "testville", "{}", "x", "c", "2026-01-01T00:00:00+00:00", "x"),
+    )
+    for m in (a, b):
+        db.execute("INSERT INTO event_members VALUES (?,?,?,?,?)", (eid, m.source_id, m.record_id, "testville", 1.0))
+    split = assign_ids(db, "testville", [Cluster(members=[a], scores=[1]), Cluster(members=[b], scores=[1])])
+    ids = [i for i, _ in split]
+    assert len(set(ids)) == 2 and eid in ids

@@ -200,3 +200,22 @@ def test_recent_openings_stay_visible_old_ones_drop(db, settings):
         upsert_records(db, unit, Parsed(valid=[(opening("fresh", 10), None), (opening("old", 90), None)]), NOW)
     ids = {e.record_id for e in load_live_records(db, "minneapolis", NOW)}
     assert "fresh" in ids and "old" not in ids
+
+
+def test_a_crashing_city_build_does_not_blank_other_cities(db, settings, monkeypatch):
+    import gotc.pipeline.run as runmod
+
+    other = make_city("testville", [make_source("test_ics2", "ics", url="https://cal.example/feed.ics")])
+    reg = make_registry(CITY, other)
+    real = runmod.build_city
+
+    def flaky(db_, reg_, city, *a, **k):
+        if city.slug == "minneapolis":
+            raise RuntimeError("boom")
+        return real(db_, reg_, city, *a, **k)
+
+    monkeypatch.setattr(runmod, "build_city", flaky)
+    rep = run(db, reg, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
+    assert rep.status == "partial" and rep.build_errors and "boom" in rep.build_errors[0]
+    assert (settings.web_data_dir / "cities" / "testville.json").exists()
+    assert db.one("SELECT kind FROM health_log WHERE unit = 'build@minneapolis'")["kind"] == "build_error"

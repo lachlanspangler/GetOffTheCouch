@@ -111,6 +111,16 @@ _INTERNAL = re.compile(
 )
 
 
+def location_skip(rec: dict[str, Any], pattern: str | None) -> str | None:
+    """Per-source exclude list for places outside the city (e.g. a university's overseas campuses)."""
+    if not pattern:
+        return None
+    loc = rec.get("location") or {}
+    text = f"{loc.get('venue_name') or ''} {loc.get('address') or ''} {rec.get('title') or ''}"
+    m = re.search(pattern, text, re.I)
+    return f"outside the city: {m.group(0)!r}" if m else None
+
+
 def audience_skip(rec: dict[str, Any], mode: str | None) -> str | None:
     if mode != "institution":
         return None
