@@ -732,12 +732,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Better attendance bands; currently mostly category priors",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: gotc/pipeline/venue_refs.py"
+   ]
   },
   {
    "id": "I-051",
