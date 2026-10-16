@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Minnesota. Every fact is quoted verbatim from source_url.
+state: MN
+items:
+  - id: mn-drivers-license
+    title: "Get a Minnesota driver's license"
+    kind: license
+    days_after_move: 60
+    summary: "A new resident with a valid out-of-state license may drive on it for no more than 60 days after becoming a Minnesota resident."
+    action_url: https://dps.mn.gov/divisions/dvs/license-and-id/class-d-regular-dl/class-d-dl-new-resident
+    evidence: "may operate a motor vehicle as a driver, but only for a period of not more than 60 days after becoming a resident of this state, without being required to have a Minnesota"
+    source_url: https://www.revisor.mn.gov/statutes/cite/171.03
+    verified_at: 2026-10-15
+  - id: mn-vehicle-registration
+    title: "Register your vehicle in Minnesota"
+    kind: vehicle
+    days_after_move: 60
+    summary: "New residents have 60 days to register a passenger vehicle, motorcycle, utility trailer or house trailer, or must register immediately if the registration is expired or it is a commercial trailer or truck."
+    action_url: https://dps.mn.gov/divisions/dvs/vehicle/vehicle-title-and-registration-those-new-mn
+    evidence: "New residents have 60 days to register their passenger vehicle, motorcycle, utility trailer or house trailer. You must register the vehicle immediately if the registration is expired or it is a commercial trailer or truck."
+    source_url: https://dps.mn.gov/divisions/dvs/vehicle/vehicle-title-and-registration-those-new-mn
+    verified_at: 2026-10-15
+  - id: mn-voter-registration
+    title: "Register to vote in Minnesota"
+    kind: voting
+    days_after_move: null
+    summary: "You can pre-register at any time except the 20 days before a regularly scheduled election, or register in person at your polling place on election day."
+    action_url: https://www.sos.state.mn.us/elections-voting/register-to-vote/
+    evidence: "At any time except during the 20 days immediately preceding any regularly scheduled election, an eligible voter or any individual who will be an eligible voter at the time of the next election may register ... An individual who is eligible to vote may register or update a registration on election day by appearing in person at the polling place for the precinct in which the individual maintains residence"
+    source_url: https://www.revisor.mn.gov/statutes/cite/201.061
+    verified_at: 2026-10-15

@@ -1,0 +1,40 @@
+# Official new-resident deadlines for Colorado. Every fact is quoted verbatim from source_url.
+# Note: dmv.colorado.gov returns 403 to the GetOffTheCouch UA; DMV items were read via a web fetch tool.
+state: CO
+items:
+  - id: co-drivers-license
+    title: "Transfer your license to a Colorado driver's license"
+    kind: license
+    days_after_move: 30
+    summary: "After establishing residency in Colorado, you must transfer your driver's license within 30 days."
+    action_url: https://dmv.colorado.gov/new-to-colorado
+    evidence: "After establishing residency in Colorado, you must: ... license within 30 days"
+    source_url: https://dmv.colorado.gov/new-to-colorado
+    verified_at: 2026-10-15
+  - id: co-vehicle-title-registration
+    title: "Title and register your vehicle in Colorado"
+    kind: vehicle
+    days_after_move: 90
+    summary: "You have 90 days after establishing residency to title and register your vehicle."
+    action_url: https://dmv.colorado.gov/new-to-colorado
+    evidence: "You have 90 days after establishing residency to title and register your vehicle."
+    source_url: https://dmv.colorado.gov/new-to-colorado
+    verified_at: 2026-10-15
+  - id: co-emissions-inspection
+    title: "Get an emissions test (designated counties)"
+    kind: inspection
+    days_after_move: null
+    summary: "An emissions test is required before registering if your vehicle is more than 7 model years old and you live in a designated emissions county."
+    action_url: https://dmv.colorado.gov/emissions
+    evidence: "Required if your vehicle is more than 7 model years old and you live in a designated emissions county"
+    source_url: https://dmv.colorado.gov/new-to-colorado
+    verified_at: 2026-10-15
+  - id: co-voter-registration
+    title: "Register to vote in Colorado"
+    kind: voting
+    days_after_move: null
+    summary: "You can register through Election Day; to get a mail ballot, register online through the 8th day before Election Day."
+    action_url: https://www.GoVoteColorado.gov
+    evidence: "Voters may register through Election Day. ... Register to vote or update your voter registration online at www.GoVoteColorado.gov through the 8th day before Election Day"
+    source_url: https://www.coloradosos.gov/pubs/elections/FAQs/VoterRegistrationFAQ.html
+    verified_at: 2026-10-15

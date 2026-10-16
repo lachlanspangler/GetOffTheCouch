@@ -1,0 +1,39 @@
+# Official new-resident deadlines for California. Every fact is quoted verbatim from source_url.
+state: CA
+items:
+  - id: ca-drivers-license
+    title: "Get a California driver's license"
+    kind: license
+    days_after_move: null
+    summary: "If you intend to become a California resident and drive in California, you must apply for a California driver's license."
+    action_url: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/driver-licenses-dl/
+    evidence: "If you intend to become a California resident and drive in California, you must apply for a California DL."
+    source_url: https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/new-to-california/
+    verified_at: 2026-10-15
+  - id: ca-vehicle-registration
+    title: "Register your vehicle in California"
+    kind: vehicle
+    days_after_move: 20
+    summary: "A vehicle previously registered in another state or country must be registered within 20 days of becoming a resident or bringing it into California."
+    action_url: https://www.dmv.ca.gov/portal/vehicle-registration/new-registration/
+    evidence: "If you bring a vehicle into California that was previously registered in another state or country, you must register it within 20 days of becoming a resident or bringing it into the state."
+    source_url: https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/new-to-california/
+    verified_at: 2026-10-15
+  - id: ca-smog-inspection
+    title: "Get a smog inspection"
+    kind: inspection
+    days_after_move: null
+    summary: "Smog inspections are required when you register or renew a vehicle in California, with some exceptions."
+    action_url: https://www.dmv.ca.gov/portal/vehicle-registration/smog-inspections/
+    evidence: "Smog inspections are required when you register or renew registration for a vehicle in California, but there are some exceptions."
+    source_url: https://www.dmv.ca.gov/portal/vehicle-registration/smog-inspections/
+    verified_at: 2026-10-15
+  - id: ca-voter-registration
+    title: "Register to vote in California"
+    kind: voting
+    days_after_move: null
+    summary: "The deadline to register is 15 days before Election Day, and after that you can conditionally register and vote at your county elections office."
+    action_url: https://registertovote.ca.gov/
+    evidence: "In California, the deadline to register to vote for any election is 15 days before Election Day, so please register early! ... register and vote at your county elections office after the 15-day voter registration deadline."
+    source_url: https://www.sos.ca.gov/elections/voter-registration
+    verified_at: 2026-10-15

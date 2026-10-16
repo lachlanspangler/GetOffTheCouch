@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Florida. Every fact is quoted verbatim from source_url.
+state: FL
+items:
+  - id: fl-drivers-license
+    title: "Get a Florida driver license"
+    kind: license
+    days_after_move: 30
+    summary: "New Florida residents must get a Florida driver license within 30 days of establishing residency to drive on Florida roads."
+    action_url: https://www.flhsmv.gov/new-resident/
+    evidence: "As a new Florida resident, you must obtain a valid Florida driver license within 30 days of establishing residency to drive on Florida roads."
+    source_url: https://www.flhsmv.gov/new-resident/
+    verified_at: 2026-10-15
+  - id: fl-vehicle-title-registration
+    title: "Title and register your vehicle in Florida"
+    kind: vehicle
+    days_after_move: 10
+    summary: "New residents must get Florida insurance and title and register their vehicles within 10 days of establishing residency."
+    action_url: https://www.flhsmv.gov/new-resident/
+    evidence: "you must obtain insurance from a Florida insurance agent that is licensed to sell insurance in Florida in order to title and register your vehicle(s), vessel(s), and mobile home(s) within 10 days of establishing residency."
+    source_url: https://www.flhsmv.gov/new-resident/
+    verified_at: 2026-10-15
+  - id: fl-voter-registration
+    title: "Register to vote in Florida"
+    kind: voting
+    days_after_move: null
+    summary: "The deadline to register to vote for an upcoming election is 29 days before the election."
+    action_url: https://registertovoteflorida.gov/
+    evidence: "The deadline to register to vote for an upcoming election is 29 days before the election."
+    source_url: https://dos.fl.gov/elections/for-voters/voter-registration/register-to-vote-or-update-your-information/
+    verified_at: 2026-10-15

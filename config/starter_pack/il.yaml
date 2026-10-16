@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Illinois. Every fact is quoted verbatim from source_url.
+state: IL
+items:
+  - id: il-drivers-license
+    title: "Get an Illinois driver's license"
+    kind: license
+    days_after_move: 90
+    summary: "A new Illinois resident may drive on a valid home-state license for the first 90 days of residence."
+    action_url: https://www.ilsos.gov/
+    evidence: "A nonresident who becomes a resident of this State, may for a period of the first 90 days of residence in Illinois operate any motor vehicle which he was qualified or licensed to drive by"
+    source_url: https://www.ilga.gov/legislation/ILCS/details?MajorTopic=TRANSPORTATION&Chapter=VEHICLES&ActName=Illinois%20Vehicle%20Code.&ActID=1815&ChapterID=49&SeqStart=&&ChapAct=FullText
+    verified_at: 2026-10-15
+  - id: il-vehicle-registration
+    title: "Register your vehicle in Illinois"
+    kind: vehicle
+    days_after_move: 30
+    summary: "New residents need not register until 30 days after establishing residency, if the vehicle is properly registered elsewhere, and must apply for Illinois registration by the end of that grace period."
+    action_url: https://www.ilsos.gov/
+    evidence: "New residents need not secure registration until 30 days after establishing residency in this State, provided the vehicle is properly registered in another jurisdiction. By the expiration of such 30-day statutory grace period, a new resident shall comply with the provisions of this Act and apply for Illinois vehicle registration."
+    source_url: https://www.ilga.gov/legislation/ILCS/details?MajorTopic=TRANSPORTATION&Chapter=VEHICLES&ActName=Illinois%20Vehicle%20Code.&ActID=1815&ChapterID=49&SeqStart=&&ChapAct=FullText
+    verified_at: 2026-10-15
+  - id: il-voter-registration
+    title: "Register to vote in Illinois"
+    kind: voting
+    days_after_move: null
+    summary: "You must be an Illinois resident for at least 30 days, and registration runs through Election Day via regular and grace period registration."
+    action_url: https://ova.elections.il.gov/
+    evidence: "a resident of Illinois for at least 30 days. Voter registration is conducted until and including Election Day through regular and grace period registration."
+    source_url: https://votersguide.elections.il.gov/FAQs
+    verified_at: 2026-10-15

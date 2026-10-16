@@ -1,0 +1,39 @@
+# Official new-resident deadlines for New York. Every fact is quoted verbatim from source_url.
+state: NY
+items:
+  - id: ny-drivers-license
+    title: "Exchange your license for a New York driver license"
+    kind: license
+    days_after_move: 30
+    summary: "You must exchange your out-of-state driver license within 30 days of becoming a New York resident."
+    action_url: https://dmv.ny.gov/driver-license/exchange-out-of-state-driver-license
+    evidence: "You must exchange your out-of-state driver license (from another U.S. state or territory, a federal district, or a Canadian province) within 30 days of becoming a resident of New York."
+    source_url: https://dmv.ny.gov/driver-license/exchange-out-of-state-driver-license
+    verified_at: 2026-10-15
+  - id: ny-vehicle-registration
+    title: "Register your vehicle in New York"
+    kind: vehicle
+    days_after_move: 30
+    summary: "If you move to New York and become a resident, you must register your vehicle within 30 days."
+    action_url: https://dmv.ny.gov/registration/register-an-out-of-state-vehicle
+    evidence: "You must register your vehicle in New York State if you move to New York and become a resident. You must register your vehicle here within 30 days of becoming a resident (moving)."
+    source_url: https://dmv.ny.gov/registration/register-an-out-of-state-vehicle
+    verified_at: 2026-10-15
+  - id: ny-vehicle-inspection
+    title: "Get your vehicle inspected"
+    kind: inspection
+    days_after_move: null
+    summary: "Registering gives you a 10-day inspection extension from the registration date, and you must get the vehicle inspected before it expires."
+    action_url: https://dmv.ny.gov/registration/register-and-title-a-vehicle
+    evidence: "When you register a vehicle you will receive an inspection extension that will last 10 days from the date of the registration. You must get your vehicle inspected before the extension expires."
+    source_url: https://dmv.ny.gov/registration/register-and-title-a-vehicle
+    verified_at: 2026-10-15
+  - id: ny-voter-registration
+    title: "Register to vote in New York"
+    kind: voting
+    days_after_move: null
+    summary: "For the November 3, 2026 General Election, mail registration applications must be received by a board of elections no later than October 24, 2026."
+    action_url: https://elections.ny.gov/voter-registration-process
+    evidence: "New Yorkers must register to vote by certain deadlines to be eligible to vote in Primary and General Elections. ... Mail Registration Applications must be received by a board of elections no later than October 24, 2026 to be eligible to vote in the General Election."
+    source_url: https://elections.ny.gov/registration-and-voting-deadlines
+    verified_at: 2026-10-15

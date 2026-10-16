@@ -1,0 +1,39 @@
+# Official new-resident deadlines for Texas. Every fact is quoted verbatim from source_url.
+state: TX
+items:
+  - id: tx-drivers-license
+    title: "Get a Texas driver license"
+    kind: license
+    days_after_move: 90
+    summary: "You can drive on a valid out-of-state license for up to 90 days after moving to Texas, and your vehicles must be registered in Texas before you apply."
+    action_url: https://www.dps.texas.gov/section/driver-license/moving-texas-guide-driver-licenses-and-ids
+    evidence: "You can legally drive with a valid, unexpired driver license from another U.S. state, U.S. territory, Canadian province, or qualifying country for up to 90-days after moving to Texas. ... Before applying for a Texas driver license, ensure all your vehicles are registered with the Texas Department of Motor Vehicles."
+    source_url: https://www.dps.texas.gov/section/driver-license/moving-texas-guide-driver-licenses-and-ids
+    verified_at: 2026-10-15
+  - id: tx-vehicle-registration
+    title: "Register your vehicle in Texas"
+    kind: vehicle
+    days_after_move: 30
+    summary: "You have 30 days from the time you move to Texas to register your vehicle."
+    action_url: https://www.txdmv.gov/motorists/new-to-texas
+    evidence: "You have 30 days from the time you move here to register your vehicle in the state."
+    source_url: https://www.txdmv.gov/motorists/new-to-texas
+    verified_at: 2026-10-15
+  - id: tx-emissions-inspection
+    title: "Get an emissions inspection (some counties)"
+    kind: inspection
+    days_after_move: null
+    summary: "In the listed emissions counties you need a passing vehicle emissions inspection before you register your vehicle."
+    action_url: https://www.txdmv.gov/motorists/new-to-texas
+    evidence: "If you live in one of the following emissions counties you will need to obtain a passing vehicle emissions inspection before attempting to register your vehicle: Brazoria, Collin, Dallas, Denton, El Paso, Ellis, Fort Bend, Galveston, Harris, Johnson, Kaufman, Montgomery, Parker, Rockwall, Tarrant, Travis, Williamson."
+    source_url: https://www.txdmv.gov/motorists/new-to-texas
+    verified_at: 2026-10-15
+  - id: tx-voter-registration
+    title: "Register to vote in Texas"
+    kind: voting
+    days_after_move: null
+    summary: "Texas law requires eligible voters to register by the 30th day before Election Day."
+    action_url: https://www.votetexas.gov/register-to-vote/index.html
+    evidence: "Texas law requires eligible voters to register by the 30th day before Election Day."
+    source_url: https://www.votetexas.gov/register-to-vote/index.html
+    verified_at: 2026-10-15

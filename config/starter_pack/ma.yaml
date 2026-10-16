@@ -1,0 +1,39 @@
+# Official new-resident deadlines for Massachusetts. Every fact is quoted verbatim from source_url.
+state: MA
+items:
+  - id: ma-drivers-license
+    title: "Convert to a Massachusetts driver's license"
+    kind: license
+    days_after_move: null
+    summary: "If you have a license from another state, you need to convert it to a Massachusetts license when you become a resident."
+    action_url: https://www.mass.gov/how-to/transfer-your-real-or-standard-out-of-state-drivers-or-motorcycle-license-to-massachusetts
+    evidence: "you need to convert it to a Massachusetts ... license when you become a resident."
+    source_url: https://www.mass.gov/how-to/transfer-your-real-or-standard-out-of-state-drivers-or-motorcycle-license-to-massachusetts
+    verified_at: 2026-10-15
+  - id: ma-vehicle-registration
+    title: "Register your vehicle in Massachusetts"
+    kind: vehicle
+    days_after_move: null
+    summary: "You must register your vehicle as soon as you become a Massachusetts resident; there is no grace period."
+    action_url: https://www.mass.gov/how-to/transfer-your-registration-and-title-from-out-of-state
+    evidence: "You must register your vehicle in Massachusetts as soon as you become a Massachusetts resident. The law does not provide a grace period."
+    source_url: https://www.mass.gov/how-to/transfer-your-registration-and-title-from-out-of-state
+    verified_at: 2026-10-15
+  - id: ma-vehicle-inspection
+    title: "Get a vehicle inspection sticker"
+    kind: inspection
+    days_after_move: null
+    summary: "You must get a vehicle inspection sticker within 7 days of the registration date."
+    action_url: https://www.mass.gov/how-to/transfer-your-registration-and-title-from-out-of-state
+    evidence: "You must obtain a vehicle inspection sticker within 7 days of the registration date."
+    source_url: https://www.mass.gov/how-to/transfer-your-registration-and-title-from-out-of-state
+    verified_at: 2026-10-15
+  - id: ma-voter-registration
+    title: "Register to vote in Massachusetts"
+    kind: voting
+    days_after_move: null
+    summary: "To vote in a future election you must register 10 days before all primaries and elections."
+    action_url: https://www.mass.gov/info-details/automatic-voter-registration
+    evidence: "To vote in a future election you must register: ... 10 days before all primaries and elections"
+    source_url: https://www.mass.gov/info-details/automatic-voter-registration
+    verified_at: 2026-10-15

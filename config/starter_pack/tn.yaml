@@ -1,0 +1,23 @@
+# Official new-resident deadlines for Tennessee. Every fact is quoted verbatim from source_url.
+# Note: tn.gov returns 403 to the GetOffTheCouch UA; items were read via a web fetch tool.
+# Voter registration skipped: sos.tn.gov and govotetn.gov returned 403 to every fetch method.
+state: TN
+items:
+  - id: tn-drivers-license
+    title: "Get a Tennessee driver license"
+    kind: license
+    days_after_move: 30
+    summary: "New or returning residents with a license from another state must get a Tennessee driver license no later than 30 days after establishing residency."
+    action_url: https://www.tn.gov/safety/driver-services/classd/dlnew.html
+    evidence: "New residents or those returning to Tennessee who currently hold a driver license from another state must obtain ... a Tennessee Driver License no later than thirty (30) days after establishing residency."
+    source_url: https://www.tn.gov/safety/driver-services/classd/dlnew.html
+    verified_at: 2026-10-15
+  - id: tn-vehicle-title-registration
+    title: "Title and register your vehicle in Tennessee"
+    kind: vehicle
+    days_after_move: null
+    summary: "Someone moving from another state must apply for a Tennessee certificate of title and registration."
+    action_url: https://www.tn.gov/revenue/title-and-registration/vehicle-registration/initial-registration.html
+    evidence: "Someone moving from another state must file an application for certificate of title and registration"
+    source_url: https://www.tn.gov/revenue/title-and-registration/vehicle-registration/initial-registration.html
+    verified_at: 2026-10-15

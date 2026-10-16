@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Washington. Every fact is quoted verbatim from source_url.
+state: WA
+items:
+  - id: wa-drivers-license
+    title: "Get a Washington driver license"
+    kind: license
+    days_after_move: 30
+    summary: "You have 30 days after moving to Washington to get your driver license, and you need it before you can register vehicles here."
+    action_url: https://dol.wa.gov/moving-washington/get-driver-license
+    evidence: "You have 30 days after you move to Washington to get your driver license. You will also need your Washington driver license before you can register any vehicles here."
+    source_url: https://dol.wa.gov/moving-washington/get-driver-license
+    verified_at: 2026-10-15
+  - id: wa-vehicle-registration
+    title: "Register your vehicle in Washington"
+    kind: vehicle
+    days_after_move: 30
+    summary: "You have 30 days after moving to Washington to get your driver license and register your vehicle."
+    action_url: https://dol.wa.gov/moving-washington/vehicle-registration-and-plates
+    evidence: "You have 30 days after moving to Washington to get your driver license and register your vehicle."
+    source_url: https://dol.wa.gov/moving-washington/vehicle-registration-and-plates
+    verified_at: 2026-10-15
+  - id: wa-voter-registration
+    title: "Register to vote in Washington"
+    kind: voting
+    days_after_move: null
+    summary: "Register online up to 8 days before an election, or in person until 8 p.m. on Election Day."
+    action_url: https://votewa.gov/
+    evidence: "Register online up to 8 days before an election to participate in that election. ... You can register in person until 8 p.m. on Election Day to participate in that election."
+    source_url: https://www.sos.wa.gov/elections/voters/voter-registration/register-vote-washington
+    verified_at: 2026-10-15
