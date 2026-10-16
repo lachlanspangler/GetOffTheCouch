@@ -1,0 +1,248 @@
+# Oklahoma City, OK. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 (batch D onboarding; see docs/SOURCES.md "Batch D cities").
+# Not used (evidence in docs/SOURCES.md): Metropolitan Library System (metrolibrary.org robots.txt answers 403 →
+# treated as disallow-all; no BiblioCommons/Communico tenant), Tower Theatre, Criterion, Lyric Theatre, OKC
+# Philharmonic, Oklahoma Contemporary, Bricktown and downtownokc.com HTML pages (Cloudflare challenges), Beer City
+# Music Hall (Prekindle), Scissortail Park REST API (robots disallows /wp-json/), data.okc.gov (ArcGIS Hub: no
+# license, permit-event or special-event layers; only zoning/infrastructure), OU Norman (~28 km, outside radius).
+slug: oklahoma_city
+name: Oklahoma City
+state: OK
+timezone: America/Chicago
+center: [35.4676, -97.5164]
+radius_km: 25
+aliases: [OKC, Edmond, Moore, Midwest City, Del City, Bethany, Warr Acres, Nichols Hills, The Village, Yukon, Mustang, Choctaw, Spencer]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / CBD, lat: 35.4680, lon: -97.5150 }
+  - { name: Bricktown, lat: 35.4655, lon: -97.5085 }
+  - { name: Deep Deuce, lat: 35.4710, lon: -97.5050 }
+  - { name: Automobile Alley, lat: 35.4760, lon: -97.5125 }
+  - { name: Midtown, lat: 35.4800, lon: -97.5200 }
+  - { name: Film Row / West Village, lat: 35.4660, lon: -97.5260 }
+  - { name: Plaza District, lat: 35.4835, lon: -97.5470 }
+  - { name: Uptown 23rd / Paseo, lat: 35.4975, lon: -97.5250 }
+  - { name: Asian District, lat: 35.4990, lon: -97.5300 }
+  - { name: Mesta Park / Heritage Hills, lat: 35.4880, lon: -97.5250 }
+  - { name: Western Avenue, lat: 35.5250, lon: -97.5300 }
+  - { name: Nichols Hills, lat: 35.5500, lon: -97.5490 }
+  - { name: Wheeler District / Capitol Hill, lat: 35.4430, lon: -97.5250 }
+  - { name: Stockyards City, lat: 35.4470, lon: -97.5600 }
+  - { name: Edmond, lat: 35.6528, lon: -97.4781 }
+  - { name: Midwest City, lat: 35.4495, lon: -97.3967 }
+sources:
+  # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows all) ──
+  - id: okc_paycom_center
+    adapter: rss_events
+    name: Paycom Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.paycomcenter.com/events
+    expect_min_records: 10
+    notes: "City-owned arena (OKC Thunder home); carbonhouse events RSS; robots.txt has no rules."
+    params:
+      spectator_venue: true
+      url: https://www.paycomcenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Paycom Center", address: "100 W Reno Ave, Oklahoma City, OK 73102"}
+      organizer: Paycom Center
+      default_category: music.concert
+      category_map:
+        Sports: sports_watch.game
+        Concerts: music.concert
+
+  - id: okc_civic_center
+    adapter: rss_events
+    name: Civic Center Music Hall & Rose State PAC (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.okcciviccenter.com/events
+    expect_min_records: 10
+    notes: >-
+      City-owned performing arts hall (OKC Philharmonic, Broadway touring, ballet, opera); its carbonhouse feed
+      also lists Rose State College Performing Arts Center (Midwest City). robots.txt has no rules.
+    params:
+      spectator_venue: true
+      url: https://www.okcciviccenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Civic Center Music Hall", address: "201 N Walker Ave, Oklahoma City, OK 73102"}
+      venues: {"Rose State Performing Arts Center": "6420 SE 15th St, Midwest City, OK 73110"}
+      organizer: Civic Center Music Hall
+      default_category: music.concert
+      classify_description: false
+      category_map:
+        Orchestra: music.classical
+        Choral/Opera: music.classical
+        Touring Theatre: arts.theater
+        Regional Theatre: arts.theater
+        Ballet/Dance: arts.theater
+        Comedians/Speakers: nightlife.comedy
+        Concerts: music.concert
+
+  # ── downtown business-district calendar (WP The Events Calendar REST API) ──
+  - id: okc_downtown_events
+    adapter: tribe
+    name: Downtown OKC Partnership events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 10   # robots Crawl-delay: 10
+    homepage: https://downtownokc.com/events/
+    expect_min_records: 40
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16 (conservative call, same as ncma_events@raleigh): the HTML /events/ page serves a
+      Cloudflare challenge to our client. The REST API on the same host (robots allows /wp-json/; Crawl-delay 10)
+      answered and returned 151 events in one verification run, but using an unchallenged path on a host that
+      challenges us reads as working around its bot protection. Re-enable only with the Partnership's
+      permission. Config kept for that day. The site's Tribe timezone
+      is misconfigured as "UTC+0" while start_date holds local wall time; the adapter falls back to the city zone
+      for offset-style zones, which matches the times shown on the site.
+    params:
+      base_url: https://downtownokc.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 12
+      organizer: Downtown OKC Partnership
+      default_category: community.festival
+
+  - id: okc_science_museum
+    adapter: tribe
+    name: Science Museum Oklahoma events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 10   # robots Crawl-delay: 10
+    homepage: https://www.sciencemuseumok.org/events/
+    expect_min_records: 1
+    notes: >-
+      The Events Calendar REST API (Yoast robots allows all; Crawl-delay 10). Only the "events" and
+      "community-events" categories: the "activities" category is the daily planetarium/live-show schedule.
+    params:
+      base_url: https://www.sciencemuseumok.org
+      categories: [events, community-events]
+      horizon_days: 90
+      per_page: 50
+      max_pages: 4
+      venue: {name: "Science Museum Oklahoma", address: "2020 Remington Pl, Oklahoma City, OK 73111"}
+      organizer: Science Museum Oklahoma
+      default_category: learning.tech
+
+  - id: okc_cowboy_museum
+    adapter: tribe
+    name: National Cowboy & Western Heritage Museum events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://nationalcowboymuseum.org/calendar/
+    expect_min_records: 1
+    notes: >-
+      The Events Calendar REST API (robots disallows only the HTML /calendar/ views). Special events, concerts and
+      programs only; the daily "Choose Your Adventure!" drop-in activity (category drop-in-activities) is left out
+      by the category filter.
+    params:
+      base_url: https://nationalcowboymuseum.org
+      categories: [event, annual-event, special-programs, education, adults]
+      horizon_days: 120
+      per_page: 50
+      max_pages: 4
+      venue: {name: "National Cowboy & Western Heritage Museum", address: "1700 NE 63rd St, Oklahoma City, OK 73111"}
+      organizer: National Cowboy & Western Heritage Museum
+      default_category: arts.museum
+
+  - id: okc_scissortail_park
+    adapter: jsonld
+    name: Scissortail Park events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.scissortailpark.org/events/
+    expect_min_records: 3
+    notes: >-
+      Scissortail Park Foundation (city park). EventON calendar with schema.org Event JSON-LD on the /events/
+      listing page (current month; date-only). robots.txt disallows /wp-json/ and any URL with a query string, so
+      only the plain listing page is fetched.
+    params:
+      urls: [https://www.scissortailpark.org/events/]
+      horizon_days: 60
+      venue: {name: "Scissortail Park", address: "300 SW 7th St, Oklahoma City, OK 73109"}
+      organizer: Scissortail Park
+      default_category: community.festival
+
+  # ── universities (public calendar, institution-only items skipped) ──
+  - id: okc_uco_events
+    adapter: livewhale
+    name: University of Central Oklahoma events (Edmond)
+    data_type: events
+    homepage: https://calendar.uco.edu/
+    expect_min_records: 20
+    notes: LiveWhale v2 JSON (robots disallows only ?replytocom). Mostly arts (UCO Jazz Lab, Mitchell Hall Theatre).
+    params:
+      fallback_point: { lat: 35.6556, lon: -97.4714, label: "UCO campus, Edmond" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.uco.edu
+      path: "/live/json/events/max/{max}/response_fields/location,summary,event_types,tags,group_title"
+      max: 200
+      organizer: University of Central Oklahoma
+      default_category: learning.networking
+
+  # ── college athletics, home games only (SIDEARM calendar.ics; robots allows) ──
+  - id: okc_uco_athletics
+    adapter: ics
+    name: UCO Bronchos athletics (home games, Edmond)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://bronchosports.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM subscription calendar; only LOCATION "EDMOND, …" (home venues) kept.
+    params:
+      url: https://bronchosports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: UCO Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!EDMOND\b)'
+      fallback_point: { lat: 35.6556, lon: -97.4714, label: "UCO campus, Edmond" }
+
+  - id: okc_ocu_athletics
+    adapter: ics
+    name: Oklahoma City University Stars athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.ocusports.com/calendar
+    expect_min_records: 3
+    notes: SIDEARM subscription calendar; only "Oklahoma City, <campus venue>" locations kept (away/neutral skipped).
+    params:
+      url: https://www.ocusports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: OCU Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!.*Oklahoma City, (?!OK\b))'
+      fallback_point: { lat: 35.4931, lon: -97.5300, label: "Oklahoma City University campus" }
+
+  # ── volunteering (Galaxy Digital tenant of United Way of Central Oklahoma) ──
+  - id: okc_volunteer_central_ok
+    adapter: galaxydigital
+    name: United Way of Central Oklahoma Volunteer Center
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteercentraloklahoma.org/need/
+    expect_min_records: 1
+    notes: >-
+      unitedwayokc.galaxydigital.com redirects here; RSS title "Opportunities on United Way of Central Oklahoma
+      Volunteer Center". robots: named SEO bots blocked, "User-agent: *" empty Disallow.
+    params:
+      base_url: https://www.volunteercentraloklahoma.org
+      max_details: 15
+      max_shifts: 6
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page) ──
+  - id: challenge_trivia_okc
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Oklahoma City)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 3
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-oklahoma-city + metro-norman within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [oklahoma-city, norman]

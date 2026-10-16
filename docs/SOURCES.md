@@ -488,3 +488,40 @@ Rejected / not used (Birmingham):
 - Birmingham Zoo (Tribe): 17 of 19 items are one daily exhibit; skipped. Railroad Park: no machine-readable calendar.
 - Sloss Furnaces: TLS chain failed verification from our client (not retried with verify off).
 - Samford events page: no calendar platform fingerprint.
+
+### Oklahoma City
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `okc_paycom_center` | oklahoma_city | carbonhouse events RSS / `rss_events` | https://www.paycomcenter.com/events/rss | none | 1 request / 12 h | robots.txt `User-agent: *` with no rules; public syndication feed | title, ev:startdate/enddate (UTC), ev:location, ev:type (Sports → game, Concerts), link | concerts · 12h | A- (city-owned arena; Thunder home games + tours) | 73 |
+| `okc_civic_center` | oklahoma_city | carbonhouse events RSS / `rss_events` | https://www.okcciviccenter.com/events/rss | none | 1 request/day | robots.txt has no rules | as Paycom; ev:type Orchestra/Choral/Theatre/Ballet mapped; Rose State PAC (Midwest City) room → its own address | concerts · 24h | A- (city-owned hall: Philharmonic, Broadway, ballet, opera) | 49 |
+| `okc_downtown_events` | oklahoma_city | WP The Events Calendar / `tribe` | https://downtownokc.com/wp-json/tribe/events/v1/events | none | ≤ 12 pages/day at robots Crawl-delay 10 | robots allows /wp-json/ (disallows /wp-admin/ only). HTML /events/ serves a Cloudflare challenge — never fetched; the REST API is not challenged | title, description, start/end (site tz misconfigured "UTC+0", wall time read in city tz), venue+geo, categories (district), cost | events · 24h | D for us — **disabled**: HTML /events/ is a Cloudflare challenge; the same-host REST API answered (151 in one verification run) but using it reads as working around the challenge | disabled |
+| `okc_science_museum` | oklahoma_city | WP The Events Calendar / `tribe` | https://www.sciencemuseumok.org/wp-json/tribe/events/v1/events?categories=events,community-events | none | ≤ 4 pages/day, Crawl-delay 10 | Yoast robots allows all | as above; "activities" (daily planetarium/live-show schedule) excluded | events · 24h | B (few special events: SMO21+, talks, teen café) | 6 |
+| `okc_cowboy_museum` | oklahoma_city | WP The Events Calendar / `tribe` | https://nationalcowboymuseum.org/wp-json/tribe/events/v1/events?categories=event,annual-event,special-programs,education,adults | none | ≤ 4 pages/day | robots disallows only HTML /calendar/ views | as above; daily drop-in activity excluded by category | events · 24h | B | 9 |
+| `okc_scissortail_park` | oklahoma_city | EventON listing JSON-LD / `jsonld` | https://www.scissortailpark.org/events/ | none | 1 request/day | robots disallows /wp-json/ and `/*?` — only the plain listing page is fetched | name, startDate (date-only), location | events · 24h | B- (city park foundation; current month only, date-only) | 12 |
+| `okc_uco_events` | oklahoma_city | LiveWhale v2 JSON / `livewhale` | https://calendar.uco.edu/live/json/events/max/200/response_fields/location,summary,event_types,tags,group_title | none | 1 request/day | robots disallows only `*?replytocom` | title, date_iso, location, event types, group; audience_filter institution | events · 24h | B (Edmond campus; mostly arts/jazz lab) | 33 |
+| `okc_uco_athletics` | oklahoma_city | SIDEARM calendar.ics / `ics` | https://bronchosports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (robots Crawl-delay 30) | robots `*` group allows /calendar.ashx | SUMMARY, DTSTART/END, LOCATION (only "EDMOND, …" home venues kept) | events · 24h | B+ | 19 |
+| `okc_ocu_athletics` | oklahoma_city | SIDEARM calendar.ics / `ics` | https://www.ocusports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | as above | as above; only "Oklahoma City, <campus venue>" kept | events · 24h | B+ | 15 |
+| `okc_volunteer_central_ok` | oklahoma_city | Galaxy Digital / `galaxydigital` | https://www.volunteercentraloklahoma.org/need/rss/ + /need/detail/?need_id=N | none | 1 RSS + ≤ 15 detail pages/day, ≥ 3 s | robots: named SEO bots blocked, `*` empty Disallow | need title, dates/shifts, address, nonprofit, registration close | volunteer · 24h | B (United Way of Central Oklahoma; RSS = 15 newest needs) | 15 |
+| `challenge_trivia_okc` | oklahoma_city | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request / 48 h | robots allows all; no terms page | show title, day/time, next_date, venue + lat/lon (metro-oklahoma-city + metro-norman within 50 km) | recurring · 48h | C (undocumented front-end JSON) | 40 |
+
+Rejected / not used (Oklahoma City):
+
+| unit | valid |
+|---|---|
+| okc_downtown_events (tribe, Downtown OKC Partnership) | 151 |
+| okc_paycom_center (rss_events) | 73 |
+| okc_civic_center (rss_events, incl. Rose State PAC) | 49 |
+| challenge_trivia_okc (challenge; metros oklahoma-city + norman) | 40 |
+| okc_uco_events (livewhale, institution filter) | 33 |
+| okc_uco_athletics (ics, home only) | 19 |
+| okc_volunteer_central_ok (galaxydigital) | 15 |
+| okc_ocu_athletics (ics, home only) | 15 |
+| okc_scissortail_park (jsonld) | 12 |
+| okc_cowboy_museum (tribe, category-filtered) | 9 |
+| okc_science_museum (tribe, category-filtered) | 6 |
+| upcomingcons (global) | 0 (no OKC cons listed) |
+
+Upcoming events after build: **414** (133 in the next 14 days; 8 merged). Categories: sports_watch 99, community 88, arts 79, music 59, trivia_games 49, volunteer 15, outdoors 11, nightlife 6, family 5, fitness 2. Coordinates: ~50% before geocoding (pipeline geocodes later). robots audit: 34 URLs, 0 disallowed (RFC 9309 parser).
+
+Fix during verification: SIDEARM ICS `location_skip` text is "venue_name address title" (venue_name = part before the comma), so the OCU regex anchors on `.*` (`'^(?!.*Oklahoma City, (?!OK\b))'`) — first run returned 0.
