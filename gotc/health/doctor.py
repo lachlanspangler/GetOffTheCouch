@@ -12,12 +12,14 @@ Reports (always) and repairs (with --fix) everything that can be repaired withou
 | raw payload files missing on disk       | drop the dangling raw_fetches rows                             |
 | raw payloads older than retention       | delete files + rows (keeps the newest fetch per unit forever)  |
 | rejects/health_log older than retention | prune                                                           |
+| price snapshots older than 72 h         | fold into daily min/median/max rows; drop rows of past events  |
 | export missing / older than the DB      | rebuild + export                                               |
 | exported JSON fails schema validation   | rebuild; if still invalid → error (two-strike rule)            |
 """
 
 from __future__ import annotations
 
+import os
 from datetime import timedelta
 
 from gotc.adapters.base import AdapterConfigError, get_adapter
@@ -29,7 +31,7 @@ from gotc.settings import Settings
 from gotc.storage.db import Database, iso, utcnow
 from gotc.taxonomy import taxonomy
 
-RAW_RETENTION_DAYS = 30
+RAW_RETENTION_DAYS = int(os.environ.get("GOTC_RAW_RETENTION_DAYS", "30"))  # CI: 7 (newest per unit kept forever)
 LOG_RETENTION_DAYS = 90
 
 
@@ -61,6 +63,19 @@ def doctor(settings: Settings, fix: bool = False) -> int:
         dc = src.params.get("default_category")
         if dc and not tax.is_valid(dc):
             errors.append(f"config: {sid} default_category {dc!r} unknown")
+
+    # scheduled refreshes missing (GitHub disables schedules after 60 days without repo activity; runs can lag)
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        last = db.one("SELECT MAX(started_at) t FROM runs WHERE trigger IN ('loop', 'shard', 'publish')")
+        if last and last["t"]:
+            from gotc.storage.db import parse_iso
+
+            age = now - (parse_iso(last["t"]) or now)
+            if age > timedelta(hours=3):
+                warnings.append(
+                    f"last scheduled pipeline run was {age.total_seconds() / 3600:.0f} h ago: hourly runs were skipped "
+                    "(schedule disabled? see the keepalive workflow)"
+                )
 
     # quarantined units due for a probe
     due = []
@@ -114,6 +129,11 @@ def doctor(settings: Settings, fix: bool = False) -> int:
         with db.tx():
             db.execute("DELETE FROM rejects WHERE at < ?", (lc,))
             db.execute("DELETE FROM health_log WHERE at < ? AND level = 'info'", (lc,))
+        from gotc.storage.maintenance import downsample_price_snapshots
+
+        gone, rolled = downsample_price_snapshots(db, now)
+        if gone:
+            fixed.append(f"price snapshots: {gone} rows folded into {rolled} daily rows / dropped for past events")
 
     # export validity / freshness
     web = settings.web_data_dir
