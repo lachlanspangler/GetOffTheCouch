@@ -1,0 +1,46 @@
+# Curated venue capacities for austin (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Bass Concert Hall, Performing Arts Center (PAC)
+  aliases:
+  - Bass Concert Hall
+  capacity: 2900
+  capacity_source: https://en.wikipedia.org/wiki/Bass_Concert_Hall
+  evidence: Operator University of Texas at Austin Capacity 2,900 Type Concert hall
+  verified_at: '2026-10-16'
+  lat: 30.285816
+  lon: -97.73098
+  address: 2350 Robert Dedman Drive, Austin, TX 78712
+- name: Cactus Cafe
+  aliases:
+  - The Cactus Cafe
+  capacity: 150
+  capacity_source: http://www.cactusburning.com/what-happened
+  evidence: All three – and countless others – have played the stage of Austin's 150-seat Cactus Cafe, a nationally renowned, 30-year-old music venue
+  note: Companion site of the book 'Cactus Burning'; The Clio (theclio.com/entry/94180) also says 'the intimate 150-seat room' (403 for us, seen via search snippet). No Wikipedia capacity.
+  verified_at: '2026-10-16'
+- name: Oscar G. Brockett Theatre, F. Loren Winship Drama Building (WIN)
+  aliases:
+  - Oscar G. Brockett Theatre
+  - Brockett Theatre
+  capacity: 244
+  capacity_source: https://en.wikipedia.org/wiki/University_of_Texas_Performing_Arts_Center
+  evidence: The smallest theatre in Texas Performing Arts, located inside the Winship Drama Building, this intimate space seats 244.
+  note: calendar.utexas.edu/drama says 'an intimate setting of 200 seats'; UT Theatre & Dance facilities page (403 for us) says 'approximately 244 seats'.
+  verified_at: '2026-10-16'
+  lat: 30.285898
+  lon: -97.734467
+  address: 300 E. 23rd Street, Austin, TX 78712
+- name: B. Iden Payne Theatre, F. Loren Winship Drama Building (WIN)
+  aliases:
+  - B. Iden Payne Theatre
+  - Payne Theatre
+  capacity: 466
+  capacity_source: https://en.wikipedia.org/wiki/University_of_Texas_Performing_Arts_Center
+  evidence: B. Iden Payne Theatre [ edit ] The 466-seat theatre, located inside the Winship Drama Building, is for plays and dance performances.
+  note: 'Disagreeing sources: UT Theatre & Dance facilities page ''475-seat house'' (403 for us; via search snippet), calendar.utexas.edu/drama ''The 500 seat B. Iden Payne Theatre''.'
+  verified_at: '2026-10-16'
+  lat: 30.285898
+  lon: -97.734467
+  address: 300 E. 23rd Street, Austin, TX 78712

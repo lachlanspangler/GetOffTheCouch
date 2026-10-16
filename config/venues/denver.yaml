@@ -1,0 +1,20 @@
+# Curated venue capacities for denver (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Globe Hall
+  capacity: 200
+  capacity_source: https://denver.eater.com/2015/8/31/9234083/globe-hall-barbecue-live-music-globeville
+  evidence: Globe Hall will bring a music venue for up to 200 guests in one of two adjoined buildings
+  note: Pre-opening (2015) press; Pollstar 2015 also '200-capacity venue' (403 for us, via search snippet).
+  verified_at: '2026-10-16'
+  address: 4483 Logan Street, Denver, CO
+- name: Lost Lake
+  aliases:
+  - Lost Lake Lounge
+  capacity: 75
+  capacity_source: https://www.denverpost.com/2022/10/03/lost-lake-lounge-east-colfax-dive-bar-music-stage/
+  evidence: Lost Lake’s roughly 75-person audience capacity guarantees intimate shows.
+  note: 'CONFLICT: several ticketing/aggregator sites claim 200-250; Denver Post used as the most authoritative citable source.'
+  verified_at: '2026-10-16'
+  address: 3602 E Colfax, Denver, CO 80206

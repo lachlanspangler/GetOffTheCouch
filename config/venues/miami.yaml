@@ -1,0 +1,27 @@
+# Curated venue capacities for miami (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: WPAC - Wertheim Performing Arts Center
+  aliases:
+  - Wertheim Performing Arts Center
+  - WPAC
+  - Herbert and Nicole Wertheim Performing Arts Center
+  capacity: 545
+  capacity_source: https://centralreservations.fiu.edu/venues/profile/wertheim-performing-arts-center.html
+  evidence: 'Room Capacities and Spaces Concert Hall: 545 seats Recital Hall: 80 seats Instrumental Hall - Empty Room: 150 seats - Theater: 100 seats'
+  note: Concert Hall figure (largest room); recital-hall events will be much smaller. FIU student-life page describes a '300-seat main stage'.
+  verified_at: '2026-10-16'
+  lat: 25.752514
+  lon: -80.37239
+  address: 10910 SW 17th St., Miami, FL 33199
+- name: FPL Solar Amphitheater
+  aliases:
+  - FPL Amphitheater
+  - Bayfront Park Amphitheater
+  - FPL Solar Amphitheater at Bayfront Park
+  capacity: 10000
+  capacity_source: https://en.wikipedia.org/wiki/Bayfront_Park
+  evidence: 'The FPL Solar Amphitheater has a seating capacity of 10,000 people: 2,672 fixed benches and 7,328 in the lawn.'
+  verified_at: '2026-10-16'
+  address: 301 Biscayne Boulevard, Miami, FL 33132

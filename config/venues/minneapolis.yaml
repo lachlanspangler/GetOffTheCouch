@@ -1,0 +1,95 @@
+# Curated venue capacities for minneapolis (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Icehouse Minneapolis
+  aliases:
+  - Icehouse
+  - Icehouse MPLS
+  capacity: 800
+  capacity_source: https://www.icehousempls.com/private-events/
+  evidence: SPACE OVERVIEW 5,000 Square Feet, Two Levels 800 Guests Capacity* 215 Guests Seated for Dinner* ... *Capacity is 600 guests when the space is configured into separate rooms; all figures depend on configuration.
+  note: Venue's private-events page; whole-building figure incl. terrace/courtyard. Older search snippet of same page said 'room for up to 350 guests'.
+  verified_at: '2026-10-16'
+  address: 2528 Nicollet Avenue South, Minneapolis, MN 55404
+- name: The Hook and Ladder
+  aliases:
+  - The Hook and Ladder Theater
+  - Hook and Ladder Theater
+  - The Hook
+  capacity: 600
+  capacity_source: https://www.thehookmpls.com/rentals/
+  evidence: Capacity up to 600 across the venue
+  note: Venue's rentals page; figure spans all rooms (Mainroom + Mission Room), so a single-room show may be smaller.
+  verified_at: '2026-10-16'
+  address: 3010 Minnehaha Ave, Minneapolis, MN 55406
+- name: The Cedar Cultural Center
+  aliases:
+  - The Cedar
+  - Cedar Cultural Center
+  capacity: 625
+  capacity_source: https://en.wikipedia.org/wiki/The_Cedar_Cultural_Center
+  evidence: Capacity 450 (seated) 625 (standing)
+  note: Wikipedia infobox; seated shows cap at 450.
+  verified_at: '2026-10-16'
+  lat: 44.9694
+  lon: -93.2475
+  address: 416 Cedar Avenue, Minneapolis, MN 55454
+- name: Orchestra Hall
+  aliases:
+  - Orchestra Hall Minneapolis
+  capacity: 2087
+  capacity_source: https://en.wikipedia.org/wiki/Orchestra_Hall_(Minneapolis)
+  evidence: Capacity 2,087 Type concert hall
+  verified_at: '2026-10-16'
+  lat: 44.9721499
+  lon: -93.2748893
+  address: 1111 Nicollet Mall, Minneapolis, MN 55403
+- name: State Theatre
+  aliases:
+  - State Theatre Minneapolis
+  capacity: 2181
+  capacity_source: https://en.wikipedia.org/wiki/State_Theatre_(Minneapolis)
+  evidence: Owner Hennepin Arts Operator Historic Theatre Group Capacity 2,181
+  verified_at: '2026-10-16'
+  address: 805 Hennepin Avenue, Minneapolis, MN
+- name: Pantages Theatre
+  aliases:
+  - Pantages Theatre Minneapolis
+  capacity: 1014
+  capacity_source: https://en.wikipedia.org/wiki/Pantages_Theatre_(Minneapolis)
+  evidence: Owner Hennepin Theatre Trust Operator Historic Theatre Group Capacity 1,014
+  verified_at: '2026-10-16'
+  lat: 44.97783
+  lon: -93.275406
+  address: 710 Hennepin Ave, Minneapolis, MN 55402
+- name: Target Center
+  capacity: 20500
+  capacity_source: https://en.wikipedia.org/wiki/Target_Center
+  evidence: 'Capacity Basketball: 18,798 Hockey: 17,500 Concerts: Up to 20,500'
+  note: Concert maximum ('up to'); actual configured capacity varies by stage setup.
+  verified_at: '2026-10-16'
+  lat: 44.9795385
+  lon: -93.2761604
+  address: 600 N 1st Ave., Minneapolis, MN 55403
+- name: Berlin
+  aliases:
+  - Berlin MPLS
+  - Berlin Minneapolis
+  capacity: 100
+  capacity_source: https://www.thecurrent.org/feature/2024/02/06/10-newish-twin-cities-music-venues-worth-checking-out-in-2024
+  evidence: The intimate room has a capacity of around 75-100, and has styled itself in the model of a “European-inspired jazz club.”
+  note: The Current (MPR) gives a range 75-100; capacity recorded as the upper bound of that reported range.
+  verified_at: '2026-10-16'
+  lat: 44.9857637
+  lon: -93.2691172
+  address: 204 N 1st St, Minneapolis, MN
+- name: Nicollet Island Pavilion
+  capacity: 1500
+  capacity_source: https://www.minneapolisparks.org/rentals-permits/reception__event_sites/events_at_nicollet_island_pavilion/
+  evidence: 'Indoor Capacity: Up to 660 seated guests Up to 1,500 for free-flow cocktail-style events'
+  note: Owner (Minneapolis Park & Recreation Board). Standing figure used; seated is 660. Meet Minneapolis lists 750 theater-style.
+  verified_at: '2026-10-16'
+  lat: 44.9847316
+  lon: -93.2600873
+  address: 40 Power St, Minneapolis, MN 55401

@@ -1,0 +1,6 @@
+# Curated venue capacities for nyc (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+# nyc: The Jazz Gallery checked; only event-rental aggregators (tagvenue, thevendry: 70-80 guests) found, no authoritative figure.
+[]

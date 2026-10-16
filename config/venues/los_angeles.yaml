@@ -1,0 +1,61 @@
+# Curated venue capacities for los_angeles (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: The Echo
+  aliases:
+  - The Echo LA
+  - The Echo Los Angeles
+  capacity: 350
+  capacity_source: https://en.wikipedia.org/wiki/The_Echo_(venue)
+  evidence: Capacity 350 Type Concert venue and nightclub Construction Opened 2001
+  verified_at: '2026-10-16'
+  address: 1822 W Sunset Blvd, Los Angeles, CA 90026
+- name: 1720 | LOS ANGELES
+  aliases:
+  - '1720'
+  - 1720 Los Angeles
+  capacity: 750
+  capacity_source: https://www.laweekly.com/l-a-weeklys-guide-to-socal-music-venues/
+  evidence: 1720, 1720 E. 16th St., downtown. L.A.'s first fully permitted all-ages warehouse venue features the highest quality sound/lighting production of any venue this size in L.A. (750 capacity).
+  note: Music Connection interview says '1720 is a 1000 capacity venue' (https://www.musicconnection.com/the-art-of-sound-at-1720-los-angeles/, robots/403 for us, seen only via search snippet).
+  verified_at: '2026-10-16'
+  address: 1720 E. 16th Street, Los Angeles, CA 90021
+- name: Bing Theatre (BIT)
+  aliases:
+  - Bing Theatre
+  - USC Bing Theatre
+  capacity: 551
+  capacity_source: https://calendar.usc.edu/bing_theatre_bit
+  evidence: Bing Theatre is a traditional proscenium house with seating for 551.
+  note: USC School of Dramatic Arts site says 'seats 550 people'.
+  verified_at: '2026-10-16'
+  lat: 34.02197
+  lon: -118.286703
+  address: 3500 Watt Way, Los Angeles, CA 90089
+- name: Bovard Auditorium (ADM)
+  aliases:
+  - Bovard Auditorium
+  - USC Bovard Auditorium
+  capacity: 1235
+  capacity_source: https://trojanevents.usc.edu/venues/bovard-auditorium-south-hall/technical-information/
+  evidence: Bovard has a total capacity of 1235 seats Orchestra level 502 seats First Balcony 365 seats Second Balcony 368 seats
+  verified_at: '2026-10-16'
+  lat: 34.020914
+  lon: -118.285537
+  address: 3551 Trousdale Parkway, Los Angeles, CA 90089
+- name: Newman Recital Hall (AHF 151)
+  aliases:
+  - Newman Recital Hall
+  - Alfred Newman Recital Hall
+  capacity: 280
+  capacity_source: https://calendar.usc.edu/newman_recital_hall_ahf
+  evidence: Located in the Hancock Foundation Building, the 280-seat Newman Recital Hall provides outstanding acoustics
+  verified_at: '2026-10-16'
+- name: McClintock Building and Theatre (MCC)
+  aliases:
+  - McClintock Theatre
+  capacity: 99
+  capacity_source: https://calendar.usc.edu/mcclintock_building_and_theatre_mcc
+  evidence: as well as a 99-seat black-box theatre used for MFA acting productions and dramatic writing workshops.
+  verified_at: '2026-10-16'

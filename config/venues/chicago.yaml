@@ -1,0 +1,38 @@
+# Curated venue capacities for chicago (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Metro
+  aliases:
+  - Metro Chicago
+  - Cabaret Metro
+  capacity: 1100
+  capacity_source: https://en.wikipedia.org/wiki/Metro_(Chicago)
+  evidence: Capacity 1,100 400 (Smart Bar) ... The capacity is 1,100, divided between the main floor and the balcony.
+  note: 'Smart Bar (downstairs) is separate: 400, also stated on https://metrochicago.com/rental/ (''smartbar, our 400-capacity nightclub'').'
+  verified_at: '2026-10-16'
+  address: 3730 N Clark St, Chicago, IL 60613
+- name: Buddy Guy’s Legends
+  aliases:
+  - Buddy Guy's Legends
+  - Buddy Guys Legends
+  capacity: 500
+  capacity_source: https://en.wikipedia.org/wiki/Buddy_Guy%27s_Legends
+  evidence: Owner Buddy Guy Seating type cafe tables + SRO Capacity 500
+  verified_at: '2026-10-16'
+- name: Sleeping Village
+  capacity: 300
+  capacity_source: https://chicagoreader.com/blogs/behind-sleeping-villages-unassuming-exterior-lurks-a-state-of-the-art-sound-system/
+  evidence: It features an eclectic beer and cider bar, a 300-capacity music venue, and a year-round outdoor patio.
+  verified_at: '2026-10-16'
+  address: 3734 W. Belmont, Chicago, IL
+- name: The Salt Shed
+  aliases:
+  - Salt Shed
+  - The Salt Shed Fairgrounds
+  capacity: 3600
+  capacity_source: https://en.wikipedia.org/wiki/The_Salt_Shed
+  evidence: Capacity 5,000 (outdoor), 3,600 (indoor) ... The indoor section, named "The Shed", holds a capacity of 3,600 people.
+  note: Indoor (The Shed) figure; outdoor Fairgrounds is 5,000 per infobox (5,500 in article body).
+  verified_at: '2026-10-16'
+  address: 1357 N Elston Ave, Chicago, IL 60642

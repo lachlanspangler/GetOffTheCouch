@@ -1,0 +1,29 @@
+# Curated venue capacities for seattle (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Nectar Lounge
+  aliases:
+  - Nectar
+  capacity: 450
+  capacity_source: https://www.seattletimes.com/entertainment/music/new-fremont-music-venue-coming-to-brouwers-cafe-space/
+  evidence: Hidden Hall’s capacity is expected to land somewhere between High Dive (200) and Nectar Lounge (450).
+  verified_at: '2026-10-16'
+  address: 412 N 36th St, Seattle, WA 98103
+- name: Hidden Hall
+  aliases:
+  - Hidden Hall Seattle
+  capacity: 320
+  capacity_source: https://celebrityaccess.com/2025/05/01/hidden-hall-makes-its-debut-in-seattle/
+  evidence: Hidden Hall is a 320-capacity general admission venue set to host a wide range of live music
+  note: Some aggregators say 350; Seattle Times (pre-permit) said between 200 and 450.
+  verified_at: '2026-10-16'
+  address: 400 N 35th St, Seattle, WA
+- name: The Triple Door
+  aliases:
+  - Triple Door
+  capacity: 250
+  capacity_source: https://en.wikipedia.org/wiki/The_Triple_Door
+  evidence: Capacity 250 (Mainstage) 50 (Musicquarium) The Triple Door is a 250-seat [ 1 ] dinner theater, lounge and music venue
+  note: Mainstage figure; Musicquarium lounge is 50.
+  verified_at: '2026-10-16'

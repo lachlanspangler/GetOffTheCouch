@@ -1,0 +1,24 @@
+# Curated venue capacities for nashville (loaded by gotc/pipeline/build.py load_curated_venues).
+# Every capacity is copied from the cited page; `evidence` is a verbatim snippet from capacity_source
+# (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
+# Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
+- name: Analog at Hutton Hotel
+  aliases:
+  - Analog Nashville
+  - Analog at the Hutton Hotel
+  capacity: 300
+  capacity_source: https://www.analognashville.com/private-events/
+  evidence: The venue offers flexible set up and capacity of up to 300 people.
+  note: 'Eater Nashville 2018 agrees: ''capacity to hold 300 guests (standing room only) or 160 seated''.'
+  verified_at: '2026-10-16'
+  address: 1808 West End Avenue, 2nd Floor, Nashville, TN 37203
+- name: Steve & Judy Turner Recital Hall
+  aliases:
+  - Steve and Judy Turner Recital Hall
+  - Turner Recital Hall
+  capacity: 272
+  capacity_source: https://en.wikipedia.org/wiki/Blair_School_of_Music
+  evidence: Inaugurated in 1980, the Steve and Judy Turner Recital Hall is a 272-seat recital hall
+  verified_at: '2026-10-16'
+  lat: 36.138774
+  lon: -86.805621
