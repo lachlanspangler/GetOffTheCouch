@@ -6,6 +6,7 @@ import { SkeletonRows } from "./components/EventRow";
 import { Ctx, type AppCtx } from "./lib/ctx";
 import { isDemo, loadCity, loadIndex } from "./lib/data";
 import { applyFilters, deadlines } from "./lib/filters";
+import { recordSignal } from "./lib/recommend";
 import { setTitleLookup, useRoute, type Route } from "./lib/router";
 import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
@@ -100,7 +101,11 @@ export function App({ initial }: { initial?: Initial } = {}) {
       sourceNames,
       byId,
       saved,
-      toggleSave: (id: string) => setSaved(saved.includes(id) ? saved.filter((x) => x !== id) : [...saved, id]),
+      toggleSave: (id: string) => {
+        const ev = byId.get(id);
+        if (ev) recordSignal(ev, saved.includes(id) ? "unsave" : "save"); // on-device ranking signal (rank v2)
+        setSaved(saved.includes(id) ? saved.filter((x) => x !== id) : [...saved, id]);
+      },
       now,
       demo,
     };
