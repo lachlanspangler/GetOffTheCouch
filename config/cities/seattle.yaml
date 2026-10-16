@@ -164,7 +164,10 @@ sources:
       venue: {name: The Royal Room}
       organizer: The Royal Room
       default_category: music.concert
+  # DISABLED 2026-10-16: its MusicEvent JSON-LD carries the series' FIRST date (e.g. Sep 27), not the upcoming
+  # occurrence linked from the homepage, so every record looks past. Re-enable only with a per-occurrence date source.
   - id: triple_door
+    enabled: false
     adapter: jsonld
     name: The Triple Door (venue calendar)
     data_type: concerts
