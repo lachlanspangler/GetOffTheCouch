@@ -40,7 +40,7 @@ export function Health() {
           <span key={s} class={`pill pill-${STATE[s]?.cls ?? "off"}`}>{n} {STATE[s]?.label ?? s}</span>
         ))}
       </div>
-      <div class="table-wrap">
+      <div class="table-wrap" tabIndex={0} role="region" aria-label="Source health table">
         <table class="health-table">
           <thead>
             <tr><th>Source</th><th>State</th><th>Last success</th><th>Freshness SLA</th><th>Records</th><th>Note</th></tr>

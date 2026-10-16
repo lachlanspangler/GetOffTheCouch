@@ -22,7 +22,7 @@ function Onboarding({ initial, onDone }: { initial: Profile; onDone: (p: Profile
   const steps = ["What are you into?", "What do you want out of it?", "Budget & timing", "Where & when"];
   return (
     <div class="onboard">
-      <div class="onboard-progress" aria-label={`Step ${step + 1} of ${steps.length}`}>
+      <div class="onboard-progress" role="progressbar" aria-label="Onboarding progress" aria-valuemin={1} aria-valuemax={steps.length} aria-valuenow={step + 1} aria-valuetext={`Step ${step + 1} of ${steps.length}`}>
         {steps.map((s, i) => <span key={s} class={i <= step ? "on" : ""} />)}
       </div>
       <h2>{steps[step]}</h2>

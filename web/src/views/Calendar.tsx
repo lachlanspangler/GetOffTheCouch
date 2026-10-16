@@ -40,8 +40,8 @@ export function Calendar({ events }: { events: Event[] }) {
           <h2>{monthName}</h2>
           <button class="icon-btn" onClick={() => shift(1)} aria-label="Next month"><Icon name="right" /></button>
         </header>
-        <div class="cal-grid" role="grid" aria-label={monthName}>
-          {WD.map((w) => <div class="cal-wd" key={w} role="columnheader">{w}</div>)}
+        <div class="cal-grid" aria-label={monthName}>
+          {WD.map((w) => <div class="cal-wd" key={w} aria-hidden="true">{w}</div>)}
           {Array.from({ length: startWd }, (_, i) => <div key={`b${i}`} class="cal-cell blank" />)}
           {Array.from({ length: daysIn }, (_, i) => {
             const d = i + 1;
@@ -52,10 +52,10 @@ export function Calendar({ events }: { events: Event[] }) {
             return (
               <button
                 key={k}
-                role="gridcell"
                 class={`cal-cell ${k === sel ? "on" : ""} ${isToday ? "today" : ""} ${past ? "past" : ""}`}
                 onClick={() => go({ day: k }, true)}
-                aria-label={`${k}: ${evs.length} events`}
+                aria-label={`${new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(`${k}T12:00:00Z`))}: ${evs.length} event${evs.length === 1 ? "" : "s"}`}
+                aria-pressed={k === sel}
               >
                 <span class="cal-d">{d}</span>
                 {evs.length > 0 && (
