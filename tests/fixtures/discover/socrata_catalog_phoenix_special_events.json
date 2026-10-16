@@ -1,0 +1,194 @@
+{
+  "results" :
+    [
+      {
+        "resource" :
+          {
+            "name" : "PRCF - Special Events Customer Satisfaction",
+            "id" : "6iu8-hmbv",
+            "resource_name" : null,
+            "parent_fxf" : [],
+            "description" : "Percentage of special event promoters or hosts responding they were satisfied with the venue and management of the venue.  Examples: JDRF, Phoenix/Mesa Marathon, Margarita Mayhem. This information is collected monthly on Survey Monkey.",
+            "attribution" : "Parks, Recreation and Community Facilities",
+            "attribution_link" : null,
+            "contact_email" : null,
+            "type" : "dataset",
+            "updatedAt" : "2021-11-15T22:56:32.000Z",
+            "createdAt" : "2020-01-23T15:11:48.000Z",
+            "metadata_updated_at" : "2021-11-15T22:56:32.000Z",
+            "data_updated_at" : "2020-01-23T17:13:07.000Z",
+            "page_views" :
+              {
+                "page_views_last_week" : 0,
+                "page_views_last_month" : 5,
+                "page_views_total" : 137,
+                "page_views_last_week_log" : 0.0,
+                "page_views_last_month_log" : 2.584962500721156,
+                "page_views_total_log" : 7.10852445677817
+              },
+            "columns_name" :
+              [
+                "Page ID",
+                "Question_Number",
+                "Answer ChoiceID",
+                "Question ID",
+                "Choice Description",
+                "Page Title",
+                "ReportingMonth",
+                "RowID",
+                "ResponseID",
+                "Question",
+                "Question Header",
+                "Date Modified",
+                "ReportingDate",
+                "SurveyID",
+                "Weight",
+                "Title",
+                "Total Responses for Choice",
+                "Total Survey Responses",
+                "ReportingYear"
+              ],
+            "columns_field_name" :
+              [
+                "page_id",
+                "question_number",
+                "answer_choiceid",
+                "question_id",
+                "choice_description",
+                "page_title",
+                "reportingmonth",
+                "rowid",
+                "responseid",
+                "question",
+                "question_header",
+                "date_modified",
+                "reportingdate",
+                "surveyid",
+                "weight",
+                "title",
+                "total_responses_for_choice",
+                "total_surveyresponses",
+                "reportingyear"
+              ],
+            "columns_datatype" :
+              [
+                "Number",
+                "Text",
+                "Number",
+                "Number",
+                "Text",
+                "Text",
+                "Text",
+                "Number",
+                "Number",
+                "Text",
+                "Text",
+                "Calendar date",
+                "Calendar date",
+                "Number",
+                "Number",
+                "Text",
+                "Number",
+                "Number",
+                "Text"
+              ],
+            "columns_description" :
+              [
+                "Page ID assigned by Survey Monkey",
+                "Question Number created for each survey question. ",
+                "Answer Choice ID created by Survey Monkey",
+                "Question ID assigned by Survey Monkey",
+                "Description of the choices for survey; Agree, Strongly Agree or Disagree",
+                "Title of the type of survey, chosen from a drop down created by Survey Monkey",
+                "Month of the survey",
+                "Unique Row Identifier",
+                "Response ID assigned by Survey Monkey",
+                "Question created for survey",
+                "Question Header created to for each survey question.",
+                "Date the Survey was modified or created; most surveys are copied from previous survey",
+                "Date of the Survey, usually the first day of the quarter",
+                "Number assigned by Survey Monkey to each survey created",
+                "Calculation of the number of agree and strongly agree selections divided by the total number that participated in the survey.",
+                "Title of the Survey in Survey Monkey",
+                "Total responses for each question",
+                "Total responses received by each survey",
+                "Year of the survey"
+              ],
+            "columns_format" :
+              [
+                { "noCommas" : "true" },
+                {},
+                { "noCommas" : "true" },
+                { "noCommas" : "true" },
+                {},
+                {},
+                {},
+                {},
+                { "noCommas" : "true" },
+                {},
+                {},
+                { "view" : "date_time" },
+                { "view" : "date_time" },
+                { "noCommas" : "true" },
+                {},
+                {},
+                {},
+                {},
+                {}
+              ],
+            "download_count" : 47,
+            "provenance" : "official",
+            "lens_view_type" : "tabular",
+            "lens_display_type" : "table",
+            "locked" : false,
+            "backend" : "nbe",
+            "blob_mime_type" : null,
+            "hide_from_data_json" : false,
+            "publication_date" : "2020-01-23T17:12:48.000Z"
+          },
+        "classification" :
+          {
+            "categories" : [],
+            "tags" : [],
+            "domain_category" : "Parks, Recreation, and Community Facilities",
+            "domain_tags" : [ "survey" ],
+            "domain_metadata" :
+              [
+                {
+                  "key" : "Dataset-Characteristics_Performance-Measure-Linked?",
+                  "value" : "Yes"
+                },
+                {
+                  "key" : "Public-Access_Public-Access-Level",
+                  "value" : "Public"
+                },
+                {
+                  "key" : "Terms-of-Use_Terms-of-Use",
+                  "value" : "https://data.mesaaz.gov/stories/s/2dcd-j2nx/"
+                },
+                { "key" : "Frequency_Publishing", "value" : "Monthly" },
+                { "key" : "Frequency_Data-Change", "value" : "Monthly" }
+              ]
+          },
+        "metadata" :
+          { "domain" : "citydata.mesaaz.gov", "license" : "See Terms of Use" },
+        "permalink" : "https://citydata.mesaaz.gov/d/6iu8-hmbv",
+        "link" : "https://citydata.mesaaz.gov/Parks-Recreation-and-Community-Facilities/PRCF-Special-Events-Customer-Satisfaction/6iu8-hmbv",
+        "owner" :
+          {
+            "id" : "pxyu-mdaq",
+            "user_type" : "interactive",
+            "display_name" : "City of Mesa"
+          },
+        "creator" :
+          {
+            "id" : "pxyu-mdaq",
+            "user_type" : "interactive",
+            "display_name" : "City of Mesa"
+          }
+      }
+    ],
+  "resultSetSize" : 1,
+  "timings" : { "serviceMillis" : 41, "searchMillis" : [ 5, 8 ] },
+  "warnings" : []
+}

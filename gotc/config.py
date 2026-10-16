@@ -74,6 +74,7 @@ class CityConfig(_Cfg):
     timezone: str
     center: tuple[float, float]
     radius_km: float = 25.0
+    cbsa: str | None = Field(default=None, pattern=r"^\d{5}$")  # ties the city to config/metros.yaml / Census
     aliases: list[str] = Field(default_factory=list)
     neighborhoods: list[Neighborhood] = Field(default_factory=list)
     sources: list[SourceConfig] = Field(default_factory=list)

@@ -94,6 +94,8 @@ class _HostState:
     next_ok: float = 0.0
     robots: RobotFileParser | None = None
     robots_checked: bool = False
+    robots_status: int | None = None  # HTTP status of the robots.txt fetch (evidence for discovery)
+    robots_snippet: str = ""  # first bytes of a 401/403 robots.txt answer (e.g. a Cloudflare challenge)
 
 
 class PoliteClient:
@@ -240,6 +242,7 @@ class PoliteClient:
             st.robots_checked = True
             try:
                 r = self._client.get(f"{host}/robots.txt")
+                st.robots_status = r.status_code
                 if r.status_code < 400:
                     rp = RobotFileParser()
                     rp.parse(r.text.splitlines())
@@ -251,10 +254,25 @@ class PoliteClient:
                     rp = RobotFileParser()
                     rp.parse(["User-agent: *", "Disallow: /"])
                     st.robots = rp
+                    st.robots_snippet = r.text[:400]
             except httpx.HTTPError:
                 st.robots = None  # unreachable robots.txt → allowed (RFC 9309 §2.3.1.4)
         if st.robots and not st.robots.can_fetch(self.settings.user_agent, url):
             raise RobotsDisallowed(f"robots.txt disallows {url}", url)
+
+    def robots_verdict(self, url: str) -> str:
+        """Evidence for discovery: ``allowed`` | ``disallowed`` | ``no_robots_txt`` | ``unchecked``."""
+        _, st = self._host(url)
+        if not st.robots_checked:
+            return "unchecked"
+        if st.robots is None:
+            return "no_robots_txt"
+        if st.robots_status in (401, 403):
+            return f"robots_txt_http_{st.robots_status}"  # RFC 9309: unreachable-because-forbidden = disallow all
+        return "allowed" if st.robots.can_fetch(self.settings.user_agent, url) else "disallowed"
+
+    def robots_snippet(self, url: str) -> str:
+        return self._host(url)[1].robots_snippet
 
     def _backoff(self, attempt: int) -> float:
         return float(min(60.0, (2 ** (attempt - 1)) * 1.5 + random.uniform(0, 1)))

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:admin="http://webns.net/mvcb/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:ev="http://purl.org/rss/1.0/modules/event/">
+
+    <channel>
+
+    <title>Xfinity Mobile Arena</title>
+    <link>https://www.xfinitymobilearena.com/</link>
+    <description></description>
+    <dc:language>en</dc:language>
+	<dc:rights>Copyright 2026</dc:rights>
+    <dc:date>2026-10-16T21:42:19Z</dc:date>
+    <admin:generatorAgent rdf:resource="http://carbonhouse.com/" />
+
+		
+															<item>
+					<title>Celtics vs. 76ers (Preseason)</title>
+					<link>https://www.xfinitymobilearena.com/events/detail/celtics-76ers-10-16</link>
+					<guid>https://www.xfinitymobilearena.com/events/detail/celtics-76ers-10-16</guid>
+					<description></description>
+											<ev:location>Xfinity Mobile Arena</ev:location>
+																<dc:date>2026-10-16T23:00:00Z</dc:date>
+						<ev:startdate>2026-10-16T23:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-16T23:00:00Z</ev:enddate>
+																<ev:type>Sporting Events</ev:type>
+									</item><item>
+					<title>Senators vs. Flyers</title>
+					<link>https://www.xfinitymobilearena.com/events/detail/senators-vs-flyers-10-17</link>
+					<guid>https://www.xfinitymobilearena.com/events/detail/senators-vs-flyers-10-17</guid>
+					<description></description>
+											<ev:location>Xfinity Mobile Arena</ev:location>
+																<dc:date>2026-10-17T23:00:00Z</dc:date>
+						<ev:startdate>2026-10-17T23:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-17T23:00:00Z</ev:enddate>
+																<ev:type>Sporting Events</ev:type>
+									</item><item>
+					<title>Avalanche vs. Flyers</title>
+					<link>https://www.xfinitymobilearena.com/events/detail/avalanche-vs-flyers-10-19</link>
+					<guid>https://www.xfinitymobilearena.com/events/detail/avalanche-vs-flyers-10-19</guid>
+					<description></description>
+											<ev:location>Xfinity Mobile Arena</ev:location>
+																<dc:date>2026-10-19T23:00:00Z</dc:date>
+						<ev:startdate>2026-10-19T23:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-19T23:00:00Z</ev:enddate>
+																<ev:type>Sporting Events</ev:type>
+									</item><item>
+					<title>Cavaliers vs. 76ers</title>
+					<link>https://www.xfinitymobilearena.com/events/detail/76ers-cavaliers-8-22</link>
+					<guid>https://www.xfinitymobilearena.com/events/detail/76ers-cavaliers-8-22</guid>
+					<description></description>
+											<ev:location>Xfinity Mobile Arena</ev:location>
+																<dc:date>2026-10-22T23:00:00Z</dc:date>
+						<ev:startdate>2026-10-22T23:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-22T23:00:00Z</ev:enddate>
+																<ev:type>Sporting Events</ev:type>
+									</item><item>
+					<title>Ducks vs. Flyers</title>
+					<link>https://www.xfinitymobilearena.com/events/detail/ducks-vs-flyers-10-24</link>
+					<guid>https://www.xfinitymobilearena.com/events/detail/ducks-vs-flyers-10-24</guid>
+					<description></description>
+											<ev:location>Xfinity Mobile Arena</ev:location>
+																<dc:date>2026-10-24T17:00:00Z</dc:date>
+						<ev:startdate>2026-10-24T17:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-24T17:00:00Z</ev:enddate>
+																<ev:type>Sporting Events</ev:type>
+									</item></channel></rss>

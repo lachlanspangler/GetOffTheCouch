@@ -19,6 +19,8 @@ from gotc.config import CityConfig, Registry
 from gotc.health.reliability import reliability
 from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
+from gotc.pipeline.gate import gate_city
+from gotc.pipeline.incremental import export_unchanged, feed_hash, mark_exported
 from gotc.pipeline.rankprep import annotate
 from gotc.pipeline.starter_pack import load as load_starter_pack
 from gotc.pipeline.starter_pack import with_status
@@ -147,10 +149,16 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
             s.source_id: (r.score if (r := rel.get(f"{s.source_id}@{city.slug}")) else None) for s in feed.sources
         }
         feed = feed.model_copy(update={"events": annotate(feed.events, scores, now)})  # before summaries are cut
+        feed.coverage = gate_city(db, reg, city, now, feed.events)  # ADR-0008: go-live tier + coverage block
         CityFeed.model_validate(feed.model_dump())  # belt and braces: never export an invalid document
         cards, details = split_feed(feed)
-        _write(out_dir / "cities" / f"{city.slug}.json", cards.model_dump_json(exclude_none=True))
-        _write(out_dir / "cities" / f"{city.slug}.details.json", details.model_dump_json(exclude_none=True))
+        cards_json, details_json = cards.model_dump_json(exclude_none=True), details.model_dump_json(exclude_none=True)
+        paths = [out_dir / "cities" / f"{city.slug}.json", out_dir / "cities" / f"{city.slug}.details.json"]
+        fh = feed_hash(cards_json, details_json)
+        if not export_unchanged(db, city.slug, fh, paths):  # incremental: identical feeds aren't rewritten
+            _write(paths[0], cards_json)
+            _write(paths[1], details_json)
+            mark_exported(db, city.slug, fh, now)
         upcoming = [e for e in feed.events if e.start >= now - timedelta(hours=3)]
         index["cities"].append(
             {
@@ -173,6 +181,8 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
                 "sources_total": sum(1 for s in feed.sources if s.state != "disabled"),
                 "sources_disabled": sum(1 for s in feed.sources if s.state == "disabled"),
                 "stale_sources": sum(1 for s in feed.sources if s.stale and s.state != "disabled"),
+                "tier": feed.coverage.tier,
+                "coverage": json.loads(feed.coverage.model_dump_json(exclude_none=True)),
             }
         )
         for s in feed.sources:

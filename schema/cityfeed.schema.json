@@ -18,6 +18,243 @@
       "title": "Availability",
       "type": "string"
     },
+    "CityCoverage": {
+      "additionalProperties": false,
+      "description": "Per-city coverage + go-live tier, computed by ``gotc gate``. The UI never computes coverage itself.",
+      "properties": {
+        "banner": {
+          "default": false,
+          "title": "Banner",
+          "type": "boolean"
+        },
+        "criteria": {
+          "additionalProperties": {
+            "$ref": "#/$defs/CoverageCriterion"
+          },
+          "title": "Criteria",
+          "type": "object"
+        },
+        "evaluated_at": {
+          "format": "date-time",
+          "title": "Evaluated At",
+          "type": "string"
+        },
+        "failing_since": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failing Since"
+        },
+        "geocode_rate": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Geocode Rate",
+          "type": "number"
+        },
+        "passed_hard": {
+          "title": "Passed Hard",
+          "type": "boolean"
+        },
+        "passed_soft": {
+          "title": "Passed Soft",
+          "type": "boolean"
+        },
+        "pillars": {
+          "additionalProperties": {
+            "$ref": "#/$defs/CoveragePillar"
+          },
+          "title": "Pillars",
+          "type": "object"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "sources_healthy": {
+          "minimum": 0,
+          "title": "Sources Healthy",
+          "type": "integer"
+        },
+        "sources_total": {
+          "minimum": 0,
+          "title": "Sources Total",
+          "type": "integer"
+        },
+        "strongest": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Strongest",
+          "type": "array"
+        },
+        "tier": {
+          "enum": [
+            "live",
+            "beta",
+            "hidden"
+          ],
+          "title": "Tier",
+          "type": "string"
+        },
+        "top_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Top Source"
+        },
+        "top_source_share": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Top Source Share",
+          "type": "number"
+        }
+      },
+      "required": [
+        "tier",
+        "evaluated_at",
+        "passed_hard",
+        "passed_soft",
+        "sources_healthy",
+        "sources_total",
+        "geocode_rate"
+      ],
+      "title": "CityCoverage",
+      "type": "object"
+    },
+    "CoverageCriterion": {
+      "additionalProperties": false,
+      "description": "One go-live gate criterion (docs/research/SCALING.md \u00a73, ADR-0008). ``None`` = not part of that bar.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "pass_hard": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pass Hard"
+        },
+        "pass_soft": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pass Soft"
+        },
+        "threshold": {
+          "title": "Threshold",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "label",
+        "threshold"
+      ],
+      "title": "CoverageCriterion",
+      "type": "object"
+    },
+    "CoveragePillar": {
+      "additionalProperties": false,
+      "description": "A newcomer pillar's coverage: \u2713 strong, \u25d0 thin, \u2715 none.",
+      "properties": {
+        "count": {
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "state": {
+          "enum": [
+            "strong",
+            "thin",
+            "none"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "threshold": {
+          "minimum": 1,
+          "title": "Threshold",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "label",
+        "count",
+        "threshold",
+        "state"
+      ],
+      "title": "CoveragePillar",
+      "type": "object"
+    },
     "Estimate": {
       "additionalProperties": false,
       "description": "A modeled number. Always a band; ``mid`` is the point estimate shown with a '~'.",
@@ -1553,7 +1790,7 @@
       "type": "object"
     }
   },
-  "$id": "https://getoffthecouch.app/schema/cityfeed-1.5.0.json",
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.6.0.json",
   "additionalProperties": false,
   "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
   "properties": {
@@ -1578,6 +1815,17 @@
     "city_name": {
       "title": "City Name",
       "type": "string"
+    },
+    "coverage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CityCoverage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "events": {
       "items": {
@@ -1604,7 +1852,7 @@
       "type": "array"
     },
     "schema_version": {
-      "default": "1.5.0",
+      "default": "1.6.0",
       "title": "Schema Version",
       "type": "string"
     },

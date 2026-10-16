@@ -63,7 +63,7 @@
 | Area | State |
 |---|---|
 | Open data, libraries, universities, parks, venue calendars, arenas, athletics, Volo, volunteering, cons, trivia, openings, curated registry | ✅ real, live |
-| Weather, venue capacities (Wikidata + 40 sourced), starter pack, geocoding | ✅ real |
+| Weather, venue capacities (40 sourced; Wikidata rows frozen 2026-10-16, robots), starter pack, geocoding (Census; Nominatim off) | ✅ real |
 | Face-value concert prices | ✅ real where venues publish them. Ticketmaster fills the rest once keyed |
 | Resale prices, listing counts, "selling fast" from resale | 🟡 SeatGeek adapter ready; **needs `SEATGEEK_CLIENT_ID`** |
 | Ticketmaster (most big-venue tickets, on-sale times) | 🟡 adapter ready; **needs `TICKETMASTER_API_KEY`** |
@@ -88,6 +88,41 @@
    - Simpleview boards (Meet Boston, Visit Austin, Visit Denver)
    - Geeks Who Drink / King Trivia (LA and Seattle trivia)
    - Galaxy Digital tenants; Volo partner feed
+
+## Will change on push
+Branch `worktree-agent-af5b74cde53399d39` (scaling work, 2026-10-16). When you push it to `main`:
+
+1. **The hourly refresh becomes sharded** (`.github/workflows/refresh.yml`, ADR-0008):
+   - `prepare` pins the current `pipeline-state` commit and plans shards with `gotc shards --size 4`
+     (10 cities → 3 shards today, balanced by unit count).
+   - `shard` (matrix, `max-parallel: 8`) restores that state, runs `gotc run --cities … --no-build`, and uploads
+     a delta DB + its new raw payloads as a 1-day artifact. Shards never deploy, push or call Nominatim.
+   - `publish` restores the same state, merges the deltas (`gotc state merge`), runs `scripts/loop.sh` with
+     `--no-fetch` (doctor → build → export → contract tests), deploys Pages **once**, force-pushes the state,
+     and saves raw payloads to the Actions cache **once per day** (key `raw-YYYY-MM-DD`, was once per run).
+   - Same name ("Refresh data"), same cron (`17 * * * *`), same secrets, same Pages environment, same
+     `refresh` concurrency group. **No new one-time settings.** The existing Pages setup (Source: GitHub
+     Actions; workflow permissions: read and write) is all it needs.
+   - A failed shard doesn't block the deploy; its cities keep last-known-good data.
+2. **Fallback:** the previous single-job workflow is kept as `refresh-monolithic.yml`, manual only. If the
+   sharded run misbehaves: Actions → "Refresh data (monolithic fallback)" → Run workflow. To switch back for
+   good: uncomment its `schedule:` line and comment out the one in `refresh.yml`. Both use the same state
+   branch format (one `gotc.db.gz`), so you can switch either way at any time.
+3. **New `keepalive.yml`:** on the 1st of each month it re-enables `refresh.yml` and itself via the REST API
+   (`permissions: actions: write`), against GitHub's 60-day inactivity disable. No commits to main. In CI,
+   `gotc doctor` now warns in HEALTH.md when the last scheduled run is > 3 h old.
+4. **First run after the push:** the state DB gains two tables (migrations 005 `city_gate`, 006
+   `city_build_state`), applied automatically. The ten current cities are incumbents (`config/metros.yaml`), so
+   the go-live gate keeps them **live** for 7 days even though G10 (≥ 48 h of green runs) can't pass yet; a
+   live city failing a hard criterion shows `coverage.banner: true` after 72 h and drops to beta on day 7
+   (today that would be Austin and Miami on G8 geocoding, Chicago/Austin on G5 deadlines, Denver/Nashville on
+   G3/G4; see `gotc gate`).
+5. **Nominatim is now off** (robots.txt disallows `/search`; docs/SOURCES.md). New place-name-only locations
+   won't get coordinates until you decide otherwise (`GOTC_NOMINATIM=1`, a compliant 4/min lane).
+   **Wikidata venue capacities stopped refreshing** (robots.txt disallows `/sparql` and `/w/api.php`); existing
+   rows keep serving.
+6. **The dashboard needs an OSM credit** ("Geocoding © OpenStreetMap contributors") for previously cached
+   Nominatim coordinates; web/ was out of scope for this branch.
 
 ## What I'd do next
 1. With keys: record real Ticketmaster/SeatGeek fixtures, then check cross-seller dedup and price comparison on live NYC/LA arena data.

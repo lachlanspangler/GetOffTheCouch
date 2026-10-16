@@ -1,0 +1,15 @@
+# Philadelphia, PA: CBSA 37980 Philadelphia-Camden-Wilmington (6.33 M, Census V2024). Skeleton from `gotc city new`.
+# Draft: enabled stays false until `gotc gate --city philadelphia` passes (ADR-0008). Candidate sources:
+# `gotc discover philadelphia --seed library=… --seed university=…` → data/discover/philadelphia.yaml.
+# center: Census geocoder: 1400 JOHN F KENNEDY BLVD, PHILADELPHIA, PA, 19107
+# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.
+slug: philadelphia
+name: Philadelphia
+state: PA
+timezone: America/New_York
+center: [39.9533, -75.1634]
+radius_km: 20
+cbsa: "37980"
+aliases: []
+enabled: false
+sources: []

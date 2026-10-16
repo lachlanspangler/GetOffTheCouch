@@ -131,3 +131,28 @@ These come from government license data. They're always presented as a *signal*,
   - The first snapshot is a silent baseline. Existing businesses aren't news.
   - A license that appears later is shown with the day we first saw it, labeled "First appeared in the city's license data on …".
 - **Privacy.** Personal-data columns (owners, applicants, phones, e-mails) are dropped before mapping (`gotc/adapters/mapped.py`).
+
+## Coverage and the go-live gate (`gotc/pipeline/gate.py`, ADR-0008)
+Every city carries a `coverage` block, published in `index.json` and in its feed. The dashboard reads it and never computes coverage itself.
+- **Pillars** (counts from the exported events, so they match what's shown):
+
+  | pillar | what counts | "strong" at |
+  |---|---|---|
+  | Leagues | upcoming `sports_league.*` events (seasons are planned months ahead) | 5 |
+  | Openings & parties | openings first seen in the last 60 days, plus `nightlife.*` in the next 30 days | 10 |
+  | Concerts | `music.*` in the next 30 days | 20 |
+  | Volunteering | `volunteer.*` in the next 30 days | 5 |
+  | Cons & faires | upcoming `niche.*` | 2 |
+  | Trivia & games | `trivia_games.*` in the next 30 days | 5 |
+  | Deadlines | published (not derived) registration deadlines in the next 60 days | 10 |
+
+  A pillar is ✓ strong at its bar, ◐ thin below it, ✕ none at zero. The none state carries a note naming the gap ("we have no license or nightlife data for this city"). A thin pillar whose events all come from the curated registry says "all curated".
+- **Gate criteria G1–G11** follow docs/research/SCALING.md §3. **Hard** criteria decide the tier; **soft** misses become "thin coverage" reasons. Two are calibrated, so that one rule doesn't block every city:
+  - **G9:** a unit counts as recent if it succeeded within max(48 h, 2 × its cadence). Weekly sources aren't late between runs.
+  - **G10:** a "green run" is one where ≤ max(1, 10 %) of the city's attempted units failed, in a streak of ≥ 3 runs spanning ≥ 48 h. Reject rate (7 days) must be < 10 % and geofence drops < 5 %.
+  - **G2:** the bar drops from 250 to 150 events in the next 14 days for metros under 1.5 M people (Census CBSA population in `config/metros.yaml`).
+- **Tiers:** live (all hard criteria pass), beta (enabled, a hard miss), hidden (`enabled: false`, not exported).
+  - New cities start in beta. The ten cities published before the gate existed start live.
+  - A live city that fails a hard criterion gets a banner after 72 h and drops to beta after 7 days, so one bad week doesn't flap the picker.
+  - Every change is logged (`gate@<city>` in the health log).
+- **Shares** (G6–G8, G11, top-source share) are computed over upcoming exported events. The geocode rate is the share with coordinates. Online-only events are skipped at ingest, so they never count against a city.

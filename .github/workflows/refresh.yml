@@ -1,20 +1,93 @@
-# Hourly self-healing refresh: restore state → doctor → fetch due units → build → export → contract tests
-# → publish the dashboard to GitHub Pages → persist state → open/close issues for broken sources.
+# Hourly SHARDED self-healing refresh (docs/research/SCALING.md §4.6 item 3, docs/adr/0008).
 #
-# One-time setup (repo Settings):
-#   • Pages → Source: "GitHub Actions"
-#   • Actions → General → Workflow permissions: "Read and write"
-#   • Secrets (all optional): TICKETMASTER_API_KEY, SEATGEEK_CLIENT_ID, SOCRATA_APP_TOKEN
-# State (SQLite DB, gzipped) lives on the orphan `pipeline-state` branch, force-pushed each run (no history
-# bloat); raw payloads live in the Actions cache (best effort — see docs/adr/0003-ci-state.md).
+#   prepare  → note the pipeline-state commit; pack enabled cities into shards (`gotc shards`)
+#   shard ×N → restore that state; fetch only the shard's cities (`gotc run --cities … --no-build`);
+#              export a delta DB + the new raw payloads as an artifact. Shards never build, never call
+#              Nominatim, never push.
+#   publish  → restore the same state; merge every delta (`gotc state merge`); doctor → build (incremental)
+#              → export → contract tests (scripts/loop.sh with --no-fetch); deploy Pages once; persist state
+#              in one force-push; open/close source issues.
+#
+# A failed shard doesn't block publishing: its cities keep their last-known-good data (marked stale past the
+# SLA), and its units are simply due again next hour.
+#
+# Fallback: `refresh-monolithic.yml` (manual) is the previous single-job workflow. Same concurrency group.
+# One-time setup (repo Settings) is unchanged: Pages → Source "GitHub Actions"; Actions → Workflow permissions
+# "Read and write"; optional secrets TICKETMASTER_API_KEY, SEATGEEK_CLIENT_ID, SOCRATA_APP_TOKEN.
 name: Refresh data
 on:
   schedule: [{ cron: "17 * * * *" }]
   workflow_dispatch:
+    inputs:
+      shard_size: { description: "cities per shard (approx.)", required: false, default: "4" }
 permissions: { contents: write, pages: write, id-token: write, issues: write }
 concurrency: { group: refresh, cancel-in-progress: false }
+env:
+  GOTC_USER_AGENT: "GetOffTheCouch/0.1 (+https://github.com/${{ github.repository }})"
+
 jobs:
-  refresh:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      state_sha: ${{ steps.state.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync && uv pip install -e .
+      - id: state
+        name: Pin the pipeline-state commit every job will use
+        run: echo "sha=$(git ls-remote origin refs/heads/pipeline-state | cut -f1)" >> "$GITHUB_OUTPUT"
+      - id: plan
+        name: Plan shards
+        env: { SIZE: "${{ inputs.shard_size || '4' }}" }
+        run: |
+          matrix=$(.venv/bin/python -m gotc shards --size "$SIZE")
+          echo "$matrix"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  shard:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync && uv pip install -e .
+      - name: Restore pipeline state
+        env: { SHA: "${{ needs.prepare.outputs.state_sha }}" }
+        run: |
+          mkdir -p data/raw out
+          if [ -n "$SHA" ] && git fetch --depth=1 origin "$SHA"; then
+            git show "$SHA:gotc.db.gz" | gunzip > data/gotc.db && echo "restored DB at $SHA"
+          else
+            echo "no pipeline-state branch yet; starting fresh"
+          fi
+      - name: Fetch this shard's cities
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
+          SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          CITIES: ${{ matrix.cities }}
+          SHARD: ${{ matrix.shard }}
+        run: |
+          .venv/bin/python -m gotc state mark > out/base.json
+          sleep 1
+          .venv/bin/python -m gotc run --cities "$CITIES" --no-build --max-minutes 20 --trigger shard
+          .venv/bin/python -m gotc state delta --base out/base.json --cities "$CITIES" --out "out/delta-$SHARD.db"
+          (cd data && find raw -type f -newer ../out/base.json -print0 | tar --null -czf "../out/raw-$SHARD.tgz" -T -)
+          gzip -9 "out/delta-$SHARD.db" && ls -la out
+      - uses: actions/upload-artifact@v4
+        with: { name: "shard-${{ matrix.shard }}", path: out/, retention-days: 1 }
+
+  publish:
+    needs: [prepare, shard]
+    if: ${{ always() && needs.prepare.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     environment: { name: github-pages, url: "${{ steps.deploy.outputs.page_url }}" }
@@ -23,23 +96,34 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync && uv pip install -e .
       - name: Restore pipeline state
+        env: { SHA: "${{ needs.prepare.outputs.state_sha }}" }
         run: |
-          mkdir -p data
-          if git fetch --depth=1 origin pipeline-state 2>/dev/null; then
-            git show origin/pipeline-state:gotc.db.gz | gunzip > data/gotc.db && echo "restored DB"
+          mkdir -p data/raw
+          if [ -n "$SHA" ] && git fetch --depth=1 origin "$SHA"; then
+            git show "$SHA:gotc.db.gz" | gunzip > data/gotc.db && echo "restored DB at $SHA"
           else
             echo "no pipeline-state branch yet; starting fresh"
           fi
-      - uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
         with: { path: data/raw, key: "raw-${{ github.run_id }}", restore-keys: "raw-" }
-      - name: Self-healing loop
+      - uses: actions/download-artifact@v4
+        with: { pattern: "shard-*", path: shards, merge-multiple: true }
+      - name: Merge shard deltas
+        run: |
+          shopt -s nullglob
+          for t in shards/raw-*.tgz; do tar -xzf "$t" -C data; done
+          deltas=()
+          for d in shards/delta-*.db.gz; do gunzip -k "$d" && deltas+=("${d%.gz}"); done
+          if [ ${#deltas[@]} -eq 0 ]; then echo "::warning::no shard deltas (every shard failed?)"; exit 0; fi
+          .venv/bin/python -m gotc state merge "${deltas[@]}" || echo "::warning::a shard delta was refused (see log)"
+      - name: Self-healing loop (build + export; shards already fetched)
         env:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
           SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
-          GOTC_RUN_ARGS: "--max-minutes 25"
-          GOTC_GEOCODE_BUDGET: "40"   # cold cache: fill over a few runs instead of blowing the job timeout
-          GOTC_USER_AGENT: "GetOffTheCouch/0.1 (+https://github.com/${{ github.repository }})"
+          GOTC_RUN_ARGS: "--no-fetch"
+          GOTC_GEOCODE_BUDGET: "40"   # Census lookups per city per run; Nominatim stays off (docs/SOURCES.md)
+          GOTC_RAW_RETENTION_DAYS: "7"
         run: bash scripts/loop.sh
       - name: Job summary
         if: always()
@@ -72,3 +156,11 @@ jobs:
           cd "$tmp" && git init -q -b pipeline-state && git add gotc.db.gz \
             && git -c user.name=gotc-bot -c user.email=gotc-bot@users.noreply.github.com commit -qm "pipeline state $(date -u +%FT%TZ)" \
             && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pipeline-state
+      - id: day
+        if: always()
+        run: echo "key=raw-$(date -u +%F)" >> "$GITHUB_OUTPUT"
+      - name: Save raw payloads (one cache entry per day, not per run)
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with: { path: data/raw, key: "${{ steps.day.outputs.key }}" }

@@ -1,0 +1,15 @@
+# Phoenix, AZ: CBSA 38060 Phoenix-Mesa-Chandler (5.19 M, Census V2024). Skeleton from `gotc city new`.
+# Draft: enabled stays false until `gotc gate --city phoenix` passes (ADR-0008). Candidate sources:
+# `gotc discover phoenix --seed library=… --seed university=…` → data/discover/phoenix.yaml.
+# center: Census geocoder: 200 W WASHINGTON ST, PHOENIX, AZ, 85003
+# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.
+slug: phoenix
+name: Phoenix
+state: AZ
+timezone: America/Phoenix
+center: [33.4483, -112.0764]
+radius_km: 30
+cbsa: "38060"
+aliases: []
+enabled: false
+sources: []

@@ -1,0 +1,77 @@
+# FALLBACK (manual only since 2026-10-16): the original single-job refresh. The scheduled refresh is now the
+# sharded `refresh.yml`. If that one misbehaves, run this from Actions → "Refresh data (monolithic fallback)" →
+# Run workflow; to make it the scheduled job again, uncomment the `schedule:` line below and comment out the one
+# in refresh.yml (docs/STATUS.md "Will change on push"). Both share the `refresh` concurrency group, so they never
+# race on the pipeline-state branch.
+#
+# Self-healing refresh: restore state → doctor → fetch due units → build → export → contract tests
+# → publish the dashboard to GitHub Pages → persist state → open/close issues for broken sources.
+#
+# One-time setup (repo Settings):
+#   • Pages → Source: "GitHub Actions"
+#   • Actions → General → Workflow permissions: "Read and write"
+#   • Secrets (all optional): TICKETMASTER_API_KEY, SEATGEEK_CLIENT_ID, SOCRATA_APP_TOKEN
+# State (SQLite DB, gzipped) lives on the orphan `pipeline-state` branch, force-pushed each run (no history
+# bloat); raw payloads live in the Actions cache (best effort — see docs/adr/0003-ci-state.md).
+name: Refresh data (monolithic fallback)
+on:
+  # schedule: [{ cron: "17 * * * *" }]
+  workflow_dispatch:
+permissions: { contents: write, pages: write, id-token: write, issues: write }
+concurrency: { group: refresh, cancel-in-progress: false }
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: { name: github-pages, url: "${{ steps.deploy.outputs.page_url }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync && uv pip install -e .
+      - name: Restore pipeline state
+        run: |
+          mkdir -p data
+          if git fetch --depth=1 origin pipeline-state 2>/dev/null; then
+            git show origin/pipeline-state:gotc.db.gz | gunzip > data/gotc.db && echo "restored DB"
+          else
+            echo "no pipeline-state branch yet; starting fresh"
+          fi
+      - uses: actions/cache@v4
+        with: { path: data/raw, key: "raw-${{ github.run_id }}", restore-keys: "raw-" }
+      - name: Self-healing loop
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
+          SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          GOTC_RUN_ARGS: "--max-minutes 25"
+          GOTC_GEOCODE_BUDGET: "40"   # cold cache: fill over a few runs instead of blowing the job timeout
+          GOTC_USER_AGENT: "GetOffTheCouch/0.1 (+https://github.com/${{ github.repository }})"
+        run: bash scripts/loop.sh
+      - name: Job summary
+        if: always()
+        run: cat docs/HEALTH.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Issues for quarantined sources
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: .venv/bin/python scripts/health_issues.py
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
+      - name: Build dashboard with fresh data
+        working-directory: web
+        env: { GOTC_BASE: "/GetOffTheCouch/", GOTC_SITE_ORIGIN: "https://lachlanspangler.github.io" }
+        run: ../.venv/bin/python -m gotc demo && npm ci && npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: web/dist }
+      - id: deploy
+        uses: actions/deploy-pages@v4
+      - name: Persist pipeline state
+        if: always()
+        run: |
+          [ -f data/gotc.db ] || exit 0
+          tmp=$(mktemp -d)
+          .venv/bin/python scripts/slim_state.py data/gotc.db "$tmp/gotc.db"
+          gzip -9 -c "$tmp/gotc.db" > "$tmp/gotc.db.gz" && rm "$tmp/gotc.db"
+          cd "$tmp" && git init -q -b pipeline-state && git add gotc.db.gz \
+            && git -c user.name=gotc-bot -c user.email=gotc-bot@users.noreply.github.com commit -qm "pipeline state $(date -u +%FT%TZ)" \
+            && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pipeline-state

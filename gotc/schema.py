@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.5.0"
+SCHEMA_VERSION = "1.6.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -404,6 +404,47 @@ class NeighborhoodPoint(Strict):
     lon: float
 
 
+class CoverageCriterion(Strict):
+    """One go-live gate criterion (docs/research/SCALING.md §3, ADR-0008). ``None`` = not part of that bar."""
+
+    label: str
+    value: float | None = None  # the measured number (counts, or shares 0–1)
+    threshold: str  # human-readable, e.g. "≥ 250 (hard)"
+    pass_hard: bool | None = None
+    pass_soft: bool | None = None
+    note: str | None = None
+
+
+class CoveragePillar(Strict):
+    """A newcomer pillar's coverage: ✓ strong, ◐ thin, ✕ none."""
+
+    label: str
+    count: Annotated[int, Field(ge=0)]
+    threshold: Annotated[int, Field(ge=1)]  # count at which the pillar is "strong"
+    state: Literal["strong", "thin", "none"]
+    note: str | None = None  # e.g. "all curated", "we have no license data for this city"
+
+
+class CityCoverage(Strict):
+    """Per-city coverage + go-live tier, computed by ``gotc gate``. The UI never computes coverage itself."""
+
+    tier: Literal["live", "beta", "hidden"]
+    evaluated_at: AwareDatetime
+    passed_hard: bool
+    passed_soft: bool
+    failing_since: AwareDatetime | None = None  # a live city failing a hard criterion since …
+    banner: bool = False  # live city failing a hard criterion for > 72 h: show a banner
+    sources_healthy: Annotated[int, Field(ge=0)]
+    sources_total: Annotated[int, Field(ge=0)]
+    pillars: dict[str, CoveragePillar] = Field(default_factory=dict)
+    strongest: list[str] = Field(default_factory=list)  # pillar ids, strongest first
+    geocode_rate: Confidence  # share of exported events with coordinates
+    top_source: str | None = None
+    top_source_share: Confidence = 0.0
+    criteria: dict[str, CoverageCriterion] = Field(default_factory=dict)  # G1…G11
+    reasons: list[str] = Field(default_factory=list)  # why the city isn't fully live / soft notes
+
+
 class CityFeed(Strict):
     """The exported per-city document: ``web/public/data/cities/<slug>.json``."""
 
@@ -419,6 +460,7 @@ class CityFeed(Strict):
     venues: list[Venue] = Field(default_factory=list)
     sources: list[SourceStatus] = Field(default_factory=list)
     starter_pack: list[StarterItem] = Field(default_factory=list)  # state new-resident deadlines
+    coverage: CityCoverage | None = None  # go-live tier + coverage block (1.5.0); also in index.json
     is_demo: bool = False
 
 

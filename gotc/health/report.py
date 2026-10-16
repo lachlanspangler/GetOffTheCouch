@@ -91,6 +91,20 @@ def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None =
             lines.append(
                 f"- `{key}` — **{kind}**: {ACTION.get(kind, 'investigate')}. Last error: `{(h.last_error or '')[:200]}`"
             )
+    gates = db.all("SELECT city, tier, failing_since, data FROM city_gate ORDER BY city")
+    if gates:
+        import json
+
+        lines += [
+            "",
+            "## Go-live gate (ADR-0008)",
+            "",
+            "| City | Tier | Failing hard since | Hard misses |",
+            "|---|---|---|---|",
+        ]
+        for g in gates:
+            reasons = [r.split(":")[0] for r in json.loads(g["data"]).get("reasons", []) if not r.startswith("thin:")]
+            lines.append(f"| {g['city']} | {g['tier']} | {g['failing_since'] or '–'} | {', '.join(reasons) or '–'} |")
     rej = db.all(
         "SELECT unit, COUNT(*) n, MAX(error) sample FROM rejects WHERE at >= ? GROUP BY unit ORDER BY n DESC LIMIT 15",
         (iso(now - timedelta(days=2)),),

@@ -74,6 +74,13 @@ def test_fresh_fixture_export_honours_the_contract(db, settings):
         assert any(d.provenance for d in det.events.values())
     index = json.loads((settings.web_data_dir / "index.json").read_text())
     assert index["schema_version"] == SCHEMA_VERSION and index["cities"]
+    from gotc.schema import CityCoverage
+
+    for c in index["cities"]:  # ADR-0008: every exported city carries its tier + coverage block
+        cov = CityCoverage.model_validate(c["coverage"])
+        assert c["tier"] == cov.tier and cov.tier in ("live", "beta")
+        doc = json.loads((settings.web_data_dir / "cities" / f"{c['slug']}.json").read_text())
+        assert doc["coverage"]["tier"] == cov.tier
     health = json.loads((settings.web_data_dir / "health.json").read_text())
     assert {"units", "log", "generated_at"} <= health.keys()
 
@@ -90,3 +97,12 @@ def test_real_exports_honour_the_contract(path: Path):
 @pytest.mark.parametrize("path", DEMOS, ids=[p.stem for p in DEMOS])
 def test_demo_exports_are_flagged(path: Path):
     check_feed(json.loads(path.read_text()), demo=True)
+
+
+@pytest.mark.parametrize("path", EXPORTS, ids=[p.stem for p in EXPORTS])
+def test_real_exports_within_payload_budget(path: Path):
+    from gotc.pipeline.payload import check_city
+    from gotc.storage.db import utcnow
+
+    rep = check_city(path, utcnow())
+    assert not rep.failures, rep.failures  # SCALING.md §4.6 item 5: shard the card files before this fails

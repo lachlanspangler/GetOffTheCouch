@@ -15,7 +15,8 @@ notes and raw samples: `docs/research/city_open_data.md`, `docs/research/ticketi
 - PoliteClient honors robots.txt (and `Crawl-delay`) for every adapter except documented data APIs, which opt out
   in code: **Socrata** (SODA API) and **ArcGIS** (`services*.arcgis.com/robots.txt` answers HTTP 403 "Invalid URL",
   i.e. no policy is published; PoliteClient would read that as "disallow all"). CKAN, BiblioCommons, Trumba,
-  Localist, LiveWhale, Tribe, Simpleview and Communico all go through the robots check.
+  Localist, LiveWhale, Tribe, Simpleview and Communico all go through the robots check. Every other opt-out is
+  listed in "Robots exceptions and API usage policies" below.
 - **Openings** (`data_type: openings`, `kind: opening`) come from license data. Every record is all-day on the
   license's newness date (application, original issue, or registered start; never a renewal date), its
   description starts with "License signal, not a confirmed opening date", and personal-data columns (owner,
@@ -78,6 +79,31 @@ notes and raw samples: `docs/research/city_open_data.md`, `docs/research/ticketi
 Rejected ticketing/discovery platforms (Bandsintown, Songkick, Resident Advisor, DICE, AXS, DoStuff, Yelp, …) and
 their reasons are in `docs/research/ticketing_and_events_apis.md` §0.
 
+## Robots exceptions and API usage policies (reviewed 2026-10-16)
+
+Every call made with `respect_robots=False`, and why. robots.txt and the operator's API policy were both re-read
+on 2026-10-16 with our UA. **Rule:** an opt-out is allowed only for a documented machine API whose operator
+publishes terms for programmatic clients, we follow those terms, and the row is listed here. Where the
+operator's own policy discourages our kind of use, the source is off.
+
+| host / path | robots.txt (2026-10-16) | operator API policy | our use | stance |
+|---|---|---|---|---|
+| `api.us.socrata.com`, `<portal>/resource/*.json` (SODA) | catalog host: 301 to nginx page (no policy) | documented SODA API, app tokens optional | adapters + `gotc discover` | ✅ exception (unchanged) |
+| `services*.arcgis.com` FeatureServer | 403 "Invalid URL" (no policy) | documented ArcGIS REST | adapters | ✅ exception (unchanged) |
+| `geocoding.geo.census.gov` | 404 (no file) | public geocoder, batch ≤ 10,000 rows | batch first, then single-line (per-city budget `GOTC_GEOCODE_BUDGET`) | ✅ allowed (no robots file) |
+| `nominatim.openstreetmap.org/search` | **`User-agent: *` `Disallow: /search`** (also /reverse, /lookup, /details) | [OSMF Nominatim policy](https://operations.osmfoundation.org/policies/nominatim/): "an absolute maximum of 1 request per second"; "Scripts running longer than a day and scripts that are run at regular intervals are restricted to 4 requests per minute"; single thread, one machine, "no distributed scripts"; "Results must be cached on your side"; repeated identical queries "may be classified as faulty and blocked"; "periodic requests from apps are considered bulk geocoding and as such are strongly discouraged"; attribution required | **was:** fallback for every place name at 1.1 s, up to 150/city/run (≈55 req/min bursts, a policy violation). **now:** off by default. `GOTC_NOMINATIM=1` opts one process (never a CI shard) into a compliant lane: ≥ 15 s between requests, hard per-run budget `GOTC_NOMINATIM_BUDGET` (default 20) shared by all cities, every answer (hit or miss) cached forever and never re-sent, Census tried first | ⛔ **off** (robots disallows `/search` and the policy discourages periodic app use). Previously cached Nominatim results keep serving; they are © OpenStreetMap contributors (ODbL), so the dashboard must show "Geocoding © OpenStreetMap contributors" wherever coordinates are shown (web/ change pending, see STATUS). |
+| `api.weather.gov` | **`User-agent: *` `Disallow: /`** | NWS API docs ask apps for a UA with contact info; no published rate limit | 1 forecast/city per 3 h (`gotc/pipeline/weather.py`) | ⚠ exception kept: documented public API that explicitly expects application clients; flagged for the user to confirm |
+| `query.wikidata.org/sparql` (WDQS) | **`User-agent: *` `Disallow: /sparql`**, `Disallow: /bigdata` | WDQS limits (60 s query time/min per UA+IP, UA policy) | **was:** 1 SPARQL/city/week with `respect_robots=False` for venue capacities (`gotc/pipeline/venue_refs.py`), not listed here | ⛔ **stopped** 2026-10-16 |
+| `www.wikidata.org/w/api.php` (wbsearchentities / wbgetentities), `/wiki/Special:EntityData` | **`Disallow: /w/`**, `Disallow: /api/`, `Disallow: /wiki/Special:` for `*` (only `api.php?action=mobileview&` is allowed) | MediaWiki API etiquette (maxlag, UA) | considered as the replacement for SPARQL | ⛔ not used: robots disallows it too |
+| `app.ticketmaster.com`, `api.seatgeek.com` | — | keyed developer APIs with ToS | key-gated adapters | ✅ exception (unchanged) |
+
+**Venue capacities after the Wikidata stop:** curated `config/venues/<slug>.yaml` entries (each with a
+`capacity_source` URL and a verbatim `evidence` quote) are now the only live source. Rows already in the
+`venue_refs` table (fetched before 2026-10-16; Wikidata is CC0) keep serving with their QID as the cited source and
+are never refreshed. Attendance bands for venues without a capacity fall back to category priors, as before.
+`gotc discover` therefore cannot seed venues from Wikidata (SCALING.md §2.5); it fingerprints operator-supplied
+seed URLs instead.
+
 ## Rejected, blocked and dead sources
 
 | Source | City | Why it isn't used | Evidence |
@@ -100,6 +126,35 @@ their reasons are in `docs/research/ticketing_and_events_apis.md` §0.
 | WA LCB Local Authority Letters `vgcw-qfjm` | Seattle | only ~18 rows statewide, 0 for Seattle | research |
 | Florida DBPR ABT CSV extracts | Miami | now used: `fl_dbpr_openings_miami` (csvfile, `bd4006lic.csv`). See "Races, openings, trivia (session 2)" | research §3.9 |
 | Walker Art Center, artsmia.org | Minneapolis | feeds disabled / 429 | research |
+
+## Discovery endpoints (`gotc discover`, 2026-10-16)
+
+These are called only by `gotc discover <city>`, out of band, never by the hourly run. Every request goes
+through PoliteClient with robots.txt checked first. Live runs on 2026-10-16 for Phoenix and Philadelphia used
+43 and 44 requests.
+
+| host / endpoint | robots.txt (2026-10-16, our UA) | use | stance |
+|---|---|---|---|
+| `api.us.socrata.com/api/catalog/v1` | no robots file (301 to nginx page) | cross-tenant dataset search, filtered to the place/county/state | ✅ documented Discovery API |
+| `catalog.data.gov/search` | allowed, `Crawl-Delay: 10` (honored) | local/state datasets; a Socrata `/api/views/<id>` identifier maps straight to a unit | ✅ |
+| `hub.arcgis.com/api/search/v1/collections/site/items` | allowed for `/api/`, `Crawl-delay: 60` (honored) | find the official Hub site and its orgId | ✅ one request per city |
+| `www.arcgis.com/sharing/rest/search` | allowed | org-scoped Feature Service search | ✅ |
+| `services*.arcgis.com/…/FeatureServer/0?f=json` | 403 "Invalid URL" (no policy) | layer fields (date columns) for the top 4 candidates | ✅ the existing ArcGIS exception |
+| `geocoding.geo.census.gov/geocoder/geographies/onelineaddress` | no robots file | city hall → county (joins the place terms) | ✅ |
+| `geocoding.geo.census.gov/geocoder/locations/onelineaddress` | no robots file | `gotc city recenter`: 49 lookups re-derived 43 of 50 metro centers (6 kept: no match, a different street, or > 5 km away; Hampton Roads has no single address) | ✅ |
+| `gateway.bibliocommons.com/v2/libraries/<code>/rss/events` | no robots file | 1-day window per guessed or linked code; 404 = unknown code | ✅ (never `<code>.bibliocommons.com`, Crawl-delay 120) |
+| `<tenant>.galaxydigital.com/need/rss/` | marketing paths only | tenant probe; unknown tenants answer 200 "Bad Domain" | ✅ |
+| `www.volosports.com/discover[/<market>]` | allows all but /rfo /admin /staff | market list + "N ways to play" | ✅ |
+| `www.teamtrivia.com/sitemap-locations.php` | allowed (the site's own sitemap) | region list | ✅ |
+| `challengeentertainment.com/wp-json/ce/v1/shows` | Yoast default (all allowed) | national feed filtered to the radius → `metro-*` classes | ✅ |
+| LibCal (`<host>/calendar`, `ical_subscribe.php`) | Crawl-delay 10 on `*.libcal.com` (honored) | public calendar ids → one ICS per calendar | ✅ |
+| Localist `/api/2/events`, LiveWhale `/live/json/…`, WP `/wp-json/`, carbonhouse `/events/rss` | per host, checked | endpoint probes on seed domains | ✅ when allowed |
+| Live Nation / Ticketmaster / AEG / Prekindle / LeagueLab hosts | — | never requested (`config/discovery_denylist.yaml`) | ⛔ ToS |
+
+**Found blocked during the first live runs** (recorded, not worked around):
+- `www.freelibrary.org` and `www.upenn.edu`: robots.txt answers HTTP 403, so PoliteClient treats it as "disallow all" (RFC 9309).
+- `www.phoenix.gov/parks` links the city's ActiveNet registration (`anc.apm.activecommunities.com`). It's flagged `manual_review`, because its ToS is unread.
+- `events.mcldaz.org` (Maricopa County Library District) runs an events platform we have no adapter for.
 
 ## How to add a source
 

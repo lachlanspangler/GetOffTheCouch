@@ -1,0 +1,1822 @@
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- iid: 5371 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <link href="https://static-assets-us.libcal.com/bootstrap_23/bootstrap3_16.min.css" rel="stylesheet">
+    
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://static-assets-us.libcal.com/css_163/LibCal_public.min.css" rel="stylesheet">
+    <link href="https://static-assets-us.libcal.com/css_163/print.min.css" rel="stylesheet" media="print">
+    
+<script src="https://static-assets-us.libcal.com/jquery_16/jquery.min.js"></script>
+
+
+    <script src="https://static-assets-us.libcal.com/bootstrap_23/bootstrap3.min.js"></script>
+    <script src="https://static-assets-us.libcal.com/js_163/LibCal_public.min.js"></script>
+        <script>
+    springSpace.dateFormat = "dddd, MMMM D, YYYY";
+    springSpace.dateShortFormat = "ddd MMM Do YYYY";
+    springSpace.timeFormat = "h:mma";
+    springSpace.timezone = 'America/Phoenix';
+    springSpace.currency = "USD";
+
+    springSpace.language = 'en'; // en
+    springSpace.locale = 'en-US'; // en-US
+
+    springSpace.phpTimeFormat = 'g:ia';
+
+    springSpace.bootstrapAsset = 'https://static-assets-us.libcal.com/bootstrap_23/bootstrap3_16.min.css';
+    springSpace.publicCssAsset = 'https://static-assets-us.libcal.com/css_163/LibCal_public.min.css';
+    springSpace.adminCssAsset = 'https://static-assets-us.libcal.com/css_163/LibCal_admin.min.css';
+</script>
+        <title>
+                Phoenix Public Library Events and Reservations -
+        Phoenix Public Library 
+    </title>
+    <style>
+            .container {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .s-lc-public-banner, .s-lc-public-footer {
+                margin-right: -24px;
+                margin-left: -24px;
+            }
+        }
+    </style>
+    <link rel="alternate" type="application/rss+xml" title="Latest Events" href="/rss.php?iid=5371&amp;m=month&amp;cid=-1"/>
+<link rel="stylesheet" href="https://static-assets-us.libcal.com/css_163/datepicker.min.css"/>
+<style>
+        .bs-placeholder {
+        color: #333 !important;
+    }
+
+    .s-lc-c-erh {
+        margin-top: 6px;
+    }
+
+    .s-lc-c-ical-link-vert {
+        float: right;
+    }
+
+    .s-lc-c-ical-description-vert {
+        text-align: right;
+    }
+
+    .s-lc-c-list-cont-horiz {
+        clear: both;
+    }
+
+    #cal-form .bootstrap-select {
+        width: 100%;
+    }
+
+    #cal-form .bootstrap-select .btn {
+        font-size: 0.8em;
+    }
+
+        /* This CSS controls: */
+/* Public and Admin System Calendar */
+/* Public Full and Mini Calendar Widget */
+
+/*Embeddable mini-calendar - from Widgets/API section */
+
+#mini-calendar { border: 3px solid #066A9E; padding: 2px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.cal-mini {width: 100%; font-family: Arial, Verdana, sans-serif; }
+.cal-mini td { border-right: 1px solid #f2f2f2; }
+.cal-mini-day-head, .cal-mini-title-row td {border: 0px!important;  background-color: #f2f2f2;}
+.cal-mini-title {text-align: center; color: #362E2C; font: bold 14px Arial, Verdana, sans-serif;}
+.cal-mini-day-head { color: #7F7F7F; text-align: center; font-size: 12px; font-weight: bold; }
+.cal-mini-arrow { text-align: center!important; font-size: 16px;}
+.cal-mini-day-num, .cal-mini-day-pad { text-align: center;  color: #362E2C; margin:1px;}
+.cal-mini-hasevent a { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background-color: #FF972F;  border: 1px solid #fff; display: block; color: #fff; text-decoration: none; }
+.cal-mini-hasevent a:hover { background-color: #fff; color: #FF972F; text-decoration: none; border: 1px solid #FF972F; }
+#calevent-mini-list-h { padding: 3px 0px 3px 5px; color: #362E2C; border-top: 1px solid #f2f2f2; border-bottom: 1px solid #066A9E; background-color: #f2f2f2; font: bold 12px Arial, Verdana, sans-serif; }
+.calevent-mini { list-style-type: none; padding: 0px; margin:0px; overflow: auto; }
+.calevent-mini-time { padding: 0px; margin: 0px; color: #4A4A4A; font-size: 11px;}
+.calevent-mini li a{ font-weight: bold; }
+.calevent-mini li{ padding: 0px 5px; margin: 0px; border-bottom: 1px solid #f2f2f2; }
+.calevent-mini li:hover{ background-color: #f2f2f2; }
+
+.s-lc-eventcard-event-color-bar{display: none !important;}
+
+</style>
+    <!-- Below is optional element styling  //-->
+<style type="text/css">
+#s_lc_event_7561918 {
+  background: #DFDFDF;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  color: #777777;
+  font: 14px Arial, Helvetica, Verdana;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+#s_lc_event_7561918:hover {
+  opacity: 0.9;
+}
+#s-lc-public-pt{ display:none; }
+.s-lc-eventcard-heading-text-group { font-size: 17px; }
+</style>
+<style>
+/*Hide Event Pill for In Person and Online Events*/
+.s-lc-eventcard-pill {
+display: none;}
+</style>
+</head>
+<body id="calendar_15420" class="s-lc-public s-lc-public-page-5">
+
+
+<a id="s-lc-public-skiplink" class="s-lc-skiplink alert-info" href="#s-lc-public-title-area">Skip to Main Content</a>
+
+
+<div class="container">
+            <div id="s-lc-public-banner" class="row s-lc-public-banner" role="banner">
+            <a href="https://calendar.phoenixpubliclibrary.org/">
+                <img loading="lazy" alt="Phoenix Public Library  Phoenix Public Library Events and Reservations" class="img-responsive" id="s-lc-public-banner-img" src="https://d68g328n4ug0e.cloudfront.net/data/headers/5371/Phoenix_Public_Library.png" />
+                <span class="sr-only">Phoenix Public Library  Phoenix Public Library Events and Reservations</span>
+            </a>
+        </div>
+    
+    <div id="s-lc-public-bc" class="row">
+        <div class="col-md-12">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="https://calendar.phoenixpubliclibrary.org/">Phoenix Public Library </a></li>
+
+                    <li class="s-lc-desktop-only"><a href="https://calendar.phoenixpubliclibrary.org" aria-current="page">Phoenix Public Library Events and Reservations</a></li>
+
+                    
+                    
+                                        </ol>
+            </nav>
+        </div>
+    </div>
+
+    <noscript>
+        <div class="alert alert-danger" id="noscript">Your browser has javascript disabled. Without javascript some functions will not work.</div>
+    </noscript>
+
+    <main aria-label="Main Content">
+        <div id="s-lc-public-title-area">
+                            
+                                    </div>
+
+        <div id="s-lc-public-main" class="s-lc-public-main">
+    <section>
+        <div id="s-lc-public-page-content" class="row">
+            <div id="col1" class="col-md-12 center">
+
+                            <button class="btn btn-default btn-small s-lc-nav-tab s-lc-mobile-only margin-bottom-med" data-toggle="collapse" data-target="#cal-form">
+                    <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only icon-label">Filter by</span>
+                </button>
+
+                <form id="cal-form" class="form-inline margin-bottom-med collapse in" role="search" autocomplete="off">
+                    <span class="sr-only">Filter results by...</span>
+
+                    <div class="form-group" id="s-lc-c-sc">
+                        <label for="s-lc-c-search" class="sr-only">Search</label>
+                        <input type="text" class="form-control input-sm" name="q" id="s-lc-c-search" value=""
+                               aria-required="false" placeholder="Search for event..."
+                               aria-label="Search for event..." role="searchbox">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control input-sm s-lc-datepicker-readonly" type="text" name="date" id="s-lc-filter-date" readonly="readonly" placeholder="Date" aria-label="Date">
+                    </div>
+
+                    <div class="form-group">
+                        <span class="sr-only"><label for="cal-dd">Location</label></span>
+                        <select name="cal[]" id="cal-dd" class="selectpicker" multiple title="Location" aria-required="true" data-size="15" data-selected-text-format="static">
+                                                            <option value="-1" selected="selected"data-cal_id="-1">All Locations</option>
+                                <option data-divider="true"></option>
+                                                                    <option value="15420"  data-cal_id="15420">Acacia Library</option>
+                                                                    <option value="15421"  data-cal_id="15421">Agave Library</option>
+                                                                    <option value="19779"  data-cal_id="19779">Bookmobile</option>
+                                                                    <option value="15413"  data-cal_id="15413">Burton Barr Central Library</option>
+                                                                    <option value="15671"  data-cal_id="15671">Century Library</option>
+                                                                    <option value="15669"  data-cal_id="15669">Cholla Library</option>
+                                                                    <option value="16398"  data-cal_id="16398">College Depot</option>
+                                                                    <option value="15672"  data-cal_id="15672">Desert Broom Library</option>
+                                                                    <option value="15673"  data-cal_id="15673">Desert Sage Library</option>
+                                                                    <option value="15674"  data-cal_id="15674">Harmon Library</option>
+                                                                    <option value="15676"  data-cal_id="15676">Ironwood Library</option>
+                                                                    <option value="15675"  data-cal_id="15675">Juniper Library</option>
+                                                                    <option value="15677"  data-cal_id="15677">Mesquite Library</option>
+                                                                    <option value="15471"  data-cal_id="15471">Ocotillo Library and Workforce Center</option>
+                                                                    <option value="16588"  data-cal_id="16588">Online Program</option>
+                                                                    <option value="15678"  data-cal_id="15678">Palo Verde Library</option>
+                                                                    <option value="15670"  data-cal_id="15670">Prickly Pear Library</option>
+                                                                    <option value="15679"  data-cal_id="15679">Saguaro Library</option>
+                                                                    <option value="15680"  data-cal_id="15680">South Mountain Community Library</option>
+                                                                    <option value="15484"  data-cal_id="15484">Yucca Library</option>
+                                                                                    </select>
+                    </div>
+
+                    <div class="form-group" id="s-lc-c-catf">
+                        <span class="sr-only"><label for="cat-dd">Category</label></span>
+                                                    <select name="ct[]" id="cat-dd" aria-required="false" class="selectpicker" multiple title="Category" data-size="15" data-selected-text-format="static">
+                            </select>
+                                            </div>
+
+                                        <div class="form-group" id="s-lc-c-audiencef">
+                                                    <span class="sr-only"><label for="audience-dd">Audience</label></span>
+                            <select name="audience[]" id="audience-dd" aria-required="false" class="selectpicker" multiple title="Audience" data-size="15" data-selected-text-format="static">
+                                                                    <option value="3733"  data-cal_id="3733"
+                                            data-bgcolor="#000000" data-content="<span class='label' style='background-color:#000000'>&nbsp;</span> Adults</span>">
+                                        Adults
+                                    </option>
+                                                                    <option value="4434"  data-cal_id="4434"
+                                            data-bgcolor="#9C0CF0" data-content="<span class='label' style='background-color:#9C0CF0'>&nbsp;</span> All Ages</span>">
+                                        All Ages
+                                    </option>
+                                                                    <option value="3730"  data-cal_id="3730"
+                                            data-bgcolor="#EB791D" data-content="<span class='label' style='background-color:#EB791D'>&nbsp;</span> Birth to 5</span>">
+                                        Birth to 5
+                                    </option>
+                                                                    <option value="4435"  data-cal_id="4435"
+                                            data-bgcolor="#D41313" data-content="<span class='label' style='background-color:#D41313'>&nbsp;</span> En Espanol</span>">
+                                        En Espanol
+                                    </option>
+                                                                    <option value="3731"  data-cal_id="3731"
+                                            data-bgcolor="#F5F50E" data-content="<span class='label' style='background-color:#F5F50E'>&nbsp;</span> Kids</span>">
+                                        Kids
+                                    </option>
+                                                                    <option value="4436"  data-cal_id="4436"
+                                            data-bgcolor="#055AF7" data-content="<span class='label' style='background-color:#055AF7'>&nbsp;</span> Seniors</span>">
+                                        Seniors
+                                    </option>
+                                                                    <option value="3732"  data-cal_id="3732"
+                                            data-bgcolor="#08FCA2" data-content="<span class='label' style='background-color:#08FCA2'>&nbsp;</span> Teens</span>">
+                                        Teens
+                                    </option>
+                                                            </select>
+                                            </div>
+
+                    <div class="form-group" id="s-lc-c-camf">
+                                            </div>
+
+                    <div class="form-group" id="s-lc-c-online-filter">
+                        <label class="sr-only" for="include-events-dd">
+    Include Events
+</label>
+
+<select name="include-events" id="include-events-dd" aria-required="false" class="selectpicker">
+    <option selected="selected" value="0">
+        Show All Events
+    </option>
+    <option  value="1">
+        Online Events
+    </option>
+    <option  value="2">
+        In-Person Events
+    </option>
+</select>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-sm" id="s-lc-c-sbtn">
+                        Search
+                    </button>
+
+                    <a href="#" id="s-lc-c-clear-filters" class="s-lc-filters-clear">
+                        Clear All
+                    </a>
+                </form>
+
+                <div id="s-lc-c-filters-used" class="alert alert-success margin-bottom-med" display="style: none;"></div>
+
+                <div id="s-lc-c-tz-modes" class="pad-bottom-med">
+                    <div id="s-lc-c-view-modes" class="s-lc-c-view-modes">
+                        Change View:
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-small s-lc-nav-tab s-lc-nav-card">
+    <i class="fa fa-th fa-lg" aria-hidden="true"></i>
+    <span class="sr-only icon-label">Card View</span>
+</button>
+<button class="btn btn-default btn-small s-lc-nav-tab s-lc-nav-list">
+    <i class="fa fa-align-justify fa-lg" aria-hidden="true"></i>
+    <span class="sr-only icon-label">Day/List View</span>
+</button>
+<button class="btn btn-default btn-small s-lc-nav-tab s-lc-nav-monthly">
+    <i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+    <span class="sr-only icon-label">Monthly View</span>
+</button>
+<button class="btn btn-default btn-small s-lc-nav-tab s-lc-nav-weekly">
+    <i class="fa fa-calendar-o fa-lg" aria-hidden="true"></i>
+    <span class="sr-only icon-label">Weekly View</span>
+</button>
+                        </div>
+                    </div>
+
+                    
+<div class="s-lc-c-ical-and-timezone-horiz">
+    
+    <div class="s-lc-timezone-container s-lc-c-timezone-horiz s-lc-c-timezone">
+    Time Zone:
+    <span id="s-lc-timezone-name">Arizona Time</span>
+    (<a href="#" class="s-lc-c-timezone-change">change</a>)
+</div>
+
+            <div class="s-lc-desktop-only">
+    <div id="s-lc-ical-link" class="s-lc-c-ical-link-horiz" style="display: none;">
+        <a href="javascript:void(0)" id="s-lc-c-ical-toggle">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            iCal
+        </a>
+    </div>
+</div>
+    
+            <div id="s-lc-ical-details" class="s-lc-c-ical-description-horiz" style="display: none;">
+            To subscribe to this calendar, copy the link below into any application that supports the iCal format.
+
+            <br>
+
+            <span id="s-lc-c-ical-url">
+                            </span>
+        </div>
+    </div>
+                </div>
+
+                <div id="s-lc-c-list-results">
+                    <h2 id="s-lc-c-results-heading" class="sr-only" tabindex="-1">Search Results</h2>
+                    <div id="s-lc-c-list-cont" class="s-lc-c-list-cont-horiz"></div>
+                </div>
+
+                        </div>
+        </div>
+    </section>
+</div>
+    </main>
+
+    <footer id="s-lc-public-footer" class="row s-lc-public-footer">
+        <div id="s-lc-public-footer-brand">
+    <span title="libcal-us-4">Powered by</span> <a href="https://www.springshare.com" class="s-lc-link-in-text">Springshare</a>.
+</div>
+
+<div id="s-lc-public-footer-rights">
+    All rights reserved.
+</div>
+
+    <div id="s-lc-footer-support-link">
+        <a href="https://www.phoenixpubliclibrary.org/services/ask-us">Report a tech support issue.</a>
+    </div>
+
+                
+        <div id="s-lc-public-footer-admin-links" role="navigation" aria-label="Admin Footer">
+                            <a id="s-lc-sign-in" href="https://phoenixpl.libapps.com/libapps/login.php?site_id=20943&amp;target=">Login to LibApps</a>
+                    </div>
+
+        <div class="s-lc-public-footer-actions">
+    
+<div id="s-lc-language">
+    <select id="s-lc-language-selector" aria-label="Select Language">
+                <option value="ca" >català</option>
+                <option value="cy" >Cymraeg</option>
+                <option value="en" selected>English</option>
+                <option value="es" >español</option>
+                <option value="fr" >français</option>
+                <option value="ga" >Irish</option>
+                <option value="ja" >日本語 Nihongo</option>
+                <option value="nl" >Nederlands</option>
+                <option value="sl" >slovenski jezik</option>
+                <option value="vi" >Tiếng Việt</option>
+                <option value="zh" >中文 Zhōngwén</option>
+            </select>
+</div>
+</div>
+    </footer>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQTE4XZQ3M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EQTE4XZQ3M');
+</script>
+
+</div>
+
+
+    <script defer src="https://static-assets-us.libcal.com/js_163/datepicker.min.js"></script>
+    <script defer src="https://static-assets-us.libcal.com/js_163/selectpicker.min.js"></script>
+    <script defer src="https://static-assets-us.libcal.com/js_163/direct/pagination-legacy.min.js"></script>
+    <script defer src="https://static-assets-us.libcal.com/js_163/direct/public/events/calendar.min.js"></script>
+
+    
+        <script>
+        function addEventDataTextTranslations(eventData) {
+            eventData.textAddCalendar = 'Add\u0020to\u0020Calendar\u0020using\u0020iCal';
+            eventData.textAddGoogleCalendar = 'Add\u0020to\u0020Google\u0020Calendar';
+            eventData.textAudience = 'Audience';
+            eventData.textCampus = 'Library\u0020Location';
+            eventData.textCategories = 'Categories';
+            eventData.textChange = 'change';
+            eventData.textDate = 'Date';
+            eventData.textDateAndTimes = 'Dates\u0020\u0026\u0020Times\u003A';
+            eventData.textDescription = 'Description';
+            eventData.textEventCost = 'Attendance\u0020Price';
+            eventData.textFrom = 'From';
+            eventData.textGoToEvent = 'Go\u0020to\u0020event\u0020page';
+            eventData.textLocation = 'Room';
+            eventData.textMore = 'More';
+            eventData.textInPersonEvent = 'In\u002DPerson';
+            eventData.textOnlineEvent = 'Online';
+            eventData.textOnlineRegistration = 'Online\u0020Registration';
+            eventData.textInPersonRegistration = 'In\u002DPerson\u0020Registration';
+            eventData.textPresenter = 'Presenter';
+            eventData.textPrintPage = 'Print\u0020page';
+            eventData.textRegister = 'Register';
+            eventData.textRegistrationFull = 'Registrations\u0020are\u0020fully\u0020booked\u0021';
+            eventData.textRegistrationType = 'Registration\u0020Type';
+            eventData.textSearchEvents = 'Browse\/Search\u0020for\u0020more\u0020events';
+            eventData.textSeats = 'Seats';
+            eventData.textShareFacebook = 'Share\u0020on\u0020Facebook';
+            eventData.textShareTwitter = 'Share\u0020on\u0020Twitter';
+            eventData.textShowMoreDates = 'Show\u0020more\u0020dates';
+            eventData.textShowMoreDatesHeader = 'Future\u0020Dates';
+            eventData.textTime = 'Time';
+            eventData.textTimeZone = 'Time\u0020Zone\u003A';
+            eventData.textTo = 'To';
+            eventData.textViewMoreInfo = 'View\u0020More\u0020Information';
+        }
+    </script>
+
+        <script>
+        var activeSearch = false;
+        var activeView = "g";
+        var activePage = 1;
+        var activeDate = moment("2026\u002D10\u002D16", springSpace.phpDateFormat).locale('en');
+        var haveChosenSpecificDate = 0;
+        var resultsPerPageViewMap = {
+            "g": 48,
+            "d": 20,
+        };
+        var momentWeekFormat = 'isoWeek';
+
+        
+        var datePickerTemplates = {
+            leftArrow: '<span class="sr-only">Previous</span>&laquo;',
+            rightArrow: '<span class="sr-only">Next</span>&raquo;'
+        };
+
+        var template = "<div class=\"media s-lc-c-evt\">\n    <div class=\"media-body\">\n        <div class=\"s-lc-c-evt-title-wrap\">\n            <h2 class=\"media-heading s-lc-c-evt-title\">\n                {{#url}}<a href=\"{{url}}\">{{\/url}}\n                    {{title}}\n                {{#url}}<\/a>{{\/url}}\n            <\/h2>\n\n            {{^registration_enabled}}{{^external_event}}\n                {{#location}}\n                    {{#online_event}}\n                        <span class=\"label label-info s-lc-eventcard-pill\">\n                            {{textInPersonEvent}} \/ {{textOnlineEvent}}\n                        <\/span>\n                    {{\/online_event}}\n                    {{^online_event}}\n                        <span class=\"label label-info s-lc-eventcard-pill\">\n                            {{textInPersonEvent}}\n                        <\/span>\n                    {{\/online_event}}\n                {{\/location}}\n                {{^location}}\n                    {{#online_event}}\n                        <span class=\"label label-info s-lc-eventcard-pill\">\n                            {{textOnlineEvent}}\n                        <\/span>\n                    {{\/online_event}}\n                {{\/location}}\n            {{\/external_event}}{{\/registration_enabled}}\n\n            {{#registration_enabled}}\n                {{#online_event}}\n                    {{#in_person_registration}}\n                        <span class=\"label label-info s-lc-eventcard-pill\">\n                            {{textInPersonEvent}} \/ {{textOnlineEvent}}\n                        <\/span>\n                    {{\/in_person_registration}}\n                    {{^in_person_registration}}\n                        <span class=\"label label-info s-lc-eventcard-pill\">\n                            {{textOnlineEvent}}\n                        <\/span>\n                    {{\/in_person_registration}}\n                {{\/online_event}}\n                {{^online_event}}\n                    <span class=\"label label-info s-lc-eventcard-pill\">\n                        {{textInPersonEvent}}\n                    <\/span>\n                {{\/online_event}}\n            {{\/registration_enabled}}\n        <\/div>\n        <div class=\"s-lc-c-evt-des\">{{{shortdesc}}}\n            {{#shortdesc_was_truncated}}{{#url}}\n            &nbsp;<a href=\"{{url}}?more\" aria-label=\"{{textViewMoreInfo}}\" class=\"s-lc-link-in-text\">{{textMore}}<\/a><br>\n            {{\/url}}{{\/shortdesc_was_truncated}}\n        <\/div>\n        <dl class=\"dl-horizontal\">\n            {{^multi_day_event}}\n                <dt>{{textDate}}:<\/dt>\n                <dd>{{date}}\n                    {{#recurring_event}}\n                        <i class=\"fa fa-calendar pad-left-med\" aria-hidden=\"true\"><\/i>\n                        <a href=\"#\" onclick=\"return springyPublic.getFutureEventDates({{id}});\">{{textShowMoreDates}}<\/a>\n                        <p id=\"future_loading_{{id}}\" style=\"display:none\"><i class=\"fa fa-spinner fa-spin fa-lg\" aria-hidden=\"true\"><\/i><\/p>\n                        <p id=\"future_{{id}}\" style=\"display:none\"><\/p>\n                    {{\/recurring_event}}\n                <\/dd>\n\n                <dt>{{textTime}}:<\/dt>\n                <dd>{{start}}{{#end}} - {{end}}{{\/end}}<\/dd>\n            {{\/multi_day_event}}\n\n            {{#multi_day_event}}\n                <dt>{{textFrom}}:<\/dt>\n                <dd>\n                    {{^all_day}}{{start}},{{\/all_day}}\n                    {{date}}\n                <\/dd>\n                <dt>{{textTo}}:<\/dt>\n                <dd>\n                    {{^all_day}}{{end}},{{\/all_day}}\n                    {{multi_day_end_date}}\n                <\/dd>\n            {{\/multi_day_event}}\n\n            {{#location}}\n                <dt>{{textLocation}}:<\/dt>\n                <dd>\n                    {{#locations}}{{name}}{{#map}} (<a href=\"{{map}}\" target=\"_blank\" title=\"Open map for {{name}}\">Map <i class=\"fa fa-external-link\" aria-hidden=\"true\"><\/i><\/a>){{\/map}}{{^last}}, {{\/last}}{{\/locations}}{{#campus}}, {{campus}}{{\/campus}}\n                <\/dd>\n            {{\/location}}\n\n            {{^location}}\n                {{#campus}}\n                    <dt>{{textLocation}}:<\/dt>\n                    <dd>{{campus}}<\/dd>\n                {{\/campus}}\n            {{\/location}}\n\n            {{#registration_cost}}\n                <dt>{{textEventCost}}:<\/dt>\n                <dd>{{registration_cost}}<\/dd>\n            {{\/registration_cost}}\n\n            {{#audiences.0}}\n            <dt>{{textAudience}}:<\/dt>\n            <dd>{{#audiences}}\n                <span class=\"s-lc-event-category-color\" style=\"background-color:{{color}}\">&nbsp;<\/span>\n                <span class=\"s-lc-event-category-link\">\n                    <a href=\"{{calendar_url}}&t=d&cal%5B%5D={{calendar_id}}&audience%5B%5D={{id}}\">{{name}}<\/a>\n                <\/span> &nbsp;\n                {{\/audiences}}\n            <\/dd>\n            {{\/audiences.0}}\n\n            {{#categories_arr.0}}\n            <dt>{{textCategories}}:<\/dt>\n            <dd>{{#categories_arr}}\n                <span class=\"s-lc-event-category-color\" style=\"background-color:{{color}}\">&nbsp;<\/span>\n                <span class=\"s-lc-event-category-link\">\n                    <a href=\"{{calendar_url}}&t=d&d=0000-00-00&cal%5B%5D={{calendar_id}}&ct%5B%5D={{cat_id}}\">{{name}}<\/a>\n                <\/span> &nbsp;\n                {{\/categories_arr}}\n            <\/dd>\n            {{\/categories_arr.0}}\n\n            {{#seats}}\n                <dt>{{textRegistrationType}}:<\/dt>\n                <dd>\n                    {{#in_person_registration}}{{textInPersonRegistration}}{{\/in_person_registration}}\n                    {{#online_registration}}{{#in_person_registration}} \/ {{\/in_person_registration}}{{textOnlineRegistration}}{{\/online_registration}}\n                <\/dd>\n            {{\/seats}}\n            <dt><\/dt>\n            <dd>\n                {{#seats}}\n                <dt><\/dt>\n                <dd><a href=\"{{url}}?register\" class=\"btn btn-success btn-sm margin-top-med\">{{textRegister}}! {{#seatsleft}} - {{seatsleft_text}}{{\/seatsleft}}<\/a><\/dd>\n                {{\/seats}}\n\n                {{#registration_msg}}\n                <dt><\/dt>\n                <dd><a href=\"{{url}}?register\" class=\"btn {{class}} btn-sm margin-top-med\">{{{msg}}}<\/a><\/dd>\n                {{\/registration_msg}}\n            <\/dd>\n        <\/dl>\n    <\/div>\n    {{#featured_image}}\n    <div class=\"media-right\"><a href=\"{{url}}?image\"> <img loading=\"lazy\" class=\"media-object img-thumbnail s-lc-c-evt-fi\" src=\"{{featured_image}}\" alt=\"{{featured_image_alt_text}}{{^featured_image_alt_text}}{{title}}{{\/featured_image_alt_text}}\"> <\/a><\/div>\n    {{\/featured_image}}\n<\/div>\n";
+        var cardViewTemplate = "<div class=\"s-lc-eventcard\">\n    <div class=\"s-lc-eventcard-content s-lc-eventcard-image-horizontal\">\n        <div class=\"s-lc-eventcard-heading\">\n            <div class=\"s-lc-eventcard-heading-content\">\n                <div class=\"s-lc-evt-date\">\n                    <div class=\"s-lc-evt-date-m\">{{monthshort}}<\/div>\n                    <div class=\"s-lc-evt-date-d\">{{day}}<\/div>\n                <\/div>\n\n                <div class=\"s-lc-eventcard-heading-text-group\">\n                    <div class=\"s-lc-eventcard-heading-text s-lc-hide-long-text\">\n                        {{^multi_day_event}}\n                            {{dayshort}}, {{start}}{{#end}} - {{end}}{{\/end}}\n                        {{\/multi_day_event}}\n\n                        {{#multi_day_event}}\n                            {{monthshort}} {{day}} -\n                            {{#multi_day_end}}\n                                {{monthshort}} {{day}}\n                            {{\/multi_day_end}}\n                        {{\/multi_day_event}}\n\n                        {{^registration_enabled}}{{^external_event}}\n                            {{#location}}\n                                {{#online_event}}\n                                    <span class=\"label label-info s-lc-eventcard-pill\">\n                                        {{textInPersonEvent}} \/ {{textOnlineEvent}}\n                                    <\/span>\n                                {{\/online_event}}\n                                {{^online_event}}\n                                    <span class=\"label label-info s-lc-eventcard-pill\">\n                                        {{textInPersonEvent}}\n                                    <\/span>\n                                {{\/online_event}}\n                            {{\/location}}\n                            {{^location}}\n                                {{#online_event}}\n                                    <span class=\"label label-info s-lc-eventcard-pill\">\n                                        {{textOnlineEvent}}\n                                    <\/span>\n                                {{\/online_event}}\n                            {{\/location}}\n                        {{\/external_event}}{{\/registration_enabled}}\n\n                        {{#registration_enabled}}\n                            {{#online_event}}\n                                {{#in_person_registration}}\n                                    <span class=\"label label-info s-lc-eventcard-pill\">\n                                        {{textInPersonEvent}} \/ {{textOnlineEvent}}\n                                    <\/span>\n                                {{\/in_person_registration}}\n                                {{^in_person_registration}}\n                                    <span class=\"label label-info s-lc-eventcard-pill\">\n                                        {{textOnlineEvent}}\n                                    <\/span>\n                                {{\/in_person_registration}}\n                            {{\/online_event}}\n                            {{^online_event}}\n                                <span class=\"label label-info s-lc-eventcard-pill\">\n                                    {{textInPersonEvent}}\n                                <\/span>\n                            {{\/online_event}}\n                        {{\/registration_enabled}}\n                    <\/div>\n\n                    <div class=\"s-lc-eventcard-heading-text s-lc-hide-long-text\">{{campusAndLocation}}<\/div>\n\n                    {{#recurring_event}}\n                        <div class=\"s-lc-eventcard-more-dates s-lc-hide-long-text\">\n                            <a tabindex=\"0\" data-event=\"{{id}}\" data-toggle=\"popover\" data-placement=\"bottom\" data-container=\"body\" data-html=\"true\" data-trigger=\"focus\" data-content=\"\n                                <h5>{{textShowMoreDatesHeader}}: {{title}}<\/h5>\n                                <p id='future_loading_{{id}}' style='display:none'><i class='fa fa-spinner fa-spin fa-lg' aria-hidden='true'><\/i><\/p>\n                                <p id='future_{{id}}' style='display:none' class='pad-left-med'><\/p>\"\n                               aria-label=\"{{textShowMoreDates}}\"\n                            >{{textShowMoreDates}} &rsaquo;&rsaquo;<\/a>\n                        <\/div>\n                    {{\/recurring_event}}\n                <\/div>\n            <\/div>\n        <\/div>\n\n        <div class=\"s-lc-eventcard-event-color-bar\" style=\"background-color: {{color}}\">\n        <\/div>\n\n        <div class=\"s-lc-eventcard-body\">\n            {{#seatsleft}}\n                <div class=\"s-lc-ribbon s-lc-ribbon-top-right\">\n                    <span>\n                        {{seatsleft_text}}\n                    <\/span>\n                <\/div>\n            {{\/seatsleft}}\n\n            {{#ribbonWarning}}\n                <div class=\"s-lc-ribbon s-lc-ribbon-top-right s-lc-ribbon-warning\">\n                    <span>\n                        {{ribbonWarning}}\n                    <\/span>\n                <\/div>\n            {{\/ribbonWarning}}\n\n            <h2 class=\"s-lc-eventcard-title\">\n                {{#url}}<a title=\"{{title}}\" href=\"{{url}}\">{{\/url}}\n                    {{title}}\n                {{#url}}<\/a>{{\/url}}\n            <\/h2>\n\n            <div class=\"s-lc-eventcard-horizontal-image\">\n                {{#url}}<a title=\"{{title}}\" href=\"{{url}}?image\" aria-label=\"{{textGoToEvent}}\">{{\/url}}\n                    <img src=\"{{featured_image}}\" alt=\"{{featured_image_alt_text}}\" \/>\n                {{#url}}<\/a>{{\/url}}\n            <\/div>\n\n            <div class=\"s-lc-eventcard-horizontal-body\">\n                {{#shortdesc}}\n                <div class=\"s-lc-eventcard-description\">\n                    {{{shortdesc}}}\n                    {{#shortdesc_was_truncated}}{{#url}}\n                    &nbsp;<a href=\"{{url}}?more\" aria-label=\"{{textViewMoreInfo}}\" class=\"s-lc-link-in-text\">{{textMore}}<\/a><br>\n                    {{\/url}}{{\/shortdesc_was_truncated}}\n                <\/div>\n                {{\/shortdesc}}\n\n                {{#registration_cost}}\n                    <br>\n                    <div class=\"s-lc-eventcard-registration-cost\">\n                        {{textEventCost}}: {{registration_cost}}\n                    <\/div>\n                {{\/registration_cost}}\n            <\/div>\n        <\/div>\n\n        <div class=\"s-lc-eventcard-tags\">\n            <ul>\n                {{#categoriesToShowInFull}}\n                    <li class=\"s-lc-eventcard-tag\">\n                        <span class=\"s-lc-event-category-color\" style=\"background-color:{{color}}\">&nbsp;<\/span>\n                        <span class=\"s-lc-event-category-link\" data-toggle=\"tooltip\" title=\"{{name}}\">\n                            <a href=\"{{calendar_url}}&t=g&cal%5B%5D={{calendar_id}}{{#isCategory}}&ct={{id}}{{\/isCategory}}{{#isAudience}}&audience={{id}}{{\/isAudience}}\">\n                                {{name}}\n                            <\/a>\n                        <\/span>\n                    <\/li>\n                {{\/categoriesToShowInFull}}\n\n                {{#categoriesTooltip}}\n                    <li class=\"s-lc-eventcard-tag-more\">\n                        <a href=\"#\" data-toggle=\"tooltip\" title=\"{{categoriesTooltip}}\" aria-label=\"{{categoriesTooltip}}\">&hellip;<\/a>\n                    <\/li>\n                {{\/categoriesTooltip}}\n            <\/ul>\n        <\/div>\n    <\/div>\n<\/div>\n";
+        var cardViewDefaultImage = 'https\u003A\/\/libapps.s3.amazonaws.com\/customers\/8034\/images\/Event\u002Ddefault_calendar\u002Dimage_200x140.png';
+        var cardViewDefaultImageAltText = ''
+
+        var categoriesMappedByCalendar = { 15420: [],15421: [],19779: [],15413: [],15671: [],15669: [],16398: [],15672: [],15673: [],15674: [],15676: [],15675: [],15677: [],15471: [],16588: [],15678: [],15670: [],15679: [],15680: [],15484: [] };
+
+        
+                var tempCategoryName = "Arts,\u0020Culture,\u0020Entertainment\u0020\u0026\u0020Exhibits";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 56031,
+            name: tempCategoryName,
+            color: '\u002332D9B8',
+        });
+                var tempCategoryName = "Authors,\u0020Book\u0020Discussions\u0020\u0026\u0020Literature";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 56032,
+            name: tempCategoryName,
+            color: '\u0023B3C8EF',
+        });
+                var tempCategoryName = "AZ\u0020History\u0020\u0026\u0020Culture";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55350,
+            name: tempCategoryName,
+            color: '\u0023ED9CA0',
+        });
+                var tempCategoryName = "Childrens\u0027\u0020Programs";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 51772,
+            name: tempCategoryName,
+            color: '\u0023DA88E8',
+        });
+                var tempCategoryName = "College\u0020Depot\u0020\u002D\u0020College\u0020Planning\u0020and\u0020Preparation";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55412,
+            name: tempCategoryName,
+            color: '\u0023B1E024',
+        });
+                var tempCategoryName = "Community\u0020\u0026\u0020Heritage\u0020Months";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 70854,
+            name: tempCategoryName,
+            color: '\u0023B3C8EF',
+        });
+                var tempCategoryName = "Community\u0020Resources\u0020\u0026\u0020Services";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55244,
+            name: tempCategoryName,
+            color: '\u0023BDAF33',
+        });
+                var tempCategoryName = "Computer\u0020\u0026\u0020Device\u0020Help";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55413,
+            name: tempCategoryName,
+            color: '\u00238D962E',
+        });
+                var tempCategoryName = "Crafts\u0020\u0026\u0020Hobbies";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 56033,
+            name: tempCategoryName,
+            color: '\u0023BD712A',
+        });
+                var tempCategoryName = "en\u0020espa\u00F1ol";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 82424,
+            name: tempCategoryName,
+            color: '\u0023D41313',
+        });
+                var tempCategoryName = "Health\u0020\u0026\u0020Wellness";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55407,
+            name: tempCategoryName,
+            color: '\u0023EDC9A1',
+        });
+                var tempCategoryName = "Language\u0020Learning";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 58183,
+            name: tempCategoryName,
+            color: '\u002395F0F0',
+        });
+                var tempCategoryName = "Library\u0020Day\u0020of\u0020Closure";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 83017,
+            name: tempCategoryName,
+            color: '\u0023B3C8EF',
+        });
+                var tempCategoryName = "Money\u0020\u0026\u0020Finances";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 56034,
+            name: tempCategoryName,
+            color: '\u0023F0ECB2',
+        });
+                var tempCategoryName = "Nature\u0020\u0026\u0020Sustainability";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 70853,
+            name: tempCategoryName,
+            color: '\u002309F01D',
+        });
+                var tempCategoryName = "Parent\u0020Education";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55220,
+            name: tempCategoryName,
+            color: '\u0023348A87',
+        });
+                var tempCategoryName = "PHX\u0020Works\u003A\u0020Job\u0020\u0026\u0020Career\u0020Support";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55201,
+            name: tempCategoryName,
+            color: '\u0023F06413',
+        });
+                var tempCategoryName = "Rare\u0020Book\u0020Room";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 72147,
+            name: tempCategoryName,
+            color: '\u0023B3C8EF',
+        });
+                var tempCategoryName = "School\u0020Readiness";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 85754,
+            name: tempCategoryName,
+            color: '\u0023B3C8EF',
+        });
+                var tempCategoryName = "StartUpPHX\u003A\u0020Small\u0020Business\u0020\u0026\u0020Entrepreneurship";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55221,
+            name: tempCategoryName,
+            color: '\u0023479DED',
+        });
+                var tempCategoryName = "STEAM";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55349,
+            name: tempCategoryName,
+            color: '\u00237573F0',
+        });
+                var tempCategoryName = "Storytimes";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 56769,
+            name: tempCategoryName,
+            color: '\u0023979CA8',
+        });
+                var tempCategoryName = "Summer\u0020Reading\u0020Events";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 58836,
+            name: tempCategoryName,
+            color: '\u0023175CE8',
+        });
+                var tempCategoryName = "Teen\u0020Programs";
+
+        if (!(0 in categoriesMappedByCalendar)) { categoriesMappedByCalendar[0] = []; }
+        categoriesMappedByCalendar[0].push({
+            id: 55406,
+            name: tempCategoryName,
+            color: '\u002391BDB5',
+        });
+        
+        var calendarNameMap = {};
+                    calendarNameMap[-1] = "All\u0020Locations";
+                        calendarNameMap[15420] = "Acacia\u0020Library";
+                        calendarNameMap[15421] = "Agave\u0020Library";
+                        calendarNameMap[19779] = "Bookmobile";
+                        calendarNameMap[15413] = "Burton\u0020Barr\u0020Central\u0020Library";
+                        calendarNameMap[15671] = "Century\u0020Library";
+                        calendarNameMap[15669] = "Cholla\u0020Library";
+                        calendarNameMap[16398] = "College\u0020Depot";
+                        calendarNameMap[15672] = "Desert\u0020Broom\u0020Library";
+                        calendarNameMap[15673] = "Desert\u0020Sage\u0020Library";
+                        calendarNameMap[15674] = "Harmon\u0020Library";
+                        calendarNameMap[15676] = "Ironwood\u0020Library";
+                        calendarNameMap[15675] = "Juniper\u0020Library";
+                        calendarNameMap[15677] = "Mesquite\u0020Library";
+                        calendarNameMap[15471] = "Ocotillo\u0020Library\u0020and\u0020Workforce\u0020Center";
+                        calendarNameMap[16588] = "Online\u0020Program";
+                        calendarNameMap[15678] = "Palo\u0020Verde\u0020Library";
+                        calendarNameMap[15670] = "Prickly\u0020Pear\u0020Library";
+                        calendarNameMap[15679] = "Saguaro\u0020Library";
+                        calendarNameMap[15680] = "South\u0020Mountain\u0020Community\u0020Library";
+                        calendarNameMap[15484] = "Yucca\u0020Library";
+                    
+        var audienceNameMap = {};
+                    audienceNameMap[3733] = "Adults";
+                    audienceNameMap[4434] = "All\u0020Ages";
+                    audienceNameMap[3730] = "Birth\u0020to\u00205";
+                    audienceNameMap[4435] = "En\u0020Espanol";
+                    audienceNameMap[3731] = "Kids";
+                    audienceNameMap[4436] = "Seniors";
+                    audienceNameMap[3732] = "Teens";
+        
+        var categoryNameMap = {};
+                    categoryNameMap[56031] = "Arts,\u0020Culture,\u0020Entertainment\u0020\u0026\u0020Exhibits";
+                    categoryNameMap[56032] = "Authors,\u0020Book\u0020Discussions\u0020\u0026\u0020Literature";
+                    categoryNameMap[55350] = "AZ\u0020History\u0020\u0026\u0020Culture";
+                    categoryNameMap[51772] = "Childrens\u0027\u0020Programs";
+                    categoryNameMap[55412] = "College\u0020Depot\u0020\u002D\u0020College\u0020Planning\u0020and\u0020Preparation";
+                    categoryNameMap[70854] = "Community\u0020\u0026\u0020Heritage\u0020Months";
+                    categoryNameMap[55244] = "Community\u0020Resources\u0020\u0026\u0020Services";
+                    categoryNameMap[55413] = "Computer\u0020\u0026\u0020Device\u0020Help";
+                    categoryNameMap[56033] = "Crafts\u0020\u0026\u0020Hobbies";
+                    categoryNameMap[82424] = "en\u0020espa\u00F1ol";
+                    categoryNameMap[55407] = "Health\u0020\u0026\u0020Wellness";
+                    categoryNameMap[58183] = "Language\u0020Learning";
+                    categoryNameMap[83017] = "Library\u0020Day\u0020of\u0020Closure";
+                    categoryNameMap[56034] = "Money\u0020\u0026\u0020Finances";
+                    categoryNameMap[70853] = "Nature\u0020\u0026\u0020Sustainability";
+                    categoryNameMap[55220] = "Parent\u0020Education";
+                    categoryNameMap[55201] = "PHX\u0020Works\u003A\u0020Job\u0020\u0026\u0020Career\u0020Support";
+                    categoryNameMap[72147] = "Rare\u0020Book\u0020Room";
+                    categoryNameMap[85754] = "School\u0020Readiness";
+                    categoryNameMap[55221] = "StartUpPHX\u003A\u0020Small\u0020Business\u0020\u0026\u0020Entrepreneurship";
+                    categoryNameMap[55349] = "STEAM";
+                    categoryNameMap[56769] = "Storytimes";
+                    categoryNameMap[58836] = "Summer\u0020Reading\u0020Events";
+                    categoryNameMap[55406] = "Teen\u0020Programs";
+        
+        var feedArray = [];
+        
+        var campusNameMap = {};
+        
+        var selectPickerCountSelectText = '{0} selected';
+        var selectPickerHeaderText = {
+            calendar:   'Filter\u0020by Location:',
+            audience:   'Filter\u0020by Audience:',
+            category:   'Filter\u0020by Category:',
+            campus:     'Filter\u0020by Library\u0020Location:',
+            include: 'Include\u0020Events:',
+        };
+
+        var defaultIncludeEvents = 0;
+        var includeEventsLabel = 'Include\u0020Events';
+
+        var springyPage = {
+            iid: 5371,
+            originalPageTitle: document.title,
+            baseCalendarId: 15420,
+            isFullCalendarView: 0,
+            showAllCalendars: -1,
+            calendarStartDay: 1,
+            iCalUrlBase: 'https\u003A\/\/calendar.phoenixpubliclibrary.org\/ical_subscribe.php\u003Fsrc\u003Dp',
+            fullyBooked: 2,
+            waitlistOpen: 'Wait\u0020list',
+            isPaginationClick: false,
+            EXTERNAL_EVENT_COLOR: '',
+            EXTERNAL_EVENT_PREFIX: 'f_',
+            lang: {
+                category: 'Category',
+                campus: 'Library\u0020Location',
+                location: 'Room',
+                presenter: 'Presenter',
+                audiences: 'Audiences',
+                categories: 'Categories',
+                seats: 'Seats',
+                shortDesc: 'Description',
+                allDay: 'All\u0020Day',
+                time: 'Time',
+                registrationType: 'Registration\u0020Type',
+                inPersonRegistration: 'In\u002DPerson\u0020Registration',
+                onlineRegistration: 'Online\u0020Registration',
+                fullyBooked: 'Fully\u0020Booked\u0021',
+                waitlistOpen: 'Waitlist\u0020Open',
+            },
+        };
+
+        function addCalendarCategories(categoryArray, calendarCategories) {
+            for (var i = 0; i < calendarCategories.length; i++) {
+                categoryArray.push(calendarCategories[i]);
+            }
+        }
+
+        function getCategoriesForCalendarIds(calendarIds) {
+            var categoryArray = [];
+
+                        if (0 in categoriesMappedByCalendar) {
+                addCalendarCategories(categoryArray, categoriesMappedByCalendar[0]);
+            }
+
+                        for (var i = 0; i < calendarIds.length; i++) {
+                var calendarId = calendarIds[i];
+
+                if (calendarId == -1) {
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15420]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15421]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[19779]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15413]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15671]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15669]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[16398]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15672]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15673]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15674]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15676]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15675]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15677]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15471]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[16588]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15678]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15670]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15679]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15680]);
+                                        addCalendarCategories(categoryArray, categoriesMappedByCalendar[15484]);
+                                        break;
+                }
+
+                addCalendarCategories(categoryArray, categoriesMappedByCalendar[calendarId]);
+            }
+
+            return categoryArray;
+        }
+
+        function sortCategories(a, b) {
+            const nameA = a.name.toUpperCase();
+            const nameB = b.name.toUpperCase();
+
+            if (nameA < nameB) {
+                return -1;
+            }
+
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            return a.id - b.id;
+        }
+
+        function isFeedsWanted(calendarIds) {
+            for (let i = 0; i < calendarIds.length; i++) {
+                let calendarId = Number(calendarIds[i]);
+
+                if (calendarId === springyPage.baseCalendarId) {
+                    return true;
+                }
+
+                if (calendarId === springyPage.showAllCalendars) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function updateCategoryFilters(calendarIds, selectedValues) {
+            let categoryArray = getCategoriesForCalendarIds(calendarIds);
+
+            if (isFeedsWanted(calendarIds)) {
+                categoryArray = categoryArray.concat(feedArray);
+            }
+
+            let sortedArray = categoryArray.sort(sortCategories);
+
+            let element = jQuery('#cat-dd');
+            element.empty();
+
+            for (let i = 0; i < sortedArray.length; i++) {
+                let categoryInfo = sortedArray[i];
+                let categoryName = categoryInfo.name;
+                let categoryColor = categoryInfo.color;
+                let selected = selectedValues.indexOf(categoryName) >= 0;
+
+                let value = categoryInfo.id;
+                if (categoryInfo.isFeed === true) {
+                    value = springyPage.EXTERNAL_EVENT_PREFIX + categoryInfo.id;
+                }
+
+                let option = new Option(categoryName, value, selected, selected);
+                option.setAttribute('data-bgcolor', categoryColor);
+                option.setAttribute('data-content', '<span class="label" style="background-color:' + categoryColor + '">&nbsp;</span> ' + categoryName + '</span>');
+                element.append(option);
+            }
+
+            element.selectpicker('refresh');
+        }
+
+        function runFiltersDueToOptionChange(event, clickedIndex, newValue, oldValue) {
+            activePage = 1;
+
+            return runFilters();
+        }
+
+                var calendarFilterInProgress = false;
+
+        function ensureValidCalendarSelection(element, clickedIndex) {
+            if (clickedIndex == 0) {
+                // if the show all option is selected - make it the only option selected
+                element.selectpicker('deselectAll').val(-1).selectpicker("refresh");
+            } else {
+                // ensure the select all option is not selected if we pick a different option
+                element.find("[value=-1]").prop("selected", false);
+                element.selectpicker("refresh");
+            }
+        }
+
+        function runCalendarSelectionValidation(event, clickedIndex, newValue, oldValue) {
+            var element = jQuery(this);
+            ensureValidCalendarSelection(element, clickedIndex);
+        }
+
+        function runFiltersDueToCalendarChange(event, clickedIndex, newValue, oldValue) {
+            if (calendarFilterInProgress) {
+                return false;
+            }
+
+            calendarFilterInProgress = true;
+
+            var element = jQuery(this);
+            ensureValidCalendarSelection(element, clickedIndex);
+
+            calendarFilterInProgress = false;
+
+            // if no options are selected - reset the select picker back to the original value
+            var calendarIds = element.val();
+            if (calendarIds.length == 0) {
+                element.val(-1).selectpicker("refresh");
+                calendarIds = [-1];
+            }
+
+            // toggle the categories display to only show those valid for these calendars
+            updateCategoryFilters(calendarIds, jQuery("#cat-dd").val());
+
+            activePage = 1;
+
+            return runFilters();
+        }
+
+        function createDatePicker() {
+            let isMonthlyView = activeView == "m";
+
+                        var minViewMode = isMonthlyView ? 1 : 0;
+
+                        var displayDateFormat = isMonthlyView ? "MMMM YYYY" : springSpace.dateFormat;
+
+            
+            var element = jQuery("#s-lc-filter-date");
+            element.off('changeDate');
+            element.datepicker("destroy");
+
+            element.datepicker({
+                language: "en",
+                format: {
+                    toDisplay: function (date, format, language) {
+                        return moment.utc(date).locale("en").format(displayDateFormat);
+                    },
+                    toValue: function (date, format, language) {
+                        return new Date(date);
+                    }
+                },
+                minViewMode: minViewMode,
+                maxViewMode: 2, // years
+                weekStart: springyPage.calendarStartDay,
+                autoclose: true,
+                                todayHighlight: 0,
+                defaultViewDate: {"year": 2026, "month": 9, "day": 16},
+                templates: datePickerTemplates
+            });
+
+            if (haveChosenSpecificDate) {
+                springyDatepicker.setDate(element, activeDate.toDate());
+            }
+
+            datePickerAccessibilityFix(element);
+
+            element.on("changeDate", function () {
+                haveChosenSpecificDate = true;
+                activeDate = moment(jQuery(this).datepicker("getDate"));
+
+                
+                                                return false;
+                            });
+        }
+
+        function setActiveViewMode(viewMode) {
+            activeView = viewMode;
+            activePage = 1;
+            activeSearch = false;
+
+            createDatePicker();
+
+            return runFilters();
+        }
+
+        function setActiveViewModeToSearch() {
+            var searchString = jQuery("#s-lc-c-search").val();
+            if (searchString.length < 2) {
+                errorAlert("Search\u0020string\u0020must\u0020be\u0020at\u0020least\u00202\u0020characters.");
+                return false;
+            }
+
+            activeSearch = true;
+            activePage = 1;
+
+            // keep people on their current view mode, with the exception of the monthly/weekly
+            //  view modes as they do not yet support searches
+            if ((activeView === 'm') || (activeView === 'w')) {
+                activeView = 'd';
+                createDatePicker();
+            }
+        }
+
+        function getDateToPassToPhp() {
+            if (!haveChosenSpecificDate) {
+                return "0000-00-00";
+            }
+
+            if (activeView == "m") {
+                return activeDate.format("YYYY-MM");
+            }
+
+            return activeDate.format("YYYY-MM-DD");
+        }
+
+        function getListOfNames(idNameMap, ids) {
+            var names = [];
+
+            for (var i=0; i < ids.length; i++) {
+                var id = ids[i];
+                var name = idNameMap[id];
+                if (name === undefined) {
+                    continue;
+                }
+
+                names.push(name);
+            }
+
+            return names.join(", ");
+        }
+
+        function gatherFilterOptionsInUse() {
+            var categoryIds = jQuery("#cat-dd").val();
+            var campusIds = jQuery("#cam-dd").val();
+            var audienceIds = jQuery("#audience-dd").val();
+            var calendarIds = jQuery("#cal-dd").val();
+            var search = jQuery("#s-lc-c-search").val();
+
+            var filterOptions = [];
+
+            if (search.length > 0) {
+                filterOptions.push(["Keywords", escapeHtml(search)]);
+            }
+
+            if (haveChosenSpecificDate) {
+                                var displayDateFormat = (activeView == "m") ? "MMMM YYYY" : springSpace.dateFormat;
+                filterOptions.push(["Date", activeDate.locale("en").format(displayDateFormat)]);
+            }
+
+            if (calendarIds.length > 0) {
+                filterOptions.push(["Location", getListOfNames(calendarNameMap, calendarIds)]);
+            }
+
+            if ((audienceIds !== undefined) && (audienceIds.length > 0)) {
+                filterOptions.push(["Audience", getListOfNames(audienceNameMap, audienceIds)]);
+            }
+
+            if ((categoryIds !== undefined) && (categoryIds.length > 0)) {
+                filterOptions.push(["Category", getListOfNames(categoryNameMap, categoryIds)]);
+            }
+
+            if ((campusIds !== undefined) && (campusIds.length > 0)) {
+                filterOptions.push(["Library\u0020Location", getListOfNames(campusNameMap, campusIds)]);
+            }
+
+            filterOptions.push([includeEventsLabel, jQuery('#include-events-dd option:selected').text()]);
+
+            return filterOptions;
+        }
+
+        function showFiltersUsedOnScreen() {
+            var filterOptions = gatherFilterOptionsInUse();
+            var html = "Filters\u0020applied\u003A\u0020";
+
+            for (var i=0; i < filterOptions.length; i++) {
+                var filterOption = filterOptions[i];
+                var name = filterOption[0];
+                var value = filterOption[1];
+
+                if (value.length === 0) {
+                    continue;
+                }
+
+                html += "<strong>" + name + "</strong>: <em>" + value + "</em>";
+
+                if (i < (filterOptions.length - 1)) {
+                    html += ";&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            jQuery("#s-lc-c-filters-used").html(html).show();
+        }
+
+        function getCurrentQueryString() {
+            var queryStringIndex = window.location.href.indexOf('?');
+
+            if (queryStringIndex < 0) {
+                return '';
+            }
+
+            return window.location.href.substr(queryStringIndex);
+        }
+
+        function runFilters(isInitialPageLoad) {
+            jQuery(".s-lc-nav-tab").removeClass("active");
+            calendarUtils.hideICalDetails();
+
+            // determine if this is an event search
+            let searchString = jQuery("#s-lc-c-search").val();
+            if (searchString.length === 0) {
+                activeSearch = false;
+            }
+
+            var newQueryString = determineQueryString();
+            if ((newQueryString !== getCurrentQueryString()) && !isInitialPageLoad) {
+                                                history.pushState(null, document.title, newQueryString);
+            }
+
+                        showFiltersUsedOnScreen();
+            
+            if (activeView == 'm') {
+                jQuery('.s-lc-nav-monthly').addClass('active');
+                if (springyPage.isFullCalendarView) {
+                    return runFullCalendarMonthlyOrWeekly(true);
+                }
+
+                return runMonthlyOrWeekly(true);
+            }
+
+            if (activeView === 'w') {
+                jQuery('.s-lc-nav-weekly').addClass('active');
+                if (springyPage.isFullCalendarView) {
+                    return runFullCalendarMonthlyOrWeekly(false);
+                }
+
+                return runMonthlyOrWeekly(false);
+            }
+
+            if (activeView == "g") {
+                jQuery(".s-lc-nav-card").addClass("active");
+            } else {
+                jQuery(".s-lc-nav-list").addClass("active");
+            }
+
+            if (activeSearch) {
+                return runSearch();
+            }
+
+            if (activeView == "g") {
+                return runCardView();
+            }
+
+            return runDaily();
+        }
+
+        function beginBusyWait() {
+            workingAlert();
+
+                        jQuery("#s-lc-c-sbtn, .s-lc-filters-clear").prop("disabled", true);
+                    }
+
+        function endBusyWait() {
+            stopAlert();
+
+                        jQuery("#s-lc-c-sbtn, .s-lc-filters-clear").prop("disabled", false);
+                    }
+
+        function formatResultsHeader(subTitle, header) {
+                        return false;
+        }
+
+        function runMonthlyOrWeekly(isMonthly) {
+            var cals = jQuery('#cal-dd').val();
+            var cats = jQuery("#cat-dd").val();
+            var camp = jQuery('#cam-dd').val();
+            var audience = jQuery('#audience-dd').val();
+            var includeEvents = jQuery('#include-events-dd').val();
+            var date = activeDate.format(springSpace.phpDateFormat);
+
+            var cal_cont = jQuery('#s-lc-c-list-cont');
+
+            beginBusyWait();
+
+            var headerSubTitle = calendarUtils.getDateHeading(activeDate, isMonthly, momentWeekFormat);
+
+            jQuery.ajax({
+                url: "/ajax/calendar/monthly?c=" + cals + '&date=' + date + '&monthly=' + isMonthly + "&audience=" + audience + "&cats=" + cats + "&camps=" + camp + '&inc=' + includeEvents,
+                dataType: 'html',
+                                                cache: true,
+                            })
+            .always(endBusyWait)
+            .done(function (html) {
+                formatResultsHeader(headerSubTitle);
+                cal_cont.html(html);
+
+                                                                var screenWidth = jQuery(window).width();
+                if (screenWidth > springSpace.smallScreenSize) {
+                    jQuery('[data-toggle="popover"]').popover();
+                }
+
+                formatLabels();
+            })
+            .fail(ajaxErrorHandler);
+
+            return false;
+        }
+
+        function runDaily() {
+            var cals = jQuery("#cal-dd").val();
+            var cats = jQuery("#cat-dd").val();
+            var camp = jQuery("#cam-dd").val();
+            var audience = jQuery("#audience-dd").val();
+            var includeEvents = jQuery('#include-events-dd').val();
+            var perPage = resultsPerPageViewMap[activeView];
+
+            beginBusyWait();
+
+            if (haveChosenSpecificDate) {
+                var day = activeDate.locale("en").format("LL");
+            } else {
+                var day = "Upcoming\u0020Events";
+            }
+
+            jQuery.ajax({
+                url: "/ajax/calendar/list?c=" + cals + "&date=" + getDateToPassToPhp() + "&perpage=" + perPage + "&page=" + activePage + "&audience=" + audience + "&cats=" + cats + "&camps=" + camp + '&inc=' + includeEvents,
+                dataType: 'json',
+                                                cache: true,
+                            })
+            .always(endBusyWait)
+            .done(function(data) {
+                formatResultsHeader(day);
+                var output = formatResultsInListViewStyle(data);
+
+                jQuery("#s-lc-c-list-cont").html(output);
+                scrollToResultsIfPaginating();
+                                setFocusWithFallback('#s-lc-c-list-cont .s-lc-c-s-nores', '#s-lc-c-results-heading');
+                                paginate(data.total_results, data.perpage);
+                formatLabels();
+            })
+            .fail(ajaxErrorHandler);
+
+            return false;
+        }
+
+        function runCardView() {
+            var cals = jQuery("#cal-dd").val();
+            var cats = jQuery("#cat-dd").val();
+            var camp = jQuery("#cam-dd").val();
+            var audience = jQuery("#audience-dd").val();
+            var includeEvents = jQuery('#include-events-dd').val();
+            var perPage = resultsPerPageViewMap[activeView];
+
+            beginBusyWait();
+
+            if (haveChosenSpecificDate) {
+                var day = activeDate.locale("en").format("LL");
+            } else {
+                var day = "Upcoming\u0020Events";
+            }
+
+            jQuery.ajax({
+                url: "/ajax/calendar/list?c=" + cals + "&date=" + getDateToPassToPhp() + "&perpage=" + perPage + "&page=" + activePage + "&audience=" + audience + "&cats=" + cats + "&camps=" + camp + '&inc=' + includeEvents,
+                dataType: 'json',
+                                                cache: true,
+                            })
+            .always(endBusyWait)
+            .done(function(data) {
+                formatResultsHeader(day);
+                var output = formatResultsInCardViewStyle(data);
+
+                jQuery("#s-lc-c-list-cont").html(output);
+                scrollToResultsIfPaginating();
+                                setFocusWithFallback('#s-lc-c-list-cont .s-lc-c-s-nores', '#s-lc-c-results-heading');
+                                paginate(data.total_results, data.perpage);
+                formatLabels();
+                accessibleIcons();
+                jQuery(".s-lc-eventcard-tag-more").on("click", doNothing);
+                jQuery('.s-lc-eventcard-more-dates a').on('click', function() {
+                    var eventId = jQuery(this).data('event');
+
+                    return springyPublic.getFutureEventDates(eventId);
+                });
+            })
+            .fail(ajaxErrorHandler);
+
+            return false;
+        }
+
+        function doNothing() {
+                        return false;
+        }
+
+        function runSearch() {
+            var q = jQuery("#s-lc-c-search").val();
+            if (q.length < 2) {
+                errorAlert("Search\u0020string\u0020must\u0020be\u0020at\u0020least\u00202\u0020characters.");
+                return false;
+            }
+
+            calendarUtils.hideICalDetails(true);
+            beginBusyWait();
+
+            var cals = jQuery("#cal-dd").val();
+            var cats = jQuery("#cat-dd").val();
+            var camp = jQuery("#cam-dd").val();
+            var audience = jQuery("#audience-dd").val();
+            var includeEvents = jQuery('#include-events-dd').val();
+            var perPage = resultsPerPageViewMap[activeView];
+            var t = q.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            jQuery.ajax({
+                url: "/process_search.php?site_id=20943&cals=" + cals + "&perpage=" + perPage + "&page=" + activePage + "&q=" + encodeURIComponent(q) + "&audience=" + audience + "&cats=" + cats + "&camps=" + camp + '&inc=' + includeEvents,
+                dataType: 'json',
+            })
+            .always(endBusyWait)
+            .done(function(data) {
+                formatResultsHeader(t, 'Search\u0020Results');
+
+                if (activeView === "g") {
+                    var output = formatResultsInCardViewStyle(data);
+                } else {
+                    var output = formatResultsInListViewStyle(data);
+                }
+
+                jQuery("#s-lc-c-list-cont").html(output);
+                scrollToResultsIfPaginating();
+                setFocusWithFallback('#s-lc-c-list-cont .s-lc-c-s-nores', '#s-lc-c-results-heading');
+                paginate(data.total_results, data.perpage);
+                formatLabels();
+                accessibleIcons();
+                jQuery('.s-lc-eventcard-more-dates a').on('click', function() {
+                    var eventId = jQuery(this).data('event');
+
+                    return springyPublic.getFutureEventDates(eventId);
+                });
+            })
+            .fail(ajaxErrorHandler);
+
+            return false;
+        }
+
+        function formatResultsInListViewStyle(data) {
+            if (data.error) {
+                return "<p>" + eventData.error + "</p>";
+            }
+
+            var results = data.results.length;
+            if (results < 1) {
+                return "<div class=\"alert alert-info s-lc-c-s-nores\" tabindex=\"-1\">No\u0020events\u0020are\u0020scheduled.</div>";
+            }
+
+            var output = "";
+            for (var i = 0; i < results; i++) {
+                var eventData = data.results[i];
+                addEventDataTextTranslations(eventData);
+                output += Mustache.render(template, eventData);
+            }
+            output += "<div id=\"pag\"></div>";
+            return output;
+        }
+
+        function formatResultsInCardViewStyle(data) {
+            if (data.error) {
+                return "<p>" + data.error + "</p>";
+            }
+
+            var resultCount = data.results.length;
+            if (resultCount < 1) {
+                return "<div class=\"alert alert-info s-lc-c-s-nores\" tabindex=\"-1\">No\u0020events\u0020are\u0020scheduled.</div>";
+            }
+
+            var output = '<div class="s-lc-eventcard-outer-container"><div class="s-lc-eventcard-inner-container">';
+            for (var i = 0; i < resultCount; i++) {
+                var eventData = data.results[i];
+                decorateEventDataWithCategoryDisplayInfo(eventData);
+                addEventDataTextTranslations(eventData);
+                eventData.ribbonWarning = getRibbonWarning(eventData);
+                eventData.campusAndLocation = getCampusAndLocationData(eventData);
+
+                // if the event does not have a featured image then use the default card view image
+                if (eventData.featured_image.length === 0) {
+                    eventData.featured_image = cardViewDefaultImage;
+                    eventData.featured_image_alt_text = cardViewDefaultImageAltText;
+                }
+
+                output += Mustache.render(cardViewTemplate, eventData);
+            }
+            output += "</div></div>";
+            output += "<div id=\"pag\"></div>";
+            return output;
+        }
+
+        function paginate(totalResults, perPage) {
+            var paginationElement = formatPaginationElement(activePage, perPage, totalResults);
+            if (paginationElement === null) {
+                return;
+            }
+
+            jQuery('#pag').append(paginationElement);
+
+            jQuery('#pag li a').on('click', function () {
+                activePage = jQuery(this).data('page');
+                springyPage.isPaginationClick = true;
+
+                return runFilters();
+            });
+        }
+
+        function decorateEventDataWithCategoryDisplayInfo(eventData) {
+            var audienceCount = eventData.audiences.length;
+            var categoryCount = eventData.categories_arr.length;
+
+            var audiencesToShowInFull = 0;
+            var categoriesToShowInFull = 1;
+
+            if ((audienceCount > 0) && categoryCount > 0) {
+                audiencesToShowInFull = 1;
+                categoriesToShowInFull = 1;
+            } else if (audienceCount > 0) {
+                audiencesToShowInFull = Math.min(2, audienceCount);
+            } else {
+                categoriesToShowInFull = Math.min(2, categoryCount);
+            }
+
+            var toShowInFull = [];
+            var toShowAsTooltip = [];
+
+            for (var i=0; i < audienceCount; i++) {
+                var audienceData = eventData.audiences[i];
+
+                if (i < audiencesToShowInFull) {
+                    toShowInFull.push({
+                        isAudience: true,
+                        id: audienceData.id,
+                        name: audienceData.name,
+                        color: audienceData.color,
+                    });
+                } else {
+                    toShowAsTooltip.push(audienceData.name);
+                }
+            }
+
+            for (var i=0; i < categoryCount; i++) {
+                var categoryData = eventData.categories_arr[i];
+
+                if (i < categoriesToShowInFull) {
+                    toShowInFull.push({
+                        isCategory: true,
+                        id: categoryData.cat_id,
+                        name: categoryData.name,
+                        color: categoryData.color,
+                    });
+                } else {
+                    toShowAsTooltip.push(categoryData.name);
+                }
+            }
+
+            eventData.categoriesToShowInFull = toShowInFull;
+            eventData.categoriesTooltip = toShowAsTooltip.join(", ");
+        }
+
+        function getCampusAndLocationData(eventData) {
+                        var maxLocationsToShow = 2;
+            var campusString = eventData.campus;
+            var campusCount = campusString.length > 0 ? 1 : 0;
+            var locationString = eventData.location;
+            var locationCount = eventData.locationCount;
+
+            if ((locationCount + campusCount) > maxLocationsToShow) {
+                return "Multiple\u0020Locations";
+            }
+
+            var locations = [];
+            if (campusCount > 0) {
+                locations.push(campusString);
+            }
+
+            if (locationCount > 0) {
+                locations.push(locationString);
+            }
+
+            return locations.join(", ");
+        }
+
+        function getRibbonWarning(eventData) {
+            var registrationEnabled = eventData.registration_enabled;
+            var registrationMessage = eventData.registration_msg;
+            var registrationWaitlist = eventData.waitlist;
+
+            if (registrationEnabled && (registrationWaitlist === springyPage.waitlistOpen)) {
+                return springyPage.lang.waitlistOpen;
+            }
+
+            if (typeof registrationMessage === 'undefined') {
+                return '';
+            }
+
+            var registrationStatus = registrationMessage.status;
+
+            if (!registrationEnabled && (registrationStatus === springyPage.fullyBooked)) {
+                return springyPage.lang.fullyBooked;
+            }
+
+            return '';
+        }
+
+        function setupAudienceLabel() {
+            var audienceHtml = "";
+            jQuery("#audience-dd :selected").each(function (i, selected) {
+                var value = jQuery(selected).val();
+                audienceHtml += '<a href="#" class="no-deco" onclick="removeAudience(\'' + value + '\');" aria-label="remove audience filter">';
+                audienceHtml += '<span class="label" style="background-color:' + jQuery(selected).data("bgcolor") + '">';
+                audienceHtml += jQuery(selected).text();
+                audienceHtml += '&nbsp;<i class="fa fa-times fa-lg" style="color:#fff" aria-hidden="true"></i></span></a>&nbsp;';
+            });
+
+            if (audienceHtml != "") {
+                audienceHtml = '<span class="s-lc-c-e-audience-lab">Audience:</span> ' + audienceHtml;
+            }
+
+            jQuery("#s-lc-c-e-audience").html(audienceHtml);
+        }
+
+        function formatLabels() {
+                    }
+
+        function removeFilter(id, value) {
+            var element = jQuery(id);
+
+            var list = element.val();
+            var index = list.indexOf(value);
+            if (index > -1) {
+                list.splice(index, 1);
+            }
+
+            element.val(list);
+            element.selectpicker("refresh");
+
+            return runFilters();
+        }
+
+        function removeAudience(value) {
+            return removeFilter("#audience-dd", value);
+        }
+
+        function removeCat(value) {
+            return removeFilter("#cat-dd", value);
+        }
+
+        function removeCam(value) {
+            return removeFilter("#cam-dd", value);
+        }
+
+        function determineQueryString() {
+            var categoryIds = jQuery("#cat-dd").val();
+            var campusIds = jQuery("#cam-dd").val();
+            var audienceIds = jQuery("#audience-dd").val();
+            var calendarId = jQuery("#cal-dd").find(":selected").data("cal_id");
+            var calendarIds = jQuery("#cal-dd").val();
+            var qs = "";
+
+            if (activeSearch) {
+                var q = encodeURIComponent(jQuery("#s-lc-c-search").val());
+                var caqs = "";
+                if (calendarId != null) {
+                    caqs = "&cid=" + calendarId;
+                }
+                qs = "?t=" + activeView + "&q=" + q + caqs;
+            } else {
+                qs = "?cid=" + calendarId + "&t=" + activeView + "&d=" + getDateToPassToPhp();
+            }
+
+            if (calendarIds.length) {
+                qs = qs + "&cal=" + calendarIds;
+            }
+
+            if ((audienceIds !== undefined) && (audienceIds.length)) {
+                qs = qs + "&audience=" + audienceIds;
+            }
+
+            if ((categoryIds !== undefined) && (categoryIds.length)) {
+                qs = qs + "&ct=" + categoryIds;
+            }
+
+            if ((campusIds !== undefined) && (campusIds.length)) {
+                qs = qs + "&cm=" + campusIds;
+            }
+
+                                    if (activePage > 1) {
+                qs = qs + "&page=" + activePage;
+            }
+
+            var includeEvents = jQuery('#include-events-dd').val();
+            if (includeEvents !== undefined) {
+                qs += '&inc=' + includeEvents;
+            }
+
+            return qs;
+        }
+
+        function listenForFilterChanges() {
+                        jQuery("#cal-dd").on("changed.bs.select", runCalendarSelectionValidation);
+                    }
+
+        function stopListeningForFilterChanges() {
+            jQuery("#audience-dd, #cat-dd, #cam-dd, #include-events-dd, #cal-dd").off("changed.bs.select");
+        }
+
+        function clearFilters() {
+            stopListeningForFilterChanges();
+
+            jQuery("#cal-dd").selectpicker("deselectAll").val(-1).selectpicker("refresh");
+            jQuery("#cam-dd, #audience-dd").selectpicker("deselectAll").selectpicker("refresh");
+            jQuery("#cat-dd").selectpicker("deselectAll").selectpicker("refresh");
+            jQuery('#include-events-dd').val(defaultIncludeEvents).selectpicker('refresh');
+
+            activeSearch = false;
+            jQuery("#s-lc-c-search").val("");
+
+            activeDate = moment("2026\u002D10\u002D16", springSpace.phpDateFormat);
+            haveChosenSpecificDate = false;
+            jQuery("#s-lc-filter-date").val("");
+            createDatePicker();
+
+            listenForFilterChanges();
+
+            jQuery(".s-lc-nav-tab").removeClass("active");
+            activePage = 1;
+
+            return runFilters();
+        }
+
+        function scrollToResultsIfPaginating() {
+            if (!springyPage.isPaginationClick) {
+                return;
+            }
+
+            springyPage.isPaginationClick = false;
+            jQuery('#s-lc-c-list-results')[0].scrollIntoView({ block: 'start' });
+        }
+
+        function setFocusWithFallback(selectorA, selectorB) {
+            let element = jQuery(selectorA);
+
+            if (element.length === 0) {
+                element = jQuery(selectorB);
+            }
+
+            element.focus();
+            document.title = element.text().trim() + ' - ' + springyPage.originalPageTitle;
+        }
+
+        jQuery(function () {
+            jQuery("#cal-dd").selectpicker({
+                countSelectedText: selectPickerCountSelectText,
+                header: selectPickerHeaderText.calendar,
+                style: "btn-default btn-sm"
+            });
+
+            jQuery("#audience-dd").selectpicker({
+                countSelectedText: selectPickerCountSelectText,
+                header: selectPickerHeaderText.audience,
+                style: "btn-default btn-sm"
+            });
+
+            jQuery("#cat-dd").selectpicker({
+                countSelectedText: selectPickerCountSelectText,
+                header: selectPickerHeaderText.category,
+                style: "btn-default btn-sm"
+            });
+
+            jQuery("#cam-dd").selectpicker({
+                countSelectedText: selectPickerCountSelectText,
+                header: selectPickerHeaderText.campus,
+                style: "btn-default btn-sm"
+            });
+
+            jQuery('#include-events-dd').selectpicker({
+                header: selectPickerHeaderText.include,
+                style: 'btn-default btn-sm'
+            });
+
+            jQuery(".s-lc-nav-list").on("click", function (e) {
+                return setActiveViewMode("d");
+            });
+
+            jQuery(".s-lc-nav-monthly").on("click", function (e) {
+                return setActiveViewMode("m");
+            });
+
+            jQuery('.s-lc-nav-weekly').on('click', function () {
+                return setActiveViewMode('w');
+            });
+
+            jQuery(".s-lc-nav-card").on("click", function (e) {
+                return setActiveViewMode("g");
+            });
+
+            jQuery('.s-lc-filters-clear').on('click', clearFilters);
+
+            jQuery('#cal-form').on('submit', function() {
+                var searchString = jQuery("#s-lc-c-search").val();
+                if (searchString.length > 0) {
+                    setActiveViewModeToSearch();
+                }
+                return runFilters();
+            });
+
+            jQuery('.s-lc-c-timezone-change').off('click').on('click', springyPublic.showTimezoneModal);
+
+            updateCategoryFilters(
+                [-1,],
+                []
+            );
+
+            var cals = jQuery("#cal-dd").val();
+            if (cals == null) {
+            } else {
+                jQuery("#s-lc-c-catf .bootstrap-select").prop("title", "");
+            }
+
+            jQuery('#s-lc-c-ical-toggle').on('click', calendarUtils.showICalDetails);
+
+            jQuery('.selectpicker').prop('tabindex', 0);
+
+            // for "show more dates" hover text
+            jQuery('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
+
+            listenForFilterChanges();
+
+            accessibleIcons();
+
+                        activeView = "g";
+            activeSearch = false;
+            createDatePicker();
+
+            
+            runFilters(true);
+
+            // reload the page with previous query string when user click on Back
+            window.addEventListener('popstate', function() {
+                location.reload();
+            });
+
+            // dismiss any event hover popover left open from a bfcache-restored page
+            // (e.g. mobile Safari back button after tapping an event link before mouseleave/blur fires)
+            function dismissStaleEventPopovers() {
+                springyCommon.removeAllPopups();
+
+                // the trigger element can retain browser focus across the bfcache
+                // restore, leaving its focus/active styling stuck alongside the popover
+                if (document.activeElement && document.activeElement !== document.body) {
+                    document.activeElement.blur();
+                }
+            }
+
+            window.addEventListener('pageshow', function (event) {
+                if (event.persisted) {
+                    dismissStaleEventPopovers();
+
+                    // the browser can replay a synthetic hover for the element still under
+                    // the cursor once the restored page becomes interactive again, reopening
+                    // the popover shortly after this handler runs - catch that follow-up too
+                    setTimeout(dismissStaleEventPopovers, 300);
+                }
+            });
+        });
+    </script>
+    
+
+
+<div id="s-lc-privacy-statement" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h2 class="modal-title">
+                    Privacy Statement
+                </h2>
+            </div>
+
+            <div class="modal-body">
+                <p>To use this platform, the system writes one or more cookies in your browser. These cookies are not shared with any third parties. In addition, your IP address and browser information is stored in server logs and used to generate anonymized usage statistics. Phoenix Public Library uses these statistics to gauge the use of library content, and the information is not shared with any third parties.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    springSpace.cookieConsent.alert({
+        okay: "OK",
+        placement: "bottom",
+        consent_message: "This site uses cookies and stores your IP address for usage statistics. <a href='#' id='s-ui-cc-read-more-link'>Read\u0020More</a>",
+        read_more_callback: function () {
+            jQuery("#s-lc-privacy-statement").springshareModal("show");
+        }
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 from datetime import UTC, datetime, timedelta
 
-from gotc.pipeline.venue_refs import sync
+from gotc.pipeline.venue_refs import store_bindings, sync
 from tests.conftest import FixtureTransport, fast_client, make_city
 
 NOW = datetime(2026, 10, 16, tzinfo=UTC)
@@ -28,9 +28,16 @@ RESP = {
 }
 
 
-def test_sync_stores_capacities_with_qids_and_respects_ttl(db):
-    t = FixtureTransport().add(r"query\.wikidata\.org/sparql", RESP)
-    assert sync(db, fast_client(t), make_city(), NOW) == 1  # unlabeled + implausibly small rows dropped
+def test_sync_never_touches_wikidata(db):
+    """query.wikidata.org/robots.txt: Disallow /sparql; www.wikidata.org: Disallow /w/ and /api/ (2026-10-16)."""
+    t = FixtureTransport()  # any request at all would raise "unexpected request in test"
+    assert sync(db, fast_client(t), make_city(), NOW) == 0
+    assert t.calls == []
+
+
+def test_existing_rows_keep_serving(db):
+    assert store_bindings(db, make_city(), RESP, NOW) == 1  # unlabeled + implausibly small rows dropped
+    sync(db, fast_client(FixtureTransport()), make_city(), NOW + timedelta(days=30))
     row = db.one("SELECT * FROM venue_refs")
     assert (row["name"], row["capacity"], row["ref_id"], row["lat"]) == (
         "Orpheum Theatre",
@@ -38,12 +45,3 @@ def test_sync_stores_capacities_with_qids_and_respects_ttl(db):
         "wikidata:Q7103968",
         44.9755,
     )
-    assert sync(db, fast_client(t), make_city(), NOW + timedelta(days=1)) == 0  # cached for a week
-    assert len(t.calls) == 1
-
-
-def test_outage_keeps_previous_rows(db):
-    sync(db, fast_client(FixtureTransport().add(r"wikidata", RESP)), make_city(), NOW)
-    down = FixtureTransport().add(r"wikidata", status=503)
-    assert sync(db, fast_client(down), make_city(), NOW + timedelta(days=8)) == 0
-    assert db.one("SELECT COUNT(*) c FROM venue_refs")["c"] == 1

@@ -2464,6 +2464,196 @@
    "notes": [
     "2026-10-16 rejected: Duplicate of I-130 (Ranking v2), which is now done"
    ]
+  },
+  {
+   "id": "I-168",
+   "title": "Backtest gotc discover on the 10 live cities (recall/precision per family)",
+   "area": "pipeline",
+   "value": 5,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-169",
+   "title": "Per-city state files on the pipeline-state branch",
+   "area": "infra",
+   "value": 5,
+   "effort": 3,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-170",
+   "title": "Week-sharded card files (now.json + w<ISO-week>.json)",
+   "area": "ux",
+   "value": 4,
+   "effort": 3,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-171",
+   "title": "Coverage UI: Live/Beta chip, pillar strip, coverage matrix page",
+   "area": "ux",
+   "value": 5,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-172",
+   "title": "OSM attribution on the dashboard for cached Nominatim coordinates",
+   "area": "ux",
+   "value": 4,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-173",
+   "title": "gotc discover --verify: run chosen candidates in a scratch DB",
+   "area": "pipeline",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Candidates are scored on one probe; a scratch-DB run per unit (valid/rejected, categories, geofence drops, dup rate vs promoted units) makes promotion a review of numbers, not guesses (§2.8).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-174",
+   "title": "Library and university seeds for discover from IMLS PLS + College Scorecard",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Seeds are operator-supplied today; the IMLS administrative-entity file and Scorecard (DATA_GOV_API_KEY, ≥10k students, online-only filtered) would make discovery hands-off for metros 11–50.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-175",
+   "title": "CivicPlus calendar RSS adapter",
+   "area": "sources",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "CivicPlus hosts city and parks calendars for many suburbs and mid-size cities (metros 30–100); RSSFeed.aspx is robots-allowed with a calendarEvent: namespace. discover already flags it as no_adapter_yet.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-176",
+   "title": "Fetch national feeds once per run and share across cities (Challenge, UpcomingCons)",
+   "area": "pipeline",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "Challenge's 0.9 MB show list is fetched once per city unit today; at 50 cities that's 45 MB/run of identical bodies (§4.6 item 6).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-177",
+   "title": "Wikidata venue capacities via www.wikidata.org/w/api.php (wbgetentities)",
+   "area": "sources",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "rejected",
+   "why": "Considered as the SPARQL replacement.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": [
+    "2026-10-16 rejected: www.wikidata.org/robots.txt disallows /w/ (so /w/api.php), /api/ and /wiki/Special: for all agents (checked 2026-10-16). Venue capacities come from config/venues instead."
+   ]
+  },
+  {
+   "id": "I-178",
+   "title": "Urban Institute Education Data API (cbsa= filter) for university discovery",
+   "area": "sources",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "rejected",
+   "why": "Has IPEDS by CBSA in one call.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": [
+    "2026-10-16 rejected: educationdata.urban.org/robots.txt says Disallow: /api/. Use College Scorecard (api.data.gov key) instead (I-116)."
+   ]
+  },
+  {
+   "id": "I-179",
+   "title": "Keep Nominatim at 1 req/s with a per-run cap",
+   "area": "pipeline",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "rejected",
+   "why": "Would keep place-name geocoding as before.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": [
+    "2026-10-16 rejected: nominatim.openstreetmap.org/robots.txt disallows /search and the OSMF policy limits recurring scripts to 4 req/min and strongly discourages periodic app use. Nominatim is off by default; GOTC_NOMINATIM=1 is a compliant 15 s / 20-per-run lane."
+   ]
+  },
+  {
+   "id": "I-180",
+   "title": "Guess Communico tenants from the city name (<name>.libnet.info)",
+   "area": "sources",
+   "value": 2,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "rejected",
+   "why": "Cheap library discovery.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": [
+    "2026-10-16 rejected: Unknown libnet.info subdomains 302 to google.co.uk (we'd be fetching Google), and names collide across states (hcpl = Harford County MD, not Harris County TX). Only fingerprinted links from a library's own homepage are probed."
+   ]
   }
  ]
 }

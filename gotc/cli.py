@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import sys
+from typing import Any
 
 from gotc.config import load_registry
 from gotc.settings import ROOT, Settings, load_dotenv
@@ -30,6 +31,10 @@ def cmd_run(a: argparse.Namespace, s: Settings) -> int:
         force=a.force,
         max_seconds=a.max_minutes * 60 if a.max_minutes else None,
         geocode=not a.no_geocode,
+        cities=[x.strip() for x in a.cities.split(",") if x.strip()] if a.cities else None,
+        force_build=a.force_build,
+        build=not a.no_build,
+        fetch=not a.no_fetch,
         trigger=a.trigger,
     )
     print(rep.summary())
@@ -55,9 +60,15 @@ def cmd_build(a: argparse.Namespace, s: Settings) -> int:
     now = utcnow()
     http = PoliteClient(s) if a.geocode else None
     geo = Geocoder(db, http)
+    from gotc.pipeline.incremental import inputs_hash, mark_built, needs_build
+
     for c in reg.cities.values():
         if c.enabled and (a.city is None or c.slug == a.city):
+            if a.incremental and not needs_build(db, c.slug, inputs_hash(db, reg, c), now)[0]:
+                print(f"{c.slug:14} unchanged (incremental): not rebuilt")
+                continue
             st = build_city(db, reg, c, now, geo)
+            mark_built(db, c.slug, inputs_hash(db, reg, c), now)
             print(
                 f"{c.slug:14} records={st.records:<5} events={st.events:<5} merged={st.merged:<4} "
                 f"geocoded={st.geocoded:<4} venues={st.venues:<4} deadlines={st.deadlines_extracted} outside={st.outside}"
@@ -168,10 +179,263 @@ def cmd_validate(a: argparse.Namespace, s: Settings) -> int:
             load_sp(path.stem.upper())
         except Exception as ex:
             errors.append(f"starter_pack/{path.name}: {str(ex)[:200]}")
+    from gotc.pipeline.payload import check_all
+
+    for rep in check_all(s.web_data_dir, utcnow()):  # per-city payload budgets (only if exports exist)
+        for w in rep.warnings:
+            print("WARN payload", w)
+        errors += [f"payload {f}" for f in rep.failures]
     for msg in errors:
         print("ERROR", msg)
     print(f"validate: {len(reg.cities)} cities, {len(reg.units())} units, {len(errors)} errors")
     return 1 if errors else 0
+
+
+def cmd_gate(a: argparse.Namespace, s: Settings) -> int:
+    """Go-live gate (SCALING.md §3, ADR-0008): per-city tier + G1–G11 from what's in the DB. No network."""
+    from gotc.pipeline.export import city_feed
+    from gotc.pipeline.gate import gate_city
+
+    reg = load_registry()
+    db = _db(s)
+    now = utcnow()
+    cities = [c for c in reg.cities.values() if a.city is None or c.slug == a.city]
+    if not cities:
+        print(f"unknown city {a.city}", file=sys.stderr)
+        return 2
+    failed = 0
+    out = {}
+    for c in cities:
+        feed = city_feed(db, reg, c, now) if c.enabled else None
+        events = feed.events if feed else _events_for(db, c.slug)
+        cov = gate_city(db, reg, c, now, events, persist=not a.dry_run)
+        out[c.slug] = json.loads(cov.model_dump_json(exclude_none=True))
+        failed += int(not cov.passed_hard)
+        if a.json:
+            continue
+        marks = " ".join(
+            f"{cid}{'✓' if cr.pass_hard is not False and cr.pass_soft is not False else ('◐' if cr.pass_hard is not False else '✗')}"
+            for cid, cr in cov.criteria.items()
+        )
+        banner = " (banner)" if cov.banner else ""
+        print(f"{c.slug:16} {cov.tier:6}{banner} hard={'pass' if cov.passed_hard else 'FAIL'}  {marks}")
+        pills = ", ".join(
+            f"{p.label} {p.count}{'' if p.state == 'strong' else ' ' + p.state}" for p in cov.pillars.values()
+        )
+        print(f"{'':16} sources {cov.sources_healthy}/{cov.sources_total} · geocoded {cov.geocode_rate:.0%} · {pills}")
+        for r in cov.reasons if a.verbose_reasons else [r for r in cov.reasons if not r.startswith("thin:")]:
+            print(f"{'':16} - {r}")
+    if a.json:
+        print(json.dumps(out, indent=2))
+    return 1 if a.strict and failed else 0
+
+
+def _rel(path: Any) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
+def _city_for(slug: str) -> Any:
+    """A city's config (even if disabled), else a skeleton from config/metros.yaml; None if unknown."""
+    from gotc.config import CityConfig
+    from gotc.config import load_yaml as _load
+    from gotc.metros import metros
+    from gotc.settings import CONFIG_DIR
+
+    path = CONFIG_DIR / "cities" / f"{slug}.yaml"
+    if path.exists():
+        return CityConfig.model_validate(_load(path.read_text()))
+    m = metros().get(slug)
+    if m is None:
+        return None
+    return CityConfig(
+        slug=m.slug,
+        name=m.name,
+        state=m.state,
+        timezone=m.timezone,
+        center=m.center,
+        radius_km=m.radius_km,
+        cbsa=m.cbsa,
+        enabled=False,
+    )
+
+
+def cmd_discover(a: argparse.Namespace, s: Settings) -> int:
+    """Probe for candidate sources for a city (live network, polite, robots-first). Writes data/discover/<slug>.yaml."""
+    from gotc.discover.engine import FAMILIES, Discoverer, existing_hosts, parse_seed, write_candidates
+    from gotc.http.client import PoliteClient
+    from gotc.metros import metros
+
+    city = _city_for(a.slug)
+    if city is None:
+        print(f"unknown city {a.slug}: add it to config/metros.yaml or config/cities/", file=sys.stderr)
+        return 2
+    families = tuple(f.strip() for f in a.families.split(",")) if a.families else FAMILIES
+    unknown = [f for f in families if f not in FAMILIES]
+    if unknown:
+        print(f"unknown families {unknown}; choose from {', '.join(FAMILIES)}", file=sys.stderr)
+        return 2
+    record = None
+    if a.record:
+        import hashlib
+        from pathlib import Path
+
+        rec_dir = Path(a.record)
+        rec_dir.mkdir(parents=True, exist_ok=True)
+
+        def record(url: str, r: Any) -> None:
+            name = hashlib.sha256(r.url.encode()).hexdigest()[:12]
+            (rec_dir / f"{name}.body").write_bytes(r.content)
+            with (rec_dir / "index.tsv").open("a") as fh:
+                fh.write(f"{name}\t{r.status}\t{r.url}\n")
+
+    http = PoliteClient(s, max_attempts=2, timeout_s=30)
+    try:
+        d = Discoverer(
+            city,
+            http,
+            utcnow(),
+            seeds=[parse_seed(x) for x in a.seed or []],
+            families=families,
+            budget=a.budget_requests,
+            existing_hosts=existing_hosts(city),
+            record=record,
+            address=m.center_address if (m := metros().get(city.slug)) else None,
+        )
+        doc = d.run()
+    finally:
+        http.close()
+    out = Path(a.out) if a.out else s.data_dir / "discover" / f"{city.slug}.yaml"
+    write_candidates(doc, out)
+    print(f"{city.slug}: {len(doc['candidates'])} candidates, {len(doc['excluded'])} excluded, "
+          f"{doc['requests']['used']} requests → {out}")  # fmt: skip
+    for c in doc["candidates"][:25]:
+        u = c["unit"]
+        print(f"  {c['confidence']:.2f}  {u['adapter']:14} {u['id']:44} {u['name'][:60]}")
+    for x in doc["excluded"][:15]:
+        print(f"  ---  excluded {x['excluded']:18} {json.dumps(x['unit_hint'])[:90]}")
+    return 0
+
+
+def cmd_city_new(a: argparse.Namespace, s: Settings) -> int:
+    """Write config/cities/<slug>.yaml (enabled: false) from the config/metros.yaml row."""
+    from gotc.config import CityConfig
+    from gotc.metros import metros
+    from gotc.settings import CONFIG_DIR
+
+    m = metros().get(a.slug)
+    if m is None:
+        print(f"{a.slug} is not in config/metros.yaml", file=sys.stderr)
+        return 2
+    path = CONFIG_DIR / "cities" / f"{m.slug}.yaml"
+    if path.exists() and not a.force:
+        print(f"{_rel(path)} already exists (use --force to overwrite)", file=sys.stderr)
+        return 1
+    CityConfig(
+        slug=m.slug,
+        name=m.name,
+        state=m.state,
+        timezone=m.timezone,
+        center=m.center,
+        radius_km=m.radius_km,
+        cbsa=m.cbsa,
+        enabled=False,
+    )  # fmt: skip  — validate before writing
+    lat, lon = m.center
+    center_note = (
+        f"Census geocoder: {m.center_matched}"
+        if m.center_source == "census_geocoder"
+        else "SCALING.md §1 (general knowledge, not surveyed)"
+    )
+    path.write_text(
+        f"# {m.name}, {m.state}: CBSA {m.cbsa} {m.msa} ({m.msa_pop_m} M, Census V2024). Skeleton from `gotc city new`.\n"
+        f"# Draft: enabled stays false until `gotc gate --city {m.slug}` passes (ADR-0008). Candidate sources:\n"
+        f"# `gotc discover {m.slug} --seed library=… --seed university=…` → data/discover/{m.slug}.yaml.\n"
+        f"# center: {center_note}\n"
+        f"# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.\n"
+        f"slug: {m.slug}\n"
+        f"name: {m.name}\n"
+        f"state: {m.state}\n"
+        f"timezone: {m.timezone}\n"
+        f"center: [{lat}, {lon}]\n"
+        f"radius_km: {m.radius_km:g}\n"
+        f'cbsa: "{m.cbsa}"\n'
+        "aliases: []\n"
+        "enabled: false\n"
+        "sources: []\n"
+    )
+    print(f"wrote {_rel(path)}")
+    return 0
+
+
+def cmd_city_recenter(a: argparse.Namespace, s: Settings) -> int:
+    """Re-derive config/metros.yaml centers from city-hall addresses with the Census geocoder (live, ~50 calls)."""
+    from gotc.http.client import PoliteClient
+    from gotc.metros import recenter
+    from gotc.settings import CONFIG_DIR
+
+    http = PoliteClient(s, max_attempts=2)
+    try:
+        for line in recenter(CONFIG_DIR / "metros.yaml", http, a.slug):
+            print(line)
+    finally:
+        http.close()
+    return 0
+
+
+def _events_for(db: Database, city: str) -> list[Any]:
+    from gotc.schema import Event
+
+    out = []
+    for r in db.all("SELECT data FROM events WHERE city = ? ORDER BY start_at", (city,)):
+        try:
+            out.append(Event.model_validate_json(r["data"]))
+        except ValueError:
+            continue
+    return out
+
+
+def cmd_state(a: argparse.Namespace, s: Settings) -> int:
+    """Sharded CI plumbing (gotc/storage/delta.py): mark | delta | merge."""
+    from pathlib import Path
+
+    from gotc.storage import delta
+
+    if a.state_cmd == "mark":
+        print(json.dumps(delta.mark(_db(s))))
+        return 0
+    if a.state_cmd == "delta":
+        base = json.loads(Path(a.base).read_text())
+        cities = [c for c in a.cities.split(",") if c]
+        counts = delta.export_delta(s.db_path, base, cities, Path(a.out))
+        print(f"delta {a.out}: {counts}")
+        return 0
+    db = _db(s)
+    expect = delta.mark(db)
+    status = 0
+    for p in a.deltas:
+        try:
+            print(f"merged {p}: {delta.merge_delta(db, Path(p), expect)}")
+        except delta.DeltaMismatch as e:
+            print(f"REFUSED {e}", file=sys.stderr)
+            status = 1
+    return status
+
+
+def cmd_shards(a: argparse.Namespace, s: Settings) -> int:
+    """GitHub Actions matrix JSON: enabled cities packed into shards of ~size, balanced by unit count."""
+    from gotc.storage.delta import plan_shards
+
+    reg = load_registry()
+    load: dict[str, int] = {}
+    for u in reg.units():
+        if u.source.enabled:
+            load[u.city.slug] = load.get(u.city.slug, 0) + 1
+    shards = plan_shards(load, a.size)
+    print(json.dumps({"include": [{"shard": i, "cities": ",".join(c)} for i, c in enumerate(shards)]}))
+    return 0
 
 
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
@@ -291,6 +555,10 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--force", action="store_true", help="ignore next_due_at")
     r.add_argument("--max-minutes", type=float, default=None)
     r.add_argument("--no-geocode", action="store_true")
+    r.add_argument("--cities", help="comma list: only these cities' units (a CI shard)")
+    r.add_argument("--no-build", action="store_true", help="fetch only (CI shards; the publish job builds)")
+    r.add_argument("--no-fetch", action="store_true", help="build + export only (the CI publish job)")
+    r.add_argument("--force-build", action="store_true", help="rebuild every city even if its inputs didn't change")
     r.add_argument("--strict", action="store_true", help="exit 1 if any unit failed")
     r.add_argument("--trigger", default="cli")
     r.set_defaults(fn=cmd_run)
@@ -298,6 +566,7 @@ def main(argv: list[str] | None = None) -> int:
     b = sub.add_parser("build", help="rebuild + export from the DB (offline)")
     b.add_argument("--city")
     b.add_argument("--geocode", action="store_true", help="allow live geocoding lookups")
+    b.add_argument("--incremental", action="store_true", help="skip cities whose build inputs didn't change")
     b.set_defaults(fn=cmd_build)
 
     rp = sub.add_parser("replay", help="re-parse stored raw payloads (after a parser fix)")
@@ -310,6 +579,48 @@ def main(argv: list[str] | None = None) -> int:
     fg.set_defaults(fn=cmd_forget)
 
     sub.add_parser("validate", help="fast config validation (pre-commit gate)").set_defaults(fn=cmd_validate)
+    g = sub.add_parser("gate", help="go-live gate: per-city tier + coverage (G1–G11), from the DB")
+    g.add_argument("--city")
+    g.add_argument("--json", action="store_true")
+    g.add_argument("--dry-run", action="store_true", help="don't persist the tier")
+    g.add_argument("--strict", action="store_true", help="exit 1 if any city fails a hard criterion")
+    g.add_argument("--all-reasons", dest="verbose_reasons", action="store_true", help="also list soft misses")
+    g.set_defaults(fn=cmd_gate)
+
+    dc = sub.add_parser("discover", help="probe for candidate sources (live, polite) → data/discover/<slug>.yaml")
+    dc.add_argument("slug")
+    dc.add_argument("--seed", action="append", help="kind=URL (library|university|venue|parks|volunteer|other)")
+    dc.add_argument("--families", help="comma list: socrata,datagov,arcgis,library,university,venue,volunteer,…")
+    dc.add_argument("--budget-requests", type=int, default=400)
+    dc.add_argument("--out")
+    dc.add_argument("--record", help="save every response body here (for fixtures)")
+    dc.set_defaults(fn=cmd_discover)
+
+    cy = sub.add_parser("city", help="city scaffolding")
+    cy_sub = cy.add_subparsers(dest="city_cmd", required=True)
+    cn = cy_sub.add_parser("new", help="write config/cities/<slug>.yaml (enabled: false) from config/metros.yaml")
+    cn.add_argument("slug")
+    cn.add_argument("--force", action="store_true")
+    cn.set_defaults(fn=cmd_city_new)
+    cr = cy_sub.add_parser("recenter", help="re-derive config/metros.yaml centers via the Census geocoder (live)")
+    cr.add_argument("--slug")
+    cr.set_defaults(fn=cmd_city_recenter)
+
+    stp = sub.add_parser("state", help="sharded CI: mark / delta / merge pipeline state")
+    st_sub = stp.add_subparsers(dest="state_cmd", required=True)
+    st_sub.add_parser("mark", help="print the DB's max ids + time (JSON) before a shard runs")
+    sd = st_sub.add_parser("delta", help="export a shard's changes since --base")
+    sd.add_argument("--base", required=True)
+    sd.add_argument("--cities", required=True)
+    sd.add_argument("--out", required=True)
+    sm = st_sub.add_parser("merge", help="merge shard deltas into the DB")
+    sm.add_argument("deltas", nargs="*")
+    stp.set_defaults(fn=cmd_state)
+
+    sh = sub.add_parser("shards", help="print the CI shard matrix (JSON)")
+    sh.add_argument("--size", type=int, default=4, help="cities per shard (≈)")
+    sh.set_defaults(fn=cmd_shards)
+
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)
 
