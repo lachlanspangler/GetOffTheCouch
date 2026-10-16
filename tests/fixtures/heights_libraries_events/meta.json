@@ -1,0 +1,6 @@
+{
+  "unit": "heights_libraries_events@cleveland",
+  "recorded_at": "2026-10-16T23:00:35+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`, then trimmed by hand to 8 of 500 VEVENTs (2 past, 6 upcoming)"
+}

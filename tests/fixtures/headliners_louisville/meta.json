@@ -1,0 +1,6 @@
+{
+  "unit": "headliners_louisville@louisville",
+  "recorded_at": "2026-10-16T23:00:34+00:00",
+  "payloads": 1,
+  "note": "real homepage recorded with `gotc record`, then trimmed to the first 5 of 28 Event JSON-LD blocks"
+}
