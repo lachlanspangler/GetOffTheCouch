@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 76 · **doing** 4 · **done** 78 · **rejected** 23 · **parked** 2 · **blocked** 10
+**open** 83 · **doing** 4 · **done** 78 · **rejected** 25 · **parked** 2 · **blocked** 12
 
 ## Up next (open, by score)
 
@@ -19,11 +19,13 @@ unless docs/HEALTH.md has something red.
 | I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | open | Time Out pattern: one URL, fresh dates, high-intent query |
 | I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | open | Partiful trust pattern; clarifies we're a guide |
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | open | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. |
+| I-199 | Probe tooling honors Crawl-delay | infra | 4 | 1 | 3.2 | open | Prevents slips like azleg.gov (Crawl-delay 120) |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | open | GitHub disables crons on inactive repos |
 | I-185 | SeatEngine/Opendate fingerprints in discover | cities | 3 | 1 | 2.4 | open | Comedy clubs and venues become config-only |
 | I-187 | LiveWhale pagination | sources | 3 | 1 | 2.4 | open | Brown's calendar stops at 100 items (~2–3 days) |
 | I-188 | ArcGIS route geometry → representative point | pipeline | 3 | 1 | 2.4 | open | Raleigh street-event permits are routes and don't map |
+| I-198 | Title include/exclude filters for ics, jsonld, tribe, HandsOn | sources | 3 | 1 | 2.4 | open | Stop hacking exclude_location with lookaheads |
 | I-168 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | open | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
@@ -44,6 +46,9 @@ unless docs/HEALTH.md has something red.
 | I-173 | gotc discover --verify: run chosen candidates in a scratch DB | pipeline | 4 | 2 | 1.6 | open | Candidates are scored on one probe; a scratch-DB run per unit (valid/rejected, categories, geofence drops, dup rate vs promoted units) makes promotion a review of numbers, not guesses (§2.8). |
 | I-174 | Library and university seeds for discover from IMLS PLS + College Scorecard | sources | 4 | 2 | 1.6 | open | Seeds are operator-supplied today; the IMLS administrative-entity file and Scorecard (DATA_GOV_API_KEY, ≥10k students, online-only filtered) would make discovery hands-off for metros 11–50. |
 | I-175 | CivicPlus calendar RSS adapter | sources | 4 | 2 | 1.6 | open | CivicPlus hosts city and parks calendars for many suburbs and mid-size cities (metros 30–100); RSSFeed.aspx is robots-allowed with a calendarEvent: namespace. discover already flags it as no_adapter_yet. |
+| I-195 | Mobilize public events adapter | sources | 4 | 2 | 1.6 | open | Documented keyless API; Oregon Food Bank shifts; fills volunteering gaps |
+| I-196 | LibCal multi-calendar discovery + JSON list adapter | cities | 4 | 2 | 1.6 | open | Phoenix needed 17 branch feeds; ICS caps at 500 past items |
+| I-197 | Squarespace ?format=json events adapter (check ToS first) | sources | 4 | 2 | 1.6 | open | ~a dozen Bay Area venues |
 | I-096 | Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule | data-quality | 2 | 1 | 1.4 | open | Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources. |
 | I-084 | Find a volunteering source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 volunteering events in Denver right now |
 | I-085 | Find a cons & faires source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Denver right now |
@@ -72,6 +77,7 @@ unless docs/HEALTH.md has something red.
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |
+| I-194 | Vega events adapter (San Diego Public Library moved off BiblioCommons) | sources | 4 | 3 | 1.07 | open | Libraries are migrating to Vega |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -85,6 +91,7 @@ unless docs/HEALTH.md has something red.
 | I-028 | Price-drop / selling-fast alerts from snapshots | features | 4 | 3 | 0.8 | open | Needs SeatGeek/TM keys for real signal |
 | I-118 | Service worker: cached data first, refresh in background, 'data as of' badge | infra | 3 | 3 | 0.8 | open | Usable on flaky phone connections; honest about staleness |
 | I-166 | Rank v2 learned weights: coordinate ascent on the judgment sets with leave-one-city-out, signs fixed, x0.5-x2 bounds | features | 3 | 3 | 0.8 | open | Rollout step 7; worth it only after a second, held-out snapshot exists |
+| I-200 | Shared regional units: one fetch split across cities | pipeline | 3 | 3 | 0.8 | open | HandsOn Bay Area / Challenge fetched once per city today |
 | I-067 | Transit-time 'near me' from GTFS (keyless) instead of straight-line km | features | 4 | 4 | 0.8 | open | Newcomers without cars care about the bus ride, not the crow-flies distance |
 | I-072 | Typical registration windows learned from history ('kickball usually registers in Feb') | features | 4 | 4 | 0.8 | open | Needs a season of snapshot history; gives 'plan ahead' power |
 | I-108 | Levitt Pavilion Denver free concerts when the 2027 season posts (jsonld follow) | cities | 3 | 2 | 0.75 | open | Levitt Pavilion Denver (free summer concert series, Squarespace) had 0 upcoming events in October; Squarespace event pages carry Event JSON-LD, so a jsonld follow config should work when the 2027 season is announced (spring). |
@@ -96,6 +103,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-202 | CA ABC license data access | sources | 4 | 1 | 3.2 | blocked | Only route to openings in six CA metros; reports page is Cloudflare-challenged |
+| I-201 | Simpleview tourism boards permission (Phoenix, Scottsdale, Salt Lake, Sacramento, Riverside, Fresno) | sources | 3 | 1 | 2.4 | blocked | Deliberate 403s; outreach only |
 | I-183 | Outreach: Memphis Public Libraries, Community Libraries of Providence, Hands On Birmingham, LibraryMarket | sources | 4 | 1 | 3.2 | blocked | Each is a city's primary official source and blocked today |
 | I-182 | NC ABC new-permit feed via outreach | sources | 4 | 2 | 1.6 | blocked | Openings for Charlotte and Raleigh |
 | I-159 | Search Console property + sitemap submission | growth | 4 | 1 | 3.2 | blocked | Blocked on the user's Google account |
@@ -201,6 +210,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-204 | SOLVE volunteer listings | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid data mining |
+| I-203 | San Diego Reader calendar | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid scraping |
 | I-193 | OKC garage-sale permits | sources | 1 | 1 | 0.8 | rejected | Rejected: private home addresses |
 | I-192 | CT business registry as openings | sources | 2 | 2 | 0.8 | rejected | Rejected: formations aren't openings and rows carry personal data |
 | I-191 | jaxevents.com (Legends Global) | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid robots |
