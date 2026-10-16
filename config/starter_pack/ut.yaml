@@ -1,0 +1,33 @@
+# Official new-resident deadlines for Utah. Every fact is quoted verbatim from source_url.
+# Note: dld.utah.gov, dmv.utah.gov and vote.utah.gov answer the GetOffTheCouch UA with a Cloudflare challenge, which
+# we never attempt, so every item quotes the Utah Code on le.utah.gov (official; robots allows, Crawl-delay 10).
+# None of these sections states a day count for new residents, so days_after_move is null throughout.
+state: UT
+items:
+  - id: ut-drivers-license
+    title: "Get a Utah driver license"
+    kind: license
+    days_after_move: null
+    summary: "Utah lets you drive on a home-state license only while you are a nonresident; once you live in Utah you need a Utah license."
+    action_url: https://dld.utah.gov/
+    evidence: "(e) a nonresident who is at least 18 years old and who has in the nonresident's immediate possession a valid license certificate issued to the nonresident in the nonresident's home state or country if driving in the class or classes identified on the home state license certificate"
+    source_url: https://le.utah.gov/xcode/Title53/Chapter3/53-3-S202.html
+    verified_at: 2026-10-16
+  - id: ut-vehicle-registration
+    title: "Register your vehicle in Utah"
+    kind: vehicle
+    days_after_move: null
+    summary: "The out-of-state registration exemption covers vehicles owned by nonresidents; a Utah resident (domiciled here, or here six months or more in a year, or working here) registers in Utah."
+    action_url: https://dmv.utah.gov/
+    evidence: "Registration under this chapter is not required for any: (i) vehicle registered in another state and owned by a nonresident of the state"
+    source_url: https://le.utah.gov/xcode/Title41/Chapter1A/41-1a-S202.html
+    verified_at: 2026-10-16
+  - id: ut-voter-registration
+    title: "Register to vote in Utah"
+    kind: voting
+    days_after_move: null
+    summary: "Registrations by mail, online or at the clerk's office must arrive by 5 p.m. 11 calendar days before the election; after that you can register with a provisional ballot at early voting or on Election Day."
+    action_url: https://secure.utah.gov/voterreg/index.html
+    evidence: "the voter registration must be received by the county clerk, the municipal clerk, or the lieutenant governor no later than 5 p.m. 11 calendar days before the date of the election"
+    source_url: https://le.utah.gov/xcode/Title20A/Chapter2/20A-2-S102.5.html
+    verified_at: 2026-10-16

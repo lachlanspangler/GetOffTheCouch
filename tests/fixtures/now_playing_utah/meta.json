@@ -1,0 +1,9 @@
+{
+  "unit": "now_playing_utah@salt_lake_city",
+  "adapter": "ics",
+  "recorded_at": "2026-10-16T21:57:10+00:00",
+  "files": {
+    "payload_0.ics": "https://nowplayingutah.com/wp-json/apollo/v1/calendar/subscribe/all"
+  },
+  "note": "real feed (11 MB, 7,676 VEVENTs) fetched with the GetOffTheCouch UA; kept the calendar header and 6 VEVENTs verbatim: 2 Salt Lake City, 1 Murray, 1 Provo, 1 Ogden (outside the area allowlist) and 1 beyond the 7-day horizon"
+}

@@ -1,0 +1,162 @@
+{
+ "objectIdFieldName": "OBJECTID",
+ "uniqueIdField": {
+  "name": "OBJECTID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "fields": [
+  {
+   "name": "Account_Number",
+   "type": "esriFieldTypeString",
+   "alias": "Account_Number",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Business_Name",
+   "type": "esriFieldTypeString",
+   "alias": "Business_Name",
+   "sqlType": "sqlTypeOther",
+   "length": 60,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Business_Description",
+   "type": "esriFieldTypeString",
+   "alias": "Business_Description",
+   "sqlType": "sqlTypeOther",
+   "length": 70,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Business_Start_Date",
+   "type": "esriFieldTypeDate",
+   "alias": "Business_Start_Date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Current_License_Status",
+   "type": "esriFieldTypeString",
+   "alias": "Current_License_Status",
+   "sqlType": "sqlTypeOther",
+   "length": 30,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Location_Street_Number",
+   "type": "esriFieldTypeString",
+   "alias": "Location_Street_Number",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "Account_Number": "1123742",
+    "Business_Name": "DDUK DABANG",
+    "Business_Description": "Restaurants ",
+    "Business_Start_Date": 1794729600000,
+    "Current_License_Status": "Active",
+    "Location_Street_Number": "6366",
+    "Location_Direction": null,
+    "Location_Street_Name": "MACK",
+    "Location_Street_Type": "RD",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95823"
+   }
+  },
+  {
+   "attributes": {
+    "Account_Number": "1124485",
+    "Business_Name": "LEVELS",
+    "Business_Description": "Restaurants ",
+    "Business_Start_Date": 1793606400000,
+    "Current_License_Status": "Active",
+    "Location_Street_Number": "722",
+    "Location_Direction": null,
+    "Location_Street_Name": "K",
+    "Location_Street_Type": "ST",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95814"
+   }
+  },
+  {
+   "attributes": {
+    "Account_Number": "1123868",
+    "Business_Name": "NOMEE",
+    "Business_Description": "Cafes",
+    "Business_Start_Date": 1792911600000,
+    "Current_License_Status": "Active",
+    "Location_Street_Number": "1689",
+    "Location_Direction": null,
+    "Location_Street_Name": "ARDEN",
+    "Location_Street_Type": "WAY",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95815 - 4030"
+   }
+  },
+  {
+   "attributes": {
+    "Account_Number": "1124528",
+    "Business_Name": "PHO AROMA",
+    "Business_Description": "Restaurants ",
+    "Business_Start_Date": 1791874800000,
+    "Current_License_Status": "Pending",
+    "Location_Street_Number": "6200",
+    "Location_Direction": null,
+    "Location_Street_Name": "MACK",
+    "Location_Street_Type": "RD",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95823"
+   }
+  },
+  {
+   "attributes": {
+    "Account_Number": "1124381",
+    "Business_Name": "COLD STONE CREAMERY",
+    "Business_Description": "Restaurants ",
+    "Business_Start_Date": 1791788400000,
+    "Current_License_Status": "Active",
+    "Location_Street_Number": "1689",
+    "Location_Direction": null,
+    "Location_Street_Name": "ARDEN",
+    "Location_Street_Type": "WAY",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95815"
+   }
+  },
+  {
+   "attributes": {
+    "Account_Number": "1124467",
+    "Business_Name": "HSTREETSWEETS LLC",
+    "Business_Description": "Restaurants ",
+    "Business_Start_Date": 1791442800000,
+    "Current_License_Status": "Active",
+    "Location_Street_Number": "715",
+    "Location_Direction": null,
+    "Location_Street_Name": "P",
+    "Location_Street_Type": "ST",
+    "Location_City": "SACRAMENTO",
+    "Location_State": "CA",
+    "Location_Zip_code": "95814"
+   }
+  }
+ ]
+}

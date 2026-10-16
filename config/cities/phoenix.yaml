@@ -1,15 +1,337 @@
-# Phoenix, AZ: CBSA 38060 Phoenix-Mesa-Chandler (5.19 M, Census V2024). Skeleton from `gotc city new`.
-# Draft: enabled stays false until `gotc gate --city phoenix` passes (ADR-0008). Candidate sources:
-# `gotc discover phoenix --seed library=… --seed university=…` → data/discover/phoenix.yaml.
-# center: Census geocoder: 200 W WASHINGTON ST, PHOENIX, AZ, 85003
-# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.
+# Phoenix, AZ (Phoenix-Mesa-Chandler MSA). Neighborhood points are approximate centroids, used only for "near me"
+# distance filters. Sources verified live 2026-10-16 (batch B onboarding; see docs/SOURCES.md "Batch B cities").
+# Not usable (2026-10-16): phoenixopendata.com (CKAN, robots disallows /api/), azliquor.gov (robots.txt 403),
+# tempe.gov / chandleraz.gov / gilbertaz.gov (robots.txt 403), mesalibrary.org (robots.txt 403), Crescent Ballroom,
+# Valley Bar, Marquee Theatre, Phoenix Zoo (Cloudflare challenge), phoenix.gov calendar (Adobe AEM, no feed),
+# Maricopa County Library District + Scottsdale (custom JS calendars, no feed). See SOURCES.md "tried and not added".
 slug: phoenix
 name: Phoenix
 state: AZ
 timezone: America/Phoenix
-center: [33.4483, -112.0764]
+center: [33.4484, -112.0740]
 radius_km: 30
-cbsa: "38060"
-aliases: []
-enabled: false
-sources: []
+aliases: [Tempe, Mesa, Scottsdale, Chandler, Glendale, Gilbert, Peoria, Paradise Valley, Avondale, Tolleson, Guadalupe, Goodyear]
+neighborhoods:  # approximate centroids
+  - { name: Downtown Phoenix, lat: 33.4500, lon: -112.0730 }
+  - { name: Roosevelt Row, lat: 33.4590, lon: -112.0670 }
+  - { name: Midtown, lat: 33.4800, lon: -112.0740 }
+  - { name: Melrose / Uptown, lat: 33.5100, lon: -112.0860 }
+  - { name: Arcadia, lat: 33.4980, lon: -111.9800 }
+  - { name: Biltmore / Camelback East, lat: 33.5090, lon: -112.0270 }
+  - { name: Coronado / Garfield, lat: 33.4700, lon: -112.0450 }
+  - { name: Grand Avenue, lat: 33.4600, lon: -112.0900 }
+  - { name: Ahwatukee, lat: 33.3300, lon: -111.9800 }
+  - { name: North Central, lat: 33.5350, lon: -112.0740 }
+  - { name: Tempe / ASU, lat: 33.4220, lon: -111.9330 }
+  - { name: Old Town Scottsdale, lat: 33.4940, lon: -111.9260 }
+  - { name: Downtown Mesa, lat: 33.4150, lon: -111.8310 }
+  - { name: Downtown Chandler, lat: 33.3030, lon: -111.8410 }
+  - { name: Downtown Glendale, lat: 33.5390, lon: -112.1860 }
+  - { name: Gilbert Heritage District, lat: 33.3520, lon: -111.7890 }
+sources:
+  # ── library ──
+  - id: phoenix_public_library_events
+    adapter: ics
+    name: Phoenix Public Library events (all 17 branches)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://calendar.phoenixpubliclibrary.org/
+    expect_min_records: 100
+    notes: >-
+      LibCal (Springshare) public iCal subscriptions, one per branch calendar (cid from the branch pages'
+      baseCalendarId). robots: `User-agent: *` Crawl-delay 10 (PoliteClient honors it: ~3 min a day); named
+      crawlers are disallowed, we are not on that list. LOCATION is "Room, Branch name".
+    params:
+      url:
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15413   # Burton Barr Central
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15420   # Acacia
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15421   # Agave
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15671   # Century
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15669   # Cholla
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15672   # Desert Broom
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15673   # Desert Sage
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15674   # Harmon
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15676   # Ironwood
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15675   # Juniper
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15677   # Mesquite
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15471   # Ocotillo
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15678   # Palo Verde
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15670   # Prickly Pear
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15679   # Saguaro
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15680   # South Mountain
+        - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15484   # Yucca
+      horizon_days: 14
+      max_occurrences: 2
+      organizer: Phoenix Public Library
+      default_category: arts.books
+      category_map:   # ICS CATEGORIES seen in the live feed
+        Storytimes: family.kids
+        "Childrens' Programs": family.kids
+        Teen Programs: family.kids
+        Book Clubs: arts.books
+        STEAM: learning.tech
+        Technology: learning.tech
+        "Arts & Crafts": arts.workshop
+        Music: music.concert
+        Films: arts.film
+        Health & Wellness: fitness.yoga
+        Volunteer: volunteer.one_off
+
+  - id: chandler_library_events
+    adapter: bibliocommons
+    name: Chandler Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://chandler.bibliocommons.com/v2/events
+    expect_min_records: 20
+    notes: BiblioCommons events RSS (gateway host, no robots.txt). Every branch is in Chandler, AZ (bc:state AZ).
+    params:
+      library: chandler
+      horizon_days: 14
+      max_pages: 10
+      venue_label: Chandler Public Library
+      cities: [Chandler]
+      default_category: arts.books
+
+  # ── museums / gardens / arts venues ──
+  - id: mim_events
+    adapter: tribe
+    name: Musical Instrument Museum (concerts & events)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://mim.org/events-calendar/
+    expect_min_records: 20
+    notes: WP The Events Calendar REST (robots allows). MIM Music Theater concerts plus museum programs.
+    params:
+      base_url: https://mim.org
+      horizon_days: 60
+      max_pages: 6
+      organizer: Musical Instrument Museum
+      venue: {name: Musical Instrument Museum, address: "4725 E Mayo Blvd, Phoenix, AZ 85050"}
+      default_category: music.concert
+
+  - id: desert_botanical_garden_events
+    adapter: tribe
+    name: Desert Botanical Garden events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://dbg.org/events/
+    expect_min_records: 20
+    notes: WP The Events Calendar REST (robots allows). Daily exhibit "events" repeat each day, so the horizon is 14 days.
+    params:
+      base_url: https://dbg.org
+      horizon_days: 14   # daily exhibits ("Super Bloom", "Fall Butterflies") repeat every day; keep two weeks
+      max_pages: 6
+      organizer: Desert Botanical Garden
+      venue: {name: Desert Botanical Garden, address: "1201 N Galvin Pkwy, Phoenix, AZ 85008"}
+      default_category: outdoors.park
+
+  - id: mesa_arts_center
+    adapter: jsonld
+    name: Mesa Arts Center (City of Mesa) performances
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.mesaartscenter.com/performances
+    expect_min_records: 20
+    notes: >-
+      City-owned performing arts center. One listing page with an ItemList of Event JSON-LD (~97 shows with
+      prices). robots allows (Crawl-delay 10 honored); terms page has no automated-access clause.
+    params:
+      urls: [https://www.mesaartscenter.com/performances]
+      exclude_location: '\b(Subscription|Bard Card|Gift Cards?|Season Pass)\b'   # ticket packages, not shows (matches titles too)
+      horizon_days: 180
+      venue: {name: Mesa Arts Center, address: "1 E Main St, Mesa, AZ 85201"}
+      organizer: Mesa Arts Center
+      default_category: arts.theater
+
+  - id: standup_live_phoenix
+    adapter: jsonld
+    name: StandUp Live Phoenix (comedy club)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://phoenix.standuplive.com/
+    expect_min_records: 20
+    notes: Event JSON-LD on the club homepage (UTC start times). robots allows; no automated-access clause found.
+    params:
+      urls: [https://phoenix.standuplive.com/]
+      horizon_days: 120
+      venue: {name: StandUp Live Phoenix, address: "50 W Jefferson St, Phoenix, AZ 85003"}
+      organizer: StandUp Live
+      default_category: nightlife.comedy
+
+  - id: scottsdale_city_events
+    adapter: jsonld
+    name: City of Scottsdale featured events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.scottsdaleaz.gov/
+    expect_min_records: 5
+    notes: >-
+      The city homepage embeds its featured events as Event JSON-LD (~17, with offsets). The full community
+      calendar (community.scottsdaleaz.gov, withapps.io) has no feed.
+    params:
+      urls: [https://www.scottsdaleaz.gov/]
+      exclude_location: '\b(Meeting|Commission|City Council|Board of|Hearing|Study Session)\b'   # civic meetings (matches titles too)
+      horizon_days: 90
+      organizer: City of Scottsdale
+      default_category: community.festival
+
+  - id: state_farm_stadium
+    adapter: rss_events
+    name: State Farm Stadium (Glendale) events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.statefarmstadium.com/events
+    expect_min_records: 3
+    notes: "carbonhouse events RSS (/events/rss, ev: module). robots allows. Cardinals games, concerts, college bowls."
+    params:
+      spectator_venue: true
+      url: https://www.statefarmstadium.com/events/rss
+      horizon_days: 180
+      venue: {name: State Farm Stadium, address: "1 Cardinals Dr, Glendale, AZ 85305"}
+      organizer: State Farm Stadium
+      default_category: sports_watch.game
+      category_map: {Concert: music.concert}
+
+  - id: gcu_athletics
+    adapter: ics
+    name: Grand Canyon University athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gculopes.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM subscription calendar (robots allows, Crawl-delay 30 — one request a day). Only events whose
+      LOCATION starts with "Phoenix" are kept (away/neutral games skipped).
+    params:
+      url: https://gculopes.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: GCU Lopes
+      exclude_location: '^(?!Phoenix\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 33.5110, lon: -112.1290, label: "Grand Canyon University campus" }
+
+  # ── tourism boards (Simpleview) ──
+  - id: visit_phoenix_events
+    adapter: simpleview
+    name: Visit Phoenix events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.visitphoenix.com/events/
+    expect_min_records: 30
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the token endpoint answered 200 but the events API returned HTTP 403 "Access Denied"
+      (CDN bot protection) on the first live run, like Visit Denver. robots.txt allows it; we don't work around a
+      403. Re-enable only with the board's permission.
+    params:
+      base_url: https://www.visitphoenix.com
+      board: Visit Phoenix
+      horizon_days: 7
+      default_category: community.festival
+
+  - id: experience_scottsdale_events
+    adapter: simpleview
+    name: Experience Scottsdale events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.experiencescottsdale.com/events/
+    expect_min_records: 20
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the token endpoint answered 200 but the events API returned HTTP 403 "Access Denied"
+      (CDN bot protection) on the first live run, like Visit Denver. robots.txt allows it; we don't work around a
+      403. Re-enable only with the board's permission.
+    params:
+      base_url: https://www.experiencescottsdale.com
+      board: Experience Scottsdale
+      horizon_days: 7
+      default_category: community.festival
+
+  # ── openings ──
+  - id: scottsdale_food_openings
+    adapter: arcgis
+    name: Scottsdale new business licenses (food & drink names)
+    data_type: openings
+    homepage: https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/6
+    expect_min_records: 0
+    notes: >-
+      City of Scottsdale open-data Business Licenses table. BusinessStartDate = the business's registered start
+      (future = pre-registered). The table has no industry code, so only trade names with food/drink words are
+      kept. Self-hosted ArcGIS Server: robots.txt 404 (no policy), checked via respect_robots.
+    params:
+      service_url: https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/6
+      respect_robots: true
+      format: json
+      kind: opening
+      lookback_days: 45
+      where: "BusinessStartDate >= DATE '{today_date}' AND AcctStatus = 'Active'"
+      order_by: BusinessStartDate DESC
+      fields: { record_id: AcctNum, title: Company, start: BusinessStartDate, address: [ServAddrComp, ServCityStateZipComp] }
+      include_regex: { Company: "(?i)\\b(cafe|café|coffee|espresso|grill|kitchen|brew(ing|ery|pub)?|taco|tacos|taqueria|pizza|pizzeria|restaurant|bistro|eatery|cantina|tavern|pub|sushi|ramen|bbq|barbecue|bakery|wine|winery|cocktails?|lounge|burgers?|deli|diner|donuts?|boba|tea house|steakhouse|trattoria|ristorante)\\b" }
+      exclude_title: ["(?i)\\b(catering|vending|food truck|mobile|market|mart|gas|wholesale|distribut\\w*)\\b"]
+      title_template: "{title} — new business license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Scottsdale lists a business license for this
+        address with a business start date of {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/6
+      extras: { signal: business_license_start }
+
+  # ── volunteering ──
+  - id: handson_phoenix
+    adapter: handsonconnect
+    name: HandsOn Greater Phoenix
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.handsonphoenix.org/calendar
+    expect_min_records: 1
+    params:
+      base_url: https://www.handsonphoenix.org
+      block_id: 373
+      horizon_days: 14
+      window_days: 2
+
+  # ── leagues / trivia ──
+  - id: volo_phoenix
+    adapter: volo
+    name: Volo Sports Phoenix
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/phoenix?category=leagues
+    expect_min_records: 0
+    notes: The Phoenix market page answered "0 ways to play" on 2026-10-16 (between seasons); a real market, so empty is not a failure.
+    params:
+      base_url: https://www.volosports.com
+      city_slug: phoenix
+      max_pages: 6
+
+  - id: teamtrivia_phoenix
+    adapter: teamtrivia
+    name: Team Trivia (Phoenix / Tempe)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-phoenix-tempe/
+    expect_min_records: 10
+    notes: "Region page → venue pages with schema.org Event JSON-LD; never uses the zip-code gate (robots-disallowed)."
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { phoenix: phoenix-tempe }
+      max_venues: 60
+
+  - id: challenge_trivia_phoenix
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Phoenix)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 1
+    notes: "One national JSON (wp-json/ce/v1/shows); metro-phoenix within 2x the city radius (5 shows on 2026-10-16)."
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [phoenix]

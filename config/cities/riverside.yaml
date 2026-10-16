@@ -1,0 +1,182 @@
+# Riverside–San Bernardino–Ontario, CA (Inland Empire). Polycentric metro: one 30 km circle around downtown
+# Riverside reaches San Bernardino, Redlands, Ontario, Rancho Cucamonga and Corona. Neighborhood points are
+# approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 (batch B onboarding; docs/SOURCES.md "Batch B cities").
+# Thin by design of what's published: no open-data events/permits/licenses (the City of Riverside's ArcGIS
+# alcohol layer was last edited 2023; CA ABC reports sit behind a Cloudflare challenge), riversideca.gov/calendar
+# is robots-disallowed, Riverside Public Library publishes a PDF, Riverside County Library's LibCal ICS is capped at
+# 500 items that all lie in the past month, the Fox / Municipal Auditorium are Live Nation sites, and no
+# Galaxy Digital / HandsOn volunteer tenant, Volo market or Team Trivia region exists for the Inland Empire.
+slug: riverside
+name: Riverside
+state: CA
+timezone: America/Los_Angeles
+center: [33.9806, -117.3755]
+radius_km: 30
+aliases: [Inland Empire, San Bernardino, Ontario, Corona, Moreno Valley, Fontana, Rancho Cucamonga, Jurupa Valley,
+          Eastvale, Norco, Rialto, Colton, Grand Terrace, Loma Linda, Redlands, Highland, Perris, Upland, Chino]
+neighborhoods:  # approximate centroids
+  - { name: Downtown Riverside / Mission Inn, lat: 33.9819, lon: -117.3747 }
+  - { name: Wood Streets, lat: 33.9690, lon: -117.3830 }
+  - { name: Magnolia Center, lat: 33.9500, lon: -117.3960 }
+  - { name: Canyon Crest, lat: 33.9580, lon: -117.3290 }
+  - { name: University (UCR), lat: 33.9737, lon: -117.3281 }
+  - { name: Arlington, lat: 33.9300, lon: -117.4100 }
+  - { name: La Sierra, lat: 33.9100, lon: -117.4800 }
+  - { name: Jurupa Valley, lat: 33.9970, lon: -117.4855 }
+  - { name: Corona, lat: 33.8753, lon: -117.5664 }
+  - { name: Moreno Valley, lat: 33.9425, lon: -117.2297 }
+  - { name: Downtown San Bernardino, lat: 34.1083, lon: -117.2898 }
+  - { name: Redlands, lat: 34.0556, lon: -117.1825 }
+  - { name: Loma Linda, lat: 34.0483, lon: -117.2612 }
+  - { name: Fontana, lat: 34.0922, lon: -117.4350 }
+  - { name: Rancho Cucamonga, lat: 34.1064, lon: -117.5931 }
+  - { name: Ontario, lat: 34.0633, lon: -117.6509 }
+sources:
+  - id: ucr_events
+    adapter: localist
+    name: UC Riverside events (open to the public)
+    data_type: events
+    min_interval_s: 2
+    homepage: https://events.ucr.edu/
+    expect_min_records: 30
+    notes: >-
+      Localist API filtered server-side to the "General Public/Off-Campus Community" audience (type=118257, from
+      /api/2/events/filters); ~275 items per 30 days. Palm Desert Center items (100 km away) are skipped.
+    params:
+      fallback_point: { lat: 33.9737, lon: -117.3281, label: "UC Riverside campus" }   # unmappable rooms → campus, labeled approximate
+      exclude_location: '\bPalm Desert\b'
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://events.ucr.edu
+      type: 118257
+      horizon_days: 30
+      max_pages: 4
+      organizer: UC Riverside
+      default_category: learning.networking
+      category_map:
+        Music & Concerts: music.concert
+        Theatre & Plays: arts.theater
+        Dance: arts.theater
+        Film & Screenings: arts.film
+        Exhibitions: arts.museum
+        Arts: arts.museum
+        Recreation: fitness
+        Soccer: sports_watch.game   # event_athletics labels: Highlanders games, not rec leagues
+        Volleyball: sports_watch.game
+        Softball: sports_watch.game
+        Baseball: sports_watch.game
+        Basketball: sports_watch.game
+        Track & Field: sports_watch.game
+        Tennis: sports_watch.game
+
+  - id: ucr_athletics
+    adapter: ics
+    name: UC Riverside Highlanders athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gohighlanders.com/calendar
+    expect_min_records: 3
+    notes: >-
+      SIDEARM subscription calendar (robots allows it; Crawl-delay 30, one request a day). Only events whose
+      LOCATION starts with "Riverside" are kept (away/neutral games and blank locations skipped).
+    params:
+      url: https://gohighlanders.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: UC Riverside Highlanders
+      exclude_location: '^(?!Riverside\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 33.9737, lon: -117.3281, label: "UC Riverside campus" }
+
+  - id: cbu_athletics
+    adapter: ics
+    name: California Baptist University Lancers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://cbulancers.com/calendar
+    expect_min_records: 3
+    notes: >-
+      SIDEARM subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Riverside"
+      (Fowler Events Center, Funk Stadium, Lancer Aquatics Center, CBU Soccer Stadium).
+    params:
+      url: https://cbulancers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: CBU Lancers
+      exclude_location: '^(?!Riverside\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 33.9293, lon: -117.4256, label: "California Baptist University campus" }
+
+  - id: csusb_athletics
+    adapter: ics
+    name: Cal State San Bernardino Coyotes athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://csusbathletics.com/calendar
+    expect_min_records: 2
+    notes: SIDEARM subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "San Bernardino".
+    params:
+      url: https://csusbathletics.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: CSUSB Coyotes
+      exclude_location: '^(?!San Bernardino\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 34.1819, lon: -117.3237, label: "CSUSB campus" }
+
+  - id: redlands_athletics
+    adapter: ics
+    name: University of Redlands Bulldogs athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://goredlands.com/calendar
+    expect_min_records: 2
+    notes: SIDEARM subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Redlands".
+    params:
+      url: https://goredlands.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Redlands Bulldogs
+      exclude_location: '^(?!Redlands\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 34.0631, lon: -117.1635, label: "University of Redlands campus" }
+
+  - id: corona_library_events
+    adapter: ics
+    name: Corona Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://coronacalibrary.libcal.com/calendar
+    expect_min_records: 10
+    notes: >-
+      LibCal ICS subscription (cid 21349; robots: Crawl-delay 10, only named crawlers disallowed). One building, so
+      rooms are pinned to the library's address (Census-geocoded 650 S Main St). The feed lists ≤500 items starting
+      a month back; for this library that reaches ~7 months ahead. Many weekly ESL classes (each a separate UID).
+    params:
+      url: https://coronacalibrary.libcal.com/ical_subscribe.php?src=p&cid=21349
+      horizon_days: 45
+      max_occurrences: 4
+      organizer: Corona Public Library
+      default_category: arts.books
+      category_rules:   # the feed has no CATEGORIES; "Math Tutor" / "Homework Center" are services, not volunteering
+        - { match: "(?i)\\btutor|homework", category: family.kids }
+      fallback_point: { lat: 33.8755, lon: -117.5676, label: "Corona Public Library, 650 S Main St" }
+
+  - id: visit_riverside_events
+    adapter: simpleview
+    name: Visit Riverside events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://riversidecvb.com/things-to-do/events/
+    expect_min_records: 10
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16: the events API answered HTTP 403 "Access Denied" (CDN bot protection) to our PoliteClient
+      on the first live run, although robots.txt allows it (Crawl-delay 2) and the token endpoint worked — the same
+      Akamai block as Visit Denver/Austin/Meet Boston. We don't work around it; re-enable only with the board's
+      permission.
+    params:
+      base_url: https://riversidecvb.com
+      board: Visit Riverside
+      horizon_days: 21
+      default_category: community.festival

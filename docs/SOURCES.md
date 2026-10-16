@@ -645,3 +645,306 @@ Rejected (Hartford):
 | Infinity Music Hall, Hartford Stage, Hartford Symphony, Real Art Ways, TheaterWorks | Hartford | no Event JSON-LD / no Tribe REST / no ICS | probe 2026-10-16 |
 | Sea Tea Comedy | Hartford | tickets on Eventbrite (excluded platform) | homepage |
 | hartfordct.gov events | Hartford | events listing is empty (data-total-results="0") | homepage |
+## Batch B cities
+
+Onboarded 2026-10-16: phoenix, las_vegas, salt_lake_city, san_diego, san_francisco, san_jose, sacramento,
+portland, riverside, fresno. **Verified** = valid records from one live `gotc run --city <slug> --no-geocode` (isolated
+data dir, robots enforced by `PoliteClient`, ≥ 2 s per host during discovery). Same columns and grades as above.
+Simpleview CVB event APIs answered HTTP 403 "Access Denied" for six more boards (Phoenix, Scottsdale, Salt Lake,
+Sacramento, Riverside, Fresno; Oakland's answered), so those units are disabled. CA ABC licensing reports
+(abc.ca.gov) serve a Cloudflare challenge, so no California city has state liquor-license openings.
+
+### Phoenix
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `phoenix_public_library_events` | phoenix | LibCal iCal / `ics` | https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15413 (+16 branch cids) | none | 17 requests/day at Crawl-delay 10 | robots `*` Crawl-delay 10; only named crawlers disallowed | SUMMARY, DTSTART (UTC), LOCATION "room, branch", CATEGORIES, DESCRIPTION | events · 24h | A- (official library) | 422 |
+| `chandler_library_events` | phoenix | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/chandler/rss/events | none | ≤10 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 138 |
+| `mim_events` | phoenix | WP The Events Calendar / `tribe` | https://mim.org/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 123 |
+| `desert_botanical_garden_events` | phoenix | WP The Events Calendar / `tribe` | https://dbg.org/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as above; 14-day horizon (daily exhibits) | events · 24h | B | 107 |
+| `mesa_arts_center` | phoenix | Event JSON-LD ItemList / `jsonld` | https://www.mesaartscenter.com/performances | none | 1 page/day, Crawl-delay 10 | robots allows; terms have no automated-access clause; city-owned | name, date, room, price range; subscriptions skipped | concerts · 24h | B (dates mostly without times) | 64 |
+| `standup_live_phoenix` | phoenix | Event JSON-LD / `jsonld` | https://phoenix.standuplive.com/ | none | 1 page/day | robots allows; no automated-access clause | name, start (UTC) | events · 24h | C+ | 89 |
+| `scottsdale_city_events` | phoenix | Event JSON-LD on the city homepage / `jsonld` | https://www.scottsdaleaz.gov/ | none | 1 page/day | robots allows | name, start (offset), place; civic meetings skipped | events · 24h | B- (featured events only) | 8 |
+| `state_farm_stadium` | phoenix | carbonhouse RSS / `rss_events` | https://www.statefarmstadium.com/events/rss | none | 1 request/day | robots allows | title, link, ev:startdate | events · 24h | B+ | 15 |
+| `gcu_athletics` | phoenix | SIDEARM ICS / `ics` | https://gculopes.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = "Phoenix…") | events · 24h | B | 38 |
+| `scottsdale_food_openings` | phoenix | ArcGIS Server MapServer table / `arcgis` | https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData_Tabular/MapServer/6 | none | 1 request/day | self-hosted, robots.txt 404 (no policy) | AcctNum, Company (food/drink names only), BusinessStartDate, service address | openings · 24h | B- (no industry code; name filter) | 5 |
+| `handson_phoenix` | phoenix | HandsOn Connect / `handsonconnect` | https://www.handsonphoenix.org/calendar | none | few POSTs/day, 3 s apart | robots.txt 404 | as `boston_cares` (block 373) | volunteer · 24h | A- | 46 |
+| `volo_phoenix` | phoenix | Volo discover HTML / `volo` | https://www.volosports.com/discover/phoenix?category=leagues | none | ≤6 pages/day | robots allows | as `volo_denver` | leagues · 24h | B (0 programs on 2026-10-16, between seasons) | 0 |
+| `teamtrivia_phoenix` | phoenix | Team Trivia venue JSON-LD / `teamtrivia` | https://www.teamtrivia.com/trivia-in-phoenix-tempe/ | none | 1 + ≤60 pages/48h | robots allows; in the site's sitemap | as `teamtrivia_denver` | recurring · 48h | B | 251 |
+| `challenge_trivia_phoenix` | phoenix | Challenge national JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows | metro-phoenix within radius | recurring · 48h | B | 17 |
+| `visit_phoenix_events` | phoenix | Simpleview / `simpleview` (disabled) | https://www.visitphoenix.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+| `experience_scottsdale_events` | phoenix | Simpleview / `simpleview` (disabled) | https://www.experiencescottsdale.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Phoenix):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| phoenixopendata.com (CKAN) | PHX | robots disallows /api/ | SCALING §2.10 |
+| azliquor.gov, tempe.gov, chandleraz.gov, gilbertaz.gov, mesalibrary.org, tempecenterforthearts.com, azdot.gov, azsos.gov | PHX | robots.txt answers 403 | probe 2026-10-16 |
+| Crescent Ballroom, Valley Bar, Marquee Theatre, Phoenix Zoo | PHX | Cloudflare challenge, not attempted | probe |
+| Rebel Lounge | PHX | HTTP 403 | probe |
+| Maricopa County Library District (events.mcldaz.org) | PHX | custom "Events & Reservations" app, no feed or JSON-LD | probe |
+| Scottsdale community calendar, Scottsdale Public Library (withapps.io) | PHX | JS app, no feed | probe |
+| phoenix.gov calendar | PHX | Adobe AEM, no feed or JSON-LD | probe |
+| Mortgage Matchup Center, Desert Diamond Arena, Chandler Center, ASU Gammage, Phoenix Symphony, The Nash, Herberger, Last Exit Live, Celebrity Theatre | PHX | no RSS, Tribe or Event JSON-LD | probe |
+| calendar.asu.edu / asuevents.asu.edu | PHX | HTTP 522 (origin down); the Drupal site has no feed | probe |
+| Tempe liquor licenses (ArcGIS) | PHX | static location list, no dates | ArcGIS search |
+
+### Las Vegas
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `lvccld_events` | las_vegas | Communico `eeventcaldata` / `communico` | https://events.thelibrarydistrict.org/eeventcaldata | none | 7 requests/day | **undocumented** front-end JSON; robots disallows only /results, /sitesearch | as `mdpls_events`; rural branches skipped | events · 24h | B | 385 |
+| `unlv_athletics` | las_vegas | SIDEARM ICS / `ics` | https://unlvrebels.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (Las Vegas venues only) | events · 24h | B | 42 |
+| `uwsn_volunteer` | las_vegas | Galaxy Digital (custom domain) / `galaxydigital` | https://volunteer.uwsn.org/need/rss/ | none | ≤16 requests/day | robots allows | as `handson_twin_cities` | volunteer · 24h | A- | 26 |
+| `the_space_lv` | las_vegas | Event JSON-LD / `jsonld` | https://thespacelv.com/ | none | 1 page/day | robots allows | name, start (offset) | events · 24h | C+ | 21 |
+| `allegiant_stadium` | las_vegas | carbonhouse RSS / `rss_events` | https://www.allegiantstadium.com/events/rss | none | 1 request/day | robots allows | title, link, ev:startdate | events · 24h | B+ | 14 |
+| `notoriety_live` | las_vegas | Event JSON-LD / `jsonld` | https://www.notorietylive.com/ | none | 1 page/day | robots.txt 404 | name, start (offset) | events · 24h | C+ | 6 |
+| `henderson_food_openings` | las_vegas | ArcGIS Server MapServer / `arcgis` | https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0 | none | 1 request/day | self-hosted, robots.txt 404; OWNER/phone never mapped | CASENUMBER, DESCRIPTION, CASETYPE (Restaurant/Food Service, Liquor), ISSUEDATE, address, point | openings · 24h | B (rare matches) | 0 |
+
+Tried and not added (Las Vegas):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| unlv.edu, cityofhenderson.com, cityofnorthlasvegas.com, nvsos.gov | LV | robots.txt answers 403 | probe 2026-10-16 |
+| The Smith Center | LV | Queue-it waiting room in front of every page | probe |
+| Fremont Street Experience, Mob Museum, Lee's Family Forum, Downtown Summerlin | LV | Cloudflare challenge, not attempted | probe |
+| City of Las Vegas events, Clark County calendar | LV | JS apps (DNN 2sxc, AEM), no feed | probe |
+| City of Las Vegas business licenses (ArcGIS) | LV | no date field, so no newness signal | layer schema |
+| LVCCLD BiblioCommons RSS | LV | ~3 events; the real calendar is Communico | `gotc run` |
+| Henderson Libraries (hdpl.org), Thomas & Mack | LV | TLS certificate errors | probe |
+| Laugh Factory, Comedy Cellar LV, Las Vegas Philharmonic, Neon Museum, Springs Preserve, Downtown Container Park | LV | no Tribe or Event JSON-LD | probe |
+| Visit Las Vegas (Simpleview) | LV | same platform that answers 403 elsewhere; not added | — |
+
+### Salt Lake City
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `now_playing_utah` | salt_lake_city | WordPress apollo calendar-subscribe ICS / `ics` | https://nowplayingutah.com/wp-json/apollo/v1/calendar/subscribe/all | none | 1 request/day (~11 MB), Crawl-delay 5 | route listed in the public /wp-json index; robots allows it (disallows only print and /api/v1/syndication/); no terms page found | SUMMARY, DESCRIPTION, floating DTSTART (Mountain), LOCATION, URL; SLC-area allowlist, 7-day horizon | events · 24h | B- (statewide nonprofit arts calendar; feed isn't linked, so ask them) | 368 |
+| `slcolibrary_events` | salt_lake_city | Communico `eeventcaldata` / `communico` | https://slcls.libnet.info/eeventcaldata | none | 7 requests/day, ≥2 s | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | as `mdpls_events`; 20 county branches | events · 24h | B | 238 |
+| `slcpl_events` | salt_lake_city | Communico `eeventcaldata` / `communico` | https://slcpl.libnet.info/eeventcaldata | none | 14 requests/day, ≥2 s | same | as `mdpls_events` | events · 24h | B | 99 |
+| `maverik_center` | salt_lake_city | WP The Events Calendar / `tribe` | https://maverikcenter.com/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed; West Valley City–owned arena | as `mprb_events`; spectator venue | events · 24h | B+ | 39 |
+| `utah_utes_athletics` | salt_lake_city | SIDEARM ICS / `ics` | https://utahutes.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Salt Lake City") | events · 24h | B | 26 |
+| `gallivan_center_events` | salt_lake_city | WP The Events Calendar / `tribe` | https://thegallivancenter.com/wp-json/tribe/events/v1/events | none | ≤6 pages/day | REST allowed | as `mprb_events` | events · 24h | B (city RDA plaza) | 13 |
+| `visit_salt_lake_events` | salt_lake_city | Simpleview / `simpleview` (disabled) | https://www.visitsaltlake.com/events/ | none | Crawl-delay 2 | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Salt Lake City):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| University of Utah events (LiveWhale), slc.gov events/parks, Delta Center, Soundwell, Geeks Who Drink, Hogle Zoo pages | SLC | Cloudflare challenge, not attempted | probe 2026-10-16 |
+| dld.utah.gov, dmv.utah.gov, vote.utah.gov | SLC | Cloudflare challenge; the UT starter pack quotes the Utah Code on le.utah.gov instead | probe |
+| artsaltlake.org / eccles.com (Eccles, Abravanel, Capitol, Kingsbury), The Leonardo, Clark Planetarium | SLC | TLS verification fails (incomplete certificate chain) | probe |
+| United Way of Salt Lake volunteering | SLC | Golden Volunteer platform, no adapter; Galaxy slugs uwsl/userveutah/unitedwaysaltlake/slco/utahfoodbank are "Bad Domain" | probe |
+| Utah / SLC license data | SLC | opendata.utah.gov isn't Socrata; SLC's ArcGIS org has no license layers | catalog searches |
+| SLCC Localist | SLC | mostly repeated gallery exhibits and student items (~18/month open to the public) | API probe |
+| Tracy Aviary, Hogle Zoo (Tribe) | SLC | 0 / 2 upcoming events | REST probe |
+| City Weekly events | SLC | CloudFront 403 | probe |
+| Kilby Court, Metro Music Hall (Squarespace), The Complex (AEG), State Room Presents (AXS), Saltair | SLC | no JSON-LD/Tribe, or AEG/AXS denylist | probe |
+
+### San Diego
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sdcl_events` | san_diego | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sdcl/rss/events | none | ≤20 pages/day | gateway host has no robots.txt | as `hclib_events`; `cities` keeps branches within ~25 km | events · 24h | A- | 200 |
+| `ucsd_events` | san_diego | Localist / `localist` | https://calendar.ucsd.edu/api/2/events?type=49100427894911 | none | ≤4 pages/day, Crawl-delay 1 | allowed | as `usc_events`; "Visitors" audience server-side + `audience_filter` | events · 24h | B+ | 182 |
+| `volo_san_diego` | san_diego | Volo HTML / `volo` | https://www.volosports.com/discover/san-diego?category=leagues | none | ≤6 pages/day, ≥3 s | robots allows | as `volo_boston` (includeFees redirect) | leagues · 24h | B | 77 |
+| `balboa_park_events` | san_diego | WP The Events Calendar / `tribe` | https://balboapark.org/wp-json/tribe/events/v1/events | none | ≤12 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 71 |
+| `pechanga_arena` | san_diego | WP The Events Calendar / `tribe` | https://pechangaarenasd.com/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed; city-owned arena | as `mprb_events`; spectator venue | events · 24h | B+ | 48 |
+| `usd_toreros_athletics` | san_diego | SIDEARM ICS / `ics` | https://usdtoreros.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "San Diego" | events · 24h | B | 26 |
+| `ucsd_tritons_athletics` | san_diego | SIDEARM ICS / `ics` | https://ucsdtritons.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "La Jolla" | events · 24h | B | 26 |
+
+Tried and not added (San Diego):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San Diego Public Library | SD | moved to Vega (BiblioCommons gateway 410); no Vega adapter | gateway |
+| sandiego.gov, sandiego.org, Chula Vista, El Cajon, Coronado city, National City | SD | robots.txt answers 403 (disallow all) | probe 2026-10-16 |
+| City business tax certificates CSV (seshat.datasd.org) | SD | robots.txt 403 on the S3 host; PoliteClient treats it as disallow | probe |
+| San Diego Reader events (76 JSON-LD events) | SD | terms: "You may not scrape or otherwise copy our content without permission" | /terms/ |
+| The Observatory North Park | SD | Live Nation venue | page markup |
+| Casbah, Music Box, Mad House Comedy, San Diego Opera | SD | Cloudflare challenge, not attempted | probe |
+| Belly Up, The Sound, Rady Shell / SD Symphony, Humphreys, American Comedy Co, Comedy Store La Jolla, SOMA | SD | no JSON-LD or Tribe endpoint | probe |
+| Team Trivia San Diego | SD | region page lists 0 venues | probe |
+| Coronado Visitor Center (Tribe) | SD | 2 upcoming events; removed after the live run | `gotc run` |
+| Volunteer San Diego | SD | connection reset; Galaxy slugs bad | probe |
+| SDSU events, GoAztecs ICS | SD | custom calendar; SIDEARM ICS 404 | probe |
+
+### San Francisco
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sf_special_events` | san_francisco | Socrata `8x25-yybr` / `socrata` | https://data.sf.gov/d/8x25-yybr | none | Socrata throttling | SF Open Data ToU | case_name, start_dt/end_dt (local), loc_desc, LineString first vertex; type = Special Event, status = Permitted; id = case + day | events · 24h | A- (block parties, street fairs, farmers markets) | 130 |
+| `sf_business_openings` | san_francisco | Socrata `g8m3-pdis` / `socrata` | https://data.sf.gov/d/g8m3-pdis | none | Socrata throttling | SF Open Data ToU; ownership_name only if an organisation, mail_* dropped | dba_name, NAICS 7224/7225, address, neighborhood, location_start_date, point | openings · 24h | B+ (registration; new owners of old bars also appear) | 98 |
+| `sf_recpark_events` | san_francisco | CivicPlus iCalendar / `ics` | https://sfrecpark.org/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar (+ catID 40, 29) | none | 3 requests/day | robots allows (disallows admin/search/RSS.aspx) | SUMMARY, DTSTART (TZID), LOCATION; holiday markers skipped | events · 24h | B+ (official, small) | 37 |
+| `gggp_events` | san_francisco | WP The Events Calendar / `tribe` | https://gggp.org/wp-json/tribe/events/v1/events | none | 1 page/day | REST allowed | as `mprb_events` | events · 24h | B+ | 35 |
+| `ybg_festival` | san_francisco | WP The Events Calendar / `tribe` | https://ybgfestival.org/wp-json/tribe/events/v1/events | none | 1 page/day (Crawl-delay 3) | REST allowed | as above | events · 24h | B (seasonal) | 6 |
+| `mr_tipples` | san_francisco | WP The Events Calendar / `tribe` | https://mrtipplessf.com/wp-json/tribe/events/v1/events | none | ≤4 pages/12h | REST allowed | as above + cost | concerts · 12h | B+ | 86 |
+| `madrone_art_bar` | san_francisco | WP The Events Calendar / `tribe` | https://madroneartbar.com/wp-json/tribe/events/v1/events | none | ≤3 pages/12h | REST allowed | as above | concerts · 12h | B | 80 |
+| `bird_and_beckett` | san_francisco | WP The Events Calendar / `tribe` | https://birdbeckett.com/wp-json/tribe/events/v1/events | none | 1 page/day (Crawl-delay 10) | REST allowed | as above | concerts · 24h | B | 43 |
+| `dna_lounge` | san_francisco | venue iCal / `ics` | https://cdn.dnalounge.com/calendar/dnalounge.ics | none | 1 request/12h | published rel=alternate feed; robots disallows only CGIs | SUMMARY, DTSTART, LOCATION | concerts · 12h | B+ | 60 |
+| `sweetwater_music_hall` | san_francisco | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://sweetwatermusichall.org/events/ | none | 1 listing + ≤40 details at ≥2 s | robots: wp-admin only | name, start (offset), Etix link; "closed for private event" skipped | concerts · 12h | C+ (Mill Valley) | 40 |
+| `oakland_library_events` | san_francisco | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/oaklandlibrary/rss/events | none | ≤20 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 169 |
+| `berkeley_events` | san_francisco | LiveWhale v2 JSON / `livewhale` | https://events.berkeley.edu/live/json/events/max/200/… | none | 1 request/day | allowed | title, date_iso, location, event_types, group; rec-sports slots / athletics skipped | events · 24h | B- (rolling ~1–2-day window: 100 items per request) | 27 |
+| `cal_athletics` | san_francisco | SIDEARM ICS / `ics` | https://calbears.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = Berkeley / Cal venue | events · 24h | B | 38 |
+| `usf_athletics` | san_francisco | SIDEARM ICS / `ics` | https://usfdons.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = San Francisco | events · 24h | B | 22 |
+| `volo_san_francisco` | san_francisco | Volo HTML / `volo` | https://www.volosports.com/discover/san-francisco?category=leagues | none | ≤4 pages/day, ≥3 s | robots allows; includeFees redirect | as `volo_boston` | leagues · 24h | B | 48 |
+| `handson_bay_area` | san_francisco | HandsOn Connect / `handsonconnect` | https://www.handsonbayarea.org/calendar (block 573) | none | 7 windows/day, ≥3 s | robots.txt 404 (no rules) | as `boston_cares`; South Bay / Peninsula shifts excluded | volunteer · 24h | B+ | 104 |
+| `luma_the_made` | san_francisco | Luma ICS / `ics` | https://api.lu.ma/ics/get?entity=calendar&id=cal-BIfGjPFqLuLbZvX | none | 1 request/12h | api.lu.ma robots: /insights/ only | as other Luma units | events · 12h | B | 11 |
+| `luma_tiat` | san_francisco | Luma ICS / `ics` | https://api.lu.ma/ics/get?entity=calendar&id=cal-twiOosdGMMY66DI | none | 1 request/12h | as above | as above | events · 12h | B | 15 |
+| `visit_oakland_events` | san_francisco | Simpleview CVB / `simpleview` | https://www.visitoakland.com/events/ | none (token endpoint) | a few requests/day, Crawl-delay 2 | robots allows; undocumented API | as `meet_boston_events` | events · 24h | C+ (undocumented; other boards 403) | 97 |
+
+Tried and not added (San Francisco):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San Francisco Public Library | SF | robots.txt answers 403 (disallow all); its BiblioCommons gateway channel has no events | probe 2026-10-16 |
+| SF Travel, Exploratorium, SF Parks Alliance, Parks Conservancy, Booksmith, Freight & Salvage, Commonwealth Club, SFCM, SF War Memorial, SF Comedy Oasis, Theatre Parkside, Amnesia, Noe Valley, Dogpatch, One Brick | SF | robots.txt disallows | probe |
+| The Independent, Bimbo's, August Hall, SFJAZZ, Fort Mason, FAMSF, Asian Art Museum, Ferry Building, Castro Theatre, Gray Area, Neck of the Woods, SF City Guides, Geeks Who Drink | SF | Cloudflare challenge, not attempted | probe |
+| Cobb's, Punch Line, Fillmore, Masonic (Live Nation); Warfield, Regency (AEG); Fox Oakland (Another Planet) | SF | ToS / ownership denylist | ownership |
+| Great Northern, Monarch, Setup comedy, Balboa, El Rio, Ivy Room, Club Fugazi, Kilowatt, The Lab, Throckmorton | SF | Squarespace, no JSON-LD or feed | probe |
+| Chapel, Bottom of the Hill, Café du Nord, Brick & Mortar, GAMH, New Parish, Yoshi's, Black Cat, Hotel Utah, UC Theatre, Roxie, Cornerstone | SF | no JSON-LD / Tribe; ticket widgets only (Ticketweb, SeeTickets, Etix, Opendate, Eventbrite, Prekindle) | probe |
+| Our415 events (`8i3s-ih2a`) | SF | semester-long youth classes, not events | sample |
+| SF active entertainment permits (`86e8-rfem`) | SF | no dates | sample |
+| USF, UCSF, SFSU calendars | SF | robots 403 / timeout / no DNS | probe |
+| Read in the Park (Luma) | SF | mixes SF and South Bay with hidden locations | ICS |
+| SF Symphony | SF | Queue-it waiting room | probe |
+| San Mateo County Libraries (BiblioCommons) | SF | works, but few branches inside 20 km | probe |
+
+### San Jose
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sjpl_events` | san_jose | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sjpl/rss/events | none | ≤20 pages/day | gateway has no robots.txt | as `hclib_events` | events · 24h | A- | 471 |
+| `sccl_events` | san_jose | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/sccl/rss/events | none | ≤15 pages/day | same | as above; Campbell / Cupertino / Los Altos / Milpitas / Saratoga | events · 24h | A- | 140 |
+| `stanford_events` | san_jose | Localist / `localist` | https://events.stanford.edu/api/2/events | none | ≤5 pages/day (Crawl-delay 1) | allowed | as `usc_events`; 14-day window, 1 occurrence | events · 24h | B (~27 km out, inside the geofence) | 410 |
+| `sjsu_events` | san_jose | Localist / `localist` | https://events.sjsu.edu/api/2/events | none | ≤6 pages/day (Crawl-delay 1) | allowed | as `usc_events`, `audience_filter` | events · 24h | B | 270 |
+| `sap_center` | san_jose | carbonhouse RSS / `rss_events` | https://www.sapcenter.com/events/rss | none | 1 request/day | robots allows all | title, link, ev:startdate (UTC), location | events · 24h | B+ | 43 |
+| `volo_san_jose` | san_jose | Volo HTML / `volo` | https://www.volosports.com/discover/san-jose?category=leagues | none | ≤4 pages/day, ≥3 s | robots allows; includeFees redirect | as `volo_boston` | leagues · 24h | B | 42 |
+| `scu_athletics` | san_jose | SIDEARM ICS / `ics` | https://santaclarabroncos.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | allowed | home = Santa Clara | events · 24h | B | 32 |
+| `montalvo_arts` | san_jose | EventSeries JSON-LD / `jsonld` (listing, `ignore_offset`) | https://montalvoarts.org/experience/programs-event-calendar/ | none | 1 page/day | robots allows | name, start (wall clock; the bogus +00:00 is ignored), venue | concerts · 24h | C+ | 5 |
+| `handson_bay_area_south` | san_jose | HandsOn Connect / `handsonconnect` | https://www.handsonbayarea.org/calendar (block 573) | none | 7 windows/day, ≥3 s | robots.txt 404 | South Bay shifts only | volunteer · 24h | B- (few) | 2 |
+
+Tried and not added (San Jose):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| San José open data (CKAN) | SJ | robots disallows /api/ and /datastore/; no license dataset; road-closure layer has no event type | robots, layer stats |
+| sanjoseca.gov (Parks, Recreation & Neighborhood Services), santaclara.gov, mountainview.gov, Sunnyvale downtown, SJ Downtown Association, Ritz SJ, Earthquakes, Silicon Valley Pride, Mountain View CPA, Stanford Live, Brewers & Bites | SJ | robots.txt 403 or disallows | probe 2026-10-16 |
+| Hammer Theatre, SJ Museum of Art, Symphony San Jose, Opera San José, Children's Discovery Museum, Happy Hollow | SJ | Cloudflare challenge, not attempted | probe |
+| SJSU and Stanford athletics | SJ | not SIDEARM (calendar.ics → 404) | probe |
+| Visit San Jose | SJ | Drupal, no feed or JSON-LD | probe |
+| San Pedro Square, SJ Stage, Japantown SJ | SJ | Squarespace, no JSON-LD or feed | probe |
+| SJ Improv, Art Boutiki, Café Stritch, Rooster T Feathers | SJ | ticket widgets only | probe |
+
+### Sacramento
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `sacpl_events` | sacramento | Communico `eeventcaldata` / `communico` | https://engage.saclibrary.org/eeventcaldata | none | 10 requests/day (one per day of horizon) | **undocumented** front-end JSON; robots disallows only /results*, /sitesearch* | as `mdpls_events`; ballot drop-off, service desks and the Delta branches skipped | events · 24h | B | 180 |
+| `old_sacramento_events` | sacramento | WP The Events Calendar / `tribe` | https://www.oldsacramento.com/wp-json/tribe/events/v1/events | none | ≤5 pages/day | REST allowed and answered 200; the HTML site shows a Cloudflare challenge we never attempt | as `mprb_events` (comedy, river cruises, happy hours) | events · 24h | B (could start challenging) | 104 |
+| `sacstate_events` | sacramento | Trumba JSON / `trumba` | https://www.trumba.com/calendars/sacramento-state-events.json | none | 1 request/day | trumba.com robots allows all | title, offset times, location, Event Type → category; campus-internal types, observance months and Zoom skipped | events · 24h | B (feed caps at 200 items → 14-day horizon) | 51 |
+| `harlows_sacramento` | sacramento | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://www.harlows.com/events/ | none | 1 listing + ≤40 details at ≥2 s | robots: wp-admin only | name, start (offset), room (Harlow's / Starlet Room), Etix link | concerts · 12h | C+ | 40 |
+| `fairytale_town_events` | sacramento | WP The Events Calendar / `tribe` | https://www.fairytaletown.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 37 |
+| `sacramento_business_openings` | sacramento | ArcGIS FeatureServer table / `arcgis` | https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/account_data_with_header_NEW/FeatureServer/0 | none | 1 request/day | documented ArcGIS REST; no robots policy (403); explicit `out_fields`, so owner, phone and mailing columns are never requested | Business_Name, Business_Description (restaurants / cafés / bakeries / bars / live entertainment / theatres), **Business_Start_Date** (future = pre-registered, ≤60 d), status, street address | openings · 24h | B+ (official; no geometry, geocoded) | 28 |
+| `sacstate_athletics` | sacramento | SIDEARM ICS / `ics` | https://hornetsports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Sacramento") | events · 24h | B | 15 |
+| `cal_expo_events` | sacramento | WP The Events Calendar / `tribe` | https://calexpo.com/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events`; category labels → taxonomy | events · 24h | B | 9 |
+| `visit_sacramento_events` | sacramento | Simpleview / `simpleview` (disabled) | https://www.visitsacramento.com/events/ | none | — | robots allows; events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Sacramento):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| Golden 1 Center, Downtown Sacramento Partnership, Midtown Association, Channel 24, Goldfield Trading Post, B Street Theatre, Elk Grove, Mondavi Center | SAC | Cloudflare challenge, not attempted | probe 2026-10-16 |
+| Ace of Spades | SAC | Live Nation / Ticketmaster site | homepage |
+| Capital Stage | SAC | robots.txt disallows | probe |
+| City of Sacramento community calendar | SAC | AEM page (3.5 MB), no feed or JSON-LD | probe |
+| West Sacramento | SAC | robots.txt 403 | probe |
+| Sacramento Comedy Spot | SAC | VBO Tickets JS widget only | probe |
+| Sacramento Theatre Company | SAC | robots.txt 503 | probe |
+| Sac Republic FC, California Museum, Sacramento Pride (Tribe) | SAC | 0 upcoming events | REST probe |
+| Galaxy Digital tenants (uwccr, volunteersacramento, sacramento, cityofsacramento, saccounty) | SAC | "Bad Domain" | probe |
+| BiblioCommons `sacramento` | SAC | 404 (the library runs Communico) | gateway |
+
+### Portland
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `wccls_events` | portland | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/wccls/rss/events | none | ~11 pages/day | gateway host has no robots.txt | as `hclib_events`; `cities` keeps Beaverton / Portland / Tigard / Tualatin / Aloha / Hillsboro | events · 24h | A- | 196 |
+| `portland_art_museum` | portland | WP The Events Calendar / `tribe` | https://portlandartmuseum.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed and answered 200; the HTML shows a Cloudflare challenge we never attempt | as `mprb_events` (PAM CUT film, talks) | events · 24h | B (could start challenging) | 65 |
+| `lan_su_garden` | portland | WP The Events Calendar / `tribe` | https://lansugarden.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as above, with listed prices | events · 24h | B | 49 |
+| `up_events` | portland | Localist / `localist` | https://calendar.up.edu/api/2/events | none | ≤3 pages/day (Crawl-delay 1) | allowed | as `usc_events`; academic-calendar rows skipped | events · 24h | B | 47 |
+| `holocene_portland` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://www.holocene.org/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | name, start, Etix offer | concerts · 12h | C+ | 40 |
+| `hawthorne_theatre` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://hawthornetheatre.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | as above (Theatre + Lounge) | concerts · 12h | C+ | 40 |
+| `wonder_ballroom` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://wonderballroom.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | as above | concerts · 12h | C+ | 36 |
+| `roseland_theater` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://roselandpdx.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows; the venue's own site (Etix); some shows are tagged "Live Nation Presents" but the site isn't LN-run | as above | concerts · 12h | C+ | 34 |
+| `literary_arts_events` | portland | WP The Events Calendar / `tribe` | https://literary-arts.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above; out-of-town tour stops and online skipped | events · 24h | B+ | 35 |
+| `portland_farmers_market` | portland | WP The Events Calendar / `tribe` | https://www.portlandfarmersmarket.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above (PSU, King, Lents, Shemanski) | events · 24h | B+ | 24 |
+| `portland_state_athletics` | portland | SIDEARM ICS / `ics` | https://goviks.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = "Portland" / "Hillsboro" | events · 24h | B | 22 |
+| `olcc_new_applications_portland` | portland | Socrata `qad4-bnxp` (data.oregon.gov) / `socrata` | https://data.oregon.gov/d/qad4-bnxp | none | Socrata throttling | Oregon Open Data ToU | trade_name, license_type (on-premises / brewpub), **date_received**, application_status, address; `New Application` only (may include ownership changes) | openings · 24h | A- (no coordinates; geocoded) | 19 |
+| `portland_pilots_athletics` | portland | SIDEARM ICS / `ics` | https://portlandpilots.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "Portland" | events · 24h | B | 19 |
+| `pioneer_courthouse_square` | portland | WP The Events Calendar / `tribe` | https://www.thesquarepdx.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 7 |
+| `multcolib_events` | portland | BiblioCommons RSS / `bibliocommons` (disabled) | https://gateway.bibliocommons.com/v2/libraries/multcolib/rss/events | none | — | gateway has no robots.txt | — | events · 24h | D (gateway 504 even for a one-day window) | 0 |
+
+Tried and not added (Portland):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| portland.gov (Parks & Recreation), OMSI | PDX | robots.txt answers 403 (disallow all) | probe 2026-10-16 |
+| SOLVE volunteer calendar (HandsOn Connect, block 1638) | PDX | terms forbid "use of any data mining, robots or similar data gathering or extraction methods" | volunteer.solve.org/terms-of-use |
+| Travel Portland, Powell's, Hollywood Theatre, Japanese Garden, Star Theater, Dante's | PDX | Cloudflare challenge, not attempted | probe |
+| Portland'5, Oregon Convention Center, Oregon Metro events, PSU calendar | PDX | Drupal pages, no feed or Event JSON-LD | probe |
+| Mississippi Studios, Revolution Hall, Aladdin, Jack London Revue | PDX | no JSON-LD; Etix / TicketWeb links only | probe |
+| Doug Fir, Alberta Rose | PDX | TLS certificate verification failed | probe |
+| Kickstand Comedy, PDX Jazz | PDX | Squarespace, no usable event markup | probe |
+| Friends of Trees (Tribe) | PDX | 0 events, and the homepage carries spam links (looks compromised) | probe |
+| OLCC licenses dataset `srxe-qkm2` | PDX | effective_date may reset on renewal (ADR-0006); applications received used instead | catalog columns |
+
+### Riverside (Inland Empire)
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `ucr_events` | riverside | Localist / `localist` | https://events.ucr.edu/api/2/events?type=118257 | none | ≤4 pages/day at ≥2 s (Crawl-delay 1) | robots allows | title, instances, venue + geo, filters (athletics → games), ticket url; "General Public" audience server-side; Palm Desert Center skipped; campus fallback point | events · 24h | B | 233 |
+| `corona_library_events` | riverside | LibCal ICS / `ics` | https://coronacalibrary.libcal.com/ical_subscribe.php?src=p&cid=21349 | none | 1 request/day (Crawl-delay 10) | robots: only named crawlers disallowed | SUMMARY, DTSTART, room; pinned to 650 S Main St; `category_rules` stop "Math Tutor" / "Homework Center" counting as volunteering | events · 24h | B- (many weekly ESL classes; no CATEGORIES) | 131 |
+| `cbu_athletics` | riverside | SIDEARM ICS / `ics` | https://cbulancers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (home = starts "Riverside") | events · 24h | B | 28 |
+| `redlands_athletics` | riverside | SIDEARM ICS / `ics` | https://goredlands.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as above (home = "Redlands") | events · 24h | B- (D-III) | 24 |
+| `ucr_athletics` | riverside | SIDEARM ICS / `ics` | https://gohighlanders.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows; subscription feed | as above | events · 24h | B | 16 |
+| `csusb_athletics` | riverside | SIDEARM ICS / `ics` | https://csusbathletics.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as above (home = "San Bernardino") | events · 24h | B- | 10 |
+| `visit_riverside_events` | riverside | Simpleview / `simpleview` (disabled) | https://riversidecvb.com/things-to-do/events/ | none | — | robots allows (Crawl-delay 2); events API 403 "Access Denied" | — | events · 24h | D | 0 |
+
+Tried and not added (Riverside):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| City of Riverside ArcGIS "Alcohol Business Location" | RIV | stale (last edited 2023-04) | layer `editingInfo` |
+| CorStat (Corona) business licenses `ibcd-bv79` | RIV | last updated 2024-06 | Socrata catalog |
+| riversideca.gov/calendar | RIV | robots `Disallow: /calendar` | robots.txt |
+| Riverside Public Library | RIV | monthly PDF; its LibCal (cid 23485) has 11 items | probe 2026-10-16 |
+| Riverside County Library (LibCal cid 15516) | RIV | ICS capped at 500 items, all in the past month, so no future events | ICS |
+| Fox Performing Arts Center / Riverside Municipal Auditorium | RIV | Live Nation sites (Ticketmaster links); they arrive via the TM API | probe |
+| Riverside Art Museum, Downtown Riverside (Tribe) | RIV | 1 and 0 upcoming events | API |
+| CSUSB events (events.csusb.edu), Yaamava' Theater | RIV | robots.txt answers 403 | probe |
+| toyotaarena.com, ieuw.org, sbclib.org | RIV | parked or hijacked domains (gambling content) | probe |
+| Fontana CivicPlus iCalendar | RIV | ~20 items, mostly commission meetings | ICS |
+| Rancho Cucamonga library (Drupal), California Theatre (Wix) | RIV | no JSON-LD or feed | probe |
+| Galaxy Digital slugs (ieuw, inlandempire, rivco, riverside, sbcounty, uwfm, …) | RIV | "Bad Domain" | probe |
+
+### Fresno
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `fcpl_woodward_park`, `fcpl_sunnyside`, `fcpl_fig_garden`, `fcpl_gillis`, `fcpl_betty_rodriguez`, `fcpl_politi`, `fcpl_clovis`, `fcpl_west_fresno` | fresno | LibCal per-branch ICS / `ics` | https://fresnolibrary.libcal.com/ical_subscribe.php?src=p&cid=<branch> (11204, 11014, 11039, 11202, 11003, 11201, 11006, 10986) | none | 8 requests/day (Crawl-delay 10) | robots: only named crawlers disallowed | SUMMARY, DTSTART, CATEGORIES → category_map ("Volunteer-Led" ≠ volunteering), `category_rules` for uncategorized tutoring, room pinned to the branch address from fresnolibrary.org/branch/all.html | events · 24h | B+ (official, per branch) | 107 / 76 / 58 / 41 / 39 / 25 / 24 / 17 |
+| `fresno_state_athletics` | fresno | SIDEARM ICS / `ics` | https://gobulldogs.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | as `ucr_athletics` (home = "Fresno") | events · 24h | B | 35 |
+| `visit_fresno_county_events` | fresno | Simpleview / `simpleview` (disabled) | https://www.visitfresnocounty.org/events/ | none | — | robots allows; token 200, events API 403 | — | events · 24h | D | 0 |
+
+Tried and not added (Fresno):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| City of Fresno ArcGIS server (gis4u) | FRE | folders publish no public services | REST |
+| Fresno State calendar | FRE | OmniCMS web component, no documented feed | calendar.js |
+| Save Mart Center, Fresno Convention Center (eventsfresno.com) | FRE | no Event JSON-LD or RSS | probe 2026-10-16 |
+| Fulton 55 | FRE | Eventbrite widget | HTML |
+| Fresno Philharmonic, fresno.gov WP, downtownfresno.org | FRE | no Tribe plugin / not WordPress | wp-json |
+| Fresno County Public Library Central branch (cid 11000) | FRE | empty ICS | probe |
+| Galaxy Digital slugs (fresno, …) | FRE | "Bad Domain" | probe |
