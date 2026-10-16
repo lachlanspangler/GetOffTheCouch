@@ -1,0 +1,361 @@
+# Portland, OR. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Sources verified live 2026-10-16 (batch B onboarding; see docs/SOURCES.md "Batch B cities").
+# Not used (details in docs/SOURCES.md): portland.gov (robots.txt answers 403 = disallow all, so no Portland Parks &
+# Recreation calendar); OMSI (robots 403); Travel Portland, Powell's, Hollywood Theatre, Japanese Garden, Star
+# Theater, Dante's (Cloudflare challenges); SOLVE volunteer calendar (HandsOn Connect, but its terms forbid "data
+# mining, robots or similar data gathering"); Portland'5 / Oregon Convention Center / Metro (Drupal pages, no
+# feed or JSON-LD); Mississippi Studios / Revolution Hall (no JSON-LD, Etix links only); PSU calendar (Drupal, no
+# feed); no Team Trivia, Challenge (Oregon shows are in Bend/Springfield/Corvallis) or Volo market.
+slug: portland
+name: Portland
+state: OR
+timezone: America/Los_Angeles
+center: [45.5152, -122.6784]
+radius_km: 20
+aliases: [Beaverton, Tigard, Lake Oswego, Milwaukie, Gresham, Happy Valley, Tualatin, West Linn, Aloha, Clackamas, Gladstone, Fairview, Wood Village, Vancouver, Cedar Mill, Raleigh Hills, Garden Home]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 45.5180, lon: -122.6790 }
+  - { name: Pearl District, lat: 45.5290, lon: -122.6840 }
+  - { name: Old Town / Chinatown, lat: 45.5240, lon: -122.6720 }
+  - { name: Northwest / Nob Hill, lat: 45.5310, lon: -122.6980 }
+  - { name: Goose Hollow, lat: 45.5190, lon: -122.6950 }
+  - { name: South Waterfront, lat: 45.4990, lon: -122.6720 }
+  - { name: Central Eastside, lat: 45.5160, lon: -122.6600 }
+  - { name: Lloyd / Rose Quarter, lat: 45.5310, lon: -122.6600 }
+  - { name: Buckman / Belmont, lat: 45.5160, lon: -122.6450 }
+  - { name: Hawthorne, lat: 45.5120, lon: -122.6250 }
+  - { name: Division / Richmond, lat: 45.5050, lon: -122.6300 }
+  - { name: Alberta Arts, lat: 45.5590, lon: -122.6450 }
+  - { name: Mississippi / Boise, lat: 45.5500, lon: -122.6760 }
+  - { name: St. Johns, lat: 45.5900, lon: -122.7550 }
+  - { name: Sellwood-Moreland, lat: 45.4710, lon: -122.6510 }
+  - { name: Hollywood, lat: 45.5350, lon: -122.6200 }
+sources:
+  - id: wccls_events
+    adapter: bibliocommons
+    name: Washington County Cooperative Library Services events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://wccls.bibliocommons.com/v2/events
+    expect_min_records: 30
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt). Beaverton, Cedar Mill/West Slope/Bethany
+      (Portland-addressed), Tigard, Tualatin, Aloha and Hillsboro branches; Forest Grove, Cornelius, Banks and
+      Sherwood are dropped by `cities`.
+    params:
+      library: wccls
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Washington County Libraries
+      cities: [Beaverton, Portland, Tigard, Tualatin, Aloha, Hillsboro]
+      default_category: arts.books
+      category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
+        Storytime: family.kids
+        Early Literacy: family.kids
+        Read to the dogs: family.kids
+        Book Group: arts.books
+        Writing/Poetry: arts.books
+        Author/Speaker: arts.books
+        ESL Class: learning.language
+        Computer/Technology: learning.tech
+        STEM/STEAM: learning.tech
+        DIY/Maker/Craft: arts.workshop
+        Class/Workshop: arts.workshop
+        Games/Play: trivia_games.board_games
+        Art/Movie/Performance: arts.theater
+        Job/Career: learning.networking
+        "Babies / Toddlers / Preschool": family.kids
+        Kids: family.kids
+
+  - id: multcolib_events
+    adapter: bibliocommons
+    name: Multnomah County Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    enabled: false
+    homepage: https://multcolib.bibliocommons.com/v2/events
+    expect_min_records: 30
+    notes: >-
+      DISABLED 2026-10-16: the library's events are on BiblioCommons (multcolib.org links there), but the gateway
+      answered HTTP 504 Gateway Time-out even for a one-day window (also seen in the scaling research). Retry later;
+      never crawl multcolib.bibliocommons.com itself (Crawl-delay 120).
+    params:
+      library: multcolib
+      horizon_days: 7
+      max_pages: 20
+      venue_label: Multnomah County Library
+      default_category: arts.books
+
+  - id: olcc_new_applications_portland
+    adapter: socrata
+    name: OLCC liquor license applications received (Portland, on-premises)
+    data_type: openings
+    homepage: https://data.oregon.gov/d/qad4-bnxp
+    expect_min_records: 5
+    notes: >-
+      Oregon Liquor and Cannabis Commission "Liquor Applications Received" (updated daily). Only
+      application_type = 'New Application' (premises amendments excluded) for on-premises licenses at Portland
+      addresses; date_received = application received, never a renewal. No coordinates: geocoded from address.
+      A new application can also be a change of ownership of an existing bar or restaurant.
+    params:
+      domain: data.oregon.gov
+      dataset: qad4-bnxp
+      kind: opening
+      lookback_days: 45
+      where: >-
+        date_received >= '{today}' AND application_type = 'New Application' AND upper(address) like '%PORTLAND OR%'
+        AND license_type in('Full On-Premises Sales - Commercial', 'Limited On-Premises Sales', 'Brewery Public House',
+        'Brewery Public House Additional Location', 'Winery - Consumption Additional Location',
+        'Distillery Tasting Additional Location', 'Brewery - Consumption Additional Location')
+      order: date_received DESC
+      page_size: 1000
+      max_pages: 2
+      fields: { title: trade_name, start: date_received, category: license_type, address: address }
+      exclude_title: ["(?i)\\b(grocery|mini ?mart|food mart|market|convenience|supermarket|gas|hotel|inn|catering|delivery)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The Oregon Liquor and Cannabis Commission received a new
+        "{license_type}" license application for this address on {date} (status: {application_status}).
+      category_rules:
+        - { match: "(?i)brewery|distillery|tavern|bar\\b|pub\\b|lounge", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.oregon.gov/d/qad4-bnxp
+      extras: { signal: liquor_license_application }
+
+  - id: up_events
+    adapter: localist
+    name: University of Portland events
+    data_type: events
+    homepage: https://calendar.up.edu/
+    expect_min_records: 10
+    params:
+      fallback_point: { lat: 45.5718, lon: -122.7270, label: "University of Portland campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.up.edu
+      horizon_days: 45
+      max_pages: 3
+      organizer: University of Portland
+      default_category: learning.networking
+      exclude_location: '\b(vacation|no classes|classes after|special schedule|last day to|deadline)\b'
+      category_map:
+        Pilot Athletics: sports_watch.game
+        Theater / Dance: arts.theater
+        Music: music.concert
+        Performance: arts.theater
+        Lecture / Presentation / Talk: learning.networking
+
+  - id: portland_pilots_athletics
+    adapter: ics
+    name: Portland Pilots athletics (home games — Chiles Center, Merlo Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://portlandpilots.com/calendar
+    expect_min_records: 3
+    notes: >-
+      University of Portland's SIDEARM Sports subscription calendar (robots allows it, Crawl-delay 30 — one request a
+      day). Only events whose LOCATION starts with "Portland" are kept.
+    params:
+      url: https://portlandpilots.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Portland Pilots
+      exclude_location: '^(?!Portland\b)'
+      force_category: sports_watch.game   # spectator games, not rec leagues
+      fallback_point: { lat: 45.5718, lon: -122.7270, label: "University of Portland campus" }
+
+  - id: portland_state_athletics
+    adapter: ics
+    name: Portland State Vikings athletics (home games — Viking Pavilion, Hillsboro Stadium)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://goviks.com/calendar
+    expect_min_records: 3
+    notes: >-
+      Portland State's SIDEARM Sports subscription calendar (robots allows it, Crawl-delay 30). Only events whose
+      LOCATION starts with "Portland" or "Hillsboro" (football's home field) are kept.
+    params:
+      url: https://goviks.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Portland State Vikings
+      exclude_location: '^(?!(Portland|Hillsboro)\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 45.5111, lon: -122.6833, label: "Portland State campus" }
+
+  - id: holocene_portland
+    adapter: jsonld
+    name: Holocene (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.holocene.org/events/
+    expect_min_records: 15
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://www.holocene.org/events/]
+      follow: 'holocene\.org/event/[^/]+/holocene/portland/$'
+      max_follow: 40
+      venue: {name: Holocene, address: "1001 SE Morrison, Portland, OR"}
+      organizer: Holocene
+      default_category: music.concert
+
+  - id: wonder_ballroom
+    adapter: jsonld
+    name: Wonder Ballroom (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://wonderballroom.com/events/
+    expect_min_records: 10
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the ticket link.
+    params:
+      urls: [https://wonderballroom.com/events/]
+      follow: 'wonderballroom\.com/event/[^/]+/wonder-ballroom/portland-oregon/$'
+      max_follow: 40
+      venue: {name: Wonder Ballroom}
+      organizer: Wonder Ballroom
+      default_category: music.concert
+
+  - id: hawthorne_theatre
+    adapter: jsonld
+    name: Hawthorne Theatre & Lounge (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://hawthornetheatre.com/events/
+    expect_min_records: 15
+    notes: Rockhouse WordPress; Event JSON-LD per event page with the Etix ticket link.
+    params:
+      urls: [https://hawthornetheatre.com/events/]
+      follow: 'hawthornetheatre\.com/event/[^/]+/hawthorne-(theatre|lounge)/portland-oregon/$'
+      max_follow: 40
+      venue: {name: Hawthorne Theatre}
+      organizer: Hawthorne Theatre
+      default_category: music.concert
+
+  - id: roseland_theater
+    adapter: jsonld
+    name: Roseland Theater (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://roselandpdx.com/events/
+    expect_min_records: 10
+    notes: >-
+      The venue's own Rockhouse WordPress site (Etix ticketing), not a Live Nation site; some shows carry a
+      "Live Nation Presents" promoter tag, which doesn't change who publishes the page.
+    params:
+      urls: [https://roselandpdx.com/events/]
+      follow: 'roselandpdx\.com/event/[^/]+/roseland-theater/portland-oregon/$'
+      max_follow: 40
+      venue: {name: Roseland Theater}
+      organizer: Roseland Theater
+      default_category: music.concert
+
+  - id: pioneer_courthouse_square
+    adapter: tribe
+    name: Pioneer Courthouse Square events
+    data_type: events
+    homepage: https://www.thesquarepdx.org/events/
+    expect_min_records: 2
+    params:
+      base_url: https://www.thesquarepdx.org
+      horizon_days: 90
+      max_pages: 2
+      venue: {name: Pioneer Courthouse Square}
+      organizer: Pioneer Courthouse Square
+      default_category: community.festival
+
+  - id: portland_farmers_market
+    adapter: tribe
+    name: Portland Farmers Market (PSU, King, Lents, Shemanski Park)
+    data_type: events
+    homepage: https://www.portlandfarmersmarket.org/
+    expect_min_records: 5
+    params:
+      base_url: https://www.portlandfarmersmarket.org
+      horizon_days: 45
+      max_pages: 3
+      organizer: Portland Farmers Market
+      default_category: community.market
+      classify_description: false
+      category_map:
+        PSU Farmers Market: community.market
+        Lents International Farmers Market: community.market
+        King Farmers Market: community.market
+        Shemanski Park Farmers Market: community.market
+
+  - id: portland_art_museum
+    adapter: tribe
+    name: Portland Art Museum & PAM CUT (Tomorrow Theater, Whitsell Auditorium)
+    data_type: events
+    min_interval_s: 2
+    homepage: https://portlandartmuseum.org/events/
+    expect_min_records: 10
+    notes: >-
+      WP The Events Calendar REST API (robots allows; answered 200). The HTML site serves a Cloudflare challenge we
+      never attempt. Member-only events are skipped.
+    params:
+      base_url: https://portlandartmuseum.org
+      horizon_days: 45
+      max_pages: 4
+      venue: {name: Portland Art Museum}
+      organizer: Portland Art Museum
+      exclude_location: '\bmembers?( only| exclusive)?\b.*\b(event|preview|reception)\b|\bMember (Event|Preview)'
+      default_category: arts.museum
+      category_map:
+        "Screenings & experiences": arts.film
+        "Screenings &amp; experiences": arts.film
+        Tomorrow Theater: arts.film
+        PAM CUT @ The Whitsell: arts.film
+        "Lectures & talks": arts.museum
+        "Lectures &amp; talks": arts.museum
+
+  - id: literary_arts_events
+    adapter: tribe
+    name: Literary Arts (readings, Portland Arts & Lectures, Portland Book Festival)
+    data_type: events
+    homepage: https://literary-arts.org/events/
+    expect_min_records: 8
+    notes: WP The Events Calendar REST API. Online classes and the statewide author tour stops outside Portland are skipped.
+    params:
+      base_url: https://literary-arts.org
+      horizon_days: 60
+      max_pages: 3
+      venue: {name: Literary Arts}
+      organizer: Literary Arts
+      exclude_location: '\b(Albany|Bend|Eugene|Salem|Medford|Ashland|Corvallis|Astoria|Pendleton|Hood River|Newport|Coos Bay|La Grande|Klamath|Roseburg|Sisters|Joseph|Enterprise|Baker City)\b|\bOnline\b'
+      default_category: arts.books
+      category_map:
+        Writing Classes: arts.workshop
+        Free Class: arts.workshop
+        Delve Readers Seminars: arts.books
+        Portland Book Festival: arts.books
+
+  - id: lan_su_garden
+    adapter: tribe
+    name: Lan Su Chinese Garden events
+    data_type: events
+    min_interval_s: 2
+    homepage: https://lansugarden.org/events/
+    expect_min_records: 10
+    params:
+      base_url: https://lansugarden.org
+      horizon_days: 30
+      max_pages: 4
+      venue: {name: Lan Su Chinese Garden}
+      organizer: Lan Su Chinese Garden
+      exclude_location: '\bMember Exclusive\b|\bmembers only\b'
+      default_category: arts.museum
+      category_map:
+        Tea: food_drink.tasting
+        Chrysanthemum Festival: community.festival
+        Family Fun: family.kids
+        Wellness: fitness.yoga
+        "Performances & Demos": arts.theater
+        "Performances &amp; Demos": arts.theater
+        Horticulture: outdoors.park
+        Tours: arts.museum
+        Art: arts.workshop

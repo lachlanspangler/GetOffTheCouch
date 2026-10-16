@@ -1,0 +1,55 @@
+[
+ {
+  "date_received": "2026-10-07",
+  "application_type": "New Application",
+  "application_status": "In Review",
+  "address": "506 SW WASHINGTON ST PORTLAND OR  97204-1550",
+  "license_type": "Full On-Premises Sales - Commercial",
+  "trade_name": "Royal Sonesta Portland"
+ },
+ {
+  "date_received": "2026-10-02",
+  "application_type": "New Application",
+  "application_status": "In Review",
+  "address": "2530 NE 82ND AVE PORTLAND OR  97220-5301",
+  "license_type": "Limited On-Premises Sales",
+  "date_assigned": "2026-10-12",
+  "trade_name": "Taqueria El Paisano Restaurant and Bar LLC"
+ },
+ {
+  "date_received": "2026-10-01",
+  "application_type": "New Application",
+  "application_status": "Waiting on Information",
+  "address": "1902 NW 24TH AVE PORTLAND OR  97210-2540",
+  "license_type": "Limited On-Premises Sales",
+  "date_assigned": "2026-10-12",
+  "trade_name": "Jakarta Bistro"
+ },
+ {
+  "date_received": "2026-09-30",
+  "application_type": "New Application",
+  "application_status": "In Review",
+  "address": "151 SW 1ST AVE STE C, PORTLAND OR  97204-3570",
+  "license_type": "Limited On-Premises Sales",
+  "date_assigned": "2026-10-12",
+  "trade_name": "Le Muselet"
+ },
+ {
+  "date_received": "2026-09-29",
+  "application_type": "New Application",
+  "application_status": "Waiting on Information",
+  "address": "8230 SE HARRISON ST STE 315 PORTLAND OR  97216-1456",
+  "license_type": "Full On-Premises Sales - Commercial",
+  "date_assigned": "2026-10-12",
+  "trade_name": "My Brother's Crawfish"
+ },
+ {
+  "date_received": "2026-09-25",
+  "application_type": "New Application",
+  "application_status": "In Review",
+  "address": "4328 SE 82ND AVE STE 1500, PORTLAND OR  97266-2956",
+  "license_type": "Full On-Premises Sales - Commercial",
+  "date_assigned": "2026-10-05",
+  "trade_name": "Tokyo-ya ramen"
+ }
+]

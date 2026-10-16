@@ -469,3 +469,37 @@ Tried and not added (Sacramento):
 | Sac Republic FC, California Museum, Sacramento Pride (Tribe) | SAC | 0 upcoming events | REST probe |
 | Galaxy Digital tenants (uwccr, volunteersacramento, sacramento, cityofsacramento, saccounty) | SAC | "Bad Domain" | probe |
 | BiblioCommons `sacramento` | SAC | 404 (the library runs Communico) | gateway |
+
+### Portland
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `wccls_events` | portland | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/wccls/rss/events | none | ~11 pages/day | gateway host has no robots.txt | as `hclib_events`; `cities` keeps Beaverton / Portland / Tigard / Tualatin / Aloha / Hillsboro | events · 24h | A- | 196 |
+| `portland_art_museum` | portland | WP The Events Calendar / `tribe` | https://portlandartmuseum.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed and answered 200; the HTML shows a Cloudflare challenge we never attempt | as `mprb_events` (PAM CUT film, talks) | events · 24h | B (could start challenging) | 65 |
+| `lan_su_garden` | portland | WP The Events Calendar / `tribe` | https://lansugarden.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as above, with listed prices | events · 24h | B | 49 |
+| `up_events` | portland | Localist / `localist` | https://calendar.up.edu/api/2/events | none | ≤3 pages/day (Crawl-delay 1) | allowed | as `usc_events`; academic-calendar rows skipped | events · 24h | B | 47 |
+| `holocene_portland` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://www.holocene.org/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | name, start, Etix offer | concerts · 12h | C+ | 40 |
+| `hawthorne_theatre` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://hawthornetheatre.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | as above (Theatre + Lounge) | concerts · 12h | C+ | 40 |
+| `wonder_ballroom` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://wonderballroom.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows | as above | concerts · 12h | C+ | 36 |
+| `roseland_theater` | portland | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://roselandpdx.com/events/ | none | 1 + ≤40 pages at ≥2 s | robots allows; the venue's own site (Etix); some shows are tagged "Live Nation Presents" but the site isn't LN-run | as above | concerts · 12h | C+ | 34 |
+| `literary_arts_events` | portland | WP The Events Calendar / `tribe` | https://literary-arts.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above; out-of-town tour stops and online skipped | events · 24h | B+ | 35 |
+| `portland_farmers_market` | portland | WP The Events Calendar / `tribe` | https://www.portlandfarmersmarket.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above (PSU, King, Lents, Shemanski) | events · 24h | B+ | 24 |
+| `portland_state_athletics` | portland | SIDEARM ICS / `ics` | https://goviks.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = "Portland" / "Hillsboro" | events · 24h | B | 22 |
+| `olcc_new_applications_portland` | portland | Socrata `qad4-bnxp` (data.oregon.gov) / `socrata` | https://data.oregon.gov/d/qad4-bnxp | none | Socrata throttling | Oregon Open Data ToU | trade_name, license_type (on-premises / brewpub), **date_received**, application_status, address; `New Application` only (may include ownership changes) | openings · 24h | A- (no coordinates; geocoded) | 19 |
+| `portland_pilots_athletics` | portland | SIDEARM ICS / `ics` | https://portlandpilots.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | home = LOCATION starts "Portland" | events · 24h | B | 19 |
+| `pioneer_courthouse_square` | portland | WP The Events Calendar / `tribe` | https://www.thesquarepdx.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 7 |
+| `multcolib_events` | portland | BiblioCommons RSS / `bibliocommons` (disabled) | https://gateway.bibliocommons.com/v2/libraries/multcolib/rss/events | none | — | gateway has no robots.txt | — | events · 24h | D (gateway 504 even for a one-day window) | 0 |
+
+Tried and not added (Portland):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| portland.gov (Parks & Recreation), OMSI | PDX | robots.txt answers 403 (disallow all) | probe 2026-10-16 |
+| SOLVE volunteer calendar (HandsOn Connect, block 1638) | PDX | terms forbid "use of any data mining, robots or similar data gathering or extraction methods" | volunteer.solve.org/terms-of-use |
+| Travel Portland, Powell's, Hollywood Theatre, Japanese Garden, Star Theater, Dante's | PDX | Cloudflare challenge, not attempted | probe |
+| Portland'5, Oregon Convention Center, Oregon Metro events, PSU calendar | PDX | Drupal pages, no feed or Event JSON-LD | probe |
+| Mississippi Studios, Revolution Hall, Aladdin, Jack London Revue | PDX | no JSON-LD; Etix / TicketWeb links only | probe |
+| Doug Fir, Alberta Rose | PDX | TLS certificate verification failed | probe |
+| Kickstand Comedy, PDX Jazz | PDX | Squarespace, no usable event markup | probe |
+| Friends of Trees (Tribe) | PDX | 0 events, and the homepage carries spam links (looks compromised) | probe |
+| OLCC licenses dataset `srxe-qkm2` | PDX | effective_date may reset on renewal (ADR-0006); applications received used instead | catalog columns |

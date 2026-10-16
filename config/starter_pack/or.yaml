@@ -1,0 +1,30 @@
+# Official new-resident deadlines for Oregon. Every fact is quoted verbatim from source_url.
+state: OR
+items:
+  - id: or-drivers-license
+    title: "Get an Oregon driver's license"
+    kind: license
+    days_after_move: 30
+    summary: "As a new Oregon resident, you must get an Oregon driver's license within 30 days if you want to drive."
+    action_url: https://www.oregon.gov/odot/DMV/Pages/DriverID/licenseget.aspx
+    evidence: "As a new Oregon resident, within 30 days you must: Get an Oregon Driver's License (if you want to drive); and Title and register your vehicle."
+    source_url: https://www.oregon.gov/odot/DMV/Pages/New2or/moving.aspx
+    verified_at: 2026-10-16
+  - id: or-vehicle-title-registration
+    title: "Title and register your vehicle in Oregon"
+    kind: vehicle
+    days_after_move: 30
+    summary: "As a new Oregon resident, you must title and register your vehicle within 30 days."
+    action_url: https://www.oregon.gov/odot/DMV/Pages/New2or/moving.aspx
+    evidence: "As a new Oregon resident, within 30 days you must: Get an Oregon Driver's License (if you want to drive); and Title and register your vehicle."
+    source_url: https://www.oregon.gov/odot/DMV/Pages/New2or/moving.aspx
+    verified_at: 2026-10-16
+  - id: or-voter-registration
+    title: "Register to vote in Oregon"
+    kind: voting
+    days_after_move: null
+    summary: "A new registrant must register by 11:59:59 p.m. Pacific Time on the 21st calendar day before an election to vote in it."
+    action_url: https://secure.sos.state.or.us/orestar/vr/register.do?lang=eng&source=SOS
+    evidence: "A new registrant must submit their online registration by 11:59:59 p.m. Pacific Time on the 21st calendar day before an election to be eligible to vote in that election."
+    source_url: https://sos.oregon.gov/elections/pages/registration.aspx
+    verified_at: 2026-10-16
