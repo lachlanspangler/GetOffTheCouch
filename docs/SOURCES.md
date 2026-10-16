@@ -382,3 +382,34 @@ Rejected / not used (Charlotte):
   no license layers (Mobile Food Vendor Permit / Special Use Permits are zoning). Luma has no Charlotte page
   (luma.com/charlotte → /discover). Volo: no market. Challenge: 0 shows within 50 km.
 - LN/TM/AEG venues skipped by policy: Fillmore, The Underground, PNC Music Pavilion, Skyla Amphitheatre.
+
+### Raleigh
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `raleigh_special_events` | raleigh | ArcGIS FeatureServer `Special_Events_Next_31_Days` (org v400IkDOw1ad7Yad, owner RaleighGIS) / `arcgis` | https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Special_Events_Next_31_Days/FeatureServer/0 | none | 1 request/day | documented ArcGIS REST API; no robots policy (403); `out_fields` never requests EVENT_CONTACT/PHONE/EMAIL | event name, start date (all-day; the permit times are the street-closure window), event type, status (Cancelled dropped); private-party titles excluded | events · 24h | B+ (official, rolling 31 days; polyline routes → no location yet) | 38 |
+| `ncsu_events` | raleigh | Localist / `localist` | https://calendar.ncsu.edu/api/2/events | none | ≤ 6 pages/day; robots `Crawl-Delay: 1` | allowed (disallows only HTML `?types` views) | as USC; `audience_filter: institution` | events · 24h | B+ | 232 |
+| `ncsu_athletics` | raleigh | SIDEARM calendar.ics / `ics` | https://gopack.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day; robots `Crawl-delay: 30` | `/calendar.ashx` allowed | summary, start, location (Raleigh/Reynolds only = home games) | events · 24h | A- | 20 |
+| `ncma_events` | raleigh | WP The Events Calendar / `tribe` | https://ncartmuseum.org/wp-json/tribe/events/v1/events | none | ≤ 6 pages/day | REST allowed (robots: /wp-admin/ only); the HTML /events/ page serves a Cloudflare challenge, never fetched | as MPRB; rooms pinned to the museum (approximate) | events · 24h | D for us — **disabled**: HTML /events/ is a Cloudflare challenge; the same-host REST API answered (97 in one verification run) but using it reads as working around the challenge | disabled |
+| `ncmns_events` | raleigh | WP The Events Calendar / `tribe` (under /calendar/) | https://www.naturalsciences.org/calendar/wp-json/tribe/events/v1/events | none | ≤ 6 pages/day | allowed | as MPRB | events · 24h | A- (state museum) | 88 |
+| `lenovo_center_raleigh` | raleigh | carbonhouse events RSS / `rss_events` | https://www.lenovocenter.com/events/rss | none | 1 request/12h | robots allows all | title, ev:startdate/enddate, link; Hurricanes/NC State → sports_watch.game | concerts · 12h | A- | 71 |
+| `martin_marietta_center` | raleigh | carbonhouse events RSS / `rss_events` | https://www.martinmariettacenter.com/events/rss | none | 1 request/day | robots allows all | title, start/end, ev:location (hall), ev:type (NC Symphony, Carolina Ballet, NC Opera…) | concerts · 24h | A- (city-owned complex) | 65 |
+| `red_hat_amphitheater` | raleigh | carbonhouse events RSS / `rss_events` | https://www.redhatamphitheater.com/events/rss | none | 1 request/day | robots allows all; city venue site (tickets sold via Live Nation, links only) | as above | concerts · 24h | B (seasonal; 2 shows left in 2026) | 2 |
+| `koka_booth_amphitheatre` | raleigh | carbonhouse events RSS / `rss_events` | https://www.boothamphitheatre.com/events/rss | none | 1 request/day | robots allows all | as above (ev:location is "…Official Site", so the venue label is clumsy) | concerts · 24h | B (seasonal, Town of Cary) | 5 |
+| `lincoln_theatre_raleigh` | raleigh | Rockhouse WP Event JSON-LD / `jsonld` | https://lincolntheatre.com/ | none | ≤ 46 pages/12h, ≥ 2 s apart | robots: /wp-admin/ only | name, startDate (offset), offers/Etix link | concerts · 12h | B | 36 |
+| `goodnights_comedy` | raleigh | SeatEngine Place JSON-LD ("Events" list) / `jsonld` | https://www.goodnightscomedy.com/ | none | 1 page/12h | robots.txt fully commented out (allows all) | name, startDate (UTC), location | events · 12h | B (same variant as `cap_city_comedy`) | 147 |
+| `teamtrivia_raleigh` | raleigh | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-raleigh-eastern-north-carolina/ | none | ≤ 71 pages/48h, ≥ 3 s apart | sitemap-listed pages; gate/getlocation never used | as `teamtrivia_denver`; Wilmington/Greenville venues dropped by the geofence | recurring · 48h | B | 160 |
+
+Rejected / not used (Raleigh):
+
+- raleighnc.gov (city events + parks calendar): Cloudflare "Just a moment…" 403 on robots.txt and /events. Not touched again.
+- Wake County Public Libraries: events are plain Drupal HTML on wake.gov/events (no ICS, no JSON-LD, no platform feed). No adapter.
+- Wake County restaurant permits (`maps.wake.gov/.../RestaurantInspectionsOpenData`): robots.txt `User-agent: * / Disallow: /`. The data.wake.gov hub download wasn't used, because it would serve the same blocked service from another host.
+- Activate Good (activategood.org), United Way of the Greater Triangle: Cloudflare 403. Activate Good's portal volunteer.activategood.org runs on **Golden Volunteer**, which has no adapter. `activategood.galaxydigital.com` → "Galaxy Digital: Bad Domain".
+- Town of Cary (carync.gov): Akamai "Access Denied", including robots.txt.
+- Downtown Raleigh Alliance (downtownraleigh.org): custom CMS (ctycms) loading events by JS; no feed or JSON-LD.
+- Kings (kingsraleigh.com): only Etix links, no JSON-LD. Pour House (pourhouseraleigh.com): no structured data.
+- Live Nation-owned venues skipped: Coastal Credit Union Music Park at Walnut Creek, The Ritz.
+- City SpecialEvents permit-application layer (`service_48a189…`): 392 rows, none in the future, and full of applicant PII columns. Not used.
+- Socrata: no Raleigh/NC tenant (catalog `q=raleigh` → 0). No Volo market, no Challenge shows nearby.
+- Not probed: Visit Raleigh (Simpleview, the same CDN blocks seen elsewhere), Meredith/Shaw/Wake Tech calendars, NC ABC Commission permits.

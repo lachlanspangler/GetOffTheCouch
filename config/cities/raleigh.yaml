@@ -1,0 +1,265 @@
+# Raleigh, NC (Raleigh-Cary). Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# 20 km radius: Cary, Garner, Knightdale and Morrisville are inside; Durham, Chapel Hill, Apex and Wake Forest are not.
+# Blocked/unusable (2026-10-16, see docs/SOURCES.md "Batch D cities"): raleighnc.gov (city + parks calendar) and
+# activategood.org / unitedwaytriangle.org serve Cloudflare challenges; maps.wake.gov (Wake County restaurant
+# permits) is robots `Disallow: /`; carync.gov answers Akamai "Access Denied"; Wake County Public Libraries
+# events are plain Drupal HTML on wake.gov (no feed, no JSON-LD); Activate Good's volunteer portal is Golden
+# Volunteer (no adapter). Red Hat Amphitheater's tickets are sold by Live Nation, but the site itself is the
+# City of Raleigh's carbonhouse venue site (same CMS as Martin Marietta Center); Coastal Credit Union Music Park
+# and The Ritz are Live Nation-owned and skipped.
+slug: raleigh
+name: Raleigh
+state: NC
+timezone: America/New_York
+center: [35.7796, -78.6382]
+radius_km: 20
+aliases: [Raleigh-Cary, Wake County, Cary, Garner, Knightdale, Morrisville]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Fayetteville St, lat: 35.7765, lon: -78.6390 }
+  - { name: Glenwood South, lat: 35.7890, lon: -78.6460 }
+  - { name: Warehouse District, lat: 35.7750, lon: -78.6460 }
+  - { name: Oakwood, lat: 35.7860, lon: -78.6300 }
+  - { name: Mordecai, lat: 35.7930, lon: -78.6330 }
+  - { name: Boylan Heights, lat: 35.7740, lon: -78.6510 }
+  - { name: Dix Park, lat: 35.7680, lon: -78.6550 }
+  - { name: Five Points, lat: 35.8040, lon: -78.6440 }
+  - { name: Village District (Cameron Village), lat: 35.7900, lon: -78.6600 }
+  - { name: Hillsborough St / NC State, lat: 35.7870, lon: -78.6700 }
+  - { name: North Hills / Midtown, lat: 35.8380, lon: -78.6420 }
+  - { name: Southeast Raleigh, lat: 35.7600, lon: -78.6100 }
+  - { name: Brier Creek, lat: 35.9100, lon: -78.7800 }
+  - { name: Downtown Cary, lat: 35.7915, lon: -78.7811 }
+  - { name: Garner, lat: 35.7113, lon: -78.6142 }
+sources:
+  # ── official: City of Raleigh open data (ArcGIS Online org v400IkDOw1ad7Yad, owner RaleighGIS) ──
+  - id: raleigh_special_events
+    adapter: arcgis
+    name: City of Raleigh special events (next 31 days)
+    data_type: events
+    homepage: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Special_Events_Next_31_Days/FeatureServer/0
+    expect_min_records: 10
+    notes: >-
+      Permitted street events (block parties, races/walks/parades, festivals) on a rolling 31-day window, kept
+      current by the city's special-events office. Geometry is the closed route (polyline), which the arcgis
+      adapter can't turn into a point yet, and there is no address column, so records carry no location. Only
+      the event columns are requested (out_fields): EVENT_CONTACT/PHONE/EMAIL are never fetched.
+    params:
+      service_url: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Special_Events_Next_31_Days/FeatureServer/0
+      out_fields: OBJECTID,EVENT_NAME,EVENT_STARTDATE,EVENT_ENDDATE,EVENT_TYPE,STATUS
+      where: "EVENT_ENDDATE >= DATE '{today_date}' AND STATUS <> 'Cancelled'"
+      order_by: EVENT_STARTDATE
+      fields: { record_id: OBJECTID, title: EVENT_NAME, start: EVENT_STARTDATE, category: EVENT_TYPE }   # end omitted: all-day end dates come out in UTC (see report)
+      all_day: true   # the permit's times are the street-closure window (setup to breakdown), not the event's hours
+      exclude_title: ["(?i)\\b(retirement|birthday|wedding|reunion|memorial|funeral|private|family (barbecue|bbq|gathering))\\b"]
+      description_template: >-
+        City of Raleigh special-event permit ({EVENT_TYPE}, status: {STATUS}). Dates are from the permit; the
+        street-closure window is not the event's schedule, so check with the organizer for hours.
+      category_map:
+        Neighborhood Block Party: community.block_party
+        Race/Walk/Parade: fitness.race
+      default_category: community.festival
+      default_url: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Special_Events_Next_31_Days/FeatureServer/0
+      extras: { signal: city_special_event_permit }
+
+  # ── universities ──
+  - id: ncsu_events
+    adapter: localist
+    name: NC State University events
+    data_type: events
+    homepage: https://calendar.ncsu.edu/
+    expect_min_records: 20
+    notes: Localist API (robots Crawl-Delay 1; /api/ allowed). Student/faculty-only items skipped by audience_filter.
+    params:
+      fallback_point: { lat: 35.7847, lon: -78.6821, label: "NC State main campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution
+      base_url: https://calendar.ncsu.edu
+      horizon_days: 30
+      max_pages: 6
+      organizer: NC State University
+      default_category: learning.networking
+
+  - id: ncsu_athletics
+    adapter: ics
+    name: NC State Wolfpack athletics (home games — Carter-Finley, Reynolds Coliseum, Lenovo Center, Dail)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gopack.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM subscription calendar (calendar.ashx/calendar.ics; robots allows it). Only Raleigh-located events kept.
+    params:
+      url: https://gopack.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: NC State Athletics
+      force_category: sports_watch.game
+      exclude_location: '^(?!(Raleigh|, ?James T\. Valvano))'
+      fallback_point: { lat: 35.7847, lon: -78.6821, label: "NC State campus" }
+
+  # ── museums (state museums' WordPress The Events Calendar REST APIs) ──
+  - id: ncma_events
+    adapter: tribe
+    name: North Carolina Museum of Art events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://ncartmuseum.org/events/
+    expect_min_records: 20
+    enabled: false
+    notes: >-
+      DISABLED 2026-10-16 (conservative call): the HTML /events/ page serves a Cloudflare challenge to our client.
+      The REST API on the same host (wp-json/tribe/events/v1; robots allows it) answered and returned 97 events
+      in one verification run, but using an unchallenged path on a host that challenges us reads as working
+      around the site's bot protection. Re-enable only with the museum's permission.
+      Rooms ("East Building, SECU Auditorium") are pinned to the museum campus.
+    params:
+      base_url: https://ncartmuseum.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 6
+      organizer: North Carolina Museum of Art
+      fallback_point: { lat: 35.8099, lon: -78.7023, label: "NC Museum of Art, 2110 Blue Ridge Rd" }
+      default_category: arts.museum
+      category_map:
+        "Performances &amp; Concerts": music.concert
+        "Performances & Concerts": music.concert
+        Tours: arts.museum
+        Families: family.kids
+        Lectures and Discussions: arts.books
+  - id: ncmns_events
+    adapter: tribe
+    name: NC Museum of Natural Sciences events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.naturalsciences.org/calendar/
+    expect_min_records: 20
+    notes: The Events Calendar REST API under /calendar/ (robots allows it). Downtown Raleigh, Nature Research Center and Prairie Ridge.
+    params:
+      base_url: https://www.naturalsciences.org/calendar
+      horizon_days: 45
+      per_page: 50
+      max_pages: 6
+      organizer: NC Museum of Natural Sciences
+      fallback_point: { lat: 35.7822, lon: -78.6391, label: "NC Museum of Natural Sciences, 11 W Jones St" }
+      default_category: learning.networking
+
+  # ── big venues via carbonhouse /events/rss (public syndication feeds; robots allows) ──
+  - id: lenovo_center_raleigh
+    adapter: rss_events
+    name: Lenovo Center (venue calendar — Hurricanes, NC State basketball, concerts)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.lenovocenter.com/events
+    expect_min_records: 10
+    params:
+      spectator_venue: true
+      url: https://www.lenovocenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Lenovo Center", address: "1400 Edwards Mill Rd, Raleigh, NC 27607"}
+      organizer: Lenovo Center
+      default_category: music.concert
+      category_map:
+        Carolina Hurricanes: sports_watch.game
+        NC State: sports_watch.game
+        WWE: sports_watch.game
+  - id: martin_marietta_center
+    adapter: rss_events
+    name: Martin Marietta Center for the Performing Arts (Meymandi Concert Hall, Fletcher Opera Theater, Memorial Auditorium)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.martinmariettacenter.com/events
+    expect_min_records: 20
+    notes: City of Raleigh-owned performing arts complex (NC Symphony, Carolina Ballet, NC Opera, touring shows).
+    params:
+      spectator_venue: true
+      url: https://www.martinmariettacenter.com/events/rss
+      horizon_days: 150
+      venue: {name: Martin Marietta Center for the Performing Arts, address: "2 E South St, Raleigh, NC 27601"}
+      organizer: Martin Marietta Center for the Performing Arts
+      default_category: music.concert
+      category_map:   # ev:type labels seen in the live feed (then ev:location / title keywords)
+        NC Symphony: music.classical
+        NC Opera: music.classical
+        Carolina Ballet: arts.theater
+        Dance: arts.theater
+        Theatre: arts.theater
+        Comedy: nightlife.comedy
+        Speakers: arts.books
+        Concerts: music.concert
+  - id: red_hat_amphitheater
+    adapter: rss_events
+    name: Red Hat Amphitheater (City of Raleigh venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.redhatamphitheater.com/events
+    expect_min_records: 0   # seasonal outdoor venue: an empty winter feed is normal
+    notes: City-owned amphitheater's carbonhouse feed; tickets are sold through Live Nation (links only).
+    params:
+      spectator_venue: true
+      url: https://www.redhatamphitheater.com/events/rss
+      horizon_days: 240
+      venue: {name: Red Hat Amphitheater, address: "500 S McDowell St, Raleigh, NC 27601"}
+      organizer: Red Hat Amphitheater
+      default_category: music.concert
+  - id: koka_booth_amphitheatre
+    adapter: rss_events
+    name: Koka Booth Amphitheatre (Town of Cary venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.boothamphitheatre.com/events
+    expect_min_records: 0   # seasonal outdoor venue
+    params:
+      spectator_venue: true
+      url: https://www.boothamphitheatre.com/events/rss
+      horizon_days: 240
+      venue: {name: Koka Booth Amphitheatre, address: "8003 Regency Pkwy, Cary, NC 27518"}
+      organizer: Koka Booth Amphitheatre
+      default_category: music.concert
+
+  # ── clubs (Event JSON-LD) ──
+  - id: lincoln_theatre_raleigh
+    adapter: jsonld
+    name: Lincoln Theatre (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://lincolntheatre.com/
+    expect_min_records: 10
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the Etix ticket link. `follow` keeps Lincoln Theatre rooms only (the homepage also promotes shows at other venues).
+    params:
+      urls: [https://lincolntheatre.com/]
+      follow: 'lincolntheatre\.com/event/[^/]+/lincoln-theatre/raleigh-north-carolina/$'
+      max_follow: 45
+      venue: {name: Lincoln Theatre, address: "126 E Cabarrus St, Raleigh, NC 27601"}
+      organizer: Lincoln Theatre
+      default_category: music.concert
+  - id: goodnights_comedy
+    adapter: jsonld
+    name: Goodnights Comedy Club (venue calendar)
+    data_type: events
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.goodnightscomedy.com/
+    expect_min_records: 20
+    notes: SeatEngine-hosted club site; one homepage JSON-LD Place block lists every upcoming show as an Event (UTC start). robots allows all.
+    params:
+      urls: [https://www.goodnightscomedy.com/]
+      horizon_days: 90
+      venue: {name: Goodnights Comedy Club, address: "401 Woodburn Rd, Raleigh, NC 27605"}
+      organizer: Goodnights Comedy Club
+      default_category: nightlife.comedy
+
+  # ── trivia (Team Trivia public venue pages; robots-allowed, in their sitemap) ──
+  - id: teamtrivia_raleigh
+    adapter: teamtrivia
+    name: Team Trivia (Raleigh / Eastern NC)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-raleigh-eastern-north-carolina/
+    expect_min_records: 20
+    notes: >-
+      The region also covers Wilmington and Greenville; those venues carry LocalBusiness geo and are dropped by
+      the city geofence at build time. Never uses the zip-code gate or /getlocation.php (robots-disallowed).
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { raleigh: raleigh-eastern-north-carolina }
+      max_venues: 70
