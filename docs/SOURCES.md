@@ -293,3 +293,29 @@ Tried and not added (Phoenix):
 | Mortgage Matchup Center, Desert Diamond Arena, Chandler Center, ASU Gammage, Phoenix Symphony, The Nash, Herberger, Last Exit Live, Celebrity Theatre | PHX | no RSS, Tribe or Event JSON-LD | probe |
 | calendar.asu.edu / asuevents.asu.edu | PHX | HTTP 522 (origin down); the Drupal site has no feed | probe |
 | Tempe liquor licenses (ArcGIS) | PHX | static location list, no dates | ArcGIS search |
+
+### Las Vegas
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `lvccld_events` | las_vegas | Communico `eeventcaldata` / `communico` | https://events.thelibrarydistrict.org/eeventcaldata | none | 7 requests/day | **undocumented** front-end JSON; robots disallows only /results, /sitesearch | as `mdpls_events`; rural branches skipped | events · 24h | B | 385 |
+| `unlv_athletics` | las_vegas | SIDEARM ICS / `ics` | https://unlvrebels.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows | SUMMARY, DTSTART, LOCATION (Las Vegas venues only) | events · 24h | B | 42 |
+| `uwsn_volunteer` | las_vegas | Galaxy Digital (custom domain) / `galaxydigital` | https://volunteer.uwsn.org/need/rss/ | none | ≤16 requests/day | robots allows | as `handson_twin_cities` | volunteer · 24h | A- | 26 |
+| `the_space_lv` | las_vegas | Event JSON-LD / `jsonld` | https://thespacelv.com/ | none | 1 page/day | robots allows | name, start (offset) | events · 24h | C+ | 21 |
+| `allegiant_stadium` | las_vegas | carbonhouse RSS / `rss_events` | https://www.allegiantstadium.com/events/rss | none | 1 request/day | robots allows | title, link, ev:startdate | events · 24h | B+ | 14 |
+| `notoriety_live` | las_vegas | Event JSON-LD / `jsonld` | https://www.notorietylive.com/ | none | 1 page/day | robots.txt 404 | name, start (offset) | events · 24h | C+ | 6 |
+| `henderson_food_openings` | las_vegas | ArcGIS Server MapServer / `arcgis` | https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0 | none | 1 request/day | self-hosted, robots.txt 404; OWNER/phone never mapped | CASENUMBER, DESCRIPTION, CASETYPE (Restaurant/Food Service, Liquor), ISSUEDATE, address, point | openings · 24h | B (rare matches) | 0 |
+
+Tried and not added (Las Vegas):
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| unlv.edu, cityofhenderson.com, cityofnorthlasvegas.com, nvsos.gov | LV | robots.txt answers 403 | probe 2026-10-16 |
+| The Smith Center | LV | Queue-it waiting room in front of every page | probe |
+| Fremont Street Experience, Mob Museum, Lee's Family Forum, Downtown Summerlin | LV | Cloudflare challenge, not attempted | probe |
+| City of Las Vegas events, Clark County calendar | LV | JS apps (DNN 2sxc, AEM), no feed | probe |
+| City of Las Vegas business licenses (ArcGIS) | LV | no date field, so no newness signal | layer schema |
+| LVCCLD BiblioCommons RSS | LV | ~3 events; the real calendar is Communico | `gotc run` |
+| Henderson Libraries (hdpl.org), Thomas & Mack | LV | TLS certificate errors | probe |
+| Laugh Factory, Comedy Cellar LV, Las Vegas Philharmonic, Neon Museum, Springs Preserve, Downtown Container Park | LV | no Tribe or Event JSON-LD | probe |
+| Visit Las Vegas (Simpleview) | LV | same platform that answers 403 elsewhere; not added | — |

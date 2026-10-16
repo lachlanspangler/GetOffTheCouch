@@ -1,0 +1,33 @@
+# Official new-resident deadlines for Nevada. Every fact is quoted verbatim from source_url.
+# The DMV's New Resident Guide (dmv.nv.gov/newresident.htm) states no day counts, so the deadlines quote the Nevada
+# Revised Statutes on leg.state.nv.us (NRS 483.245, 482.385, 293.560; official; robots allows). nvsos.gov answers
+# robots.txt with 403.
+state: NV
+items:
+  - id: nv-drivers-license
+    title: "Get a Nevada driver's license"
+    kind: license
+    days_after_move: 30
+    summary: "Once you become a Nevada resident you must get a Nevada driver's license within 30 days to keep driving."
+    action_url: https://dmv.nv.gov/newresident.htm
+    evidence: "When a person becomes a resident of Nevada as defined in this chapter and chapter 482 of NRS, the person must, within 30 days, obtain a Nevada driver’s license as a prerequisite to driving any motor vehicle in the State of Nevada."
+    source_url: https://www.leg.state.nv.us/NRS/NRS-483.html
+    verified_at: 2026-10-16
+  - id: nv-vehicle-registration
+    title: "Register your vehicle in Nevada"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Apply to register each vehicle you drive in Nevada within 30 days of becoming a resident, or when you get your Nevada license if that is sooner."
+    action_url: https://dmv.nv.gov/newresident.htm
+    evidence: "when a person, formerly a nonresident, becomes a resident of this State, the person shall: (a) Within 30 days after becoming a resident; or (b) At the time he or she obtains a driver’s license, ... whichever occurs earlier, apply for the registration of each vehicle the person owns which is operated in this State."
+    source_url: https://www.leg.state.nv.us/NRS/NRS-482.html
+    verified_at: 2026-10-16
+  - id: nv-voter-registration
+    title: "Register to vote in Nevada"
+    kind: voting
+    days_after_move: null
+    summary: "Mail and in-person registration closes the fourth Tuesday before a primary or general election; online registration stays open through Election Day."
+    action_url: https://registertovote.nv.gov/
+    evidence: "By mail is the fourth Tuesday preceding the primary election, presidential preference primary election or general election. ... By computer using the system established by the Secretary of State pursuant to NRS 293.671 , is the day of the primary election, presidential preference primary election or general election."
+    source_url: https://www.leg.state.nv.us/NRS/NRS-293.html
+    verified_at: 2026-10-16

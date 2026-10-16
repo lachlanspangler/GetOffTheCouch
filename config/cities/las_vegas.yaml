@@ -1,0 +1,157 @@
+# Las Vegas, NV (Las Vegas-Henderson-North Las Vegas MSA). Neighborhood points are approximate centroids, used
+# only for "near me" distance filters. Sources verified live 2026-10-16 (batch B onboarding; docs/SOURCES.md).
+# THIN CITY: most local calendars are closed to us on 2026-10-16 — unlv.edu, cityofhenderson.com and
+# cityofnorthlasvegas.com answer robots.txt with 403; The Smith Center sits behind a Queue-it waiting room; Fremont
+# Street Experience, Mob Museum, Lee's Family Forum and Downtown Summerlin serve Cloudflare challenges; the City of
+# Las Vegas and Clark County calendars are JS apps without a feed; no Team Trivia / Challenge / Volo market.
+slug: las_vegas
+name: Las Vegas
+state: NV
+timezone: America/Los_Angeles
+center: [36.1699, -115.1398]
+radius_km: 20
+aliases: [Henderson, North Las Vegas, Paradise, Spring Valley, Enterprise, Summerlin, Sunrise Manor, Whitney, Winchester]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Fremont East, lat: 36.1690, lon: -115.1390 }
+  - { name: Arts District (18b), lat: 36.1590, lon: -115.1530 }
+  - { name: The Strip, lat: 36.1140, lon: -115.1730 }
+  - { name: Chinatown / Spring Mountain, lat: 36.1260, lon: -115.1980 }
+  - { name: Medical District, lat: 36.1610, lon: -115.1650 }
+  - { name: UNLV / University District, lat: 36.1080, lon: -115.1430 }
+  - { name: Huntridge, lat: 36.1590, lon: -115.1340 }
+  - { name: Summerlin, lat: 36.1610, lon: -115.3200 }
+  - { name: Spring Valley, lat: 36.1080, lon: -115.2450 }
+  - { name: Henderson / Green Valley, lat: 36.0400, lon: -115.0800 }
+  - { name: Henderson Water Street, lat: 36.0300, lon: -114.9820 }
+  - { name: North Las Vegas, lat: 36.1990, lon: -115.1170 }
+  - { name: Centennial Hills, lat: 36.2700, lon: -115.2700 }
+  - { name: Southwest / Enterprise, lat: 36.0300, lon: -115.2300 }
+sources:
+  - id: lvccld_events
+    adapter: communico
+    name: Las Vegas-Clark County Library District events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://events.thelibrarydistrict.org/
+    expect_min_records: 40
+    notes: >-
+      Communico calendar JSON (eeventcaldata, undocumented; robots disallows only search/results). One request per
+      day of horizon. The district's BiblioCommons events RSS carries only ~3 items, so it isn't used. Rural
+      branches outside the metro are skipped via exclude_location.
+    params:
+      base_url: https://events.thelibrarydistrict.org
+      horizon_days: 7
+      venue_label: Las Vegas-Clark County Library District
+      default_category: arts.books
+      skip_all_day: true
+      exclude_location: '\b(Laughlin|Mesquite|Moapa|Bunkerville|Blue Diamond|Indian Springs|Searchlight|Goodsprings|(Mount|Mt\.) Charleston|Sandy Valley|Overton|Logandale)\b'
+
+  - id: unlv_athletics
+    adapter: ics
+    name: UNLV Rebels athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://unlvrebels.com/calendar
+    expect_min_records: 5
+    notes: >-
+      SIDEARM subscription calendar (robots allows, Crawl-delay 30 — one request a day). Only events whose
+      LOCATION is a Las Vegas venue are kept (away/neutral games elsewhere skipped).
+    params:
+      url: https://unlvrebels.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: UNLV Rebels
+      exclude_location: '^(?!\s*(Las Vegas|Henderson|Thomas & Mack|Allegiant|Cox Pavilion|Fertitta|Peter Johann|Rebel|The Pavilion)\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 36.1070, lon: -115.1430, label: "UNLV campus" }
+
+  - id: allegiant_stadium
+    adapter: rss_events
+    name: Allegiant Stadium events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.allegiantstadium.com/events
+    expect_min_records: 3
+    notes: "carbonhouse events RSS (/events/rss, ev: module). robots allows. Raiders and UNLV football, concerts, bowls."
+    params:
+      spectator_venue: true
+      url: https://www.allegiantstadium.com/events/rss
+      horizon_days: 180
+      venue: {name: Allegiant Stadium, address: "3333 Al Davis Way, Las Vegas, NV 89118"}
+      organizer: Allegiant Stadium
+      default_category: sports_watch.game
+
+  - id: the_space_lv
+    adapter: jsonld
+    name: The Space Las Vegas (comedy, music, variety)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://thespacelv.com/
+    expect_min_records: 5
+    notes: Event JSON-LD on the homepage (with offsets). robots allows.
+    params:
+      urls: [https://thespacelv.com/]
+      horizon_days: 120
+      venue: {name: The Space, address: "3460 Cavaretta Ct, Las Vegas, NV 89103"}
+      organizer: The Space
+      default_category: arts.theater
+
+  - id: notoriety_live
+    adapter: jsonld
+    name: Notoriety Live (downtown showroom)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.notorietylive.com/
+    expect_min_records: 2
+    notes: Event JSON-LD on the homepage (with offsets). robots.txt 404 (no policy).
+    params:
+      urls: [https://www.notorietylive.com/]
+      horizon_days: 120
+      venue: {name: Notoriety, address: "450 Fremont St, Las Vegas, NV 89101"}
+      organizer: Notoriety Live
+      default_category: nightlife.comedy
+
+  - id: henderson_food_openings
+    adapter: arcgis
+    name: Henderson new restaurant & liquor business licenses
+    data_type: openings
+    homepage: https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0
+    expect_min_records: 0
+    notes: >-
+      City of Henderson open-data Business License layer (case numbers are new licenses; ISSUEDATE = issue).
+      Only "Restaurant/Food Service" and "Liquor" case types at commercial addresses. OWNER and BUSINESSPHONE are
+      never mapped. Self-hosted ArcGIS Server: robots.txt 404 (no policy), checked via respect_robots.
+    params:
+      service_url: https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0
+      respect_robots: true
+      format: json
+      kind: opening
+      lookback_days: 60
+      where: "ISSUEDATE >= DATE '{today_date}' AND CASETYPE IN ('Restaurant/Food Service', 'Liquor') AND STATUS = 'Active' AND LOCATION LIKE 'Commercial%'"
+      order_by: ISSUEDATE DESC
+      out_fields: CASENUMBER,DESCRIPTION,CASETYPE,CASEWORKCLASS,STATUS,ISSUEDATE,LOCATION,MAIN_ADDRESS_LINE1
+      fields: { record_id: CASENUMBER, title: DESCRIPTION, start: ISSUEDATE, category: CASETYPE, address: [MAIN_ADDRESS_LINE1] }
+      exclude_title: ["(?i)\\b(liquor store|wine & spirits|market|mart|gas|grocery|smoke|vape|catering|vending)\\b"]
+      title_template: "{title} — new business license"
+      description_template: >-
+        License signal, not a confirmed opening date. The City of Henderson issued a "{CASETYPE}" business license
+        for this address on {date}.
+      category_rules:
+        - { match: "(?i)liquor", category: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0
+      extras: { signal: business_license_issued }
+
+  - id: uwsn_volunteer
+    adapter: galaxydigital
+    name: United Way of Southern Nevada Volunteer Connect
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://volunteer.uwsn.org/need/
+    expect_min_records: 1
+    notes: Galaxy Digital tenant on a custom domain (the uwsn.galaxydigital.com slug answers "Bad Domain").
+    params:
+      base_url: https://volunteer.uwsn.org
+      max_details: 15
+      max_shifts: 6

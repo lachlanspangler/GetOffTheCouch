@@ -101,3 +101,4 @@ sources:
         seattle: "98101"
         # batch B (2026-10-16): downtown / city-hall ZIPs
         phoenix: "85003"
+        las_vegas: "89101"
