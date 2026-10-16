@@ -190,3 +190,32 @@ sources:
       venue: {name: Lost Lake Lounge}
       organizer: Lost Lake Lounge
       default_category: music.concert
+
+  # ── trivia (Team Trivia public venue pages: schema.org Event JSON-LD; robots-allowed, in their sitemap) ──
+  - id: teamtrivia_denver
+    adapter: teamtrivia
+    name: Team Trivia (Denver / Front Range)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-denver/
+    expect_min_records: 20
+    notes: >-
+      Region page → ~29 venue pages, each with the next four dated games in JSON-LD. Never uses the zip-code gate
+      or /getlocation.php (robots-disallowed). The /terms page is behind that gate and could not be read.
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { denver: denver }
+      max_venues: 60
+
+  - id: challenge_trivia_denver
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Denver)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 3
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-denver within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [denver]

@@ -1,0 +1,7 @@
+{
+  "unit": "challenge_trivia_austin@austin (shared by the nashville and denver units)",
+  "recorded_at": "2026-10-16T07:31:00+00:00",
+  "payloads": 1,
+  "request": "GET https://challengeentertainment.com/wp-json/ce/v1/shows (937 shows, ~860 KB)",
+  "note": "real response trimmed to 13 unmodified show objects: Austin weekly + bi-weekly + a far-away Killeen show, Nashville metro (two bingo nights), Denver metro, a Milwaukee monthly show and a Houston show whose next_date disagrees with its day"
+}

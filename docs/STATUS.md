@@ -75,6 +75,7 @@
 | `TICKETMASTER_API_KEY` | concerts, sports and theater for all cities; face-value prices; on-sale dates | https://developer-acct.ticketmaster.com/user/register (instant) | free |
 | `SEATGEEK_CLIENT_ID` | resale prices, listing counts, so "selling fast" and price trends become real | https://seatgeek.com/account/develop (portal login) | free |
 | `SOCRATA_APP_TOKEN` (optional) | higher rate limits on city open-data portals | https://dev.socrata.com/register | free |
+| `RUNSIGNUP_API_REG` + `RUNSIGNUP_API_REG_SECRET` | races with registration deadlines in all 10 cities (the `runsignup` source is built and tested; the recorded Chicago response alone has 42 published close dates). The API Terms require registering as an API caller | https://runsignup.com/API/APIKeys → "API Caller Registration" (needs a RunSignup account) | free |
 | Ticketmaster Inventory Status API (optional) | first-party "few tickets left" | email devportalinquiry@ticketmaster.com | approval |
 | Meetup OAuth client (later) | run clubs, social groups, real RSVP counts | https://www.meetup.com/api/oauth/list/ | may need Pro |
 

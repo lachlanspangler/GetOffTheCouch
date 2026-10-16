@@ -16,7 +16,9 @@ UW = unit("uw_events")
 def test_real_fixtures_parse_without_rejects():
     for u in (SPL, UW):
         parsed = parse(u, f"{u.source.id}/payload_0.json")
-        assert len(parsed.valid) + parsed.skipped == 5 and not parsed.rejects, u.source.id  # campus catch-alls are skipped
+        assert len(parsed.valid) + parsed.skipped == 5 and not parsed.rejects, (
+            u.source.id
+        )  # campus catch-alls are skipped
 
 
 def test_spl_field_mapping_and_explicit_offset():

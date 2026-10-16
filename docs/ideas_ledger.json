@@ -904,12 +904,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "daily.csv (headerless, Last-Modified works) gives Dade 'Issue Permanent License' openings; bd4002lic.csv gives one-day festival permits with dates. robots allows /sto/. Miami currently has no openings source.",
    "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
-   "notes": []
+   "notes": [
+    "2026-10-16 done: fl_dbpr_openings_miami (csvfile adapter, bd4006lic.csv Original Licensure Date, on-premises series only): 66 live, 0 rejects. Temporary event permits (bd4002lic.csv) split into a new idea."
+   ]
   },
   {
    "id": "I-061",
@@ -1361,6 +1363,76 @@
    "status": "open",
    "why": "auto: 0 trivia nights events in Seattle right now",
    "source": "auto",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-092",
+   "title": "RunSignup: register as an API caller and enable the runsignup source",
+   "area": "sources",
+   "value": 5,
+   "effort": 1,
+   "confidence": 0.9,
+   "status": "blocked",
+   "why": "Adapter, config and fixture tests are done; the API Terms require caller registration (free, needs the user's RunSignup account). Recorded Chicago response: 45 races, 42 with a reported registration close date, 15 early-bird price steps, so every city gains published deadlines.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-093",
+   "title": "Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv)",
+   "area": "sources",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic).",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-094",
+   "title": "Boston new liquor licenses by first-seen snapshot diff",
+   "area": "sources",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.6,
+   "status": "open",
+   "why": "The liquor-licenses CSV download is robots-allowed, but 'issued' is re-stamped in bulk (1,057 rows dated 2013-11, a batch of existing breweries re-issued 2026-09), so it can't signal newness. openings_by_first_seen (silent baseline) would; person names in business_name/applicant need entity_only_fields.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-095",
+   "title": "Auto-add Team Trivia / Challenge Entertainment markets when venues appear",
+   "area": "sources",
+   "value": 2,
+   "effort": 2,
+   "confidence": 0.6,
+   "status": "open",
+   "why": "Team Trivia's trivia-in-chicagoland/miami/nashville region pages list 0 venues today; Challenge's south-florida/chicagoland/southern-california metros are suburban only. A weekly doctor check could flag when an in-city venue shows up so a unit can be added.",
+   "source": "agent",
+   "created": "2026-10-16",
+   "updated": "2026-10-16",
+   "notes": []
+  },
+  {
+   "id": "I-096",
+   "title": "Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule",
+   "area": "data-quality",
+   "value": 2,
+   "effort": 1,
+   "confidence": 0.7,
+   "status": "open",
+   "why": "Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources.",
+   "source": "agent",
    "created": "2026-10-16",
    "updated": "2026-10-16",
    "notes": []

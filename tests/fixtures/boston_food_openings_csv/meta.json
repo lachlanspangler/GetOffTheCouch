@@ -1,0 +1,7 @@
+{
+  "unit": "boston_food_openings_csv@boston",
+  "recorded_at": "2026-10-16T07:24:00+00:00",
+  "payloads": 1,
+  "request": "GET https://data.boston.gov/dataset/active-food-establishment-licenses (dataset_page.html, unmodified) → GET https://data.boston.gov/dataset/5e4182e3-ba1e-4511-88f8-08a70383e1b6/resource/f1e13724-284d-478c-b8bc-ef042aa5b70b/download/tmppi79touu.csv (302 → S3; 3,355 rows)",
+  "note": "real CSV trimmed to the header + 10 unmodified rows (6 inside the 60-day window, 4 older controls)"
+}

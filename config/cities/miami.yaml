@@ -141,3 +141,39 @@ sources:
       venue: {name: Bayfront Park}
       organizer: Bayfront Park Management Trust
       default_category: music.concert
+
+  # ── openings (Florida DBPR alcoholic-beverage license extract; csvfile adapter) ──
+  - id: fl_dbpr_openings_miami
+    adapter: csvfile
+    name: Florida DBPR new on-premises liquor licenses (Miami-Dade)
+    data_type: openings
+    homepage: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+    expect_min_records: 5
+    notes: >-
+      Statewide retail beverage license extract (bd4006lic.csv, ~14 MB, header row, rebuilt daily ~10:45 UTC,
+      Last-Modified honoured). Newness date = "Original Licensure Date" (never the effective/renewal date).
+      Only consumption-on-premises series (1COP/2COP/4COP…) in Location County 23 (Dade); package stores (APS),
+      caterers (13CT) and inactive quota licenses held in escrow ("NO CITY CODE") are left out. "Owner Name"
+      (often a person) is dropped by the privacy scrub; a DBA that merely repeats it is used only if it looks
+      like an organisation. robots.txt allows /sto/ (it blocks only WordPress internals).
+    params:
+      url: https://www2.myfloridalicense.com/sto/file_download/extracts/bd4006lic.csv
+      encoding: [utf-8-sig, cp1252]
+      kind: opening
+      lookback_days: 60
+      window: { field: original_licensure_date }
+      legal_name_copies: { dba: owner_name }
+      include: { profession: ["4006"], location_county: ["23"] }
+      include_regex: { series: "COP$" }
+      exclude_regex: { location_city: "(?i)no city code", location_address_1: "(?i)^inactive|\\bescrow\\b" }
+      reject_future_start: true
+      fields: { record_id: license_number, title: [dba, dba_legal], start: original_licensure_date,
+                category: series, address: [location_address_1, location_address_2, location_city, location_state] }
+      entity_only_fields: [dba_legal]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Florida DBPR first licensed this business to serve alcohol
+        on the premises (series {series}) on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://www2.myfloridalicense.com/alcoholic-beverages-and-tobacco/public-records/
+      extras: { signal: liquor_license_original_licensure }

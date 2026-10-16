@@ -9,9 +9,9 @@ than plotted in the wrong state.
 from __future__ import annotations
 
 import csv
-import os
 import io
 import logging
+import os
 import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -37,7 +37,9 @@ class GeoResult:
 
 
 class Geocoder:
-    def __init__(self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int | None = None) -> None:
+    def __init__(
+        self, db: Database, http: PoliteClient | None, offline: bool = False, budget: int | None = None
+    ) -> None:
         self.db = db
         self.http = http
         self.offline = offline or http is None

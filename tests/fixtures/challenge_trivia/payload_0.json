@@ -1,0 +1,516 @@
+[
+ {
+  "id": 169888,
+  "title": "Celis Brewery – North Austin – Live Trivia",
+  "link": "https://challengeentertainment.com/show/celis-brewery-north-austin-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/Celis-Brewery-300x133.jpg?wsr",
+  "day": [
+   2
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-19",
+  "classes": [
+   "post-169888",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-asatrivia",
+   "game-live-trivia",
+   "league-austin-san-antonio",
+   "location-2666",
+   "location-2676",
+   "metro-austin",
+   "partner-celis-brewery",
+   "venue-celis-brewery-north-austin"
+  ],
+  "venue": {
+   "name": "Celis Brewery - North Austin",
+   "street": "10001 Metric Blvd",
+   "city": "Austin",
+   "state": "TX",
+   "zipcode": "78758",
+   "latitude": "30.3797414",
+   "longitude": "-97.7160177",
+   "phone": "5125242377",
+   "website": "https://www.celisbeers.com/",
+   "facebook": "https://www.facebook.com/CelisBeers"
+  }
+ },
+ {
+  "id": 169930,
+  "title": "Kelly’s Irish – W Oltorf St – Live Trivia",
+  "link": "https://challengeentertainment.com/show/kellys-irish-w-oltorf-st-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/317722305_154307727347810_4671427585901401732_n-300x225.jpg?wsr",
+  "day": [
+   3
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-20",
+  "classes": [
+   "post-169930",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-asatrivia",
+   "game-live-trivia",
+   "league-austin-san-antonio",
+   "location-2666",
+   "location-2676",
+   "metro-austin",
+   "partner-kellys-irish",
+   "venue-kellys-irish-w-oltorf-st"
+  ],
+  "venue": {
+   "name": "Kelly's Irish - W Oltorf St",
+   "street": "519 W Oltorf St",
+   "city": "Austin",
+   "state": "TX",
+   "zipcode": "78704",
+   "latitude": "30.2413562",
+   "longitude": "-97.7589601",
+   "phone": "",
+   "website": "",
+   "facebook": "https://www.facebook.com/Kellys-Irish-104797518965498"
+  }
+ },
+ {
+  "id": 160434,
+  "title": "True Texas BBQ (HEB) – Oltorf & S. Congress – Live Trivia",
+  "link": "https://challengeentertainment.com/show/true-texas-bbq-heb-oltorf-s-congress-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2025/12/r2ca-True-Texas-Bbq-logo-2021-09-2-300x300.jpg?wsr",
+  "day": [
+   3
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-20",
+  "classes": [
+   "post-160434",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-asatrivia",
+   "game-live-trivia",
+   "league-austin-san-antonio",
+   "location-2666",
+   "location-2676",
+   "metro-austin",
+   "partner-true-texas-bbq-heb",
+   "venue-true-texas-bbq-heb-oltorf-s-congress"
+  ],
+  "venue": {
+   "name": "True Texas BBQ (HEB) - Oltorf &amp; S. Congress",
+   "street": "2400 South Congress Ave",
+   "city": "Austin",
+   "state": "TX",
+   "zipcode": "78704",
+   "latitude": "30.2385077",
+   "longitude": "-97.754515",
+   "phone": "7376106060",
+   "website": "https://www.heb.com/heb-store/US/tx/austin/soco-h-e-b-754",
+   "facebook": ""
+  }
+ },
+ {
+  "id": 160428,
+  "title": "True Texas BBQ (HEB) – Killeen – Live Trivia",
+  "link": "https://challengeentertainment.com/show/true-texas-bbq-heb-killeen-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2025/12/True-Texas-BBQ-13-300x100.png?wsr",
+  "day": [
+   3
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-20",
+  "classes": [
+   "post-160428",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-asatrivia",
+   "game-live-trivia",
+   "league-austin-san-antonio",
+   "location-2666",
+   "location-2683",
+   "metro-austin",
+   "partner-true-texas-bbq-heb",
+   "venue-true-texas-bbq-heb-killeen"
+  ],
+  "venue": {
+   "name": "True Texas BBQ (HEB) - Killeen",
+   "street": "1101 W. Stan Schlueter Loop",
+   "city": "Killeen",
+   "state": "TX",
+   "zipcode": "76549",
+   "latitude": "31.079383",
+   "longitude": "-97.7592818",
+   "phone": "(254) 226-3660",
+   "website": "https://www.truetxbbq.com/",
+   "facebook": "https://www.facebook.com/TrueTexasBBQKilleen"
+  }
+ },
+ {
+  "id": 169942,
+  "title": "Main Streat Food Hall & Bar (HEB) – Mueller – Singo",
+  "link": "https://challengeentertainment.com/show/main-streat-food-hall-bar-heb-mueller-singo/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/Main-Streat-Food-Hall-Bar-HEB-1.jpg?wsr",
+  "day": [
+   5
+  ],
+  "time": "7:00 PM",
+  "frequency": "Bi-Weekly",
+  "next_date": "2026-10-22",
+  "classes": [
+   "post-169942",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-asatrivia",
+   "game-singo",
+   "location-4092",
+   "location-2666",
+   "metro-austin",
+   "partner-main-streat-food-hall-bar-heb",
+   "venue-main-streat-food-hall-bar-heb-mueller"
+  ],
+  "venue": {
+   "name": "Main Streat Food Hall &amp; Bar (HEB) - Mueller",
+   "street": "2408 Philomena St",
+   "city": "Mueller",
+   "state": "TX",
+   "zipcode": "78723",
+   "latitude": "30.300387822792",
+   "longitude": "-97.698281234384",
+   "phone": "5129858242",
+   "website": "https://www.mainstreatfoodhall.com/",
+   "facebook": ""
+  }
+ },
+ {
+  "id": 170987,
+  "title": "Main Street Pub & Eatery – Hendersonville – Live Trivia",
+  "link": "https://challengeentertainment.com/show/main-street-pub-eatery-hendersonville-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/09/Main-Street-Pub-Eatery-1-300x300.jpg?wsr",
+  "day": [
+   6
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-16",
+  "classes": [
+   "post-170987",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-nashvilletrivia",
+   "game-live-trivia",
+   "location-2782",
+   "location-2773",
+   "metro-nashville",
+   "partner-main-street-pub-eatery",
+   "venue-main-street-pub-eatery-hendersonville"
+  ],
+  "venue": {
+   "name": "Main Street Pub &amp; Eatery - Hendersonville",
+   "street": "803 W Main St",
+   "city": "Hendersonville",
+   "state": "TN",
+   "zipcode": "37075",
+   "latitude": "36.3032385",
+   "longitude": "-86.6461223",
+   "phone": "(615) 991-7199",
+   "website": "n/a",
+   "facebook": "https://www.facebook.com/MainStPubHville/"
+  }
+ },
+ {
+  "id": 171013,
+  "title": "Soulshine Pizza – South Franklin – Xtreme Bar Bingo",
+  "link": "https://challengeentertainment.com/show/soulshine-pizza-south-franklin-xtreme-bar-bingo/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/09/soulshine-1-300x127.png?wsr",
+  "day": [
+   7
+  ],
+  "time": "8:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-17",
+  "classes": [
+   "post-171013",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-nashvilletrivia",
+   "game-xtreme-bar-bingo",
+   "location-2785",
+   "location-2773",
+   "metro-nashville",
+   "partner-soulshine-pizza",
+   "venue-soulshine-pizza-south-franklin"
+  ],
+  "venue": {
+   "name": "Soulshine Pizza - South Franklin",
+   "street": "4021 Hughes Crossing #101",
+   "city": "Franklin",
+   "state": "TN",
+   "zipcode": "37064",
+   "latitude": "35.8627149",
+   "longitude": "-86.8449085",
+   "phone": "(615) 379-7767",
+   "website": "https://www.soulshinepizza.com/franklin-menu",
+   "facebook": "https://www.facebook.com/soulshinefranklin/"
+  }
+ },
+ {
+  "id": 171033,
+  "title": "The Pub – The Gulch – Live Trivia",
+  "link": "https://challengeentertainment.com/show/the-pub-the-gulch-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/09/The-Pub.jpeg?wsr",
+  "day": [
+   2
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-19",
+  "classes": [
+   "post-171033",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-nashvilletrivia",
+   "game-live-trivia",
+   "location-2775",
+   "location-2773",
+   "metro-nashville",
+   "partner-the-pub",
+   "venue-the-pub-the-gulch"
+  ],
+  "venue": {
+   "name": "The Pub - The Gulch",
+   "street": "400 11th Ave S",
+   "city": "Nashville",
+   "state": "TN",
+   "zipcode": "37203",
+   "latitude": "36.1527692",
+   "longitude": "-86.7835306",
+   "phone": "(615) 678-4840",
+   "website": "http://experiencethepub.com/nashville/",
+   "facebook": "https://www.facebook.com/PubNashville/"
+  }
+ },
+ {
+  "id": 170989,
+  "title": "MJ’s Sports Bar & Grill – Murfreesboro – Ballistic Bingo",
+  "link": "https://challengeentertainment.com/show/mjs-sports-bar-grill-murfreesboro-ballistic-bingo/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/09/mjs-sports-bar-300x98.png?wsr",
+  "day": [
+   2
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-19",
+  "classes": [
+   "post-170989",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-nashvilletrivia",
+   "game-ballistic-bingo",
+   "location-2783",
+   "location-2773",
+   "metro-nashville",
+   "partner-mjs-sports-bar-grill",
+   "venue-mjs-sports-bar-grill-murfreesboro"
+  ],
+  "venue": {
+   "name": "MJ's Sports Bar &amp; Grill - Murfreesboro",
+   "street": "1253 NW Broad St",
+   "city": "Murfreesboro",
+   "state": "TN",
+   "zipcode": "37129",
+   "latitude": "35.8624441",
+   "longitude": "-86.4089373",
+   "phone": "+1 (615) 546-5117",
+   "website": "https://www.mjsportsbars.com/",
+   "facebook": "https://www.facebook.com/mjsportsbars"
+  }
+ },
+ {
+  "id": 170055,
+  "title": "Reivers Bar & Grill – Denver, CO – Live Trivia",
+  "link": "https://challengeentertainment.com/show/reivers-bar-grill-denver-co-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/Reivers-Logo-Text-Only-300x100.jpg?wsr",
+  "day": [
+   3
+  ],
+  "time": "7:30 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-20",
+  "classes": [
+   "post-170055",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-frontrangetrivia",
+   "game-live-trivia",
+   "league-front-range",
+   "location-2914",
+   "location-2919",
+   "metro-denver",
+   "partner-reivers-bar-grill",
+   "venue-reivers-bar-grill-denver-co"
+  ],
+  "venue": {
+   "name": "Reivers Bar &amp; Grill - Denver, CO",
+   "street": "1085 S. Gaylord Street",
+   "city": "Denver",
+   "state": "CO",
+   "zipcode": "80209",
+   "latitude": "39.6968542",
+   "longitude": "-104.9620216",
+   "phone": "+1 (303) 733-8856",
+   "website": "https://reiversbarandgrill.com/",
+   "facebook": "https://www.facebook.com/ReiversBarandGrill/"
+  }
+ },
+ {
+  "id": 170051,
+  "title": "Pour Tap House – Commerce City – Live Trivia",
+  "link": "https://challengeentertainment.com/show/pour-tap-house-commerce-city-live-trivia/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/Pour-logo.png?wsr",
+  "day": [
+   3
+  ],
+  "time": "7:00 PM",
+  "frequency": "Weekly",
+  "next_date": "2026-10-20",
+  "classes": [
+   "post-170051",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-frontrangetrivia",
+   "game-live-trivia",
+   "league-front-range",
+   "location-2914",
+   "location-2918",
+   "metro-denver",
+   "partner-pour-tap-house",
+   "venue-pour-tap-house-commerce-city"
+  ],
+  "venue": {
+   "name": "Pour Tap House - Commerce City",
+   "street": "12433 E 104th Place #102",
+   "city": "Commerce City",
+   "state": "CO",
+   "zipcode": "80022",
+   "latitude": "39.8868946",
+   "longitude": "-104.8428445",
+   "phone": "+1 (720) 460-1611",
+   "website": "http://pourtaphouse.com/",
+   "facebook": "https://www.facebook.com/PourTapHouse/"
+  }
+ },
+ {
+  "id": 171801,
+  "title": "Walker’s Pint – Milwaukee – Singo",
+  "link": "https://challengeentertainment.com/show/walkers-pint-milwaukee-singo-2/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/10/Walkers-Pint-Walkers-Point-2-300x300.jpg?wsr",
+  "day": [
+   6
+  ],
+  "time": "7:00 PM",
+  "frequency": "Monthly",
+  "next_date": "2026-10-16",
+  "classes": [
+   "post-171801",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-wisconsintrivia",
+   "game-singo",
+   "location-2921",
+   "location-2923",
+   "metro-milwaukee",
+   "partner-walkers-pint",
+   "venue-walkers-pint-milwaukee"
+  ],
+  "venue": {
+   "name": "Walker's Pint - Milwaukee",
+   "street": "818 S 2nd St",
+   "city": "Milwaukee",
+   "state": "WI",
+   "zipcode": "53204",
+   "latitude": "43.0227235",
+   "longitude": "-87.9124205",
+   "phone": "414-643-7468",
+   "website": "https://walkerspint.com/",
+   "facebook": "https://www.facebook.com/WalkersPint"
+  }
+ },
+ {
+  "id": 170505,
+  "title": "World of Beer – Cypress (Towne Lake) – Live Trivia (non-NTL)",
+  "link": "https://challengeentertainment.com/show/world-of-beer-cypress-towne-lake-live-trivia-non-ntl/",
+  "image": "https://challengeentertainment.com/wp-content/uploads/2026/08/340930425_180522051513219_1320843795612680927_n-1.jpg?wsr",
+  "day": [
+   5
+  ],
+  "time": "7:00 PM",
+  "frequency": "Monthly",
+  "next_date": "2026-10-21",
+  "classes": [
+   "post-170505",
+   "show",
+   "type-show",
+   "status-publish",
+   "has-post-thumbnail",
+   "hentry",
+   "area-houstontrivia",
+   "game-live-trivia-non-ntl",
+   "league-houston",
+   "location-2795",
+   "location-2666",
+   "metro-houston",
+   "partner-world-of-beer",
+   "venue-world-of-beer-cypress-towne-lake"
+  ],
+  "venue": {
+   "name": "World of Beer - Cypress (Towne Lake)",
+   "street": "9945 Barker Cypress Rd",
+   "city": "Cypress",
+   "state": "TX",
+   "zipcode": "77433",
+   "latitude": "29.9223808",
+   "longitude": "-95.6872981",
+   "phone": "2818065353",
+   "website": "https://worldofbeer.com/locations/houston-towne-lake",
+   "facebook": "https://www.facebook.com/wobtownelake"
+  }
+ }
+]
