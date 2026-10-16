@@ -1,0 +1,785 @@
+{
+ "version": 1,
+ "city": "chicago",
+ "snapshot": "chicago.feed.json.gz",
+ "now": "2026-10-16T20:53:50.307121Z",
+ "labeler": "agent:claude (read each event; no human spot-check yet)",
+ "personas": [
+  "newcomer_default",
+  "social_25",
+  "active_30",
+  "culture_free",
+  "parent_35",
+  "nerd_40"
+ ],
+ "labels": {
+  "evt_00a1afeda5992872": {
+   "g": "000030",
+   "fp": "0ac22b21a14e",
+   "t": "Bilingual Story Time",
+   "why": "Bilingual kids story time"
+  },
+  "evt_01f5a16f89ca7fa4": {
+   "g": "211021",
+   "fp": "126bfcee2584",
+   "t": "Trunk or Treat Volunteer at Addams",
+   "why": "Volunteer at a park trunk-or-treat, Sunday"
+  },
+  "evt_02140d065549b761": {
+   "g": "101110",
+   "fp": "88699e671eed",
+   "t": "Ribbons, Hoops and Blades at McFetridge",
+   "why": "On-ice artistry workshop for skaters"
+  },
+  "evt_0695460a66cb0bb8": {
+   "g": "001000",
+   "fp": "d6ca200acc37",
+   "t": "Chicago's First Responder Yoga at Ridge",
+   "why": "Yoga for first responders (specific audience)"
+  },
+  "evt_06cb077e944fabfa": {
+   "g": "001000",
+   "fp": "e96ab1adcca4",
+   "t": "Chicago's First Responder Yoga at Oriole",
+   "why": "Yoga for first responders (specific audience)"
+  },
+  "evt_0920b780d90dbd8b": {
+   "g": "101000",
+   "fp": "5b2ed250687c",
+   "t": "Tennis Lessons: NTRP 4.0 - 4.5, Level 4 WKSH at McFetridge",
+   "why": "Advanced tennis lessons, $365"
+  },
+  "evt_0a205d9d26575265": {
+   "g": "210311",
+   "fp": "6d405598792f",
+   "t": "Wycinanki: The Art of Polish Paper Cutouts",
+   "why": "Polish paper-cutting workshop, Saturday"
+  },
+  "evt_0b5a137c9f8936d9": {
+   "g": "000000",
+   "fp": "f67a08ce4d78",
+   "t": "ESL Practice; Clases de Inglés Como Segunda Idioma; 므와 英语训练 英语会话小组活动; هل ترغب في",
+   "why": "ESL practice for English learners"
+  },
+  "evt_0fc09a1d175f2303": {
+   "g": "000000",
+   "fp": "551186096b18",
+   "t": "Computer Literacy Class",
+   "why": "Basic computer literacy class"
+  },
+  "evt_0fe028676b48ffaf": {
+   "g": "210311",
+   "fp": "a77b9b819e57",
+   "t": "Archaeology and the Bible tour",
+   "why": "Free museum tour, Sunday (miscategorized as concert)"
+  },
+  "evt_1c0f244766017c07": {
+   "g": "000030",
+   "fp": "39e49e390b17",
+   "t": "Toddler Story Time",
+   "why": "Toddler story time"
+  },
+  "evt_2493e871bf00ed9c": {
+   "g": "210212",
+   "fp": "7a2678e61176",
+   "t": "Compton Lectures: Andy Davis “50 Years of Discovery at the Birthplace of Cosmoch",
+   "why": "Free public physics lecture, Saturday"
+  },
+  "evt_271b9cea0a652b80": {
+   "g": "000020",
+   "fp": "5a55c7755218",
+   "t": "Meet: Fritz Pollard - The Fredrick Douglass of Football – Make a Team Pennant",
+   "why": "Kids program about a football pioneer"
+  },
+  "evt_272704570bb53bf1": {
+   "g": "111101",
+   "fp": "87ca14b857af",
+   "t": "Sound Meditation",
+   "why": "Sound meditation, Wednesday 5:30pm"
+  },
+  "evt_27fcc0023938c47b": {
+   "g": "000030",
+   "fp": "877bac96c404",
+   "t": "Baby Bookworms",
+   "why": "Baby story time"
+  },
+  "evt_282cc8f8f4492957": {
+   "g": "220101",
+   "fp": "33a30ba466d1",
+   "t": "Monday Night Solo Series at Berger",
+   "why": "Solo performance night in a park, Monday 7pm"
+  },
+  "evt_2894c6269ae7cb0b": {
+   "g": "212000",
+   "fp": "ad7e66756d7b",
+   "t": "Tennis - Cardio (High Impact) at McFetridge",
+   "why": "Cardio tennis class, Monday 6pm, $123"
+  },
+  "evt_29df523779744b93": {
+   "g": "320103",
+   "fp": "b2c010c440ec",
+   "t": "Spanish Conversation Group",
+   "why": "Spanish conversation group, Wednesday 6pm"
+  },
+  "evt_2ab72f40f7a591f3": {
+   "g": "000030",
+   "fp": "059422effa22",
+   "t": "Tots and Toddlers Story Time",
+   "why": "Toddler story time"
+  },
+  "evt_2b148cc260aae402": {
+   "g": "102010",
+   "fp": "47faa4cb93d6",
+   "t": "Tennis Lessons: NTRP 3.0 - 3.5, Level 3 at McFetridge",
+   "why": "Tennis lessons, Monday 10am, $350"
+  },
+  "evt_2cea1d3e58b039c7": {
+   "g": "210301",
+   "fp": "8d28e6f9bcb6",
+   "t": "Reel Queer Film Screening & Artist Talk (LGBTQIA+ History/Latine Heritage Month ",
+   "why": "Queer Latine film screening and artist talk, Saturday"
+  },
+  "evt_2d5167c761e65767": {
+   "g": "323010",
+   "fp": "e07ebf3e4cb4",
+   "t": "Climbing Club at Steelworkers",
+   "why": "Beginner-friendly climbing club, Saturday"
+  },
+  "evt_2d592f19ea5a1cb7": {
+   "g": "101000",
+   "fp": "049cee811c76",
+   "t": "Pickleball - Drills and Skills - Advanced at McFetridge",
+   "why": "Advanced pickleball drills, Thursday 1pm"
+  },
+  "evt_2e494f3b54b1cae9": {
+   "g": "111001",
+   "fp": "9c87b370dde7",
+   "t": "Basketball Officiating at West Pullman",
+   "why": "Basketball officiating course"
+  },
+  "evt_2eea52c240743995": {
+   "g": "112000",
+   "fp": "e8dcf71f5d2b",
+   "t": "Volleyball Games - Adults (ASMG) at Gately",
+   "why": "Adult volleyball games program, $36"
+  },
+  "evt_2fd66dfe73f860f4": {
+   "g": "000030",
+   "fp": "cb49558a9d02",
+   "t": "Family Story Time",
+   "why": "Family story time"
+  },
+  "evt_3189472d2728525f": {
+   "g": "000000",
+   "fp": "23cd7b40fa8a",
+   "t": "Bowling (Blind VI-Deaf & HOH) at Horner",
+   "why": "Bowling for blind and Deaf participants (specific audience)"
+  },
+  "evt_384f65d911ac153f": {
+   "g": "220111",
+   "fp": "0ad4a4f4c5ec",
+   "t": "Future Folk Festival at Humboldt",
+   "why": "Free folk music festival in a park, Thursday evening"
+  },
+  "evt_3a2e3e672d91e771": {
+   "g": "211120",
+   "fp": "919a16db0dd7",
+   "t": "Green City Market Lincoln Park",
+   "why": "Green City Market, Saturday (permit listing)"
+  },
+  "evt_3a984b45be27a651": {
+   "g": "101001",
+   "fp": "455385d6a24c",
+   "t": "Early Morning Bird Walks at Big Marsh",
+   "why": "Bird walk, Monday 6:30am"
+  },
+  "evt_3ae0c63a2209e44b": {
+   "g": "000020",
+   "fp": "eac18451943e",
+   "t": "After School Reading Practice",
+   "why": "After-school reading practice"
+  },
+  "evt_3c379a6bcb9c4db0": {
+   "g": "110000",
+   "fp": "92b80380132e",
+   "t": "PFL Chicago",
+   "why": "Pro MMA fight night"
+  },
+  "evt_3cf2d31440c3a555": {
+   "g": "211130",
+   "fp": "86d17f5e5729",
+   "t": "BooPalooza and BarkPalooza at Wicker",
+   "why": "Halloween festival with costume parades and dogs, Saturday"
+  },
+  "evt_3db110a9b9750ac7": {
+   "g": "220100",
+   "fp": "4420f2b55e59",
+   "t": "MAHINDRA BLUES FEST – NEW ORLEANS BEAU",
+   "why": "Blues show at Buddy Guy's, Saturday 9pm"
+  },
+  "evt_3f2c98877543f07a": {
+   "g": "210211",
+   "fp": "d540431e8472",
+   "t": "Crafts for Adults: Corn Husk Doll",
+   "why": "Adult folk-craft workshop, Saturday"
+  },
+  "evt_41dd4ed218200bcf": {
+   "g": "210211",
+   "fp": "1da5ed071392",
+   "t": "Book Swap",
+   "why": "Library book swap, Sunday"
+  },
+  "evt_44458a9c4c947eb8": {
+   "g": "211321",
+   "fp": "dd457b80a748",
+   "t": "Hoop Dancing with Starr Chief Eagle at Seward",
+   "why": "Lakota hoop-dance demo and workshop, Saturday"
+  },
+  "evt_46624b6d3591fab0": {
+   "g": "221111",
+   "fp": "7e06a42d2cae",
+   "t": "Nature Oasis: Community Bonfire at Seward",
+   "why": "Community bonfire in a park, Tuesday 5pm"
+  },
+  "evt_48f54a596b40fbfc": {
+   "g": "000030",
+   "fp": "5545bbbcd001",
+   "t": "Wonder and Words: Family Storytime",
+   "why": "Family story time"
+  },
+  "evt_4a71eb88eba0cc1e": {
+   "g": "000000",
+   "fp": "76d9d89a9e8e",
+   "t": "ESL Practice: English Conversation Group",
+   "why": "ESL conversation for English learners"
+  },
+  "evt_4b145043c06c9824": {
+   "g": "222000",
+   "fp": "32377e5e7e9c",
+   "t": "Pickleball - Serve & Return Clinic at McFetridge",
+   "why": "$12 pickleball clinic, Tuesday 7pm"
+  },
+  "evt_4c326500443710dc": {
+   "g": "100201",
+   "fp": "51fe45b324a2",
+   "t": "Intentionality, 1960: Whose Dreams? Gallery Hours",
+   "why": "Gallery hours at an arts incubator"
+  },
+  "evt_4c7efa436c7112cc": {
+   "g": "100001",
+   "fp": "99c4ce62b066",
+   "t": "How Grant Funding Works: A Plain Language Introduction for New Learners",
+   "why": "Intro to grant funding workshop"
+  },
+  "evt_4e11edd56d8945a9": {
+   "g": "220221",
+   "fp": "1a2668a09e6e",
+   "t": "Edgewater Community Music Jam",
+   "why": "All-levels acoustic music jam, Saturday"
+  },
+  "evt_4fc53372fb6202f6": {
+   "g": "112000",
+   "fp": "64344512d6f3",
+   "t": "Boxing for Adults (ASMG) at Gately",
+   "why": "Adult boxing program, Wednesday 7pm"
+  },
+  "evt_54209e7266635923": {
+   "g": "102010",
+   "fp": "7d24402795a2",
+   "t": "Pickleball - Drills and Skills - Int. 2 at McFetridge",
+   "why": "Intermediate pickleball drills, Wednesday 11am"
+  },
+  "evt_5cc25f6f28e94ff8": {
+   "g": "213010",
+   "fp": "bbcdb8ecc16b",
+   "t": "Adult Learn to Play Hockey at McFetridge",
+   "why": "Adult learn-to-play hockey, Thursday morning"
+  },
+  "evt_5ee318c7aeb02a80": {
+   "g": "000000",
+   "fp": "d38f68334145",
+   "t": "English Language Learning (ESL/ELL) Course / Curso de Inglés",
+   "why": "ESL course"
+  },
+  "evt_600d64b6cdefe830": {
+   "g": "102000",
+   "fp": "59c30ce8cfaf",
+   "t": "Tennis Lessons: NTRP 3.0 - 4.0, Early AM WKSH at McFetridge",
+   "why": "Early-morning tennis lessons"
+  },
+  "evt_61d9171d3230699b": {
+   "g": "000030",
+   "fp": "11b848fdc8b3",
+   "t": "Story Time",
+   "why": "Kids story time"
+  },
+  "evt_6283e4190a49f9e1": {
+   "g": "000000",
+   "fp": "2b94df4a4f86",
+   "t": "Memory Café Field Trip",
+   "why": "Memory cafe for people with memory loss (specific audience)"
+  },
+  "evt_6372a1f26ee768d8": {
+   "g": "000000",
+   "fp": "a4dfb7f8b86c",
+   "t": "Sundays at Rockefeller",
+   "why": "Sunday worship service"
+  },
+  "evt_63ca4f1047ae2b6e": {
+   "g": "000000",
+   "fp": "91d8d12da633",
+   "t": "ESL Practice: English Conversation Group",
+   "why": "ESL conversation for English learners"
+  },
+  "evt_65df9e0be2ecc7c8": {
+   "g": "112110",
+   "fp": "f0ee329b8b55",
+   "t": "Ice Skating - Intro to Ice Dance at McFetridge",
+   "why": "Intro to ice dance class, $88"
+  },
+  "evt_6dc4f6c5111b50ea": {
+   "g": "210211",
+   "fp": "ff3514006c63",
+   "t": "Facing Our Fears: A Writing Workshop",
+   "why": "Free writing workshop, Saturday"
+  },
+  "evt_6fa11c5a2393eafb": {
+   "g": "102010",
+   "fp": "88655856ec7a",
+   "t": "Pickleball - Drills and Skills - Beginner at McFetridge",
+   "why": "Beginner pickleball drills, Tuesday 11am"
+  },
+  "evt_74d6d51feeb61514": {
+   "g": "311322",
+   "fp": "13db42e1d16c",
+   "t": "Open House Chicago",
+   "why": "Open House Chicago architecture festival, Saturday"
+  },
+  "evt_760c93acf32f09fe": {
+   "g": "110002",
+   "fp": "4865cbc78f13",
+   "t": "AI Safety Discussion",
+   "why": "AI safety discussion, Sunday"
+  },
+  "evt_7a8657018033b0bd": {
+   "g": "102010",
+   "fp": "bcb5d801b00f",
+   "t": "Pickleball - Drills and Skills - Tactical at McFetridge",
+   "why": "Pickleball drills, Monday noon"
+  },
+  "evt_7abef613b8678051": {
+   "g": "220021",
+   "fp": "0d2dca4dbe9c",
+   "t": "Family Game Night: Bears vs New England at Avalon",
+   "why": "Family football watch party in a park, Thursday"
+  },
+  "evt_7b7e1e592b9861b1": {
+   "g": "100111",
+   "fp": "58c42eeafe63",
+   "t": "Create Space / Espacio para Crear",
+   "why": "Library maker space"
+  },
+  "evt_802ca1bf5756a648": {
+   "g": "102010",
+   "fp": "46652ca82c5b",
+   "t": "Pickleball - Drills and Skills - Adv. Beginner at McFetridge",
+   "why": "Pickleball drills, Thursday noon"
+  },
+  "evt_8ee2b93cc8d8dd5f": {
+   "g": "101000",
+   "fp": "404c87b1c875",
+   "t": "Tennis Lessons: NTRP 4.0 - 4.5, Level 4 at McFetridge",
+   "why": "Advanced tennis lessons, Monday 9pm"
+  },
+  "evt_8f541da91485a382": {
+   "g": "101000",
+   "fp": "09ec754440e3",
+   "t": "Meditation for Stress Reduction and Better Sleep",
+   "why": "Meditation class, Wednesday 1pm"
+  },
+  "evt_8f5d8018a3490576": {
+   "g": "222000",
+   "fp": "8f784bfedace",
+   "t": "Floor Hockey League at Brands",
+   "why": "Floor hockey league (team signup), Thursday"
+  },
+  "evt_9447afadad07d523": {
+   "g": "000000",
+   "fp": "e8643cc0c498",
+   "t": "English Conversation Practice Group",
+   "why": "English conversation for learners"
+  },
+  "evt_9763f18d27b802d4": {
+   "g": "210210",
+   "fp": "5dce0862bb74",
+   "t": "Learn to Sew",
+   "why": "Beginner sewing class, Sunday"
+  },
+  "evt_9bf8fb389e7f8189": {
+   "g": "001000",
+   "fp": "951c24ae8f43",
+   "t": "Midway Softball Classic at Wentworth",
+   "why": "Softball tournament for affiliated teams"
+  },
+  "evt_9c6ddb8a0f4609ae": {
+   "g": "102010",
+   "fp": "e8c4ef4fe88a",
+   "t": "Tennis Lessons: NTRP 1.0-1.5, Level 1 at McFetridge",
+   "why": "Beginner tennis lessons, Monday 10am"
+  },
+  "evt_9d50e71631c820fe": {
+   "g": "102010",
+   "fp": "4252de7e53c8",
+   "t": "Pickleball - Cardio at McFetridge",
+   "why": "Cardio pickleball, Monday 10am"
+  },
+  "evt_9d6d5853873e2c8e": {
+   "g": "000000",
+   "fp": "3f0030520bea",
+   "t": "Deportivo 59 FC Girls soccer team fundraiser",
+   "why": "Youth team fundraiser (permit)"
+  },
+  "evt_9edf564019d3ad49": {
+   "g": "000030",
+   "fp": "9d8c60ddff69",
+   "t": "LEGO® at the Library",
+   "why": "Kids LEGO time"
+  },
+  "evt_a11da2320b9e7e34": {
+   "g": "221111",
+   "fp": "f6ed59ee2d90",
+   "t": "Nature Oasis: Community Bonfire at Palmisano",
+   "why": "Community bonfire in a park, Wednesday 5pm"
+  },
+  "evt_a1421128806f3bc1": {
+   "g": "112010",
+   "fp": "1061369e9957",
+   "t": "Ice Skating - Teen & Adult Social Club at Morgan Park SC",
+   "why": "Teen and adult skating club, Tuesday 11:30am"
+  },
+  "evt_a27f766b7c0b3d22": {
+   "g": "320112",
+   "fp": "2bf5ca1d58ad",
+   "t": "Reel Horrors: Halloween Movie and TV Trivia",
+   "why": "Halloween movie trivia at the library, Saturday"
+  },
+  "evt_a2834132fbf533f8": {
+   "g": "120001",
+   "fp": "bf5aa95ba7e5",
+   "t": "BROTHER JOHN – Host The Jam",
+   "why": "Blues jam at Buddy Guy's, Wednesday 9pm"
+  },
+  "evt_a4112846c0488a9a": {
+   "g": "222000",
+   "fp": "022532bdf5ad",
+   "t": "Volleyball League at Mt. Greenwood",
+   "why": "Volleyball league (team signup), $200"
+  },
+  "evt_a4d13454708ac50d": {
+   "g": "000030",
+   "fp": "c9b6ba213603",
+   "t": "LEGO® Club",
+   "why": "Kids LEGO club"
+  },
+  "evt_a5c3f7004e2ca43d": {
+   "g": "000030",
+   "fp": "2d49777a220e",
+   "t": "Family Day: Proud to Be Me",
+   "why": "Museum family day"
+  },
+  "evt_a6f2dc062aca8e1d": {
+   "g": "102010",
+   "fp": "2ab10929d46f",
+   "t": "Tennis - Cardio (Medium Impact) at McFetridge",
+   "why": "Cardio tennis, Tuesday 10am"
+  },
+  "evt_a7d412502604247a": {
+   "g": "110120",
+   "fp": "221bb8cadac0",
+   "t": "Movie Night at Ogden",
+   "why": "Community movie night in a park, Saturday"
+  },
+  "evt_a8aa74064c033201": {
+   "g": "212110",
+   "fp": "8147b904c455",
+   "t": "Sunday Somatics – Healing with Yoga",
+   "why": "Free beginner yoga at a museum, Sunday"
+  },
+  "evt_aa612d9ff1f22b87": {
+   "g": "210302",
+   "fp": "0bb65c7f7562",
+   "t": "Arkhaios Film Festival",
+   "why": "Free archaeology film festival, Friday 5pm"
+  },
+  "evt_ac16902b98fc13e4": {
+   "g": "110011",
+   "fp": "c525bf73fd0b",
+   "t": "Continuing Beginner Spanish for Adults",
+   "why": "Continuing Spanish for adults, Tuesday 12:30pm"
+  },
+  "evt_ae14caf44e3c5207": {
+   "g": "102010",
+   "fp": "4f229b604794",
+   "t": "Pickleball - Drills and Skills - Int. 1 at McFetridge",
+   "why": "Pickleball drills, Monday 9am"
+  },
+  "evt_ae69f4fe073a26b5": {
+   "g": "102010",
+   "fp": "2fe5185101f3",
+   "t": "Tennis Lessons: NTRP 3.0 - 3.5, Level 3 WKSH at McFetridge",
+   "why": "Tennis lessons, Tuesday 10am"
+  },
+  "evt_af432b902623aa4f": {
+   "g": "102010",
+   "fp": "7bc9c259da31",
+   "t": "Tennis Lessons: NTRP 2.0 - 2.5, Level 2 at McFetridge",
+   "why": "Tennis lessons, Monday noon"
+  },
+  "evt_afd3939beccf1bc1": {
+   "g": "112010",
+   "fp": "6a3867645346",
+   "t": "Free to Breathe Walk",
+   "why": "Charity walk (permit listing)"
+  },
+  "evt_b14def979067bf94": {
+   "g": "000030",
+   "fp": "86fecaf8d5b1",
+   "t": "Preschool Story Time",
+   "why": "Preschool story time"
+  },
+  "evt_b24c9f7e6f0c520d": {
+   "g": "210310",
+   "fp": "7b268621c1ff",
+   "t": "Luminaria de la Vida - Exhibition Opening at South Shore",
+   "why": "Exhibition opening at a cultural center, Sunday"
+  },
+  "evt_b45b01639cdb6bb9": {
+   "g": "000030",
+   "fp": "ff33c5d43b53",
+   "t": "Bilingual Story Time",
+   "why": "Bilingual kids story time"
+  },
+  "evt_b512c0e673b103a2": {
+   "g": "000030",
+   "fp": "42ce1f10149e",
+   "t": "One Story Time, One Chicago",
+   "why": "Kids story time"
+  },
+  "evt_b6997d162cdc6b7a": {
+   "g": "210201",
+   "fp": "40038a64e085",
+   "t": "Adult Book Discussion: Drive Your Plow Over the Bones of the Dead",
+   "why": "Adult book discussion, Saturday"
+  },
+  "evt_b8e75c5e68d645ac": {
+   "g": "000000",
+   "fp": "733ea3be7be6",
+   "t": "Adaptive Pickleball at McFetridge",
+   "why": "Adaptive pickleball (specific audience)"
+  },
+  "evt_b8e8516cfbd8a0a4": {
+   "g": "120100",
+   "fp": "27d3c0236b25",
+   "t": "RES – How I Do 25th Anniversary",
+   "why": "R&B anniversary concert, Friday 9pm"
+  },
+  "evt_ba6f300cb407bf79": {
+   "g": "000000",
+   "fp": "95241f615367",
+   "t": "English Grammar Bootcamp: Master Everyday Phrasal Verbs",
+   "why": "English grammar class for learners"
+  },
+  "evt_ba75948edb545f41": {
+   "g": "110010",
+   "fp": "3396ff83ef77",
+   "t": "DePaul University WOMEN'S BASKETBALL vs UIC - Exhibition",
+   "why": "College basketball exhibition, Friday"
+  },
+  "evt_bb117fbdb0c738db": {
+   "g": "000000",
+   "fp": "703201b133cb",
+   "t": "English Conversation Class for Beginners",
+   "why": "English conversation class for learners"
+  },
+  "evt_bb7c9163e59c4e29": {
+   "g": "000030",
+   "fp": "370aa5c52419",
+   "t": "Family Story Time / Hora del cuentos con familia",
+   "why": "Family story time"
+  },
+  "evt_bba488edc91fd864": {
+   "g": "210120",
+   "fp": "b04f64cdd674",
+   "t": "Wicker Park Farmers Market (Non-exclusive Use)",
+   "why": "Farmers market, Sunday (permit listing)"
+  },
+  "evt_beac8f166a378b5a": {
+   "g": "110110",
+   "fp": "bf8f6516fb02",
+   "t": "Peace by Piece: A Fiber Art \"Commuknity\"",
+   "why": "Adult fiber-art circle, Wednesday 12:30pm"
+  },
+  "evt_bfdf3305351f7fd1": {
+   "g": "220101",
+   "fp": "fd8b890b2474",
+   "t": "The Auditorium: Open Mic in Austin",
+   "why": "Library open mic, Wednesday 6pm"
+  },
+  "evt_c357d9ecbfc78cf4": {
+   "g": "320112",
+   "fp": "b8b93cbc22d4",
+   "t": "Sulzer Chess Meetup",
+   "why": "All-levels chess meetup, Sunday"
+  },
+  "evt_c3fe990966554024": {
+   "g": "000030",
+   "fp": "d6a3d3a4e917",
+   "t": "Read to a Therapy Dog",
+   "why": "Kids read to a therapy dog"
+  },
+  "evt_c512eedfdb35ebb0": {
+   "g": "100101",
+   "fp": "a0a59b92caa5",
+   "t": "Open Shop",
+   "why": "Library maker-space open shop"
+  },
+  "evt_c5eab5e35ddad7b0": {
+   "g": "100111",
+   "fp": "6d17884e4b05",
+   "t": "Intro to Cricut Sticker Making or Heat Transfer",
+   "why": "Cricut sticker making"
+  },
+  "evt_cada458159f79481": {
+   "g": "210012",
+   "fp": "bea5459650b3",
+   "t": "Saturday Game Day",
+   "why": "Drop-in game day, Saturday"
+  },
+  "evt_ce2a5d2081e6f0d0": {
+   "g": "210201",
+   "fp": "ee8adb965c41",
+   "t": "Threshold: Conversations on the Stoop",
+   "why": "Free public talk series, Friday 6pm"
+  },
+  "evt_ce764eba7b0648c6": {
+   "g": "210201",
+   "fp": "11765c702678",
+   "t": "Adult Book Discussion: The Midnight Library",
+   "why": "Adult book discussion, Saturday"
+  },
+  "evt_ce794f9829159552": {
+   "g": "100100",
+   "fp": "b67a1112db7c",
+   "t": "KARIMAH ASHADU: TENDERED",
+   "why": "Art exhibition, Friday noon (miscategorized as volunteering)"
+  },
+  "evt_d5c32f1f497da330": {
+   "g": "212120",
+   "fp": "0bb31aa3f0c4",
+   "t": "Fall Color Tree Walk",
+   "why": "Fall tree walk, Saturday"
+  },
+  "evt_d69d67fa933005ce": {
+   "g": "100001",
+   "fp": "8d3b7c521e39",
+   "t": "Introduction to AI Tools for Everyday Workflow",
+   "why": "Intro to AI tools workshop"
+  },
+  "evt_d87d69d74f707fed": {
+   "g": "000000",
+   "fp": "94a3637726d6",
+   "t": "Proudly Presents Watch Party",
+   "why": "Permit listing with no details"
+  },
+  "evt_da7b5163d2094837": {
+   "g": "000020",
+   "fp": "a1800498ff89",
+   "t": "After School Hangout",
+   "why": "After-school hangout for kids"
+  },
+  "evt_dd18b6af34c5fcf0": {
+   "g": "110100",
+   "fp": "3889dc03046c",
+   "t": "Sweetest Day Comedy Jam",
+   "why": "Arena comedy show, Saturday"
+  },
+  "evt_defe872b0b4c4ba5": {
+   "g": "000020",
+   "fp": "e0e4743a15de",
+   "t": "Coding Club / Club de Programación",
+   "why": "Kids coding club"
+  },
+  "evt_e4440cbec5a6b959": {
+   "g": "210211",
+   "fp": "acb8e9235150",
+   "t": "Crafting Saturdays: Mandala Bookmarks",
+   "why": "Craft afternoon, Saturday"
+  },
+  "evt_ea2cf1ac1836409e": {
+   "g": "001000",
+   "fp": "c15f2ffdebb7",
+   "t": "Chicago's First Responder Yoga at Norwood",
+   "why": "Yoga for first responders (specific audience)"
+  },
+  "evt_ed2a67b9995fd9b8": {
+   "g": "000030",
+   "fp": "d7837af3cc57",
+   "t": "The Artist's Studio at the Library",
+   "why": "Kids open art studio"
+  },
+  "evt_ee2c6ab34afee0c7": {
+   "g": "110020",
+   "fp": "d1e62e395a0e",
+   "t": "The Park After Dark at Chase",
+   "why": "Park fundraiser night for a teen club"
+  },
+  "evt_f33bedb57d582175": {
+   "g": "102010",
+   "fp": "88655856ec7a",
+   "t": "Pickleball - Drills and Skills - Adv. Beginner at McFetridge",
+   "why": "Pickleball drills, Tuesday noon"
+  },
+  "evt_f34cdd95d490b977": {
+   "g": "000030",
+   "fp": "1d1a9a38d9fa",
+   "t": "Read and Sign Baby Story Time",
+   "why": "Baby story time"
+  },
+  "evt_f48a4f8d7d4da293": {
+   "g": "222000",
+   "fp": "5fbd21c9ab01",
+   "t": "Womens Volleyball League at Mt. Greenwood",
+   "why": "Women's volleyball league (team signup)"
+  },
+  "evt_ff56ab0281a048c9": {
+   "g": "212010",
+   "fp": "85f6d50bed71",
+   "t": "Pickleball - Learn & Play - Beginner at McFetridge",
+   "why": "Beginner pickleball learn-and-play, Tuesday 5pm, $326"
+  }
+ },
+ "rules": [
+  {
+   "when": {
+    "tags_any": [
+     "kids_teens"
+    ]
+   },
+   "except_persona": [
+    "parent_35"
+   ],
+   "grade": 0,
+   "why": "kids content for adults"
+  },
+  {
+   "when": {
+    "flags_any": [
+     "hard_noise",
+     "admin"
+    ]
+   },
+   "grade": 0,
+   "why": "administrative noise or cancelled"
+  }
+ ]
+}

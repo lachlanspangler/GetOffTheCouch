@@ -1,0 +1,551 @@
+{
+ "version": 1,
+ "city": "minneapolis",
+ "snapshot": "minneapolis.feed.json.gz",
+ "now": "2026-10-16T20:53:50.307121Z",
+ "labeler": "agent:claude (read each event; no human spot-check yet)",
+ "personas": [
+  "newcomer_default",
+  "social_25",
+  "active_30",
+  "culture_free",
+  "parent_35",
+  "nerd_40"
+ ],
+ "labels": {
+  "evt_02e9595a307a58c3": {
+   "g": "321113",
+   "fp": "c72c0b3011df",
+   "t": "Habitat Restoration in Theo Wirth",
+   "why": "Weeknight buckthorn pull, free, beginner-friendly volunteering"
+  },
+  "evt_10fbc6e21c040115": {
+   "g": "000000",
+   "fp": "c9b3fe43c84a",
+   "t": "Computer Tutor Help",
+   "why": "Patron computer help desk, not volunteering (miscategorized)"
+  },
+  "evt_120b6d52fdd0e0ae": {
+   "g": "100001",
+   "fp": "02ab168c979b",
+   "t": "Media Outreach Volunteer",
+   "why": "Ongoing remote volunteer role, no place or time"
+  },
+  "evt_13b2407b0888323a": {
+   "g": "111111",
+   "fp": "b0ee109152db",
+   "t": "Fearless and Friendly Knitting Group",
+   "why": "Friendly knitting group, but Wednesday 10am"
+  },
+  "evt_174f3a6aa50c30fc": {
+   "g": "111011",
+   "fp": "a425e99ed87a",
+   "t": "University of Minnesota Women's Hockey vs Lindenwood",
+   "why": "College hockey game: fine outing, not social"
+  },
+  "evt_197d483f334ed491": {
+   "g": "000000",
+   "fp": "d0e36bb4df82",
+   "t": "Neurodiverse Creative Writing Workshop",
+   "why": "Workshop for adults with developmental disabilities (specific audience)"
+  },
+  "evt_1e86234f4e3d84f8": {
+   "g": "000030",
+   "fp": "4f7a7e02835f",
+   "t": "Connect and Play",
+   "why": "Kids and caregivers drop-in play"
+  },
+  "evt_2054d6d295a24eee": {
+   "g": "221211",
+   "fp": "333380ce25c1",
+   "t": "Flavors of Home: The WAZOBIA Experience",
+   "why": "Friday-night cultural food event at a community house"
+  },
+  "evt_2080cc7a841f1019": {
+   "g": "221211",
+   "fp": "c58ef8e215f1",
+   "t": "Letter Writing Social Hour",
+   "why": "Saturday letter-writing social hour"
+  },
+  "evt_2869a02142cd71ee": {
+   "g": "110001",
+   "fp": "c6aa12160a64",
+   "t": "Better Together - I'm New in Town! West St Paul",
+   "why": "Visit a group-home resident (volunteer), no place listed"
+  },
+  "evt_2a930936b53879ac": {
+   "g": "221111",
+   "fp": "cae388f4c35d",
+   "t": "Doing 90 Down Memory Lane",
+   "why": "Brave New Workshop sketch comedy, Saturday night (paid)"
+  },
+  "evt_2c18827a97e6f06f": {
+   "g": "120100",
+   "fp": "dd31ebf4347a",
+   "t": "Letdown.",
+   "why": "Alt-rock show Friday night"
+  },
+  "evt_2d87346053232ab9": {
+   "g": "112011",
+   "fp": "764dd668e46d",
+   "t": "Help out in the JD Rivers’ Children’s Garden!",
+   "why": "Volunteer in a children's garden, Tuesday morning"
+  },
+  "evt_31a1f453bdbcddc3": {
+   "g": "000000",
+   "fp": "782d001c228d",
+   "t": "MNsure Help and Enrollment",
+   "why": "Health-insurance enrollment help desk (miscategorized as hike)"
+  },
+  "evt_36ce1322016386d2": {
+   "g": "110100",
+   "fp": "f6f5ca4981b4",
+   "t": "Melissa Manchester",
+   "why": "Jazz club concert, venue missing"
+  },
+  "evt_383ce152fec2df9a": {
+   "g": "331113",
+   "fp": "5fc563868b64",
+   "t": "Trivia Night Every Tuesday",
+   "why": "Weekly Tuesday bar trivia"
+  },
+  "evt_3960be0c246bc6db": {
+   "g": "331112",
+   "fp": "b98438e05162",
+   "t": "Friday Happy Hour Trivia",
+   "why": "Friday happy-hour trivia"
+  },
+  "evt_3e7353ad0053ca2b": {
+   "g": "000011",
+   "fp": "5403f66d8b73",
+   "t": "Fall Crafts for Toddlers & Families",
+   "why": "Volunteer role at a toddler crafts event, date unclear"
+  },
+  "evt_409d5d0c1a5dfa2d": {
+   "g": "000030",
+   "fp": "cbc0653a8705",
+   "t": "Petite Concerts",
+   "why": "Early-childhood music program, Monday morning"
+  },
+  "evt_421cc5c5798634de": {
+   "g": "101001",
+   "fp": "24a779981065",
+   "t": "Wellness Ally - Exercise Partner",
+   "why": "Exercise-partner volunteer at a group home, no place"
+  },
+  "evt_42e91f1c2e0295a1": {
+   "g": "111111",
+   "fp": "4644f28a5f4d",
+   "t": "Learn to Play: Mahjong",
+   "why": "Learn mahjong at the library, Wednesday 1:30pm"
+  },
+  "evt_4425c328c6b34ec4": {
+   "g": "213010",
+   "fp": "e4709c93e125",
+   "t": "Mill City Running — Friday Morning Group Run (Northeast)",
+   "why": "Free run club, Friday 6:30am"
+  },
+  "evt_458c6a743d243121": {
+   "g": "322001",
+   "fp": "d7748304cbd6",
+   "t": "Mill City Running — Monday Night Group Run (Highland)",
+   "why": "Free Monday-night group run, solo friendly"
+  },
+  "evt_4635245f2cf402fa": {
+   "g": "000001",
+   "fp": "66cbd6bcf33c",
+   "t": "Bookkeeper",
+   "why": "Skilled volunteer role (bookkeeper), no time or place"
+  },
+  "evt_4646786d619e86ff": {
+   "g": "100100",
+   "fp": "6c86bf55ec06",
+   "t": "English Conversation Circle",
+   "why": "Conversation circle for English learners"
+  },
+  "evt_4712ee66056149a1": {
+   "g": "221022",
+   "fp": "491d607e5f63",
+   "t": "Food Packers-Chanhassen",
+   "why": "Food-packing volunteer shift Friday 5pm (suburb)"
+  },
+  "evt_4a13152475da4968": {
+   "g": "000020",
+   "fp": "a51aefff501c",
+   "t": "STEAM Activity",
+   "why": "Library STEAM squad (likely kids)"
+  },
+  "evt_5261affc4ecf06a6": {
+   "g": "000000",
+   "fp": "1060d0ef0e0d",
+   "t": "Adult Tutoring",
+   "why": "Tutoring service for adult learners (not volunteering)"
+  },
+  "evt_52ef47a3674ec500": {
+   "g": "231101",
+   "fp": "963dec110e12",
+   "t": "St. PRACTICE Day!",
+   "why": "Monthly St. Practice Day party at a taproom"
+  },
+  "evt_5620c7a4035f7e4d": {
+   "g": "112011",
+   "fp": "0e27a12e3592",
+   "t": "Peace Garden Volunteering",
+   "why": "Garden volunteering, Monday 9:30am"
+  },
+  "evt_57a9fbb1266cd078": {
+   "g": "111011",
+   "fp": "491d607e5f63",
+   "t": "Food Packers-Chanhassen",
+   "why": "Food-packing shift, Friday 2:30pm"
+  },
+  "evt_58c3472e8c62b4c3": {
+   "g": "000000",
+   "fp": "c7b5229602a1",
+   "t": "Drop-in Tech Help",
+   "why": "Device help desk"
+  },
+  "evt_594ff88a067d46f7": {
+   "g": "221021",
+   "fp": "6169eb128967",
+   "t": "Food Packers - Coon Rapids",
+   "why": "Food-packing shift, Saturday afternoon"
+  },
+  "evt_63bc61583017fcc0": {
+   "g": "110100",
+   "fp": "ead31fc4f31d",
+   "t": "Small Autumn Quilt",
+   "why": "Paid quilting class, Saturday morning"
+  },
+  "evt_65a243876d193fcf": {
+   "g": "331113",
+   "fp": "24e5255c4114",
+   "t": "Tuesday Trivia Night",
+   "why": "Weekly Tuesday brewery trivia"
+  },
+  "evt_68650ed4113c304a": {
+   "g": "220101",
+   "fp": "8d8d41b3476d",
+   "t": "Hennepin Arts Show – The Algorithm is Gonna Get You",
+   "why": "Brave New Workshop comedy revue, Friday night (paid)"
+  },
+  "evt_71c5b528f7457bc5": {
+   "g": "110100",
+   "fp": "3957ede5c34f",
+   "t": "Indigo Girls with special guest Linda Perry",
+   "why": "Big-name concert, Wednesday (miscategorized as festival)"
+  },
+  "evt_784b7f58a93e4e40": {
+   "g": "120100",
+   "fp": "2f2310f603d2",
+   "t": "LaPlant Road with special guests Rachel Bearinger & Garret Nasset",
+   "why": "$10 country show, Sunday 5pm, 21+"
+  },
+  "evt_7d067ae3903aa6c9": {
+   "g": "221211",
+   "fp": "4017d6b8fcfb",
+   "t": "Community Crafting: Pumpkin Topiary",
+   "why": "Community crafting at the library, Saturday"
+  },
+  "evt_848b087973043e81": {
+   "g": "322121",
+   "fp": "9022fc8172d4",
+   "t": "Rose Garden Volunteering",
+   "why": "Saturday rose-garden volunteering, beginner friendly"
+  },
+  "evt_883062f232416fb0": {
+   "g": "331112",
+   "fp": "40618886d82f",
+   "t": "Trivia Night at Fulton",
+   "why": "Sunday taproom trivia"
+  },
+  "evt_8cecc12ef2620bb3": {
+   "g": "000030",
+   "fp": "8fb7addd8d9a",
+   "t": "Read With an Animal",
+   "why": "Kids read to a therapy animal (grades 1-3)"
+  },
+  "evt_8dc016515ad1498f": {
+   "g": "000030",
+   "fp": "a160365e9873",
+   "t": "Family Storytime",
+   "why": "Family storytime, ages 2-6"
+  },
+  "evt_9073e79fdbbf3c4a": {
+   "g": "331113",
+   "fp": "2c46c14d313c",
+   "t": "Trivia Mafia at Inbound",
+   "why": "Wednesday brewery trivia"
+  },
+  "evt_9360b54af13019a9": {
+   "g": "112010",
+   "fp": "0df6ecec2b8b",
+   "t": "Frogtown Curling Club — Homer Simpson League (drop-in)",
+   "why": "Curling drop-in, Tuesday 10am, needs Learn to Curl first"
+  },
+  "evt_99543fd467539394": {
+   "g": "000001",
+   "fp": "dfb9658d6aba",
+   "t": "Finance Chair + Board Member",
+   "why": "Nonprofit board role, no time or place"
+  },
+  "evt_99583c71c3adbfb0": {
+   "g": "221211",
+   "fp": "7824f0cd0924",
+   "t": "Recycled Basket Weaving",
+   "why": "Basket-weaving workshop, Saturday"
+  },
+  "evt_9a535a3221ab33fe": {
+   "g": "100021",
+   "fp": "acbffc5613c5",
+   "t": "Chess Club",
+   "why": "All-ages chess club, Thursday 4pm (mostly kids)"
+  },
+  "evt_9b4e80124042ffc9": {
+   "g": "212111",
+   "fp": "22fab77a0acb",
+   "t": "Early Birders – October",
+   "why": "Beginner birding walk, Saturday morning"
+  },
+  "evt_9c957532f30efce6": {
+   "g": "000001",
+   "fp": "08d7b296fe0a",
+   "t": "Board Members and Treasurer: Help Lead Free, Anonymous Mental Health Care",
+   "why": "Nonprofit board role"
+  },
+  "evt_9d5a529a84b4efa6": {
+   "g": "110100",
+   "fp": "3164f3522407",
+   "t": "Open Shop",
+   "why": "Open sewing studio time"
+  },
+  "evt_9ff8e955422b8be1": {
+   "g": "331113",
+   "fp": "395130b8704b",
+   "t": "Trivia Night at The Green/Basset Hound",
+   "why": "Free Tuesday trivia"
+  },
+  "evt_a74a875e097f64c7": {
+   "g": "221211",
+   "fp": "9152d2f99e79",
+   "t": "Minneapolis Central Craft Club",
+   "why": "Adult craft club, Sunday noon"
+  },
+  "evt_a9f2cac75973b30c": {
+   "g": "110100",
+   "fp": "40909c372bde",
+   "t": "BIPOC Improv Jam",
+   "why": "Improv jam for BIPOC performers"
+  },
+  "evt_aa80b6dc6e7595da": {
+   "g": "111011",
+   "fp": "4c3548fa9980",
+   "t": "Food Packers - Coon Rapids",
+   "why": "Food-packing shift, Friday 2:30pm"
+  },
+  "evt_ab1524f4b8722e52": {
+   "g": "111110",
+   "fp": "c173bdf6d9f1",
+   "t": "Putting the Garden to Bed / Taller de preparar el jardín para el invierno",
+   "why": "Bilingual garden workshop, Saturday"
+  },
+  "evt_b0f9b4df7ada2eb1": {
+   "g": "110100",
+   "fp": "283b3e70d05f",
+   "t": "Learn How to Use a Sewing Machine & Serger! Make a reversible Tote Bag!",
+   "why": "Paid sewing-machine class"
+  },
+  "evt_b2f992eeedfc3128": {
+   "g": "000030",
+   "fp": "4be706e93c03",
+   "t": "Connect and Play",
+   "why": "Kids and caregivers drop-in play, Wednesday morning"
+  },
+  "evt_b4d1fac0d5ba7bd6": {
+   "g": "000000",
+   "fp": "63dfc1f231ff",
+   "t": "Computer Tutor",
+   "why": "Computer help desk"
+  },
+  "evt_b8aca91e7374d9a3": {
+   "g": "000030",
+   "fp": "cdf272bdf6d0",
+   "t": "Read With an Animal",
+   "why": "Kids read to a therapy animal"
+  },
+  "evt_ba908fb56f9606b3": {
+   "g": "100011",
+   "fp": "95d9fa030bb6",
+   "t": "Game Day",
+   "why": "Game day at a community space, Wednesday 8am"
+  },
+  "evt_bb5fb3e5cf7aac1f": {
+   "g": "220211",
+   "fp": "61f88cfd7099",
+   "t": "Minneapolis Journaling Club",
+   "why": "Journaling club, Saturday afternoon"
+  },
+  "evt_be3512e1c4eb1a21": {
+   "g": "221012",
+   "fp": "d1677e062b5d",
+   "t": "Food Packers - Coon Rapids",
+   "why": "Food-packing shift, Monday 5pm"
+  },
+  "evt_c1a0b9b2d70adf31": {
+   "g": "100021",
+   "fp": "ba6630069241",
+   "t": "Minneapolis Central Library Chess Club",
+   "why": "All-ages library chess club, Tuesday 1pm"
+  },
+  "evt_c4f2ee3750975c2a": {
+   "g": "322121",
+   "fp": "e95649762fdf",
+   "t": "Minnehaha Regional Park Buckthorn Removal",
+   "why": "Sunday buckthorn removal in Minnehaha Park"
+  },
+  "evt_c5e795df3aa9eeb5": {
+   "g": "110001",
+   "fp": "1311dd31043a",
+   "t": "Better Together - Crafting, Baking, Reading",
+   "why": "Group-home companion volunteering, no place"
+  },
+  "evt_cba24718da04a6da": {
+   "g": "210013",
+   "fp": "03f78c42e23f",
+   "t": "Chess Club",
+   "why": "Chess club, Thursday 6pm"
+  },
+  "evt_d2ff23718eca7a46": {
+   "g": "100001",
+   "fp": "6523fdafce5e",
+   "t": "Share the Joy of Books & Reading - Crystal, MN",
+   "why": "Read aloud to a group-home resident, no place"
+  },
+  "evt_d42b996f61739331": {
+   "g": "112011",
+   "fp": "5b17a0508aa9",
+   "t": "Lake Harriet Buckthorn Slaying",
+   "why": "Buckthorn pull, Tuesday 9am"
+  },
+  "evt_d459316ddfe269fc": {
+   "g": "120101",
+   "fp": "8e417e9907a7",
+   "t": "L.A.’s Monday Nights",
+   "why": "$10 Monday night music at Icehouse"
+  },
+  "evt_d5ee251fdbdd951e": {
+   "g": "000000",
+   "fp": "3c6829937dbf",
+   "t": "Computer and Tech Help",
+   "why": "Computer help desk"
+  },
+  "evt_d6f7ead6e3d48dc6": {
+   "g": "000030",
+   "fp": "9d344d748b9c",
+   "t": "LEGO® Lab",
+   "why": "LEGO lab for kids, Wednesday 4pm"
+  },
+  "evt_d8085fca9b2cb21d": {
+   "g": "322001",
+   "fp": "3df2bae1389c",
+   "t": "Mill City Running — Tuesday Night Group Run (Northeast)",
+   "why": "Free Tuesday-night group run"
+  },
+  "evt_d96d5ff021543f49": {
+   "g": "110100",
+   "fp": "b61d69065ca4",
+   "t": "Urgent Emergent Performance Art Series, Volume Ten: Old School Vs. New School",
+   "why": "$10 performance-art night (miscategorized as sports)"
+  },
+  "evt_e0a130273d8eb68d": {
+   "g": "110101",
+   "fp": "b18a466f431d",
+   "t": "Halloween Costume Creations",
+   "why": "Costume sewing class, Tuesday 5pm"
+  },
+  "evt_e330657b6f7fbd1c": {
+   "g": "111011",
+   "fp": "f549163039da",
+   "t": "University of Minnesota Women's Hockey vs Ohio State",
+   "why": "College hockey game, Friday 6pm"
+  },
+  "evt_ea8109e544da4cc7": {
+   "g": "220101",
+   "fp": "030223ba76aa",
+   "t": "Light 'em Up The Bong Show",
+   "why": "Interactive improv comedy show, Sunday night"
+  },
+  "evt_ecacbd63a18794bd": {
+   "g": "000020",
+   "fp": "f7d91c0f96c1",
+   "t": "Lactation Lounge",
+   "why": "Breastfeeding support drop-in"
+  },
+  "evt_edc1219573b80700": {
+   "g": "110102",
+   "fp": "665a207cba77",
+   "t": "Turning Recipes Into Stories w/ Authors Stephanie Hansen & Kurt Johnson",
+   "why": "Author talk on food and memory, Thursday 5pm"
+  },
+  "evt_f516de8ee457f7fe": {
+   "g": "000000",
+   "fp": "ad303796149f",
+   "t": "Community Syringe Collection",
+   "why": "Syringe collection event"
+  },
+  "evt_f92d3af28745ab2c": {
+   "g": "000030",
+   "fp": "8e35ce0a2ddd",
+   "t": "Petite Concerts",
+   "why": "Early-childhood music program, Sunday"
+  },
+  "evt_fae0ea88faaf0d5d": {
+   "g": "110110",
+   "fp": "2ef0ae3b82c2",
+   "t": "Trazando Nuestras Historias en Comunidad: Grabado en Linóleo",
+   "why": "Spanish-language linocut workshop"
+  },
+  "evt_fc8be2df1addd8c2": {
+   "g": "000000",
+   "fp": "8dbe0dfd5b62",
+   "t": "Adult Tutoring",
+   "why": "Tutoring service for adult learners"
+  },
+  "evt_fe88cdd88dfb47b3": {
+   "g": "322121",
+   "fp": "dd9f5ec73e90",
+   "t": "Minnehaha Park Invasive Plant Management",
+   "why": "Saturday invasive-plant volunteering in Minnehaha Park"
+  },
+  "evt_ff52592f3a5389ca": {
+   "g": "211310",
+   "fp": "19a325525b81",
+   "t": "Brush with Nature",
+   "why": "Painting in a wildflower garden, Sunday"
+  }
+ },
+ "rules": [
+  {
+   "when": {
+    "tags_any": [
+     "kids_teens"
+    ]
+   },
+   "except_persona": [
+    "parent_35"
+   ],
+   "grade": 0,
+   "why": "kids content for adults"
+  },
+  {
+   "when": {
+    "flags_any": [
+     "hard_noise",
+     "admin"
+    ]
+   },
+   "grade": 0,
+   "why": "administrative noise or cancelled"
+  }
+ ]
+}

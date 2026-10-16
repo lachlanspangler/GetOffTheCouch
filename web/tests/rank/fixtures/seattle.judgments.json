@@ -1,0 +1,773 @@
+{
+ "version": 1,
+ "city": "seattle",
+ "snapshot": "seattle.feed.json.gz",
+ "now": "2026-10-16T20:53:50.307121Z",
+ "labeler": "agent:claude (read each event; no human spot-check yet)",
+ "personas": [
+  "newcomer_default",
+  "social_25",
+  "active_30",
+  "culture_free",
+  "parent_35",
+  "nerd_40"
+ ],
+ "labels": {
+  "evt_06b635c81d38ca78": {
+   "g": "000000",
+   "fp": "5f8718aa65c9",
+   "t": "健康保險與醫療服務協助: Medicare, Health Insurance and Healthcare Navigation Help",
+   "why": "Medicare navigation help desk (miscategorized as hike)"
+  },
+  "evt_076c5c07b7620dab": {
+   "g": "210301",
+   "fp": "648b9a886f2b",
+   "t": "Guest Artist Concert: Late Night Show with the Arditti Quartet",
+   "why": "Free late-night string quartet concert, Friday"
+  },
+  "evt_08b16b8ee5f32d08": {
+   "g": "000000",
+   "fp": "8f2bb3a51f95",
+   "t": "Washington Department of Labor & Industries (L&I) Information Desk",
+   "why": "State agency information desk"
+  },
+  "evt_0b9a328819498472": {
+   "g": "000000",
+   "fp": "7864963dd1ab",
+   "t": "Tech Help",
+   "why": "Tech help desk"
+  },
+  "evt_0bc09ebc9b51d785": {
+   "g": "000010",
+   "fp": "3aa786e5b0dd",
+   "t": "Teen Zone!",
+   "why": "Teen afternoon activities"
+  },
+  "evt_0d866978109eb78b": {
+   "g": "000030",
+   "fp": "4cbd5725ce31",
+   "t": "Brick Buddies",
+   "why": "LEGO play group for young kids and families"
+  },
+  "evt_0fc786f51e9514c1": {
+   "g": "000030",
+   "fp": "4929ec8d6661",
+   "t": "Bilingual Family Story Time / La Hora de Cuentos Familiares Bilingües",
+   "why": "Bilingual family story time"
+  },
+  "evt_1129ab881dcf02ef": {
+   "g": "000030",
+   "fp": "28215290e576",
+   "t": "Family Story Time",
+   "why": "Family story time, Saturday"
+  },
+  "evt_155ddc5de4a8dc5f": {
+   "g": "000000",
+   "fp": "837eab508b44",
+   "t": "Adult Tutoring",
+   "why": "Tutoring for adult learners"
+  },
+  "evt_1616fc275ec4f180": {
+   "g": "320102",
+   "fp": "66e9a5f511dd",
+   "t": "BYOC: Bring Your Own Craft at Artemis Coffee",
+   "why": "Weekly bring-your-own-craft night at a coffee shop, Tuesday 5pm"
+  },
+  "evt_16a2d741befce337": {
+   "g": "100010",
+   "fp": "2319e63bbe17",
+   "t": "Open Adoption Hours",
+   "why": "Animal-shelter adoption hours"
+  },
+  "evt_1a66f79b8a6621e2": {
+   "g": "100000",
+   "fp": "0bb45085bb98",
+   "t": "Your Vote, Your Voice: Register and Vote",
+   "why": "Voter registration session"
+  },
+  "evt_1a877cdf707d2b10": {
+   "g": "000000",
+   "fp": "2b7ea48abc25",
+   "t": "English Language Learners (ELL) Class - Level 1",
+   "why": "English class for learners"
+  },
+  "evt_1ac1ae66352ffba0": {
+   "g": "000020",
+   "fp": "d2ee1e632e7e",
+   "t": "Storytelling Magic",
+   "why": "Kids storytelling program"
+  },
+  "evt_1caf185577a2c93c": {
+   "g": "000010",
+   "fp": "1ed1aad8395a",
+   "t": "የአማርኛ እና የትግርኛ ታሪክ ክፍለ ጊዜ--Amharic and Tigrigna Story Times at the Family First ",
+   "why": "Amharic and Tigrigna story time"
+  },
+  "evt_203b32dd11ae69ec": {
+   "g": "111001",
+   "fp": "bd4521e51df7",
+   "t": "No Kings Seattle Vote Early - March and Voting Fair",
+   "why": "Political march and voting fair, Saturday"
+  },
+  "evt_20ec12bb0359d003": {
+   "g": "000030",
+   "fp": "04d1960714ee",
+   "t": "Pokémon Club",
+   "why": "Kids Pokemon club"
+  },
+  "evt_24b203580432e109": {
+   "g": "000030",
+   "fp": "9dbf44c0db39",
+   "t": "Game On for Kids! Role-playing game (RPG)",
+   "why": "Kids role-playing game"
+  },
+  "evt_253ad8e2fdb14e30": {
+   "g": "230001",
+   "fp": "882a57aaf7ec",
+   "t": "Karaoke at Hattie’s Hat",
+   "why": "Karaoke at Hattie's Hat, Thursday night"
+  },
+  "evt_25ae5b64dfecd091": {
+   "g": "220002",
+   "fp": "f41e17a8ac13",
+   "t": "Join Us for BINGO | Games – Prize – Party MONDAY",
+   "why": "Free Monday bingo at a Ballard bar"
+  },
+  "evt_26044c5166c3e24e": {
+   "g": "100001",
+   "fp": "3904fc14d526",
+   "t": "Genealogy Drop-In",
+   "why": "Genealogy help drop-in"
+  },
+  "evt_28ea2ae598462e8c": {
+   "g": "323010",
+   "fp": "6273f1ef6d19",
+   "t": "Underdog Sports — Fall Co-ed Volleyball (Saturdays, North Seattle College)",
+   "why": "Co-ed rec volleyball league, Saturdays, free agents welcome"
+  },
+  "evt_2a3f0a03f52e39e2": {
+   "g": "220102",
+   "fp": "ac4be713e65c",
+   "t": "Open Mic Poetry Night at The Ink Drinker",
+   "why": "Free poetry open mic at a bookstore bar, Tuesday"
+  },
+  "evt_2aeedfc0b33e58db": {
+   "g": "000020",
+   "fp": "501d900f612d",
+   "t": "한국어 스토리타임 / Korean Story Time",
+   "why": "Korean story time"
+  },
+  "evt_2c5bc13e549c2b4a": {
+   "g": "000000",
+   "fp": "a61cba3f49d2",
+   "t": "English Language Learning (ELL) Classes 1",
+   "why": "English class for learners"
+  },
+  "evt_2e4203c3764212b5": {
+   "g": "100000",
+   "fp": "3bb1b08791f7",
+   "t": "Innovative Hire, Part 2: Use Your Resume for Interviewing",
+   "why": "Job-seeker resume workshop"
+  },
+  "evt_2e96c9f915b058d4": {
+   "g": "000030",
+   "fp": "4ff3c47bc200",
+   "t": "LEGO Block Party",
+   "why": "Kids LEGO party"
+  },
+  "evt_2efb02091dda8a96": {
+   "g": "110100",
+   "fp": "ccc522e5a7c2",
+   "t": "Advanced Cactus Embroidery",
+   "why": "$90 embroidery workshop"
+  },
+  "evt_329c4b36422eb05b": {
+   "g": "210201",
+   "fp": "8a2d9b0c2133",
+   "t": "Silent Reading at The Ink Drinker",
+   "why": "Silent reading at a bookstore bar, Sunday"
+  },
+  "evt_345d4fb55a0665e8": {
+   "g": "331113",
+   "fp": "bc15b1bf61d0",
+   "t": "TRIVIA NIGHT",
+   "why": "Weekly Tuesday trivia in Ballard"
+  },
+  "evt_34688c5a8e64ec08": {
+   "g": "000010",
+   "fp": "2573a87aaa40",
+   "t": "Tutors",
+   "why": "Homework help for K-12 students"
+  },
+  "evt_399273fc7d6f5a04": {
+   "g": "000030",
+   "fp": "11cdd1667b38",
+   "t": "Toddler Play Group",
+   "why": "Toddler play group"
+  },
+  "evt_39b176fa2c34c36e": {
+   "g": "210001",
+   "fp": "4733eceec125",
+   "t": "Washington Fall Mead Festival",
+   "why": "Mead festival, Sunday, $40"
+  },
+  "evt_3b7400abe4ba2be8": {
+   "g": "000000",
+   "fp": "8aa150ee7003",
+   "t": "Citizenship Test Preparation Class",
+   "why": "Citizenship test prep"
+  },
+  "evt_3e44e5385ddbedb2": {
+   "g": "000000",
+   "fp": "6eb5755db85b",
+   "t": "Community Notary Day / Día Comunitario de Servicios Notariales",
+   "why": "Notary service day"
+  },
+  "evt_429414e471cf1750": {
+   "g": "000000",
+   "fp": "a5592cd5a572",
+   "t": "English Conversation Circle",
+   "why": "English conversation for learners"
+  },
+  "evt_4387403d9d427d3e": {
+   "g": "000000",
+   "fp": "440c4a6f50c3",
+   "t": "Adult Tutoring",
+   "why": "Tutoring for adult learners"
+  },
+  "evt_44112a87a7ffa03a": {
+   "g": "102020",
+   "fp": "07f8314bb0e2",
+   "t": "Sk8",
+   "why": "Learn-to-skateboard session, Saturday"
+  },
+  "evt_47f7b9077d42b770": {
+   "g": "000000",
+   "fp": "b2941c61aad8",
+   "t": "Talk Time: English Conversation Practice",
+   "why": "English conversation for learners"
+  },
+  "evt_498d6d215418bcf4": {
+   "g": "100011",
+   "fp": "fcc584567a35",
+   "t": "Glorydays: A Tabletop Roleplaying Game",
+   "why": "Tabletop RPG session (teen-oriented)"
+  },
+  "evt_4b88659420f5ec8c": {
+   "g": "210001",
+   "fp": "02b29011c7b5",
+   "t": "DSA Sip & Connect",
+   "why": "Downtown networking coffee, Wednesday 9am"
+  },
+  "evt_4bc73ed766c6936c": {
+   "g": "000000",
+   "fp": "d7310799c581",
+   "t": "English Language Learners (ELL) Classes, Level 3: Intermediate Speakers",
+   "why": "English class for learners"
+  },
+  "evt_4db5cbdb4c2b0158": {
+   "g": "000000",
+   "fp": "c0c564a8f926",
+   "t": "Thrive Together: WE Lead Mentoring Circle",
+   "why": "Campus mentoring circle"
+  },
+  "evt_501d9205b5c94a55": {
+   "g": "000000",
+   "fp": "b4afa9d32828",
+   "t": "Daily 15 Minute Movement Break - Yoga and Fitness",
+   "why": "Campus movement break (virtual)"
+  },
+  "evt_519f8ecef33c69a2": {
+   "g": "000030",
+   "fp": "91461871f6b7",
+   "t": "Toddler Story Time",
+   "why": "Toddler story time"
+  },
+  "evt_557f11fe906af4a8": {
+   "g": "100011",
+   "fp": "6965bf8d80f8",
+   "t": "Community CPR class at Seattle Fire Department Headquarters",
+   "why": "Community CPR class, Sunday"
+  },
+  "evt_574eae3cfa326af3": {
+   "g": "322011",
+   "fp": "1a43a444753d",
+   "t": "Green Lake Litter Patrol",
+   "why": "Weekly Green Lake litter patrol, Sunday morning"
+  },
+  "evt_596ca15bac6258dc": {
+   "g": "110120",
+   "fp": "de370d9998dd",
+   "t": "Trick or Treat Mini Print Crawl",
+   "why": "Halloween mini-print crawl (multi-day)"
+  },
+  "evt_5a622319caf49b11": {
+   "g": "000030",
+   "fp": "d7bbd6054011",
+   "t": "Baby Story Time",
+   "why": "Baby story time"
+  },
+  "evt_60823f08d5a223c9": {
+   "g": "110002",
+   "fp": "e08e9221d4ef",
+   "t": "Eastside Audubon: One Bird, One Beach, One Community",
+   "why": "Audubon talk, Wednesday evening (Redmond)"
+  },
+  "evt_617c156b18430dc7": {
+   "g": "110021",
+   "fp": "2f5633664cce",
+   "t": "Haunted Hunt",
+   "why": "All-ages haunted escape room at a community center"
+  },
+  "evt_62e4a9a43ad696c4": {
+   "g": "220101",
+   "fp": "622de33b1a09",
+   "t": "As Many Weirdos As Possible",
+   "why": "Storytelling and portraiture night, Friday, $10"
+  },
+  "evt_6447663a9bbff2db": {
+   "g": "000000",
+   "fp": "3f118588ec4d",
+   "t": "Tenants’ Rights Legal Clinics",
+   "why": "Tenants' legal clinic"
+  },
+  "evt_67d3a956218df004": {
+   "g": "331113",
+   "fp": "70ae7f6935c7",
+   "t": "Book Trivia at The Ink Drinker! Free!",
+   "why": "Free Wednesday book trivia at a bookstore bar"
+  },
+  "evt_69efc4396c675c84": {
+   "g": "220100",
+   "fp": "96733de184bc",
+   "t": "Improv Happy Hour",
+   "why": "Improv happy hour, Friday 6pm"
+  },
+  "evt_6a83c713c378b452": {
+   "g": "000000",
+   "fp": "3e5320b6c2b5",
+   "t": "Virtual & In-Person Citizenship Class - English",
+   "why": "Citizenship class"
+  },
+  "evt_6b0afe9be8746af9": {
+   "g": "220102",
+   "fp": "ac6bad4861c9",
+   "t": "Book Release Party: Lyndsay Faye’s Raven",
+   "why": "Free book release party with the author, Tuesday"
+  },
+  "evt_6bc9aa084aaf653a": {
+   "g": "110100",
+   "fp": "f3816a512708",
+   "t": "Shop for Good: A Benefit Night for UNA-USA",
+   "why": "Shopping benefit night"
+  },
+  "evt_6e093a1dd265f368": {
+   "g": "220001",
+   "fp": "a9da41db6486",
+   "t": "Cozy Crafting Hosted by the Renton LGBTQIA+ Community",
+   "why": "LGBTQIA+ cozy crafting evening, Wednesday"
+  },
+  "evt_704d9dbfd6621af2": {
+   "g": "110103",
+   "fp": "209822697e1d",
+   "t": "danah boyd with Ron S. Jarmin",
+   "why": "danah boyd talk at Town Hall, Monday, $10"
+  },
+  "evt_707992e42ef9ce3b": {
+   "g": "331113",
+   "fp": "e6498d3e8eae",
+   "t": "Beer Hall Trivia",
+   "why": "Weekly beer-hall trivia, Wednesday"
+  },
+  "evt_71ef7b04f3774cb5": {
+   "g": "110102",
+   "fp": "c0fdf72f21c0",
+   "t": "Crime and Punishment in America",
+   "why": "Documentary preview talk, Tuesday, $10"
+  },
+  "evt_753a0975c4e1052c": {
+   "g": "000000",
+   "fp": "2289e3efc89a",
+   "t": "English Language Learners (ELL) Class - Level 1",
+   "why": "English class for learners"
+  },
+  "evt_77a87ed9d47dfadc": {
+   "g": "110100",
+   "fp": "e1b447bb19a1",
+   "t": "Leanna Keith / Jun Iida",
+   "why": "Jazz concert, Saturday"
+  },
+  "evt_78ef18bb9554c93a": {
+   "g": "112011",
+   "fp": "0354d644a59c",
+   "t": "Friday Lunchtime Litter Pick Up at Seven Hills Park",
+   "why": "Lunchtime litter pickup in a Capitol Hill park, Friday"
+  },
+  "evt_78fe2d3bcc692741": {
+   "g": "000000",
+   "fp": "c0a9e7e1f8d6",
+   "t": "Reduced and Free Transit Fare Enrollment",
+   "why": "Transit-fare enrollment desk"
+  },
+  "evt_79358260f5d307b5": {
+   "g": "000000",
+   "fp": "7a2b64b7f4f4",
+   "t": "Adult Tutoring",
+   "why": "Tutoring for adult learners"
+  },
+  "evt_7e4545c2c0bb6b68": {
+   "g": "220002",
+   "fp": "3adc268ab978",
+   "t": "Bingo Monday",
+   "why": "Monday bingo at a beer bar"
+  },
+  "evt_7faf3a89c9ec84a6": {
+   "g": "210311",
+   "fp": "42cd4005d925",
+   "t": "Arts & Crafts: Community Printmaking Series",
+   "why": "Community printmaking at the library, Saturday"
+  },
+  "evt_880090b088cd9341": {
+   "g": "000000",
+   "fp": "11368cf4cb86",
+   "t": "Books & Beats",
+   "why": "Group for people with memory loss and caregivers"
+  },
+  "evt_8933461aad85287d": {
+   "g": "220100",
+   "fp": "f60759ece082",
+   "t": "The Joe Casalini Trio",
+   "why": "Free jazz happy hour, Friday 4pm"
+  },
+  "evt_8977c0acdc093a18": {
+   "g": "100100",
+   "fp": "acf0d703b29f",
+   "t": "2026 Southwest Artist Showcase",
+   "why": "Art on display in a library branch"
+  },
+  "evt_8bd704292ed7a7d1": {
+   "g": "000010",
+   "fp": "c44637822082",
+   "t": "DYNO: Teen Leaders Group",
+   "why": "Teen leaders group"
+  },
+  "evt_90177c27bb95e54f": {
+   "g": "110120",
+   "fp": "baca37d19744",
+   "t": "Delridge Farmers Market",
+   "why": "Farmers market, Saturday"
+  },
+  "evt_90bd30ceef0350ea": {
+   "g": "000000",
+   "fp": "1e41895ca901",
+   "t": "Virtual & In-Person Citizenship Class - English & Vietnamese / Lớp học về Quốc t",
+   "why": "Citizenship class (Vietnamese)"
+  },
+  "evt_98cb131f78a93dda": {
+   "g": "220101",
+   "fp": "a02e62f325bd",
+   "t": "Night of the Living Theater: An Improvised Zombie Apocalypse",
+   "why": "Improvised zombie theater, Sunday night"
+  },
+  "evt_9a927597f7e2cd25": {
+   "g": "100201",
+   "fp": "0a577250145c",
+   "t": "ZAPP Zine Collection Open Hours",
+   "why": "Zine collection open hours"
+  },
+  "evt_9a93d04b1d7ee779": {
+   "g": "110210",
+   "fp": "803f73e79b00",
+   "t": "Greg Sinibaldi",
+   "why": "Free jazz happy hour at a bakery, Saturday"
+  },
+  "evt_a00c86c2b8637b85": {
+   "g": "220003",
+   "fp": "5133cb7d269a",
+   "t": "Magic Monday Casual Commander Night | Reuben’s Brews Ballard Taproom",
+   "why": "Free casual Magic: The Gathering night at a taproom, Monday"
+  },
+  "evt_a016b703ad31ea1b": {
+   "g": "210310",
+   "fp": "18b594b806d0",
+   "t": "Seattle Choro Festival",
+   "why": "Free Brazilian choro festival at a bookstore, Friday"
+  },
+  "evt_a0b07739714d5ec7": {
+   "g": "000020",
+   "fp": "981b34d64a71",
+   "t": "LEGO Brick Builders",
+   "why": "LEGO open house"
+  },
+  "evt_a3529796f8d526b5": {
+   "g": "110110",
+   "fp": "17a283785582",
+   "t": "Creative Art Oasis",
+   "why": "Weekly art get-together, Friday 4pm (Renton)"
+  },
+  "evt_a5cb98c8f029ffef": {
+   "g": "220201",
+   "fp": "e917427b28b4",
+   "t": "Conor Byrne Open Mic Nights",
+   "why": "Free pub open mic, Sunday"
+  },
+  "evt_a8c884bdb902add3": {
+   "g": "000030",
+   "fp": "0cd073812ba3",
+   "t": "Hora de cuentos en español / Spanish Story Time",
+   "why": "Spanish story time"
+  },
+  "evt_ab098eb51e6d6f5f": {
+   "g": "120002",
+   "fp": "c7606856a9f9",
+   "t": "Trivia with Head in the Clouds",
+   "why": "Free trivia night, no venue listed"
+  },
+  "evt_afa1276f63a4ed7f": {
+   "g": "000000",
+   "fp": "4e4b4a53e3a3",
+   "t": "Community Notary Day / Día Comunitario de Servicios Notariales",
+   "why": "Notary service day"
+  },
+  "evt_b42b129f4d86d146": {
+   "g": "000030",
+   "fp": "4521bba42e12",
+   "t": "LEGO® Block Party",
+   "why": "LEGO open house, Saturday"
+  },
+  "evt_b93dc679556f5369": {
+   "g": "210022",
+   "fp": "6f31e4e6e520",
+   "t": "Game on! Board Games for All Ages",
+   "why": "All-ages board games at the library, Saturday"
+  },
+  "evt_bc0008978db0e2d3": {
+   "g": "110102",
+   "fp": "997fe81bd357",
+   "t": "Tim Disney with Jordan Weisman",
+   "why": "Graphic-novel author talk, Saturday, $10"
+  },
+  "evt_bdb905ea6fcf837f": {
+   "g": "101010",
+   "fp": "f456456d9c9a",
+   "t": "Nature Walk",
+   "why": "Cemetery nature walk, Thursday 10am"
+  },
+  "evt_bdd504f7c962c2d6": {
+   "g": "000020",
+   "fp": "b55d6af5cb22",
+   "t": "Tween Dungeons & Dragons Club",
+   "why": "Tween D&D club"
+  },
+  "evt_c1326b196db6b073": {
+   "g": "221120",
+   "fp": "b45c60655260",
+   "t": "The Ave for All - A Car-Free University Way",
+   "why": "Car-free street festival on the Ave, Saturday"
+  },
+  "evt_c232779c5bb5781c": {
+   "g": "331113",
+   "fp": "70ae7f6935c7",
+   "t": "Book Trivia at The Ink Drinker!",
+   "why": "Free Wednesday book trivia (second listing)"
+  },
+  "evt_c2f8bb140ebd88f3": {
+   "g": "000000",
+   "fp": "123391b51a69",
+   "t": "Daily 15 Minute Movement Break - Yoga and Fitness",
+   "why": "Campus movement break (virtual)"
+  },
+  "evt_c3a6bc1b1e7bc043": {
+   "g": "110002",
+   "fp": "0905dfa56f49",
+   "t": "Garden Hotline Presents: Growing Oyster Mushrooms at Home",
+   "why": "Grow oyster mushrooms talk, Wednesday evening"
+  },
+  "evt_c3f9f8e2be05beb4": {
+   "g": "210101",
+   "fp": "677a2c053650",
+   "t": "Draw Everything!",
+   "why": "Beginner drawing class, Tuesday 6pm"
+  },
+  "evt_c5399df367a38f93": {
+   "g": "000000",
+   "fp": "b1f0f5acca25",
+   "t": "One-on-One Ancestry Help",
+   "why": "Genealogy help desk"
+  },
+  "evt_c6cf9374c2aedfb4": {
+   "g": "210211",
+   "fp": "397ef1e16661",
+   "t": "Swoon City 1 Year Anniversary Party",
+   "why": "Bookstore anniversary party with authors, Saturday"
+  },
+  "evt_c6e74453cf1f64dc": {
+   "g": "331113",
+   "fp": "697327e0687a",
+   "t": "MONDAY TRIVIA @ CLOUDBURST ON SHILSHOLE",
+   "why": "Weekly Monday brewery trivia"
+  },
+  "evt_caaa7018beaef744": {
+   "g": "000000",
+   "fp": "8c1685944fbd",
+   "t": "Wheelchair Basketball Open Practices",
+   "why": "Campus wheelchair basketball practice"
+  },
+  "evt_cbe62ae4c490c5e0": {
+   "g": "000020",
+   "fp": "1485fdd9cc4e",
+   "t": "Arts & Movement with Rec'n the Streets",
+   "why": "Arts and movement program (kids)"
+  },
+  "evt_cc0580250c5efc93": {
+   "g": "000030",
+   "fp": "84ca4efa0b4f",
+   "t": "Kids Make & Build",
+   "why": "Kids make and build"
+  },
+  "evt_ccbd2c70f5001d7f": {
+   "g": "220100",
+   "fp": "72fda4b4786f",
+   "t": "Mo’ Jam Mondays",
+   "why": "Free Monday jam night, 21+"
+  },
+  "evt_d04ddd717275d7c1": {
+   "g": "000000",
+   "fp": "24567f9ad14a",
+   "t": "English Language Learning (ELL) Classes",
+   "why": "English class for learners"
+  },
+  "evt_d08ff0f62e56febc": {
+   "g": "000030",
+   "fp": "669b587ddae4",
+   "t": "Halloween Costume Swap",
+   "why": "Kids Halloween costume swap"
+  },
+  "evt_d0adbbbc1db9a7f6": {
+   "g": "000000",
+   "fp": "6766ba70390c",
+   "t": "Talk Time: English Conversation Practice",
+   "why": "English conversation for learners"
+  },
+  "evt_d10e650ac34e3f01": {
+   "g": "110100",
+   "fp": "18177d8693f7",
+   "t": "Rope & Twine Bowls Workshop at Niche",
+   "why": "$85 rope-bowl craft workshop, Friday"
+  },
+  "evt_d86da47ea2c4ce72": {
+   "g": "000000",
+   "fp": "1345457a2da5",
+   "t": "Mercer Island Library ESL Class and Talk Time",
+   "why": "ESL class"
+  },
+  "evt_daf49bc04a2c93a6": {
+   "g": "000030",
+   "fp": "9cc2c98e032d",
+   "t": "Toddler Story Time",
+   "why": "Toddler story time"
+  },
+  "evt_dcfd27814ee83e07": {
+   "g": "110220",
+   "fp": "28107452cd4d",
+   "t": "Explore Día de los Muertos with Studio VC",
+   "why": "Dia de los Muertos art-making, Sunday (Renton)"
+  },
+  "evt_e3d6278862a2112e": {
+   "g": "000000",
+   "fp": "0f90705730eb",
+   "t": "CISC Presents: 2027 Open Enrollment: Medicare & Health Insurance Marketplace Ove",
+   "why": "Medicare enrollment seminar"
+  },
+  "evt_e5e4e4e7b5aa2b9c": {
+   "g": "100200",
+   "fp": "c66ba6f2d7e6",
+   "t": "\"Battle for Paradise: Puerto Rico, restrictions apply*\" Exhibit",
+   "why": "Photo-essay exhibit at the Central Library"
+  },
+  "evt_ea9807f0397f7bcf": {
+   "g": "000011",
+   "fp": "5009f3ed6573",
+   "t": "Reading Buddies",
+   "why": "Volunteers help kids read aloud"
+  },
+  "evt_ec93d865ce536421": {
+   "g": "000000",
+   "fp": "44f97958ec22",
+   "t": "Tenants' Rights Free Legal Clinic",
+   "why": "Tenants' legal clinic"
+  },
+  "evt_ecb681945239d806": {
+   "g": "320231",
+   "fp": "fdd2a34cde07",
+   "t": "Freeway Estates Community Orchard Cider Fest",
+   "why": "Free community orchard cider fest with music and dancers, Saturday"
+  },
+  "evt_ecd0c1511189136a": {
+   "g": "220000",
+   "fp": "7dcb41359a97",
+   "t": "HAUNTED Ballard Wine Walk",
+   "why": "Haunted wine walk, $40, Saturday"
+  },
+  "evt_f0e0db0db3bc2941": {
+   "g": "000000",
+   "fp": "fac0e990a5c7",
+   "t": "English-Language Learners (ELL) Classes",
+   "why": "English class for learners"
+  },
+  "evt_f16b2e9ad4c4c4bd": {
+   "g": "000010",
+   "fp": "a09bc9148bb2",
+   "t": "Fruit Ninja Tournament",
+   "why": "Video-game tournament at the library (kids)"
+  },
+  "evt_f208f56afe829b66": {
+   "g": "000001",
+   "fp": "2cc3d7e0e2cb",
+   "t": "How to Improve the Privacy and Security of Your At-Home Tech",
+   "why": "Home tech security class"
+  },
+  "evt_f657ec18df98d7ef": {
+   "g": "000030",
+   "fp": "a750bae668d6",
+   "t": "Family Story Time",
+   "why": "Family story time"
+  },
+  "evt_f845cf40bdcbf336": {
+   "g": "220101",
+   "fp": "b08a7feaa99c",
+   "t": "Loose Cannons 2026",
+   "why": "Improv show, Thursday night"
+  },
+  "evt_ff6eda44251762b0": {
+   "g": "000030",
+   "fp": "419fa9d8a119",
+   "t": "Baby Story Time",
+   "why": "Baby story time"
+  }
+ },
+ "rules": [
+  {
+   "when": {
+    "tags_any": [
+     "kids_teens"
+    ]
+   },
+   "except_persona": [
+    "parent_35"
+   ],
+   "grade": 0,
+   "why": "kids content for adults"
+  },
+  {
+   "when": {
+    "flags_any": [
+     "hard_noise",
+     "admin"
+    ]
+   },
+   "grade": 0,
+   "why": "administrative noise or cancelled"
+  }
+ ]
+}

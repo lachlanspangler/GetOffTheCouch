@@ -27,5 +27,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
+    // the offline ranking eval runs as its own step (`npm run eval:rank`, part of `make check`)
+    exclude: process.env.GOTC_EVAL ? ["**/node_modules/**"] : ["**/node_modules/**", "tests/rank/eval.test.ts"],
   },
 });

@@ -1,0 +1,16 @@
+{
+  "note": "RANKING.md §3.2 gates, applied to macro averages over 5 cities × 6 personas. v2 numbers are the shipped ranker's; update them only in a commit that says why (e.g. 'rank v2: new weights, NDCG +0.04').",
+  "gates": {
+    "ndcg_drop": 0.02,
+    "p10_drop": 0.05,
+    "ild": 0.55,
+    "entropy": 0.7,
+    "coverage": 0.6,
+    "fresh_h": 120,
+    "stale": 0.1,
+    "junk_newcomer": 0.1,
+    "judged": 0.8,
+    "highlights_vs_v1": 0.02
+  },
+  "v2": { "ndcg": 0.458, "p10": 0.417 }
+}

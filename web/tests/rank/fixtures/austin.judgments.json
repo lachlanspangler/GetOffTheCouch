@@ -1,0 +1,587 @@
+{
+ "version": 1,
+ "city": "austin",
+ "snapshot": "austin.feed.json.gz",
+ "now": "2026-10-16T20:53:50.307121Z",
+ "labeler": "agent:claude (read each event; no human spot-check yet)",
+ "personas": [
+  "newcomer_default",
+  "social_25",
+  "active_30",
+  "culture_free",
+  "parent_35",
+  "nerd_40"
+ ],
+ "labels": {
+  "evt_05b1a1b126b7d857": {
+   "g": "100101",
+   "fp": "0c50a62b97fb",
+   "t": "I’ll Samba Someplace Else: A Spatial History of Race, Ethnicity, and Displacemen",
+   "why": "Campus book talk, Monday 4pm (miscategorized as race)"
+  },
+  "evt_07070b9e271505f0": {
+   "g": "110230",
+   "fp": "c6e2280890ac",
+   "t": "The Very ‘Rary 2026 The Contemporary’s annual all-ages afternoon of art and amaz",
+   "why": "All-ages art afternoon at Laguna Gloria, Sunday"
+  },
+  "evt_0836dd73b9ad3112": {
+   "g": "211220",
+   "fp": "62735f4cffe7",
+   "t": "Lady Bird Day",
+   "why": "Free admission day at the Wildflower Center, Sunday"
+  },
+  "evt_0c256909f30b149b": {
+   "g": "100200",
+   "fp": "294b819d0ae9",
+   "t": "Fieldwork Projects: Constructed Realities: A Slice of Time-Art Through Student V",
+   "why": "Campus art exhibition"
+  },
+  "evt_10e580b4249c5829": {
+   "g": "220101",
+   "fp": "85e14b6c7cde",
+   "t": "Cactus Cafe Songwriters' Open Mic Hosted by Jake Farr",
+   "why": "Free songwriters' open mic at Cactus Cafe, Tuesday"
+  },
+  "evt_1405a1794263d58e": {
+   "g": "000030",
+   "fp": "627ade809550",
+   "t": "10/17 Art in the Park: Springwoods Park",
+   "why": "Kids art in the park"
+  },
+  "evt_142bca1a8de9173d": {
+   "g": "100110",
+   "fp": "e55b70b19c6f",
+   "t": "Botanical Illustration Series",
+   "why": "Botanical illustration course, $180, Friday 9am"
+  },
+  "evt_1a466050a2f9b185": {
+   "g": "000000",
+   "fp": "e36395cb10ff",
+   "t": "\"AnxieTEA\"SHARE Community Meeting",
+   "why": "Student mental-health peer group"
+  },
+  "evt_1aea286fcfec70fa": {
+   "g": "120100",
+   "fp": "1d88f9987f94",
+   "t": "Uploader 7pm, Banned for Life 8pm-9pm",
+   "why": "Bar show at Carousel Lounge, Friday night"
+  },
+  "evt_1b1e7ea2b9e7ddb4": {
+   "g": "102010",
+   "fp": "cb1797a53a07",
+   "t": "Get FIT: Fall Series",
+   "why": "Paid fitness series, Tuesday 7:30am"
+  },
+  "evt_1cf997429735f763": {
+   "g": "000000",
+   "fp": "dcea49bc5eb2",
+   "t": "University of Texas Men's Tennis vs Rice Invitational",
+   "why": "UT tennis away invitational in Houston"
+  },
+  "evt_2a9628d7307dbf1a": {
+   "g": "220100",
+   "fp": "2fb906df528c",
+   "t": "The Red Room at Cap City: Yvette Segan",
+   "why": "Comedy show at Cap City, Friday night"
+  },
+  "evt_2ca0b7af63067b84": {
+   "g": "000000",
+   "fp": "73be02441163",
+   "t": "Adaptive Sport Night",
+   "why": "Student adaptive sports night"
+  },
+  "evt_2d76132aa77e3f49": {
+   "g": "102010",
+   "fp": "bf6ce9a6d963",
+   "t": "Yoga FIT: Fall Series",
+   "why": "Paid yoga series, Monday 10:30am"
+  },
+  "evt_35b2399118aafe09": {
+   "g": "210220",
+   "fp": "dc690f1d5462",
+   "t": "Markets for Makers 2026",
+   "why": "Makers market, Saturday"
+  },
+  "evt_36b4c251f4819ab2": {
+   "g": "320003",
+   "fp": "1b51d0c0e04a",
+   "t": "ATX Backgammon Club: Upstairs at The Victorian",
+   "why": "Backgammon club at a bar, Tuesday 6pm"
+  },
+  "evt_36c31772548d6438": {
+   "g": "120100",
+   "fp": "2be28fae6289",
+   "t": "Colton French (Distractions)",
+   "why": "Bar show at Carousel Lounge, Saturday"
+  },
+  "evt_3975f5dd060456d4": {
+   "g": "220100",
+   "fp": "81ac1a6fce68",
+   "t": "Special Event: Tisha Campbell",
+   "why": "Headliner comedy at Cap City, Friday"
+  },
+  "evt_3d2322b49582777c": {
+   "g": "110121",
+   "fp": "a823fd47f67d",
+   "t": "2026 Austin Gem and Mineral Show",
+   "why": "Gem and mineral show"
+  },
+  "evt_44c8593ef72d7e1c": {
+   "g": "221113",
+   "fp": "937e7d215afd",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Lake Austin Blvd",
+   "why": "Weekly trivia at a grocery-store BBQ counter, Thursday"
+  },
+  "evt_47853821bbcbebb3": {
+   "g": "220012",
+   "fp": "a948d6bdf275",
+   "t": "Singo at Waterloo Ice House - Southpark Meadows",
+   "why": "Music bingo at Waterloo Ice House, Thursday"
+  },
+  "evt_4827e20cbc0e8230": {
+   "g": "220101",
+   "fp": "0fe21aafed84",
+   "t": "Open Mic Night",
+   "why": "Comedy open mic, Tuesday"
+  },
+  "evt_515d665cdca69784": {
+   "g": "323121",
+   "fp": "fcc5c3fa4123",
+   "t": "Restoration Reset: Park Stewardship Series at Barton Creek Greenbelt",
+   "why": "Barton Creek Greenbelt stewardship volunteering, Saturday"
+  },
+  "evt_56ea202ceaec8c84": {
+   "g": "220010",
+   "fp": "851200ea35d6",
+   "t": "University of Texas Football vs Florida - presented by American Airlines",
+   "why": "UT football vs Florida, Saturday"
+  },
+  "evt_5cc88453d94fff84": {
+   "g": "111012",
+   "fp": "d555cdfcc6ad",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Pflugerville",
+   "why": "Trivia in Pflugerville (suburb), Wednesday"
+  },
+  "evt_5d5d32d3b41e305b": {
+   "g": "110100",
+   "fp": "41da54efad77",
+   "t": "Allan Gill",
+   "why": "Bar show, Friday 5pm"
+  },
+  "evt_5d929c32ca5673ab": {
+   "g": "100230",
+   "fp": "5bca65196c8c",
+   "t": "The Miraculous Journey of Edward Tulane",
+   "why": "Children's play at UT, $10"
+  },
+  "evt_5e56aa9f7574d5e3": {
+   "g": "120100",
+   "fp": "9b54d7492264",
+   "t": "Qwel and Nightwalker – Hip Hop",
+   "why": "Late hip-hop show, 21+, Friday"
+  },
+  "evt_5fae547c38c7809a": {
+   "g": "221113",
+   "fp": "bf93bdb1f72a",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Oltorf & S. Congress",
+   "why": "Weekly trivia on South Congress, Tuesday"
+  },
+  "evt_60692a86049734f2": {
+   "g": "000000",
+   "fp": "9cb0ec07c2e1",
+   "t": "May Term in Australia: The Politics of Protecting the Great Barrier Reef - Info ",
+   "why": "Study-abroad info session"
+  },
+  "evt_6662307e0e078ac9": {
+   "g": "000000",
+   "fp": "d6d2f7ba4fef",
+   "t": "AHA BLS Provider (CPR)",
+   "why": "CPR certification class (campus)"
+  },
+  "evt_6838c80a21234501": {
+   "g": "120100",
+   "fp": "d745423b962e",
+   "t": "Angie Rock & Roll Circus w/ Moonlight Mysteries, Mal Thursday Quintet, Joe Mazza",
+   "why": "Multi-band bar show, Saturday"
+  },
+  "evt_6a9900583fc3e58a": {
+   "g": "000000",
+   "fp": "bdad27f55f19",
+   "t": "Spark in the Park: Dick Nichols District Park",
+   "why": "Wellness series for seniors"
+  },
+  "evt_6ac24ed6a47de49d": {
+   "g": "220101",
+   "fp": "9267b902dc19",
+   "t": "The Peterson Brothers",
+   "why": "Free show at Saxon Pub, Tuesday 6pm"
+  },
+  "evt_6b6210e609c0b0e7": {
+   "g": "000000",
+   "fp": "7cdfd84bcedf",
+   "t": "Spark in the Park: Gus Garcia District Park",
+   "why": "Wellness series for seniors"
+  },
+  "evt_6d28e004216caab8": {
+   "g": "000000",
+   "fp": "9918f08cf634",
+   "t": "Phoebe Bridgers",
+   "why": "Arena concert, sold out per the listing"
+  },
+  "evt_73506d493c0b2a0b": {
+   "g": "210111",
+   "fp": "7c27cda9f16b",
+   "t": "Austin Coffee Festival",
+   "why": "Austin Coffee Festival, Saturday"
+  },
+  "evt_748ea81b18021386": {
+   "g": "220012",
+   "fp": "d04d5cf7aebc",
+   "t": "Singo at Main Streat Food Hall & Bar (HEB) - Mueller",
+   "why": "Music bingo at a Mueller food hall, Thursday"
+  },
+  "evt_76ce179a5c10e5cd": {
+   "g": "112011",
+   "fp": "954da118f460",
+   "t": "ASES Solar 2026 Climate Ride",
+   "why": "Climate ride/walk, Sunday evening"
+  },
+  "evt_79edb032ad66f36f": {
+   "g": "120100",
+   "fp": "26fe915fa0a0",
+   "t": "Matthew Melton, John Wheeler, Evan Voyles, Brandon Hudgeons",
+   "why": "Bar show, Friday 9pm"
+  },
+  "evt_7ccd18ad034a4e7b": {
+   "g": "000000",
+   "fp": "da8a321d65b2",
+   "t": "Patman Center Spring 2027 Courses Information Session",
+   "why": "Course info session for students"
+  },
+  "evt_81b78a0a02a9b1f4": {
+   "g": "110010",
+   "fp": "40be6687a5b9",
+   "t": "University of Texas Softball vs Temple CC",
+   "why": "College softball exhibition, Tuesday"
+  },
+  "evt_82487210fd3c815d": {
+   "g": "000000",
+   "fp": "93628071982b",
+   "t": "May Term in Vietnam: Fashion, Retail, Design and Manufacturing - Info Session",
+   "why": "Study-abroad info session"
+  },
+  "evt_82b15083c0083a43": {
+   "g": "110011",
+   "fp": "80c4638cef24",
+   "t": "Singo at True Texas BBQ (HEB) - Kyle",
+   "why": "Music bingo in Kyle (far suburb)"
+  },
+  "evt_82c21225580060ce": {
+   "g": "000000",
+   "fp": "b6479191d5aa",
+   "t": "Afternoon Yoga",
+   "why": "Yoga for students in recovery"
+  },
+  "evt_887ab0a7be402469": {
+   "g": "111012",
+   "fp": "3a7af15dc5c3",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Georgetown",
+   "why": "Trivia in Georgetown (suburb)"
+  },
+  "evt_8a6888b16fb9154a": {
+   "g": "221113",
+   "fp": "31527fa096ff",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Congress",
+   "why": "Weekly trivia on Congress, Tuesday"
+  },
+  "evt_8cd5f3f84d0cc422": {
+   "g": "221113",
+   "fp": "0eb554425e15",
+   "t": "Live Trivia at Main Streat Food Hall & Bar (HEB) - Austin",
+   "why": "Weekly trivia at a food hall, Wednesday"
+  },
+  "evt_8d592b1e188eb218": {
+   "g": "331113",
+   "fp": "943670afd7d7",
+   "t": "Live Trivia at Celis Brewery - North Austin",
+   "why": "Weekly brewery trivia, Monday"
+  },
+  "evt_8ee4be6c14531394": {
+   "g": "000000",
+   "fp": "d0bc28486a77",
+   "t": "Native Plant Gardening Series: Plants II (Sold Out)",
+   "why": "Gardening class, sold out per the listing"
+  },
+  "evt_8eff6ced20916374": {
+   "g": "000001",
+   "fp": "ac571641f41f",
+   "t": "From Research to Action: A Roadmap for a Healthier Texas",
+   "why": "Public-health policy talk, Tuesday noon"
+  },
+  "evt_90cadd373442f1fe": {
+   "g": "220012",
+   "fp": "4b3518f255ea",
+   "t": "Singo at True Texas BBQ (HEB) - Austin - Tech Ridge",
+   "why": "Music bingo at Tech Ridge, Wednesday"
+  },
+  "evt_923eec524514ea7a": {
+   "g": "000000",
+   "fp": "f90b05f27ac3",
+   "t": "Research in Education and Public Policy Seminar Series: David Yeager",
+   "why": "Academic seminar"
+  },
+  "evt_92f99c24f163cfab": {
+   "g": "120100",
+   "fp": "412cbdd5083d",
+   "t": "Rob Baird",
+   "why": "Singer-songwriter at Saxon Pub, Friday"
+  },
+  "evt_9657b3c23d762ccf": {
+   "g": "220101",
+   "fp": "b59fd92d8f68",
+   "t": "PAACK",
+   "why": "Free show at Saxon Pub, Thursday 6pm"
+  },
+  "evt_98454ce5c857bb00": {
+   "g": "110100",
+   "fp": "d99fe40007c1",
+   "t": "Ancestral Tongue",
+   "why": "Bar show, Saturday 5pm"
+  },
+  "evt_98ebc10e32b5ea59": {
+   "g": "110100",
+   "fp": "f88aaec104bc",
+   "t": "Snarky Puppy",
+   "why": "Big-name concert, Monday"
+  },
+  "evt_9e1554ed68ace037": {
+   "g": "000000",
+   "fp": "1d886937d512",
+   "t": "\"Heavy Hearts Collective: Support for Sadness & Depression\" SHARE Community Meet",
+   "why": "Student support group"
+  },
+  "evt_9ea7ca66cb840088": {
+   "g": "110100",
+   "fp": "206015f48b12",
+   "t": "Blessing Offor",
+   "why": "Concert, Sunday night"
+  },
+  "evt_a5cc666471828c21": {
+   "g": "000030",
+   "fp": "1b856d4a6185",
+   "t": "10/21 Playdate in the Park: Great Hills Neighborhood Park",
+   "why": "Kids playdate in the park"
+  },
+  "evt_a7a2baccf6a54643": {
+   "g": "001000",
+   "fp": "04ed06b577a1",
+   "t": "Through the Seasons: A Year of Yoga, Meditation & Sound Healing \"Cultivating Swe",
+   "why": "Campus yoga series (students/staff)"
+  },
+  "evt_a8b458e31b485fab": {
+   "g": "000001",
+   "fp": "5174e0f24068",
+   "t": "A Progressive Viewpoint: Election Law and Voting Rights in Texas",
+   "why": "Voting-rights talk, Thursday noon"
+  },
+  "evt_ab03cdf9242bb428": {
+   "g": "101110",
+   "fp": "d089884f89e7",
+   "t": "Tour With a Gardener",
+   "why": "Garden tour, Tuesday 4:30pm"
+  },
+  "evt_ae886f143651c6f5": {
+   "g": "331113",
+   "fp": "a8d7a06db6a0",
+   "t": "Live Trivia at Kelly's Irish - W Oltorf St",
+   "why": "Weekly Irish-pub trivia, Tuesday"
+  },
+  "evt_b2b8d262679ebcb9": {
+   "g": "220200",
+   "fp": "23bd8634e0e8",
+   "t": "TG BAD",
+   "why": "Free show at Saxon Pub, Friday 6pm"
+  },
+  "evt_b54c08a426c2fbfa": {
+   "g": "212011",
+   "fp": "b3177a693054",
+   "t": "Restoration Reset: Park Stewardship Series at Walnut Creek Metro Park",
+   "why": "Park stewardship work session, Friday"
+  },
+  "evt_b8b1dff9df5ff8f2": {
+   "g": "000000",
+   "fp": "5fcb3dff1399",
+   "t": "Floral Arrangements with Native Plants (Sold Out)",
+   "why": "Floral class, sold out per the listing"
+  },
+  "evt_bd8a098c2ef949f0": {
+   "g": "100110",
+   "fp": "db0c7b7f0e9f",
+   "t": "Public Days: Fall Native Plant Sale",
+   "why": "Native plant sale"
+  },
+  "evt_bef3d02cefe7c8be": {
+   "g": "221113",
+   "fp": "478bb45d1dff",
+   "t": "Live Trivia at True Texas BBQ (HEB) - Hancock Center",
+   "why": "Weekly trivia at Hancock Center, Tuesday"
+  },
+  "evt_c02ef0cb0695e725": {
+   "g": "100200",
+   "fp": "22bac8628576",
+   "t": "How to Grow the Cowpea: Artistic and Ecological Pedagogies in Practice",
+   "why": "Campus group exhibition"
+  },
+  "evt_c179c0a7620d0a3a": {
+   "g": "000000",
+   "fp": "77714abe9158",
+   "t": "\"Black Sheep: Outsiders Together\" SHARE Community Meeting",
+   "why": "Student peer group"
+  },
+  "evt_c2783950745294f1": {
+   "g": "220100",
+   "fp": "f6d7420ba49a",
+   "t": "The Resentments",
+   "why": "The Resentments at Saxon Pub, Sunday, $15"
+  },
+  "evt_c43a18594db474a8": {
+   "g": "000000",
+   "fp": "23728680ef3d",
+   "t": "\"Longhorns Who Carry the Burdens of Others\" SHARE Community Meeting",
+   "why": "Student peer group"
+  },
+  "evt_c580e2095604af09": {
+   "g": "120100",
+   "fp": "e57fe62300e1",
+   "t": "Femme Frequency – The Seance",
+   "why": "Late show at Flamingo Cantina, Saturday"
+  },
+  "evt_c63ac53a6c47ac5d": {
+   "g": "212011",
+   "fp": "9c65418228be",
+   "t": "Volunteer: Monkey Tree Fall Refresh and Swim",
+   "why": "Barton Springs volunteer refresh, Friday"
+  },
+  "evt_c8db03acab09534a": {
+   "g": "000000",
+   "fp": "c5978bfda509",
+   "t": "Career Storytelling Workshop",
+   "why": "Workshop for grad students"
+  },
+  "evt_cc43e28881fb5543": {
+   "g": "110010",
+   "fp": "b56a45d55d2f",
+   "t": "University of Texas Softball vs Temple CC",
+   "why": "College softball exhibition, Tuesday"
+  },
+  "evt_d0ab5da87fb1c466": {
+   "g": "222121",
+   "fp": "9704559f9689",
+   "t": "Restoration Reset: Park Stewardship at Kendra Page Neighborhood Park",
+   "why": "Neighborhood park stewardship, Saturday"
+  },
+  "evt_d446431e20b49f73": {
+   "g": "110011",
+   "fp": "2212b17b1755",
+   "t": "Singo at True Texas BBQ (HEB) - Bastrop",
+   "why": "Music bingo in Bastrop (far)"
+  },
+  "evt_d53b4e30885ef00c": {
+   "g": "210010",
+   "fp": "598a3d549136",
+   "t": "University of Texas Volleyball vs Auburn - presented by American Airlines",
+   "why": "UT volleyball vs Auburn, Friday"
+  },
+  "evt_d74f6aabf24d7a86": {
+   "g": "000000",
+   "fp": "57c9b92e310e",
+   "t": "\"Escaping the Parent Trap: Reflecting on Family Relationships Through Film\" SHAR",
+   "why": "Student peer group"
+  },
+  "evt_d98708031db7763a": {
+   "g": "000000",
+   "fp": "b2ad12f9a0b7",
+   "t": "Video Game Night",
+   "why": "Student video game night"
+  },
+  "evt_daf10dc4fdeffbc8": {
+   "g": "110100",
+   "fp": "47282406c823",
+   "t": "Weezer",
+   "why": "Arena rock concert, Sunday"
+  },
+  "evt_db94e489747852a3": {
+   "g": "210111",
+   "fp": "9b5a239dce8f",
+   "t": "Tuesday Twilights Feat. Meghan Marie",
+   "why": "Music in the Wildflower Center courtyard, Tuesday 5pm"
+  },
+  "evt_e43ae4ca59d6baaa": {
+   "g": "000000",
+   "fp": "c181e73ef5a7",
+   "t": "\"Connecting to Cultures\" SHARE Community Meeting",
+   "why": "Student peer group"
+  },
+  "evt_ebd93a4d5ba7bb06": {
+   "g": "120000",
+   "fp": "63c6946f33d0",
+   "t": "Dreadneck Wednesdays",
+   "why": "$5 reggae night, Wednesday 9pm"
+  },
+  "evt_f1a69c6c7cfebc80": {
+   "g": "120100",
+   "fp": "20d6331ca4f2",
+   "t": "DJ Mel",
+   "why": "DJ set at 3TEN, Saturday"
+  },
+  "evt_f560fb30d4fed8ed": {
+   "g": "120100",
+   "fp": "9905fd2fd3bf",
+   "t": "Denim",
+   "why": "$10 show at Saxon Pub, Saturday 4pm"
+  },
+  "evt_fd85f81baac38041": {
+   "g": "110010",
+   "fp": "026c93757791",
+   "t": "University of Texas Soccer vs South Carolina",
+   "why": "College soccer, Sunday"
+  },
+  "evt_ff7786f6ea1d86f5": {
+   "g": "110000",
+   "fp": "d33c9d783b57",
+   "t": "The Chicks: Taking The Long Way Home: 20 Years",
+   "why": "$95 arena-scale concert, Tuesday"
+  },
+  "evt_ff925608b4d45bec": {
+   "g": "000000",
+   "fp": "c50b98274e9a",
+   "t": "Shyne",
+   "why": "Show called off per the listing text"
+  }
+ },
+ "rules": [
+  {
+   "when": {
+    "tags_any": [
+     "kids_teens"
+    ]
+   },
+   "except_persona": [
+    "parent_35"
+   ],
+   "grade": 0,
+   "why": "kids content for adults"
+  },
+  {
+   "when": {
+    "flags_any": [
+     "hard_noise",
+     "admin"
+    ]
+   },
+   "grade": 0,
+   "why": "administrative noise or cancelled"
+  }
+ ]
+}
