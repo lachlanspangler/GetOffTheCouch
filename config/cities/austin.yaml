@@ -290,3 +290,19 @@ sources:
       default_category: outdoors.park
       trust_valid_from: false
       classify_description: true
+  - id: acl_live
+    adapter: rss_events
+    name: ACL Live at The Moody Theater & 3TEN (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.acllive.com/events
+    expect_min_records: 30
+    notes: >-
+      carbonhouse events RSS (/events/rss, ev: module with UTC start times); robots allows all; the site's terms
+      (Ryman Hospitality) have no automated-access clause. Tickets are AXS (no face-value price in the feed).
+    params:
+      url: https://www.acllive.com/events/rss
+      horizon_days: 180
+      venue: {name: ACL Live at The Moody Theater, address: "310 W Willie Nelson Blvd, Austin, TX 78701"}
+      organizer: ACL Live
+      default_category: music.concert

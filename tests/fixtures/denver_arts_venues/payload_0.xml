@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:admin="http://webns.net/mvcb/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:ev="http://purl.org/rss/1.0/modules/event/">
+
+    <channel>
+
+    <title>Denver Performing Arts Complex</title>
+    <link>https://www.artscomplex.com/</link>
+    <description></description>
+    <dc:language>en</dc:language>
+	<dc:rights>Copyright 2026</dc:rights>
+    <dc:date>2026-10-16T07:51:16Z</dc:date>
+    <admin:generatorAgent rdf:resource="http://carbonhouse.com/" />
+
+		
+															<item>
+					<title>The Tempest</title>
+					<link>https://www.denvercenter.org/tickets-events/the-tempest/</link>
+					<guid>https://www.denvercenter.org/tickets-events/the-tempest/</guid>
+					<description>Get swept away by Shakespeare&apos;s fantastical tale of shipwreck, monsters, romance, and revenge. Exiled from their home, the sorcerer Prospero and his daughter Miranda have survived for years on a remote island. When a ship carrying Prospero&apos;s enemies sails into his conjured storm, he finally has a chance to take revenge&#45;and maybe, to weave a brighter future for his daughter. Ensnaring everyone in his labyrinth of sorcery and misdirection, Prospero summons all his power to set his world right.</description>
+											<ev:location>Kilstrom Theatre</ev:location>
+																<dc:date>2026-10-17T01:00:00Z</dc:date>
+						<ev:startdate>2026-10-17T01:00:00Z</ev:startdate>
+						<ev:enddate>2026-11-01T20:30:00Z</ev:enddate>
+														</item><item>
+					<title>Joe Hisaishi with the Colorado Symphony</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/joe-hisaishi-7900</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/joe-hisaishi-7900</guid>
+					<description>&lt;div class=&quot;container&quot; style=&quot;width: 100%; margin: 0px; padding: 0px;&quot;&gt;
+&lt;div class=&quot;col&#45;md&#45;4&quot; style=&quot;; margin: 0px; padding: 0px 1rem;&quot;&gt;
+&lt;p&gt;&lt;a class=&quot;btn btn&#45;small&quot; href=&quot;#Tickets&quot;&gt;Jump to Tickets &lt;i class=&quot;fas&quot;&gt;?&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;container&quot; style=&quot;margin: 0px; padding: 0px; width: 100%;&quot;&gt;
+&lt;div class=&quot;col&#45;md&#45;4&quot; style=&quot;margin: 0px; padding: 0rem 1rem;&quot;&gt;
+&lt;p class=&quot;small&quot; style=&quot;margin&#45;top: 3rem; font&#45;size: .875rem; letter&#45;spacing: .175rem;&quot;&gt;PRESENTED BY:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.cpr.org/classical/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Classical_Freq_Logo_Color&#45;1&#45;e1782247153473.png&quot; style=&quot;max&#45;width: 150px; width: 100%;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Program&lt;/h3&gt;
+
+&lt;p class=&quot;small&quot;&gt;&lt;b&gt;DAVID LANG&lt;/b&gt;  &lt;i&gt;Mountain&lt;/i&gt;&lt;br /&gt;
+&lt;b&gt;STEVE REICH&lt;/b&gt;  Music for Ensemble and Orchestra&lt;br /&gt;
+&lt;b&gt;JOE HISAISHI&lt;/b&gt;  Concerto for Orchestra&lt;/p&gt;
+
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Featured Artists&lt;/h3&gt;
+
+&lt;p class=&quot;small&quot; style=&quot;margin&#45;bottom: 1rem;&quot;&gt;Joe Hisaishi, conductor&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://joehisaishi.com/&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Joe Hisaishi&quot; src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Joe&#45;Hisaishi&#45;Credit&#45;Nick&#45;Rutter&#45;3&#45;500x500&#45;1.jpg&quot; style=&quot;display: unset !important; margin&#45;bottom: 10px; width: 160px; height: 160px; border&#45;radius: 1000px; border: 5px solid #bfbfbf;&quot; title=&quot;Joe Hisaishi&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;col&#45;md&#45;7&quot; style=&quot;margin: 0px; padding: 0rem 1rem;&quot;&gt;
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Description&lt;/h3&gt;
+
+&lt;p&gt;Joe Hisaishi is one of the most celebrated composers of our time. He has established himself as a formidable force in contemporary music for his delicately crafted symphonic and solo works, as well as his globally successful film music. His credits include 12 enchanting, animated Studio Ghibli films, including Hayao Miyazaki&apos;s Oscar&#45;winning works, as well as being the Composer&#45;in&#45;Association of Royal Philharmonic Orchestra, and the Composer in Residence for the Philadelphia Orchestra. In his Boettcher Concert Hall debut, Hisaishi will conduct a new Concerto for Orchestra that was co&#45;commissioned by the Colorado Symphony.&lt;/p&gt;
+
+&lt;p&gt;Written in five movements and running approximately 45 minutes, the &lt;em&gt;Concerto for Orchestra&lt;/em&gt; follows a form made iconic by composers such as Béla Bartók, Witold Lutoslawski, and Zoltán Kodály, placing the orchestra itself at the center of expression. Hisaishi notes, “My aim has been to pursue the pure motion of sound,” drawing on his experience conducting works including Bartók’s &lt;em&gt;Concerto for Orchestra&lt;/em&gt; and Steve Reich’s &lt;em&gt;The Desert Music&lt;/em&gt;. The work’s first and third movements feature driving rhythmic textures, while the inner movements highlight lyrical solo passages for individual instruments. The final movement brings these rhythmic and lyrical elements together.&lt;/p&gt;
+
+&lt;div style=&quot;display: flex; margin: 2rem 0rem 0rem; align&#45;items: center; background&#45;color: #f2f2f2; padding: 1rem;&quot;&gt;&lt;img src=&quot;https://coloradosymphony.org/app/uploads/2022/10/HalfNotes&#45;Purple&#45;700x200&#45;1.png&quot; style=&quot;width: 80px; display: inline;&quot; /&gt;
+&lt;p class=&quot;small&quot; style=&quot;padding: 0rem 2rem 0rem 1rem;&quot;&gt;Join us for &lt;strong&gt;HalfNotes&lt;/strong&gt;, a fun and family&#45;friendly activity prior to the performance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+											<ev:location>Boettcher Concert Hall</ev:location>
+																<dc:date>2026-10-17T01:30:00Z</dc:date>
+						<ev:startdate>2026-10-17T01:30:00Z</ev:startdate>
+						<ev:enddate>2026-10-18T01:30:00Z</ev:enddate>
+														</item><item>
+					<title>The Who’s TOMMY</title>
+					<link>https://www.denvercenter.org/tickets-events/the-whos-tommy/</link>
+					<guid>https://www.denvercenter.org/tickets-events/the-whos-tommy/</guid>
+					<description>In 1969, The Who created a rock opera that changed the course of music history. And now, it&apos;s back in a dazzling all&#45;new production that feels more relevant than ever. Myth and spectacle combine in this fresh reinvention that includes the unforgettable anthems &quot;I&apos;m Free,&quot; &quot;See Me, Feel Me,&quot; &quot;Sensation&quot; and &quot;Pinball Wizard.&quot; After witnessing his father shoot his rival, the young Tommy Walker is lost in the universe, endlessly and obsessively staring into the mirror. An innate knack for pinball catapults him from reticent adolescent to celebrity savior. Tony Award&#45;winning composer Pete Townshend and Tony Award&#45;winning original director Des McAnuff find powerful resonance reexamining this classic story for today.</description>
+											<ev:location>Buell Theatre</ev:location>
+																<dc:date>2026-10-17T01:30:00Z</dc:date>
+						<ev:startdate>2026-10-17T01:30:00Z</ev:startdate>
+						<ev:enddate>2026-10-19T00:00:00Z</ev:enddate>
+														</item><item>
+					<title>Kids&apos; Matinee: The Playmakers, The Wizard of Oz, an interactive event</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/kids-matinee-the-playmakers-the-wizard-of-oz-an-interactive-event-191882</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/kids-matinee-the-playmakers-the-wizard-of-oz-an-interactive-event-191882</guid>
+					<description>&lt;p&gt;Age Range: 5&#45;16 years&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;There’s lions and tigers and bears, (oh my!) when we recreate Dorothy’s adventure from Kansas to Oz. Our professional actress, who plays Dorothy, will recruit willing audience members to “star” as her traveling pals and various other “Ozian” characters. Nobody gets left out of the excitement as everyone helps from their seats as munchkins, guards and citizens of the Emerald City. (oh my!)&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Looking for a stress&#45;free, joy&#45;filled birthday party your child will never forget? Dazzle delivers live, interactive musical fun, delicious food, and sweet treats like ice cream everyone loves &#45; all in one magical celebration space. Learn more &lt;/em&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer nofollow&quot; href=&quot;https://www.dazzledenver.com/easy&#45;on&#45;you&#45;kids&#45;birthday&#45;party&#45;package/&quot;&gt;&lt;em&gt;here&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;The kitchen and bar are open with a special kid’s menu to feed and entertain the whole family.&lt;/em&gt;&lt;/p&gt;</description>
+											<ev:location>Dazzle</ev:location>
+																<dc:date>2026-10-17T18:00:00Z</dc:date>
+						<ev:startdate>2026-10-17T18:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-17T18:00:00Z</ev:enddate>
+														</item><item>
+					<title>Catrinas en Mi Ciudad | Tempus Quartet Outdoor Concert</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/catrinas-en-mi-ciudad-tempus-quartet-outdoor-concert</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/catrinas-en-mi-ciudad-tempus-quartet-outdoor-concert</guid>
+					<description>&lt;p&gt;Tempus Quartet is a contemporary classical fusion ensemble from Mexico, known for its innovative approach to reinterpreting the classical repertoire through a dynamic integration of cinematic, popular and Latin American influences. The ensemble bridges traditional chamber music with contemporary soundscapes, creating performances that are both technically refined and emotionally accessible to diverse audiences. Their work challenges conventional concert formats by incorporating elements of visual narratives, stage presence, and theatrical sensibility, positioning them at the intersection of classical music and performative art. Through original arrangements and stylistic reinterpretations, Tempus Quartet expands the expressive possibilities of the string quartet format, engaging both traditional classical audiences and new listeners seeking immersive and cross&#45;genre experiences. Their participation in Catrinas en Mi Ciudad outdoor concert significantly enhances the sonic and atmospheric dimension of the production, serving as a central musical force that supports the narrative arc and emotional intensity of the work.&lt;/p&gt;
+
+&lt;p&gt;Through this artistic collaboration, the project also establishes a cultural bridge between Mexico and Colorado, creating an opportunity to share Mexican traditions, foster new connections, and introduce Mexican culture to communities who may encounter it for the first time through the arts. Music, voice, movement, and visual expression/storytelling will come together within a unified narrative exploring universal themes such as memory, life, loss, identity, and the celebration of our roots.&lt;/p&gt;
+
+&lt;p&gt;This event is part of the Catrinas en Mi Ciudad exhibit. Learn more at: &lt;a data&#45;msys&#45;clicktrack=&quot;0&quot; href=&quot;https://www.artscomplex.com/explore&#45;the&#45;complex/arts&#45;complex&#45;art&#45;exhibits/catrinas&#45;en&#45;mi&#45;ciudad/&quot; rel=&quot;ugc nofollow noopener noreferrer&quot; target=&quot;_blank&quot; title=&quot;https://www.artscomplex.com/explore&#45;the&#45;complex/arts&#45;complex&#45;art&#45;exhibits/catrinas&#45;en&#45;mi&#45;ciudad/&quot;&gt;https://www.artscomplex.com/explore&#45;the&#45;complex/arts&#45;complex&#45;art&#45;exhibits/catrinas&#45;en&#45;mi&#45;ciudad/&lt;/a&gt;&lt;/p&gt;
+</description>
+											<ev:location>Sculpture Park at Denver Performing Arts Complex</ev:location>
+																<dc:date>2026-10-17T23:00:00Z</dc:date>
+						<ev:startdate>2026-10-17T23:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-17T23:00:00Z</ev:enddate>
+														</item><item>
+					<title>FDR&apos;s Very Happy Hour</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/fdrs-very-happy-hour</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/fdrs-very-happy-hour</guid>
+					<description>&lt;p dir=&quot;ltr&quot; id=&quot;docs&#45;internal&#45;guid&#45;e5b8be06&#45;7fff&#45;272f&#45;fbfe&#45;1844ae9f6660&quot;&gt;Spend a spirited happy hour with America&#39;s 32nd president, back from the great beyond to remind the modern world of his legacy. (C&#45;SPAN ranks him one of the top 3 presidents of all time. He&#39;d like you to know that.)&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;Inspired by Franklin Delano Roosevelt&#39;s real&#45;life habit of hosting cocktail hour nearly every day at the White House to connect and unwind during challenging times, FDR&#39;s Very Happy Hour is an immersive happy hour experience that mixes humor and history. Alongside cocktails, mocktails, and soft drinks (it is a happy hour, after all), the evening features game&#45;show trivia, cozy activities to get the room talking, a different &amp;quot;changemaker&amp;quot; from the local community at every performance, and the occasional surprise guest. As FDR invites us to ponder life, a complicated legacy, and the pursuit of community, strangers become friends&amp;mdash;and perhaps, together, we can find ways to talk with our neighbors again.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;Prioritizing an accessible experience for as many as possible, open captioning, ASL interpretation, and design of the physical space for wheelchair access are part of the show. (Roosevelt was, after all, a wheelchair user.)&amp;nbsp;If you or anyone in your party has specific access needs, email them to &lt;a href=&quot;mailto:fdrassists@highhardheat.com&quot; target=&quot;_blank&quot;&gt;fdrassists@highhardheat.com&lt;/a&gt; with the date and time of your performance, and we&#39;ll be happy to help.&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe allow=&quot;accelerometer; autoplay; clipboard&#45;write; encrypted&#45;media; gyroscope; picture&#45;in&#45;picture; web&#45;share&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;315&quot; referrerpolicy=&quot;strict&#45;origin&#45;when&#45;cross&#45;origin&quot; src=&quot;https://www.youtube.com/embed/TfFBki4AZ0c?si=axVnUqYkrWxkfwVD&quot; title=&quot;YouTube video player&quot; width=&quot;560&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;Each performance features a short interview with a unique &amp;quot;changemaker&amp;quot; from the local community. The confirmed Changemakers so far are as follows:&lt;/p&gt;
+
+&lt;ul dir=&quot;ltr&quot;&gt;
+	&lt;li&gt;Wed, Oct 14 at 7:30pm: Karen Kellen, Board Member of&amp;nbsp;Metro West Housing&amp;nbsp;Solutions&lt;/li&gt;
+	&lt;li&gt;Thu, Oct 15 at 7:30pm:&amp;nbsp;Vicky Collins,&amp;nbsp;President of&amp;nbsp;Bucket List Community News&lt;/li&gt;
+	&lt;li&gt;Sun, Oct 18 at 2pm:&amp;nbsp;Brother James Patrick Hall,&amp;nbsp;Executive Director/Board Member of&amp;nbsp;Rocky Mountain Refuge&lt;/li&gt;
+	&lt;li&gt;Sun, Oct 18 at 7:30pm:&amp;nbsp;Ryan Conarro,&amp;nbsp;Co&#45;Director, Programs &amp;amp; Partnerships of&amp;nbsp;Colorado Radio for Justice&lt;/li&gt;
+	&lt;li&gt;Thu, Oct 22 at 7:30pm: Leslie Herod, Former Colorado State Representative&lt;/li&gt;
+	&lt;li&gt;Sun, Oct 25 at 2pm:&amp;nbsp;Julie Reiskin,&amp;nbsp;Co&#45;Executive Director of&amp;nbsp;Colorado Cross Disability Coalition&lt;/li&gt;
+	&lt;li&gt;Sun, Oct 25 at 7:30pm:&amp;nbsp;Dr. PJ Parmar,&amp;nbsp;Founder of&amp;nbsp;Ardas Family Medicine at Mango House&lt;/li&gt;
+	&lt;li&gt;Mon, Oct 26 at 7:30pm:&amp;nbsp;Dr. Lydia Prado,&amp;nbsp;Founder of&amp;nbsp;Lifespan Wellness&lt;/li&gt;
+	&lt;li&gt;Tue, Oct 27 at 11am:&amp;nbsp;Jordan Garcia,&amp;nbsp;Program Director of&amp;nbsp;American Friends Service Committee&lt;/li&gt;
+	&lt;li&gt;Tue, Oct 27 at 7:30pm:&amp;nbsp;
+	&lt;style type=&quot;text/css&quot;&gt;&lt;!&#45;&#45;td {border: 1px solid #cccccc;}br {mso&#45;data&#45;placement:same&#45;cell;}&#45;&#45;&gt;
+	&lt;/style&gt;
+	Manige Blackburn&#45;Giles,&amp;nbsp;
+	&lt;style type=&quot;text/css&quot;&gt;&lt;!&#45;&#45;td {border: 1px solid #cccccc;}br {mso&#45;data&#45;placement:same&#45;cell;}&#45;&#45;&gt;
+	&lt;/style&gt;
+	Community Organizer with&amp;nbsp;
+	&lt;style type=&quot;text/css&quot;&gt;&lt;!&#45;&#45;td {border: 1px solid #cccccc;}br {mso&#45;data&#45;placement:same&#45;cell;}&#45;&#45;&gt;
+	&lt;/style&gt;
+	Colorado Criminal Justice Reform Coalition&lt;/li&gt;
+	&lt;li&gt;Sat, Oct 31 at 2pm:&amp;nbsp;Rashid Jordan,&amp;nbsp;Director of Strategic Partnerships of&amp;nbsp;Second Chance Center&lt;/li&gt;
+	&lt;li&gt;Sun, Nov 1 at 2pm:&amp;nbsp;Gary Steuer, Philanthropy, nonprofit management and leadership development consultant &amp;amp;&amp;nbsp;Former President of the Bonfils&#45;Stanton Foundation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;&#45;&#45;&lt;/p&gt;
+
+&lt;p&gt;Must be 21 or over to redeem voucher towards alcohol. Age verification will be required for redemption. No refunds will be provided.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;AXS Mobile ID Delivery will be sent to your AXS account. Download the AXS app before your visit. Mobile/E&#45;Ticket Delivery will be sent to the email used to purchase.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;All entrances to the Studio Loft are accessible.&amp;nbsp; Wheelchair accessible seating locations are available where patrons can remain in their wheelchairs or transfer to theatre seats.&amp;nbsp; Accessible seating will be arranged upon arrival.&amp;nbsp; Courtesy wheelchairs are available upon request, call 720.865.4200 upon arrival. You will need to provide them with the make, model, and color of your vehicle, as well as your location.&amp;nbsp; They will then contact the House Management team to meet you with a wheelchair.&amp;nbsp; Wheelchair accessible parking is located in the DPAC Garage on levels 3, 4, and 5; there is also curbside drop off at 14&lt;sup&gt;th&lt;/sup&gt; Street between Curtis and Champa.&lt;/strong&gt;&lt;/p&gt;
+</description>
+											<ev:location>Studio Loft of the Ellie Caulkins Opera House</ev:location>
+																<dc:date>2026-10-18T20:00:00Z</dc:date>
+						<ev:startdate>2026-10-18T20:00:00Z</ev:startdate>
+						<ev:enddate>2026-11-02T02:30:00Z</ev:enddate>
+																<ev:type>Other</ev:type>
+									</item><item>
+					<title>Disney&apos;s Beauty and the Beast</title>
+					<link>https://www.denvercenter.org/tickets-events/beauty-the-beast/</link>
+					<guid>https://www.denvercenter.org/tickets-events/beauty-the-beast/</guid>
+					<description>Be Our Guest at Beauty and the Beast, Disney&apos;s first North American touring production of the beloved musical in over 25 years. This enchanting and timeless tale, filled with the romance and grandeur audiences know and love, has been brought to life like never before, with spectacular new sets and dazzling costumes. The show boasts the Oscar®&#45;winning and Tony Award®&#45;nominated score, including the classic songs &quot;Be Our Guest&quot; and &quot;Beauty and the Beast.&quot; Reuniting to create this new production are members of the original Tony Award®&#45;winning artistic team, including composer Alan Menken, lyricist Tim Rice, book writer Linda Woolverton, with direction and choreography by Matt West, scenic design by Stanley A. Meyer, costume design by Ann Hould&#45;Ward and lighting design by Natasha Katz. Beauty and the Beast is the beloved musical that will fill your heart with joy and Disney magic.</description>
+											<ev:location>Buell Theatre</ev:location>
+																<dc:date>2026-10-21T01:30:00Z</dc:date>
+						<ev:startdate>2026-10-21T01:30:00Z</ev:startdate>
+						<ev:enddate>2026-11-08T02:30:00Z</ev:enddate>
+														</item><item>
+					<title>Artists in Conversation: Macbeth</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/artists-in-conversation-macbeth</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/artists-in-conversation-macbeth</guid>
+					<description>&lt;p data&#45;pm&#45;slice=&quot;1 1 []&quot;&gt;Go beyond the performance and discover the stories behind Macbeth.&lt;/p&gt;
+
+&lt;p&gt;Join Opera Colorado for an engaging evening of conversation as members of the Macbeth creative team and cast share insights into Verdi&#39;s gripping masterpiece. Moderated by Ellie Caulkins Artistic Director &amp;amp; CEO Barbara Lynne Jamison,&amp;nbsp;this lively discussion explores the music, characters, creative process, and artistic vision that bring one of opera&#39;s most thrilling dramas to life.&lt;/p&gt;
+
+&lt;p&gt;Whether you&#39;re attending Macbeth for the first time or returning to a favorite work, Artists in Conversation offers a unique opportunity to hear directly from the artists before opening night.&lt;/p&gt;
+
+&lt;p&gt;This event is Pay What You Wish, and advance registration is encouraged.&lt;/p&gt;
+</description>
+											<ev:location>The Chambers Grant Salon</ev:location>
+																<dc:date>2026-10-22T00:00:00Z</dc:date>
+						<ev:startdate>2026-10-22T00:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-22T00:00:00Z</ev:enddate>
+														</item><item>
+					<title>Kelly Green Trio</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/kelly-green-trio-170188</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/kelly-green-trio-170188</guid>
+					<description>&lt;p&gt;Award&#45;winning Steinway Artist Kelly Green is a New York City based pianist, vocalist, composer, and bandleader of rare elegance. Her diverse repertoire showcases emotionally potent, genre&#45;defying original music seamlessly woven with reimagined works by Duke Ellington, Mulgrew Miller, Blossom Dearie, and many others. Green and her band effortlessly blend modern innovation with the depth of jazz tradition, bringing audiences something as complex as it is accessible. Originally from Orlando, Florida, Green arrived to New York in 2015. Since then she has performed and recorded with luminaries including Christian McBride, Wycliffe Gordon, Rich Perry, Steve Wilson, Scott Robinson, George Coleman, and Billy Hart. Green released her fifth studio album Corner of My Dreams in 2025 and is set to release her sixth album Eat Your Greens on August 28th of this year. She is an international touring artist, having sold out lauded venues including Birdland, Dizzy’s, and Ronnie Scott’s. &lt;/p&gt;&lt;p&gt;&lt;/p&gt;</description>
+											<ev:location>Dazzle</ev:location>
+																<dc:date>2026-10-23T00:30:00Z</dc:date>
+						<ev:startdate>2026-10-23T00:30:00Z</ev:startdate>
+						<ev:enddate>2026-10-23T00:30:00Z</ev:enddate>
+														</item><item>
+					<title>Denver Film Festival49 | Opening Night Presentation: I Play Rocky</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/denver-film-festival49-opening-night-presentation-i-play-rocky</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/denver-film-festival49-opening-night-presentation-i-play-rocky</guid>
+					<description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;Introduced by I Play Rocky screenwriter Peter Gamble&lt;br /&gt;
+Special Presentation&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;﻿I Play Rocky&lt;/em&gt; is an electrifying true story about an unknown actor with an unshakable belief that he wasn&amp;rsquo;t just meant to write Rocky&amp;mdash;he was meant to be Rocky Balboa. Told &amp;ldquo;no&amp;rdquo; at every turn, Sylvester Stallone bets everything on himself, holding the line on playing the lead against seemingly impossible odds. The result is the ultimate underdog story behind the ultimate underdog movie.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&#45;&#45;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Denver Film Festival49 is the recipient of an Arts Complex Creates Producing Partners Grant&lt;/p&gt;
+</description>
+											<ev:location>Ellie Caulkins Opera House</ev:location>
+																<dc:date>2026-10-23T01:00:00Z</dc:date>
+						<ev:startdate>2026-10-23T01:00:00Z</ev:startdate>
+						<ev:enddate>2026-10-23T01:00:00Z</ev:enddate>
+														</item><item>
+					<title>Sy Smith</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/sy-smith-163908</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/sy-smith-163908</guid>
+					<description>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;*This show is sold out. If any tickets are returned, they will be resold here. Dazzle does not work with third&#45;party resellers. Seats in the bar and Pec Lounge are available on a first&#45;come, first&#45;served basis at no charge.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Tickets are still available for the 9:00PM set &lt;/span&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer nofollow&quot; href=&quot;https://www.dazzledenver.com/project/sy&#45;smith/#/events&quot;&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;br&gt;Sy Smith has proven throughout her career that an R&amp;amp;B artist can be progressive while remaining firmly rooted in tradition. Foremost a singer with a vocal range spanning five octaves, Smith began an unending succession of background gigs with Whitney Houston in the late &apos;90s, and has since worked closely with Grammy&#45;winning trumpeter Chris Botti and Grammy&#45;nominated group the Foreign&lt;/p&gt;&lt;p&gt;Exchange, among dozens of other artists. After a brief period signed to a major, Smith established an independent label of her own, an outlet for compositionally solid and sonically adventurous albums including The Syberspace Social (2005), Conflict (2008), Fast and Curious (2012), and the entirely self&#45;produced Sometimes a Rose Will Grow in Concrete (2018). She&apos;s consequently known for being a leading force in post&#45;millennial indie soul.” &#45; Andy Kellman Sy raises her own bar and then leaps over it with her latest offering “Until We Meet Again” &#45; her critically&#45;acclaimed album produced by Zo! &amp;amp; Tall Black Guy, executive produced by Phonte Coleman and released on +FE Music in January 2024. This mellifluously soulful LP is drawing comparisons to Minnie Riperton and Deniece Williams and is already being called “the album of the year” by a few critics. Music journalist Mark Chappelle says “Smith evokes multiple traditions at once. With the sincerity of Diana Ross dedicating “Missing You” to Marvin Gaye, Smith lets her voice levitate until it breaks—as if just the right frequency could resurrect a loved one.”&lt;/p&gt;</description>
+											<ev:location>Dazzle</ev:location>
+																<dc:date>2026-10-24T00:30:00Z</dc:date>
+						<ev:startdate>2026-10-24T00:30:00Z</ev:startdate>
+						<ev:enddate>2026-10-24T03:00:00Z</ev:enddate>
+														</item><item>
+					<title>The Firebird with Cleo Parker Robinson Dance &amp; John Williams Horn Concerto</title>
+					<link>https://www.artsandvenuesdenver.com/events/detail/firebird-with-cleo-dance-7777</link>
+					<guid>https://www.artsandvenuesdenver.com/events/detail/firebird-with-cleo-dance-7777</guid>
+					<description>&lt;div class=&quot;container&quot; style=&quot;width: 100%; margin: 0px; padding: 0px;&quot;&gt;
+&lt;div class=&quot;col&#45;md&#45;4&quot; style=&quot;; margin: 0px; padding: 0px 1rem;&quot;&gt;
+&lt;p&gt;&lt;a class=&quot;btn btn&#45;small&quot; href=&quot;#Tickets&quot;&gt;Jump to Tickets &lt;i class=&quot;fas&quot;&gt;?&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;container&quot; style=&quot;margin: 0px; padding: 0px; width: 100%;&quot;&gt;
+&lt;div class=&quot;col&#45;md&#45;4&quot; style=&quot;margin: 0px; padding: 0rem 1rem;&quot;&gt;
+&lt;p class=&quot;small&quot; style=&quot;margin&#45;top: 3rem; font&#45;size: .875rem; letter&#45;spacing: .175rem;&quot;&gt;PRESENTED BY:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.cpr.org/classical/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Classical_Freq_Logo_Color&#45;1&#45;e1782247153473.png&quot; style=&quot;max&#45;width: 150px; width: 100%;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Program&lt;/h3&gt;
+
+&lt;p class=&quot;small&quot;&gt;&lt;b&gt;ELGAR&lt;/b&gt;  Introduction and Allegro, Op. 47&lt;br /&gt;
+&lt;b&gt;JOHN WILLIAMS&lt;/b&gt;  Horn Concerto&lt;br /&gt;
+&lt;b&gt;STRAVINSKY&lt;/b&gt;  &lt;em&gt;The Firebird&lt;/em&gt;&lt;/p&gt;
+&lt;iframe allow=&quot;autoplay; clipboard&#45;write; encrypted&#45;media; fullscreen; picture&#45;in&#45;picture&quot; allowfullscreen=&quot;&quot; data&#45;testid=&quot;embed&#45;iframe&quot; frameborder=&quot;0&quot; height=&quot;152&quot; loading=&quot;lazy&quot; src=&quot;https://open.spotify.com/embed/playlist/4LbSi1tlC6tcceiSImngEU?utm_source=generator&amp;amp;si=75b46f618fdd46ad&quot; style=&quot;border&#45;radius:12px&quot; width=&quot;100%&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Featured Artists&lt;/h3&gt;
+
+&lt;p class=&quot;small&quot; style=&quot;margin&#45;bottom: 1rem;&quot;&gt;Michael Francis, conductor&lt;br /&gt;
+Michael Thornton, horn&lt;br /&gt;
+Cleo Parker Robinson Dance&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.arabella&#45;arts.com/roster/michael&#45;francis&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Michael Francis, conductor&quot; src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Michael_Francis&#45;500x500&#45;1.jpg&quot; style=&quot;display: unset !important; margin&#45;bottom: 10px; width: 160px; height: 160px; border&#45;radius: 1000px; border: 5px solid #bfbfbf;&quot; title=&quot;Michael Francis, conductor&quot; /&gt;&lt;/a&gt;  &lt;a href=&quot;https://coloradosymphony.org/musician/thornton&#45;michael/&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Michael Thornton, horn&quot; src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Michael&#45;Thornton&#45;500x500&#45;1.jpg&quot; style=&quot;display: unset !important; margin&#45;bottom: 10px; width: 160px; height: 160px; border&#45;radius: 1000px; border: 5px solid #bfbfbf;&quot; title=&quot;Michael Thornton, horn&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cleoparkerdance.org/about&#45;us/&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Cleo Parker Robinson Dance&quot; src=&quot;https://coloradosymphony.org/app/uploads/2022/10/Cleo&#45;Parker&#45;Robinson&#45;Dance&#45;500x500&#45;1.jpg&quot; style=&quot;display: unset !important; margin&#45;bottom: 10px; width: 160px; height: 160px; border&#45;radius: 1000px; border: 5px solid #bfbfbf;&quot; title=&quot;Cleo Parker Robinson Dance&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;col&#45;md&#45;8&quot; style=&quot;margin: 0px; padding: 0rem 1rem;&quot;&gt;
+&lt;h3 style=&quot;margin&#45;top: 3rem;&quot;&gt;Description&lt;/h3&gt;
+
+&lt;p&gt;Stravinsky’s &lt;em&gt;The Firebird&lt;/em&gt; plunges listeners into a vivid world of Russian folklore, stitching together fairy tales, magic, and danger into one of the most electrifying scores of the 20&lt;sup&gt;th&lt;/sup&gt; century. The ballet’s myth&#45;like storyline features a magical Firebird, who helps a young prince rescue a coterie of princesses from Kashchey, an evil sorcerer. Stravinsky’s brilliant orchestrations paint a colorful musical portrait that will be brought to life onstage alongside Cleo Parker Robinson Dance.&lt;/p&gt;
+
+&lt;p&gt;The spotlight turns to the Colorado Symphony’s own Principal Horn Michael Thornton in John Williams’ Horn Concerto. Williams himself described the horn as an instrument that &quot;stirs memories of powerful things, of noble and beautiful things,&quot; whose very sound &quot;invites us to dream backward to ancient time.&quot; His concerto draws on that deeply evocative timbre, crafting five movements that explore a sweeping range of moods — from the distant bells of &quot;Angelus,&quot; through the wild energy of &quot;The Hunt,&quot; to the quiet introspection of &quot;Nocturne.&quot; In Thornton’s hands, audiences will hear not just technical brilliance but a voice that evokes memory and myth. The program opens with Elgar’s Introduction and Allegro, a delightful showcase for string orchestra that sets the stage for an evening of musical drama led by guest conductor Michael Francis.&lt;/p&gt;
+
+&lt;div style=&quot;display: flex; margin: 2rem 0rem 0rem; align&#45;items: center; background&#45;color: #f2f2f2; padding: 2rem 1rem;&quot;&gt;&lt;img src=&quot;https://coloradosymphony.org/app/uploads/2022/01/Icons_Prelude&#45;and&#45;Talkbacks.svg&quot; style=&quot;width: 60px; display: inline;&quot; /&gt;
+&lt;p class=&quot;small&quot; style=&quot;padding: 0rem 2rem 0rem .5rem; line&#45;height: 1.25rem;&quot;&gt;&lt;b&gt;Prelude:&lt;/b&gt; Join us before the concert to dive deeper into the music, this weekend with &lt;a href=&quot;https://coloradosymphony.org/musician/plachkov&#45;kolio/&quot; target=&quot;_blank&quot;&gt;Associate Principal Horn Kolio Plachkov&lt;/a&gt; at 6:30 PM (FRI &amp; SAT) and 12:00 PM (SUN).&lt;br /&gt;
+&lt;br /&gt;
+&lt;span style=&quot;margin&#45;top: 1rem;&quot;&gt;&lt;b&gt;Talkback:&lt;/b&gt; After the performance on &lt;a href=&quot;https://tickets.coloradosymphony.org/7777/7804&quot;&gt;SAT, OCT 24&lt;/a&gt; join &lt;a href=&quot;https://www.arabella&#45;arts.com/roster/michael&#45;francis&quot; target=&quot;_blank&quot;&gt;Conductor Michael Francis&lt;/a&gt; and &lt;a href=&quot;https://coloradosymphony.org/musician/thornton&#45;michael/&quot; target=&quot;_blank&quot;&gt;Principal Horn Michael Thornton&lt;/a&gt; for a peek behind the curtain.&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+											<ev:location>Boettcher Concert Hall</ev:location>
+																<dc:date>2026-10-24T01:30:00Z</dc:date>
+						<ev:startdate>2026-10-24T01:30:00Z</ev:startdate>
+						<ev:enddate>2026-10-25T19:00:00Z</ev:enddate>
+														</item>
+
+			
+		
+	</channel>
+</rss>

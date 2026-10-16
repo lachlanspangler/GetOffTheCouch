@@ -13,6 +13,7 @@ from gotc.adapters import (  # noqa: F401
     ics,
     jsonld,
     makerfaire,
+    rss_events,
     simpleview,
     socrata,
     ticketing,

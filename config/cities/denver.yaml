@@ -268,3 +268,47 @@ sources:
       venue: {name: "Cervantes' Masterpiece Ballroom", address: "2637 Welton St, Denver, CO 80205"}
       organizer: Cervantes' Masterpiece
       default_category: music.concert
+  - id: denver_arts_venues
+    adapter: rss_events
+    name: Denver Arts & Venues — Denver Performing Arts Complex (Boettcher, Buell, Ellie Caulkins, Dazzle, DCPA)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.artscomplex.com/events
+    expect_min_records: 40
+    notes: >-
+      City-owned venues' carbonhouse events RSS (/events/rss, ev: module; robots allows all). Covers the
+      Colorado Symphony at Boettcher, Broadway at the Buell, DCPA theatres and Dazzle jazz club (whose own site
+      serves a Cloudflare challenge — this feed is the city's syndication, not a workaround).
+    params:
+      url: https://www.artscomplex.com/events/rss
+      horizon_days: 120
+      venue: {name: Denver Performing Arts Complex, address: "1400 Curtis St, Denver, CO 80202"}
+      venues: {"Dazzle": "1512 Curtis St, Denver, CO 80202"}
+      organizer: Denver Arts & Venues
+      default_category: music.concert
+      category_map:   # ev:location rooms seen in the live feed (then title keywords)
+        Opening Night: arts.theater   # "Opening Night Dinner" is a gala, not a bar opening
+        Boettcher Concert Hall: music.classical
+        Dazzle: music.concert
+        Buell Theatre: arts.theater
+        Ellie Caulkins Opera House: arts.theater
+        Studio Loft of the Ellie Caulkins Opera House: arts.theater
+        Kilstrom Theatre: arts.theater
+        Wolf Theatre: arts.theater
+        Space Theatre: arts.theater
+        Garner Galleria Theatre: arts.theater
+        Randy Weeks Conservatory Theatre: arts.theater
+  - id: denver_coliseum
+    adapter: rss_events
+    name: Denver Coliseum (Denver Arts & Venues)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.denvercoliseum.com/events
+    expect_min_records: 5
+    notes: City-owned arena's carbonhouse events RSS (rodeo, high-school championships, shows). robots allows all.
+    params:
+      url: https://www.denvercoliseum.com/events/rss
+      horizon_days: 150
+      venue: {name: Denver Coliseum, address: "4600 Humboldt St, Denver, CO 80216"}
+      organizer: Denver Arts & Venues
+      default_category: sports_watch.game
