@@ -350,6 +350,12 @@ class SourceStatus(Strict):
     reason: str | None = None  # e.g. "needs TICKETMASTER_API_KEY"
 
 
+class NeighborhoodPoint(Strict):
+    name: str
+    lat: float
+    lon: float
+
+
 class CityFeed(Strict):
     """The exported per-city document: ``web/public/data/cities/<slug>.json``."""
 
@@ -360,7 +366,7 @@ class CityFeed(Strict):
     state: str
     timezone: str
     center: tuple[float, float]
-    neighborhoods: list[str] = Field(default_factory=list)
+    neighborhoods: list[NeighborhoodPoint] = Field(default_factory=list)  # approximate centroids
     events: list[Event]
     venues: list[Venue] = Field(default_factory=list)
     sources: list[SourceStatus] = Field(default_factory=list)

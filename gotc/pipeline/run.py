@@ -58,11 +58,13 @@ def run(
     max_seconds: float | None = None,
     geocode: bool = True,
     trigger: str = "cli",
+    include_demo: bool = False,
+    client: PoliteClient | None = None,
 ) -> RunReport:
     started = now or utcnow()
     cur = db.execute("INSERT INTO runs (started_at, status, trigger) VALUES (?, 'running', ?)", (iso(started), trigger))
     report = RunReport(run_id=int(cur.lastrowid or 0), started_at=started)
-    http = PoliteClient(settings, transport=transport)
+    http = client or PoliteClient(settings, transport=transport)
     t0 = time.monotonic()
     units = reg.units(city=city, source=source)
     # most overdue first, so a time-boxed run spends its budget where freshness matters most
@@ -87,7 +89,7 @@ def run(
             for c in reg.cities.values():
                 if c.enabled and (city is None or c.slug == city):
                     report.builds.append(build_city(db, reg, c, now or utcnow(), geocoder))
-            export_all(db, reg, settings.web_data_dir, now or utcnow())
+            export_all(db, reg, settings.web_data_dir, now or utcnow(), include_demo=include_demo)
             (settings.docs_dir / "HEALTH.md").write_text(render(db, reg, now or utcnow()))
         failed = [u for u in report.units if u.status == "failed"]
         report.status = "ok" if not failed else "partial"

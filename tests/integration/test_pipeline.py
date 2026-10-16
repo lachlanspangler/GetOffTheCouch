@@ -6,10 +6,12 @@ from datetime import timedelta
 from gotc.health.store import load_health
 from gotc.pipeline.run import run
 from gotc.schema import CityFeed
-from tests.conftest import NOW, FixtureTransport, fixture_bytes, make_city, make_registry, make_source
+from tests.conftest import NOW, FixtureTransport, fast_client, fixture_bytes, make_city, make_registry, make_source
 
 TRIBE = make_source(
-    "mprb_events", "tribe", base_url="https://www.minneapolisparks.org",
+    "mprb_events",
+    "tribe",
+    base_url="https://www.minneapolisparks.org",
     category_map={"Environmental Volunteer Opportunities": "volunteer.one_off"},
 )
 ICS = make_source("test_ics", "ics", url="https://cal.example/feed.ics", horizon_days=30)
@@ -35,7 +37,7 @@ def feed(settings):
 
 
 def test_end_to_end_dedup_export_and_health(db, settings):
-    rep = run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    rep = run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     assert rep.status == "ok", rep.summary()
     f = feed(settings)
     # the Rose Garden event appears in both sources → one canonical event with two source refs
@@ -60,15 +62,15 @@ def test_end_to_end_dedup_export_and_health(db, settings):
 
 
 def test_not_due_units_are_skipped_so_reruns_are_cheap_and_resumable(db, settings):
-    run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     t = healthy_transport()
-    rep = run(db, REG, settings, transport=t, now=NOW + timedelta(minutes=10), geocode=False)
+    rep = run(db, REG, settings, client=fast_client(t), now=NOW + timedelta(minutes=10), geocode=False)
     assert {u.status for u in rep.units} == {"skipped"}
     assert t.calls == []
 
 
 def test_broken_source_quarantines_keeps_last_known_good_and_marks_stale(db, settings):
-    run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     n_before = len(feed(settings).events)
     broken = FixtureTransport()
     broken.add(r"minneapolisparks\.org/wp-json", status=503)
@@ -76,7 +78,7 @@ def test_broken_source_quarantines_keeps_last_known_good_and_marks_stale(db, set
     t = NOW
     for _ in range(3):
         t += timedelta(hours=9)
-        run(db, REG, settings, transport=broken, now=t, geocode=False, force=True)
+        run(db, REG, settings, client=fast_client(broken), now=t, geocode=False, force=True)
     h = load_health(db, "mprb_events@minneapolis")
     assert h.state == "quarantined" and h.last_error_kind == "server_error"
     f = feed(settings)
@@ -90,19 +92,19 @@ def test_broken_source_quarantines_keeps_last_known_good_and_marks_stale(db, set
     # recovery: probe succeeds twice → healthy, stale flags clear
     for _ in range(2):
         t += timedelta(days=3)
-        run(db, REG, settings, transport=healthy_transport(), now=t, geocode=False, force=True)
+        run(db, REG, settings, client=fast_client(healthy_transport()), now=t, geocode=False, force=True)
     assert load_health(db, "mprb_events@minneapolis").state == "healthy"
 
 
 def test_schema_drift_detected_and_valid_records_kept(db, settings):
-    run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     data = mprb()
     for e in data["events"][2:]:
         e.pop("title")  # upstream renamed a field
     t = FixtureTransport()
     t.add(r"minneapolisparks\.org/wp-json", data)
     t.add(r"cal\.example/feed\.ics", fixture_bytes("synthetic/dup_calendar.ics"))
-    rep = run(db, REG, settings, transport=t, now=NOW + timedelta(hours=25), geocode=False, force=True)
+    rep = run(db, REG, settings, client=fast_client(t), now=NOW + timedelta(hours=25), geocode=False, force=True)
     u = next(x for x in rep.units if x.unit == "mprb_events@minneapolis")
     assert u.error_kind == "schema_drift" and u.rejected == 10 and u.valid == 2
     rows = db.all("SELECT COUNT(*) c FROM rejects WHERE unit = 'mprb_events@minneapolis'")
@@ -118,7 +120,7 @@ def test_missing_key_reports_disabled_not_failed(db, settings, monkeypatch):
     tm.requires.append("TICKETMASTER_API_KEY")
     tm.scope = "all_cities"
     reg = make_registry(CITY, global_sources=[tm])
-    rep = run(db, reg, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    rep = run(db, reg, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     u = next(x for x in rep.units if x.unit == "ticketmaster@minneapolis")
     assert u.status == "disabled" and "needs TICKETMASTER_API_KEY" in u.notes[0]
     assert rep.status == "ok"
@@ -127,21 +129,29 @@ def test_missing_key_reports_disabled_not_failed(db, settings, monkeypatch):
 
 
 def test_records_removed_upstream_are_marked_gone(db, settings):
-    run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     data = mprb()
     removed = data["events"].pop(5)
     t = FixtureTransport()
     t.add(r"minneapolisparks\.org/wp-json", data)
     t.add(r"cal\.example/feed\.ics", fixture_bytes("synthetic/dup_calendar.ics"))
-    run(db, REG, settings, transport=t, now=NOW + timedelta(hours=25), geocode=False, force=True)
+    run(db, REG, settings, client=fast_client(t), now=NOW + timedelta(hours=25), geocode=False, force=True)
     row = db.one("SELECT gone_at FROM source_records WHERE record_id = ?", (str(removed["id"]),))
     assert row["gone_at"] is not None
     assert not any(str(removed["id"]) in [s.record_id for s in e.sources] for e in feed(settings).events)
 
 
 def test_canonical_ids_are_stable_across_runs(db, settings):
-    run(db, REG, settings, transport=healthy_transport(), now=NOW, geocode=False)
+    run(db, REG, settings, client=fast_client(healthy_transport()), now=NOW, geocode=False)
     ids1 = {e.id for e in feed(settings).events}
-    run(db, REG, settings, transport=healthy_transport(), now=NOW + timedelta(hours=25), geocode=False, force=True)
+    run(
+        db,
+        REG,
+        settings,
+        client=fast_client(healthy_transport()),
+        now=NOW + timedelta(hours=25),
+        geocode=False,
+        force=True,
+    )
     ids2 = {e.id for e in feed(settings).events}
     assert ids1 == ids2

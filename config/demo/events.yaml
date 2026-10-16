@@ -1,0 +1,26 @@
+# DEMO DATA — entirely fictional, for UI tests and `?demo=1`. Never exported with real data.
+# Times are offsets from the generation time: `day` (days from today, local) and `at` (local HH:MM).
+# Two demo "sources" list the same concert so the dedup + price comparison paths are exercised.
+city: demoville
+events:
+  - { id: kick, src: a, title: "DEMO · Fall Kickball League (Rec Division)", category: sports_league.kickball, kind: season, day: 12, at: "18:30", venue: "Example Park Fields", lat: 44.97, lon: -93.26,
+      price: { min: 65, max: 75, note: per player }, closes_in_days: 2, early_bird_days: 1, signup: [team, free_agent], skill: [recreational, beginner],
+      desc: "Co-ed rec kickball. Free agents welcome — we'll place you on a team.", url: "https://example.org/demo/kickball" }
+  - { id: trivia, src: a, title: "DEMO · Tuesday Trivia at Example Taproom", category: trivia_games.trivia, day: 1, at: "19:00", weekly: 4, venue: "Example Taproom", lat: 44.98, lon: -93.27,
+      free: true, desc: "Teams up to six. Come solo, we'll find you a team!" }
+  - { id: concert, src: a, title: "DEMO · The Placeholder Band", category: music.concert, day: 9, at: "20:00", venue: "Example Theater", lat: 44.975, lon: -93.275, capacity: 1800,
+      offers: [ { seller: "Example Tickets", kind: primary, min: 39.5, max: 89.5 } ], desc: "Indie rock. All ages." }
+  - { id: concert-sg, src: b, title: "The Placeholder Band", category: music.concert, day: 9, at: "20:00", venue: "Example Theater", lat: 44.975, lon: -93.275,
+      offers: [ { seller: "Example Resale", kind: resale, min: 55, max: 240, listings: 180, drop: 0.45, rise: 0.3 } ] }
+  - { id: vol, src: a, title: "DEMO · River Cleanup Volunteer Morning", category: volunteer.one_off, day: 3, at: "09:00", venue: "Example Riverside", lat: 44.96, lon: -93.24,
+      desc: "Gloves provided. Register by the day before so we bring enough supplies.", closes_in_days: 2, reg_url: "https://example.org/demo/cleanup" }
+  - { id: faire, src: a, title: "DEMO · Example Renaissance Faire", category: niche.ren_faire, day: 16, at: "10:00", all_day: true, venue: "Example Fairgrounds", lat: 44.8, lon: -93.4,
+      price: { min: 25, max: 35 }, desc: "Jousting, turkey legs, questionable accents." }
+  - { id: run, src: a, title: "DEMO · Saturday Social Run Club", category: fitness.run_club, day: 2, at: "08:00", weekly: 3, venue: "Example Running Store", lat: 44.949, lon: -93.298,
+      free: true, desc: "3 miles, all paces, coffee after. Beginners welcome." }
+  - { id: block, src: a, title: "DEMO · Maple Street Block Party", category: community.block_party, day: 5, at: "14:00", venue: "Maple St between 1st & 3rd", lat: 44.99, lon: -93.25,
+      free: true, desc: "Food trucks, a bouncy castle, and a cover band." }
+  - { id: anime, src: a, title: "DEMO · Example Anime Con", category: niche.anime_con, day: 25, at: "09:00", all_day: true, venue: "Example Convention Center", lat: 44.97, lon: -93.27,
+      price: { min: 45, max: 120 }, closes_in_days: 20, desc: "Badge pre-registration closes 5 days before the con." }
+  - { id: open, src: a, title: "DEMO · Example Tavern — new liquor license", category: nightlife.opening, kind: opening, day: -6, all_day: true, venue: "Example Tavern", lat: 44.95, lon: -93.29,
+      desc: "License signal, not a confirmed opening date." }

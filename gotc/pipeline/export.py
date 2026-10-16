@@ -17,7 +17,7 @@ from typing import Any
 from gotc.config import CityConfig, Registry
 from gotc.health.store import load_health
 from gotc.pipeline.build import venues_for_export
-from gotc.schema import SCHEMA_VERSION, CityFeed, Event, SourceStatus
+from gotc.schema import SCHEMA_VERSION, CityFeed, Event, NeighborhoodPoint, SourceStatus
 from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
 
@@ -57,7 +57,7 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
     return out
 
 
-def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime) -> CityFeed:
+def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, include_demo: bool = False) -> CityFeed:
     rows = db.all(
         "SELECT data FROM events WHERE city = ? AND start_at <= ? ORDER BY start_at",
         (city.slug, iso(now + timedelta(days=HORIZON_DAYS))),
@@ -71,14 +71,15 @@ def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime) -> C
         state=city.state,
         timezone=city.timezone,
         center=city.center,
-        neighborhoods=[n.name for n in city.neighborhoods],
-        events=[e for e in events if not e.is_demo],
+        neighborhoods=[NeighborhoodPoint(name=n.name, lat=n.lat, lon=n.lon) for n in city.neighborhoods],
+        events=[e for e in events if include_demo or not e.is_demo],
+        is_demo=include_demo,
         venues=[v for v in venues_for_export(db, city.slug) if v.id in used_venues],
         sources=source_statuses(db, reg, city, now),
     )
 
 
-def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime) -> dict[str, Any]:
+def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, include_demo: bool = False) -> dict[str, Any]:
     tax = taxonomy()
     index: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
@@ -95,7 +96,7 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime) -> dic
     for city in reg.cities.values():
         if not city.enabled:
             continue
-        feed = city_feed(db, reg, city, now)
+        feed = city_feed(db, reg, city, now, include_demo)
         CityFeed.model_validate(feed.model_dump())  # belt and braces: never export an invalid document
         _write(out_dir / "cities" / f"{city.slug}.json", feed.model_dump_json(exclude_none=True))
         upcoming = [e for e in feed.events if e.start >= now - timedelta(hours=3)]
@@ -114,7 +115,8 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime) -> dic
                     if e.registration and e.registration.closes_at and e.registration.closes_at >= now
                 ),
                 "sources_ok": sum(1 for s in feed.sources if s.state in ("healthy", "recovering")),
-                "sources_total": len(feed.sources),
+                "sources_total": sum(1 for s in feed.sources if s.state != "disabled"),
+                "sources_disabled": sum(1 for s in feed.sources if s.state == "disabled"),
                 "stale_sources": sum(1 for s in feed.sources if s.stale and s.state != "disabled"),
             }
         )

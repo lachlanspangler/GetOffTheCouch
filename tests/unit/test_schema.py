@@ -9,8 +9,16 @@ NOW = datetime(2026, 10, 16, tzinfo=UTC)
 
 
 def base(**kw):
-    d = dict(source_id="s", record_id="1", city="c", title="Kickball", category="sports_league.kickball",
-             start=NOW, timezone="America/Chicago", fetched_at=NOW)
+    d = {
+        "source_id": "s",
+        "record_id": "1",
+        "city": "c",
+        "title": "Kickball",
+        "category": "sports_league.kickball",
+        "start": NOW,
+        "timezone": "America/Chicago",
+        "fetched_at": NOW,
+    }
     d.update(kw)
     return d
 

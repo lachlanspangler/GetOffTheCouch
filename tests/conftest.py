@@ -13,6 +13,7 @@ import httpx
 import pytest
 
 from gotc.config import CityConfig, Registry, SourceConfig, SourcesFile, Unit
+from gotc.http.client import PoliteClient
 from gotc.schema import DataType
 from gotc.settings import Settings
 from gotc.storage.db import Database
@@ -32,15 +33,22 @@ class FixtureTransport(httpx.BaseTransport):
         self.routes: list[tuple[re.Pattern[str], Callable[[httpx.Request], httpx.Response]]] = []
         self.calls: list[str] = []
 
-    def add(self, pattern: str, body: bytes | str | dict[str, Any] | list[Any] | None = None, status: int = 200,
-            headers: dict[str, str] | None = None) -> FixtureTransport:
+    def add(
+        self,
+        pattern: str,
+        body: bytes | str | dict[str, Any] | list[Any] | None = None,
+        status: int = 200,
+        headers: dict[str, str] | None = None,
+    ) -> FixtureTransport:
         if isinstance(body, dict | list):
             content = json.dumps(body).encode()
         elif isinstance(body, str):
             content = body.encode()
         else:
             content = body or b""
-        self.routes.append((re.compile(pattern), lambda req: httpx.Response(status, content=content, headers=headers or {})))
+        self.routes.append(
+            (re.compile(pattern), lambda req: httpx.Response(status, content=content, headers=headers or {}))
+        )
         return self
 
     def add_fn(self, pattern: str, fn: Callable[[httpx.Request], httpx.Response]) -> FixtureTransport:
@@ -66,13 +74,19 @@ def transport() -> FixtureTransport:
     return FixtureTransport()
 
 
+def fast_client(transport: httpx.BaseTransport) -> PoliteClient:
+    """A PoliteClient that never really sleeps (backoff/throttle are still exercised logically)."""
+    import tempfile
+
+    return PoliteClient(transport=transport, sleep=lambda s: None, min_interval_s=0, cache_dir=Path(tempfile.mkdtemp()))
+
+
 @pytest.fixture
 def settings(tmp_path: Path) -> Settings:
     docs = tmp_path / "docs"
     docs.mkdir()
     (docs / "DIARY.md").write_text("# Diary\n")
-    s = Settings(data_dir=tmp_path / "data", web_data_dir=tmp_path / "web", docs_dir=docs)
-    return s
+    return Settings(data_dir=tmp_path / "data", web_data_dir=tmp_path / "web", docs_dir=docs)
 
 
 @pytest.fixture
@@ -84,12 +98,19 @@ def db() -> Iterator[Database]:
 
 def make_city(slug: str = "testville", sources: list[SourceConfig] | None = None) -> CityConfig:
     return CityConfig(
-        slug=slug, name="Minneapolis" if slug == "minneapolis" else "Testville", state="MN",
-        timezone="America/Chicago", center=(44.9778, -93.2650), radius_km=20, sources=sources or [],
+        slug=slug,
+        name="Minneapolis" if slug == "minneapolis" else "Testville",
+        state="MN",
+        timezone="America/Chicago",
+        center=(44.9778, -93.2650),
+        radius_km=20,
+        sources=sources or [],
     )
 
 
-def make_source(id: str = "src", adapter: str = "tribe", data_type: DataType = DataType.EVENTS, **params: Any) -> SourceConfig:
+def make_source(
+    id: str = "src", adapter: str = "tribe", data_type: DataType = DataType.EVENTS, **params: Any
+) -> SourceConfig:
     return SourceConfig(id=id, adapter=adapter, name=id.title(), data_type=data_type, params=params)
 
 
@@ -97,7 +118,7 @@ def make_registry(*cities: CityConfig, global_sources: list[SourceConfig] | None
     return Registry(
         cities={c.slug: c for c in cities},
         sources_file=SourcesFile(
-            sla_hours={dt: 24.0 for dt in DataType} | {DataType.TICKET_PRICES: 4.0},
+            sla_hours=dict.fromkeys(DataType, 24.0) | {DataType.TICKET_PRICES: 4.0},
             sources=global_sources or [],
         ),
     )

@@ -1,0 +1,1345 @@
+{
+  "$defs": {
+    "Availability": {
+      "enum": [
+        "on_sale",
+        "limited",
+        "few_left",
+        "sold_out",
+        "not_yet_on_sale",
+        "registration_open",
+        "registration_closed",
+        "waitlist",
+        "free_no_ticket",
+        "cancelled",
+        "postponed",
+        "unknown"
+      ],
+      "title": "Availability",
+      "type": "string"
+    },
+    "Estimate": {
+      "additionalProperties": false,
+      "description": "A modeled number. Always a band; ``mid`` is the point estimate shown with a '~'.",
+      "properties": {
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "high": {
+          "minimum": 0,
+          "title": "High",
+          "type": "number"
+        },
+        "inputs": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Inputs",
+          "type": "object"
+        },
+        "low": {
+          "minimum": 0,
+          "title": "Low",
+          "type": "number"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        },
+        "mid": {
+          "minimum": 0,
+          "title": "Mid",
+          "type": "number"
+        }
+      },
+      "required": [
+        "low",
+        "mid",
+        "high",
+        "method",
+        "confidence"
+      ],
+      "title": "Estimate",
+      "type": "object"
+    },
+    "Event": {
+      "additionalProperties": false,
+      "description": "A canonical, deduplicated, enriched event \u2014 what the dashboard renders.",
+      "properties": {
+        "all_day": {
+          "default": false,
+          "title": "All Day",
+          "type": "boolean"
+        },
+        "attendance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Estimate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Categories",
+          "type": "array"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string"
+        },
+        "city": {
+          "title": "City",
+          "type": "string"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End"
+        },
+        "first_seen": {
+          "format": "date-time",
+          "title": "First Seen",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_demo": {
+          "default": false,
+          "title": "Is Demo",
+          "type": "boolean"
+        },
+        "kind": {
+          "$ref": "#/$defs/EventKind"
+        },
+        "last_checked": {
+          "format": "date-time",
+          "title": "Last Checked",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "offers": {
+          "items": {
+            "$ref": "#/$defs/Offer"
+          },
+          "title": "Offers",
+          "type": "array"
+        },
+        "organizer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Organizer"
+        },
+        "price": {
+          "$ref": "#/$defs/Price"
+        },
+        "price_trend": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PriceTrend"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FieldProvenance"
+          },
+          "title": "Provenance",
+          "type": "object"
+        },
+        "recurrence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recurrence"
+        },
+        "registration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Registration"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "series_dates": {
+          "items": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "title": "Series Dates",
+          "type": "array"
+        },
+        "series_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Series Id"
+        },
+        "social": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SocialScore"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "stale": {
+          "default": false,
+          "title": "Stale",
+          "type": "boolean"
+        },
+        "stale_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stale Reason"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "tickets": {
+          "$ref": "#/$defs/TicketSignal"
+        },
+        "timezone": {
+          "title": "Timezone",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "venue_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Venue Id"
+        }
+      },
+      "required": [
+        "id",
+        "city",
+        "title",
+        "kind",
+        "category",
+        "start",
+        "timezone",
+        "location",
+        "price",
+        "sources",
+        "first_seen",
+        "last_checked"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "EventKind": {
+      "enum": [
+        "one_off",
+        "recurring",
+        "season",
+        "opening",
+        "deadline"
+      ],
+      "title": "EventKind",
+      "type": "string"
+    },
+    "FieldProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "method": {
+          "$ref": "#/$defs/Method",
+          "default": "reported"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "fetched_at"
+      ],
+      "title": "FieldProvenance",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "geocode_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geocode Confidence"
+        },
+        "geocode_method": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Method"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "lat": {
+          "anyOf": [
+            {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lat"
+        },
+        "lon": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lon"
+        },
+        "neighborhood": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Neighborhood"
+        },
+        "venue_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Venue Name"
+        }
+      },
+      "title": "Location",
+      "type": "object"
+    },
+    "Method": {
+      "description": "How a value was obtained. Shown in the UI next to every non-reported value.",
+      "enum": [
+        "reported",
+        "derived",
+        "extracted",
+        "estimated",
+        "curated"
+      ],
+      "title": "Method",
+      "type": "string"
+    },
+    "NeighborhoodPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "lat": {
+          "title": "Lat",
+          "type": "number"
+        },
+        "lon": {
+          "title": "Lon",
+          "type": "number"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "lat",
+        "lon"
+      ],
+      "title": "NeighborhoodPoint",
+      "type": "object"
+    },
+    "Offer": {
+      "additionalProperties": false,
+      "description": "A way to get in: a ticket listing, a registration page, an RSVP.",
+      "properties": {
+        "affiliate": {
+          "default": false,
+          "title": "Affiliate",
+          "type": "boolean"
+        },
+        "availability": {
+          "$ref": "#/$defs/Availability",
+          "default": "unknown"
+        },
+        "fees_included": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fees Included"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/OfferKind"
+        },
+        "listing_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Listing Count"
+        },
+        "price_max": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Max"
+        },
+        "price_min": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Min"
+        },
+        "seller": {
+          "title": "Seller",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "seller",
+        "kind",
+        "url",
+        "source_id",
+        "fetched_at"
+      ],
+      "title": "Offer",
+      "type": "object"
+    },
+    "OfferKind": {
+      "enum": [
+        "primary",
+        "resale",
+        "registration",
+        "rsvp",
+        "info"
+      ],
+      "title": "OfferKind",
+      "type": "string"
+    },
+    "Price": {
+      "additionalProperties": false,
+      "description": "Price summary in USD. ``is_free`` is only true when a source said so.",
+      "properties": {
+        "currency": {
+          "const": "USD",
+          "default": "USD",
+          "title": "Currency",
+          "type": "string"
+        },
+        "is_free": {
+          "default": false,
+          "title": "Is Free",
+          "type": "boolean"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "title": "Price",
+      "type": "object"
+    },
+    "PricePoint": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "listing_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Listing Count"
+        },
+        "price_max": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Max"
+        },
+        "price_min": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price Min"
+        },
+        "seller": {
+          "title": "Seller",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at",
+        "seller"
+      ],
+      "title": "PricePoint",
+      "type": "object"
+    },
+    "PriceTrend": {
+      "additionalProperties": false,
+      "properties": {
+        "change_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Change Pct"
+        },
+        "direction": {
+          "default": "unknown",
+          "enum": [
+            "up",
+            "down",
+            "flat",
+            "unknown"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/PricePoint"
+          },
+          "title": "Points",
+          "type": "array"
+        },
+        "window_hours": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Window Hours"
+        }
+      },
+      "title": "PriceTrend",
+      "type": "object"
+    },
+    "Registration": {
+      "additionalProperties": false,
+      "description": "Deadlines. ``closes_at`` is the headline 'register by' date.",
+      "properties": {
+        "closes_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Closes At"
+        },
+        "confidence": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "early_bird_ends_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Early Bird Ends At"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "method": {
+          "$ref": "#/$defs/Method",
+          "default": "reported"
+        },
+        "opens_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Opens At"
+        },
+        "signup_types": {
+          "items": {
+            "$ref": "#/$defs/SignupType"
+          },
+          "title": "Signup Types",
+          "type": "array"
+        },
+        "skill_levels": {
+          "items": {
+            "$ref": "#/$defs/SkillLevel"
+          },
+          "title": "Skill Levels",
+          "type": "array"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "title": "Registration",
+      "type": "object"
+    },
+    "SignupType": {
+      "enum": [
+        "team",
+        "free_agent",
+        "individual",
+        "group"
+      ],
+      "title": "SignupType",
+      "type": "string"
+    },
+    "SkillLevel": {
+      "enum": [
+        "beginner",
+        "recreational",
+        "intermediate",
+        "competitive",
+        "all"
+      ],
+      "title": "SkillLevel",
+      "type": "string"
+    },
+    "SocialScore": {
+      "additionalProperties": false,
+      "description": "How good an event is for meeting people (0\u20131), with reasons the UI shows.",
+      "properties": {
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "score": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Score",
+          "type": "number"
+        }
+      },
+      "required": [
+        "score"
+      ],
+      "title": "SocialScore",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "One source's record of an event. A canonical event keeps all of them.",
+      "properties": {
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "first_seen": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First Seen"
+        },
+        "record_id": {
+          "title": "Record Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "source_id",
+        "record_id",
+        "fetched_at"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "SourceStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "last_attempt_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Attempt At"
+        },
+        "last_error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Error"
+        },
+        "last_success_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Success At"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "records": {
+          "title": "Records",
+          "type": "integer"
+        },
+        "sla_hours": {
+          "title": "Sla Hours",
+          "type": "number"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "stale": {
+          "title": "Stale",
+          "type": "boolean"
+        },
+        "state": {
+          "enum": [
+            "healthy",
+            "degraded",
+            "quarantined",
+            "recovering",
+            "disabled",
+            "never_run"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "name",
+        "state",
+        "sla_hours",
+        "stale",
+        "records"
+      ],
+      "title": "SourceStatus",
+      "type": "object"
+    },
+    "TicketSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Availability",
+          "default": "unknown"
+        },
+        "pct_left": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Estimate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "selling_fast": {
+          "default": false,
+          "title": "Selling Fast",
+          "type": "boolean"
+        },
+        "signal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signal"
+        }
+      },
+      "title": "TicketSignal",
+      "type": "object"
+    },
+    "Venue": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "capacity": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capacity"
+        },
+        "capacity_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capacity Source"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "lat": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lat"
+        },
+        "lon": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lon"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "neighborhood": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Neighborhood"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "Venue",
+      "type": "object"
+    }
+  },
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.0.0.json",
+  "additionalProperties": false,
+  "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
+  "properties": {
+    "center": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Center",
+      "type": "array"
+    },
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "city_name": {
+      "title": "City Name",
+      "type": "string"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/Event"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "is_demo": {
+      "default": false,
+      "title": "Is Demo",
+      "type": "boolean"
+    },
+    "neighborhoods": {
+      "items": {
+        "$ref": "#/$defs/NeighborhoodPoint"
+      },
+      "title": "Neighborhoods",
+      "type": "array"
+    },
+    "schema_version": {
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceStatus"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "state": {
+      "title": "State",
+      "type": "string"
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "string"
+    },
+    "venues": {
+      "items": {
+        "$ref": "#/$defs/Venue"
+      },
+      "title": "Venues",
+      "type": "array"
+    }
+  },
+  "required": [
+    "generated_at",
+    "city",
+    "city_name",
+    "state",
+    "timezone",
+    "center",
+    "events"
+  ],
+  "title": "CityFeed",
+  "type": "object"
+}

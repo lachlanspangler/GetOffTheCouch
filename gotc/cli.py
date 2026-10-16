@@ -148,6 +148,17 @@ def cmd_schema(a: argparse.Namespace, s: Settings) -> int:
     return 0
 
 
+def cmd_demo(a: argparse.Namespace, s: Settings) -> int:
+    """Build the fictional demo dataset (web/public/demo) through the real pipeline."""
+    from datetime import datetime
+
+    from gotc.demo import build_demo
+
+    anchor = datetime.fromisoformat(a.anchor) if a.anchor else None
+    print(f"demo data written to {build_demo(anchor)}")
+    return 0
+
+
 def cmd_record(a: argparse.Namespace, s: Settings) -> int:
     """Fetch a unit live once and save its raw payloads as test fixtures (tests/fixtures/<source_id>/)."""
     from gotc.adapters.base import FetchContext, get_adapter
@@ -235,6 +246,10 @@ def main(argv: list[str] | None = None) -> int:
     d.set_defaults(fn=cmd_doctor)
 
     sub.add_parser("schema", help="write schema/cityfeed.schema.json").set_defaults(fn=cmd_schema)
+
+    dm = sub.add_parser("demo", help="build the fictional, clearly-labeled demo dataset")
+    dm.add_argument("--anchor", help="ISO datetime the demo is relative to (default: now)")
+    dm.set_defaults(fn=cmd_demo)
 
     rec = sub.add_parser("record", help="record live payloads as test fixtures")
     rec.add_argument("unit")

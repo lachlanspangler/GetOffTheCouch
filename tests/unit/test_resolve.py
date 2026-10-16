@@ -9,9 +9,18 @@ T = datetime(2026, 11, 1, 1, 0, tzinfo=UTC)
 
 
 def ev(source, rid, title, start=T, venue=None, lat=None, lon=None, **kw):
-    return SourceEvent(source_id=source, record_id=rid, city="testville", title=title, category="music.concert",
-                       start=start, timezone="America/Chicago", fetched_at=T,
-                       location={"venue_name": venue, "lat": lat, "lon": lon}, **kw)
+    return SourceEvent(
+        source_id=source,
+        record_id=rid,
+        city="testville",
+        title=title,
+        category="music.concert",
+        start=start,
+        timezone="America/Chicago",
+        fetched_at=T,
+        location={"venue_name": venue, "lat": lat, "lon": lon},
+        **kw,
+    )
 
 
 def test_title_normalization():
@@ -27,7 +36,15 @@ def test_venue_normalization():
 
 def test_same_concert_on_two_sites_matches():
     a = ev("ticketmaster", "1", "Big Thief", venue="First Avenue", lat=44.9784, lon=-93.2761)
-    b = ev("seatgeek", "x", "Big Thief with special guest", start=T + timedelta(minutes=30), venue="First Avenue - Mainroom", lat=44.9785, lon=-93.2760)
+    b = ev(
+        "seatgeek",
+        "x",
+        "Big Thief with special guest",
+        start=T + timedelta(minutes=30),
+        venue="First Avenue - Mainroom",
+        lat=44.9785,
+        lon=-93.2760,
+    )
     assert match_score(a, b, None, None) >= 0.85
 
 
