@@ -199,3 +199,94 @@ sources:
       organizer: Carousel Lounge
       default_category: music.concert
       classify_description: false
+  # ── session 2: Denver / Seattle / Austin coverage (2026-10-16; docs/SOURCES.md "session 2") ──
+  - id: flamingo_cantina
+    adapter: tribe
+    name: Flamingo Cantina (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://flamingocantina.com/calendar/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it). Reggae/hip-hop room on Sixth Street.
+    params:
+      base_url: https://flamingocantina.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 3
+      organizer: Flamingo Cantina
+      venue: {name: Flamingo Cantina, address: "515 E 6th St, Austin, TX 78701"}   # some events carry no venue
+      default_category: music.concert
+      classify_description: false
+  - id: wildflower_center_events
+    adapter: tribe
+    name: Lady Bird Johnson Wildflower Center events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.wildflower.org/events
+    expect_min_records: 10
+    notes: UT Austin's botanic garden; The Events Calendar REST API (robots allows it).
+    params:
+      base_url: https://www.wildflower.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 4
+      organizer: Lady Bird Johnson Wildflower Center
+      default_category: outdoors.park
+      classify_description: false
+      exclude_location: '\bMembers? Only\b'   # member-only previews aren't open to newcomers
+      category_map:   # The Events Calendar categories seen live (first match in the event's category order wins)
+        Tuesday Twilights: music.concert
+        Yoga FIT: fitness.yoga
+        Get FIT: fitness
+        Family Birding: outdoors.hike
+        Homeschool Days: family.kids
+        Youth Programs: family.kids
+        Tour: outdoors.park
+        Wellness: fitness
+  - id: contemporary_austin_events
+    adapter: tribe
+    name: The Contemporary Austin events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://thecontemporaryaustin.org/
+    expect_min_records: 3
+    notes: >-
+      The Events Calendar REST API answered 200 to our client (robots allows /wp-json/); the HTML pages serve a
+      Cloudflare challenge, which we never attempt. If the API starts challenging too, the unit fails and stays off.
+    params:
+      base_url: https://thecontemporaryaustin.org
+      horizon_days: 60
+      per_page: 50
+      max_pages: 2
+      organizer: The Contemporary Austin
+      default_category: arts.museum
+      classify_description: false
+      exclude_location: '\bMembers? (Only|Curator)'   # member-only programs
+      category_map:   # The Events Calendar categories seen live
+        Tours: arts.museum
+        Talk: arts.books
+        Music: music.concert
+        Art Making: arts.workshop
+        Workshop: arts.workshop
+        Families: family.kids
+        Exhibitions: arts.museum
+  - id: austin_parks_foundation_events
+    adapter: jsonld
+    name: Austin Parks Foundation events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://austinparks.org/event-calendar/
+    expect_min_records: 8
+    notes: >-
+      Modern Events Calendar page with ~30 Event JSON-LD records (dates only → all-day): park volunteer days,
+      free concerts and movies in parks. offers.validFrom is the event date (a placeholder), so it isn't trusted.
+    params:
+      urls: [https://austinparks.org/event-calendar/]
+      organizer: Austin Parks Foundation
+      default_category: outdoors.park
+      trust_valid_from: false
+      classify_description: true

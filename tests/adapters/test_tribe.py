@@ -56,3 +56,19 @@ def test_parse_is_pure():
     a = list(get_adapter("tribe").parse(payload(), ParseContext(UNIT, NOW)))
     b = list(get_adapter("tribe").parse(payload(), ParseContext(UNIT, NOW)))
     assert a == b
+
+
+def test_single_venue_calendar_fills_a_blank_venue_from_config():
+    """Flamingo Cantina (real recorded payload): half its events carry no venue; `venue` fills them in."""
+    from tests.adapters._util import by_id, parse, unit
+
+    evs = by_id(parse(unit("flamingo_cantina"), "flamingo_cantina/payload_0.json"))
+    assert len(evs) == 8
+    blank = evs["12360"]  # "Qwel and Nightwalker – Hip Hop": venue: [] in the source
+    assert blank.title == "Qwel and Nightwalker – Hip Hop"
+    assert blank.location.venue_name == "Flamingo Cantina"
+    assert blank.location.address == "515 E 6th St, Austin, TX 78701"
+    own = evs["12119"]  # the source's own venue wins when present
+    assert own.location.address == "515 East 6th Street, Austin, TX, 78701"
+    assert own.price.min == 40 and own.price.max == 55
+    assert all(ev.category == "music.concert" for ev in evs.values())
