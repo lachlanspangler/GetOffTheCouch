@@ -7,6 +7,30 @@
 export type Center = [unknown, unknown];
 export type City = string;
 export type CityName = string;
+export type Banner = boolean;
+export type Label = string;
+export type Note = string | null;
+export type PassHard = boolean | null;
+export type PassSoft = boolean | null;
+export type Threshold = string;
+export type Value = number | null;
+export type EvaluatedAt = string;
+export type FailingSince = string | null;
+export type GeocodeRate = number;
+export type PassedHard = boolean;
+export type PassedSoft = boolean;
+export type Count = number;
+export type Label1 = string;
+export type Note1 = string | null;
+export type State = "strong" | "thin" | "none";
+export type Threshold1 = number;
+export type Reasons = string[];
+export type SourcesHealthy = number;
+export type SourcesTotal = number;
+export type Strongest = string[];
+export type Tier = "live" | "beta" | "hidden";
+export type TopSource = string | null;
+export type TopSourceShare = number;
 export type AllDay = boolean;
 export type Confidence = number;
 export type High = number;
@@ -73,7 +97,7 @@ export type Currency = "USD";
 export type IsFree = boolean;
 export type Max = number | null;
 export type Min = number | null;
-export type Note = string | null;
+export type Note2 = string | null;
 export type ChangePct = number | null;
 export type Direction = "up" | "down" | "flat" | "unknown";
 export type At = string;
@@ -89,7 +113,7 @@ export type FetchedAt1 = string;
  * How a value was obtained. Shown in the UI next to every non-reported value.
  */
 export type Method2 = "reported" | "derived" | "extracted" | "estimated" | "curated";
-export type Note1 = string | null;
+export type Note3 = string | null;
 export type Source = string;
 export type Recurrence = string | null;
 export type ClosesAt = string | null;
@@ -116,7 +140,7 @@ export type SkillLevels = SkillLevel[];
 export type Url1 = string | null;
 export type SeriesDates = string[];
 export type SeriesId = string | null;
-export type Reasons = string[];
+export type Reasons1 = string[];
 export type Score = number;
 export type FetchedAt2 = string;
 export type FirstSeen1 = string | null;
@@ -172,7 +196,7 @@ export type Records = number;
 export type SlaHours = number;
 export type SourceId2 = string;
 export type Stale1 = boolean;
-export type State = "healthy" | "degraded" | "quarantined" | "recovering" | "disabled" | "never_run";
+export type State1 = "healthy" | "degraded" | "quarantined" | "recovering" | "disabled" | "never_run";
 export type Sources1 = SourceStatus[];
 export type ActionUrl = string;
 export type CheckStatus = "evidence_present" | "page_changed" | "unchecked";
@@ -186,7 +210,7 @@ export type Summary1 = string;
 export type Title1 = string;
 export type VerifiedAt = string;
 export type StarterPack = StarterItem[];
-export type State1 = string;
+export type State2 = string;
 export type Timezone1 = string;
 export type Address1 = string | null;
 export type Capacity = number | null;
@@ -223,6 +247,7 @@ export interface CityFeed {
   center: Center;
   city: City;
   city_name: CityName;
+  coverage?: CityCoverage | null;
   events: Events;
   generated_at: GeneratedAt;
   is_demo?: IsDemo1;
@@ -230,9 +255,65 @@ export interface CityFeed {
   schema_version?: SchemaVersion;
   sources?: Sources1;
   starter_pack?: StarterPack;
-  state: State1;
+  state: State2;
   timezone: Timezone1;
   venues?: Venues;
+}
+/**
+ * Per-city coverage + go-live tier, computed by ``gotc gate``. The UI never computes coverage itself.
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "CityCoverage".
+ */
+export interface CityCoverage {
+  banner?: Banner;
+  criteria?: Criteria;
+  evaluated_at: EvaluatedAt;
+  failing_since?: FailingSince;
+  geocode_rate: GeocodeRate;
+  passed_hard: PassedHard;
+  passed_soft: PassedSoft;
+  pillars?: Pillars;
+  reasons?: Reasons;
+  sources_healthy: SourcesHealthy;
+  sources_total: SourcesTotal;
+  strongest?: Strongest;
+  tier: Tier;
+  top_source?: TopSource;
+  top_source_share?: TopSourceShare;
+}
+export interface Criteria {
+  [k: string]: CoverageCriterion;
+}
+/**
+ * One go-live gate criterion (docs/research/SCALING.md §3, ADR-0008). ``None`` = not part of that bar.
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "CoverageCriterion".
+ */
+export interface CoverageCriterion {
+  label: Label;
+  note?: Note;
+  pass_hard?: PassHard;
+  pass_soft?: PassSoft;
+  threshold: Threshold;
+  value?: Value;
+}
+export interface Pillars {
+  [k: string]: CoveragePillar;
+}
+/**
+ * A newcomer pillar's coverage: ✓ strong, ◐ thin, ✕ none.
+ *
+ * This interface was referenced by `CityFeed`'s JSON-Schema
+ * via the `definition` "CoveragePillar".
+ */
+export interface CoveragePillar {
+  count: Count;
+  label: Label1;
+  note?: Note1;
+  state: State;
+  threshold: Threshold1;
 }
 /**
  * A canonical, deduplicated, enriched event — what the dashboard renders.
@@ -337,7 +418,7 @@ export interface Price {
   is_free?: IsFree;
   max?: Max;
   min?: Min;
-  note?: Note;
+  note?: Note2;
 }
 /**
  * This interface was referenced by `CityFeed`'s JSON-Schema
@@ -371,7 +452,7 @@ export interface FieldProvenance {
   confidence?: Confidence1;
   fetched_at: FetchedAt1;
   method?: Method2;
-  note?: Note1;
+  note?: Note3;
   source: Source;
 }
 /**
@@ -398,7 +479,7 @@ export interface Registration {
  * via the `definition` "SocialScore".
  */
 export interface SocialScore {
-  reasons?: Reasons;
+  reasons?: Reasons1;
   score: Score;
 }
 /**
@@ -462,7 +543,7 @@ export interface SourceStatus {
   sla_hours: SlaHours;
   source_id: SourceId2;
   stale: Stale1;
-  state: State;
+  state: State1;
 }
 /**
  * An official new-resident deadline/to-do (e.g. "license within 60 days"), quoted from a .gov page.

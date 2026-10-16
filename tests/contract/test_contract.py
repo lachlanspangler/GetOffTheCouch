@@ -74,6 +74,13 @@ def test_fresh_fixture_export_honours_the_contract(db, settings):
         assert any(d.provenance for d in det.events.values())
     index = json.loads((settings.web_data_dir / "index.json").read_text())
     assert index["schema_version"] == SCHEMA_VERSION and index["cities"]
+    from gotc.schema import CityCoverage
+
+    for c in index["cities"]:  # ADR-0008: every exported city carries its tier + coverage block
+        cov = CityCoverage.model_validate(c["coverage"])
+        assert c["tier"] == cov.tier and cov.tier in ("live", "beta")
+        doc = json.loads((settings.web_data_dir / "cities" / f"{c['slug']}.json").read_text())
+        assert doc["coverage"]["tier"] == cov.tier
     health = json.loads((settings.web_data_dir / "health.json").read_text())
     assert {"units", "log", "generated_at"} <= health.keys()
 

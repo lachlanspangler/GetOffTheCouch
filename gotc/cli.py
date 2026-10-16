@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import sys
+from typing import Any
 
 from gotc.config import load_registry
 from gotc.settings import ROOT, Settings, load_dotenv
@@ -174,6 +175,57 @@ def cmd_validate(a: argparse.Namespace, s: Settings) -> int:
     return 1 if errors else 0
 
 
+def cmd_gate(a: argparse.Namespace, s: Settings) -> int:
+    """Go-live gate (SCALING.md §3, ADR-0008): per-city tier + G1–G11 from what's in the DB. No network."""
+    from gotc.pipeline.export import city_feed
+    from gotc.pipeline.gate import gate_city
+
+    reg = load_registry()
+    db = _db(s)
+    now = utcnow()
+    cities = [c for c in reg.cities.values() if a.city is None or c.slug == a.city]
+    if not cities:
+        print(f"unknown city {a.city}", file=sys.stderr)
+        return 2
+    failed = 0
+    out = {}
+    for c in cities:
+        feed = city_feed(db, reg, c, now) if c.enabled else None
+        events = feed.events if feed else _events_for(db, c.slug)
+        cov = gate_city(db, reg, c, now, events, persist=not a.dry_run)
+        out[c.slug] = json.loads(cov.model_dump_json(exclude_none=True))
+        failed += int(not cov.passed_hard)
+        if a.json:
+            continue
+        marks = " ".join(
+            f"{cid}{'✓' if cr.pass_hard is not False and cr.pass_soft is not False else ('◐' if cr.pass_hard is not False else '✗')}"
+            for cid, cr in cov.criteria.items()
+        )
+        banner = " (banner)" if cov.banner else ""
+        print(f"{c.slug:16} {cov.tier:6}{banner} hard={'pass' if cov.passed_hard else 'FAIL'}  {marks}")
+        pills = ", ".join(
+            f"{p.label} {p.count}{'' if p.state == 'strong' else ' ' + p.state}" for p in cov.pillars.values()
+        )
+        print(f"{'':16} sources {cov.sources_healthy}/{cov.sources_total} · geocoded {cov.geocode_rate:.0%} · {pills}")
+        for r in cov.reasons if a.verbose_reasons else [r for r in cov.reasons if not r.startswith("thin:")]:
+            print(f"{'':16} - {r}")
+    if a.json:
+        print(json.dumps(out, indent=2))
+    return 1 if a.strict and failed else 0
+
+
+def _events_for(db: Database, city: str) -> list[Any]:
+    from gotc.schema import Event
+
+    out = []
+    for r in db.all("SELECT data FROM events WHERE city = ? ORDER BY start_at", (city,)):
+        try:
+            out.append(Event.model_validate_json(r["data"]))
+        except ValueError:
+            continue
+    return out
+
+
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
     from gotc.health.report import render
 
@@ -310,6 +362,14 @@ def main(argv: list[str] | None = None) -> int:
     fg.set_defaults(fn=cmd_forget)
 
     sub.add_parser("validate", help="fast config validation (pre-commit gate)").set_defaults(fn=cmd_validate)
+    g = sub.add_parser("gate", help="go-live gate: per-city tier + coverage (G1–G11), from the DB")
+    g.add_argument("--city")
+    g.add_argument("--json", action="store_true")
+    g.add_argument("--dry-run", action="store_true", help="don't persist the tier")
+    g.add_argument("--strict", action="store_true", help="exit 1 if any city fails a hard criterion")
+    g.add_argument("--all-reasons", dest="verbose_reasons", action="store_true", help="also list soft misses")
+    g.set_defaults(fn=cmd_gate)
+
     sub.add_parser("status", help="print the health table").set_defaults(fn=cmd_status)
     sub.add_parser("sources", help="list units and whether they're ready").set_defaults(fn=cmd_sources)
 
