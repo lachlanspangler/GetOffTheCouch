@@ -314,3 +314,63 @@ New units, live counts:
 - **Arena feeds are spectator venues.**
 
 **Blocked on the user:** Pages enablement and a first manual Refresh run; TM/SG keys; RunSignup registration; outreach list (see STATUS).
+- 2026-10-16 21:59 UTC · doctor: 0 errors, 0 fixed, 2 warnings
+- 2026-10-16 21:59 UTC · doctor: 0 errors, 0 fixed, 1 warnings
+
+## 2026-10-16 22:00 UTC: scaling pass (compliance, go-live gate, discover, sharded refresh)
+**Did:**
+- **Compliance.**
+  - Nominatim: re-read the OSMF policy (≤ 1 req/s absolute; "scripts … run at regular intervals are restricted to 4 requests per minute"; cache; single machine; periodic app use "strongly discouraged"). nominatim.openstreetmap.org/robots.txt also has `Disallow: /search` for `*`.
+    - Nominatim is now **off by default**. `GOTC_NOMINATIM=1` opts into a compliant lane: ≥ 15 s spacing (the interval can't be loosened), a hard per-run budget shared by all cities (default 20), every answer cached forever and never re-sent, Census tried first. 6 new tests.
+  - Wikidata: query.wikidata.org/robots.txt is `Disallow: /sparql` (and `/bigdata`), and www.wikidata.org disallows `/w/` (so `api.php`), `/api/` and `/wiki/Special:`. So there was no allowed replacement.
+    - The venue-capacity sync no longer touches the network. Existing rows (CC0) keep serving, and `config/venues/` is the live path.
+  - Both stances, plus every other `respect_robots=False` call, are in a new SOURCES.md table, "Robots exceptions and API usage policies".
+- **Go-live gate.** `gotc gate [--city X]` computes SCALING.md §3 G1–G11, seven pillars, strongest pillars, geocode rate, top-source share and reasons.
+  - Tiers are live/beta/hidden with hysteresis: incumbents start live, new cities start beta, banner after 72 h, demotion after 7 days. Transitions are logged as `gate@city`, and HEALTH.md has a gate table.
+  - The `coverage` block is in `index.json` and every feed (schema 1.5.0, additive). `config/metros.yaml` holds the top-50 table.
+- **Discover.** `gotc discover <slug> --seed kind=URL` probes, in order:
+  - Census county context
+  - Socrata catalog, data.gov `/search`, ArcGIS Hub → org search → layer fields
+  - library/university/venue/volunteer fingerprints: BiblioCommons, Communico, LibCal (custom domains too), Trumba, Localist, LiveWhale, Tribe, JSON-LD, carbonhouse, Galaxy, HandsOn
+  - Volo, Team Trivia, Challenge
+
+  It writes scored candidates (§2.8 weights, evidence, robots verdict) to `data/discover/<slug>.yaml`. All parsing is tested from 19 recorded fixture files (tests/fixtures/discover/, provenance in meta.json) plus existing adapter fixtures.
+- **City scaffolding.** `gotc city new <slug>` writes an `enabled: false` skeleton. `gotc city recenter` re-derived 43 of 50 metro centers with the Census geocoder; the rest are marked `center_source: scaling_md`.
+- **Scale.**
+  - Hash-gated incremental builds and exports.
+  - Payload budgets in `gotc validate` and the contract tests.
+  - `gotc run --cities/--no-build/--no-fetch`, plus `gotc shards` and `gotc state mark|delta|merge`.
+  - A sharded `refresh.yml` (prepare → shard matrix → one publish job), with `refresh-monolithic.yml` kept as a manual fallback.
+  - A monthly `keepalive.yml`, and a CI doctor warning on missed runs.
+  - Price snapshot downsampling, and `GOTC_RAW_RETENTION_DAYS` (7 in CI).
+  - Raw cache saved once a day instead of once per run.
+
+**Broke:**
+- The Census re-centering matched "260 Broadway" to **260 E Broadway** (1.7 km off) and "200 N Spring" to **200 S Spring**. A match must now agree on house number and street direction. Both rows were reverted to the table values.
+- The ArcGIS filters missed `Special_Event_Permitting_form`: underscores defeat `\b`. Titles are now normalized first. A bare "permits" also let building permits through, so it's no longer an event word.
+- The first Phoenix run fetched the same LibCal page twice (library seed and parks seed). There's now a per-run memo.
+- freelibrary.org and upenn.edu answer robots.txt with HTTP 403, so they're excluded as disallow-all (RFC 9309). That's correct, and the evidence now says `robots_txt_http_403`.
+- My first `make doctor` against a copied DB had no raw dir. That produced the "2 warnings" line above; the second line is the real one.
+- A runsignup test assumed every configured city is enabled. It now checks enabled cities only, because the Phoenix/Philadelphia drafts are disabled.
+
+**Decided (and why):**
+- **Nominatim off rather than "compliant at 4/min".** Robots disallows `/search`, and the policy discourages exactly our use. The opt-in lane exists so the user can decide otherwise.
+- **The NWS robots exception is kept but flagged.** api.weather.gov/robots.txt is `Disallow: /`, yet the NWS API docs ask apps to call it with a UA. That's for the user to confirm.
+- **Gate calibration.**
+  - G9 uses max(48 h, 2 × cadence), so weekly sources aren't late between runs.
+  - A G10 green run allows ≤ max(1, 10 %) failed units; one flaky source shouldn't block a 15-source city.
+  - Incremental max age is 3 h (the doc says 6 h), so `stale` flags lag at most 3 h.
+- **Sharding uses deltas over a shared base** instead of per-city state files first. That keeps the single `gotc.db.gz` format, so the fallback workflow stays valid. Merges refuse a delta from a different base.
+- **The incumbent list lives in metros.yaml** (`incumbent: true`). It gives today's ten cities the 7-day grace instead of dropping them all to beta, since none can pass G10 (48 h of green runs) yet.
+
+**Verified:**
+- `make check` green at every commit (431 pytest at the end, 27 vitest).
+- `gotc build` on a copy of the real DB: all ten cities are tiered live (grace). The hard misses match SCALING.md's predictions: Austin and Miami fail G8 (76% / 78% geocoded); Chicago (and Austin) fail G5 with 0 published deadlines; Miami fails G7 (63% mdpls).
+- `gotc validate` warns that the next-14-days cards for Boston, Chicago, NYC and Seattle are over the 1.5 MB / 250 KB budget.
+- Shard → delta → merge → build reproduces a monolithic run exactly (integration test). An offline simulation of the workflow's shell glue passes.
+- Live `gotc discover`:
+  - **Phoenix** (43 requests): 6 candidates. Phoenix Public Library LibCal (27 calendars), Maricopa County ArcGIS "Special Event Permitting" and "Street closures", Challenge (metro-phoenix), Team Trivia (phoenix-tempe), and a county "Restaurant" layer. Volo has no market. ActiveNet is flagged for ToS review.
+  - **Philadelphia** (44 requests): 6 candidates. Volo (13 ways to play), Xfinity Mobile Arena carbonhouse RSS (106 items), and City of Philadelphia ArcGIS "Community Events" (stale since 2019) plus two OEM layers that are probably noise. Free Library and Penn are robots-blocked.
+- No dashboard screenshot: web/ was out of scope for this branch.
+
+**Ideas:** I-110–I-118 added; I-119–I-122 rejected with reasons (Wikidata api.php, the Urban Institute API, Nominatim at 1 req/s, Communico subdomain guessing).

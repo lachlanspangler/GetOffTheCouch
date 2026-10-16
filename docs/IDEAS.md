@@ -5,15 +5,21 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 33 · **done** 63 · **rejected** 7 · **blocked** 6
+**open** 42 · **done** 63 · **rejected** 11 · **blocked** 6
 
 ## Up next (open, by score)
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-114 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | open | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
+| I-110 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
+| I-113 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | open | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
+| I-115 | gotc discover --verify: run chosen candidates in a scratch DB | pipeline | 4 | 2 | 1.6 | open | Candidates are scored on one probe; a scratch-DB run per unit (valid/rejected, categories, geofence drops, dup rate vs promoted units) makes promotion a review of numbers, not guesses (§2.8). |
+| I-116 | Library and university seeds for discover from IMLS PLS + College Scorecard | sources | 4 | 2 | 1.6 | open | Seeds are operator-supplied today; the IMLS administrative-entity file and Scorecard (DATA_GOV_API_KEY, ≥10k students, online-only filtered) would make discovery hands-off for metros 11–50. |
+| I-117 | CivicPlus calendar RSS adapter | sources | 4 | 2 | 1.6 | open | CivicPlus hosts city and parks calendars for many suburbs and mid-size cities (metros 30–100); RSSFeed.aspx is robots-allowed with a calendarEvent: namespace. discover already flags it as no_adapter_yet. |
 | I-096 | Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule | data-quality | 2 | 1 | 1.4 | open | Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources. |
 | I-084 | Find a volunteering source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 volunteering events in Denver right now |
 | I-085 | Find a cons & faires source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Denver right now |
@@ -21,13 +27,16 @@ unless docs/HEALTH.md has something red.
 | I-089 | Find a trivia nights source for Los Angeles | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Los Angeles right now |
 | I-090 | Find a cons & faires source for Nashville | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Nashville right now |
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
+| I-111 | Per-city state files on the pipeline-state branch | infra | 5 | 3 | 1.33 | open | Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2). |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
 | I-082 | ics: lift Luma 'Get up-to-date information at' link as the event URL/RSVP offer | sources | 3 | 2 | 1.2 | open | Luma ICS feeds omit URL; descriptions say 'Get up-to-date information at: https://luma.com/...'; lifting it gives every Luma event an RSVP offer |
 | I-098 | Per-room venue capacities (Icehouse main room vs whole building) to tighten attendance bands | data-quality | 3 | 2 | 1.2 | open | Whole-building capacities over-estimate small-room shows |
 | I-100 | Health check: all-past start dates while the page lists upcoming items → flag series-first-date sources | health | 3 | 2 | 1.2 | open | Caught Triple Door by hand; make it automatic |
 | I-102 | City concert digest: top 10 shows this week with lowest price per seller | features | 3 | 2 | 1.2 | open | Shareable, newsletter-ready view of the price comparison |
+| I-118 | Fetch national feeds once per run and share across cities (Challenge, UpcomingCons) | pipeline | 3 | 2 | 1.2 | open | Challenge's 0.9 MB show list is fetched once per city unit today; at 50 cities that's 45 MB/run of identical bodies (§4.6 item 6). |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
+| I-112 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -128,6 +137,10 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-122 | Guess Communico tenants from the city name (<name>.libnet.info) | sources | 2 | 1 | 1.6 | rejected | Cheap library discovery. — 2026-10-16 rejected: Unknown libnet.info subdomains 302 to google.co.uk (we'd be fetching Google), and names collide across states (hcpl = Harford County MD, not Harris County TX). Only fingerprinted links from a library's own homepage are probed. |
+| I-121 | Keep Nominatim at 1 req/s with a per-run cap | pipeline | 3 | 1 | 2.4 | rejected | Would keep place-name geocoding as before. — 2026-10-16 rejected: nominatim.openstreetmap.org/robots.txt disallows /search and the OSMF policy limits recurring scripts to 4 req/min and strongly discourages periodic app use. Nominatim is off by default; GOTC_NOMINATIM=1 is a compliant 15 s / 20-per-run lane. |
+| I-120 | Urban Institute Education Data API (cbsa= filter) for university discovery | sources | 3 | 1 | 2.4 | rejected | Has IPEDS by CBSA in one call. — 2026-10-16 rejected: educationdata.urban.org/robots.txt says Disallow: /api/. Use College Scorecard (api.data.gov key) instead (I-116). |
+| I-119 | Wikidata venue capacities via www.wikidata.org/w/api.php (wbgetentities) | sources | 3 | 1 | 2.4 | rejected | Considered as the SPARQL replacement. — 2026-10-16 rejected: www.wikidata.org/robots.txt disallows /w/ (so /w/api.php), /api/ and /wiki/Special: for all agents (checked 2026-10-16). Venue capacities come from config/venues instead. |
 | I-045 | Showing a precise '% tickets left' from any source | data-quality | 4 | 2 | 1.6 | rejected | No legit source exposes seat inventory to third parties; we show labeled signals with bands instead |
 | I-044 | Yelp Events API | sources | 3 | 2 | 1.2 | rejected | $229+/mo after trial |
 | I-043 | DoStuff network (Do512/Do312) scraping | sources | 4 | 2 | 1.6 | rejected | No API and actively blocks bots — ask for a partnership instead |

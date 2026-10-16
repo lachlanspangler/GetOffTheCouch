@@ -127,6 +127,35 @@ seed URLs instead.
 | Florida DBPR ABT CSV extracts | Miami | now used: `fl_dbpr_openings_miami` (csvfile, `bd4006lic.csv`). See "Races, openings, trivia (session 2)" | research §3.9 |
 | Walker Art Center, artsmia.org | Minneapolis | feeds disabled / 429 | research |
 
+## Discovery endpoints (`gotc discover`, 2026-10-16)
+
+These are called only by `gotc discover <city>`, out of band, never by the hourly run. Every request goes
+through PoliteClient with robots.txt checked first. Live runs on 2026-10-16 for Phoenix and Philadelphia used
+43 and 44 requests.
+
+| host / endpoint | robots.txt (2026-10-16, our UA) | use | stance |
+|---|---|---|---|
+| `api.us.socrata.com/api/catalog/v1` | no robots file (301 to nginx page) | cross-tenant dataset search, filtered to the place/county/state | ✅ documented Discovery API |
+| `catalog.data.gov/search` | allowed, `Crawl-Delay: 10` (honored) | local/state datasets; a Socrata `/api/views/<id>` identifier maps straight to a unit | ✅ |
+| `hub.arcgis.com/api/search/v1/collections/site/items` | allowed for `/api/`, `Crawl-delay: 60` (honored) | find the official Hub site and its orgId | ✅ one request per city |
+| `www.arcgis.com/sharing/rest/search` | allowed | org-scoped Feature Service search | ✅ |
+| `services*.arcgis.com/…/FeatureServer/0?f=json` | 403 "Invalid URL" (no policy) | layer fields (date columns) for the top 4 candidates | ✅ the existing ArcGIS exception |
+| `geocoding.geo.census.gov/geocoder/geographies/onelineaddress` | no robots file | city hall → county (joins the place terms) | ✅ |
+| `geocoding.geo.census.gov/geocoder/locations/onelineaddress` | no robots file | `gotc city recenter`: 49 lookups re-derived 43 of 50 metro centers (6 kept: no match, a different street, or > 5 km away; Hampton Roads has no single address) | ✅ |
+| `gateway.bibliocommons.com/v2/libraries/<code>/rss/events` | no robots file | 1-day window per guessed or linked code; 404 = unknown code | ✅ (never `<code>.bibliocommons.com`, Crawl-delay 120) |
+| `<tenant>.galaxydigital.com/need/rss/` | marketing paths only | tenant probe; unknown tenants answer 200 "Bad Domain" | ✅ |
+| `www.volosports.com/discover[/<market>]` | allows all but /rfo /admin /staff | market list + "N ways to play" | ✅ |
+| `www.teamtrivia.com/sitemap-locations.php` | allowed (the site's own sitemap) | region list | ✅ |
+| `challengeentertainment.com/wp-json/ce/v1/shows` | Yoast default (all allowed) | national feed filtered to the radius → `metro-*` classes | ✅ |
+| LibCal (`<host>/calendar`, `ical_subscribe.php`) | Crawl-delay 10 on `*.libcal.com` (honored) | public calendar ids → one ICS per calendar | ✅ |
+| Localist `/api/2/events`, LiveWhale `/live/json/…`, WP `/wp-json/`, carbonhouse `/events/rss` | per host, checked | endpoint probes on seed domains | ✅ when allowed |
+| Live Nation / Ticketmaster / AEG / Prekindle / LeagueLab hosts | — | never requested (`config/discovery_denylist.yaml`) | ⛔ ToS |
+
+**Found blocked during the first live runs** (recorded, not worked around):
+- `www.freelibrary.org` and `www.upenn.edu`: robots.txt answers HTTP 403, so PoliteClient treats it as "disallow all" (RFC 9309).
+- `www.phoenix.gov/parks` links the city's ActiveNet registration (`anc.apm.activecommunities.com`). It's flagged `manual_review`, because its ToS is unread.
+- `events.mcldaz.org` (Maricopa County Library District) runs an events platform we have no adapter for.
+
 ## How to add a source
 
 1. **Find the platform.** Most city data is on a platform we already support: `socrata`, `arcgis`, `ckan`

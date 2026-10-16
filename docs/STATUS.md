@@ -63,7 +63,7 @@
 | Area | State |
 |---|---|
 | Open data, libraries, universities, parks, venue calendars, arenas, athletics, Volo, volunteering, cons, trivia, openings, curated registry | ✅ real, live |
-| Weather, venue capacities (Wikidata + 40 sourced), starter pack, geocoding | ✅ real |
+| Weather, venue capacities (40 sourced; Wikidata rows frozen 2026-10-16, robots), starter pack, geocoding (Census; Nominatim off) | ✅ real |
 | Face-value concert prices | ✅ real where venues publish them. Ticketmaster fills the rest once keyed |
 | Resale prices, listing counts, "selling fast" from resale | 🟡 SeatGeek adapter ready; **needs `SEATGEEK_CLIENT_ID`** |
 | Ticketmaster (most big-venue tickets, on-sale times) | 🟡 adapter ready; **needs `TICKETMASTER_API_KEY`** |
