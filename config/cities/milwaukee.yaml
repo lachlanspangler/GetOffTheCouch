@@ -1,0 +1,142 @@
+# Milwaukee, WI. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city milwaukee --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * openings: data.milwaukee.gov is CKAN with robots `Disallow: /api/` and `/datastore/*`; the liquor-license
+#     CSV download (dataset page allowed) has only EFF_DATE/EXP_DATE, which include annual renewals, so it can't
+#     signal newness (same as Minneapolis; a first-seen diff would — see ideas).
+#   * universities: Marquette's calendar is behind a Cloudflare challenge; UW-Milwaukee's calendar exposes no
+#     feed (WordPress without Tribe). Athletics (SIDEARM ICS) only.
+#   * volunteering: United Way of Greater Milwaukee & Waukesha uses e-CImpact (login-gated); no Galaxy/HOC tenant.
+#   * venues: Pabst Theater Group sites (Pabst, Riverside, Turner Hall) reference Live Nation — skipped pending a
+#     ToS check; Milwaukee Downtown's robots.txt disallows /wp-json/; Milwaukee Rep (403); MSO (401).
+#   * leagues: no Volo market, no Team Trivia region.
+slug: milwaukee
+name: Milwaukee
+state: WI
+timezone: America/Chicago
+center: [43.0389, -87.9065]
+radius_km: 20
+aliases: [MKE, Wauwatosa, West Allis, Shorewood, Whitefish Bay, Glendale, Fox Point, Cudahy, St. Francis,
+          Greenfield, West Milwaukee, Greendale, Brown Deer, South Milwaukee]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 43.0389, lon: -87.9065 }
+  - { name: Historic Third Ward, lat: 43.0330, lon: -87.9070 }
+  - { name: Walker's Point, lat: 43.0240, lon: -87.9140 }
+  - { name: Bay View, lat: 42.9950, lon: -87.8990 }
+  - { name: East Side, lat: 43.0600, lon: -87.8890 }
+  - { name: Brady Street, lat: 43.0530, lon: -87.8960 }
+  - { name: Riverwest, lat: 43.0700, lon: -87.8980 }
+  - { name: Lower East Side, lat: 43.0480, lon: -87.8950 }
+  - { name: Westown, lat: 43.0410, lon: -87.9200 }
+  - { name: Brewers Hill, lat: 43.0560, lon: -87.9100 }
+  - { name: Washington Heights, lat: 43.0530, lon: -87.9800 }
+  - { name: Tosa Village, lat: 43.0500, lon: -88.0070 }
+  - { name: Shorewood, lat: 43.0890, lon: -87.8870 }
+  - { name: Clarke Square / Mitchell Street, lat: 43.0150, lon: -87.9300 }
+  - { name: Harbor View / Lakefront, lat: 43.0350, lon: -87.8950 }
+sources:
+  - id: mpl_events
+    adapter: communico
+    name: Milwaukee Public Library events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://mpl.libnet.info/events
+    expect_min_records: 30
+    notes: >-
+      Communico eeventcaldata JSON that mpl.org's calendar loads (undocumented; robots allows it). Central Library +
+      12 branches; location names match MPL branches (no Communico name collision).
+    params:
+      base_url: https://mpl.libnet.info
+      horizon_days: 14
+      venue_label: Milwaukee Public Library
+      default_category: arts.books
+      skip_all_day: true
+      category_map:
+        Storytime: family.kids
+        Family: family.kids
+        Kids: family.kids
+        Teens: family.kids
+        Book Club: arts.books
+        Computer: learning.tech
+  - id: fiserv_forum
+    adapter: rss_events
+    name: Fiserv Forum (Bucks, Marquette basketball, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.fiservforum.com/events
+    expect_min_records: 8
+    notes: "carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.fiservforum.com/events/rss
+      horizon_days: 180
+      venue: {name: Fiserv Forum, address: "1111 Vel R. Phillips Ave, Milwaukee, WI 53203"}
+      organizer: Fiserv Forum
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Bucks": sports_watch.game
+        "Basketball": sports_watch.game
+  - id: marcus_center
+    adapter: tribe
+    name: Marcus Performing Arts Center
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://www.marcuscenter.org/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Broadway, Florentine Opera, dance, family shows.
+    params:
+      base_url: https://www.marcuscenter.org
+      horizon_days: 180
+      per_page: 50
+      max_pages: 3
+      organizer: Marcus Performing Arts Center
+      venue: {name: Marcus Performing Arts Center, address: "929 N Water St, Milwaukee, WI 53202"}
+      default_category: arts.theater
+      classify_description: false
+  - id: marquette_athletics
+    adapter: ics
+    name: Marquette Golden Eagles athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gomarquette.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Milwaukee" is kept.
+    params:
+      url: https://gomarquette.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Marquette Golden Eagles
+      exclude_location: '^(?!Milwaukee\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 43.0390, lon: -87.9300, label: "Marquette University campus (approximate)" }
+  - id: uwm_athletics
+    adapter: ics
+    name: Milwaukee Panthers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://mkepanthers.com/calendar
+    expect_min_records: 5
+    notes: UW-Milwaukee's SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Milwaukee" is kept.
+    params:
+      url: https://mkepanthers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Milwaukee Panthers
+      exclude_location: '^(?!Milwaukee\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 43.0770, lon: -87.8820, label: "UW-Milwaukee campus (approximate)" }
+  - id: challenge_trivia_milwaukee
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Milwaukee)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 1
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-milwaukee within 2× the radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [milwaukee]

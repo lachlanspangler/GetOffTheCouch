@@ -1,0 +1,128 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Springshare//LibCal//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Heights Libraries Events
+X-WR-CALDESC:
+X-WR-TIMEZONE:America/New_York
+X-PUBLISHED-TTL:PT15M
+BEGIN:VEVENT
+DTSTART:20260916T130000Z
+DTEND:20260916T160000Z
+DTSTAMP:20260916T000000Z
+SUMMARY:ASPIRE ESOL Classes (Noble)
+DESCRIPTION:Formal English Language lessons for non-English speakers 
+ provided through Cuyahoga Community College's ASPIRE program. Classes are 
+ held two days a week and are available for speakers at all levels\, from 
+ beginners to advanced speakers. Students must register for the classes at 
+ the Tri-C ASPIRE website at 
+ www.tri-c.edu/ohio-options-for-adults/english-for-speakers-of-other-languages.html 
+ or by calling the Delisle Options Center in Cleveland Hts at 216-371-7138. 
+ Class schedule follows the Tri-C academic calendar for breaks.
+LOCATION:Room A\, Noble Neighborhood
+ORGANIZER;CN="Steve Sanders":MAILTO:ssanders@heightslibrary.org
+CATEGORIES:Outreach
+UID:LibCal-16443-17101078
+URL:https://events.heightslibrary.org/event/17101078
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260916T133000Z
+DTEND:20260916T140000Z
+DTSTAMP:20260916T000000Z
+SUMMARY:Baby Bonanza
+DESCRIPTION:Bring your babies for books\, bopping\, and bouncing at our 
+ lap-sit program. For babies who are not yet walking.
+LOCATION:Main Level Room A\, Coventry Village
+ORGANIZER;CN="Steve Eigsti":MAILTO:seigsti@heightslibrary.org
+CATEGORIES:Storytime 
+UID:LibCal-16443-17058371
+URL:https://events.heightslibrary.org/event/17058371
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T140000Z
+DTEND:20261017T143000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Story Stop
+DESCRIPTION:Hear stories\, sing songs\, and do a little dancing too. 
+ Books\, music\, and activities help develop early literacy skills during 
+ our weekly reading adventure. Space is limited and offered on a first 
+ come\, first served basis. Please see a staff person for a ticket before 
+ the program. For preschoolers of all ages. \n\n \n
+LOCATION:Brody Nelson\, Lee Road
+ORGANIZER;CN="Leslie Swaim-Fox":MAILTO:lswaim-f@heightslibrary.org
+CATEGORIES:Literacy, Music, Storytime 
+UID:LibCal-16443-16884803
+URL:https://events.heightslibrary.org/event/16884803
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T140000Z
+DTEND:20261017T150000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Tai Chi and Qigong
+DESCRIPTION:Practice Tai Chi and Qigong movement designed to achieve a 
+ total mind\, body\, and spiritual union. All levels of experience welcome.
+LOCATION:Room B\, Noble Neighborhood
+ORGANIZER;CN="Adam McConville":MAILTO:amcconvi@heightslibrary.org
+CATEGORIES:Health/Well-being
+UID:LibCal-16443-17037163
+URL:https://events.heightslibrary.org/calendar/public/tai-chi-fall26
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T140000Z
+DTEND:20261017T150000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Tai Chi and Qigong
+DESCRIPTION:Tai Chi and Qigong movement designed to achieve a total mind\, 
+ body and spiritual union. All experience levels are welcome.
+LOCATION:Room 1\, Room 2\, University Heights
+ORGANIZER;CN="Sara Phillips":MAILTO:sphillips@heightslibrary.org
+CATEGORIES:Health/Well-being
+UID:LibCal-16443-15304283
+URL:https://events.heightslibrary.org/event/15304283
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T150000Z
+DTEND:20261017T153000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Story Stop
+DESCRIPTION:Hear stories\, sing songs\, and do a little dancing too. 
+ Books\, music\, and activities help develop early literacy skills during 
+ our weekly reading adventure. Space is limited and offered on a first 
+ come\, first served basis. Please see a staff person for a ticket before 
+ the program. For preschoolers of all ages. \n\n \n
+LOCATION:Brody Nelson\, Lee Road
+ORGANIZER;CN="Leslie Swaim-Fox":MAILTO:lswaim-f@heightslibrary.org
+CATEGORIES:Literacy, Music, Storytime 
+UID:LibCal-16443-16884888
+URL:https://events.heightslibrary.org/event/16884888
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T150000Z
+DTEND:20261017T163000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Saturday Morning Cartoons
+DESCRIPTION:Hang out with friends\, eat cereal\, and watch your favorite 
+ cartoons of yesterday and today. For teens ages 13-18.
+LOCATION:University Heights Storytime Room\, University Heights
+ORGANIZER;CN="Hannah Van Jura":MAILTO:hvanjura@heightslibrary.org
+CATEGORIES:Bite Into Books 2026, Food/Cooking, Social
+UID:LibCal-16443-17060815
+URL:https://events.heightslibrary.org/event/17060815
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261017T170000Z
+DTEND:20261017T180000Z
+DTSTAMP:20261017T000000Z
+SUMMARY:Basic Introduction to American Sign Language
+DESCRIPTION:Learn the basics in communicating in American Sign Language. 
+ Refresh and build upon your skills in the use of American Sign Language. 
+ Registration begins March 1.\n\nRegistering for this class will register 
+ you for the entire 6-week series.\n\nRegistration Opens September 26.
+LOCATION:Park Level Room B\, Coventry Village
+ORGANIZER;CN="Ben Gulyas":MAILTO:bgulyas@heightslibrary.org
+CATEGORIES:Deaf
+UID:LibCal-16443-17065731
+URL:https://events.heightslibrary.org/event/17065731
+END:VEVENT
+END:VCALENDAR

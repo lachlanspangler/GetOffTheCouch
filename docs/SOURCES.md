@@ -948,3 +948,97 @@ Tried and not added (Fresno):
 | Fresno Philharmonic, fresno.gov WP, downtownfresno.org | FRE | no Tribe plugin / not WordPress | wp-json |
 | Fresno County Public Library Central branch (cid 11000) | FRE | empty ICS | probe |
 | Galaxy Digital slugs (fresno, …) | FRE | "Bad Domain" | probe |
+## Batch C cities
+
+Detroit, Columbus, Cleveland, Cincinnati, Indianapolis, Milwaukee, St. Louis, Kansas City, Louisville, Grand Rapids
+(added 2026-10-16). Every robots.txt was read before the first request to a host, ≥1.6 s between requests (≥5 s on
+hosts shared by several cities). "Verified" = valid records (upcoming, after windowing) on the first
+`gotc run --city <slug> --no-geocode`, 0 rejects everywhere. Fixtures for the new platform variants (LibCal ICS,
+date-only JSON-LD, Missouri liquor mapping) are in `tests/adapters/test_batch_c.py`. The global `upcomingcons` unit
+covers every city (1 con each in Columbus, Indianapolis and Grand Rapids today); RunSignup ZIPs were added for all ten.
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `three13_presents` | detroit | carbonhouse RSS / `rss_events` | https://www.313presents.com/events/rss | none | 1 request / 12 h | robots allows all; site has only a privacy policy | title, link, ev:startdate (UTC), ev:location → Fox / LCA / Sound Board address, ev:type → category; Pine Knob & Fifth Third Park skipped | concerts · 12h | B+ | 68 |
+| `majestic_detroit` | detroit | carbonhouse RSS / `rss_events` | https://www.majesticdetroit.com/events/rss | none | 1 request / 12 h | robots allows all | as above (Majestic Theatre, Magic Stick) | concerts · 12h | B+ | 53 |
+| `ford_field` | detroit | carbonhouse RSS / `rss_events` | https://www.fordfield.com/events/rss | none | 1 request/day | robots allows all | as above | events · 24h | B+ | 18 |
+| `cliff_bells` | detroit | WP The Events Calendar / `tribe` | https://cliffbells.com/wp-json/tribe/events/v1/events | none | ≤3 pages / 12 h | REST allowed | title, start/end, cost; no venue object (club fallback) | concerts · 12h | B | 55 |
+| `detroit_titans_athletics` | detroit | SIDEARM ICS / `ics` | https://detroittitans.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | SUMMARY, DTSTART, LOCATION (home = "Detroit…") | events · 24h | B | 16 |
+| `wayne_state_athletics` | detroit | SIDEARM ICS / `ics` | https://wsuathletics.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as above | events · 24h | B | 36 |
+| `united_way_sem_volunteer` | detroit | Galaxy Digital / `galaxydigital` | https://liveunitedsem.galaxydigital.com/need/rss/ | none | ≤16 requests/day, ≥3 s | `*` allowed; tenant title "Opportunities on United Way for Southeastern Michigan" | as `handson_twin_cities` | volunteer · 24h | B | 16 |
+| `nationwide_arena` | columbus | carbonhouse RSS / `rss_events` | https://www.nationwidearena.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 49 |
+| `schottenstein_center` | columbus | carbonhouse RSS / `rss_events` | https://www.schottensteincenter.com/events/rss | none | 1 request/day | robots allows all | as above | events · 24h | B+ | 65 |
+| `columbus_commons` | columbus | WP The Events Calendar / `tribe` | https://columbuscommons.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 50 |
+| `westerville_library_events` | columbus | BiblioCommons RSS / `bibliocommons` | …/libraries/westervillelibrary/rss/events | none | ≤10 pages/day | gateway host, no robots.txt | as `hclib_events` | events · 24h | A- | 59 |
+| `grandview_library_events` | columbus | Communico / `communico` | https://ghpl.libnet.info/eeventcaldata | none | 7 requests/day | undocumented; robots disallows only search pages; tenant location "Grandview Heights" checked | as `mdpls_events` | events · 24h | B | 7 |
+| `ohio_state_athletics` | columbus | SIDEARM ICS / `ics` | https://ohiostatebuckeyes.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` (home = "Columbus…") | events · 24h | B | 61 |
+| `experience_columbus_events` | columbus | Simpleview CVB / `simpleview` | https://www.experiencecolumbus.com/includes/rest_v2/… | token | Crawl-delay 2 | robots allows; **HTTP 403 "You don't have permission" (CDN) on the first run** | — | events · 24h | D for us (disabled) | disabled |
+| `rocket_arena` | cleveland | carbonhouse RSS / `rss_events` | https://www.rocketarena.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 93 |
+| `playhouse_square` | cleveland | carbonhouse RSS / `rss_events` | https://www.playhousesquare.org/events/rss | none | 1 request/day | robots allows all | as above; E.J. Thomas Hall (Akron) and streaming skipped | events · 24h | B+ | 89 |
+| `ccpl_events` | cleveland | Communico ("Attend") / `communico` | https://attend.cuyahogalibrary.org/eeventcaldata | none | 7 requests/day (~85 KB each) | undocumented; robots allows | as `mdpls_events`; far branches skipped by location | events · 24h | B | 359 |
+| `heights_libraries_events` | cleveland | LibCal ICS / `ics` | https://events.heightslibrary.org/ical_subscribe.php?src=p&cid=16443 | none | 1 request/day, Crawl-delay 10 | LibCal robots: `*` Crawl-delay 10 | SUMMARY, DTSTART, LOCATION (rooms; pinned to Lee Road, approximate) | events · 24h | B- (feed capped at 500 events from ~30 days back ≈ 10 days ahead) | 110 |
+| `cleveland_state_athletics` | cleveland | SIDEARM ICS / `ics` | https://csuvikings.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 30 |
+| `chpl_events` | cincinnati | BiblioCommons RSS / `bibliocommons` | …/libraries/cincinnatilibrary/rss/events | none | ≤30 pages/day | gateway host, no robots.txt | as `hclib_events`; `cities` keeps Cincinnati + inner ring | events · 24h | A- | 327 |
+| `cincinnati_arts` | cincinnati | carbonhouse RSS / `rss_events` | https://www.cincinnatiarts.org/events/rss | none | 1 request/day | robots allows all | as `three13_presents` (Aronoff, Music Hall) | events · 24h | B+ | 67 |
+| `uc_events` | cincinnati | LiveWhale v2 JSON / `livewhale` | https://calendar.uc.edu/live/json/events/max/200/… | none | 1 request/day | robots allows it | as `uchicago_events`; `audience_filter: institution` | events · 24h | B- (100 events/request ≈ 3 days) | 33 |
+| `xavier_athletics` | cincinnati | SIDEARM ICS / `ics` | https://goxavier.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 29 |
+| `indypl_events` | indianapolis | Communico ("Attend") / `communico` | https://attend.indypl.org/eeventcaldata | none | 7 requests/day | undocumented; robots allows | as `mdpls_events` | events · 24h | B | 183 |
+| `gainbridge_fieldhouse` | indianapolis | carbonhouse RSS / `rss_events` | https://www.gainbridgefieldhouse.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 63 |
+| `butler_athletics` | indianapolis | SIDEARM ICS / `ics` | https://butlersports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 35 |
+| `volunteer_central_indiana` | indianapolis | HandsOn Connect / `handsonconnect` | POST https://www.volunteercentralindiana.org/search/getOpportunitiesCalendar | none | 5 requests/day, ≥3 s | robots.txt 404 (no rules) | as `boston_cares` (no block id: the page's block 617 returns nothing) | volunteer · 24h | B | 12 |
+| `challenge_trivia_indianapolis` | indianapolis | Challenge JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request / 48 h | Yoast allow-all | as `challenge_trivia_nashville` (metro-central-indiana) | recurring · 48h | C | 212 |
+| `mpl_events` | milwaukee | Communico / `communico` | https://mpl.libnet.info/eeventcaldata | none | 14 requests/day | undocumented; robots allows | as `mdpls_events` | events · 24h | B | 229 |
+| `fiserv_forum` | milwaukee | carbonhouse RSS / `rss_events` | https://www.fiservforum.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 20 |
+| `marcus_center` | milwaukee | WP The Events Calendar / `tribe` | https://www.marcuscenter.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as `mprb_events` | events · 24h | B+ | 30 |
+| `marquette_athletics` | milwaukee | SIDEARM ICS / `ics` | https://gomarquette.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 25 |
+| `uwm_athletics` | milwaukee | SIDEARM ICS / `ics` | https://mkepanthers.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as above | events · 24h | B | 18 |
+| `challenge_trivia_milwaukee` | milwaukee | Challenge JSON / `challenge` | (as above) | none | 1 request / 48 h | as above | metro-milwaukee | recurring · 48h | C | 14 |
+| `slpl_events` | st_louis | BiblioCommons RSS / `bibliocommons` | …/libraries/slpl/rss/events | none | ≤20 pages/day | gateway host, no robots.txt | as `hclib_events` | events · 24h | A- | 179 |
+| `mo_new_liquor_licenses_stl` | st_louis | Socrata `dymb-xy5c` (data.mo.gov) / `socrata` | https://data.mo.gov/d/dymb-xy5c | none | Socrata throttling | Missouri Open Data ToU | license number, DBA (legal name only if organisation-like), type ("Retail by Drink" only), **original_date** (MM/DD/YYYY), `street_number ‖ street` | openings · 24h | B+ (some long-standing bars appear, likely new license holders) | 20 (all in the last 60 days) |
+| `enterprise_center` | st_louis | carbonhouse RSS / `rss_events` | https://www.enterprisecenter.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 57 |
+| `fabulous_fox` | st_louis | carbonhouse RSS / `rss_events` | https://www.fabulousfox.com/events/rss | none | 1 request/day | robots allows all | as above | events · 24h | B+ | 23 |
+| `slu_athletics` | st_louis | SIDEARM ICS / `ics` | https://slubillikens.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 18 |
+| `teamtrivia_st_louis` | st_louis | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-st-louis/ | none | 1 + ≤80 pages / 48 h, ≥3 s | as `teamtrivia_denver` | as `teamtrivia_denver` (71 venues; outer-suburb venues are dropped by the geofence once geocoded) | recurring · 48h | B- | 144 |
+| `stl_volunteer_center` | st_louis | HandsOn Connect / `handsonconnect` | POST https://www.stlvolunteer.org/search/getOpportunitiesCalendar | none | 7 requests/day, ≥3 s | robots.txt 404 | as `boston_cares` | volunteer · 24h | B | 57 |
+| `kc_parks_events` | kansas_city | WP The Events Calendar / `tribe` | https://www.kcparks.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as `mprb_events` | events · 24h | A- (official parks dept) | 44 |
+| `folly_theater` | kansas_city | WP The Events Calendar / `tribe` | https://www.follytheater.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as above, with published cost | events · 24h | B+ | 41 |
+| `umkc_events` | kansas_city | LiveWhale JSON / `livewhale` | https://calendar.umkc.edu/live/json/events/max/200 | none | 1 request/day | robots.txt 404 | as `umn_events` | events · 24h | B | 71 |
+| `kc_roos_athletics` | kansas_city | SIDEARM ICS / `ics` | https://kcroos.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 22 |
+| `jocolibrary_events` | kansas_city | BiblioCommons RSS / `bibliocommons` | …/libraries/jocolibrary/rss/events | none | ≤15 pages/day | gateway host, no robots.txt | as `hclib_events`; `cities` keeps the inner Johnson County branches | events · 24h | A- | 84 |
+| `mo_new_liquor_licenses_kc` | kansas_city | Socrata `dymb-xy5c` / `socrata` | https://data.mo.gov/d/dymb-xy5c | none | Socrata throttling | as above | as `mo_new_liquor_licenses_stl` | openings · 24h | B+ | 18 (all in the last 60 days) |
+| `challenge_trivia_kansas_city` | kansas_city | Challenge JSON / `challenge` | (as above) | none | 1 request / 48 h | as above | metro-kansas-city + metro-kansas | recurring · 48h | C | 18 |
+| `kfc_yum_center` | louisville | carbonhouse RSS / `rss_events` | https://www.kfcyumcenter.com/events/rss | none | 1 request/day | robots allows all | as `three13_presents` | events · 24h | B+ | 45 |
+| `kentucky_performing_arts` | louisville | carbonhouse RSS / `rss_events` | https://www.kentuckyperformingarts.org/events/rss | none | 1 request/day | robots allows all | as above; room → address map | events · 24h | B+ | 68 |
+| `waterfront_park_events` | louisville | WP The Events Calendar / `tribe` | https://ourwaterfront.org/wp-json/tribe/events/v1/events | none | ≤2 pages/day | REST allowed | as `mprb_events` | events · 24h | B | 16 |
+| `headliners_louisville` | louisville | Event JSON-LD on the homepage / `jsonld` | https://www.headlinerslouisville.com/ | none | 1 page / 12 h | robots allows it | name, startDate (date only → all-day, `date_only`), venue address | concerts · 12h | C+ (dates only) | 26 |
+| `louisville_cardinals_athletics` | louisville | SIDEARM ICS / `ics` | https://gocards.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day | robots allows it | as `detroit_titans_athletics` | events · 24h | B | 33 |
+| `challenge_trivia_louisville` | louisville | Challenge JSON / `challenge` | (as above) | none | 1 request / 48 h | as above | metro-north-kentucky + metro-south-indiana (the Louisville shows are filed under north-kentucky) | recurring · 48h | C | 40 |
+| `grpl_events` | grand_rapids | BiblioCommons RSS / `bibliocommons` | …/libraries/grpl/rss/events | none | ≤10 pages/day | gateway host, no robots.txt | as `hclib_events` | events · 24h | A- | 29 |
+| `kdl_events` | grand_rapids | BiblioCommons RSS / `bibliocommons` | …/libraries/kdl/rss/events | none | ≤20 pages/day | gateway host, no robots.txt | as `hclib_events`; `cities` keeps GR + inner suburbs | events · 24h | A- | 190 |
+
+**Tried and not added (batch C).**
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| Detroit ArcGIS "Liquor Licenses" / "Business Licenses (Current)" | DET | no issue or application date (only expiration), so no newness signal | layer `?f=json` field lists, 2026-10-16 |
+| Detroit Public Library | DET | programs are listed through Eventbrite (ToS) | detroitpubliclibrary.org/events-search |
+| Wayne State events (feeds.apps.wayne.edu JSON/RSS) | DET | custom feed, single site (would need its own adapter); contact name/e-mail in every row | probe |
+| Royal Oak / Canton libraries (LibraryMarket librarycalendar.com) | DET | robots.txt answers 403 (treated as disallow) | royaloak.librarycalendar.com/robots.txt |
+| Downtown Detroit Partnership, Short North Arts District, Columbus Metropolitan Library, case.edu, cincinnaticares.org, source.wustl.edu, calvin.edu, events.lfpl.org, ohiosos.gov, michigan.gov | DET/CBUS/CLE/CIN/STL/GR/LOU | robots.txt answers 403 to our UA (treated as disallow) | robots fetch 2026-10-16 |
+| Eastern Market, DIA, Detroit Zoo, Detroit Opera, MOCAD, CCS, UM-Dearborn, Metroparks (Huron-Clinton), Columbus Symphony, Grog Shop, Huntington Bank Field, Holden Forests & Gardens, Marquette calendar, Kauffman Center, Meijer Gardens, louisvilleky.gov, Dirty Dog Jazz | several | Cloudflare challenge — not attempted | probe |
+| Detroit Riverfront Conservancy event JSON-LD | DET | startDate is the series start, not the occurrence (a 10/20 event stamped 10/16) | probe |
+| Royal Oak Music Theatre | DET | AEG-affiliated and its RSS has no ev: dates | /events/rss |
+| PromoWest (Newport, KEMBA Live), The Midland | CBUS/KC | AEG-owned (skipped until I-092) | — |
+| Pabst Theater Group (Pabst, Riverside, Turner Hall), The Intersection, Louisville Palace, Bogart's, Saint Andrew's, Fillmore Detroit | MKE/GR/LOU/CIN/DET | Live Nation-owned or -affiliated venue sites | site footers |
+| Experience Columbus (Simpleview) | CBUS | 403 at the CDN on the first live run (like Meet Boston) | `gotc run` 2026-10-16 |
+| Cleveland Public Library LibCal ICS (cid 8758) | CLE | capped at 500 events starting a month back; no future events reach the feed | probe (last DTSTART 2026-10-05) |
+| United Way of Greater Cleveland / Greater KC / Greater St. Louis Tribe calendars | CLE/KC/STL | 0–1 events | tribe endpoint |
+| Cincinnati open data: Business Licenses `7dk3-gngs`, Licenses `ehdi-ajku`, Food Safety `rg6p-b3h3` | CIN | no business name / fire-code permits / routine inspections only — none is a newness date | SODA probes |
+| Milwaukee liquor-license CSV (data.milwaukee.gov) | MKE | `/api/` disallowed (CSV download allowed), but EFF_DATE includes renewals | CSV header + rows |
+| data.kcmo.org Business License Holders `pnm4-68wg` | KC | last updated 2026-01-15 | catalog |
+| IU events (events.iu.edu LiveWhale) | IND | all IU campuses mixed; 100 events ≈ 1 day; the IU Indianapolis group path returns 0 | probe |
+| GVSU events.ics and athletics | GR | no LOCATION and mostly the Allendale campus (outside the 15 km radius) | probe |
+| Team Trivia michigan / ne-ohio / kansas-city regions | DET/GR/CLE/KC | 0 venues listed today | region pages |
+| Volo Sports | all ten | no market (sitemap lists none of these cities) | volosports.com/sitemap.xml |
+| Mid-Continent PL, KC Public Library, IndyPL BiblioCommons codes | KC/IND | empty events channel (catalog only); IndyPL events are on Communico instead (used) | gateway RSS |
+| Michigan SOS / Ohio SOS starter-pack pages | MI/OH | robots.txt 403 to our UA; not worked around, so MI has no starter pack and OH has no voter item | robots fetch |

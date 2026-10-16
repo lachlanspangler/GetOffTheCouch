@@ -1,0 +1,23 @@
+# Official new-resident deadlines for Kentucky. Every fact is quoted verbatim from source_url (fetched 2026-10-16
+# with the GetOffTheCouch UA; drive.ky.gov robots.txt allows it).
+# Voter registration was not verified this session, so it is not listed.
+state: KY
+items:
+  - id: ky-drivers-license
+    title: "Get a Kentucky driver's license"
+    kind: license
+    days_after_move: 30
+    summary: "New Kentucky residents must get a Kentucky driver's license within 30 days of establishing residency."
+    action_url: https://drive.ky.gov/Drivers/Pages/New-to-Kentucky.aspx
+    evidence: "If you have recently become a Kentucky resident, you must obtain a Kentucky driver's license within 30 days of establishing residency to legally drive on Kentucky roads."
+    source_url: https://drive.ky.gov/Drivers/Pages/New-to-Kentucky.aspx
+    verified_at: 2026-10-16
+  - id: ky-vehicle-title-registration
+    title: "Insure, title and register your vehicle in Kentucky"
+    kind: vehicle
+    days_after_move: 10
+    summary: "Vehicle owners must get Kentucky insurance and title and register the vehicle within 10 days of establishing residency."
+    action_url: https://drive.ky.gov/Drivers/Pages/New-to-Kentucky.aspx
+    evidence: "If you own a vehicle, vessel, or mobile home, you must also obtain insurance through a company authorized to do business in Kentucky and title and register your property within 10 days of establishing residency."
+    source_url: https://drive.ky.gov/Drivers/Pages/New-to-Kentucky.aspx
+    verified_at: 2026-10-16

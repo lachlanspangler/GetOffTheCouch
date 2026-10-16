@@ -1,0 +1,31 @@
+# Official new-resident deadlines for Indiana. Every fact is quoted verbatim from source_url (fetched 2026-10-16
+# with the GetOffTheCouch UA; www.in.gov robots.txt allows it).
+state: IN
+items:
+  - id: in-drivers-license
+    title: "Get an Indiana driver's license"
+    kind: license
+    days_after_move: 60
+    summary: "New residents with a valid out-of-state license have 60 days to get an Indiana driver's license."
+    action_url: https://www.in.gov/bmv/licenses-permits-ids/new-indiana-residents/
+    evidence: "When move to this state, you have 60 days to obtain an Indiana driver's license if you hold a valid driver's license from another state."
+    source_url: https://www.in.gov/bmv/licenses-permits-ids/new-indiana-residents/
+    verified_at: 2026-10-16
+  - id: in-vehicle-title-registration
+    title: "Title and register your vehicle in Indiana"
+    kind: vehicle
+    days_after_move: 60
+    summary: "You have 60 days to apply for an Indiana title for vehicles with an out-of-state title, or pay an administrative penalty."
+    action_url: https://www.in.gov/bmv/licenses-permits-ids/new-indiana-residents/
+    evidence: "When you move to Indiana, you have 60 days to apply for a vehicle title or submit a completed Request for Title – State Form 1014 for all vehicles you own with an out-of-state title. If you don't, you will be charged an administrative penalty."
+    source_url: https://www.in.gov/bmv/licenses-permits-ids/new-indiana-residents/
+    verified_at: 2026-10-16
+  - id: in-voter-registration
+    title: "Register to vote in Indiana"
+    kind: voting
+    days_after_move: null
+    summary: "Register before the published deadline for each election (the 2026 General Election deadline was October 5, 2026); you must have lived in your precinct at least 30 days before the election."
+    action_url: https://www.in.gov/sos/elections/voter-information/register-to-vote/
+    evidence: "You have lived in the precinct where you vote for at least 30 days prior to the election; and You are registered to vote."
+    source_url: https://www.in.gov/sos/elections/voter-information/register-to-vote/
+    verified_at: 2026-10-16

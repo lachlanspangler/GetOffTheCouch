@@ -1,0 +1,163 @@
+# St. Louis, MO. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city st_louis --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * St. Louis County Library: custom Drupal events pages, no feed found. WashU (source.wustl.edu robots 403) and
+#     SLU (no public calendar API) are not used beyond SLU athletics.
+#   * leagues: no Volo market. Jazz St. Louis exposes no event feed.
+slug: st_louis
+name: St. Louis
+state: MO
+timezone: America/Chicago
+center: [38.6270, -90.1994]
+radius_km: 25
+aliases: [Saint Louis, STL, Clayton, University City, Maplewood, Webster Groves, Kirkwood, Brentwood,
+          Richmond Heights, Florissant, Ferguson, Affton, Mehlville, Creve Coeur, Ladue, Overland, Chesterfield,
+          East St. Louis, Belleville, Granite City, Collinsville, Edwardsville, Maryland Heights, Bridgeton]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 38.6270, lon: -90.1994 }
+  - { name: Downtown West / Washington Ave, lat: 38.6320, lon: -90.2050 }
+  - { name: Soulard, lat: 38.6060, lon: -90.2090 }
+  - { name: Lafayette Square, lat: 38.6160, lon: -90.2160 }
+  - { name: The Grove, lat: 38.6270, lon: -90.2580 }
+  - { name: Central West End, lat: 38.6430, lon: -90.2580 }
+  - { name: Grand Center, lat: 38.6400, lon: -90.2330 }
+  - { name: Midtown / Saint Louis University, lat: 38.6360, lon: -90.2340 }
+  - { name: Forest Park, lat: 38.6370, lon: -90.2850 }
+  - { name: Tower Grove, lat: 38.6080, lon: -90.2550 }
+  - { name: Cherokee Street, lat: 38.5940, lon: -90.2310 }
+  - { name: The Hill, lat: 38.6140, lon: -90.2780 }
+  - { name: Benton Park, lat: 38.5990, lon: -90.2170 }
+  - { name: Delmar Loop, lat: 38.6560, lon: -90.3060 }
+  - { name: Dogtown, lat: 38.6250, lon: -90.2980 }
+  - { name: Clayton, lat: 38.6426, lon: -90.3237 }
+sources:
+  - id: slpl_events
+    adapter: bibliocommons
+    name: St. Louis Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://slpl.bibliocommons.com/v2/events
+    expect_min_records: 40
+    notes: BiblioCommons events RSS (gateway host, no robots.txt; code from slpl.org's own links). City system, 17 branches.
+    params:
+      library: slpl
+      horizon_days: 10
+      max_pages: 20
+      venue_label: St. Louis Public Library
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Club: arts.books
+        Kids: family.kids
+        Teens: family.kids
+        Technology: learning.tech
+  - id: mo_new_liquor_licenses_stl
+    adapter: socrata
+    name: Missouri new liquor licenses — retail by the drink (St. Louis)
+    data_type: openings
+    homepage: https://data.mo.gov/d/dymb-xy5c
+    expect_min_records: 1
+    notes: >-
+      Missouri Division of Alcohol & Tobacco Control "New Liquor Licenses" (data.mo.gov, refreshed daily).
+      original_date is the license's original date (MM/DD/YYYY text). Only "Retail by Drink" rows (bars and
+      restaurants; each business also gets Sunday/package rows, which would duplicate it). `licensee` (the legal
+      entity) is only a title fallback when it looks like an organisation.
+    params:
+      domain: data.mo.gov
+      dataset: dymb-xy5c
+      kind: opening
+      lookback_days: 60
+      select: "license_number, dbaname, licensee, license_type, original_date, street_number || ' ' || street AS street_line, city, zip_code"
+      where: "city = 'SAINT LOUIS' AND license_type = 'Retail by Drink'"
+      fields: { record_id: license_number, title: [dbaname, licensee], start: original_date, category: license_type,
+                address: [street_line, city] }
+      entity_only_fields: [licensee]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. Missouri's Division of Alcohol and Tobacco Control lists a new
+        "{license_type}" license for this address, original date {date}.
+      default_category: food_drink.restaurant_opening
+      category_rules:
+        - { match: "(?i)\\b(bar|pub|tavern|lounge|brewing|brewery|sports|social|club)\\b", category: nightlife.opening }
+      default_url: https://data.mo.gov/d/dymb-xy5c
+      extras: { signal: liquor_license_issued }
+  - id: enterprise_center
+    adapter: rss_events
+    name: Enterprise Center (Blues, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.enterprisecenter.com/events
+    expect_min_records: 10
+    notes: "carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.enterprisecenter.com/events/rss
+      horizon_days: 180
+      venue: {name: Enterprise Center, address: "1401 Clark Ave, St. Louis, MO 63103"}
+      organizer: Enterprise Center
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Blues": sports_watch.game
+  - id: fabulous_fox
+    adapter: rss_events
+    name: The Fabulous Fox Theatre
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.fabulousfox.com/events
+    expect_min_records: 8
+    notes: "carbonhouse /events/rss (robots allows all). Broadway touring shows, concerts, comedy."
+    params:
+      url: https://www.fabulousfox.com/events/rss
+      horizon_days: 240
+      venue: {name: The Fabulous Fox Theatre, address: "527 N Grand Blvd, St. Louis, MO 63103"}
+      organizer: Fabulous Fox
+      default_category: arts.theater
+      category_map:
+        "Concert": music.concert
+        "Comedy": nightlife.comedy
+  - id: slu_athletics
+    adapter: ics
+    name: Saint Louis University Billikens athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://slubillikens.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it); only LOCATION starting with "St. Louis" is kept.
+    params:
+      url: https://slubillikens.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: SLU Billikens
+      exclude_location: '^(?!St\. Louis\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 38.6360, lon: -90.2340, label: "Saint Louis University campus (approximate)" }
+  - id: teamtrivia_st_louis
+    adapter: teamtrivia
+    name: Team Trivia (St. Louis)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-st-louis/
+    expect_min_records: 20
+    notes: >-
+      Region page → ~71 venue pages (many in St. Charles County and the Metro East, beyond the radius; the
+      geofence drops those once geocoded). Never uses the zip-code gate or /getlocation.php (robots-disallowed).
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { st_louis: st-louis }
+      max_venues: 80
+  - id: stl_volunteer_center
+    adapter: handsonconnect
+    name: United Way's Volunteer Center (St. Louis)
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.stlvolunteer.org/calendar
+    expect_min_records: 1
+    notes: HandsOn Connect tenant linked from helpingpeople.org (United Way of Greater St. Louis); robots.txt 404.
+    params:
+      base_url: https://www.stlvolunteer.org
+      horizon_days: 14
+      window_days: 2

@@ -120,3 +120,13 @@ sources:
         portland: "97204"
         riverside: "92501"
         fresno: "93721"
+        detroit: "48226"      # batch C: downtown / city-hall ZIPs
+        columbus: "43215"
+        cleveland: "44114"
+        cincinnati: "45202"
+        indianapolis: "46204"
+        milwaukee: "53202"
+        st_louis: "63103"
+        kansas_city: "64106"
+        louisville: "40202"
+        grand_rapids: "49503"

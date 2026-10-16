@@ -1,0 +1,78 @@
+# Grand Rapids, MI. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city grand_rapids --no-geocode`. THIN: only the two library systems have usable feeds today.
+# Known gaps (checked 2026-10-16):
+#   * venues: Van Andel Arena / DeVos Place (no ev: RSS, no Event JSON-LD); The Intersection is Live Nation
+#     (skipped); Meijer Gardens (Cloudflare); GR Symphony, Public Museum, Downtown GR Inc. expose no event feed;
+#     GRCMC's robots.txt disallows /wp-json/.
+#   * universities: GVSU's events.ics has no LOCATION and most events are on the Allendale campus (outside the
+#     15 km radius), GVSU athletics are in Allendale too; calvin.edu robots.txt answers 403.
+#   * volunteering: no Galaxy/HOC tenant linked from Heart of West Michigan United Way.
+#   * openings: Michigan has no liquor/business-license open data with a newness date (see detroit.yaml).
+#   * leagues/trivia: no Volo market; Team Trivia "michigan" lists 0 venues; no Challenge shows in range.
+slug: grand_rapids
+name: Grand Rapids
+state: MI
+timezone: America/Detroit
+center: [42.9634, -85.6681]
+radius_km: 15
+aliases: [GR, Wyoming, Kentwood, Walker, Grandville, East Grand Rapids, Comstock Park, Cascade, Ada]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 42.9634, lon: -85.6681 }
+  - { name: Heritage Hill, lat: 42.9580, lon: -85.6560 }
+  - { name: Eastown, lat: 42.9540, lon: -85.6230 }
+  - { name: East Hills, lat: 42.9530, lon: -85.6410 }
+  - { name: Uptown / Wealthy Street, lat: 42.9550, lon: -85.6450 }
+  - { name: Creston, lat: 42.9970, lon: -85.6580 }
+  - { name: Midtown, lat: 42.9690, lon: -85.6450 }
+  - { name: West Side / Bridge Street, lat: 42.9710, lon: -85.6800 }
+  - { name: Belknap Lookout, lat: 42.9800, lon: -85.6650 }
+  - { name: Roosevelt Park, lat: 42.9420, lon: -85.6830 }
+  - { name: Alger Heights, lat: 42.9150, lon: -85.6330 }
+  - { name: Garfield Park, lat: 42.9300, lon: -85.6600 }
+  - { name: East Grand Rapids, lat: 42.9420, lon: -85.6100 }
+  - { name: Wyoming, lat: 42.9134, lon: -85.7053 }
+sources:
+  - id: grpl_events
+    adapter: bibliocommons
+    name: Grand Rapids Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://grpl.bibliocommons.com/v2/events
+    expect_min_records: 10
+    notes: BiblioCommons events RSS (gateway host, no robots.txt; code from grpl.org's own links). Main library + 7 branches.
+    params:
+      library: grpl
+      horizon_days: 14
+      max_pages: 10
+      venue_label: Grand Rapids Public Library
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Club: arts.books
+        Kids: family.kids
+        Teens: family.kids
+  - id: kdl_events
+    adapter: bibliocommons
+    name: Kent District Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://kdl.bibliocommons.com/v2/events
+    expect_min_records: 15
+    notes: >-
+      BiblioCommons events RSS. 20 branches across Kent County; `cities` keeps the ones in Grand Rapids and the
+      inner suburbs (Sand Lake, Lowell, Cedar Springs… dropped).
+    params:
+      library: kdl
+      horizon_days: 14
+      max_pages: 20
+      venue_label: Kent District Library
+      cities: [Grand Rapids, Wyoming, Kentwood, Walker, Grandville, East Grand Rapids, Comstock Park, Cascade, Ada]
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Discussion: arts.books
+        Kids: family.kids
+        Teens: family.kids

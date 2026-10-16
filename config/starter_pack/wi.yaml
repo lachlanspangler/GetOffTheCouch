@@ -1,0 +1,14 @@
+# Official new-resident deadlines for Wisconsin. Every fact is quoted verbatim from source_url (fetched 2026-10-16
+# with the GetOffTheCouch UA; wisconsindot.gov serves no robots.txt (404 = no rules)).
+# Vehicle registration and voter registration were not verified this session, so they are not listed.
+state: WI
+items:
+  - id: wi-drivers-license
+    title: "Get a Wisconsin driver license"
+    kind: license
+    days_after_move: 60
+    summary: "After establishing Wisconsin residence, apply for a Wisconsin driver license within 60 days (30 days for a CDL)."
+    action_url: https://wisconsindot.gov/Pages/dmv/license-drvs/how-to-apply/ooslicense.aspx
+    evidence: "When you need to apply for a WI driver license after establishing residence: Within 60 days for a regular license Within 30 days for a Commercial Driver License (CDL)"
+    source_url: https://wisconsindot.gov/Pages/dmv/license-drvs/how-to-apply/ooslicense.aspx
+    verified_at: 2026-10-16

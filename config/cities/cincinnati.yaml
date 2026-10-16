@@ -1,0 +1,118 @@
+# Cincinnati, OH. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city cincinnati --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * openings: data.cincinnati-oh.gov "Business Licenses" (7dk3-gngs) has no business name; "Licenses (and Use
+#     Permits)" (ehdi-ajku) is fire-code permits; the food-safety dataset (rg6p-b3h3) has only routine/complaint
+#     inspections (no pre-licensing type). None is a newness signal.
+#   * volunteering: cincinnaticares.org robots.txt answers 403 (= disallow); no other platform tenant found.
+#   * leagues/trivia: no Volo market, no Team Trivia region, no Challenge shows within range.
+#   * venues: Heritage Bank Center, Taft Theatre, Brady Music Center and Riverbend have no feed with dates (no
+#     carbonhouse ev: RSS, no Event JSON-LD); Bogart's is Live Nation (skipped). UC athletics (gobearcats.com)
+#     has no SIDEARM calendar.ics (404).
+#   * University of Cincinnati's LiveWhale feed returns 100 events per request (≈3 days ahead); only page 1 is read.
+slug: cincinnati
+name: Cincinnati
+state: OH
+timezone: America/New_York
+center: [39.1031, -84.5120]
+radius_km: 20
+aliases: [Queen City, Covington, Newport, Bellevue, Fort Thomas, Norwood, St. Bernard, Elmwood Place, Cheviot,
+          Reading, Deer Park, Silverton, Fort Mitchell, Erlanger, Florence, North College Hill, Mount Healthy]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 39.1031, lon: -84.5120 }
+  - { name: Over-the-Rhine, lat: 39.1110, lon: -84.5150 }
+  - { name: The Banks, lat: 39.0970, lon: -84.5090 }
+  - { name: Pendleton, lat: 39.1110, lon: -84.5070 }
+  - { name: Mount Adams, lat: 39.1090, lon: -84.4970 }
+  - { name: Walnut Hills, lat: 39.1250, lon: -84.4900 }
+  - { name: Clifton / University Heights, lat: 39.1330, lon: -84.5150 }
+  - { name: Northside, lat: 39.1650, lon: -84.5410 }
+  - { name: Hyde Park, lat: 39.1370, lon: -84.4400 }
+  - { name: Oakley, lat: 39.1530, lon: -84.4270 }
+  - { name: East Walnut Hills, lat: 39.1260, lon: -84.4770 }
+  - { name: Columbia-Tusculum, lat: 39.1150, lon: -84.4300 }
+  - { name: Price Hill, lat: 39.1100, lon: -84.5700 }
+  - { name: Covington (KY), lat: 39.0837, lon: -84.5086 }
+  - { name: Newport (KY), lat: 39.0915, lon: -84.4958 }
+sources:
+  - id: chpl_events
+    adapter: bibliocommons
+    name: Cincinnati & Hamilton County Public Library events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 3
+    homepage: https://cincinnatilibrary.bibliocommons.com/v2/events
+    expect_min_records: 50
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt; code from chpl.org's own links). 40+ branches across
+      Hamilton County; `cities` keeps the Cincinnati-addressed and inner-ring branches (Loveland, Harrison… dropped).
+    params:
+      library: cincinnatilibrary
+      horizon_days: 10
+      max_pages: 30
+      venue_label: Cincinnati & Hamilton County Public Library
+      cities: [Cincinnati, Norwood, St. Bernard, Elmwood Place, Cheviot, Reading, Deer Park, North College Hill]
+      default_category: arts.books
+      category_map:
+        Storytime: family.kids
+        Book Club: arts.books
+        Babies: family.kids
+        Toddlers: family.kids
+        Kids: family.kids
+        Teens: family.kids
+        Technology: learning.tech
+  - id: cincinnati_arts
+    adapter: rss_events
+    name: Cincinnati Arts (Aronoff Center, Music Hall)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.cincinnatiarts.org/events
+    expect_min_records: 20
+    notes: >-
+      Cincinnati Arts Association's carbonhouse /events/rss (robots allows all): Broadway in Cincinnati, Music Hall
+      concerts, dance, comedy. The Hartwell community arts center is outside the core but inside the radius.
+    params:
+      url: https://www.cincinnatiarts.org/events/rss
+      horizon_days: 180
+      venue: {name: Aronoff Center for the Arts, address: "650 Walnut St, Cincinnati, OH 45202"}
+      venues:
+        "Aronoff Center": "650 Walnut St, Cincinnati, OH 45202"
+        "Music Hall": "1241 Elm St, Cincinnati, OH 45202"
+      organizer: Cincinnati Arts
+      default_category: arts.theater
+      category_map:
+        "Concert": music.concert
+        "Symphony": music.classical
+        "Comedy": nightlife.comedy
+  - id: uc_events
+    adapter: livewhale
+    name: University of Cincinnati events
+    data_type: events
+    homepage: https://calendar.uc.edu/
+    expect_min_records: 20
+    notes: LiveWhale v2 JSON (robots allows it); 100 events per request ≈ the next 3 days.
+    params:
+      fallback_point: { lat: 39.1329, lon: -84.5150, label: "University of Cincinnati Uptown campus (approximate)" }
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.uc.edu
+      path: "/live/json/events/max/{max}/response_fields/location,description,event_types,tags,group_title"
+      max: 200
+      organizer: University of Cincinnati
+      default_category: learning.networking
+  - id: xavier_athletics
+    adapter: ics
+    name: Xavier Musketeers athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://goxavier.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Cincinnati" is kept (Cintas Center…).
+    params:
+      url: https://goxavier.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Xavier Musketeers
+      exclude_location: '^(?!Cincinnati\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.1490, lon: -84.4740, label: "Xavier University campus (approximate)" }

@@ -1,0 +1,148 @@
+# Louisville, KY. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Onboarded 2026-10-16 (batch C); every unit was probed live that day (robots.txt read first) and ran once with
+# `gotc run --city louisville --no-geocode`; see docs/SOURCES.md "Batch C cities".
+# Known gaps (checked 2026-10-16):
+#   * library: Louisville Free Public Library's calendar (events.lfpl.org) answers robots.txt with 403 (= disallow).
+#   * universities: UofL's events.louisville.edu is a Drupal site with no Localist/LiveWhale/Trumba feed; only
+#     athletics (SIDEARM ICS) is used.
+#   * openings / volunteering: no license dataset or volunteer-platform tenant found (metrounitedway.org did not
+#     resolve; louisvilleky.gov answers with a Cloudflare challenge — not attempted).
+#   * Louisville Palace is Live Nation (skipped). No Volo market, no Team Trivia region.
+slug: louisville
+name: Louisville
+state: KY
+timezone: America/Kentucky/Louisville
+center: [38.2527, -85.7585]
+radius_km: 20
+aliases: [Jeffersontown, St. Matthews, Middletown, Shively, Lyndon, Okolona, Fern Creek, Jeffersonville,
+          New Albany, Clarksville, Prospect, Anchorage]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 38.2527, lon: -85.7585 }
+  - { name: NuLu, lat: 38.2540, lon: -85.7400 }
+  - { name: Butchertown, lat: 38.2620, lon: -85.7300 }
+  - { name: Highlands, lat: 38.2390, lon: -85.7180 }
+  - { name: Old Louisville, lat: 38.2290, lon: -85.7620 }
+  - { name: Germantown, lat: 38.2340, lon: -85.7380 }
+  - { name: Schnitzelburg, lat: 38.2290, lon: -85.7310 }
+  - { name: Crescent Hill, lat: 38.2530, lon: -85.6900 }
+  - { name: Clifton, lat: 38.2510, lon: -85.7110 }
+  - { name: Portland, lat: 38.2680, lon: -85.7950 }
+  - { name: Smoketown, lat: 38.2380, lon: -85.7480 }
+  - { name: St. Matthews, lat: 38.2520, lon: -85.6560 }
+  - { name: Paristown, lat: 38.2420, lon: -85.7320 }
+  - { name: South End / Iroquois, lat: 38.1950, lon: -85.7800 }
+  - { name: Jeffersonville (IN), lat: 38.2776, lon: -85.7372 }
+sources:
+  - id: kfc_yum_center
+    adapter: rss_events
+    name: KFC Yum! Center (UofL basketball, concerts)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.kfcyumcenter.com/events
+    expect_min_records: 10
+    notes: "carbonhouse /events/rss (ev module, UTC start times); robots allows all."
+    params:
+      spectator_venue: true
+      url: https://www.kfcyumcenter.com/events/rss
+      horizon_days: 180
+      venue: {name: KFC Yum! Center, address: "1 Arena Plaza, Louisville, KY 40202"}
+      organizer: KFC Yum! Center
+      default_category: music.concert
+      category_map:
+        " vs": sports_watch.game
+        "Basketball": sports_watch.game
+        "Volleyball": sports_watch.game
+  - id: kentucky_performing_arts
+    adapter: rss_events
+    name: Kentucky Performing Arts (Kentucky Center, Brown Theatre, Paristown Hall)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.kentuckyperformingarts.org/events
+    expect_min_records: 20
+    notes: >-
+      Non-profit performing-arts center's carbonhouse /events/rss (robots allows all). Broadway, Louisville
+      Orchestra, ballet, comedy and concerts. Rooms without a known address are geocoded by name.
+    params:
+      url: https://www.kentuckyperformingarts.org/events/rss
+      horizon_days: 180
+      venue: {name: Kentucky Performing Arts}
+      venues:
+        "The Kentucky Center": "501 W Main St, Louisville, KY 40202"
+        "Whitney Hall": "501 W Main St, Louisville, KY 40202"
+        "Bomhard Theater": "501 W Main St, Louisville, KY 40202"
+        "MeX Theater": "501 W Main St, Louisville, KY 40202"
+        "Lexus Lounge": "501 W Main St, Louisville, KY 40202"
+        "Brown Theatre": "315 W Broadway, Louisville, KY 40202"
+        "Old Forester's Paristown Hall": "724 Brent St, Louisville, KY 40204"
+      organizer: Kentucky Performing Arts
+      default_category: arts.theater
+      category_map:
+        "Concert": music.concert
+        "Orchestra": music.classical
+        "Comedy": nightlife.comedy
+        "Old Forester's Paristown Hall": music.concert
+  - id: waterfront_park_events
+    adapter: tribe
+    name: Waterfront Park events
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://ourwaterfront.org/events/
+    expect_min_records: 3
+    notes: Waterfront Development Corporation's The Events Calendar REST API (robots allows it). Festivals, runs, movies.
+    params:
+      base_url: https://ourwaterfront.org
+      horizon_days: 120
+      per_page: 50
+      max_pages: 2
+      organizer: Waterfront Park
+      venue: {name: Waterfront Park, address: "129 River Rd, Louisville, KY 40202"}
+      default_category: community.festival
+      tags: [outdoor]
+  - id: headliners_louisville
+    adapter: jsonld
+    name: Headliners Music Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://www.headlinerslouisville.com/
+    expect_min_records: 8
+    notes: >-
+      Event JSON-LD on the homepage (robots allows it). startDate is a date without a time ("Oct 16, 2026"), so
+      records are all-day (`date_only`).
+    params:
+      urls: [https://www.headlinerslouisville.com/]
+      venue: {name: Headliners Music Hall, address: "1386 Lexington Rd, Louisville, KY 40206"}
+      organizer: Headliners Music Hall
+      date_only: true
+      default_category: music.concert
+  - id: louisville_cardinals_athletics
+    adapter: ics
+    name: Louisville Cardinals athletics (home games)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://gocards.com/calendar
+    expect_min_records: 5
+    notes: UofL's SIDEARM calendar.ics (robots allows it); only LOCATION starting with "Louisville" is kept.
+    params:
+      url: https://gocards.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 60
+      max_occurrences: 1
+      organizer: Louisville Cardinals
+      exclude_location: '^(?!Louisville\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 38.2120, lon: -85.7580, label: "University of Louisville Belknap campus (approximate)" }
+  - id: challenge_trivia_louisville
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Louisville)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 1
+    notes: >-
+      One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows). Louisville's shows are filed under
+      metro-north-kentucky (plus one metro-south-indiana show in Georgetown, IN); 2× radius filter.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [north-kentucky, south-indiana]

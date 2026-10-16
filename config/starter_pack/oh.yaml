@@ -1,0 +1,23 @@
+# Official new-resident deadlines for Ohio. Every fact is quoted verbatim from source_url (fetched 2026-10-16 with
+# the GetOffTheCouch UA; bmv.ohio.gov robots.txt allows it).
+# Voter registration skipped: www.ohiosos.gov answers robots.txt with HTTP 403 to our UA (treated as disallow).
+state: OH
+items:
+  - id: oh-drivers-license
+    title: "Transfer your driver license to Ohio"
+    kind: license
+    days_after_move: 30
+    summary: "Within 30 days of establishing Ohio residency (taking a job, signing a lease, buying a home or enrolling children in school), transfer your out-of-state driver license or ID card."
+    action_url: https://bmv.ohio.gov/new-to-ohio.aspx
+    evidence: "Within 30 days of establishing residency, you are responsible for transferring your out-of-state driver license or ID card, vehicle title, and vehicle registration to Ohio."
+    source_url: https://bmv.ohio.gov/new-to-ohio.aspx
+    verified_at: 2026-10-16
+  - id: oh-vehicle-title-registration
+    title: "Title and register your vehicle in Ohio"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Within 30 days of establishing residency, transfer your vehicle title and registration to Ohio."
+    action_url: https://bmv.ohio.gov/new-to-ohio.aspx
+    evidence: "Within 30 days of establishing residency, you are responsible for transferring your out-of-state driver license or ID card, vehicle title, and vehicle registration to Ohio."
+    source_url: https://bmv.ohio.gov/new-to-ohio.aspx
+    verified_at: 2026-10-16

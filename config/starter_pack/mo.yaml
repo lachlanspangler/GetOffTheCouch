@@ -1,0 +1,14 @@
+# Official new-resident deadlines for Missouri. Every fact is quoted verbatim from source_url (fetched 2026-10-16
+# with the GetOffTheCouch UA; dor.mo.gov robots.txt allows it).
+# Driver license and voter registration deadlines were not verified this session, so they are not listed.
+state: MO
+items:
+  - id: mo-vehicle-title
+    title: "Title your vehicle in Missouri"
+    kind: vehicle
+    days_after_move: 30
+    summary: "New residents have 30 days from becoming a Missouri resident to title their vehicle."
+    action_url: https://dor.mo.gov/motor-vehicle/titling-registration/
+    evidence: "You have 30 days from the date of becoming a Missouri resident to title your vehicle."
+    source_url: https://dor.mo.gov/motor-vehicle/titling-registration/
+    verified_at: 2026-10-16
