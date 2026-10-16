@@ -5,6 +5,29 @@ import { availabilityLabel, estimateLabel, priceLabel, sourceName, weatherLabel 
 import { age, fmtTime, hoursUntil, monthShort, parts, relative, weekdayShort } from "../lib/time";
 import { Icon } from "./Icon";
 
+/** "$39–$89 · 3 sellers": how many places sell it, shown only when more than one actually does. */
+function priceText(e: Event, price: string): string {
+  const sellers = new Set((e.offers ?? []).filter((o) => o.price_min != null).map((o) => o.seller));
+  return sellers.size > 1 ? `from ${price.split("–")[0]} · ${sellers.size} sellers` : price;
+}
+
+function sellerTitle(e: Event): string | undefined {
+  const rows = (e.offers ?? []).filter((o) => o.price_min != null).map((o) => `${o.seller} (${o.kind === "resale" ? "resale" : "face value"}): from $${o.price_min}`);
+  return rows.length ? rows.join("\n") : undefined;
+}
+
+/** Lowest-price trend, only when snapshots exist over at least a day (no trend from one data point). */
+function trendBadge(e: Event) {
+  const t = e.price_trend;
+  if (!t || t.direction === "unknown" || t.direction === "flat" || t.change_pct == null || (t.window_hours ?? 0) < 24) return null;
+  const up = t.direction === "up";
+  return (
+    <span class={`badge ${up ? "badge-hot" : "badge-free"}`} title={`Lowest listed price ${up ? "rose" : "fell"} ${Math.abs(t.change_pct)}% over ${t.window_hours}h`}>
+      {up ? "↑" : "↓"} {Math.abs(Math.round(t.change_pct))}% this week
+    </span>
+  );
+}
+
 export function spotsLeft(e: Event): { left: number; cap: number | null } | null {
   const t = e.tickets;
   if (t?.spots_left == null) return null;
@@ -104,7 +127,8 @@ export function EventCard({ e, more = 0, why }: { e: Event; more?: number; why?:
         </p>
         <div class="badges">
           <DeadlineBadge e={e} compact />
-          {price ? <span class={`badge ${price === "Free" ? "badge-free" : ""}`}>{price}</span> : null}
+          {price ? <span class={`badge ${price === "Free" ? "badge-free" : ""}`} title={sellerTitle(e)}>{priceText(e, price)}</span> : null}
+          {trendBadge(e)}
           {hasSpots && (
             <span class={`badge ${(e.tickets!.spots_left ?? 0) <= 2 ? "badge-hot" : "badge-info"}`}>
               {e.tickets!.spots_left === 0
