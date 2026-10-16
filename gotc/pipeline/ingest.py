@@ -123,6 +123,7 @@ def run_unit(
         return UnitResult(key, "skipped", state=h.state, notes=[f"next due {iso(h.next_due_at)}"])
 
     adapter = get_adapter(unit.source.adapter)
+    apply_rate_limit(http, unit)
     raw = RawStore(settings.raw_dir)
     ctx = FetchContext(unit=unit, http=http, now=now, settings=settings, cursor=hstore.get_cursor(db, key))
     result = UnitResult(key, "ok")
@@ -191,6 +192,23 @@ def run_unit(
             result.error = verdict.health.last_error
         _record_run_unit(db, run_id, key, now, result)
     return result
+
+
+def apply_rate_limit(http: PoliteClient, unit: Unit) -> None:
+    """Per-source politeness: ``min_interval_s`` applies to every host named in the source's params."""
+    if not unit.source.min_interval_s:
+        return
+    from urllib.parse import urlsplit
+
+    p = unit.source.params
+    urls = [p.get("base_url"), p.get("domain") and f"https://{p['domain']}", *_as_list(p.get("url"))]
+    for u in filter(None, urls):
+        host = urlsplit(str(u)).netloc
+        http.host_intervals[host] = max(http.host_intervals.get(host, 0.0), unit.source.min_interval_s)
+
+
+def _as_list(v: Any) -> list[Any]:
+    return v if isinstance(v, list) else [v]
 
 
 def upsert_records(db: Database, unit: Unit, parsed: Parsed, now: datetime) -> int:

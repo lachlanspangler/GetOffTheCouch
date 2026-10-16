@@ -34,6 +34,7 @@ class SourceConfig(_Cfg):
     enabled: bool = True
     homepage: str | None = None
     params: dict[str, Any] = Field(default_factory=dict)
+    min_interval_s: float | None = None  # politeness: seconds between requests to this source's host(s)
     expect_min_records: int = 1  # fewer than this on a successful fetch → "empty results" health failure
     notes: str | None = None
 

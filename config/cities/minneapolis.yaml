@@ -27,6 +27,7 @@ sources:
     adapter: tribe
     name: Minneapolis Park & Recreation Board
     data_type: events
+    min_interval_s: 6   # returns HTTP 429 after ~3 fast requests (research 2026-10-15)
     homepage: https://www.minneapolisparks.org/event-calendar/
     expect_min_records: 5
     params:

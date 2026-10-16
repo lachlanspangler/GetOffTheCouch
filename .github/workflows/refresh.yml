@@ -51,7 +51,7 @@ jobs:
         with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
       - name: Build dashboard with fresh data
         working-directory: web
-        run: npm ci && npm run build
+        run: ../.venv/bin/python -m gotc demo && npm ci && npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: web/dist }

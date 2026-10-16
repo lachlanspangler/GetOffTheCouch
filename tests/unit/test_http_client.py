@@ -74,3 +74,14 @@ def test_secrets_are_redacted_from_urls_and_errors(tmp_path):
         c.get("https://api.example.com/bad", params={"client_id": "SECRET456"}, respect_robots=False)
     assert "SECRET456" not in str(e.value)
     assert e.value.kind == "auth"
+
+
+def test_per_source_rate_limit_applies_to_its_hosts(tmp_path):
+    from gotc.pipeline.ingest import apply_rate_limit
+    from tests.conftest import make_city, make_source, unit_for
+
+    src = make_source("x", "tribe", base_url="https://parks.example.org")
+    src.min_interval_s = 6
+    c = client(FixtureTransport(), tmp_path)
+    apply_rate_limit(c, unit_for(src, make_city()))
+    assert c.host_intervals["parks.example.org"] == 6
