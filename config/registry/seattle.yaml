@@ -1,0 +1,18 @@
+# Curated, hand-verified entries for Seattle. See config/registry/minneapolis.yaml for the rules.
+# Underdog uses LeagueLab (terms forbid automated access) → watch: false.
+- id: underdog-fall-coed-volleyball-nsc
+  title: "Underdog Sports — Fall Co-ed Volleyball (Saturdays, North Seattle College)"
+  category: sports_league.volleyball
+  kind: season
+  start: 2026-10-17
+  venue: North Seattle College
+  organizer: Underdog Sports Leagues
+  url: https://www.underdogseattle.com/leagues?v=upcoming
+  price_min: 115
+  price_max: 115
+  price_note: "$115 individual · $795 per team ($75 deposit)"
+  registration: { status: open, signup_types: [individual, team] }
+  evidence: "Fall Co-ed Volleyball at North Seattle CC Saturdays ... Starts: Saturday, October 17 ... Team Status: Open Cost: $75.00 Deposit Team $795.00 Total Individual Status: Open Cost: $115.00 Individual"
+  source_url: https://www.underdogseattle.com/leagues?v=upcoming
+  verified_at: 2026-10-15
+  watch: false

@@ -1,0 +1,18 @@
+# Curated, hand-verified entries for Los Angeles. See config/registry/minneapolis.yaml for the rules.
+- id: hollywood-curling-learn-to-curl-2026-10-18
+  title: "Hollywood Curling — Learn to Curl (Panorama City)"
+  category: sports_league.curling
+  start: 2026-10-18T19:00:00
+  end: 2026-10-18T20:30:00
+  venue: LA Kings Valley Ice Center
+  address: "8750 Van Nuys Boulevard, Panorama City, CA"
+  organizer: Hollywood Curling
+  url: https://www.eventbrite.com/e/learn-to-curl-in-panorama-city-tickets-2003227226560
+  price_min: 44.52
+  price_max: 44.52
+  price_note: "lowest listed on Eventbrite"
+  registration: { closes: 2026-10-18T19:00:00, status: open, signup_types: [individual] }
+  tags: [beginner_friendly]
+  evidence: "Learn to Curl in Panorama City"
+  source_url: https://www.eventbrite.com/e/learn-to-curl-in-panorama-city-tickets-2003227226560
+  verified_at: 2026-10-15

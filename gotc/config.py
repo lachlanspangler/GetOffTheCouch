@@ -30,6 +30,7 @@ class SourceConfig(_Cfg):
     data_type: DataType
     scope: Literal["city", "all_cities"] = "city"
     cadence_hours: float | None = None  # default: the data type's SLA
+    sla_hours: float | None = None  # override the data type's freshness SLA (e.g. curated: weekly)
     requires: list[str] = Field(default_factory=list)  # env vars (API keys) needed
     enabled: bool = True
     homepage: str | None = None
@@ -88,7 +89,7 @@ class Registry(BaseModel):
     sources_file: SourcesFile
 
     def sla_hours(self, source: SourceConfig) -> float:
-        return self.sources_file.sla_hours[source.data_type]
+        return source.sla_hours or self.sources_file.sla_hours[source.data_type]
 
     def cadence_hours(self, source: SourceConfig) -> float:
         return source.cadence_hours or self.sla_hours(source)

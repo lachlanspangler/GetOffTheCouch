@@ -1,0 +1,152 @@
+# Curated, hand-verified entries for Minneapolis–St. Paul. Schema: gotc/adapters/curated.py (CuratedEntry).
+# RULE: every fact below appears in `evidence`, quoted verbatim from `source_url` ("..." separates excerpts).
+# Page-watch re-checks the quote on every run; if it disappears, the card is flagged and goes stale.
+- id: frogtown-happy-hour-league-s1
+  title: "Frogtown Curling Club — Happy Hour League (session 1)"
+  category: sports_league.curling
+  kind: season
+  start: 2026-11-16
+  at: "16:00"
+  recurrence: "Mondays 4 pm · 5 weeks · 90-minute games"
+  venue: Frogtown Curling Club
+  organizer: Frogtown Curling Club
+  url: https://frogtowncurling.org/
+  price_min: 50
+  price_max: 50
+  price_note: "+ tax, per person per session; full membership required"
+  registration: { status: open, signup_types: [individual] }
+  description: "Sign up as an individual and get matched with teammates. First come, first served."
+  evidence: "Mondays at 4 p.m. ... Registration is open now ... five weeks per session, two sessions starting Nov 16 and Jan 25 ... Sign up as an individual and we'll match you with teammates ... Full membership required ... $50 + tax"
+  source_url: https://frogtowncurling.org/
+  verified_at: 2026-10-15
+- id: frogtown-happy-hour-league-s2
+  title: "Frogtown Curling Club — Happy Hour League (session 2)"
+  category: sports_league.curling
+  kind: season
+  start: 2027-01-25
+  at: "16:00"
+  recurrence: "Mondays 4 pm · 5 weeks · 90-minute games"
+  venue: Frogtown Curling Club
+  organizer: Frogtown Curling Club
+  url: https://frogtowncurling.org/
+  price_min: 50
+  price_max: 50
+  price_note: "+ tax, per person per session; full membership required"
+  registration: { status: open, signup_types: [individual] }
+  evidence: "Mondays at 4 p.m. ... Registration is open now ... two sessions starting Nov 16 and Jan 25 ... Sign up as an individual and we'll match you with teammates ... $50 + tax"
+  source_url: https://frogtowncurling.org/
+  verified_at: 2026-10-15
+- id: frogtown-homer-simpson-league
+  title: "Frogtown Curling Club — Homer Simpson League (drop-in)"
+  category: sports_league.curling
+  weekly: { days: [TU], at: "10:00", duration_min: 120, occurrences: 4 }
+  recurrence: "Tuesdays 10 am · drop in any week"
+  venue: Frogtown Curling Club
+  organizer: Frogtown Curling Club
+  url: https://frogtowncurling.org/
+  price_min: 15
+  price_max: 20
+  price_note: "$15 members (tax incl.), $20 non-members, or $120 + tax season pass"
+  description: "Extra games with no roster and no commitment. Open to anyone who has finished a Learn to Curl. No membership required."
+  evidence: "HOMER SIMPSON LEAGUE ... Tuesdays at 10 a.m. ... Drop in any week ... anyone who has finished a Learn to Curl is welcome ... $15 members ... $20 non-members"
+  source_url: https://frogtowncurling.org/
+  verified_at: 2026-10-15
+- id: mill-city-running-monday-highland
+  title: "Mill City Running — Monday Night Group Run (Highland)"
+  category: fitness.run_club
+  weekly: { days: [MO], at: "18:00", duration_min: 75, occurrences: 4 }
+  recurrence: "Every Monday 6 pm"
+  venue: "Highland Park neighborhood, St. Paul"
+  organizer: Mill City Running
+  url: https://www.millcityrunning.com/pages/group-runs
+  free: true
+  tags: [solo_friendly]
+  evidence: "every Monday, Tuesday, and Friday ... for a free community run ... Monday Night in Highland ... Every Monday at 6pm"
+  source_url: https://www.millcityrunning.com/pages/group-runs
+  verified_at: 2026-10-15
+- id: mill-city-running-tuesday-northeast
+  title: "Mill City Running — Tuesday Night Group Run (Northeast)"
+  category: fitness.run_club
+  weekly: { days: [TU], at: "18:00", duration_min: 75, occurrences: 4 }
+  recurrence: "Every Tuesday 6 pm"
+  venue: "Northeast Minneapolis"
+  organizer: Mill City Running
+  url: https://www.millcityrunning.com/pages/group-runs
+  free: true
+  tags: [solo_friendly]
+  evidence: "for a free community run ... Tuesday Night in Northeast ... Every Tuesday at 6PM"
+  source_url: https://www.millcityrunning.com/pages/group-runs
+  verified_at: 2026-10-15
+- id: mill-city-running-friday-northeast
+  title: "Mill City Running — Friday Morning Group Run (Northeast)"
+  category: fitness.run_club
+  weekly: { days: [FR], at: "06:30", duration_min: 75, occurrences: 4 }
+  recurrence: "Every Friday 6:30 am"
+  venue: "Northeast Minneapolis"
+  organizer: Mill City Running
+  url: https://www.millcityrunning.com/pages/group-runs
+  free: true
+  tags: [solo_friendly]
+  evidence: "for a free community run ... Friday Morning in Northeast ... Every Friday at 6:30AM"
+  source_url: https://www.millcityrunning.com/pages/group-runs
+  verified_at: 2026-10-15
+- id: twin-cities-con-2026
+  title: "Twin Cities Con 2026"
+  category: niche.comic_con
+  kind: season
+  start: 2026-11-20
+  end: 2026-11-22
+  organizer: Twin Cities Con
+  url: https://www.twincitiescon.com/
+  registration: { status: open }
+  description: "Tickets on sale now. The site advertises code EARLYBIRD10 for 10% off weekend or single-day tickets."
+  evidence: "Twin Cities Con returns November 20th ... 22nd, 2026! ... TICKETS ON SALE NOW! ... EARLYBIRD10"
+  source_url: https://www.twincitiescon.com/
+  verified_at: 2026-10-15
+- id: anime-detour-2027
+  title: "Anime Detour 2027"
+  category: niche.anime_con
+  kind: season
+  start: 2027-03-26
+  end: 2027-03-28
+  venue: Hyatt Regency Minneapolis
+  address: "1300 Nicollet Mall, Minneapolis, MN 55403"
+  organizer: Anime Detour
+  url: https://www.animedetour.com/
+  evidence: "March 26th ... 28th, 2027 ... Hyatt Regency Hotel ... 1300 Nicollet Mall, Minneapolis, MN 55403"
+  source_url: https://www.animedetour.com/
+  verified_at: 2026-10-15
+- id: marscon-2027
+  title: "MarsCon 2027"
+  category: niche.sci_fi
+  kind: season
+  start: 2027-03-05
+  end: 2027-03-07
+  organizer: MarsCon
+  url: https://marscon.org/
+  evidence: "MarsCon 2027 ... March 5-7 2027"
+  source_url: https://marscon.org/
+  verified_at: 2026-10-15
+- id: furry-migration-2027
+  title: "Furry Migration 2027"
+  category: niche.furry_con
+  kind: season
+  start: 2027-09-10
+  end: 2027-09-12
+  venue: "Downtown Minneapolis"
+  organizer: Furry Migration
+  url: https://www.furrymigration.org/
+  evidence: "September 10 -12, 2027 ... Downtown Minneapolis"
+  source_url: https://www.furrymigration.org/
+  verified_at: 2026-10-15
+- id: msra-back-to-the-50s-2027
+  title: "MSRA Back to the 50's Weekend (53rd annual)"
+  category: niche.car_show
+  kind: season
+  start: 2027-06-18
+  end: 2027-06-20
+  organizer: Minnesota Street Rod Association
+  url: https://msrabacktothe50s.com/
+  evidence: "53rd Annual MSRA Back to the 50 ... Weekend ... June 18 ... 20, 2027"
+  source_url: https://msrabacktothe50s.com/
+  verified_at: 2026-10-15

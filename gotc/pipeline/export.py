@@ -22,6 +22,7 @@ from gotc.storage.db import Database, iso
 from gotc.taxonomy import taxonomy
 
 HORIZON_DAYS = 180
+PLAN_AHEAD_DAYS = 400  # cons, faires and league seasons are planned months ahead
 
 
 def _write(path: Path, data: str) -> None:
@@ -59,8 +60,9 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
 
 def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, include_demo: bool = False) -> CityFeed:
     rows = db.all(
-        "SELECT data FROM events WHERE city = ? AND start_at <= ? ORDER BY start_at",
-        (city.slug, iso(now + timedelta(days=HORIZON_DAYS))),
+        "SELECT data FROM events WHERE city = ? AND (start_at <= ? OR (start_at <= ? AND (category LIKE 'niche.%'"
+        " OR category LIKE 'sports_league.%'))) ORDER BY start_at",
+        (city.slug, iso(now + timedelta(days=HORIZON_DAYS)), iso(now + timedelta(days=PLAN_AHEAD_DAYS))),
     )
     events = [Event.model_validate_json(r["data"]) for r in rows]
     used_venues = {e.venue_id for e in events if e.venue_id}

@@ -1,0 +1,13 @@
+# Curated, hand-verified entries for Austin. See config/registry/minneapolis.yaml for the rules.
+- id: sherwood-forest-faire-2027
+  title: "Sherwood Forest Faire 2027 (18th annual)"
+  category: niche.ren_faire
+  kind: season
+  start: 2027-03-06
+  end: 2027-04-25
+  recurrence: "Open weekends Mar 6 – Apr 25, plus Fri Mar 19"
+  organizer: Sherwood Forest Faire
+  url: https://www.sherwoodforestfaire.com/
+  evidence: "18th Annual Sherwood Forest Faire ... Open Weekends: March 6 ... April 25, 2027"
+  source_url: https://www.sherwoodforestfaire.com/
+  verified_at: 2026-10-15

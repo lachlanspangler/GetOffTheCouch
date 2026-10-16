@@ -38,3 +38,12 @@ sources:
       category_map:
         Environmental Volunteer Opportunities: volunteer.one_off
         Volunteer Opportunities: volunteer.one_off
+  - id: curated_minneapolis
+    adapter: curated
+    name: GetOffTheCouch curated (verified by hand)
+    data_type: leagues
+    cadence_hours: 24      # page-watch re-verifies quotes daily
+    sla_hours: 336         # an entry unverified for 2 weeks shows as stale
+    min_interval_s: 3
+    expect_min_records: 1
+    notes: config/registry/minneapolis.yaml — evidence-quoted entries; page-watch checks the quotes still exist

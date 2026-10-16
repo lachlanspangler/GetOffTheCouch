@@ -1,0 +1,14 @@
+# Curated, hand-verified entries for Boston. See config/registry/minneapolis.yaml for the rules.
+- id: king-richards-faire-2026
+  title: "King Richard's Faire 2026"
+  category: niche.ren_faire
+  kind: season
+  start: 2026-09-05
+  end: 2026-10-25
+  recurrence: "8 weekends, Sep 5 – Oct 25"
+  organizer: King Richard's Faire
+  url: https://www.kingrichardsfaire.net/
+  description: "The site says tickets are limited, with only two more weekends in 2026."
+  evidence: "Sep 5 ... Oct 25 ... 8 Weekends Only ... Only 2 More Weekends in 2026"
+  source_url: https://www.kingrichardsfaire.net/
+  verified_at: 2026-10-15

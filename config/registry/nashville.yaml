@@ -1,0 +1,19 @@
+# Curated, hand-verified entries for Nashville. See config/registry/minneapolis.yaml for the rules.
+# LeagueLab's terms forbid automated access without permission → watch: false (manual re-verification only).
+- id: nsl-kickball-quickie-lfa26
+  title: "Nashville Sports Leagues — Kickball Quickie (Thursday, Shelby Park)"
+  category: sports_league.kickball
+  kind: season
+  start: 2026-10-29
+  venue: "Shelby Park / ES Rose"
+  organizer: Nashville Sports Leagues
+  url: https://widget.leaguelab.com/v1/nashvillesportsleagues/league-listing?sport=Kickball
+  price_min: 56
+  price_max: 56
+  price_note: "$56 individual · $600 per team"
+  registration: { closes: 2026-10-26, status: open, signup_types: [individual, team], skill_levels: [recreational] }
+  description: "Coed 10v10, recreational."
+  evidence: "Kickball Quickie (LFA26) - Thursday - Shelby Park/ES Rose - Recreational ... Format: Coed 10v10 Team Price: $600.00 Individual Price: $56.00 Start Date: 10/29/26 Signup Deadline: 10/26/26 Status: Open"
+  source_url: https://widget.leaguelab.com/v1/nashvillesportsleagues/league-listing?sport=Kickball
+  verified_at: 2026-10-15
+  watch: false
