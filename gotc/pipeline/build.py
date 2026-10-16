@@ -164,8 +164,11 @@ def build_city(
                     rec.location.geocode_confidence = res.confidence
                     stats.geocoded += 1
 
-    fallbacks = {u.source.id: u.source.params["fallback_point"] for u in reg.units(city=city.slug)
-                 if u.source.params.get("fallback_point")}
+    fallbacks = {
+        u.source.id: u.source.params["fallback_point"]
+        for u in reg.units(city=city.slug)
+        if u.source.params.get("fallback_point")
+    }
     for rec in records:
         fp = fallbacks.get(rec.source_id)
         if fp and rec.location.lat is None:
@@ -174,7 +177,9 @@ def build_city(
             rec.location.geocode_method = Method.DERIVED
             rec.location.geocode_confidence = 0.3
             label = fp.get("label", "on campus")
-            rec.location.address = f"{rec.location.address or rec.location.venue_name or ''} (approximate: {label})".strip()
+            rec.location.address = (
+                f"{rec.location.address or rec.location.venue_name or ''} (approximate: {label})".strip()
+            )
 
     from gotc.pipeline.textnorm import haversine_m
 

@@ -47,13 +47,29 @@
 | Meetup, Eventbrite per-organizer | ⏸ need OAuth/token |
 | Visit Austin/Denver, Meet Boston (Simpleview); Maker Faire | ⏸ adapters done; blocked by CDN bot protection (we don't work around it) |
 
-**Thin spots to fix next:**
-1. Concerts: there's almost no music until the Ticketmaster key arrives.
-2. Seattle and Minneapolis leagues: Volo doesn't operate there, and LeagueApps/TeamSideline forbid automation.
-3. Denver has no general events source.
-4. Geocoding coverage is low in Miami and Seattle, but it fills a bit more every run.
+**Since the milestone table (same session):**
+- Census batch geocoding + place-name variants + campus fallbacks (labeled approximate). Map coverage is now 63–95% per city.
+- Online-only events are skipped globally. UT away games are excluded.
+- Minneapolis openings via first-seen liquor licenses (silent baseline, labeled).
+- "Worth getting off the couch this week" highlights.
+- Payload split: lean card feed + lazy details file.
+- CI state slimmed to ~4.5 MB gz; ids verified identical after rebuild.
+- `gotc validate` pre-commit gate; duplicate-YAML-key protection.
+- ADRs 0004–0006.
 
-## Keys needed (only you can get these)
+**Unfinished work (stopped at wrap-up, not merged into main):**
+- Branch `worktree-agent-a04a2e136bc0da5de` has one commit: a generic schema.org JSON-LD venue-calendar adapter (`jsonld`) for concerts. Its venue configs and live verification were not finished. Review it, then merge it or redo it.
+- Trivia/Denver/Miami research found most trivia hosts behind Cloudflare challenges or robots disallows (Geeks Who Drink included). Team Trivia is the only open lead. Nothing was committed from that work.
+
+**Thin spots to fix next:**
+1. **Concerts.** Almost no music until the Ticketmaster key arrives. The jsonld branch is the keyless path.
+2. **Leagues** in Seattle and Minneapolis: Volo isn't there, and LeagueApps/TeamSideline forbid automation.
+3. **Trivia** outside Minneapolis/Boston/Miami (most hosts block bots).
+4. **Denver** has no general events source. **Miami and Boston** have no openings source.
+
+## What I need from you
+
+**Keys (only you can get these):**
 | Key | Unlocks | How | Cost |
 |---|---|---|---|
 | `TICKETMASTER_API_KEY` | concerts, sports and theater for all cities; face-value prices; on-sale dates | https://developer-acct.ticketmaster.com/user/register (instant) | free |
@@ -64,9 +80,10 @@
 
 Put keys in `.env` locally, and in repo **Settings → Secrets → Actions** for the hourly refresh.
 
-**Before the first push:**
+**To go live (one time, in the GitHub repo):**
 1. Enable Pages (Settings → Pages → Source: GitHub Actions).
 2. Set Actions → Workflow permissions to "Read and write".
+3. `git push -u origin main`. Nothing has been pushed; there are about 90 local commits. The hourly refresh then builds and deploys the dashboard to Pages.
 
 ## Outreach that would unlock more data (from research)
 - **Permission:**

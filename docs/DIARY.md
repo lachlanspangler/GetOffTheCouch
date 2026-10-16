@@ -175,3 +175,7 @@ _Note (merge): idea ids in the entry above were renumbered on merge (see ledger 
 - e2e: 24/24 including axe.
 
 **Next:** the concert-venue agent's results; another full live run; then STATUS.
+
+## 2026-10-16 08:45 UTC: wrap-up (requested by the user)
+**Did:** Stopped the two running agents. The concert jsonld adapter is left on its own branch, unmerged, and the trivia research found no clean host. Ran all gates: validate, ruff, mypy, 294 pytest, 18 vitest, 24 Playwright including axe. Updated STATUS.md with what's done and what I need from the user (keys, Pages setup, push, outreach).
+**Next session:** review/merge the jsonld branch; Ticketmaster/SeatGeek once keys exist; Team Trivia lead; Denver events.
