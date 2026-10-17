@@ -3,6 +3,7 @@ import { App, type Initial } from "./app";
 import { loadCity, loadIndex } from "./lib/data";
 import { parsePath } from "./lib/router";
 import { canHydrate, hydration } from "./lib/store";
+import { preloadView } from "./lib/views";
 import "./styles/app.css";
 
 const el = document.getElementById("app")!;
@@ -16,6 +17,7 @@ async function boot(): Promise<void> {
   if (el.dataset.ssr && canHydrate(location, sessionStorageDemo())) {
     try {
       const route = parsePath(location.pathname, location.search);
+      await preloadView(route.view); // a lazily loaded page must be ready before hydrating its server HTML
       const index = await loadIndex();
       const feed = route.city ? await loadCity(route.city) : null;
       const initial: Initial = { index, feed, route, now: new Date(el.dataset.now ?? index.generated_at) };

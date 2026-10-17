@@ -36,6 +36,9 @@ jobs:
         run: .venv/bin/python -m gotc demo --anchor 2026-10-16T15:00:00+00:00
       - run: npm run typecheck && npm test && npm run build
         working-directory: web
+      - name: Performance budgets (entry JS, CSS, fonts)
+        run: node scripts/check-budgets.mjs
+        working-directory: web
       - run: npx playwright install --with-deps chromium && npx playwright test
         working-directory: web
       - uses: actions/upload-artifact@v4

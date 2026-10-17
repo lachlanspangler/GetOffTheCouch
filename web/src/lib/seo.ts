@@ -9,22 +9,13 @@ import { absolute, HUB_BY_SLUG } from "./site";
 import { fmtDay, fmtTime } from "./time";
 import type { CityFeed, Event, Index } from "./types";
 
-export const SITE = "Get Off the Couch";
-export const TAGLINE = "Your city, made easy";
+import { hubTitle, pageTitle, SITE, TAGLINE } from "./title";
+
+export { hubTitle, pageTitle, SITE, TAGLINE };
 const DEFAULT_DESC =
   "Everything worth leaving the house for in your city, and every deadline you'd otherwise miss: rec leagues, block parties, concerts with prices, volunteering, trivia, cons and faires. From official sources, checked every few hours.";
 
-const VIEW_TITLE: Record<string, string> = {
-  deadlines: "Deadlines",
-  calendar: "Calendar",
-  map: "Map",
-  plan: "New in town",
-  saved: "Saved",
-  health: "Data status",
-  about: "About",
-  methodology: "How we get the data",
-  privacy: "Privacy",
-};
+
 
 export interface Head {
   title: string;
@@ -45,20 +36,6 @@ function clip(s: string, n = 155): string {
   return t.length <= n ? t : `${t.slice(0, n - 1).replace(/\s+\S*$/, "")}…`;
 }
 
-export function hubTitle(slug: string | null | undefined, city: string): string {
-  const h = slug ? HUB_BY_SLUG.get(slug) : undefined;
-  return h ? `${h.label} in ${city}` : `Things to do in ${city}`;
-}
-
-export function pageTitle(route: Route, feed: CityFeed | null, event?: Event): string {
-  const city = feed?.city_name;
-  let page: string | null = null;
-  if (event) page = `${event.title} · ${fmtDay(event.start, event.timezone)}`;
-  else if (route.city && route.view === "feed" && city) page = hubTitle(route.hub, city);
-  else page = VIEW_TITLE[route.view] ?? null;
-  const parts = [page, city && (event || route.view !== "feed") ? city : null, SITE].filter(Boolean);
-  return parts.length > 1 ? parts.join(" · ") : `${SITE} · ${TAGLINE}`;
-}
 
 function eventDescription(e: Event, city: string): string {
   const when = `${fmtDay(e.start, e.timezone)}${e.all_day ? "" : `, ${fmtTime(e.start, e.timezone)}`}`;

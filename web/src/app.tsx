@@ -10,17 +10,15 @@ import { recordSignal } from "./lib/recommend";
 import { build, setTitleLookup, useRoute, type Route } from "./lib/router";
 import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
-import { pageTitle } from "./lib/seo";
+import { pageTitle } from "./lib/title";
+import { useView, type LazyName } from "./lib/views";
 import type { CityFeed, Index } from "./lib/types";
-import { About, Methodology, Privacy } from "./views/About";
 import { Calendar } from "./views/Calendar";
 import { Deadlines } from "./views/Deadlines";
 import { EventPage } from "./views/EventPage";
 import { Feed } from "./views/Feed";
-import { Health } from "./views/Health";
 import { Home } from "./views/Home";
 import { MapView } from "./views/MapView";
-import { Plan } from "./views/Plan";
 import { Saved } from "./views/Saved";
 
 function applyTheme(t: Theme): void {
@@ -169,10 +167,10 @@ export function App({ initial }: { initial?: Initial } = {}) {
       <a class="skip" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById("main")?.focus(); }}>Skip to content</a>
       <Header deadlineCount={soon} />
       <main class="main" id="main" tabIndex={-1}>
-        {!route.city && view === "about" && <About />}
-        {!route.city && view === "methodology" && <Methodology />}
-        {!route.city && view === "privacy" && <Privacy />}
-        {!route.city && view === "health" && <Health />}
+        {!route.city && view === "about" && <Lazy name="about" />}
+        {!route.city && view === "methodology" && <Lazy name="methodology" />}
+        {!route.city && view === "privacy" && <Lazy name="privacy" />}
+        {!route.city && view === "health" && <Lazy name="health" />}
         {!route.city && view === "feed" && <Home />}
         {unknownCity && (
           <div class="container empty">
@@ -211,12 +209,12 @@ export function App({ initial }: { initial?: Initial } = {}) {
                 {view === "calendar" && <Calendar events={applyFilters(feed.events, { ...route.filters, when: "all" }, feed.timezone, ctx.neighborhoods, now)} />}
                 {view === "map" && <MapView events={filtered} />}
                 {view === "deadlines" && <Deadlines events={feed.events} />}
-                {view === "plan" && <Plan events={feed.events} />}
+                {view === "plan" && <Lazy name="plan" props={{ events: feed.events }} />}
                 {view === "saved" && <Saved />}
-                {view === "health" && <Health />}
-                {view === "about" && <About />}
-                {view === "methodology" && <Methodology />}
-                {view === "privacy" && <Privacy />}
+                {view === "health" && <Lazy name="health" />}
+                {view === "about" && <Lazy name="about" />}
+                {view === "methodology" && <Lazy name="methodology" />}
+                {view === "privacy" && <Lazy name="privacy" />}
               </>
             )}
           </>
@@ -227,3 +225,8 @@ export function App({ initial }: { initial?: Initial } = {}) {
   );
 }
 
+
+function Lazy({ name, props }: { name: LazyName; props?: Record<string, unknown> }) {
+  const C = useView(name);
+  return C ? <C {...(props ?? {})} /> : <div class="container" style={{ paddingTop: "32px" }}><SkeletonRows n={3} /></div>;
+}

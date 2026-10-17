@@ -2,6 +2,12 @@
 // the browser reads. Effects don't run on the server, so pages show their finished, data-driven state.
 import renderToString from "preact-render-to-string";
 import { App } from "./app";
+import { registerViews } from "./lib/views";
+import { About, Methodology, Privacy } from "./views/About";
+import { Health } from "./views/Health";
+import { Plan } from "./views/Plan";
+
+registerViews({ about: About, methodology: Methodology, privacy: Privacy, health: Health, plan: Plan });
 import { parsePath } from "./lib/router";
 import { headFor, headHtml } from "./lib/seo";
 import type { CityFeed, Index } from "./lib/types";
