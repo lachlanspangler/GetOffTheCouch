@@ -10,7 +10,7 @@ const dist = resolve(here, "../dist");
 const ssr = await import(resolve(here, "../dist-ssr/entry-server.js"));
 const base = (process.env.GOTC_BASE ?? "/").replace(/\/?$/, "/");
 const origin = process.env.GOTC_SITE_ORIGIN ?? "https://lachlanspangler.github.io";
-const HORIZON_DAYS = Number(process.env.GOTC_PRERENDER_DAYS ?? 45);
+const HORIZON_DAYS = Number(process.env.GOTC_PRERENDER_DAYS ?? 60);
 const MAX_FILES = 60_000;
 const MAX_BYTES = 800 * 1024 * 1024;
 
@@ -27,11 +27,12 @@ const now = new Date(process.env.GOTC_PRERENDER_NOW ?? index.generated_at);
 const cityslugs = new Set(index.cities.map((c) => c.slug));
 
 function page(html, head) {
+  // function replacers: event text may contain "$&" and friends, which string replacements would interpret
   return template
-    .replace(/<title>[\s\S]*?<\/title>\s*/, "")
-    .replace(/<meta name="description"[^>]*>\s*/, "")
-    .replace("</head>", `  ${head}\n  </head>`)
-    .replace('<div id="app"></div>', `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>`);
+    .replace(/<title>[\s\S]*?<\/title>\s*/, () => "")
+    .replace(/<meta name="description"[^>]*>\s*/, () => "")
+    .replace("</head>", () => `  ${head}\n  </head>`)
+    .replace('<div id="app"></div>', () => `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>`);
 }
 
 let files = 0;
@@ -80,7 +81,7 @@ for (const c of index.cities) {
   const until = now.getTime() + HORIZON_DAYS * 86_400_000;
   const seenSeries = new Set();
   const upcoming = [...feed.events]
-    .filter((e) => e.kind !== "opening" && !e.is_demo)
+    .filter((e) => !e.is_demo) // openings render too (noindex): city pages link to them
     .filter((e) => new Date(e.end ?? e.start).getTime() >= now.getTime() - 86_400_000 && new Date(e.start).getTime() <= until)
     .sort((a, b) => a.start.localeCompare(b.start));
   for (const e of upcoming) {

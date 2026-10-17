@@ -25,18 +25,24 @@ export interface Route {
   unknown?: boolean; // a path we don't recognise (rendered as a friendly "not found")
 }
 
+const WHENS = new Set(["today", "tomorrow", "weekend", "week", "month", "all"]);
+const SIZES = new Set(["any", "small", "medium", "large"]);
+const num = (v: string | null): number | null => (v != null && v !== "" && Number.isFinite(Number(v)) ? Number(v) : null);
+
 function readFilters(q: URLSearchParams, base: Filters): Filters {
+  const when = q.get("when");
+  const size = q.get("size");
   return {
     ...base,
     q: q.get("q") ?? base.q,
     cats: q.get("cats")?.split(",").filter(Boolean) ?? base.cats,
-    when: (q.get("when") as When) ?? base.when,
+    when: when && WHENS.has(when) ? (when as When) : base.when,
     free: q.has("free") ? q.get("free") === "1" : base.free,
-    maxPrice: q.get("max") ? Number(q.get("max")) : base.maxPrice,
+    maxPrice: num(q.get("max")) ?? base.maxPrice,
     social: q.get("social") === "1" || base.social,
-    size: (q.get("size") as Size) ?? base.size,
+    size: size && SIZES.has(size) ? (size as Size) : base.size,
     near: q.get("near") ?? base.near,
-    radiusKm: q.get("r") ? Number(q.get("r")) : base.radiusKm,
+    radiusKm: num(q.get("r")) ?? base.radiusKm,
     tags: q.get("tags")?.split(",").filter(Boolean) ?? base.tags,
   };
 }

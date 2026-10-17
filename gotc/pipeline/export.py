@@ -126,7 +126,14 @@ def split_feed(feed: CityFeed) -> tuple[CityFeed, CityDetails]:
     )
 
 
-def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, include_demo: bool = False) -> dict[str, Any]:
+def export_all(
+    db: Database,
+    reg: Registry,
+    out_dir: Path,
+    now: datetime,
+    include_demo: bool = False,
+    failed_builds: set[str] | None = None,
+) -> dict[str, Any]:
     tax = taxonomy()
     index: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
@@ -143,6 +150,11 @@ def export_all(db: Database, reg: Registry, out_dir: Path, now: datetime, includ
     rel = reliability(db, now)
     for city in reg.cities.values():
         if not city.enabled:
+            continue
+        if failed_builds and city.slug in failed_builds and not (out_dir / "cities" / f"{city.slug}.json").exists():
+            # no last-known-good file (fresh CI checkout) and this run's build failed: leave the city out rather
+            # than publish it with zero events. It comes back on the next good build; HEALTH.md shows the error.
+            log.warning("not exporting %s: build failed and there is no previous export", city.slug)
             continue
         feed = city_feed(db, reg, city, now, include_demo)
         scores = {

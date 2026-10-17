@@ -38,7 +38,7 @@ class RobotsRules:
         self.groups: list[_Group] = []
         cur: _Group | None = None
         in_agents = False
-        for raw in text.splitlines():
+        for raw in text.lstrip("\ufeff").splitlines():  # a UTF-8 BOM would hide the first User-agent line
             line = raw.split("#", 1)[0].strip()
             if ":" not in line:
                 continue  # blank lines / comments / junk never end a group (RFC 9309 §2.2)
@@ -51,6 +51,8 @@ class RobotsRules:
                 cur.agents.append(value.lower())
                 in_agents = True
                 continue
+            if key == "sitemap":
+                continue  # sitemap lines are global; they don't end a run of user-agent lines
             in_agents = False
             if cur is None:
                 continue  # rules before any user-agent line belong to no group

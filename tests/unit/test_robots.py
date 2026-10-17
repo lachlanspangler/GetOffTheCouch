@@ -49,3 +49,12 @@ def test_client_enforces_wildcard_rules(tmp_path) -> None:  # type: ignore[no-un
     assert c.get("https://site.example/feed").text == "ok"
     with pytest.raises(RobotsDisallowed):
         c.get("https://site.example/feed", params={"page": 2})
+
+
+def test_bom_and_sitemap_lines_dont_break_groups():
+    from gotc.http.robots import RobotsRules
+
+    r = RobotsRules("\ufeffUser-agent: *\nDisallow: /private/\n")
+    assert not r.can_fetch("GetOffTheCouch/0.1", "https://x.test/private/a")
+    r2 = RobotsRules("User-agent: a\nSitemap: https://x.test/s.xml\nUser-agent: GetOffTheCouch\nDisallow: /no\n")
+    assert not r2.can_fetch("GetOffTheCouch/0.1", "https://x.test/no")

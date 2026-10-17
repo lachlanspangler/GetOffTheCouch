@@ -158,8 +158,8 @@ jobs:
             && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pipeline-state
       - id: day
         if: always()
-        run: echo "key=raw-$(date -u +%F)" >> "$GITHUB_OUTPUT"
-      - name: Save raw payloads (one cache entry per day, not per run)
+        run: echo "key=raw-${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+      - name: Save raw payloads (per run; restore-keys picks up the newest, retention prunes the store)
         if: always()
         continue-on-error: true
         uses: actions/cache/save@v4

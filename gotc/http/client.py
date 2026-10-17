@@ -249,11 +249,16 @@ class PoliteClient:
                     if (delay := rp.crawl_delay(self.settings.user_agent)) is not None:
                         self.host_intervals[urlsplit(url).netloc] = max(float(delay), self.min_interval_s)
                 elif r.status_code in (401, 403):
-                    # RFC 9309 §2.3.1.3: unreachable-because-forbidden robots → assume full disallow
+                    # RFC 9309 lets crawlers treat 4xx as "no robots.txt"; a 401/403 on robots.txt is almost always a
+                    # bot wall, so we're stricter than the RFC and assume full disallow.
                     st.robots = RobotsRules("User-agent: *\nDisallow: /")
                     st.robots_snippet = r.text[:400]
+                elif r.status_code >= 500:
+                    st.robots = RobotsRules("User-agent: *\nDisallow: /")  # RFC 9309 §2.3.1.4: unreachable → disallow
             except httpx.HTTPError:
-                st.robots = None  # unreachable robots.txt → allowed (RFC 9309 §2.3.1.4)
+                # RFC 9309 §2.3.1.4: unreachable robots.txt → assume complete disallow. Cached for this client only, so
+                # the next hourly run asks again.
+                st.robots = RobotsRules("User-agent: *\nDisallow: /")
         if st.robots and not st.robots.can_fetch(self.settings.user_agent, url):
             raise RobotsDisallowed(f"robots.txt disallows {url}", url)
 

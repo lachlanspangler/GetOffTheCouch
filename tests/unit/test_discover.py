@@ -228,7 +228,7 @@ def test_cloudflare_host_is_never_retried():
 
 @pytest.mark.parametrize("status", [404, 500])
 def test_http_errors_are_logged_not_raised(status):
-    t = FixtureTransport().add(r"x\.example", status=status)
+    t = FixtureTransport().add(r"x\.example/robots", "").add(r"x\.example", status=status)
     c = fast_client(t)
     c.max_attempts = 1
     d = Discoverer(PHOENIX, c, NOW, families=(), denylist=Denylist())

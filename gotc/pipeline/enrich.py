@@ -207,6 +207,13 @@ _TXT = {
 }
 
 
+_KIDS_BODY = re.compile(
+    r"\b(for (kids|children|teens|tweens|toddlers|babies|families with young children)|ages \d{1,2}\s*(-|–|to)\s*1[0-7]\b|"
+    r"grades? (\d|k)\s*(-|–|to)|storytimes?|story time|preschool(ers)?|caregivers? and (their )?(child|children|little))",
+    re.I,
+)
+
+
 def derive_tags(ev: Event, text: str, tax: Taxonomy) -> list[str]:
     tags = set(ev.tags)
     top = tax.top(ev.category)
@@ -226,7 +233,11 @@ def derive_tags(ev: Event, text: str, tax: Taxonomy) -> list[str]:
     if ev.category in ("nightlife.opening", "food_drink.restaurant_opening"):
         tags.add("new_venue")
     for tag, pat in _TXT.items():
-        if pat.search(text):
+        if tag == "kids_teens":
+            # the title decides; a summary only counts with an explicit audience ("Baby Cobra" isn't for babies)
+            if pat.search(ev.title) or _KIDS_BODY.search(text):
+                tags.add(tag)
+        elif pat.search(text):
             tags.add(tag)
     if ev.registration:
         tags.add("registration_required")

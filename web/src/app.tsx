@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Footer, type Theme } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Icon } from "./components/Icon";
@@ -7,7 +7,7 @@ import { Ctx, type AppCtx } from "./lib/ctx";
 import { isDemo, loadCity, loadIndex } from "./lib/data";
 import { applyFilters, deadlines } from "./lib/filters";
 import { recordSignal } from "./lib/recommend";
-import { setTitleLookup, useRoute, type Route } from "./lib/router";
+import { build, setTitleLookup, useRoute, type Route } from "./lib/router";
 import { url } from "./lib/site";
 import { usePersistent } from "./lib/store";
 import { pageTitle } from "./lib/seo";
@@ -112,6 +112,26 @@ export function App({ initial }: { initial?: Initial } = {}) {
   }, [index, feed, route, saved, now]);
 
   const event = route.eventId && ctx ? ctx.byId.get(route.eventId) : undefined;
+  useEffect(() => {
+    if (feed) setLastCity(feed.city); // also for visitors who landed on a pre-rendered city page
+  }, [feed?.city]);
+  useEffect(() => {
+    // old #/city/event/evt_x links become /city/events/<hex>/ before titles are known: swap in the canonical
+    // (pre-rendered) URL once they are, so reloads and shares don't hit a 404
+    if (event && route.eventId) {
+      const want = build({ city: route.city, eventId: route.eventId });
+      if (location.pathname !== want.split("?")[0]) history.replaceState(history.state, "", want);
+    }
+  }, [event?.id]);
+  const first = useRef(true);
+  useEffect(() => {
+    // client-side navigation: move focus to the new page so screen readers don't lose their place
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    if (!route.eventId) document.getElementById("main")?.focus({ preventScroll: true });
+  }, [route.city, route.view, route.hub, route.eventId]);
   useEffect(() => {
     document.title = pageTitle(route, feed, event);
   }, [feed, route, event]);

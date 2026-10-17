@@ -9,6 +9,7 @@
 // set localStorage["gotc:ranker"] = "v1" to switch back.
 
 import type { Event } from "./types";
+import { hydration } from "./store";
 import { km, liveAvailability } from "./filters";
 import { dayKey, hoursUntil } from "./time";
 import * as v2 from "./rank/index";
@@ -35,6 +36,7 @@ export function setRanker(v: "v1" | "v2" | null): void {
 
 export function rankerVersion(): "v1" | "v2" {
   if (override) return override;
+  if (hydration.active) return RANKER_V2 ? "v2" : "v1";
   try {
     const v = globalThis.localStorage?.getItem("gotc:ranker");
     if (v === "v1" || v === "v2") return v;

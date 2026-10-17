@@ -26,6 +26,11 @@ const listeners = new Map<string, Set<() => void>>();
 /** True while hydrating a pre-rendered page: the first render must match the server (no stored values yet). */
 export const hydration = { active: false };
 
+/** Hydrate only a URL that is exactly a pre-rendered page (no query, no hash, not demo mode). */
+export function canHydrate(loc: { hash: string; search: string }, demo: boolean): boolean {
+  return !loc.hash && !loc.search && !demo;
+}
+
 export function save<T>(key: string, value: T): void {
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value));

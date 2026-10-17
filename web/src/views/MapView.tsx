@@ -11,9 +11,9 @@ import { fmtDay, fmtTime } from "../lib/time";
 import type { Event } from "../lib/types";
 
 export function MapView({ events }: { events: Event[] }) {
-  const { feed } = useApp();
+  const { feed, now } = useApp();
   const [hl, setHl] = useState<string | null>(null);
-  const items = useMemo(() => collapseSeries(events.filter((e) => e.kind !== "opening" && isLeadable(e, feed?.state) && !isUnderway(e, new Date()))).map((g) => g.event), [events]);
+  const items = useMemo(() => collapseSeries(events.filter((e) => e.kind !== "opening" && isLeadable(e, feed?.state) && !isUnderway(e, now))).map((g) => g.event), [events, now]);
   const pins = useMemo<Pin[]>(
     () =>
       items
@@ -49,7 +49,7 @@ export function MapView({ events }: { events: Event[] }) {
           </p>
           <ul class="rows">
             {listed.map((e) => (
-              <CompactRow key={e.id} e={e} hl={hl === e.id} onHover={setHl} time={new Date(e.start) < new Date() ? "Ongoing" : fmtDay(e.start, e.timezone)} sub={displayPlace(e, feed.city_name) ?? undefined} />
+              <CompactRow key={e.id} e={e} hl={hl === e.id} onHover={setHl} time={new Date(e.start) < now ? "Ongoing" : fmtDay(e.start, e.timezone)} sub={displayPlace(e, feed.city_name) ?? undefined} />
             ))}
           </ul>
           {items.length > listed.length && <p class="small muted" style={{ marginTop: "8px" }}>Showing the first {listed.length}. Narrow the filters to see the rest.</p>}

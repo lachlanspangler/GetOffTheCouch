@@ -34,7 +34,7 @@ describe("Event JSON-LD", () => {
 
 describe("page heads", () => {
   it("gives event pages a canonical, a description and Event markup", () => {
-    const e = ev({ id: "evt_ab12cd34", title: "Kickball Night" });
+    const e = ev({ id: "evt_ab12cd34", title: "Kickball Night", location: { venue_name: "Field 3", address: "1 Park Ave" } });
     const route = parsePath("/testville/events/kickball-night-ab12cd34/");
     const h = headFor(route, index, feed([e]), e, NOW);
     expect(h.canonical).toMatch(/\/testville\/events\/(kickball-night-)?ab12cd34\/$/);
@@ -48,5 +48,13 @@ describe("page heads", () => {
     expect(headFor(parsePath("/testville/trivia/"), index, feed(), undefined, NOW).robots).toBe("noindex,follow");
     expect(headFor(parsePath("/testville/map/"), index, feed(), undefined, NOW).robots).toBe("noindex,follow");
     expect(headFor(parsePath("/testville/"), index, feed(), undefined, NOW).robots).toBe("index,follow");
+  });
+});
+
+describe("Event markup needs a real address", () => {
+  it("skips Event JSON-LD when the listing has no address", () => {
+    const e = ev({ id: "evt_ab12cd35", title: "Mystery Show" });
+    const h = headFor(parsePath("/testville/events/mystery-show-ab12cd35/"), index, feed([e]), e, NOW);
+    expect(h.jsonld.some((j) => (j as { "@type": string })["@type"] === "Event")).toBe(false);
   });
 });

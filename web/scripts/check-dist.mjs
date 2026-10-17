@@ -1,7 +1,7 @@
 // Post-build guard for the pre-rendered site (SEO_ACCESS §7.1 phase 5): every page has a title, description and
 // absolute canonical; JSON-LD parses and Event markup has its required fields; no legacy #/ links; noindex pages
 // stay out of sitemaps; size budgets hold.  node scripts/check-dist.mjs [--warn]
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const dist = resolve(process.argv.find((a) => a.startsWith("--dist="))?.slice(7) ?? "dist");
@@ -17,6 +17,10 @@ const pages = [];
 })(dist);
 
 const sitemapLocs = new Set();
+if (!existsSync(join(dist, "sitemaps"))) {
+  console.log("check-dist: no pre-rendered pages in this build (no pipeline data); nothing to check");
+  process.exit(0);
+}
 for (const f of readdirSync(join(dist, "sitemaps"))) {
   for (const m of readFileSync(join(dist, "sitemaps", f), "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)) sitemapLocs.add(m[1]);
 }

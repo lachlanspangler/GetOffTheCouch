@@ -298,7 +298,7 @@ export function EventPage({ e }: { e: Event }) {
                 <h2 id="dates">More dates</h2>
                 <ul class="chips" style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {seriesEvents.slice(0, 12).map((x) => (
-                    <li key={x.id}><a class="chip" href={eventHref(x, city)}>{fmtDay(x.start, tz)}{isDateOnly(x) ? "" : `, ${fmtTime(x.start, tz)}`}</a></li>
+                    <li key={x.id}><a class="chip" rel="nofollow" href={eventHref(x, city)}>{fmtDay(x.start, tz)}{isDateOnly(x) ? "" : `, ${fmtTime(x.start, tz)}`}</a></li>
                   ))}
                 </ul>
               </section>

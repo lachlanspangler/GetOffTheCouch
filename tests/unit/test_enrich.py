@@ -105,8 +105,12 @@ def test_free_food_tag():
 
 
 def test_kids_teens_tag():
-    e = event(category="arts.books")
-    assert "kids_teens" in derive_tags(e, "Teen Library Advisory Committee", taxonomy())
-    assert "kids_teens" in derive_tags(e, "Toddler Storytime", taxonomy())
-    assert "kids_teens" in derive_tags(e, "Homework Help at Sheridan Library (3rd-12th Grade)", taxonomy())
-    assert "kids_teens" not in derive_tags(e, "Gentle Yoga with Melanie", taxonomy())
+    def tags(title: str, body: str = "") -> list[str]:
+        return derive_tags(event(category="arts.books", title=title), f"{title} {body}", taxonomy())
+
+    assert "kids_teens" in tags("Teen Library Advisory Committee")
+    assert "kids_teens" in tags("Toddler Storytime")
+    assert "kids_teens" in tags("Homework Help at Sheridan Library (3rd-12th Grade)")
+    assert "kids_teens" in tags("Craft Afternoon", "A program for kids ages 6-11.")
+    assert "kids_teens" not in tags("Gentle Yoga with Melanie")
+    assert "kids_teens" not in tags("Ali Wong Live", "Fresh off her special Baby Cobra, Ali Wong returns.")

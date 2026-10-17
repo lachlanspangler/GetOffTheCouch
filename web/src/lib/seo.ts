@@ -1,6 +1,7 @@
 // Page metadata for pre-rendered pages: title, description, canonical, robots, Open Graph and JSON-LD.
 // Pure functions of (route, data), shared by the client (document.title) and scripts/prerender.mjs.
-import { applyFilters } from "./filters";
+import { applyFilters, collapseSeries } from "./filters";
+import { isLeadable } from "./curate";
 import { priceLabel } from "./format";
 import type { Route } from "./router";
 import { buildPath } from "./router";
@@ -81,7 +82,7 @@ export function eventJsonLd(e: Event, url: string): object {
       seller: { "@type": "Organization", name: o.seller },
     }));
   if (!offers.length && e.price.is_free && e.url) offers.push({ "@type": "Offer", url: e.url, price: 0, priceCurrency: "USD", seller: { "@type": "Organization", name: e.organizer ?? e.location.venue_name ?? "Organizer" } });
-  const place: Record<string, unknown> = { "@type": "Place", name: e.location.venue_name ?? e.location.address ?? e.city };
+  const place: Record<string, unknown> = { "@type": "Place", name: e.location.venue_name || e.location.address || e.city };
   if (e.location.address) place.address = e.location.address;
   if (e.location.lat != null && e.location.lon != null) place.geo = { "@type": "GeoCoordinates", latitude: e.location.lat, longitude: e.location.lon };
   return {
@@ -119,11 +120,12 @@ export function headFor(route: Route, index: Index, feed: CityFeed | null, event
   let robots: Head["robots"] = "index,follow";
   if (event && feed) {
     description = eventDescription(event, feed.city_name);
-    if (isMarkupEvent(event) && new Date(event.end ?? event.start).getTime() >= now.getTime()) jsonld.push(eventJsonLd(event, canonical));
+    // Google requires a location address for in-person events: no address, no Event markup (never a guessed one)
+    if (isMarkupEvent(event) && event.location.address && new Date(event.end ?? event.start).getTime() >= now.getTime()) jsonld.push(eventJsonLd(event, canonical));
     if (event.kind === "opening" || new Date(event.end ?? event.start).getTime() < now.getTime() - 86_400_000) robots = "noindex,follow";
     jsonld.push(breadcrumbs([[feed.city_name, absolute(`${feed.city}/`)], [event.title, canonical]]));
   } else if (feed && route.view === "feed") {
-    const n = applyFilters(feed.events, route.filters, feed.timezone, {}, now).length;
+    const n = collapseSeries(applyFilters(feed.events, route.filters, feed.timezone, {}, now).filter((e) => isLeadable(e, feed.state))).length;
     const h = route.hub ? HUB_BY_SLUG.get(route.hub) : undefined;
     description = h
       ? clip(`${n.toLocaleString("en-US")} upcoming: ${h.label.toLowerCase()} in ${feed.city_name}, from official calendars and venues, checked every few hours.`)
@@ -132,7 +134,7 @@ export function headFor(route: Route, index: Index, feed: CityFeed | null, event
     if (h) jsonld.push(breadcrumbs([[feed.city_name, absolute(`${feed.city}/`)], [h.label, canonical]]));
   } else if (feed) {
     if (route.view === "deadlines") description = clip(`League sign-ups, registration cutoffs and early-bird prices in ${feed.city_name}, soonest first, plus the state's new-resident deadlines.`);
-    if (["calendar", "map", "plan", "saved"].includes(route.view)) robots = "noindex,follow";
+    if (["calendar", "map", "plan", "saved", "health"].includes(route.view)) robots = "noindex,follow"; // city health duplicates /health/
   } else if (!route.city && route.view === "feed") {
     jsonld.push({ "@context": "https://schema.org", "@type": "WebSite", name: SITE, url: absolute("") });
     description = clip(`${DEFAULT_DESC} ${index.cities.length} cities.`);

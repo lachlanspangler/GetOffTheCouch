@@ -129,7 +129,10 @@ def run(
 
                 for st in sorted({c.state for c in reg.cities.values() if c.enabled}):
                     starter_pack.verify(db, http, starter_pack.load(st), now or utcnow())
-            export_all(db, reg, settings.web_data_dir, now or utcnow(), include_demo=include_demo)
+            failed_builds = {e.split(":", 1)[0] for e in report.build_errors}
+            export_all(
+                db, reg, settings.web_data_dir, now or utcnow(), include_demo=include_demo, failed_builds=failed_builds
+            )
             (settings.docs_dir / "HEALTH.md").write_text(render(db, reg, now or utcnow()))
         failed = [u for u in report.units if u.status == "failed"]
         report.status = "ok" if not failed and not report.build_errors else "partial"

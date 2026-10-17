@@ -6,7 +6,7 @@
 // Bump the version suffix on format change and drop old data rather than migrate it.
 
 import type { Event } from "../types";
-import { loadRaw, save, usePersistent } from "../store";
+import { hydration, loadRaw, save, usePersistent } from "../store";
 import { EMPTY, learned, update, type Action, type AffinityState, type DismissWhy } from "./affinity";
 
 const K_AFF = "affinity:v1";
@@ -19,6 +19,7 @@ interface Dismissed {
 type Shown = Record<string, { last: string; prev: string | null }>;
 
 export function loadAffinity(): AffinityState {
+  if (hydration.active) return EMPTY; // the first render must match the pre-rendered HTML
   const s = loadRaw<AffinityState>(K_AFF, EMPTY);
   return s && s.v === 1 && s.keys ? s : EMPTY;
 }
@@ -37,6 +38,7 @@ export const recordOpen = (e: Event) => recordSignal(e, "open");
 export const recordOutbound = (e: Event) => recordSignal(e, "outbound");
 
 export function loadDismissed(): Set<string> {
+  if (hydration.active) return new Set();
   const d = loadRaw<Dismissed>(K_DISMISS, { ids: {} });
   return new Set(Object.keys(d?.ids ?? {}));
 }
@@ -63,6 +65,7 @@ export function undismiss(e: Event): void {
 
 /** Family floor bookkeeping: families shown on a surface today. Same-day re-renders don't move `last`. */
 export function markShown(families: string[], today: string): void {
+  if (hydration.active) return; // never write during render of a hydration pass
   const s = loadRaw<Shown>(K_SHOWN, {}) ?? {};
   let changed = false;
   for (const f of new Set(families)) {
@@ -76,6 +79,7 @@ export function markShown(families: string[], today: string): void {
 
 /** Per family, the last day it was shown *before* today (stable across re-renders on the same day). */
 export function lastShownBefore(today: string): Record<string, string> {
+  if (hydration.active) return {};
   const s = loadRaw<Shown>(K_SHOWN, {}) ?? {};
   const out: Record<string, string> = {};
   for (const [f, v] of Object.entries(s)) {

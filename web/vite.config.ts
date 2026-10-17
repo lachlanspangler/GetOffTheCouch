@@ -1,5 +1,5 @@
 import preact from "@preact/preset-vite";
-import { copyFileSync } from "node:fs";
+import { copyFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig, type Plugin } from "vitest/config";
 
@@ -9,11 +9,16 @@ const origin = process.env.GOTC_SITE_ORIGIN ?? "https://lachlanspangler.github.i
 
 /** Pages serves 404.html for unknown paths: the app shell routes them client-side (never a blank page). */
 function spaFallback(): Plugin {
+  let outDir = resolve(__dirname, "dist");
   return {
     name: "gotc-404",
     apply: "build",
+    configResolved(c) {
+      outDir = resolve(c.root, c.build.outDir);
+    },
     closeBundle() {
-      const dist = resolve(__dirname, "dist");
+      const dist = outDir;
+      if (!existsSync(resolve(dist, "index.html"))) return; // e.g. the SSR build
       copyFileSync(resolve(dist, "index.html"), resolve(dist, "404.html"));
     },
   };
