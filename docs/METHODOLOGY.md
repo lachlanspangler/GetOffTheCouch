@@ -50,7 +50,7 @@ No legitimate source gives third parties real seat inventory, so these are label
 ### Reported spots (the one real "% left")
 Library systems publish capacity and registration counts per program. When a source reports both, `pct_left` is exact. For example, "17 of 20 spots taken (reported by hclib_events)" gives low = mid = high, with confidence 0.9.
 
-Attendance is then anchored on actual signups: the band runs from registered × 0.75 to capacity. With ≤ 20% of spots left, the event is marked selling fast. At 0 left, registration is marked closed.
+Attendance is then anchored on actual signups: the band runs from registered × 0.75 to capacity. With ≤ 20% of spots left, the card says how many are left. That is a reported count, never "selling fast", which only comes from ticket signals on paid events. At 0 left, registration is marked closed.
 
 ## Deadlines
 Deadlines come from structured registration fields first. Otherwise they're extracted from descriptions with phrase patterns ("register by", "registration closes", "deadline:", "early-bird … ends", "registration opens"). Guards:

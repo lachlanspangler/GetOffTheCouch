@@ -43,7 +43,7 @@ def test_reported_spots_become_exact_pct_left_attendance_and_derived_deadline():
     ev = event(tags=["registration_required"])
     apply_spots(ev, [member(capacity=20, registered=17)])
     assert ev.tickets.pct_left and ev.tickets.pct_left.mid == 15 and "17 of 20" in ev.tickets.pct_left.method
-    assert ev.tickets.selling_fast and "3 of 20" in (ev.tickets.signal or "")
+    assert not ev.tickets.selling_fast and "3 of 20" in (ev.tickets.signal or "")  # reported spots, not "selling"
     assert ev.attendance and ev.attendance.mid == 17 and ev.attendance.high == 20
     assert ev.registration and ev.registration.method == "derived" and ev.registration.closes_at == T
 
@@ -67,5 +67,5 @@ def test_no_counts_no_signal_but_required_gets_derived_deadline():
 def test_spots_left_without_capacity():
     ev = event()
     apply_spots(ev, [member(spots_left=2)])
-    assert ev.tickets.spots_left == 2 and ev.tickets.spots_total is None and ev.tickets.selling_fast
+    assert ev.tickets.spots_left == 2 and ev.tickets.spots_total is None and not ev.tickets.selling_fast
     assert ev.tickets.pct_left is None  # no total → no percentage, never a guess

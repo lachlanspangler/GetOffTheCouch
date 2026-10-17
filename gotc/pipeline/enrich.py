@@ -126,7 +126,8 @@ def ticket_signal(
                 signal = f"{seller} listings down {round(100 * (1 - cur / max(past)))}% in the last few days"
     if availability == Availability.SOLD_OUT:
         pct_left = Estimate(low=0, mid=0, high=5, method="sold out on the primary seller", inputs={}, confidence=0.7)
-    elif availability == Availability.FEW_LEFT:
+    elif availability == Availability.FEW_LEFT and not ev.price.is_free:
+        # a free shift with 2 spots left is just small, not "selling"; scarcity on free items shows as reported spots
         selling_fast = True
         signal = signal or "seller reports few tickets left"
     trend = _trend(snapshots, now)

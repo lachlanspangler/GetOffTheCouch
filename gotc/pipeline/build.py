@@ -349,8 +349,7 @@ def apply_spots(ev: Event, members: list[SourceEvent]) -> None:
     if src is None and only_left is not None:  # e.g. volunteer shifts: "3 volunteers still needed"
         n = int(str(only_left.extras["spots_left"]))
         ev.tickets.spots_left = n
-        if 0 < n <= 2:
-            ev.tickets.selling_fast = True
+        if 0 < n <= 2:  # reported scarcity, shown as spots; never "selling fast" (that's for ticket signals)
             ev.tickets.signal = f"only {n} spot{'s' if n != 1 else ''} left"
         return
     if src is None:
@@ -377,7 +376,6 @@ def apply_spots(ev: Event, members: list[SourceEvent]) -> None:
     if left == 0:
         ev.tickets.availability = Availability.REGISTRATION_CLOSED
     elif left <= 20:
-        ev.tickets.selling_fast = True
         ev.tickets.signal = f"only {cap - reg} of {cap} spots left"
     ev.attendance = Estimate(
         low=min(sig2(max(1, reg * 0.75)), cap),
