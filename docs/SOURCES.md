@@ -251,7 +251,7 @@ tweaks: `jsonld` `date_only` + cancelled/postponed titles + no prices from `$`-l
 
 ## Batch A cities
 
-Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads, philadelphia, pittsburgh). Every unit ran live once with
+Onboarded 2026-10-16 (dallas, houston, san_antonio, washington_dc, baltimore, richmond, hampton_roads, philadelphia, pittsburgh, atlanta). Every unit ran live once with
 `gotc run --city <slug> --no-geocode` from our UA (robots enforced by `PoliteClient`, ≥2 s per host); the count is
 valid records from that run (0 rejects unless noted). The global `upcomingcons` unit covers cons in each city
 automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
@@ -362,6 +362,19 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | `ppg_paints_arena` | pittsburgh | carbonhouse RSS / `rss_events` | https://www.ppgpaintsarena.com/events/rss | none | 1 request/12h | robots allows all | title, link, ev:startdate (UTC) | concerts · 12h | B+ (Penguins, concerts) | 62 |
 | `thunderbird_music_hall` | pittsburgh | Rockhouse WP + Event JSON-LD / `jsonld` (follow) | https://thunderbirdmusichall.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), ticket link | concerts · 12h | C+ | 19 |
 | `pittsburgh_cares` | pittsburgh | Galaxy Digital / `galaxydigital` | https://pittsburghcares.galaxydigital.com/need/rss/ | none | 1 RSS + ≤15 detail pages/day, ≥3 s | robots allows need pages | as `uwkc_volunteer`; tenant verified by RSS title | volunteer · 24h | B+ | 23 |
+| `afpl_events` | atlanta | BiblioCommons RSS / `bibliocommons` | https://gateway.bibliocommons.com/v2/libraries/fulcolibrary/rss/events | none | ≤20 pages/day, 10-day horizon | gateway host has no robots.txt; channel title "Fulton County Library System" | as `hclib_events`; `cities` keeps Atlanta/East Point/College Park/Hapeville/Sandy Springs | events · 24h | A- | 251 |
+| `dekalb_library_events` | atlanta | Communico `eeventcaldata` / `communico` | https://events.dekalblibrary.org/eeventcaldata | none | 7 requests/day | **undocumented** front-end JSON; robots disallows only /results* and site search | as `mdpls_events` | events · 24h | B | 137 |
+| `gsu_events` | atlanta | Localist / `localist` (`type` = audience "Public") | https://calendar.gsu.edu/api/2/events | none | ≤4 pages/day; robots `Crawl-delay: 1` | allowed | as `usc_events`; Perimeter College campuses skipped | events · 24h | B | 73 |
+| `emory_events` | atlanta | Trumba JSON / `trumba` | https://www.trumba.com/calendars/emory-events.json | none | 1 request/day | trumba.com robots allows all; Emory's own subscribe link | title, offset times, location, University Event Topic | events · 24h | B+ | 80 |
+| `gsu_athletics` | atlanta | SIDEARM ICS / `ics` | https://georgiastatesports.com/calendar.ashx/calendar.ics?sport_id=0 | none | 1 request/day (Crawl-delay 30) | robots allows it | home = LOCATION starts with "Atlanta" | events · 24h | B | 24 |
+| `atlanta_botanical_garden` | atlanta | WP The Events Calendar / `tribe` | https://atlantabg.org/wp-json/tribe/events/v1/events | none | ≤4 pages/day | REST allowed | as `mprb_events`; Gainesville garden skipped | events · 24h | B+ | 49 |
+| `piedmont_park_events` | atlanta | WP The Events Calendar / `tribe` | https://piedmontpark.org/wp-json/tribe/events/v1/events | none | ≤3 pages/day | REST allowed | as above | events · 24h | B+ | 26 |
+| `fox_theatre_atlanta` | atlanta | carbonhouse RSS / `rss_events` | https://www.foxtheatre.org/events/rss | none | 1 request/day | robots allows all | title, link, ev:startdate (UTC) | concerts · 24h | B+ | 31 |
+| `state_farm_arena` | atlanta | carbonhouse RSS / `rss_events` | https://www.statefarmarena.com/events/rss | none | 1 request/12h | robots allows all | as above (Hawks, Dream, concerts) | concerts · 12h | B+ | 73 |
+| `laughing_skull_lounge` | atlanta | Event JSON-LD on the homepage / `jsonld` | https://laughingskulllounge.com/ | none | 1 page/day | robots allows it | name, start (offset), offers | events · 24h | B- | 50 |
+| `eddies_attic` | atlanta | WordPress + Event JSON-LD / `jsonld` (follow) | https://eddiesattic.com/ | none | 1 listing + ≤40 detail pages/12h at ≥2 s | robots allows it | name, start (offset), ticket link | concerts · 12h | C+ | 34 |
+| `teamtrivia_atlanta` | atlanta | Team Trivia venue pages / `teamtrivia` | https://www.teamtrivia.com/trivia-in-atlanta/ | none | 1 region + ≤60 venue pages / 48h, ≥3 s | region/venue pages allowed and in the sitemap; zip gate never used | as `teamtrivia_denver` | recurring · 48h | B | 351 |
+| `challenge_trivia_atlanta` | atlanta | Challenge Entertainment JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all | metro-georgia within 50 km | recurring · 48h | C+ | 12 |
 
 **Tried and not added (batch A).**
 
@@ -435,3 +448,9 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Pittsburgh Cultural Trust, Pittsburgh Symphony, Pittsburgh Public Theater, Mr. Smalls, Club Cafe, City Winery | pittsburgh | no Tribe/Event JSON-LD/RSS | probe |
 | Team Trivia (trivia-in-western-pa) | pittsburgh | region lists only Carlisle/State College/Connellsville/Lock Haven venues | region page |
 | Stage AE, Roxian Theatre | pittsburgh | Live Nation venues (ToS) | — |
+| Hands On Atlanta | atlanta | custom volunteer dashboard (dashboard.handsonatlanta.org), no Galaxy/HandsOn Connect feed | homepage links; Galaxy "Bad Domain" |
+| Georgia Tech calendar / athletics | atlanta | calendar.gatech.edu is Drupal with no feed found; ramblinwreck.com isn't SIDEARM | probe |
+| The Masquerade | atlanta | Cloudflare challenge — not attempted | probe |
+| Variety Playhouse, Terminal West, BeltLine, High Museum, Fernbank, Downtown Atlanta, Midtown Alliance, Dad's Garage | atlanta | no Tribe / Event JSON-LD (Dad's Garage is Squarespace without LD) | probe |
+| Atlanta business/alcohol licenses | atlanta | only personal ArcGIS uploads found, no official feed | ArcGIS search |
+| Georgia voter registration (sos.ga.gov) | atlanta | robots.txt answers 403, so no starter-pack quote | probe |

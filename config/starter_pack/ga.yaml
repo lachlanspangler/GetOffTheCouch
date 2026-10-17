@@ -1,0 +1,23 @@
+# Official new-resident deadlines for Georgia. Every fact is quoted verbatim from source_url.
+# Voter registration is not included: sos.ga.gov answers robots.txt with HTTP 403 (= disallow all), so its pages
+# can't be quoted or re-verified by the daily check.
+state: GA
+items:
+  - id: ga-drivers-license
+    title: "Transfer your license to a Georgia driver's license"
+    kind: license
+    days_after_move: 30
+    summary: "Moving to Georgia from another state, you need to transfer your driver's license to a Georgia license within 30 days."
+    action_url: https://dds.georgia.gov/georgia-licenses-ids-and-permits/new-license-id-or-permit
+    evidence: "Moving to Georgia from another state? You'll need to transfer your existing driver's license to a Georgia license within 30 days of establishing residency."
+    source_url: https://dds.georgia.gov/georgia-licenses-ids-and-permits/new-license-id-or-permit
+    verified_at: 2026-10-16
+  - id: ga-vehicle-registration
+    title: "Title and register your vehicle in Georgia"
+    kind: vehicle
+    days_after_move: 30
+    summary: "Register your vehicles with the state within 30 days of moving to Georgia, at your County Tag Office."
+    action_url: https://dor.georgia.gov/motor-vehicles/vehicle-registration-license-plates/new-georgia
+    evidence: "Vehicles must be registered with the state within 30 days from the date you moved to Georgia. You will need to visit the County Tag Office to apply for a Georgia title and register ."
+    source_url: https://dor.georgia.gov/motor-vehicles/vehicle-registration-license-plates/new-georgia
+    verified_at: 2026-10-16
