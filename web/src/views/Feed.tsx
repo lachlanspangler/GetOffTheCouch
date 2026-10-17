@@ -81,7 +81,7 @@ function More({ total, shown, onMore }: { total: number; shown: number; onMore: 
 function ClosingSoon({ events, n = 4 }: { events: Event[]; n?: number }) {
   const { feed, now } = useApp();
   if (!feed) return null;
-  const items = deadlines(events, now).filter((d) => !d.derived && d.kind === "closes" && d.hours <= 24 * 14 && isLeadable(d.event));
+  const items = deadlines(events, now).filter((d) => !d.derived && d.kind === "closes" && d.hours <= 24 * 14 && isLeadable(d.event, feed.state));
   const seen = new Set<string>();
   const uniq = items.filter((d) => (seen.has(d.event.series_id ?? d.event.id) ? false : (seen.add(d.event.series_id ?? d.event.id), true))).slice(0, n);
   if (!uniq.length) return null;
@@ -105,7 +105,7 @@ export function Feed({ events }: { events: Event[] }) {
   const f = route.filters;
   const hub = route.hub ? HUB_BY_SLUG.get(route.hub) : undefined;
   const unfiltered = !hub && !f.q && activeCount(f) === 0 && f.when === DEFAULT_FILTERS.when;
-  const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events.filter(isLeadable), labels, now, 3) : []), [feed, unfiltered, now]);
+  const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events.filter((e) => isLeadable(e, feed.state)), labels, now, 3) : []), [feed, unfiltered, now]);
   const [profile] = usePersistent<Profile | null>(`profile:${feed?.city ?? "_"}`, null);
   const { neighborhoods, saved } = useApp();
   const personal = useMemo(() => {

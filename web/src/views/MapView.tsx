@@ -13,7 +13,7 @@ import type { Event } from "../lib/types";
 export function MapView({ events }: { events: Event[] }) {
   const { feed } = useApp();
   const [hl, setHl] = useState<string | null>(null);
-  const items = useMemo(() => collapseSeries(events.filter((e) => e.kind !== "opening" && isLeadable(e) && !isUnderway(e, new Date()))).map((g) => g.event), [events]);
+  const items = useMemo(() => collapseSeries(events.filter((e) => e.kind !== "opening" && isLeadable(e, feed?.state) && !isUnderway(e, new Date()))).map((g) => g.event), [events]);
   const pins = useMemo<Pin[]>(
     () =>
       items

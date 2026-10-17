@@ -99,13 +99,13 @@ export function Deadlines({ events }: { events: Event[] }) {
   const { feed, now } = useApp();
   if (!feed) return null;
   const all = deadlines(events, now);
-  const published = collapse(all.filter((i) => !i.derived && isLeadable(i.event)));
+  const published = collapse(all.filter((i) => !i.derived && isLeadable(i.event, feed.state)));
   const groups = [
     { id: "week", title: "This week", items: published.filter((i) => i.hours <= 24 * 7) },
     { id: "two", title: "Next two weeks", items: published.filter((i) => i.hours > 24 * 7 && i.hours <= 24 * 21) },
     { id: "later", title: "Later this season", items: published.filter((i) => i.hours > 24 * 21) },
   ];
-  const signups = collapse(all.filter((i) => i.derived && i.hours <= 24 * 14 && isLeadable(i.event) && i.event.tickets?.spots_left !== 0));
+  const signups = collapse(all.filter((i) => i.derived && i.hours <= 24 * 14 && isLeadable(i.event, feed.state) && i.event.tickets?.spots_left !== 0));
   const nSources = (feed.sources ?? []).filter((s) => s.state !== "disabled").length;
   return (
     <div class="container narrow">

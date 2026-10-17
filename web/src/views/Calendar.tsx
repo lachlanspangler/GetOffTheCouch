@@ -39,7 +39,7 @@ export function Calendar({ events }: { events: Event[] }) {
   const daysIn = new Date(Date.UTC(year, month, 0)).getUTCDate();
   const byDay = new Map<string, Event[]>();
   for (const e of events) {
-    if (e.kind === "opening" || !isLeadable(e)) continue;
+    if (e.kind === "opening" || !isLeadable(e, feed?.state)) continue;
     const k = dayKey(e.start, tz);
     byDay.set(k, [...(byDay.get(k) ?? []), e]);
   }
