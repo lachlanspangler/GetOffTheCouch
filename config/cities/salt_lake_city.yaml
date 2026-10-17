@@ -133,6 +133,7 @@ sources:
       default_category: community.festival
 
   - id: maverik_center
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: tribe
     name: Maverik Center (West Valley City arena)
     data_type: events

@@ -82,6 +82,7 @@ sources:
         "Comedy": nightlife.comedy
         "Old Forester's Paristown Hall": music.concert
   - id: waterfront_park_events
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: tribe
     name: Waterfront Park events
     data_type: events

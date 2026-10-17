@@ -193,6 +193,7 @@ sources:
     notes: config/registry/boston.yaml (evidence-quoted entries; page-watch checks the quotes still exist)
   # ── concerts: venues' own public calendars (keyless; research 2026-10-16, docs/sources_concerts.md) ──
   - id: lizard_lounge
+    enabled: false  # Cloudflare challenge (HTTP 403) since 2026-10-16; we never bypass challenges
     adapter: jsonld
     name: Lizard Lounge (venue calendar)
     data_type: concerts

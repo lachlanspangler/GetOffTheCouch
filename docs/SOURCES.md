@@ -1247,3 +1247,11 @@ automatically; Ticketmaster/SeatGeek/RunSignup stay key-gated.
 | Variety Playhouse, Terminal West, BeltLine, High Museum, Fernbank, Downtown Atlanta, Midtown Alliance, Dad's Garage | atlanta | no Tribe / Event JSON-LD (Dad's Garage is Squarespace without LD) | probe |
 | Atlanta business/alcohol licenses | atlanta | only personal ArcGIS uploads found, no official feed | ArcGIS search |
 | Georgia voter registration (sos.ga.gov) | atlanta | robots.txt answers 403, so no starter-pack quote | probe |
+
+## Robots re-check after the RFC 9309 parser (2026-10-16)
+The old parser ignored `*`/`$` wildcards, so some units configured during onboarding were fetching disallowed paths.
+Disabled on the first run with the new parser:
+- **Robots-disallowed:** Fresno County Public Library LibCal (8 branch feeds, `User-agent: *` / `Disallow: /`), Maverik Center (`/*?`), Louisville Waterfront Park (`/*?`), Yerba Buena Gardens Festival (`/*?`).
+- **Cloudflare challenge:** Lizard Lounge (Boston).
+
+Any further `RobotsDisallowed` failure on the status page means the same thing, and the unit gets disabled in config.

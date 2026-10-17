@@ -69,6 +69,7 @@ sources:
       default_category: community.festival
 
   - id: fcpl_woodward_park
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Woodward Park Regional Library
     data_type: events
@@ -102,6 +103,7 @@ sources:
       fallback_point: { lat: 36.8719, lon: -119.7652, label: "Woodward Park Regional Library, 944 E. Perrin Ave, Fresno, CA 93720" }
 
   - id: fcpl_sunnyside
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Sunnyside Regional Library
     data_type: events
@@ -133,6 +135,7 @@ sources:
       fallback_point: { lat: 36.7358, lon: -119.7011, label: "Sunnyside Regional Library, 5566 E. Kings Canyon Rd, Fresno, CA 93727" }
 
   - id: fcpl_fig_garden
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Fig Garden Regional Library
     data_type: events
@@ -164,6 +167,7 @@ sources:
       fallback_point: { lat: 36.8226, lon: -119.8453, label: "Fig Garden Regional Library, 3071 W. Bullard Ave, Fresno, CA 93711" }
 
   - id: fcpl_betty_rodriguez
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Betty Rodriguez Regional Library
     data_type: events
@@ -195,6 +199,7 @@ sources:
       fallback_point: { lat: 36.7785, lon: -119.7543, label: "Betty Rodriguez Regional Library, 3040 N Cedar Ave, Fresno, CA 93703" }
 
   - id: fcpl_gillis
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Gillis Branch Library
     data_type: events
@@ -226,6 +231,7 @@ sources:
       fallback_point: { lat: 36.7865, lon: -119.8189, label: "Gillis Branch Library, 629 W. Dakota Ave, Fresno, CA 93705" }
 
   - id: fcpl_politi
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Politi Branch Library
     data_type: events
@@ -257,6 +263,7 @@ sources:
       fallback_point: { lat: 36.8214, lon: -119.7723, label: "Politi Branch Library, 5771 N. First St, Fresno, CA 93710" }
 
   - id: fcpl_clovis
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — Clovis Regional Library
     data_type: events
@@ -288,6 +295,7 @@ sources:
       fallback_point: { lat: 36.824, lon: -119.6946, label: "Clovis Regional Library, 1155 5th St, Clovis, CA 93612" }
 
   - id: fcpl_west_fresno
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: ics
     name: Fresno County Public Library — West Fresno Branch Library
     data_type: events

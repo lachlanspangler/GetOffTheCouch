@@ -143,6 +143,7 @@ sources:
       venue: {name: San Francisco Botanical Garden, address: "1199 9th Ave, San Francisco, CA 94122"}
 
   - id: ybg_festival
+    enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
     adapter: tribe
     name: Yerba Buena Gardens Festival (free outdoor performances)
     data_type: events
