@@ -466,3 +466,4 @@ New units, live counts:
 **Ideas:** I-168–I-176 added; I-177–I-180 rejected with reasons (Wikidata api.php, the Urban Institute API, Nominatim at 1 req/s, Communico subdomain guessing).
 - 2026-10-16 23:18 UTC · run 42 partial: units[91 disabled, 1 failed, 121 ok, 149 skipped] → 18720 events in 20 cities
 - 2026-10-17 00:04 UTC · run 43 partial: units[179 disabled, 11 failed, 163 ok, 271 skipped] → 29322 events in 40 cities
+- 2026-10-17 00:34 UTC · run 44 partial: units[220 disabled, 9 failed, 126 ok, 436 skipped] → 36165 events in 50 cities

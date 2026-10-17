@@ -24,7 +24,7 @@ import { Plan } from "./views/Plan";
 import { Saved } from "./views/Saved";
 
 function applyTheme(t: Theme): void {
-  const dark = t === "dark" || (t === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+  const dark = t === "dark" || (t === "auto" && typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.dataset.theme = dark ? "dark" : "light";
 }
 
@@ -60,7 +60,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
   }, [index]);
   useEffect(() => {
     applyTheme(theme);
-    if (theme !== "auto") return;
+    if (theme !== "auto" || typeof matchMedia !== "function") return;
     const mq = matchMedia("(prefers-color-scheme: dark)");
     const on = () => applyTheme("auto");
     mq.addEventListener("change", on);
