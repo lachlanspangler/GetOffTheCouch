@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 87 · **doing** 4 · **done** 78 · **rejected** 26 · **parked** 2 · **blocked** 13
+**open** 91 · **doing** 4 · **done** 78 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -20,12 +20,15 @@ unless docs/HEALTH.md has something red.
 | I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | open | Partiful trust pattern; clarifies we're a guide |
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | open | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. |
 | I-199 | Probe tooling honors Crawl-delay | infra | 4 | 1 | 3.2 | open | Prevents slips like azleg.gov (Crawl-delay 120) |
+| I-211 | Galaxy Digital tenant sanity check (channel title/state must match city) | data-quality | 4 | 1 | 3.2 | open | Volunteer Now Dallas domain served a California tenant |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | open | GitHub disables crons on inactive repos |
 | I-185 | SeatEngine/Opendate fingerprints in discover | cities | 3 | 1 | 2.4 | open | Comedy clubs and venues become config-only |
 | I-187 | LiveWhale pagination | sources | 3 | 1 | 2.4 | open | Brown's calendar stops at 100 items (~2–3 days) |
 | I-188 | ArcGIS route geometry → representative point | pipeline | 3 | 1 | 2.4 | open | Raleigh street-event permits are routes and don't map |
 | I-198 | Title include/exclude filters for ics, jsonld, tribe, HandsOn | sources | 3 | 1 | 2.4 | open | Stop hacking exclude_location with lookaheads |
+| I-212 | Trumba custom-field filter (e.g. 'Event Open To' contains Public) | sources | 3 | 1 | 2.4 | open | Emory exposes it; adapter can't filter |
+| I-214 | CivicPlus iCalendar fingerprint in discover | cities | 3 | 1 | 2.4 | open | Works via plain ics adapter (Dallas Parks) |
 | I-168 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | open | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
@@ -77,6 +80,7 @@ unless docs/HEALTH.md has something red.
 | I-189 | Match 'X vs Y' games across arena and athletics feeds | pipeline | 3 | 2 | 1.2 | open | Providence Friars games duplicated |
 | I-190 | Curated league registries for league-empty metros | data-quality | 3 | 2 | 1.2 | open | Leagues are empty in Tampa, Hartford and most of batch D |
 | I-205 | Generic jsonfeed adapter (config-mapped JSON) | sources | 3 | 2 | 1.2 | open | Unlocks custom feeds like Wayne State's (~200 events) |
+| I-213 | Chunked/backed-off BiblioCommons fetch for big systems | sources | 3 | 2 | 1.2 | open | Allegheny County Library 504 even for one day |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |
@@ -107,6 +111,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-215 | Socrata app token (recommended at 50 cities) | infra | 3 | 1 | 2.4 | blocked | More Socrata domains → more throttling; free token; needs the user |
 | I-209 | Michigan/Ohio SoS pages (robots 403): outreach or curated path | sources | 3 | 1 | 2.4 | blocked | No MI starter pack; OH voter registration missing |
 | I-202 | CA ABC license data access | sources | 4 | 1 | 3.2 | blocked | Only route to openings in six CA metros; reports page is Cloudflare-challenged |
 | I-201 | Simpleview tourism boards permission (Phoenix, Scottsdale, Salt Lake, Sacramento, Riverside, Fresno) | sources | 3 | 1 | 2.4 | blocked | Deliberate 403s; outreach only |
@@ -215,6 +220,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-217 | Scraping Hands On Atlanta dashboard | sources | 2 | 2 | 0.8 | rejected | Rejected: custom app, no feed, ToS unclear |
+| I-216 | Georgetown BID Tribe feed | sources | 1 | 1 | 0.8 | rejected | Rejected: mostly daily retail promos |
 | I-210 | CivicPlus RSS adapter for Midwest metros | sources | 2 | 2 | 0.8 | rejected | Rejected: candidates tiny or mostly board meetings |
 | I-204 | SOLVE volunteer listings | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid data mining |
 | I-203 | San Diego Reader calendar | sources | 2 | 1 | 1.6 | rejected | Rejected: terms forbid scraping |
