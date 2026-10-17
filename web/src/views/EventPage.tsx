@@ -391,7 +391,10 @@ export function EventPage({ e }: { e: Event }) {
                 </button>
               ) : null}
             </div>
-            {cta && <p class="fine">We don't sell tickets or take sign-ups. You'll finish on {cta.dest}.</p>}
+            <p class="fine">
+              {e.organizer ? `Hosted by ${e.organizer}, not by us. ` : "We're a guide, not the host. "}
+              {cta ? `We don't sell tickets or take sign-ups; you'll finish on ${cta.dest}.` : ""}
+            </p>
           </aside>
         </div>
       </div>

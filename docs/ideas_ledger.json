@@ -1662,12 +1662,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Crawlers and social scrapers need real HTML; most first visits come from search",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-112",
@@ -1690,12 +1692,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Eligible for event rich results; never for openings/deadlines (Google content rules)",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-114",
@@ -1704,12 +1708,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Discovery for ~8k pages; Search Console URL-prefix property",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-115",
@@ -1774,12 +1780,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Performance budgets enforced in CI, not by memory",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-120",
@@ -2022,12 +2030,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Explains picks in plain language; trust",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-137",
@@ -2036,12 +2046,14 @@
    "value": 5,
    "effort": 1,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "We burst ~55/min at 10 cities; policy violation (SCALING §4.3)",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-138",
@@ -2050,12 +2062,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "query.wikidata.org robots.txt disallows /sparql",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-139",
@@ -2064,12 +2078,14 @@
    "value": 5,
    "effort": 4,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Adding a city should approach automatic",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-140",
@@ -2078,12 +2094,14 @@
    "value": 5,
    "effort": 2,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "Honest coverage; thin cities never pretend",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-141",
@@ -2092,12 +2110,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "doing",
    "why": "Monolithic run stops fitting at ~60–70 cities",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 doing: sharded matrix done; per-city state files open"
+   ]
   },
   {
    "id": "I-142",
@@ -2106,12 +2126,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Only rebuild cities whose inputs changed",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-143",
@@ -2120,12 +2142,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "State file would pass GitHub's 100 MB limit",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-144",
@@ -2134,12 +2158,14 @@
    "value": 3,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "GitHub disables crons on inactive repos",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-145",
@@ -2162,12 +2188,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Partiful trust pattern; clarifies we're a guide",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-147",
@@ -2528,12 +2556,14 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map.",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-17",
+   "notes": [
+    "2026-10-17 done: session 3"
+   ]
   },
   {
    "id": "I-173",

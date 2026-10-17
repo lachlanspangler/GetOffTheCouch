@@ -5,24 +5,17 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 91 · **doing** 4 · **done** 78 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 80 · **doing** 1 · **done** 92 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
-| I-137 | Nominatim compliance: ≤1 req/s and per-run budget | pipeline | 5 | 1 | 4.0 | doing | We burst ~55/min at 10 cities; policy violation (SCALING §4.3) |
-| I-138 | Replace Wikidata SPARQL (robots-disallowed) with allowed API or curated venues | sources | 5 | 2 | 2.0 | doing | query.wikidata.org robots.txt disallows /sparql |
-| I-140 | Per-city go-live gate (G1–G11) with live/beta/hidden tiers | cities | 5 | 2 | 2.0 | doing | Honest coverage; thin cities never pretend |
-| I-139 | gotc discover <city>: Socrata/data.gov/ArcGIS/library/university/venue fingerprints | cities | 5 | 4 | 1.0 | doing | Adding a city should approach automatic |
-| I-114 | Per-city sitemaps + sitemap index with honest lastmod | growth | 4 | 1 | 3.2 | open | Discovery for ~8k pages; Search Console URL-prefix property |
+| I-141 | Per-city state files + sharded matrix refresh + single publish job | infra | 5 | 3 | 1.33 | doing | Monolithic run stops fitting at ~60–70 cities — 2026-10-17 doing: sharded matrix done; per-city state files open |
 | I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | open | Time Out pattern: one URL, fresh dates, high-intent query |
-| I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | open | Partiful trust pattern; clarifies we're a guide |
-| I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | open | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. |
 | I-199 | Probe tooling honors Crawl-delay | infra | 4 | 1 | 3.2 | open | Prevents slips like azleg.gov (Crawl-delay 120) |
 | I-211 | Galaxy Digital tenant sanity check (channel title/state must match city) | data-quality | 4 | 1 | 3.2 | open | Volunteer Now Dallas domain served a California tenant |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
-| I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | open | GitHub disables crons on inactive repos |
 | I-185 | SeatEngine/Opendate fingerprints in discover | cities | 3 | 1 | 2.4 | open | Comedy clubs and venues become config-only |
 | I-187 | LiveWhale pagination | sources | 3 | 1 | 2.4 | open | Brown's calendar stops at 100 items (~2–3 days) |
 | I-188 | ArcGIS route geometry → representative point | pipeline | 3 | 1 | 2.4 | open | Raleigh street-event permits are routes and don't map |
@@ -34,13 +27,8 @@ unless docs/HEALTH.md has something red.
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
 | I-112 | Event page lifecycle: ended banner → meta-refresh stub → delete | growth | 4 | 2 | 1.6 | open | Pages can't send 301/410; keeps shared links useful and the site bounded |
-| I-113 | schema.org Event JSON-LD for one-off and recurring events only | growth | 4 | 2 | 1.6 | open | Eligible for event rich results; never for openings/deadlines (Google content rules) |
 | I-116 | Per-city Atom feeds and deadlines.ics subscriptions | features | 4 | 2 | 1.6 | open | Subscribable calendars beat one-off downloads for deadlines |
-| I-119 | Lighthouse CI + bundle budgets (entry JS ≤60 KB gz, CSS ≤15 KB) | infra | 4 | 2 | 1.6 | open | Performance budgets enforced in CI, not by memory |
 | I-135 | Admin-noise flags (room rentals, closures, staff-only, open hours) per source | data-quality | 4 | 2 | 1.6 | open | Biggest junk class in library/city feeds |
-| I-136 | 'Why am I seeing this' panel with personal reasons | features | 4 | 2 | 1.6 | open | Explains picks in plain language; trust |
-| I-142 | Hash-gated incremental builds and exports | infra | 4 | 2 | 1.6 | open | Only rebuild cities whose inputs changed |
-| I-143 | Raw payload retention + price snapshot downsampling | infra | 4 | 2 | 1.6 | open | State file would pass GitHub's 100 MB limit |
 | I-147 | Organizer track record chip (past events, how long listed) | features | 4 | 2 | 1.6 | open | Meetup trust pattern without ratings we don't have |
 | I-160 | Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin) | features | 4 | 2 | 1.6 | open | The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness |
 | I-161 | Human spot-check >=20% of the ranking judgments, then re-snapshot on a new date as a held-out eval | data-quality | 4 | 2 | 1.6 | open | All 3,360 grades are one agent's; the flags, lambda and interest tweaks were chosen in-sample (RANKING.md 7.6) |
@@ -61,9 +49,7 @@ unless docs/HEALTH.md has something red.
 | I-089 | Find a trivia nights source for Los Angeles | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Los Angeles right now |
 | I-090 | Find a cons & faires source for Nashville | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Nashville right now |
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
-| I-111 | Pre-render city, hub and event pages at build time (SSR + hydrate) | growth | 5 | 3 | 1.33 | open | Crawlers and social scrapers need real HTML; most first visits come from search |
 | I-117 | Week-sharded city data + inlined initial.json | infra | 5 | 3 | 1.33 | open | City JSON is 170–470 KB gz and blocks first render; target ≤30 KB first view |
-| I-141 | Per-city state files + sharded matrix refresh + single publish job | infra | 5 | 3 | 1.33 | open | Monolithic run stops fitting at ~60–70 cities |
 | I-169 | Per-city state files on the pipeline-state branch | infra | 5 | 3 | 1.33 | open | Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2). |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
@@ -137,6 +123,16 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
+| I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | done | Partiful trust pattern; clarifies we're a guide — 2026-10-17 done: session 3 |
+| I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | done | GitHub disables crons on inactive repos — 2026-10-17 done: session 3 |
+| I-143 | Raw payload retention + price snapshot downsampling | infra | 4 | 2 | 1.6 | done | State file would pass GitHub's 100 MB limit — 2026-10-17 done: session 3 |
+| I-142 | Hash-gated incremental builds and exports | infra | 4 | 2 | 1.6 | done | Only rebuild cities whose inputs changed — 2026-10-17 done: session 3 |
+| I-140 | Per-city go-live gate (G1–G11) with live/beta/hidden tiers | cities | 5 | 2 | 2.0 | done | Honest coverage; thin cities never pretend — 2026-10-17 done: session 3 |
+| I-139 | gotc discover <city>: Socrata/data.gov/ArcGIS/library/university/venue fingerprints | cities | 5 | 4 | 1.0 | done | Adding a city should approach automatic — 2026-10-17 done: session 3 |
+| I-138 | Replace Wikidata SPARQL (robots-disallowed) with allowed API or curated venues | sources | 5 | 2 | 2.0 | done | query.wikidata.org robots.txt disallows /sparql — 2026-10-17 done: session 3 |
+| I-137 | Nominatim compliance: ≤1 req/s and per-run budget | pipeline | 5 | 1 | 4.0 | done | We burst ~55/min at 10 cities; policy violation (SCALING §4.3) — 2026-10-17 done: session 3 |
+| I-136 | 'Why am I seeing this' panel with personal reasons | features | 4 | 2 | 1.6 | done | Explains picks in plain language; trust — 2026-10-17 done: session 3 |
 | I-134 | Thompson-sampling exploration slot + 14-day family floor | features | 3 | 2 | 1.2 | done | Prevents filter bubbles in on-device personalization — 2026-10-16 done: exploration slot at position 4; floor needs 14 days of history |
 | I-133 | On-device affinity from saves/opens/dismisses (21-day half-life, ±0.3 cap) | features | 4 | 3 | 1.07 | done | Learns without tracking; capped so it can't override penalties — 2026-10-16 done: rank/affinity.ts + affinityStore.ts; saves, calendar adds, opens ≥5 s, outbound, dismiss |
 | I-132 | Judgment sets per city × persona with NDCG/ILD regression gate | data-quality | 5 | 3 | 1.33 | done | Measurable ranking quality without user data — 2026-10-16 done: 5 cities × 6 personas, 560 events labeled; npm run eval:rank in make check |
@@ -151,6 +147,10 @@ unless docs/HEALTH.md has something red.
 | I-122 | Day-grouped list rows instead of a boxed card grid | ux | 5 | 3 | 1.33 | done | Chronological scanning like Resy/Time Out, ~2× events per screen |
 | I-121 | Card signal budget: one meta line, one status, one tag (cardSignals) | ux | 5 | 2 | 2.0 | done | Removes badge soup with tested logic; enforces no fake urgency |
 | I-120 | Design tokens + self-hosted Inter/Newsreader with metric-matched fallbacks | ux | 5 | 2 | 2.0 | done | Biggest single jump in perceived quality, zero CLS |
+| I-119 | Lighthouse CI + bundle budgets (entry JS ≤60 KB gz, CSS ≤15 KB) | infra | 4 | 2 | 1.6 | done | Performance budgets enforced in CI, not by memory — 2026-10-17 done: session 3 |
+| I-114 | Per-city sitemaps + sitemap index with honest lastmod | growth | 4 | 1 | 3.2 | done | Discovery for ~8k pages; Search Console URL-prefix property — 2026-10-17 done: session 3 |
+| I-113 | schema.org Event JSON-LD for one-off and recurring events only | growth | 4 | 2 | 1.6 | done | Eligible for event rich results; never for openings/deadlines (Google content rules) — 2026-10-17 done: session 3 |
+| I-111 | Pre-render city, hub and event pages at build time (SSR + hydrate) | growth | 5 | 3 | 1.33 | done | Crawlers and social scrapers need real HTML; most first visits come from search — 2026-10-17 done: session 3 |
 | I-110 | Path routing with clean city/hub/event URLs + legacy hash redirect | growth | 5 | 2 | 2.0 | done | Hash URLs are invisible to search and link previews (SEO_ACCESS §1) |
 | I-109 | Weekly habits section in the 30-day plan | features | 4 | 1 | 3.2 | done | Recurring social events are the fastest way to make friends in a new city |
 | I-107 | SIDEARM athletics ICS for the other cities' universities (home games, force_category) | sources | 3 | 1 | 2.1 | done | SIDEARM Sports athletics sites (gohuskies.com, denverpioneers.com) publish calendar.ashx/calendar.ics for all sports; home games are filterable by LOCATION. Most NCAA schools use SIDEARM: Minnesota, Northwestern/DePaul/Loyola, BU/BC/Northeastern, UCLA/USC, Miami, Vanderbilt/Belmont, Columbia/Fordham. — 2026-10-16 done: 8 schools added |

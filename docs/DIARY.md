@@ -467,3 +467,59 @@ New units, live counts:
 - 2026-10-16 23:18 UTC · run 42 partial: units[91 disabled, 1 failed, 121 ok, 149 skipped] → 18720 events in 20 cities
 - 2026-10-17 00:04 UTC · run 43 partial: units[179 disabled, 11 failed, 163 ok, 271 skipped] → 29322 events in 40 cities
 - 2026-10-17 00:34 UTC · run 44 partial: units[220 disabled, 9 failed, 126 ok, 436 skipped] → 36165 events in 50 cities
+- 2026-10-17 00:53 UTC · run 45 ok: units[] → 36161 events in 50 cities
+
+## 2026-10-17 01:30 UTC: session 3 wrap-up (50 metros, ranking v2, two review rounds)
+**Did:**
+- **Merged six agent branches:**
+  - ranking v2
+  - scaling infrastructure (compliance, gate, discover, sharded CI)
+  - city batches A, B, C and D (40 new metros)
+- **Ideas:** colliding idea IDs were renumbered (scaling I-110–I-122 → I-168–I-180).
+- **Schema:** bumped to 1.6.0 (rank hints plus coverage).
+- **UI:**
+  - **Ranking v2 surfaced:** For you, Why this?, Not for me with undo, and a learned summary with a forget button.
+  - **Coverage UI:** Beta chip, "still thin", and a quality-bar table.
+  - **Curation round 2:** out-of-region and campus listings, full or sold-out events, underway events, youth sports,
+    venue and title cleanup.
+- **Code-review fixes (17 findings):**
+  - hydrate only clean URLs
+  - hydration-safe ranking state
+  - RFC 9309: unreachable means disallow, BOM, sitemap grouping
+  - kids tag from the title or an explicit audience only (2,765 false tags)
+  - Event JSON-LD only with an address
+  - openings pre-rendered as noindex
+  - per-run raw cache
+  - no zero-event export after a failed build
+  - focus on navigation, URL parameter validation, and more
+- **Design critique round 2 top-10:**
+  - counts agree everywhere
+  - time zones on timestamps
+  - earned social tags
+  - neutral spots on free items, and no "selling fast" from reported spots
+  - short CTAs and "Express interest"
+  - mobile overflow fixes
+- **Bundle split:** About, Plan and Status are lazy-loaded; entry JS went from 67.7 to 59.9 KB.
+
+**Broke:**
+- **Two commits with a red `make check`** (lint, then an unhandled matchMedia error). Both were fixed in the next
+  commit. Since then every commit is gated with `make check && git commit`.
+- **The new robots parser blocked 12 units** that onboarding had configured with the old parser, so I disabled them
+  (SOURCES.md).
+
+**Decided (and why):**
+- **Ranking v2 stays on with the two-per-source cap.** Front-page quality and diversity matter more than a 0.05 NDCG
+  gap in For you. Raising the cap to 3 failed the diversity gates.
+- **Nominatim stays off,** even though G8 geocoding then fails in 24 cities. Its robots.txt disallows /search, and
+  rules beat coverage. A curated venue list is the fix.
+- **New cities stay beta until G10 (48 h of green runs).** The gate does the promotion, not me.
+- **Pre-render horizon is 60 days:** 19,846 pages, about 500 MB, under the 800 MB guard.
+- **Calendar ignores the When filter**, so its counts and empty days aren't misleading.
+
+**Verified:**
+- `make check` green; 68/68 e2e plus axe.
+- check-dist: 0 problems over 19,846 pages. Budgets green.
+- Throttled-phone LCP of about 0.7 s and CLS 0 on 5 pages.
+- Live pipeline: 36,161 events in 50 cities.
+
+**Next:** see the top of STATUS.
