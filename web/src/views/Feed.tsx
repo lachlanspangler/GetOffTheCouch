@@ -12,7 +12,7 @@ import { count } from "../lib/format";
 import { forYou, highlights, type Profile } from "../lib/recommend";
 import { usePersistent } from "../lib/store";
 import { WhyThis } from "../components/WhyThis";
-import { CoverageStrip, strongestText } from "../components/Coverage";
+import { strongestText } from "../components/Coverage";
 import { build } from "../lib/router";
 import { HUB_BY_SLUG, HUBS, url } from "../lib/site";
 import { closesPhrase } from "../lib/signals";
@@ -143,7 +143,7 @@ export function Feed({ events }: { events: Event[] }) {
         </h1>
         <p class="lede">
           {hub?.when === "weekend"
-            ? `${wk.label}. Leagues, shows, parties and volunteer shifts, from ${cov.sources} local sources.`
+            ? `${wk.label}. Leagues, shows, parties and volunteer shifts, from ${summary?.coverage?.sources_healthy ?? cov.sources} local sources.`
             : hub
               ? `Upcoming ${hub.label.toLowerCase()} in ${feed.city_name}, from official calendars and venues, checked every few hours.`
               : "What's on this week, and what's due."}
@@ -152,7 +152,10 @@ export function Feed({ events }: { events: Event[] }) {
           Updated {age(index.generated_at, now)} · {summary?.coverage ? `${summary.coverage.sources_healthy} sources${strongestText(summary.coverage) ? `, strongest in ${strongestText(summary.coverage)}` : ""}` : cov.text}
           {" · "}<a class="quiet-link" href={build({ city: feed.city, view: "health" })}>Data status</a>
         </p>
-        {!hub && summary?.coverage && <CoverageStrip c={summary.coverage} />}
+        {!hub && summary?.coverage?.pillars && (() => {
+          const thin = Object.values(summary.coverage.pillars).filter((p) => p.state === "none").map((p) => p.label.toLowerCase());
+          return thin.length ? <p class="meta">Still thin here: {thin.join(", ")}. We're adding sources.</p> : null;
+        })()}
       </header>
       {summary?.tier === "beta" && !hub && (
         <p class="notice" role="note">
@@ -170,7 +173,7 @@ export function Feed({ events }: { events: Event[] }) {
         <p class="notice notice-caution" role="status">
           <Icon name="alert" size={16} />
           <span>
-            Some listings from {stale.slice(0, 2).map((s) => s.name).join(" and ")}{stale.length > 2 ? ` and ${stale.length - 2} more` : ""} may be out of date.{" "}
+            {stale.length === 1 ? "1 source" : `${stale.length} sources`} may be out of date.{" "}
             <a href={build({ city: feed.city, view: "health" })}>Details</a>
           </span>
         </p>
@@ -183,7 +186,7 @@ export function Feed({ events }: { events: Event[] }) {
             </div>
           </div>
           <div class="featured">
-            {tops.map((s) => (
+            {[...tops].sort((a, b) => a.event.start.localeCompare(b.event.start)).map((s) => (
               <FeaturedCard key={s.event.id} e={s.event} scored={s} />
             ))}
           </div>

@@ -76,7 +76,7 @@ export function Calendar({ events }: { events: Event[] }) {
         <h1>Calendar</h1>
         <p class="lede">Everything in {feed.city_name} by day. Pick a day to see what's on.</p>
       </header>
-      <FilterBar resultCount={events.length} />
+      <FilterBar resultCount={events.filter((e) => e.kind !== "opening").length} noWhen />
       <div class="cal-layout">
         <div>
           <div class="cal-nav">

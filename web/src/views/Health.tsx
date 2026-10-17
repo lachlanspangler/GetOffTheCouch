@@ -5,7 +5,7 @@ import { useApp } from "../lib/ctx";
 import { loadHealth } from "../lib/data";
 import { count } from "../lib/format";
 import { build } from "../lib/router";
-import { age, fmtDay, fmtTime } from "../lib/time";
+import { age, fmtDay, fmtTime, tzAbbr } from "../lib/time";
 import type { HealthDoc, HealthUnit } from "../lib/types";
 
 const STATE: Record<string, { label: string; cls: string; help: string }> = {
@@ -16,6 +16,17 @@ const STATE: Record<string, { label: string; cls: string; help: string }> = {
   disabled: { label: "Not connected", cls: "", help: "Waiting on an API key or switched off" },
   never_run: { label: "Not run yet", cls: "", help: "Scheduled; hasn't run yet" },
 };
+
+/** The status page is for readers: say what's wrong in plain words; the raw error stays in HEALTH.md. */
+function plainNote(u: HealthUnit): string {
+  const r = u.reason ?? u.last_error ?? "";
+  if (/needs [A-Z_]+(KEY|ID|SECRET|REG)/.test(r)) return "Waiting on an API key";
+  if (/robots/i.test(r)) return "The site asks automated tools not to read this page";
+  if (/403|challenge|cloudflare/i.test(r)) return "The site is blocking automated access";
+  if (/timeout|timed out|5\d\d/i.test(r)) return "The site isn't responding; retrying";
+  if (/disabled in config/i.test(r)) return "Switched off";
+  return r ? "Problem reading the latest listings; retrying" : "";
+}
 
 function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) {
   const { now } = useApp();
@@ -41,13 +52,13 @@ function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) 
               <tr key={u.source_id + u.city}>
                 <td>
                   <strong>{u.name}</strong>
-                  <div class="mono">{u.source_id}{showCity ? ` · ${u.city}` : ""}</div>
+                  {showCity && <div class="small muted">{u.city}</div>}
                 </td>
                 <td data-label="Status"><span class={`state ${st.cls}`} title={st.help}>{st.label}</span></td>
                 <td class="num" data-label="Last success">{u.last_success_at ? age(u.last_success_at, now) : "Never"}{u.stale && u.state !== "disabled" && <div class="small tone-caution">Behind schedule</div>}</td>
                 <td class="num" data-label="Listings">{count(u.records)}</td>
                 {rel && <td class="num">{u.reliability?.score != null ? `${Math.round(u.reliability.score)}%` : "Not enough runs"}</td>}
-                {notes && <td class="small secondary" data-label="Note">{u.reason ?? u.last_error ?? ""}</td>}
+                {notes && <td class="small secondary" data-label="Note">{plainNote(u)}</td>}
               </tr>
             );
           })}
@@ -90,7 +101,7 @@ export function Health() {
                 : `All ${active.length} ${where}sources are up to date: each one refreshed on its own schedule, usually every 6 to 24 hours.`}
             </span>
           </p>
-          <p class="small muted" style={{ marginTop: "6px", marginLeft: "32px" }}>Last full rebuild: {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)} ({age(index.generated_at, now)})</p>
+          <p class="small muted" style={{ marginTop: "6px", marginLeft: "32px" }}>Last full rebuild: {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)} {tzAbbr(index.generated_at, tz)} ({age(index.generated_at, now)})</p>
           {!feed && (
             <div class="summary-grid">
               {index.cities.map((c) => (
@@ -106,7 +117,7 @@ export function Health() {
               <h2 id="bar">Quality bar</h2>
               <p class="secondary" style={{ margin: "6px 0 12px" }}>
                 A city is listed as live once it clears every check below; until then it's marked beta.{" "}
-                {feed.city_name} is <strong>{summary.tier === "beta" ? "in beta" : "live"}</strong>.
+                {feed.city_name} is <strong>{summary.tier === "beta" ? "in beta" : "live"}</strong>{summary.tier !== "beta" && summary.coverage.passed_hard === false ? ": it was listed before these checks existed and has a grace period to meet them" : ""}.
               </p>
               <div class="table-wrap">
                 <table class="data-table stack-sm">

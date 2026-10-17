@@ -15,6 +15,15 @@ import type { Event } from "../lib/types";
 import { vibes } from "../lib/vibes";
 import { share } from "./EventPage";
 
+const GOAL_HELP: Record<Goal, string> = {
+  meet_people: "Leagues, volunteering, anything you can go to alone",
+  stay_active: "Run clubs, rec leagues, classes outdoors",
+  culture: "Shows, galleries, talks, music",
+  party: "Nights out, new bars, live music",
+  give_back: "Volunteer shifts and community work",
+  nerd_out: "Trivia, game nights, cons and faires",
+};
+
 const SLOTS: Record<Slot, string> = { weeknights: "Weeknights", weekends: "Weekends", daytime: "Weekday daytime" };
 const BUDGET = { free: "Free only", cheap: "Under about $30", any: "Whatever's good" } as const;
 
@@ -64,6 +73,7 @@ function Wizard({ initial, onDone, events }: { initial: Profile; onDone: (p: Pro
                     <label class="pick" key={g}>
                       <input type="checkbox" checked={p.goals.includes(g)} onChange={() => setP({ ...p, goals: toggle(p.goals, g) })} />
                       <span class="lbl">{GOALS[g].label}</span>
+                      <span class="ex">{GOAL_HELP[g]}</span>
                       <Icon name="check" size={16} class="tick" />
                     </label>
                   ))}
@@ -154,6 +164,14 @@ export function Plan({ events }: { events: Event[] }) {
     return <Wizard events={events} initial={profile ?? DEFAULT_PROFILE} onDone={(p) => { setProfile(p); setEditing(false); scrollTo(0, 0); }} />;
   }
   if (!plan) return null;
+  // "Sign up soon": only things you said you like, soonest deadline first, one per organizer
+  const likes = (e: Event) => profile.interests.some((i) => e.category === i || e.category.startsWith(`${i}.`) || (e.categories ?? []).some((c) => c === i || c.startsWith(`${i}.`)));
+  const orgKey = (e: Event) => (e.organizer ?? e.title.split(/[:–—-]/)[0]).trim().toLowerCase();
+  const seenOrg = new Set<string>();
+  plan.deadlines = plan.deadlines
+    .filter((s) => likes(s.event))
+    .sort((a, b) => (a.event.registration?.closes_at ?? "").localeCompare(b.event.registration?.closes_at ?? ""))
+    .filter((s) => (seenOrg.has(orgKey(s.event)) ? false : (seenOrg.add(orgKey(s.event)), true)));
   const all = [...plan.deadlines, ...plan.habits, ...plan.weeks.flatMap((w) => w.picks)].map((s) => s.event);
   const uniq = [...new Map(all.map((e) => [e.id, e])).values()];
   const move = profile.startDate ? new Date(`${profile.startDate}T12:00:00`) : null;

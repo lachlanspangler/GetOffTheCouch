@@ -19,6 +19,8 @@ export function RegistrationWaves({ events }: { events: Event[] }) {
     .filter((e) => e.registration!.method !== "derived" || !!e.registration!.opens_at)
     .filter((e) => new Date(e.registration!.closes_at!).getTime() >= now.getTime())
     .sort((a, b) => a.registration!.closes_at!.localeCompare(b.registration!.closes_at!))
+    // one bar per organizer and closing day (ten identical Volo bars say nothing)
+    .filter((e, i, arr) => arr.findIndex((x) => x.sources[0]?.source_id === e.sources[0]?.source_id && x.registration!.closes_at!.slice(0, 10) === e.registration!.closes_at!.slice(0, 10)) === i)
     .slice(0, 10);
   if (!rows.length) return null;
   const x = (t: number) => `${Math.max(0, Math.min(100, ((t - t0) / span) * 100))}%`;
@@ -51,7 +53,7 @@ export function RegistrationWaves({ events }: { events: Event[] }) {
           );
         })}
       </ul>
-      <p class="muted small" style={{ marginTop: "8px" }}><span class="key key-bar" /> registration open · <span class="key key-eb" /> early-bird ends · <span class="key key-start" /> season starts</p>
+      <p class="muted small" style={{ marginTop: "8px" }}><span class="key key-bar" /> registration open · {rows.some((e) => e.registration?.early_bird_ends_at) && <><span class="key key-eb" /> early-bird ends · </>}<span class="key key-start" /> season starts</p>
     </section>
   );
 }

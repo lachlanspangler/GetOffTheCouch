@@ -111,7 +111,7 @@ export function EventRow({ e, more = 0, dated = false, past = false, bare = fals
         <div class="erow-body">
           <p class="erow-cat">
             <Swatch category={e.category} />
-            <span>{catLabel(e.category, index.taxonomy)}{hood ? ` · ${hood}` : ""}{dated && !isDateOnly(e) && e.kind !== "opening" ? ` · ${fmtTime(e.start, e.timezone)}` : ""}</span>
+            <span>{/uncategorized/.test(e.category) ? catLabel(e.category.split(".")[0], index.taxonomy) : catLabel(e.category, index.taxonomy)}{hood ? ` · ${hood}` : ""}{dated && !isDateOnly(e) && e.kind !== "opening" ? ` · ${fmtTime(e.start, e.timezone)}` : ""}</span>
           </p>
           <h3 class="erow-title" id={id}>
             <a href={eventHref(e, feed?.city)}>{displayTitle(e.title)}</a>

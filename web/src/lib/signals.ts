@@ -63,7 +63,8 @@ export function statusLine(e: Event, now: Date): Status | null {
   if (t?.spots_left != null && t.spots_left > 0) {
     const total = t.spots_total ?? null;
     if (t.spots_left <= Math.max(5, (total ?? 0) * 0.25)) {
-      return { text: total ? `${t.spots_left} of ${total} spots left` : `${t.spots_left} spot${t.spots_left === 1 ? "" : "s"} left`, tone: "caution", icon: "users" };
+      const free = e.price.is_free;
+      return { text: total ? `${t.spots_left} of ${total} spots left` : `${t.spots_left} spot${t.spots_left === 1 ? "" : "s"} left`, tone: free ? "secondary" : "caution", icon: "users" };
     }
   }
   // "selling quickly" only from a real ticket signal on ticketed events (DESIGN.md §4.6 rule 7)
@@ -78,7 +79,8 @@ export function statusLine(e: Event, now: Date): Status | null {
 
 export function tagSignal(e: Event, now: Date): string | null {
   const tags = e.tags ?? [];
-  if ((e.social?.score ?? 0) >= 0.75) return "Good for meeting people";
+  // earned, not boilerplate: a high social score and a format where you see the same people again
+  if ((e.social?.score ?? 0) >= 0.85 && (e.recurrence || e.series_id || (e.tags ?? []).includes("solo_friendly"))) return "Good for meeting people";
   if (tags.includes("solo_friendly")) return "Good to go solo";
   if (tags.includes("beginner_friendly")) return "Beginner friendly";
   if (e.is_new && now.getTime() - new Date(e.first_seen).getTime() <= 3 * 86_400_000) return "New this week";

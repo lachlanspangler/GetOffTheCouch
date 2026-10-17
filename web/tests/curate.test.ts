@@ -21,7 +21,7 @@ describe("display curation", () => {
 
   it("labels places far from the center", () => {
     const e = ev({ location: { lat: 44.85, lon: -93.15, address: "1 Main St, Eagan, MN 55121" } });
-    expect(distanceNote(e, [44.98, -93.27])).toMatch(/^Eagan · \d+ mi$/);
+    expect(distanceNote(e, [44.98, -93.27])).toMatch(/^Eagan, \d+ mi from downtown$/);
     expect(distanceNote(ev({ location: { lat: 44.98, lon: -93.26 } }), [44.98, -93.27])).toBeNull();
   });
 });

@@ -208,7 +208,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
             ) : (
               <>
                 {view === "feed" && <Feed events={filtered} />}
-                {view === "calendar" && <Calendar events={filtered} />}
+                {view === "calendar" && <Calendar events={applyFilters(feed.events, { ...route.filters, when: "all" }, feed.timezone, ctx.neighborhoods, now)} />}
                 {view === "map" && <MapView events={filtered} />}
                 {view === "deadlines" && <Deadlines events={feed.events} />}
                 {view === "plan" && <Plan events={feed.events} />}

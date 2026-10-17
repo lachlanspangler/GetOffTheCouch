@@ -40,11 +40,11 @@ export function MapView({ events }: { events: Event[] }) {
         <h1>Map</h1>
         <p class="lede">Where things are happening in {feed.city_name}.</p>
       </header>
-      <FilterBar resultCount={events.length} />
+      <FilterBar resultCount={items.length} />
       <div class="map-split">
         <div class="map-list">
           <p class="small muted">
-            {count(pins.length)} on the map{missing > 0 ? ` · ${count(missing)} without a mappable address` : ""}
+            {count(pins.length)} on the map{missing > 0 ? `; ${count(missing)} more have no mappable address` : ""}
             {pins.some((p) => p.approx) && " · faded pins are approximate"}
           </p>
           <ul class="rows">

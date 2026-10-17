@@ -113,7 +113,7 @@ export function distanceNote(e: Event, center: [number, number] | undefined, thr
   if (d < thresholdKm) return null;
   const parts = (e.location.address ?? "").split(/,\s*/);
   const town = parts.length >= 3 ? parts[parts.length - 2].replace(/\s+[A-Z]{2}\s*\d{5}.*$/, "").trim() : null;
-  return `${town && town.length < 30 ? `${town} · ` : ""}${Math.round(d * 0.621)} mi`;
+  return `${town && town.length < 30 ? `${town}, ` : ""}${Math.round(d * 0.621)} mi from downtown`;
 }
 
 /** Started more than an hour ago with no end (or already ended): not something to head out for now. */

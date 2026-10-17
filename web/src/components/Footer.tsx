@@ -2,7 +2,7 @@
 import { useApp } from "../lib/ctx";
 import { build } from "../lib/router";
 import { HUBS, url } from "../lib/site";
-import { fmtDay, fmtTime } from "../lib/time";
+import { fmtDay, fmtTime, tzAbbr } from "../lib/time";
 
 export const REPO = "https://github.com/lachlanspangler/GetOffTheCouch";
 export const reportGeneral = `${REPO}/issues/new?labels=data-report&title=${encodeURIComponent("Report a problem")}`;
@@ -77,7 +77,7 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
         <div class="fine">
           <span>
             Event details belong to their organizers; every listing links to the original. Map data and some locations © OpenStreetMap contributors.
-            {" "}Updated {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)}.
+            {" "}Updated {fmtDay(index.generated_at, tz)}, {fmtTime(index.generated_at, tz)} {tzAbbr(index.generated_at, tz)}.
           </span>
           <span class="theme-pick" role="group" aria-label="Appearance">
             Appearance

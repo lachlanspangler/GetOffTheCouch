@@ -132,3 +132,8 @@ export function weekendRange(now: Date, tz: string): { from: Date; to: Date; lab
   const to = new Date(from.getTime() + 2 * day);
   return { from, to, label: `${fmtDay(from.toISOString(), tz)} – ${fmtDay(to.toISOString(), tz)}` };
 }
+
+/** "CDT", "PST": the short zone name at that instant, so a timestamp is never ambiguous. */
+export function tzAbbr(iso: string, tz: string): string {
+  return fmt(tz, { timeZoneName: "short" }).formatToParts(new Date(iso)).find((p) => p.type === "timeZoneName")?.value ?? "";
+}

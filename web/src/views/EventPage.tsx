@@ -69,8 +69,11 @@ export function primaryCta(e: Event, sourceNames: Record<string, string>): Cta |
   const offer = e.offers?.find((o) => o.kind === "registration") ?? e.offers?.find((o) => o.kind === "primary") ?? e.offers?.[0];
   const pick = reg ?? (offer ? { url: offer.url, kind: offer.kind, seller: offer.seller } : e.url ? { url: e.url, kind: "info", seller: null } : null);
   if (!pick) return null;
-  const dest = pick.seller ?? sourceName(e.sources[0]?.source_id ?? "", sourceNames) ?? host(pick.url);
-  const verb = pick.kind === "registration" ? "Register" : pick.kind === "rsvp" ? "RSVP" : pick.kind === "primary" || pick.kind === "resale" ? "Get tickets" : "View listing";
+  const named = pick.seller ?? sourceName(e.sources[0]?.source_id ?? "", sourceNames);
+  // short, destination-named labels ("View on NYC Parks"), not the whole source title
+  const dest = (named ?? "").replace(/\s*\(.*\)$/, "").replace(/\b(public events|events|event calendar|calendar|listings?)\b/gi, "").replace(/\s{2,}/g, " ").trim() || host(pick.url);
+  const interest = /does not sign you up|express(ing)? (your )?interest|interest form/i.test(`${e.summary ?? ""} ${e.registration?.evidence ?? ""}`);
+  const verb = interest ? "Express interest" : pick.kind === "registration" ? "Register" : pick.kind === "rsvp" ? "RSVP" : pick.kind === "primary" || pick.kind === "resale" ? "Get tickets" : "View";
   const prep = verb === "Register" ? "with" : "on";
   return { url: pick.url, label: `${verb} ${prep} ${dest}`, dest: host(pick.url) };
 }
@@ -285,7 +288,7 @@ export function EventPage({ e }: { e: Event }) {
                   {(e.location.geocode_confidence ?? 1) < 0.5 && <span class="small muted"><br />Approximate location</span>}
                 </p>
                 {hasMap && (
-                  <LeafletMap center={[e.location.lat!, e.location.lon!]} pins={[{ id: e.id, lat: e.location.lat!, lon: e.location.lon!, hue: 0, title: e.location.venue_name ?? e.title, sub: e.location.address ?? "" }]} zoom={15} label={`Map of ${e.location.venue_name ?? e.title}`} still />
+                  <LeafletMap center={[e.location.lat!, e.location.lon!]} pins={[{ id: e.id, lat: e.location.lat!, lon: e.location.lon!, hue: 0, title: e.location.venue_name ?? e.title, sub: e.location.address ?? "", approx: (e.location.geocode_confidence ?? 1) < 0.5 }]} zoom={(e.location.geocode_confidence ?? 1) < 0.5 ? 12 : 15} label={`Map of ${e.location.venue_name ?? e.title}`} still />
                 )}
                 <p class="links">
                   {mapsUrl && <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Open in OpenStreetMap ↗</a>}

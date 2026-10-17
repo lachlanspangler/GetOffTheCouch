@@ -187,7 +187,7 @@ function Applied({ f, set, clear }: { f: Filters; set: (p: Partial<Filters>) => 
   );
 }
 
-export function FilterBar({ resultCount, compact }: { resultCount: number; compact?: boolean }) {
+export function FilterBar({ resultCount, compact, noWhen }: { resultCount: number; compact?: boolean; noWhen?: boolean }) {
   const { index, route, go } = useApp();
   const f = route.filters;
   const set = (patch: Partial<Filters>) => go({ filters: { ...f, ...patch } }, true);
@@ -201,14 +201,14 @@ export function FilterBar({ resultCount, compact }: { resultCount: number; compa
     <section aria-label="Filters">
       <div class="filterbar">
         <SearchBox f={f} set={set} />
-        <Menu label={f.when === DEFAULT_FILTERS.when ? "When" : WHEN_LABEL[f.when]} active={f.when !== DEFAULT_FILTERS.when}>
+        {!noWhen && <Menu label={f.when === DEFAULT_FILTERS.when ? "When" : WHEN_LABEL[f.when]} active={f.when !== DEFAULT_FILTERS.when}>
           {(close) => WHENS.map((w) => (
             <button key={w} class="menu-item" aria-pressed={f.when === w} onClick={() => { set({ when: w }); close(); }}>
               {WHEN_LABEL[w]}
               {f.when === w && <Icon name="check" size={16} class="tick" />}
             </button>
           ))}
-        </Menu>
+        </Menu>}
         {!compact && (
           <Menu label={catLabel} active={f.cats.length > 0} wide="cat-menu">
             {() => <CategoryChecks f={f} set={set} />}
@@ -239,13 +239,13 @@ export function FilterBar({ resultCount, compact }: { resultCount: number; compa
             <Icon name="filter" size={16} /> Filters{n ? ` (${n})` : ""}
           </button>
         </div>
-        <div class="seg" role="radiogroup" aria-label="When">
+        {!noWhen && <div class="seg" role="radiogroup" aria-label="When">
           {(["today", "weekend", "week", "month"] as When[]).map((w) => (
             <button key={w} role="radio" aria-checked={f.when === w} onClick={() => set({ when: w })}>
               {{ today: "Today", weekend: "Weekend", week: "7 days", month: "30 days" }[w as "today"]}
             </button>
           ))}
-        </div>
+        </div>}
       </div>
       <Applied f={f} set={set} clear={clear} />
       {sheet && <FilterSheet f={f} set={set} clear={clear} close={() => setSheet(false)} results={results} />}
