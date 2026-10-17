@@ -1,0 +1,199 @@
+# Washington, DC. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: DC alcohol licenses (opendata.dc.gov / maps2.dcgis.dc.gov layer 5 has no issue or application date —
+# only EXPIRATION_DATE and GIS edit stamps); Montgomery County ABS licensee data (no dates); Kennedy Center,
+# 9:30 Club / The Anthem / Lincoln Theatre, Smithsonian's si.edu pages, Strathmore, American University, Arlington
+# Public Library (Cloudflare challenges — not attempted); Downtown DC BID and georgetown.edu (robots.txt → 403);
+# Georgetown University's LiveWhale JSON returned only past items; Live Nation houses (Fillmore Silver Spring).
+# Team Trivia's trivia-in-washington-d-c region page lists 0 venues today (unit removed after an empty live run).
+slug: washington_dc
+name: Washington
+state: DC
+timezone: America/New_York
+center: [38.9072, -77.0369]
+radius_km: 20
+aliases: [DC, Washington DC, "Washington, D.C.", District of Columbia, Arlington, Alexandria, Bethesda, Silver Spring, Takoma Park, Chevy Chase, Hyattsville, College Park, Falls Church, Rosslyn, Crystal City, National Harbor]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Penn Quarter, lat: 38.8970, lon: -77.0230 }
+  - { name: Chinatown, lat: 38.8999, lon: -77.0219 }
+  - { name: National Mall, lat: 38.8893, lon: -77.0230 }
+  - { name: Capitol Hill, lat: 38.8860, lon: -76.9990 }
+  - { name: Navy Yard / Capitol Riverfront, lat: 38.8760, lon: -77.0030 }
+  - { name: The Wharf / Southwest, lat: 38.8790, lon: -77.0230 }
+  - { name: Dupont Circle, lat: 38.9097, lon: -77.0434 }
+  - { name: Logan Circle, lat: 38.9096, lon: -77.0297 }
+  - { name: U Street / Shaw, lat: 38.9170, lon: -77.0280 }
+  - { name: Adams Morgan, lat: 38.9215, lon: -77.0422 }
+  - { name: Columbia Heights, lat: 38.9283, lon: -77.0326 }
+  - { name: Georgetown, lat: 38.9097, lon: -77.0654 }
+  - { name: Foggy Bottom, lat: 38.9001, lon: -77.0500 }
+  - { name: NoMa / Union Market, lat: 38.9080, lon: -77.0030 }
+  - { name: H Street NE, lat: 38.9001, lon: -76.9890 }
+  - { name: Petworth, lat: 38.9440, lon: -77.0240 }
+sources:
+  # ── library ──
+  - id: dcpl_events
+    adapter: communico
+    name: DC Public Library events
+    data_type: events
+    homepage: https://dclibrary.libnet.info/events
+    expect_min_records: 30
+    notes: >-
+      Communico calendar JSON (dclibrary.libnet.info, linked from dclibrary.org; branch names confirm the tenant).
+      Undocumented front-end endpoint; robots disallows only /results* and site search. One request per day of horizon.
+    params:
+      base_url: https://dclibrary.libnet.info
+      horizon_days: 7
+      venue_label: DC Public Library
+      default_category: arts.books
+      category_map:   # tag labels seen in the live feed; checked in this order (types before audiences)
+        Gaming: trivia_games.board_games
+        "Arts & Crafts": arts.workshop
+        Makers & DIY Program: arts.workshop
+        ESL / Bilingual Programs: learning.language
+        Book Club: arts.books
+        Storytime: family.kids
+        Film: arts.film
+        Music: music.concert
+        Family Program: family.kids
+
+  # ── museums / universities ──
+  - id: smithsonian_events
+    adapter: trumba
+    name: Smithsonian events (museums, zoo, Smithsonian Associates)
+    data_type: events
+    homepage: https://www.si.edu/events
+    expect_min_records: 20
+    notes: >-
+      The Smithsonian's own Trumba calendar (webname smithsonian-events, template "Smithsonian Event"), published on
+      trumba.com for embedding; trumba.com robots allows all. si.edu's HTML serves a Cloudflare challenge, which we
+      never attempt — this is the institution's syndication feed, not a workaround.
+    params:
+      webname: smithsonian-events
+      horizon_days: 14
+      organizer: Smithsonian Institution
+      venue_label: Smithsonian
+      category_fields: [Event Type, Topic]
+      default_category: arts.museum
+      exclude_location: '\b(Tucson|Arizona)\b'   # Folklife/affiliate programs held outside DC
+
+  - id: gwu_events
+    adapter: localist
+    name: George Washington University events (open to the general public)
+    data_type: events
+    homepage: https://calendar.gwu.edu/
+    expect_min_records: 10
+    params:
+      fallback_point: { lat: 38.8997, lon: -77.0486, label: "GWU Foggy Bottom campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.gwu.edu
+      type: 42173336851198   # Localist "event_audiences: General Public" (seen in the events' filters)
+      horizon_days: 30
+      max_pages: 3
+      organizer: The George Washington University
+      default_category: learning.networking
+
+  # ── business districts ──
+  - id: mount_vernon_triangle_events
+    adapter: tribe
+    name: Mount Vernon Triangle CID events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.mountvernontriangle.org/events/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it). FRESHFARM market, pop-up markets, readings.
+    params:
+      base_url: https://www.mountvernontriangle.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 2
+      organizer: Mount Vernon Triangle CID
+      venue: {name: Mount Vernon Triangle, address: "450 K St NW, Washington, DC 20001"}
+      default_category: community.market
+
+  # ── venues ──
+  - id: capital_one_arena
+    adapter: rss_events
+    name: Capital One Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.capitalonearena.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Capitals, Wizards, Georgetown basketball, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.capitalonearena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Capital One Arena", address: "601 F St NW, Washington, DC 20004"}
+      organizer: Capital One Arena
+      default_category: music.concert
+  - id: songbyrd_dc
+    adapter: jsonld
+    name: Songbyrd Music House (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://songbyrddc.com/events/
+    expect_min_records: 10
+    notes: WordPress; Event JSON-LD per event page (naive local times). robots allows it (Crawl-delay 1).
+    params:
+      urls: [https://songbyrddc.com/events/]
+      follow: 'songbyrddc\.com/event/[^/?#]+/$'
+      max_follow: 40
+      venue: {name: Songbyrd Music House, address: "540 Penn St NE, Washington, DC 20002"}
+      organizer: Songbyrd
+      default_category: music.concert
+      classify_description: false
+
+  # ── volunteering ──
+  - id: serve_dc_volunteer
+    adapter: galaxydigital
+    name: Serve DC (Mayor's Office on Volunteerism) opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://servedc.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: Galaxy Digital portal; tenant verified by the RSS title "Opportunities on Serve DC". robots allows need pages.
+    params:
+      base_url: https://servedc.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+  - id: montgomery_volunteer
+    adapter: galaxydigital
+    name: Montgomery County (MD) Volunteer Center opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://montgomerycountymd.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: >-
+      Galaxy Digital portal; tenant verified by the RSS title "Opportunities on Montgomery County Volunteer Center".
+      Needs in Bethesda/Silver Spring/Takoma Park fall inside the circle; the rest are dropped by the geofence.
+    params:
+      base_url: https://montgomerycountymd.galaxydigital.com
+      max_details: 15
+      max_shifts: 6
+
+  # ── leagues / trivia ──
+  - id: volo_washington_dc
+    adapter: volo
+    name: Volo Sports Washington DC
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/washington-dc?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: washington-dc
+      max_pages: 6
+
+  - id: challenge_trivia_washington_dc
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (DC metro)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 3
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); the two DC metro classes within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [dc-metro-area-northern-virginia, dc-metro-area-maryland]

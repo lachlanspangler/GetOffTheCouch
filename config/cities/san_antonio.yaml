@@ -1,0 +1,242 @@
+# San Antonio, TX. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities"). THIN CITY: most
+# institutions here publish no machine-readable calendar we may use.
+# Not used: San Antonio Public Library (mysapl.org robots.txt: User-agent * Disallow /); data.sanantonio.gov (CKAN,
+# robots disallows /api/); sanantonio.gov Parks & Rec events (robots disallows); Trinity University (robots.txt →
+# 403); San Antonio Botanical Garden (robots disallows /wp-json/); San Antonio River Authority (robots → 403);
+# Floore's Country Store (Cloudflare challenge); Majestic/Empire theatres (ATG Tickets); no Localist/LiveWhale
+# calendar found for UTSA, UIW, St. Mary's or Texas A&M–San Antonio; no Team Trivia market.
+slug: san_antonio
+name: San Antonio
+state: TX
+timezone: America/Chicago
+center: [29.4241, -98.4936]
+radius_km: 25
+aliases: [SA, Alamo City, Alamo Heights, Terrell Hills, Olmos Park, Castle Hills, Leon Valley, Balcones Heights, Kirby, Converse, Universal City, Live Oak, Windcrest, Helotes]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / River Walk, lat: 29.4241, lon: -98.4936 }
+  - { name: Hemisfair, lat: 29.4190, lon: -98.4830 }
+  - { name: Pearl District, lat: 29.4420, lon: -98.4790 }
+  - { name: Southtown / King William, lat: 29.4130, lon: -98.4950 }
+  - { name: Lavaca, lat: 29.4160, lon: -98.4860 }
+  - { name: Tobin Hill, lat: 29.4420, lon: -98.4920 }
+  - { name: Monte Vista, lat: 29.4520, lon: -98.5010 }
+  - { name: Alamo Heights, lat: 29.4850, lon: -98.4660 }
+  - { name: Olmos Park, lat: 29.4750, lon: -98.4850 }
+  - { name: Dignowity Hill / Eastside, lat: 29.4240, lon: -98.4740 }
+  - { name: West Side, lat: 29.4250, lon: -98.5250 }
+  - { name: Deco District, lat: 29.4560, lon: -98.5240 }
+  - { name: Medical Center, lat: 29.5080, lon: -98.5760 }
+  - { name: Stone Oak, lat: 29.6400, lon: -98.4800 }
+  - { name: The Rim / La Cantera (UTSA), lat: 29.6010, lon: -98.6000 }
+sources:
+  # ── parks / civic venues (The Events Calendar REST) ──
+  - id: hemisfair_events
+    adapter: tribe
+    name: Hemisfair Park events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://hemisfair.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API of the Hemisfair park conservancy (robots allows it). Markets, festivals, fitness.
+    params:
+      base_url: https://hemisfair.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Hemisfair
+      venue: {name: Hemisfair, address: "434 S Alamo St, San Antonio, TX 78205"}
+      default_category: community.festival
+  - id: carver_cultural_center
+    adapter: tribe
+    name: Carver Community Cultural Center events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.thecarver.org/events/
+    expect_min_records: 2
+    notes: City-owned arts center on the East Side; The Events Calendar REST API (robots allows it).
+    params:
+      base_url: https://www.thecarver.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 2
+      organizer: Carver Community Cultural Center
+      venue: {name: Carver Community Cultural Center, address: "226 N Hackberry St, San Antonio, TX 78202"}
+      default_category: arts.theater
+  - id: witte_museum_events
+    adapter: tribe
+    name: Witte Museum events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.wittemuseum.org/events/
+    expect_min_records: 1
+    notes: The Events Calendar REST API (robots allows it). Few but adult-friendly (dinners, talks).
+    params:
+      base_url: https://www.wittemuseum.org
+      horizon_days: 90
+      per_page: 50
+      max_pages: 2
+      organizer: Witte Museum
+      venue: {name: Witte Museum, address: "3801 Broadway, San Antonio, TX 78209"}
+      default_category: arts.museum
+
+  - id: brackenridge_park_events
+    adapter: tribe
+    name: Brackenridge Park Conservancy events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.brackenridgepark.org/events/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it). Tours, tai chi, volunteer litter clean-ups.
+    params:
+      base_url: https://www.brackenridgepark.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 2
+      organizer: Brackenridge Park Conservancy
+      venue: {name: Brackenridge Park, address: "3700 N St Mary's St, San Antonio, TX 78212"}
+      default_category: outdoors.park
+      category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
+  - id: pearl_events
+    adapter: jsonld
+    name: Historic Pearl events (markets, author visits, classes)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://atpearl.com/events
+    expect_min_records: 10
+    notes: >-
+      Pearl district's own calendar (Netlify site; robots allows all). The listing links each event page, whose
+      schema.org Event JSON-LD carries name, start with offset and the shop/venue.
+    params:
+      urls: [https://atpearl.com/events]
+      follow: 'atpearl\.com/events/[a-z0-9-]+-\d+/$'
+      max_follow: 40
+      horizon_days: 60
+      venue: {name: Historic Pearl, address: "303 Pearl Pkwy, San Antonio, TX 78215"}
+      organizer: Pearl
+      default_category: community.market
+      category_map: { Band: music.concert, Concert: music.concert, Live Music: music.concert, Author Visit: arts.books, Find Your Flow: fitness.yoga }   # title keywords
+
+  # ── big venues: carbonhouse /events/rss ──
+  - id: frost_bank_center
+    adapter: rss_events
+    name: Frost Bank Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.frostbankcenter.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Spurs, concerts, shows.
+    params:
+      spectator_venue: true
+      url: https://www.frostbankcenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "Frost Bank Center", address: "1 Frost Bank Center Dr, San Antonio, TX 78219"}
+      organizer: Frost Bank Center
+      default_category: music.concert
+  - id: alamodome
+    adapter: rss_events
+    name: Alamodome (City of San Antonio venue calendar)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.alamodome.com/events
+    expect_min_records: 3
+    notes: City-owned stadium's carbonhouse events RSS (robots allows it). UTSA football, concerts, championships.
+    params:
+      spectator_venue: true
+      url: https://www.alamodome.com/events/rss
+      horizon_days: 180
+      venue: {name: "Alamodome", address: "100 Montana St, San Antonio, TX 78203"}
+      organizer: Alamodome
+      default_category: sports_watch.game
+
+  # ── volunteering ──
+  - id: uwsa_volunteer
+    adapter: galaxydigital
+    name: United Way of San Antonio and Bexar County volunteer opportunities
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://www.volunteersanantonio.org/need/
+    expect_min_records: 1
+    notes: >-
+      Galaxy Digital portal (unitedwaysatx.galaxydigital.com redirects here; RSS title "Volunteer on United Way of
+      San Antonio and Bexar County"). robots allows the need pages.
+    params:
+      base_url: https://www.volunteersanantonio.org
+      max_details: 15
+      max_shifts: 6
+
+  # ── openings: Texas Alcoholic Beverage Commission (data.texas.gov Socrata) ──
+  - id: tabc_pending_openings_san_antonio
+    adapter: socrata
+    name: TABC pending original on-premises applications (San Antonio area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/mxm5-tdpj
+    expect_min_records: 5
+    notes: >-
+      Original (not renewal) applications. MB = mixed beverage, BG = wine & beer on-premise, BE = beer on-premise.
+      gun_sign RED = 51%+ of revenue from alcohol (a bar). The owner column is dropped (may be a person).
+    params:
+      domain: data.texas.gov
+      dataset: mxm5-tdpj
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('SAN ANTONIO','ALAMO HEIGHTS','TERRELL HILLS','OLMOS PARK','CASTLE HILLS','LEON VALLEY',
+        'BALCONES HEIGHTS','KIRBY','CONVERSE','UNIVERSAL CITY','LIVE OAK','WINDCREST','HELOTES')
+        AND license_type in('MB','BG','BE') AND submission_date >= '{today}'
+      order: submission_date DESC
+      fields: { record_id: primary_license_id, title: trade_name, start: submission_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license application"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission received an original
+        {license_type} on-premises license application for this address on {date} (status: {applicationstatus}).
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/mxm5-tdpj
+      extras: { signal: liquor_license_application }
+
+  - id: tabc_new_licenses_san_antonio
+    adapter: socrata
+    name: TABC newly issued on-premises licenses (San Antonio area)
+    data_type: openings
+    homepage: https://data.texas.gov/d/7hf9-qc9f
+    expect_min_records: 5
+    notes: original_issue_date = first issuance (not current_issued_date, which moves on renewal).
+    params:
+      domain: data.texas.gov
+      dataset: 7hf9-qc9f
+      kind: opening
+      lookback_days: 60
+      where: >-
+        upper(city) in('SAN ANTONIO','ALAMO HEIGHTS','TERRELL HILLS','OLMOS PARK','CASTLE HILLS','LEON VALLEY',
+        'BALCONES HEIGHTS','KIRBY','CONVERSE','UNIVERSAL CITY','LIVE OAK','WINDCREST','HELOTES')
+        AND license_type in('MB','BG','BE') AND original_issue_date >= '{today}'
+      order: original_issue_date DESC
+      fields: { record_id: license_id, title: trade_name, start: original_issue_date, category: gun_sign,
+                address: [address, address_2, city, zip] }
+      exclude_title: ["(?i)\\b(grocery|food mart|convenience|supermarket|gas station|liquor store)\\b"]
+      title_template: "{title} — new liquor license"
+      description_template: >-
+        License signal, not a confirmed opening date. The Texas Alcoholic Beverage Commission first issued a
+        {license_type} on-premises license for this address on {date}.
+      category_map: { RED: nightlife.opening }
+      default_category: food_drink.restaurant_opening
+      default_url: https://data.texas.gov/d/7hf9-qc9f
+      extras: { signal: liquor_license_issued }
+
+  # ── trivia ──
+  - id: challenge_trivia_san_antonio
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (San Antonio)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 20
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-san-antonio within 2× the city radius.
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [san-antonio]
+      max_km: 30   # the metro class reaches New Braunfels/Boerne; keep shows within ~the city circle

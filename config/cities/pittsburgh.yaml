@@ -1,0 +1,217 @@
+# Pittsburgh, PA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Carnegie Library of Pittsburgh (robots.txt → 403); WPRDC (CKAN; robots disallows /api/); Downtown
+# Pittsburgh Partnership (robots.txt → 403); Allegheny County Library Association (BiblioCommons code `acl`: gateway
+# 504 even for a one-day window — retry later); Pittsburgh Cultural Trust, Mr. Smalls, Club Cafe, City Winery (no
+# Event JSON-LD / feed); Stage AE, Roxian (Live Nation); Team Trivia western-pa lists no Pittsburgh venues; no Volo,
+# no Challenge market.
+slug: pittsburgh
+name: Pittsburgh
+state: PA
+timezone: America/New_York
+center: [40.4406, -79.9959]
+radius_km: 20
+aliases: [Steel City, Mt. Lebanon, Bethel Park, Penn Hills, Monroeville, McKees Rocks, Wilkinsburg, Homestead, Sewickley, Millvale, Sharpsburg, Dormont, Bellevue]
+neighborhoods:  # approximate centroids
+  - { name: Downtown / Golden Triangle, lat: 40.4406, lon: -79.9959 }
+  - { name: Strip District, lat: 40.4520, lon: -79.9800 }
+  - { name: Lawrenceville, lat: 40.4680, lon: -79.9600 }
+  - { name: North Shore, lat: 40.4470, lon: -80.0080 }
+  - { name: Mexican War Streets / North Side, lat: 40.4560, lon: -80.0120 }
+  - { name: South Side Flats, lat: 40.4280, lon: -79.9800 }
+  - { name: Mount Washington, lat: 40.4300, lon: -80.0080 }
+  - { name: Oakland, lat: 40.4420, lon: -79.9550 }
+  - { name: Shadyside, lat: 40.4550, lon: -79.9330 }
+  - { name: Squirrel Hill, lat: 40.4380, lon: -79.9230 }
+  - { name: East Liberty, lat: 40.4610, lon: -79.9250 }
+  - { name: Bloomfield, lat: 40.4610, lon: -79.9490 }
+  - { name: Polish Hill, lat: 40.4570, lon: -79.9670 }
+  - { name: Highland Park, lat: 40.4790, lon: -79.9200 }
+  - { name: Regent Square, lat: 40.4300, lon: -79.8960 }
+  - { name: Dormont, lat: 40.3960, lon: -80.0330 }
+sources:
+  # ── universities (public items only) ──
+  - id: pitt_events
+    adapter: localist
+    name: University of Pittsburgh events (performances, exhibits, screenings, readings, festivals)
+    data_type: events
+    homepage: https://calendar.pitt.edu/
+    expect_min_records: 10
+    notes: >-
+      Localist; Pitt has no "general public" audience, so only public-facing event types are requested
+      (types = Concerts & Performances, Exhibits, Screenings, Readings, Festivals, Celebrations, Special Events from
+      /api/2/events/filters). Regional campuses are skipped.
+    params:
+      fallback_point: { lat: 40.4443, lon: -79.9608, label: "Pitt Oakland campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.pitt.edu
+      types: [117182, 117929, 127512, 127513, 132396, 132397, 122060]
+      horizon_days: 30
+      max_pages: 3
+      organizer: University of Pittsburgh
+      exclude_location: '\b(Greensburg|Johnstown|Bradford|Titusville)\b'   # regional campuses
+      default_category: learning.networking
+      category_map:   # Localist event types (checked in the event's order)
+        Concerts & Performances: music.concert
+        Exhibits: arts.museum
+        Screenings: arts.film
+        Readings: arts.books
+        Festivals: community.festival
+        Celebrations: community.festival
+  - id: cmu_events
+    adapter: livewhale
+    name: Carnegie Mellon University events
+    data_type: events
+    homepage: https://events.cmu.edu/
+    expect_min_records: 10
+    notes: >-
+      LiveWhale JSON (v2 paging returns at most 100 items ≈ the next 5 days, refreshed daily). Items tagged
+      "Exclude from Main Calendar" are internal; the institution audience filter and campus catch-all skip the rest
+      of the noise.
+    params:
+      fallback_point: { lat: 40.4433, lon: -79.9436, label: "Carnegie Mellon campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution
+      base_url: https://events.cmu.edu
+      path: "/live/json/events/max/{max}/response_fields/location,summary,event_types,tags,group_title"
+      max: 100
+      organizer: Carnegie Mellon University
+      exclude_location: '\bExclude from Main Calendar\b'
+      default_category: learning.networking
+      category_map:   # LiveWhale event types (HTML-escaped as the feed sends them)
+        "Arts &amp; Performance": arts.theater
+        "Athletics &amp; Recreation": sports_watch.game
+        Community Outreach: volunteer.one_off
+
+  # ── college athletics (SIDEARM ICS, home games only) ──
+  - id: pitt_athletics
+    adapter: ics
+    name: Pitt Panthers athletics (home games — Petersen Events Center, Acrisure Stadium, Cost Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://pittsburghpanthers.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Pittsburgh".
+    params:
+      url: https://pittsburghpanthers.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Pitt Panthers
+      exclude_location: '^(?!Pittsburgh\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 40.4443, lon: -79.9608, label: "Pitt Oakland campus" }
+  - id: duquesne_athletics
+    adapter: ics
+    name: Duquesne Dukes athletics (home games — UPMC Cooper Fieldhouse, Rooney Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://goduquesne.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Pittsburgh".
+    params:
+      url: https://goduquesne.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Duquesne Dukes
+      exclude_location: '^(?!Pittsburgh\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 40.4362, lon: -79.9900, label: "Duquesne University campus" }
+
+  # ── parks / museums (The Events Calendar REST) ──
+  - id: pittsburgh_parks_events
+    adapter: tribe
+    name: Pittsburgh Parks Conservancy events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://pittsburghparks.org/events/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Nature walks, campfires, volunteer days in the city parks.
+    params:
+      base_url: https://pittsburghparks.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Pittsburgh Parks Conservancy
+      default_category: outdoors.park
+      category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
+  - id: carnegie_museums_events
+    adapter: tribe
+    name: Carnegie Museums of Pittsburgh events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://carnegiemuseums.org/events/
+    expect_min_records: 10
+    notes: >-
+      The Events Calendar REST API (robots allows it): Carnegie Museums of Art and Natural History, the Science
+      Center and The Andy Warhol Museum. Powdermill Nature Reserve (Rector, ~80 km away) is skipped.
+    params:
+      base_url: https://carnegiemuseums.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 4
+      organizer: Carnegie Museums of Pittsburgh
+      exclude_location: '\b(Rector|Powdermill)\b'
+      default_category: arts.museum
+
+  - id: rivers_of_steel_events
+    adapter: tribe
+    name: Rivers of Steel events (Carrie Blast Furnaces, Pump House, classes and tours)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://riversofsteel.com/events/
+    expect_min_records: 3
+    notes: The Events Calendar REST API (robots allows it). Blacksmithing/metal-arts classes, photo safaris, tours.
+    params:
+      base_url: https://riversofsteel.com
+      horizon_days: 60
+      per_page: 50
+      max_pages: 2
+      organizer: Rivers of Steel
+      default_category: arts.workshop
+
+  # ── venues ──
+  - id: ppg_paints_arena
+    adapter: rss_events
+    name: PPG Paints Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.ppgpaintsarena.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Penguins, concerts, shows.
+    params:
+      spectator_venue: true
+      url: https://www.ppgpaintsarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "PPG Paints Arena", address: "1001 Fifth Ave, Pittsburgh, PA 15219"}
+      organizer: PPG Paints Arena
+      default_category: music.concert
+  - id: thunderbird_music_hall
+    adapter: jsonld
+    name: Thunderbird Cafe & Music Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://thunderbirdmusichall.com/
+    expect_min_records: 10
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the ticket link. robots allows it.
+    params:
+      urls: [https://thunderbirdmusichall.com/]
+      follow: 'thunderbirdmusichall\.com/event/[^/]+/[^/]+/pittsburgh-pennsylvania/$'
+      max_follow: 40
+      venue: {name: Thunderbird Cafe & Music Hall, address: "4053 Butler St, Pittsburgh, PA 15201"}
+      organizer: Thunderbird Cafe & Music Hall
+      default_category: music.concert
+      classify_description: false
+
+  # ── volunteering ──
+  - id: pittsburgh_cares
+    adapter: galaxydigital
+    name: Pittsburgh Cares volunteer needs
+    data_type: volunteer
+    min_interval_s: 3
+    homepage: https://pittsburghcares.galaxydigital.com/need/
+    expect_min_records: 1
+    notes: Galaxy Digital portal; tenant verified by the RSS title "Volunteer Needs on Pittsburgh Cares".
+    params:
+      base_url: https://pittsburghcares.galaxydigital.com
+      max_details: 15
+      max_shifts: 6

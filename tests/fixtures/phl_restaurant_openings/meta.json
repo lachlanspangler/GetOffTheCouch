@@ -1,0 +1,6 @@
+{
+  "unit": "phl_restaurant_openings@philadelphia",
+  "recorded_at": "2026-10-16T23:35:27+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; trimmed to the header + the first 8 rows"
+}

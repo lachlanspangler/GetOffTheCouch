@@ -1,0 +1,6 @@
+{
+  "unit": "rpl_events@richmond",
+  "recorded_at": "2026-10-16T23:12:24+00:00",
+  "payloads": 1,
+  "note": "real response recorded with `gotc record`; trimmed to the calendar header + the first 6 VEVENTs dated 2026-10-16..22"
+}

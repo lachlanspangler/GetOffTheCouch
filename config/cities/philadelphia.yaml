@@ -1,15 +1,272 @@
-# Philadelphia, PA: CBSA 37980 Philadelphia-Camden-Wilmington (6.33 M, Census V2024). Skeleton from `gotc city new`.
-# Draft: enabled stays false until `gotc gate --city philadelphia` passes (ADR-0008). Candidate sources:
-# `gotc discover philadelphia --seed library=… --seed university=…` → data/discover/philadelphia.yaml.
-# center: Census geocoder: 1400 JOHN F KENNEDY BLVD, PHILADELPHIA, PA, 19107
-# aliases: fill from the OMB CBSA principal-city list (delineation file, list 2), not from memory.
+# Philadelphia, PA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Free Library of Philadelphia (freelibrary.org robots.txt → 403 = disallow all); Center City District,
+# University City District, Penn Today, Mann Center (robots.txt → 403); Penn/Temple/Drexel event calendars (no
+# Localist/LiveWhale API found); Union Transfer, Ensemble Arts Philly (no Event JSON-LD); Live Nation houses (The
+# Fillmore, Franklin Music Hall, The Met, Punch Line); no Team Trivia / Challenge market and no Galaxy Digital
+# volunteer tenant found (uwgpsnj, phillyvolunteers, philadelphia → "Bad Domain").
 slug: philadelphia
 name: Philadelphia
 state: PA
 timezone: America/New_York
-center: [39.9533, -75.1634]
+center: [39.9526, -75.1652]
 radius_km: 20
-cbsa: "37980"
-aliases: []
-enabled: false
-sources: []
+aliases: [Philly, Camden, Cherry Hill, Upper Darby, Cheltenham, Bala Cynwyd, Lower Merion, Ardmore, Collingswood, Haddonfield, Bensalem, Jenkintown]
+neighborhoods:  # approximate centroids
+  - { name: Center City, lat: 39.9526, lon: -75.1652 }
+  - { name: Old City, lat: 39.9510, lon: -75.1440 }
+  - { name: Rittenhouse, lat: 39.9496, lon: -75.1720 }
+  - { name: Washington Square West / Gayborhood, lat: 39.9460, lon: -75.1600 }
+  - { name: Northern Liberties, lat: 39.9640, lon: -75.1410 }
+  - { name: Fishtown, lat: 39.9720, lon: -75.1300 }
+  - { name: Kensington, lat: 39.9890, lon: -75.1250 }
+  - { name: Fairmount / Art Museum, lat: 39.9670, lon: -75.1760 }
+  - { name: University City, lat: 39.9520, lon: -75.1930 }
+  - { name: West Philadelphia (Cedar Park), lat: 39.9480, lon: -75.2150 }
+  - { name: Graduate Hospital, lat: 39.9420, lon: -75.1780 }
+  - { name: Queen Village, lat: 39.9370, lon: -75.1500 }
+  - { name: South Philly / East Passyunk, lat: 39.9290, lon: -75.1640 }
+  - { name: Point Breeze, lat: 39.9330, lon: -75.1810 }
+  - { name: Manayunk, lat: 40.0260, lon: -75.2240 }
+  - { name: Germantown / Mt. Airy, lat: 40.0490, lon: -75.1870 }
+sources:
+  # ── openings: City of Philadelphia L&I business licenses (Carto SQL API, CSV) ──
+  - id: phl_restaurant_openings
+    adapter: csvfile
+    name: Philadelphia new food-service business licenses (L&I)
+    data_type: openings
+    homepage: https://opendataphilly.org/datasets/licenses-and-inspections-business-licenses/
+    expect_min_records: 20
+    notes: >-
+      OpenDataPhilly's L&I business licenses served by the city's Carto SQL API (phl.carto.com; robots disallows
+      /api/ only for named search crawlers, not for `*`). The query selects only non-personal columns and
+      "Food Preparing and Serving" licenses first issued in the last 60 days (initialissuedate = first issue, not
+      renewal). legalname may be a person, so it's only a title fallback when it looks like an organisation.
+    params:
+      url: https://phl.carto.com/api/v2/sql?format=csv&q=SELECT%20licensenum,%20business_name,%20legalname,%20licensetype,%20address,%20zip,%20initialissuedate,%20licensestatus,%20ST_Y(the_geom)%20AS%20lat,%20ST_X(the_geom)%20AS%20lon%20FROM%20business_licenses%20WHERE%20licensetype%20IN%20('Food%20Preparing%20and%20Serving',%20'Food%20Preparing%20and%20Serving%20(30%2B%20SEATS)')%20AND%20initialissuedate%20>=%20now()%20-%20interval%20'60%20days'%20ORDER%20BY%20initialissuedate%20DESC
+      kind: opening
+      lookback_days: 60
+      window: { field: initialissuedate }
+      fields: { record_id: licensenum, title: [business_name, legalname], start: initialissuedate, category: licensetype,
+                address: [address, zip], lat: lat, lon: lon }
+      entity_only_fields: [legalname]
+      exclude_title: ["(?i)\\b(child ?care|day ?care|beginnings|daycare|early learning|learning center|academy|school|charter|church|ministr|hospital|nursing|senior|rehab|food market|mini ?mart|grocery|supermarket|deli & grocery|convenience|gas|catering|vending)\\b"]
+      title_template: "{title} — new food-service license"
+      description_template: >-
+        License signal, not a confirmed opening date. Philadelphia's Department of Licenses & Inspections first
+        issued a "{licensetype}" business license for this address on {date}.
+      default_category: food_drink.restaurant_opening
+      default_url: https://opendataphilly.org/datasets/licenses-and-inspections-business-licenses/
+      extras: { signal: business_license_issued }
+
+  # ── gardens / parks ──
+  - id: bartrams_garden_events
+    adapter: tribe
+    name: Bartram's Garden events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://www.bartramsgarden.org/calendar/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). Farm stands, volunteer days, boating, biking classes.
+    params:
+      base_url: https://www.bartramsgarden.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Bartram's Garden
+      venue: {name: Bartram's Garden, address: "5400 Lindbergh Blvd, Philadelphia, PA 19143"}
+      default_category: outdoors.park
+      category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
+
+  # ── venues ──
+  - id: xfinity_mobile_arena
+    adapter: rss_events
+    name: Xfinity Mobile Arena (formerly Wells Fargo Center; venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.xfinitymobilearena.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (wellsfargocenterphilly.com redirects here; robots allows it). 76ers, Flyers, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.xfinitymobilearena.com/events/rss
+      horizon_days: 180
+      venue: {name: "Xfinity Mobile Arena", address: "3601 S Broad St, Philadelphia, PA 19148"}
+      organizer: Xfinity Mobile Arena
+      default_category: music.concert
+  - id: johnny_brendas
+    adapter: jsonld
+    name: Johnny Brenda's (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://johnnybrendas.com/
+    expect_min_records: 10
+    notes: Rockhouse WordPress (like Larimer Lounge); Event JSON-LD per event page with the ticket link. robots allows it.
+    params:
+      urls: [https://johnnybrendas.com/]
+      follow: 'johnnybrendas\.com/event/[^/]+/johnny-brendas/philadelphia-pennsylvania/$'
+      max_follow: 40
+      venue: {name: Johnny Brenda's, address: "1201 N Frankford Ave, Philadelphia, PA 19125"}
+      organizer: Johnny Brenda's
+      default_category: music.concert
+      classify_description: false
+  - id: helium_comedy_philly
+    adapter: jsonld
+    name: Helium Comedy Club Philadelphia (club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://philadelphia.heliumcomedy.com/
+    expect_min_records: 20
+    notes: Club homepage with schema.org Event JSON-LD for every listed show (UTC times). robots allows it.
+    params:
+      urls: [https://philadelphia.heliumcomedy.com/]
+      horizon_days: 60
+      venue: {name: Helium Comedy Club, address: "2031 Sansom St, Philadelphia, PA 19103"}
+      organizer: Helium Comedy Club
+      default_category: nightlife.comedy
+
+  - id: chris_jazz_cafe
+    adapter: jsonld
+    name: Chris' Jazz Cafe (club calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3
+    homepage: https://www.chrisjazzcafe.com/
+    expect_min_records: 10
+    notes: Club homepage with schema.org Event JSON-LD for every set (UTC times). robots allows it.
+    params:
+      urls: [https://www.chrisjazzcafe.com/]
+      horizon_days: 60
+      venue: {name: "Chris' Jazz Cafe", address: "1421 Sansom St, Philadelphia, PA 19102"}
+      organizer: "Chris' Jazz Cafe"
+      default_category: music.concert
+      classify_description: false
+  - id: underground_arts
+    adapter: jsonld
+    name: Underground Arts (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3
+    homepage: https://undergroundarts.org/
+    expect_min_records: 10
+    notes: WordPress homepage with Event JSON-LD for every listed show (Tixr offers, UTC times). robots allows it (Crawl-delay 3).
+    params:
+      urls: [https://undergroundarts.org/]
+      horizon_days: 180
+      venue: {name: "Underground Arts", address: "1200 Callowhill St, Philadelphia, PA 19123"}
+      organizer: "Underground Arts"
+      default_category: music.concert
+      classify_description: false
+  - id: milkboy_philly
+    adapter: jsonld
+    name: MilkBoy Philadelphia (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3
+    homepage: https://milkboyphilly.com/
+    expect_min_records: 10
+    notes: WordPress homepage with Event JSON-LD for every listed show (Tixr offers, UTC times). robots allows it (Crawl-delay 3).
+    params:
+      urls: [https://milkboyphilly.com/]
+      horizon_days: 180
+      venue: {name: "MilkBoy Philly", address: "1100 Chestnut St, Philadelphia, PA 19107"}
+      organizer: "MilkBoy Philly"
+      default_category: music.concert
+      classify_description: false
+  - id: ardmore_music_hall
+    adapter: jsonld
+    name: Ardmore Music Hall (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 3
+    homepage: https://ardmoremusichall.com/
+    expect_min_records: 10
+    notes: WordPress homepage with Event JSON-LD for every listed show (Tixr offers, UTC times). robots allows it.
+    params:
+      urls: [https://ardmoremusichall.com/]
+      horizon_days: 180
+      venue: {name: "Ardmore Music Hall", address: "23 E Lancaster Ave, Ardmore, PA 19003"}
+      organizer: "Ardmore Music Hall"
+      default_category: music.concert
+      classify_description: false
+
+  # ── college athletics (SIDEARM ICS, home games only) ──
+  - id: penn_athletics
+    adapter: ics
+    name: Penn Quakers athletics (home games — The Palestra, Franklin Field)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://pennathletics.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = Philadelphia or a Penn venue.
+    params:
+      url: https://pennathletics.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Penn Quakers
+      exclude_location: '^(?!(Philadelphia\b|The Palestra|Franklin Field|, Penn|Penn\b|Rhodes Field))'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.9522, lon: -75.1932, label: "Penn campus" }
+  - id: temple_athletics
+    adapter: ics
+    name: Temple Owls athletics (home games — Liacouras Center, Temple Sports Complex)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://owlsports.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Philadelphia".
+    params:
+      url: https://owlsports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Temple Owls
+      exclude_location: '^(?!Philadelphia\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.9812, lon: -75.1554, label: "Temple University main campus" }
+  - id: drexel_athletics
+    adapter: ics
+    name: Drexel Dragons athletics (home games — Daskalakis Athletic Center)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://drexeldragons.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Philadelphia".
+    params:
+      url: https://drexeldragons.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Drexel Dragons
+      exclude_location: '^(?!Philadelphia\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.9566, lon: -75.1899, label: "Drexel University campus" }
+  - id: sju_athletics
+    adapter: ics
+    name: Saint Joseph's Hawks athletics (home games — Hagan Arena)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://sjuhawks.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Philadelphia".
+    params:
+      url: https://sjuhawks.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Saint Joseph's Hawks
+      exclude_location: '^(?!Philadelphia\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 39.9950, lon: -75.2398, label: "Saint Joseph's University campus" }
+
+  # ── leagues ──
+  - id: volo_philadelphia
+    adapter: volo
+    name: Volo Sports Philadelphia
+    data_type: leagues
+    min_interval_s: 3
+    homepage: https://www.volosports.com/discover/philadelphia?category=leagues
+    expect_min_records: 1
+    params:
+      base_url: https://www.volosports.com
+      city_slug: philadelphia
+      max_pages: 6

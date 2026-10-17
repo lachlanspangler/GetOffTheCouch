@@ -1,0 +1,166 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:icalendar-ruby
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Enoch Pratt Free Library Calendar Calendar
+X-WR-TIMEZONE:Eastern Time (US & Canada)
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53495581387738
+DTSTART:20261016T140000Z
+DTEND:20261016T150000Z
+DESCRIPTION:Program registration is recommended but not required. \n\n \n\n
+ Yoga is an ancient practice and lifestyle that encourages a healthy body\,
+  mind\, and spirit. It enhances flexibility\, strength\, and internal harm
+ ony. In partnership with Golden Road Healing\, Pratt Library is excited to
+  bring patrons a unique yoga experience\, that incorporates the power of s
+ ound healing\, simple guided meditation\, and movement to create an hour o
+ f mindfulness and restoration.\n\n \n\nThis gentle practice is open to all
+  skill levels\, where instructors will demonstrate various adaptations thr
+ oughout the practice. This practice is focused primarily on participants f
+ eeling fully at peace within their bodies\, and participants are encourage
+ d to embrace their bodies' abilities or limitations for the day within thi
+ s judgment-free environment. If there are any postures out of your comfort
+  zone you are invited to sit back and relax while musical instruments are 
+ played. This experience is meant to be for everyone!
+GEO:39.294601;-76.617302
+LOCATION:Central Library\, Creative Arts Center
+SUMMARY:Morning Mindfulness: Yoga with Golden Road Healing
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/morning-mindfulness-y
+ oga-with-golden-road-healing-10-16-2026
+CATEGORIES:Health & Wellness
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53356447375980
+DTSTART:20261016T150000Z
+DTEND:20261016T160000Z
+DESCRIPTION:Stories\, movement\, play\, and songs for babies in arms and to
+ ddlers together. Playtime follows. \n\nFor little ones under two with a fa
+ vorite adult. All abilities are welcome.
+GEO:39.294601;-76.617302
+LOCATION:Central Library\, Children's Department
+SUMMARY:Baby & Toddler Storytime
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/baby_toddler_storytim
+ e_6129
+CATEGORIES:Storytime
+CATEGORIES:Early Learning
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53090371740672
+DTSTART:20261016T190000Z
+DTEND:20261016T200000Z
+DESCRIPTION:Afterschool is where the fun begins!  Kids can jump into storie
+ s\, get hands-on crafts\, tackle STEM challenges\, solve puzzles\, and pla
+ y board games with friends. Every school day is a new adventure!
+GEO:39.356495;-76.558281
+LOCATION:Hamilton
+SUMMARY:Afternoon Curiosity Club
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/afternoon-curiosity-c
+ lub-4019
+CATEGORIES:After-School Activities
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53250846022827
+DTSTART:20261016T200000Z
+DTEND:20261016T210000Z
+DESCRIPTION:Join us for a discussion of the 2026 One Maryland One Book sele
+ ction No Sense in Wishing: Essays on Black Music\, Belonging\, and Baltimo
+ re by Lawrence Burney. \n\n \n\nNo Sense in Wishing: Essays on Black Music
+ \, Belonging\, and Baltimore by Lawrence Burney is a personal and analytic
+ al essay collection that showcases his home city of Baltimore\, music from
+  throughout the global Black diaspora\, and the traditions that raised him
+ . Each essay tells stories of his formative moments and cultural artifacts
+  to tell the story of our region’s cultural scene through his unique poi
+ nt-of-view. As one of our contemporary rising cultural critics\, Burney’
+ s book aptly captures this year’s theme of Revolution\, Reaction\, and R
+ eform.\n\n \n\n To register please call the Pennsylvania Avenue Branch at 
+ (410) 396‑0399 or email pnn@prattlibrary.org.
+GEO:39.309898;-76.642097
+LOCATION:Pennsylvania Avenue
+SUMMARY:One Maryland One Book Discussion: No Sense in Wishing
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/omob-discussion-2026-
+ pnn
+CATEGORIES:Book Discussions
+CATEGORIES:One Maryland One Book
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53993333713410
+DTSTART:20261017T140000Z
+DTEND:20261017T180000Z
+DESCRIPTION:Free in-person drop-in tutoring service on Saturdays for grades
+  Kindergarten through 12 in all subjects\, provided by Youth Library Tutor
+ ial\, a Johns Hopkins University student group. Please fill out this form 
+ to be added to the email list. \n\n \n\nYouth Library Tutoring will also o
+ ffer online tutoring sessions via Zoom on Sundays on 9/20\, 9/27\, 10/4\, 
+ 10/11\, 10/18\, 10/25\, 11/1\, 11/8\, 11/15\, 11/22\, and 11/29\, and on S
+ aturdays 11/21 and 11/28.\n\n \n\nThere will be no in-person session on Sa
+ turday\, November 21 and 28.\n\n \n\nEmail hopkinsylt@gmail.com or sign up
+  for the email list to receive the Zoom link for the online sessions.
+GEO:39.286201;-76.566704
+LOCATION:Southeast Anchor\, Children's Department
+SUMMARY:Drop-In Tutoring
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/drop-in-tutoring-7013
+CATEGORIES:After-School Activities
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53931516125798
+DTSTART:20261017T140000Z
+DTEND:20261017T200000Z
+DESCRIPTION:Free in-person drop-in tutoring service on Saturdays for grades
+  Kindergarten through 12 in all subjects provided by Youth Library Tutoria
+ l\, a Johns Hopkins University student group. Please fill out this form to
+  be added to the emailing list. \n\n \n\nYouth Library Tutoring will also 
+ be offering online tutoring sessions via Zoom on Sundays on 9/20\, 9/27\, 
+ 10/4\, 10/11\, 10/18\, 10/25\, 11/1\, 11/8\, 11/15\, 11/22 and 11/29\, and
+  on Saturdays 11/21 and 11/28.\n\n \n\nThere will be no in-person session 
+ on Saturday\, November 21 and 28.\n\n \n\nEmail hopkinsylt@gmail.com or si
+ gn up for the emailing list to receive the Zoom link for the online sessio
+ ns.
+GEO:39.328655;-76.610664
+LOCATION:Waverly
+SUMMARY:Drop-In Tutoring
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/weekend-tutoring-by-y
+ outh-library-tutorial
+CATEGORIES:After-School Activities
+CATEGORIES:Diversity\, Equity & Inclusion
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_53091531164295
+DTSTART:20261017T150000Z
+DTEND:20261017T160000Z
+DESCRIPTION:Join us on the third Saturday of each month for the Friends of 
+ the Light Street Branch monthly meeting. The Friends of the Light Street B
+ ranch's mission is to support and enhance the Light Street Branch of the E
+ noch Pratt Free Library. All are welcome to attend. Learn more about how y
+ ou can get involved! \n\nAccessibility Information\n\nPlease note that thi
+ s event is only accessible via stairs.
+GEO:39.274948;-76.611816
+LOCATION:Light Street\, Meeting Room
+SUMMARY:Friends of the Light Street Branch Monthly Meeting
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/friends_of_the_light_
+ street_branch_2679
+CATEGORIES:Civic Engagement
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20261016T225800Z
+UID:tag:localist.com\,2008:EventInstance_52330520362460
+DTSTART:20261017T150000Z
+DTEND:20261017T160000Z
+DESCRIPTION:Meet Pratt Library President & CEO Chad Helton during a Town Ha
+ ll Meeting with the CEO. Share what you love about your library and what t
+ he Pratt can do to make your library welcoming to all. This event is part 
+ of a series of town hall meetings at all Pratt Library locations.\n\n \n\n
+ Light refreshments will be provided.
+GEO:39.359531;-76.611221
+LOCATION:Govans\, Meeting Room
+SUMMARY:Town Hall Meeting with the CEO: Govans Branch
+URL;VALUE=URI:https://calendar.prattlibrary.org/event/ceo-town-hall-govans
+CATEGORIES:Civic Engagement
+END:VEVENT
+END:VCALENDAR

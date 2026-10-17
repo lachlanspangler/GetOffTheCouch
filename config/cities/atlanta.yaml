@@ -1,0 +1,254 @@
+# Atlanta, GA. Neighborhood points are approximate centroids, used only for "near me" distance filters.
+# Batch A onboarding, sources verified live 2026-10-16 (docs/SOURCES.md "Batch A cities").
+# Not used: Georgia Tech calendar (Drupal, no feed found) and ramblinwreck.com (not SIDEARM); Hands On Atlanta (custom
+# dashboard, no public feed); The Masquerade (Cloudflare challenge); Variety Playhouse / Terminal West (no Event
+# JSON-LD); BeltLine, High Museum, Fernbank, Downtown/Midtown Alliance (no Tribe/JSON-LD); Tabernacle, Coca-Cola Roxy,
+# Buckhead Theatre, Punchline (Live Nation); no official alcohol/business-license feed found (ArcGIS items are
+# personal uploads); sos.ga.gov robots.txt → 403, so the GA starter pack has no voter-registration item.
+slug: atlanta
+name: Atlanta
+state: GA
+timezone: America/New_York
+center: [33.7490, -84.3880]
+radius_km: 25
+aliases: [ATL, Decatur, Sandy Springs, East Point, College Park, Hapeville, Brookhaven, Chamblee, Doraville, Tucker, Smyrna, Avondale Estates, Druid Hills, Dunwoody]
+neighborhoods:  # approximate centroids
+  - { name: Downtown, lat: 33.7550, lon: -84.3900 }
+  - { name: Midtown, lat: 33.7840, lon: -84.3830 }
+  - { name: Old Fourth Ward, lat: 33.7650, lon: -84.3700 }
+  - { name: Inman Park, lat: 33.7580, lon: -84.3530 }
+  - { name: Little Five Points, lat: 33.7640, lon: -84.3490 }
+  - { name: Virginia-Highland, lat: 33.7800, lon: -84.3540 }
+  - { name: Poncey-Highland, lat: 33.7730, lon: -84.3500 }
+  - { name: West Midtown, lat: 33.7840, lon: -84.4120 }
+  - { name: Castleberry Hill, lat: 33.7490, lon: -84.4010 }
+  - { name: Grant Park, lat: 33.7360, lon: -84.3700 }
+  - { name: East Atlanta Village, lat: 33.7400, lon: -84.3430 }
+  - { name: Reynoldstown / Cabbagetown, lat: 33.7500, lon: -84.3550 }
+  - { name: West End, lat: 33.7370, lon: -84.4130 }
+  - { name: Buckhead, lat: 33.8380, lon: -84.3800 }
+  - { name: Decatur Square, lat: 33.7748, lon: -84.2963 }
+  - { name: Kirkwood, lat: 33.7550, lon: -84.3180 }
+sources:
+  # ── libraries ──
+  - id: afpl_events
+    adapter: bibliocommons
+    name: Fulton County Library System events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://fulcolibrary.bibliocommons.com/v2/events
+    expect_min_records: 30
+    notes: >-
+      BiblioCommons events RSS (gateway host, no robots.txt; code confirmed by the channel title "Fulton County
+      Library System"). North Fulton branches (Alpharetta, Milton, Roswell) and the far south are outside the circle.
+    params:
+      library: fulcolibrary
+      horizon_days: 10
+      max_pages: 20
+      venue_label: Fulton County Library
+      cities: [Atlanta, East Point, College Park, Hapeville, Sandy Springs]
+      default_category: arts.books
+      category_map:   # labels seen in BiblioCommons feeds; checked in order (event types before audiences)
+        Storytime: family.kids
+        Book Club: arts.books
+        Arts & Crafts: arts.workshop
+        Technology: learning.tech
+        Babies: family.kids
+        Toddlers: family.kids
+        Preschoolers: family.kids
+        Kids: family.kids
+  - id: dekalb_library_events
+    adapter: communico
+    name: DeKalb County Public Library events
+    data_type: events
+    homepage: https://events.dekalblibrary.org/events
+    expect_min_records: 30
+    notes: >-
+      Communico calendar JSON (events.dekalblibrary.org, linked from dekalblibrary.org; branch names confirm the
+      tenant). Undocumented front-end endpoint; robots disallows only /results* and site search.
+    params:
+      base_url: https://events.dekalblibrary.org
+      horizon_days: 7
+      venue_label: DeKalb County Public Library
+      default_category: arts.books
+      category_map: { Storytime: family.kids, Book Club: arts.books, "Arts & Crafts": arts.workshop, Technology: learning.tech, Gaming: trivia_games.board_games }
+
+  # ── universities ──
+  - id: gsu_events
+    adapter: localist
+    name: Georgia State University events (open to the public)
+    data_type: events
+    homepage: https://calendar.gsu.edu/
+    expect_min_records: 10
+    params:
+      fallback_point: { lat: 33.7531, lon: -84.3853, label: "Georgia State downtown campus" }   # unmappable rooms → campus, labeled approximate
+      audience_filter: institution   # skip faculty/student-only items
+      base_url: https://calendar.gsu.edu
+      type: 83211   # Localist filter "event_audience: Public" (GET /api/2/events/filters)
+      horizon_days: 30
+      max_pages: 4
+      organizer: Georgia State University
+      exclude_location: '\b(Alpharetta|Clarkston|Dunwoody|Newton) Campus\b'   # Perimeter College campuses
+      default_category: learning.networking
+  - id: emory_events
+    adapter: trumba
+    name: Emory University events
+    data_type: events
+    homepage: https://www.emory.edu/events
+    expect_min_records: 20
+    notes: >-
+      Emory's Trumba calendar (webname emory-events, the subscribe link on emory.edu/events); trumba.com robots allows
+      all. "Event Open To" isn't filterable here, so the institution audience filter and the campus catch-all skip
+      staff-only items.
+    params:
+      fallback_point: { lat: 33.7925, lon: -84.3240, label: "Emory Druid Hills campus" }
+      audience_filter: institution
+      webname: emory-events
+      horizon_days: 14
+      organizer: Emory University
+      category_fields: [University Event Topic]
+      default_category: learning.networking
+      category_map: { Arts: arts.theater, Special Event: community.festival, Community: community.festival }
+  - id: gsu_athletics
+    adapter: ics
+    name: Georgia State Panthers athletics (home games — Convocation Center, Center Parc Stadium)
+    data_type: events
+    cadence_hours: 24
+    homepage: https://georgiastatesports.com/calendar
+    expect_min_records: 5
+    notes: SIDEARM Sports subscription calendar (robots allows it; Crawl-delay 30). Home = LOCATION starts with "Atlanta".
+    params:
+      url: https://georgiastatesports.com/calendar.ashx/calendar.ics?sport_id=0
+      horizon_days: 45
+      max_occurrences: 1
+      organizer: Georgia State Panthers
+      exclude_location: '^(?!Atlanta\b)'
+      force_category: sports_watch.game
+      fallback_point: { lat: 33.7531, lon: -84.3853, label: "Georgia State downtown campus" }
+
+  # ── gardens / parks (The Events Calendar REST) ──
+  - id: atlanta_botanical_garden
+    adapter: tribe
+    name: Atlanta Botanical Garden events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://atlantabg.org/calendar/
+    expect_min_records: 10
+    notes: The Events Calendar REST API (robots allows it). The Gainesville garden (~80 km) is skipped.
+    params:
+      base_url: https://atlantabg.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 4
+      organizer: Atlanta Botanical Garden
+      exclude_location: '\bGainesville\b'
+      venue: {name: Atlanta Botanical Garden, address: "1345 Piedmont Ave NE, Atlanta, GA 30309"}
+      default_category: outdoors.park
+  - id: piedmont_park_events
+    adapter: tribe
+    name: Piedmont Park Conservancy events
+    data_type: events
+    cadence_hours: 24
+    homepage: https://piedmontpark.org/calendar/
+    expect_min_records: 5
+    notes: The Events Calendar REST API (robots allows it). Green Market, walking club, game nights.
+    params:
+      base_url: https://piedmontpark.org
+      horizon_days: 45
+      per_page: 50
+      max_pages: 3
+      organizer: Piedmont Park Conservancy
+      venue: {name: Piedmont Park, address: "400 Park Dr NE, Atlanta, GA 30306"}
+      default_category: outdoors.park
+
+  # ── venues ──
+  - id: fox_theatre_atlanta
+    adapter: rss_events
+    name: Fox Theatre (venue calendar)
+    data_type: concerts
+    cadence_hours: 24
+    homepage: https://www.foxtheatre.org/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it.
+    params:
+      spectator_venue: true
+      url: https://www.foxtheatre.org/events/rss
+      horizon_days: 180
+      venue: {name: "Fox Theatre", address: "660 Peachtree St NE, Atlanta, GA 30308"}
+      organizer: Fox Theatre
+      default_category: music.concert
+  - id: state_farm_arena
+    adapter: rss_events
+    name: State Farm Arena (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.statefarmarena.com/events
+    expect_min_records: 10
+    notes: carbonhouse events RSS (ev:startdate in UTC); robots allows it. Hawks, Dream, concerts.
+    params:
+      spectator_venue: true
+      url: https://www.statefarmarena.com/events/rss
+      horizon_days: 180
+      venue: {name: "State Farm Arena", address: "1 State Farm Dr, Atlanta, GA 30303"}
+      organizer: State Farm Arena
+      default_category: music.concert
+  - id: laughing_skull_lounge
+    adapter: jsonld
+    name: Laughing Skull Lounge (comedy club calendar)
+    data_type: events
+    cadence_hours: 24
+    min_interval_s: 2
+    homepage: https://laughingskulllounge.com/
+    expect_min_records: 15
+    notes: WordPress homepage with schema.org Event JSON-LD for every show (offsets included). robots allows it.
+    params:
+      urls: [https://laughingskulllounge.com/]
+      horizon_days: 60
+      venue: {name: Laughing Skull Lounge, address: "878 Peachtree St NE, Atlanta, GA 30309"}
+      organizer: Laughing Skull Lounge
+      default_category: nightlife.comedy
+  - id: eddies_attic
+    adapter: jsonld
+    name: Eddie's Attic (Decatur listening room)
+    data_type: concerts
+    cadence_hours: 12
+    min_interval_s: 2
+    homepage: https://eddiesattic.com/
+    expect_min_records: 10
+    notes: WordPress; Event JSON-LD per event page (offsets included). robots allows it.
+    params:
+      urls: [https://eddiesattic.com/]
+      follow: 'eddiesattic\.com/event/[^/?#]+/$'
+      max_follow: 40
+      venue: {name: Eddie's Attic, address: "515-B N McDonough St, Decatur, GA 30030"}
+      organizer: Eddie's Attic
+      default_category: music.concert
+      classify_description: false
+
+  # ── trivia ──
+  - id: teamtrivia_atlanta
+    adapter: teamtrivia
+    name: Team Trivia (Atlanta)
+    data_type: recurring
+    cadence_hours: 48
+    min_interval_s: 3
+    homepage: https://www.teamtrivia.com/trivia-in-atlanta/
+    expect_min_records: 5
+    notes: >-
+      Region page → venue pages with dated games in JSON-LD. Never uses the zip-code gate or /getlocation.php
+      (robots-disallowed).
+    params:
+      base_url: https://www.teamtrivia.com
+      regions: { atlanta: atlanta }
+      max_venues: 60
+  - id: challenge_trivia_atlanta
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Atlanta)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 1
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-georgia within 2× the city radius (only a few shows).
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [georgia]
