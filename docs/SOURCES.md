@@ -1255,3 +1255,29 @@ Disabled on the first run with the new parser:
 - **Cloudflare challenge:** Lizard Lounge (Boston).
 
 Any further `RobotsDisallowed` failure on the status page means the same thing, and the unit gets disabled in config.
+
+## Session 4 coverage: cov1
+
+Location-only venue curation (`config/venues/<slug>.yaml`: address copied from the venue's or operator's own
+page, `address_source`, Census-geocoded by `scripts/venue_geocode.py`) plus the pages we read and the ones we
+couldn't. Every page was fetched once with our UA after its robots.txt, ≥2 s per host.
+
+| page | city | used for | robots / ToS | verified |
+|---|---|---|---|---|
+| https://www.dclibrary.org/plan-visit | washington_dc | addresses of 26 DCPL branches (`dcpl_events` names them only) | robots allows it | 2026-10-27 |
+| https://smithsonianassociates.org/ticketing/help/locations/* (10 pages) | washington_dc | Smithsonian museum addresses (most are intersections, e.g. "14th & Constitution Ave., N.W.", which Census matches as intersections) | robots allows /ticketing/help | 2026-10-27 |
+| https://www.trumba.com/calendars/smithsonian-events.json | washington_dc | Postal Museum and Anacostia Community Museum addresses quoted in event descriptions | as `smithsonian_events` | 2026-10-27 |
+| dpr.dc.gov/page/stead-recreation-center; shilohbaptist.org; krakenkourts.com; whitlows.com; luckystrikeent.com | washington_dc | Volo venues' own addresses | robots allows them | 2026-10-27 |
+| ✗ americanhistory.si.edu, asia.si.edu, postalmuseum.si.edu | washington_dc | — | 403 "Smithsonian site temporarily unavailable" (bot wall); not retried | 2026-10-27 |
+| ✗ gallaudet.edu, olqadc.org, saufhaus.com, spiderkellys.com, clarendonballroom.com | washington_dc | — | robots.txt disallows | 2026-10-27 |
+| ✗ catholic.edu | washington_dc | — | Cloudflare challenge — not attempted again | 2026-10-27 |
+| ✗ dpr.dc.gov (other facility pages) | washington_dc | — | 403 on the second facility page; stopped | 2026-10-27 |
+
+Not placeable from an official page with Census: Anacostia Library (1800 Marion Barry Ave SE) and Northwest One
+Library (155 L St NW) have no Census match; Underground Arts (1200 Callowhill St, Philadelphia) has no Census match.
+The Freer (Asian Art Museum) is published as "12th Street and Independence Avenue, SW"; Census matches the SE
+intersection unless SW is spelled out on both streets, so the entry does that (note in the file).
+
+Pipeline fix found while doing this: a venue stored by an earlier build under the feed's raw name shadowed the
+curated alias with the same normalized name, so no alias ever applied (`resolve_venues` now lets the first, most
+trusted entity win).

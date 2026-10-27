@@ -1,0 +1,397 @@
+# Curated venues for washington_dc (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official locations
+# page (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: Martin Luther King Jr. Memorial Library
+  aliases:
+  - DC Public Library – Martin Luther King Jr. Memorial Library - Central Library
+  address: 901 G St. NW, Washington, DC 20001
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.898449
+  lon: -77.024069
+  coords_source: 'U.S. Census geocoder: 901 G ST NW, WASHINGTON, DC, 20001'
+- name: Southwest Library
+  aliases:
+  - DC Public Library – Southwest Neighborhood Library
+  address: 900 Wesley Place SW, Washington, DC 20024
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.878467
+  lon: -77.016079
+  coords_source: 'U.S. Census geocoder: 900 WESLEY PL SW, WASHINGTON, DC, 20024'
+- name: Georgetown Library
+  aliases:
+  - DC Public Library – Georgetown Neighborhood Library
+  address: 3260 R St. NW, Washington, DC 20007
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.913657
+  lon: -77.065721
+  coords_source: 'U.S. Census geocoder: 3260 R ST NW, WASHINGTON, DC, 20007'
+- name: Cleveland Park Library
+  aliases:
+  - DC Public Library – Cleveland Park Neighborhood Library
+  address: 3310 Connecticut Ave. NW, Washington, DC 20008
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.933586
+  lon: -77.057439
+  coords_source: 'U.S. Census geocoder: 3310 CONNECTICUT AVE NW, WASHINGTON, DC, 20008'
+- name: Anacostia Library
+  aliases:
+  - DC Public Library – Anacostia Neighborhood Library
+  address: 1800 Marion Barry Ave. SE, Washington, DC 20020
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+- name: Mt. Pleasant Library
+  aliases:
+  - DC Public Library – Mt. Pleasant Neighborhood Library
+  address: 3160 16th St. NW, Washington, DC 20010
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.929838
+  lon: -77.036542
+  coords_source: 'U.S. Census geocoder: 3160 16TH ST NW, WASHINGTON, DC, 20010'
+- name: Francis A. Gregory Library
+  aliases:
+  - DC Public Library – Francis A. Gregory Neighborhood Library
+  address: 3660 Alabama Ave. SE, Washington, DC 20020
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.864274
+  lon: -76.955181
+  coords_source: 'U.S. Census geocoder: 3660 ALABAMA AVE SE, WASHINGTON, DC, 20020'
+- name: Chevy Chase Library
+  aliases:
+  - DC Public Library – Chevy Chase Neighborhood Library
+  address: 5625 Connecticut Ave. NW, Washington, DC 20015
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.965169
+  lon: -77.075648
+  coords_source: 'U.S. Census geocoder: 5625 CONNECTICUT AVE NW, WASHINGTON, DC, 20015'
+- name: Parklands-Turner Library
+  aliases:
+  - DC Public Library – Parklands-Turner Neighborhood Library
+  address: 1547 Alabama Ave. SE, Washington, DC 20032
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.846423
+  lon: -76.98174
+  coords_source: 'U.S. Census geocoder: 1547 ALABAMA AVE SE, WASHINGTON, DC, 20032'
+- name: Bellevue/William O. Lockridge Library
+  aliases:
+  - DC Public Library – Bellevue (William O. Lockridge) Neighborhood Library
+  address: 115 Atlantic St. SW, Washington, DC 20032
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.831115
+  lon: -77.005567
+  coords_source: 'U.S. Census geocoder: 115 ATLANTIC ST SE, WASHINGTON, DC, 20032'
+- name: Northeast Library
+  aliases:
+  - DC Public Library – Northeast Neighborhood Library
+  address: 330 7th St. NE, Washington, DC 20002
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.893969
+  lon: -76.996236
+  coords_source: 'U.S. Census geocoder: 330 7TH ST NE, WASHINGTON, DC, 20002'
+- name: Tenley-Friendship Library
+  aliases:
+  - DC Public Library – Tenley-Friendship Neighborhood Library
+  address: 4450 Wisconsin Ave. NW, Washington, DC 20016
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.947608
+  lon: -77.079577
+  coords_source: 'U.S. Census geocoder: 4450 WISCONSIN AVE NW, WASHINGTON, DC, 20016'
+- name: Lamond-Riggs/Lillian J. Huff Library
+  aliases:
+  - DC Public Library – Lamond-Riggs/Lillian J. Huff Neighborhood Library
+  address: 5401 South Dakota Ave. NE, Washington, DC 20011
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.954799
+  lon: -76.99953
+  coords_source: 'U.S. Census geocoder: 5401 SOUTH DAKOTA AVE NE, WASHINGTON, DC, 20011'
+- name: Shepherd Park/Juanita E. Thornton Library
+  aliases:
+  - DC Public Library – Shepherd Park (Juanita E. Thornton) Neighborhood Library
+  address: 7420 Georgia Ave. NW, Washington, DC 20012
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.979799
+  lon: -77.026546
+  coords_source: 'U.S. Census geocoder: 7420 GEORGIA AVE NW, WASHINGTON, DC, 20012'
+- name: Woodridge Library
+  aliases:
+  - DC Public Library – Woodridge Neighborhood Library
+  address: 1801 Hamlin St. NE, Washington, DC 20018
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.927666
+  lon: -76.978669
+  coords_source: 'U.S. Census geocoder: 1801 HAMLIN ST NE, WASHINGTON, DC, 20018'
+- name: Northwest One Library
+  aliases:
+  - DC Public Library – Northwest One Neighborhood Library
+  address: 155 L St. NW, Washington, DC 20001
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+- name: Takoma Park Library
+  aliases:
+  - DC Public Library – Takoma Park Neighborhood Library
+  address: 416 Cedar St. NW, Washington, DC 20012
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.974734
+  lon: -77.019969
+  coords_source: 'U.S. Census geocoder: 416 CEDAR ST NW, WASHINGTON, DC, 20012'
+- name: Southeast Library
+  aliases:
+  - DC Public Library – Southeast Neighborhood Library
+  address: 403 7th St. SE, Washington, DC 20003
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.88383
+  lon: -76.996253
+  coords_source: 'U.S. Census geocoder: 403 7TH ST SE, WASHINGTON, DC, 20003'
+- name: Palisades Library
+  aliases:
+  - DC Public Library – Palisades Neighborhood Library
+  address: 4901 V St. NW, Washington, DC 20007
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.918166
+  lon: -77.096845
+  coords_source: 'U.S. Census geocoder: 4901 V ST NW, WASHINGTON, DC, 20007'
+- name: Capitol View Library
+  aliases:
+  - DC Public Library – Capitol View Neighborhood Library
+  address: 5001 Central Ave. SE, Washington, DC 20019
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.889266
+  lon: -76.929738
+  coords_source: 'U.S. Census geocoder: 5001 CENTRAL AVE SE, WASHINGTON, DC, 20019'
+- name: Petworth Library
+  aliases:
+  - DC Public Library – Petworth Neighborhood Library
+  address: 4200 Kansas Ave NW, Washington, DC 20011
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.941945
+  lon: -77.025965
+  coords_source: 'U.S. Census geocoder: 4200 KANSAS AVE NW, WASHINGTON, DC, 20011'
+- name: Shaw/Watha T. Daniel Library
+  aliases:
+  - DC Public Library – Shaw (Watha T. Daniel) Neighborhood Library
+  address: 1630 7th St. NW, Washington, DC 20001
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.912447
+  lon: -77.021992
+  coords_source: 'U.S. Census geocoder: 1630 7TH ST NW, WASHINGTON, DC, 20001'
+- name: Deanwood Library
+  aliases:
+  - DC Public Library – Deanwood Neighborhood Library
+  address: 1350 49th St. NE, Washington, DC 20019
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.908013
+  lon: -76.931736
+  coords_source: 'U.S. Census geocoder: 1350 49TH ST NE, WASHINGTON, DC, 20019'
+- name: Benning/Dorothy I. Height Library
+  aliases:
+  - DC Public Library – Benning (Dorothy I. Height) Neighborhood Library
+  address: 3935 Benning Road NE, Washington, DC 20019
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.894474
+  lon: -76.947856
+  coords_source: 'U.S. Census geocoder: 3935 BENNING RD NE, WASHINGTON, DC, 20019'
+- name: Rosedale Library
+  aliases:
+  - DC Public Library – Rosedale Neighborhood Library
+  address: 1701 Gales St. NE, Washington, DC 20002
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.898044
+  lon: -76.979614
+  coords_source: 'U.S. Census geocoder: 1701 GALES ST NE, WASHINGTON, DC, 20002'
+- name: West End Library
+  aliases:
+  - DC Public Library – West End Neighborhood Library
+  address: 2301 L St. NW, Washington, DC 20037
+  address_source: https://www.dclibrary.org/plan-visit
+  verified_at: '2026-10-27'
+  lat: 38.903794
+  lon: -77.050187
+  coords_source: 'U.S. Census geocoder: 2301 L ST NW, WASHINGTON, DC, 20037'
+- name: National Museum of American History
+  aliases:
+  - Smithsonian – American History Museum
+  address: 14th and Constitution Ave NW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/warner-brothers-theater
+  verified_at: '2026-10-27'
+  lat: 38.892093
+  lon: -77.031964
+  coords_source: 'U.S. Census geocoder: 14TH ST NW & CONSTITUTION AVE NW, WASHINGTON, DC, 20004'
+- name: Freer Gallery of Art (National Museum of Asian Art)
+  aliases:
+  - Smithsonian – Asian Art Museum
+  address: 12th St SW & Independence Ave SW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/meyer-auditorium
+  verified_at: '2026-10-27'
+  note: 'Page: ''12th Street and Independence Avenue, SW''. Without the quadrant on both streets Census matches the SE intersection,
+    so the SW is spelled out.'
+  lat: 38.887421
+  lon: -77.027984
+  coords_source: 'U.S. Census geocoder: 12TH ST EXPY & INDEPENDENCE AVE SW, WASHINGTON, DC, 20024'
+- name: National Museum of the American Indian
+  aliases:
+  - Smithsonian – American Indian Museum DC
+  address: 4th Street and Independence Avenue SW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/rasmuson-theater
+  verified_at: '2026-10-27'
+  lat: 38.887444
+  lon: -77.017555
+  coords_source: 'U.S. Census geocoder: 4TH ST SW & INDEPENDENCE AVE SW, WASHINGTON, DC, 20024'
+- name: Hirshhorn Museum and Sculpture Garden
+  aliases:
+  - Smithsonian – Hirshhorn Museum
+  address: Independence Avenue and 7th Street SW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/ring-auditorium
+  verified_at: '2026-10-27'
+  lat: 38.887563
+  lon: -77.021916
+  coords_source: 'U.S. Census geocoder: INDEPENDENCE AVE SW & 7TH ST SW, WASHINGTON, DC, 20024'
+- name: National Museum of Natural History
+  aliases:
+  - Smithsonian – Natural History Museum
+  address: 10th and Constitution Ave NW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/baird-auditorium
+  verified_at: '2026-10-27'
+  lat: 38.892082
+  lon: -77.02599
+  coords_source: 'U.S. Census geocoder: 10TH ST NW & CONSTITUTION AVE NW, WASHINGTON, DC, 20001'
+- name: Smithsonian American Art Museum and National Portrait Gallery
+  aliases:
+  - Smithsonian – American Art Museum
+  - Smithsonian – Portrait Gallery
+  address: 8th and G Street NW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/mcevoy-auditorium
+  verified_at: '2026-10-27'
+  lat: 38.898456
+  lon: -77.022933
+  coords_source: 'U.S. Census geocoder: 8TH ST NW & G ST NW, WASHINGTON, DC, 20001'
+- name: Smithsonian Castle
+  aliases:
+  - Smithsonian – Smithsonian Castle
+  address: 1000 Jefferson Drive SW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/smithsonian-castle
+  verified_at: '2026-10-27'
+  lat: 38.889007
+  lon: -77.025892
+  coords_source: 'U.S. Census geocoder: 1000 JEFFERSON DR SW, WASHINGTON, DC, 20560'
+- name: S. Dillon Ripley Center
+  aliases:
+  - Smithsonian – S. Dillon Ripley Center
+  address: 1100 Jefferson Drive SW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/ripley-center
+  verified_at: '2026-10-27'
+  lat: 38.888592
+  lon: -77.028263
+  coords_source: 'U.S. Census geocoder: 1100 JEFFERSON DR SW, WASHINGTON, DC, 20560'
+- name: Smithsonian's National Zoo
+  aliases:
+  - Smithsonian – National Zoo
+  address: 3001 Connecticut Avenue NW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/national-zoo
+  verified_at: '2026-10-27'
+  lat: 38.929118
+  lon: -77.054682
+  coords_source: 'U.S. Census geocoder: 3001 CONNECTICUT AVE NW, WASHINGTON, DC, 20008'
+- name: Renwick Gallery
+  aliases:
+  - Smithsonian – Renwick Gallery
+  address: 1661 Pennsylvania Avenue NW, Washington, DC
+  address_source: https://smithsonianassociates.org/ticketing/help/locations/renwick-gallery
+  verified_at: '2026-10-27'
+  lat: 38.898801
+  lon: -77.038868
+  coords_source: 'U.S. Census geocoder: 1661 PENNSYLVANIA AVE NW, WASHINGTON, DC, 20503'
+- name: National Postal Museum
+  aliases:
+  - Smithsonian – Postal Museum
+  address: 2 Massachusetts Ave NE, Washington, DC
+  address_source: https://www.trumba.com/calendars/smithsonian-events.json
+  verified_at: '2026-10-27'
+  note: 'Quoted in the Smithsonian''s own calendar feed, event 208752209: ''the National Postal Museum located at 2 Massachusetts
+    Ave NE''.'
+  lat: 38.897511
+  lon: -77.009328
+  coords_source: 'U.S. Census geocoder: 2 MASSACHUSETTS AVE NW, WASHINGTON, DC, 20001'
+- name: Anacostia Community Museum
+  aliases:
+  - Smithsonian – Anacostia Community Museum
+  address: 1901 Fort Place SE, Washington, DC 20020
+  address_source: https://www.trumba.com/calendars/smithsonian-events.json
+  verified_at: '2026-10-27'
+  note: 'Quoted in the Smithsonian''s own calendar feed, event 198896873: ''Anacostia Community Museum (1901 Fort Place, SE
+    Washington, DC 20020)''.'
+  lat: 38.857147
+  lon: -76.976878
+  coords_source: 'U.S. Census geocoder: 1901 FORT PL SE, WASHINGTON, DC, 20020'
+- name: Stead Park Recreation Center
+  aliases:
+  - Stead Park
+  address: 1625 P Street NW, Washington, DC
+  address_source: https://dpr.dc.gov/page/stead-recreation-center
+  verified_at: '2026-10-27'
+  lat: 38.909701
+  lon: -77.037043
+  coords_source: 'U.S. Census geocoder: 1625 P ST NW, WASHINGTON, DC, 20036'
+- name: Lucky Strike Arlington
+  address: 320 South 23rd St S., Arlington, VA 22202
+  address_source: https://www.luckystrikeent.com/location/lucky-strike-arlington
+  verified_at: '2026-10-27'
+  lat: 38.853306
+  lon: -77.051112
+  coords_source: 'U.S. Census geocoder: 320 23RD ST S, ARLINGTON, VA, 22202'
+- name: Lucky Strike Bethesda
+  address: 5353 Westbard Ave, Bethesda, MD 20816
+  address_source: https://www.luckystrikeent.com/location/lucky-strike-arlington
+  verified_at: '2026-10-27'
+  note: From the chain's location list (schema.org PostalAddress) embedded in that page.
+  lat: 38.962853
+  lon: -77.106333
+  coords_source: 'U.S. Census geocoder: 5353 WESTBARD AVE, BETHESDA, MD, 20816'
+- name: Shiloh Baptist Church
+  address: 1500 Ninth Street Northwest, Washington, DC 20001
+  address_source: https://www.shilohbaptist.org/
+  verified_at: '2026-10-27'
+  lat: 38.909704
+  lon: -77.024043
+  coords_source: 'U.S. Census geocoder: 1500 9TH ST NW, WASHINGTON, DC, 20001'
+- name: Kraken Kourts Bryant Street
+  aliases:
+  - Kraken Bryant Street
+  address: 514 Rhode Island Avenue Northeast, Washington, DC 20002
+  address_source: https://www.krakenkourts.com/
+  verified_at: '2026-10-27'
+  lat: 38.920536
+  lon: -76.998501
+  coords_source: 'U.S. Census geocoder: 514 RHODE ISLAND AVE NE, WASHINGTON, DC, 20002'
+- name: Whitlow's
+  aliases:
+  - Whitlow's DC
+  address: 901 U Street Northwest, Washington, DC 20001
+  address_source: https://www.whitlows.com/
+  verified_at: '2026-10-27'
+  lat: 38.917049
+  lon: -77.024026
+  coords_source: 'U.S. Census geocoder: 901 U ST NW, WASHINGTON, DC, 20001'
