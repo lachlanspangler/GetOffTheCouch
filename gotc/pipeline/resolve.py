@@ -60,7 +60,11 @@ def trust(source_id: str) -> int:
 def resolve_venues(events: list[SourceEvent], city: CityConfig, known: list[VenueEntity]) -> dict[str, str]:
     """Assign each event (by source key) a venue id. Mutates/extends ``known``."""
     out: dict[str, str] = {}
-    by_norm: dict[str, VenueEntity] = {v.norm: v for v in known}
+    # ``known`` is ordered most-trusted first (curated file, venue refs, then venues stored by earlier builds), so
+    # the first entity with a given normalized name wins: a stored venue never shadows a curated alias.
+    by_norm: dict[str, VenueEntity] = {}
+    for entity in known:
+        by_norm.setdefault(entity.norm, entity)
     for ev in sorted(events, key=lambda e: trust(e.source_id)):
         name = ev.location.venue_name
         if not name or len(name) < 3:

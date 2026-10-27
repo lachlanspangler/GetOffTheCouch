@@ -92,6 +92,19 @@ def test_venue_resolution_merges_aliases_by_name_and_proximity():
     assert vof["a|1"] == vof["b|2"]
 
 
+def test_curated_alias_wins_over_a_venue_stored_by_an_earlier_build():
+    from gotc.pipeline.resolve import VenueEntity
+
+    name = "DC Public Library – Southwest Neighborhood Library"
+    curated = VenueEntity("ven_cur", "Southwest Library", "southwest library", 38.88, -77.02, "900 Wesley Pl SW")
+    alias = VenueEntity(**{**curated.__dict__, "norm": norm_venue(name)})
+    # an earlier build stored the feed's name as its own (coordinate-less) venue, listed after the curated entries
+    stored = VenueEntity("ven_old", name, norm_venue(name))
+    items = [ev("dcpl", "1", "Story time", venue=name)]
+    vof = resolve_venues(items, make_city(), [curated, alias, stored])
+    assert vof["dcpl|1"] == "ven_cur"
+
+
 def test_ids_stay_unique_when_a_cluster_splits(db):
     from gotc.pipeline.resolve import Cluster, assign_ids
 
