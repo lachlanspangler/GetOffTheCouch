@@ -13,7 +13,7 @@
 #
 # Fallback: `refresh-monolithic.yml` (manual) is the previous single-job workflow. Same concurrency group.
 # One-time setup (repo Settings) is unchanged: Pages → Source "GitHub Actions"; Actions → Workflow permissions
-# "Read and write"; optional secrets TICKETMASTER_API_KEY, SEATGEEK_CLIENT_ID, SOCRATA_APP_TOKEN.
+# "Read and write"; optional secrets TICKETMASTER_API_KEY, SEATGEEK_CLIENT_ID, RUNSIGNUP_API_REG, RUNSIGNUP_API_REG_SECRET, SOCRATA_APP_TOKEN.
 name: Refresh data
 on:
   schedule: [{ cron: "17 * * * *" }]
@@ -73,6 +73,8 @@ jobs:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
           SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          RUNSIGNUP_API_REG: ${{ secrets.RUNSIGNUP_API_REG }}
+          RUNSIGNUP_API_REG_SECRET: ${{ secrets.RUNSIGNUP_API_REG_SECRET }}
           CITIES: ${{ matrix.cities }}
           SHARD: ${{ matrix.shard }}
         run: |
@@ -121,8 +123,10 @@ jobs:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
           SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          RUNSIGNUP_API_REG: ${{ secrets.RUNSIGNUP_API_REG }}
+          RUNSIGNUP_API_REG_SECRET: ${{ secrets.RUNSIGNUP_API_REG_SECRET }}
           GOTC_RUN_ARGS: "--no-fetch"
-          GOTC_GEOCODE_BUDGET: "40"   # Census lookups per city per run; Nominatim stays off (docs/SOURCES.md)
+          GOTC_GEOCODE_BUDGET: "10"   # Census single-line lookups per city per run (the batch call is separate); 50 cities × 10 keeps publish well inside its timeout while the cache fills. Nominatim stays off (docs/SOURCES.md)
           GOTC_RAW_RETENTION_DAYS: "7"
         run: bash scripts/loop.sh
       - name: Job summary

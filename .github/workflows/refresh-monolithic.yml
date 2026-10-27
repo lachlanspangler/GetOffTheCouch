@@ -43,8 +43,10 @@ jobs:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           SEATGEEK_CLIENT_ID: ${{ secrets.SEATGEEK_CLIENT_ID }}
           SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+          RUNSIGNUP_API_REG: ${{ secrets.RUNSIGNUP_API_REG }}
+          RUNSIGNUP_API_REG_SECRET: ${{ secrets.RUNSIGNUP_API_REG_SECRET }}
           GOTC_RUN_ARGS: "--max-minutes 25"
-          GOTC_GEOCODE_BUDGET: "40"   # cold cache: fill over a few runs instead of blowing the job timeout
+          GOTC_GEOCODE_BUDGET: "10"   # cold cache at 50 cities: fill over a few runs instead of blowing the job timeout
           GOTC_USER_AGENT: "GetOffTheCouch/0.1 (+https://github.com/${{ github.repository }})"
         run: bash scripts/loop.sh
       - name: Job summary
