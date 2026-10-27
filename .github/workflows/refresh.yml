@@ -138,10 +138,26 @@ jobs:
         run: .venv/bin/python scripts/health_issues.py
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
+      - name: Restore share-card cache (I-115; unchanged cards aren't re-rendered)
+        uses: actions/cache/restore@v4
+        with: { path: data/og-cache, key: "og-${{ github.run_id }}", restore-keys: "og-" }  # newest day's cache
       - name: Build dashboard with fresh data
         working-directory: web
         env: { GOTC_BASE: "/GetOffTheCouch/", GOTC_SITE_ORIGIN: "https://lachlanspangler.github.io" }
-        run: ../.venv/bin/python -m gotc demo && npm ci && npm run build
+        run: |
+          ../.venv/bin/python -m gotc demo && npm ci
+          start=$(date +%s)
+          npm run build
+          echo "build (vite + share cards + pre-render): $(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
+          cat dist/og/report.json >> "$GITHUB_STEP_SUMMARY" || true
+      - id: ogday
+        if: always()
+        run: echo "key=og-$(date -u +%F)" >> "$GITHUB_OUTPUT"
+      - name: Save share-card cache (once a day; later runs re-render only the few cards that changed since)
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with: { path: data/og-cache, key: "${{ steps.ogday.outputs.key }}" }
       - name: Check pre-rendered pages (SEO + size budgets)
         working-directory: web
         run: (node scripts/check-dist.mjs --warn && node scripts/check-budgets.mjs --warn) >> "$GITHUB_STEP_SUMMARY"

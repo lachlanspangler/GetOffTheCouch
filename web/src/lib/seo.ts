@@ -139,8 +139,17 @@ export function headHtml(h: Head, image?: string): string {
     `<meta property="og:title" content="${esc(h.title.replace(` · ${SITE}`, ""))}" />`,
     `<meta property="og:description" content="${esc(h.description)}" />`,
     `<meta property="og:url" content="${esc(h.canonical)}" />`,
-    ...(image ? [`<meta property="og:image" content="${esc(image)}" />`, `<meta property="og:image:width" content="1200" />`, `<meta property="og:image:height" content="630" />`] : []),
+    ...(image
+      ? [
+          `<meta property="og:image" content="${esc(image)}" />`,
+          `<meta property="og:image:type" content="image/png" />`,
+          `<meta property="og:image:width" content="1200" />`,
+          `<meta property="og:image:height" content="630" />`,
+          `<meta property="og:image:alt" content="${esc(h.title.replace(` · ${SITE}`, ""))}" />`,
+        ]
+      : []),
     `<meta name="twitter:card" content="${image ? "summary_large_image" : "summary"}" />`,
+    ...(image ? [`<meta name="twitter:image:alt" content="${esc(h.title.replace(` · ${SITE}`, ""))}" />`] : []),
     ...(h.feedUrl ? [`<link rel="alternate" type="application/atom+xml" title="New listings" href="${esc(h.feedUrl)}" />`] : []),
     ...h.jsonld.map((j) => `<script type="application/ld+json">${safeJson(j)}</script>`),
   ];

@@ -71,9 +71,21 @@ function write(path, html, head, lastmod, indexable, inline) {
 // reproduces the page byte for byte; otherwise the page hydrates after loading the full feed, as before.
 const stats = { inlined: 0, mismatch: 0, tooBig: 0, gz: [], cityPages: {} };
 
-function renderPath(path, feed, lastmod, where = new Map()) {
+// Share cards (I-115, scripts/og.mjs ran first): the page's own card, else (events) its category hub's, else its
+// city's, else the home page's.
+const og = existsSync(join(dist, "og", "manifest.json")) ? JSON.parse(readFileSync(join(dist, "og", "manifest.json"), "utf8")) : {};
+const HUB_CATS = Object.fromEntries(ssr.HUBS.filter((h) => h.cats).map((h) => [h.slug, h.cats]));
+function ogImage(path, event) {
+  const [city, a, b] = path.split("/");
+  const hub = event && Object.keys(HUB_CATS).find((h) => HUB_CATS[h].some((c) => event.category === c || event.category.startsWith(`${c}.`)));
+  const keys = !city ? ["home"] : !cityslugs.has(city) ? ["home"] : a === "events" ? [`${city}/e/${(/([0-9a-f]{8,})$/.exec(b ?? "") ?? [])[1]}`, `${city}/${hub}`, city] : a ? [`${city}/${a}`, city] : [city];
+  const file = keys.map((k) => og[k]).find(Boolean);
+  return file ? `${origin}${base}${file}` : undefined;
+}
+
+function renderPath(path, feed, lastmod, where = new Map(), event = undefined) {
   const url = `${base}${path}`;
-  const r = ssr.render(url, index, feed, now);
+  const r = ssr.render(url, index, feed, now, { image: ogImage(path, event) });
   const indexable = r.status === 200 && r.head.includes('content="index,follow"');
   const res = feed && r.status === 200 ? ssr.inlineFor(url, index, feed, now, r, where) : null;
   const inline = res?.json ?? null;
@@ -138,7 +150,7 @@ for (const c of index.cities) {
       seenSeries.add(e.series_id);
     }
     const path = ssr.eventPath(c.slug, e.id, e.title);
-    renderPath(path, feed, day(e.last_checked ?? lm), where);
+    renderPath(path, feed, day(e.last_checked ?? lm), where, e);
     events += 1;
   }
   if (files > MAX_FILES || bytes > MAX_BYTES) throw new Error(`pre-render too big: ${files} files, ${(bytes / 1e6).toFixed(0)} MB`);
