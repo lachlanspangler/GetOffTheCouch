@@ -583,7 +583,7 @@ table { border-collapse: collapse; }
 .why-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .why-list li { display: flex; gap: 10px; align-items: baseline; }
 .why-list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--color-text-muted); flex: none; transform: translateY(-3px); }
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; max-width: 100%; min-width: 0; } /* min-width: a grid/flex child would otherwise grow to the table and push the page wide */
 .data-table { width: 100%; font-size: var(--fs-sm); }
 .data-table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
 .data-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--color-divider); vertical-align: top; }

@@ -66,6 +66,7 @@ export function CityPicker() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const btn = useRef<HTMLButtonElement>(null);
+  const input = useRef<HTMLInputElement>(null);
   const nav = useCityNav();
   const close = () => { setOpen(false); btn.current?.focus(); };
   const pick = (c: CitySummary) => { setOpen(false); nav(c); };
@@ -73,9 +74,16 @@ export function CityPicker() {
   const current = index.cities.find((c) => c.slug === route.city);
   useEffect(() => {
     if (!open) return;
+    // autoFocus only works on page load, so move focus by hand; Escape closes from anywhere in the popover
+    input.current?.focus();
     const onDoc = (e: MouseEvent) => ref.current && !ref.current.contains(e.target as Node) && setOpen(false);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
     document.addEventListener("click", onDoc);
-    return () => document.removeEventListener("click", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
   }, [open]);
   return (
     <div class="pop-anchor" ref={ref}>
@@ -86,6 +94,7 @@ export function CityPicker() {
       {open && (
         <div class="popover city-pop">
           <input
+            ref={input}
             class="input"
             role="combobox"
             aria-expanded="true"
@@ -94,7 +103,6 @@ export function CityPicker() {
             aria-label="Search cities"
             placeholder="Search cities"
             value={combo.q}
-            autoFocus
             onInput={(e) => combo.setQ((e.target as HTMLInputElement).value)}
             onKeyDown={combo.onKeyDown}
           />

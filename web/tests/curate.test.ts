@@ -8,6 +8,8 @@ describe("display curation", () => {
     expect(displayTitle("VOLUNTEERS NEEDED!!!")).toBe("Volunteers Needed!");
     expect(displayTitle("DJ NIGHT AT THE ROOFTOP")).toBe("DJ Night at the Rooftop");
     expect(displayTitle("iPhone Photo Walk")).toBe("iPhone Photo Walk");
+    expect(displayTitle("WOMEN'S Pickup Basketball")).toBe("Women's Pickup Basketball");
+    expect(displayTitle("Adult MEN'S League")).toBe("Adult Men's League");
     expect(displayTitle("Kabin — new liquor license application")).toBe("Kabin");
   });
 

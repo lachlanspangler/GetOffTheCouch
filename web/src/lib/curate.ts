@@ -31,7 +31,10 @@ export function displayTitle(t: string): string {
       .join(" ");
   } else {
     // a shouting word inside a normal title ("BINGO | Games MONDAY"); short ones are usually acronyms (NASA, YMCA)
-    s = s.replace(/\b[A-Z]{5,}\b/g, (w) => (/^(LGBTQ|NCAA|UNESCO)$/.test(w) ? w : w[0] + w.slice(1).toLowerCase()));
+    // the possessive rides along so "WOMEN'S" becomes "Women's", not "Women'S"; "MEN'S" is short but never an acronym
+    s = s.replace(/\b[A-Z]{5,}(?:'S)?\b|\b[A-Z]{2,}'S\b/g, (w) =>
+      /^(LGBTQ|NCAA|UNESCO)$/.test(w) ? w : w[0] + w.slice(1).toLowerCase(),
+    );
   }
   return s;
 }

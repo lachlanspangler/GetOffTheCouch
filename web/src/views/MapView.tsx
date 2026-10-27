@@ -10,6 +10,9 @@ import { displayPlace, displayTitle, isLeadable, isUnderway } from "../lib/curat
 import { fmtDay, fmtTime } from "../lib/time";
 import type { Event } from "../lib/types";
 
+const ONLINE = /^\s*(online|virtual|zoom|webinar|livestream|online event)\s*$/i;
+const ONLINE_TITLE = /\b(virtual|online|zoom|webinar)\b/i;
+
 export function MapView({ events }: { events: Event[] }) {
   const { feed, now } = useApp();
   const [hl, setHl] = useState<string | null>(null);
@@ -17,7 +20,8 @@ export function MapView({ events }: { events: Event[] }) {
   const pins = useMemo<Pin[]>(
     () =>
       items
-        .filter((e) => e.location.lat != null && e.location.lon != null)
+        // online events often carry the city's center as coordinates; a pin there would be a lie
+        .filter((e) => e.location.lat != null && e.location.lon != null && !ONLINE.test(e.location.venue_name ?? "") && !ONLINE_TITLE.test(e.title))
         .map((e) => ({
           id: e.id,
           lat: e.location.lat as number,
