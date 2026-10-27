@@ -1,0 +1,13 @@
+# Curated venue locations for san_francisco (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the operator's official page (`address_source`, fetched with
+# the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+- name: SF Botanical Garden
+  aliases:
+  - San Francisco Botanical Garden
+  address: 1199 9th Avenue, San Francisco, CA 94122
+  address_source: https://gggp.org/contact-us/
+  verified_at: '2026-10-27'
+  lat: 37.76642
+  lon: -122.466502
+  coords_source: 'U.S. Census geocoder: 1199 9TH AVE, SAN FRANCISCO, CA, 94122'
