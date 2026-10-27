@@ -3,4 +3,10 @@
 # (fetched 2026-10-16 with the GetOffTheCouch UA, robots.txt checked). `note` records disagreeing sources.
 # Venues without a citable number are deliberately absent (CLAUDE.md rule 1: never fabricate).
 # nyc: The Jazz Gallery checked; only event-rental aggregators (tagvenue, thevendry: 70-80 guests) found, no authoritative figure.
-[]
+- name: Zinc Bar
+  address: 82 W 3rd St, New York, NY 10012
+  address_source: https://www.zincbar.com/
+  verified_at: '2026-10-27'
+  lat: 40.72973
+  lon: -73.998836
+  coords_source: 'U.S. Census geocoder: 82 W 3RD ST, NEW YORK, NY, 10012'
