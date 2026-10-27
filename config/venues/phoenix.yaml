@@ -1,0 +1,126 @@
+# Curated venue locations for phoenix (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the operator's official locations page (`address_source`,
+# fetched with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+# Phoenix Public Library's LibCal LOCATIONs are "Room, Branch"; `venue_part: last` makes the branch the venue.
+# Desert Botanical Garden is deliberately absent: Census has no match for 1201 N Galvin Pkwy and dbg.org now
+# answers with a Cloudflare challenge (never retried).
+- name: Burton Barr Central Library
+  address: 1221 N. Central Ave., Phoenix, AZ 85004
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.461024
+  lon: -112.073782
+  coords_source: 'U.S. Census geocoder: 1221 N CENTRAL AVE, PHOENIX, AZ, 85004'
+- name: Acacia Library
+  address: 750 E. Townley Ave., Phoenix, AZ 85020
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.56601
+  lon: -112.063133
+  coords_source: 'U.S. Census geocoder: 750 E TOWNLEY AVE, PHOENIX, AZ, 85020'
+- name: Agave Library
+  aliases:
+  - Agave Story Tower
+  - Agave Activity Space
+  address: 23550 N. 36th Ave., Phoenix, AZ 85310
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  note: '"Agave Story Tower" / "Agave Activity Space" LOCATIONs come only from the Agave branch calendar (cid 15421).'
+  verified_at: '2026-10-27'
+  lat: 33.700505
+  lon: -112.138894
+  coords_source: 'U.S. Census geocoder: 23550 N 36TH AVE, GLENDALE, AZ, 85310'
+- name: Century Library
+  address: 1750 E. Highland Ave., Phoenix, AZ 85016
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+- name: Cholla Library
+  address: 10050 Metro Parkway E., Phoenix, AZ 85051
+  address_source: https://www.phoenixpubliclibrary.org/locations/cholla
+  verified_at: '2026-10-27'
+  lat: 33.57859
+  lon: -112.118926
+  coords_source: 'U.S. Census geocoder: 10050 METRO PARK E, PHOENIX, AZ, 85051'
+- name: Desert Broom Library
+  address: 29710 N. Cave Creek Rd., Phoenix, AZ 85331
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+- name: Desert Sage Library
+  address: 7602 W. Encanto Blvd., Phoenix, AZ 85035
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.472939
+  lon: -112.22296
+  coords_source: 'U.S. Census geocoder: 7602 W ENCANTO BLVD, PHOENIX, AZ, 85035'
+- name: Harmon Library
+  address: 1325 S. 5th Ave., Phoenix, AZ 85003
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.435179
+  lon: -112.080398
+  coords_source: 'U.S. Census geocoder: 1325 S 5TH AVE, PHOENIX, AZ, 85003'
+- name: Ironwood Library
+  address: 4333 E. Chandler Blvd., Phoenix, AZ 85048
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.305174
+  lon: -111.990078
+  coords_source: 'U.S. Census geocoder: 4333 E CHANDLER BLVD, PHOENIX, AZ, 85048'
+- name: Juniper Library
+  address: 1825 W. Union Hills Dr., Phoenix, AZ 85027
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.654655
+  lon: -112.098175
+  coords_source: 'U.S. Census geocoder: 1825 W UNION HILLS DR, PHOENIX, AZ, 85027'
+- name: Mesquite Library
+  address: 4525 E. Paradise Village Parkway N., Phoenix, AZ 85032
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.604954
+  lon: -111.983691
+  coords_source: 'U.S. Census geocoder: 4525 E PARADISE VILLAGE PKWY N, PHOENIX, AZ, 85032'
+- name: Ocotillo Library and Workforce Literacy Center
+  aliases:
+  - Ocotillo Library and Workforce Literacy
+  address: 102 W. Southern Ave., Phoenix, AZ 85041
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.392307
+  lon: -112.074687
+  coords_source: 'U.S. Census geocoder: 102 W SOUTHERN AVE, PHOENIX, AZ, 85041'
+- name: Palo Verde Library
+  address: 4402 N. 51st Ave., Phoenix, AZ 85031
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.500796
+  lon: -112.16889
+  coords_source: 'U.S. Census geocoder: 4402 N 51ST AVE, PHOENIX, AZ, 85031'
+- name: Prickly Pear Library
+  address: 3635 W. Baseline Rd., Phoenix, AZ 85339
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.377614
+  lon: -112.136032
+  coords_source: 'U.S. Census geocoder: 3635 W BASELINE RD, LAVEEN, AZ, 85339'
+- name: Saguaro Library
+  address: 2808 N. 46th St., Phoenix, AZ 85008
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.478667
+  lon: -111.98264
+  coords_source: 'U.S. Census geocoder: 2808 N 46TH ST, PHOENIX, AZ, 85008'
+- name: South Mountain Community Library
+  address: 7050 S. 24th St., Phoenix, AZ 85042
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.382715
+  lon: -112.030308
+  coords_source: 'U.S. Census geocoder: 7050 S 24TH ST, PHOENIX, AZ, 85042'
+- name: Yucca Library
+  address: 5648 N. 15th Ave., Phoenix, AZ 85015
+  address_source: https://www.phoenixpubliclibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 33.519756
+  lon: -112.091253
+  coords_source: 'U.S. Census geocoder: 5648 N 15TH AVE, PHOENIX, AZ, 85015'
