@@ -1268,6 +1268,7 @@ couldn't. Every page was fetched once with our UA after its robots.txt, ≥2 s p
 | https://smithsonianassociates.org/ticketing/help/locations/* (10 pages) | washington_dc | Smithsonian museum addresses (most are intersections, e.g. "14th & Constitution Ave., N.W.", which Census matches as intersections) | robots allows /ticketing/help | 2026-10-27 |
 | https://www.trumba.com/calendars/smithsonian-events.json | washington_dc | Postal Museum and Anacostia Community Museum addresses quoted in event descriptions | as `smithsonian_events` | 2026-10-27 |
 | dpr.dc.gov/page/stead-recreation-center; shilohbaptist.org; krakenkourts.com; whitlows.com; luckystrikeent.com | washington_dc | Volo venues' own addresses | robots allows them | 2026-10-27 |
+| undergroundarts.org; milkboyphilly.com; ardmoremusichall.com (homepages) | philadelphia | the three JSON-LD venues' own addresses (their events carry only "Philadelphia, PA") | robots allows them (Crawl-delay 3) | 2026-10-27 |
 | ✗ americanhistory.si.edu, asia.si.edu, postalmuseum.si.edu | washington_dc | — | 403 "Smithsonian site temporarily unavailable" (bot wall); not retried | 2026-10-27 |
 | ✗ gallaudet.edu, olqadc.org, saufhaus.com, spiderkellys.com, clarendonballroom.com | washington_dc | — | robots.txt disallows | 2026-10-27 |
 | ✗ catholic.edu | washington_dc | — | Cloudflare challenge — not attempted again | 2026-10-27 |
