@@ -63,10 +63,10 @@ describe("v2 behind the flag", () => {
   it("highlights: soon, located, different families, ≤ 2 per source, no kids", () => {
     const loc = { venue_name: "Somewhere" };
     const evs = [
-      src(ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-18T00:00:00Z" }), "a"),
-      src(ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: loc, start: "2026-10-19T00:00:00Z" }), "b"),
-      src(ev({ category: "sports_league.kickball", social: { score: 0.9 }, location: loc, start: "2026-10-20T00:00:00Z" }), "c"),
-      src(ev({ category: "music.concert", social: { score: 0.75 }, location: loc, start: "2026-10-21T00:00:00Z" }), "d"),
+      src(ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: { venue_name: "Bar A" }, start: "2026-10-18T00:00:00Z" }), "a"),
+      src(ev({ category: "trivia_games.trivia", social: { score: 0.9 }, location: { venue_name: "Bar B" }, start: "2026-10-19T00:00:00Z" }), "b"),
+      src(ev({ category: "sports_league.kickball", social: { score: 0.9 }, location: { venue_name: "Field" }, start: "2026-10-20T00:00:00Z" }), "c"),
+      src(ev({ category: "music.concert", social: { score: 0.75 }, location: { venue_name: "Club" }, start: "2026-10-21T00:00:00Z" }), "d"),
       src(ev({ category: "volunteer.one_off", social: { score: 0.85 }, location: {}, start: "2026-10-21T00:00:00Z" }), "e"), // no place
       src(ev({ category: "family.kids", tags: ["kids_teens"], social: { score: 0.9 }, location: loc, start: "2026-10-18T15:00:00Z" }), "f"),
       src(ev({ category: "arts.museum", social: { score: 0.5 }, location: loc, start: "2026-11-30T00:00:00Z" }), "g"), // too far out
@@ -77,8 +77,8 @@ describe("v2 behind the flag", () => {
     expect(fams).not.toContain("volunteer");
     expect(fams).not.toContain("family");
     expect(fams).not.toContain("arts");
-    const same = ["trivia_games.trivia", "fitness.yoga", "arts.workshop", "learning.language"].map((c, i) => ev({ category: c, social: { score: 0.9 }, location: loc, start: `2026-10-1${7 + i}T00:00:00Z` }));
-    expect(highlights(same, {}, NOW, 4)).toHaveLength(2); // one source ("s") → at most 2
+    const same = ["trivia_games.trivia", "fitness.yoga", "arts.workshop", "learning.language"].map((c, i) => ev({ category: c, social: { score: 0.9 }, location: { venue_name: `Venue ${i}` }, start: `2026-10-1${7 + i}T00:00:00Z` }));
+    expect(highlights(same, {}, NOW, 4)).toHaveLength(2); // one source ("s"), distinct venues → at most 2 in Highlights
   });
 
   it("similar: same family this week, nearest first, never the same series", () => {

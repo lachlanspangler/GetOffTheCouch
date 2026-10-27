@@ -9,8 +9,10 @@ const VARIANTS: Record<string, Partial<RankContext>> = {
   "no floor": { lastShown: undefined },
   "no explore/floor": { explore: false, lastShown: undefined },
   "λ=1 (no MMR)": { explore: false, lastShown: undefined, lambda: 1 },
-  "no source cap": { explore: false, lastShown: undefined, caps: { maxPerSource: undefined } },
-  "no caps, λ=1": { explore: false, lastShown: undefined, lambda: 1, caps: { maxPerSource: undefined, minFamilies: 0 } },
+  "old ≤2/source cap": { caps: { maxPerSource: 2, maxPerKey: undefined, maxPerFamily: undefined } },
+  "no family cap": { explore: false, lastShown: undefined, caps: { maxPerFamily: undefined } },
+  "no source/key/fam cap": { explore: false, lastShown: undefined, caps: { maxPerSource: undefined, maxPerKey: undefined, maxPerFamily: undefined } },
+  "no caps, λ=1": { explore: false, lastShown: undefined, lambda: 1, caps: { maxPerSource: undefined, maxPerKey: undefined, maxPerFamily: undefined, minFamilies: 0 } },
 };
 
 describe.skipIf(!process.env.GOTC_ABLATE)("ablation", () => {
@@ -35,7 +37,7 @@ describe.skipIf(!process.env.GOTC_ABLATE)("ablation", () => {
         }
       }
       const f = (k: keyof (typeof m)[0]) => mean(m.map((x) => x[k])).toFixed(3);
-      rows.push(`${name.padEnd(20)} ndcg ${f("ndcg")} ndcgCaps ${f("caps")} ild ${f("ild")} junk ${f("junk")}`);
+      rows.push(`${name.padEnd(24)} ndcg ${f("ndcg")} ndcgCaps ${f("caps")} ild ${f("ild")} junk ${f("junk")}`);
     }
     console.log("\n" + rows.join("\n"));
   });

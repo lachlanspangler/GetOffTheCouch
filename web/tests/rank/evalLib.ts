@@ -9,6 +9,8 @@ import { DEFAULT_PROFILE, forYou, rank, setRanker } from "../../src/lib/recommen
 import { forYouV2, highlightsV2, rankV2, type Profile, type RankContext, type Scored } from "../../src/lib/rank/index";
 import { family } from "../../src/lib/rank/profile";
 import { sim } from "../../src/lib/rank/similarity";
+import { capKey } from "../../src/lib/rank/diversify";
+import { CAPS } from "../../src/lib/rank/weights";
 import { highlights as highlightsAny } from "../../src/lib/recommend";
 
 export const FIX = join(__dirname, "fixtures");
@@ -133,7 +135,7 @@ const dcg = (gs: number[]) => gs.reduce((acc, g, i) => acc + (2 ** g - 1) / Math
 
 export interface Metrics {
   ndcg: number;
-  /** NDCG against the best list that obeys the hard caps (≤ 2 per source, ≤ 1 per series/group): how close a
+  /** NDCG against the best list that obeys the hard caps (per source, per organizer × venue, ≤ 1 per series/group): how close a
    *  rules-compliant ranker gets to the best rules-compliant list. Capped at 1 (v1 ignores the caps). */
   ndcgCaps: number;
   p10: number;
@@ -164,21 +166,26 @@ export function metrics(list: Scored[], j: Judgments, personaId: string, pool: E
   }
   ideal.sort((a, b) => b - a);
   const idcg = dcg(ideal.slice(0, k));
-  // caps-aware ideal: greedy by grade under a partition matroid (per-source cap) is optimal for DCG
+  // caps-aware ideal: greedy by grade under the hard caps (≤ CAPS.perSource per source, ≤ CAPS.perKey per
+  // organizer × venue, ≤ 1 per series/group/fp). With two nested caps greedy is a close, not always exact, bound;
+  // the soft family cap is ignored.
   const judgedPool = pool
     .map((e) => ({ e, g: grade(j, e, personaId) }))
     .filter((x): x is { e: Event; g: number } => x.g != null)
     .sort((a, b) => b.g - a.g || a.e.id.localeCompare(b.e.id));
   const perSrc = new Map<string, number>();
+  const perKey = new Map<string, number>();
   const usedK = new Set<string>();
   const capped: number[] = [];
   for (const { e, g } of judgedPool) {
     if (capped.length >= k) break;
     const keys = [e.series_id, e.rank?.group, e.rank?.fp].filter(Boolean) as string[];
     const src = e.sources[0]?.source_id ?? "";
-    if (keys.some((x) => usedK.has(x)) || (perSrc.get(src) ?? 0) >= 2) continue;
+    const ck = capKey(e);
+    if (keys.some((x) => usedK.has(x)) || (perSrc.get(src) ?? 0) >= CAPS.perSource || (perKey.get(ck) ?? 0) >= CAPS.perKey) continue;
     keys.forEach((x) => usedK.add(x));
     perSrc.set(src, (perSrc.get(src) ?? 0) + 1);
+    perKey.set(ck, (perKey.get(ck) ?? 0) + 1);
     capped.push(g);
   }
   const idcgCaps = dcg(capped);
