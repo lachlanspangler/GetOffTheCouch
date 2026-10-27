@@ -186,7 +186,7 @@ sim(a, b) =
 
 **Hard caps** applied inside the same greedy loop (skip a candidate that violates one, and relax a cap only if the pool runs out):
 - ≤ 1 per `series_id` and `group_id`.
-- ≤ 2 per source in the top 10 (≤ 1 in Highlights' top 6).
+- ≤ 2 per source in the top 10 (≤ 1 in Highlights' top 6). *Superseded by I-160 (§7.7):* ≤ 2 per organizer × venue and ≤ 3 per source in For You's top 10, a soft ≤ 3 per family, and ≤ 2 per source in Highlights.
 - ≤ 1 library-hosted event in Highlights.
 - ≥ 3 families in the top 10 (once 7 slots are filled, the remaining slots must add a new family if any candidate with `rel ≥ 0.3` exists).
 - ≤ 3 per local day in Highlights.
@@ -409,7 +409,7 @@ Store the current numbers in `tests/fixtures/ranking/baseline.json`. Update them
 These run against every snapshot and every persona, and against synthetic adversarial feeds:
 1. Nothing cancelled, postponed, past, or sold out without resale in any surface.
 2. No `kids_teens` in the top 10 unless the persona has a `family` interest.
-3. ≤ 2 per source in the top 10. ≤ 1 per series or multi-site group. ≤ 1 library in Highlights.
+3. ≤ 2 per organizer × venue and ≤ 3 per source in the top 10 (≤ 2 per source in Highlights; was ≤ 2 per source everywhere before I-160, §7.7). ≤ 1 per series or multi-site group. ≤ 1 library in Highlights.
 4. ≥ 3 families in the top 10 whenever the pool has ≥ 3 families at `rel ≥ 0.3`.
 5. No `p_low_quality ≥ 0.7` item in the top 10.
 6. A derived deadline never renders a countdown string. Every reason maps to a nonzero `contrib`. No reason contains a superlative without a reported number.
@@ -548,19 +548,23 @@ web/src/lib/rank/
 
 ### 7.3 Numbers (macro over 5 cities × 6 personas, For You top 10)
 
-| Metric | v1 | v2 | Gate |
-|---|---|---|---|
-| NDCG@10 | **0.51** | 0.46 | ≥ stored v2 − 0.02 (regression gate; see 7.5) |
-| NDCG@10 vs the best *caps-compliant* list | 0.60 | 0.55 | reported |
-| P@10 (grade ≥ 2) | 0.53 | 0.42 | ≥ stored v2 − 0.05 |
-| ILD@10 | 0.61 | **0.90** | ≥ 0.55 |
-| Family entropy@10 | 0.33 | **0.73** | ≥ 0.7 |
-| Coverage (families in all personas' top 10s ÷ pool) | 0.63 | **0.83** | ≥ 0.6 |
-| Median hours to start | 102 | **50** | ≤ 120 |
-| Stale@10 | 0 | 0 | ≤ 0.1 |
-| Junk@10, no-profile persona | 0.14 | **0.04** | ≤ 0.1 |
-| Junk@10, all personas (a 0 here often means "not this persona") | 0.28 | 0.28 | reported |
-| judged@10 | 1.00 | 0.99 | ≥ 0.8 |
+"v2 (10-16)" is the first shipped v2 (≤ 2 per source). "v2 + I-160" is the current ranker: caps by organizer × venue with a looser per-source backstop (§7.7).
+
+| Metric | v1 | v2 (10-16) | v2 + I-160 | Gate |
+|---|---|---|---|---|
+| NDCG@10 | **0.51** | 0.46 | 0.48 | ≥ stored v2 − 0.02 (regression gate; see 7.5) |
+| NDCG@10 vs the best *caps-compliant* list | 0.60 → 0.56¹ | 0.55 | 0.52¹ | reported |
+| P@10 (grade ≥ 2) | **0.53** | 0.42 | 0.45 | ≥ stored v2 − 0.05 |
+| ILD@10 | 0.61 | **0.90** | **0.90** | ≥ 0.55 |
+| Family entropy@10 | 0.33 | **0.73** | **0.73** | ≥ 0.7 |
+| Coverage (families in all personas' top 10s ÷ pool) | 0.63 | **0.83** | **0.83** | ≥ 0.6 |
+| Median hours to start | 102 | **50** | 57 | ≤ 120 |
+| Stale@10 | 0 | 0 | 0 | ≤ 0.1 |
+| Junk@10, no-profile persona | 0.14 | **0.04** | 0.06 | ≤ 0.1 |
+| Junk@10, all personas (a 0 here often means "not this persona") | 0.28 | 0.28 | 0.27 | reported |
+| judged@10 | 1.00 | 0.99 | 0.98 | ≥ 0.8 |
+
+¹ The caps-compliant ideal follows the shipped caps, so I-160 changed its denominator (the looser caps admit a better ideal list); v1's number under the new ideal is 0.56.
 
 **Highlights (the cold-start front page, top 6, newcomer persona), NDCG@6:**
 
@@ -573,7 +577,7 @@ web/src/lib/rank/
 | Seattle | 0.44 | 0.39 |
 | **Mean** | **0.46** | **0.64** |
 
-Highlights junk falls from 0.10 to 0.
+Highlights junk falls from 0.10 to 0. I-160 leaves every Highlights number unchanged (it keeps ≤ 2 per source in the top 6).
 
 ### 7.4 What costs relevance: ablation (`npm run eval:ablate`)
 
@@ -590,7 +594,7 @@ Highlights junk falls from 0.10 to 0.
 - The v2 score orders events better than v1: 0.56 vs 0.51 at equal (zero) diversity.
 - Nearly all of the For You NDCG loss comes from the **≤ 2-per-source hard cap** (−0.075). The exploration slot costs another −0.012.
 - Some feeds put every relevant item for a persona in one source: Austin trivia (`challenge_trivia_austin`), Minneapolis kids programs (`hclib_events`), NYC leagues (`volo_nyc`) and Seattle bar games (`visit_ballard_events`). In those, v1's top 10 was often ten near-identical items, which NDCG rewards and a newcomer wouldn't.
-- The cap is a golden rule (§3.3.3), so it stays.
+- The cap is a golden rule (§3.3.3), so it stays. *I-160 (§7.7) reworked it into a cap on organizer × venue, which recovers part of the loss.*
 
 **The rollout gate in §5.4.4 ("v2 must beat v1 on NDCG@10 and ILD") is not met for For You.** It is met for Highlights (+0.18 NDCG@6), and ILD, entropy, coverage, freshness and junk improve everywhere.
 
@@ -628,6 +632,70 @@ v2 is on by default because the task asked for it, Highlights is the surface peo
 - **The live feeds don't carry hints yet.** Until the next export, `rank` is absent and v2 falls back to neutral values for completeness, quality and reliability. Hard-noise and dup collapse only kick in after the pipeline runs with schema 1.5.0.
 - **`src_rel` is null everywhere today,** because reliability needs ≥ 3 runs per unit in 30 days.
 - **Category mistakes in the data hurt more than any weight.** Examples: "MNsure Help" filed as a hike, "Indigo Girls" as a festival, "Drop-in Tech Help" as volunteering. Fixing classification upstream is the cheapest relevance win left.
+
+### 7.7 I-160: cap by organizer × venue, not by listing source (2026-10-27)
+
+**Problem.** §7.4 showed that the ≤ 2-per-source cap cost For You 0.075 NDCG@10. Aggregator feeds list many independent things: library branches, parks, Volo's fields, Challenge Trivia's 13 bars, HandsOn's and NYC Service's charities, Earshot Jazz's 42 venues. Capping them as if each feed were one venue throws away good picks.
+
+**What the snapshots say about the key.**
+- `organizer` is set on all but 36 of 2,818 events (counting placeholders like "--" as missing). For single-owner aggregators it's the feed owner on every row ("Hennepin County Library", "Volo Sports", "Challenge Entertainment", "NYC Parks"). An *organizer-first* key (organizer, else venue, else source) is therefore the source cap again for exactly the feeds I-160 is about. In-sample it was the worst key: 0.40–0.48 NDCG@10, depending on the caps.
+- `venue_id` or a venue name is present on 83% of rows. Most of the rest are whole feeds with no venue (HandsOn, NYC permits, Dakota), where organizer carries the signal instead. No event lacks both, so the source fallback never fires on these snapshots.
+- So the key is **organizer × venue** (`diversify.ts capKey`): normalized organizer plus `venue_id` (else the venue name, ignoring placeless names like "Online"). The listing source is used only when both are missing. "Venue first" scored within 0.003 of it in-sample, but it ignores organizer, so it would merge HandsOn's charities into one key.
+- **The `group` hint** (same program, same day, 2+ venues) already allows only 1 per group. That's why a key per branch can't let one storytime fill the list. Series and fingerprints stay at ≤ 1 too.
+
+**Caps** (`weights.ts CAPS`, per 10 slots):
+- ≤ 2 per organizer × venue. This is hard, and a one-room venue feed has one key, so it stays at 2 as before.
+- ≤ 3 per listing source. A hard backstop so one feed still can't take more than 30%.
+- ≤ 3 per family. A *soft* cap, relaxed only if the pool runs out, For You only. In the sweep, every looser-source config without it failed the family-entropy gate (0.60–0.68 against a gate of 0.7). Loosening the source cap mostly lets one family back in, and entropy, not the source cap, was the next binding constraint.
+- Highlights keeps ≤ 2 per source in its top 6. Its sweep showed ≤ 0.008 gain from loosening, and Seattle fell.
+
+**Tuning discipline** (`npm run eval:ablate`, the "I-160 cap sweep"):
+- The key was fixed on the data argument above, not tuned.
+- The grid: per-key cap {1, 2} × per-source cap {2, 3, 4, 5, 10} × soft family cap {none, 3, 4, 5}, plus the old cap.
+- Leave-one-city-out: each fold picks the best mean NDCG on the other 4 cities among configs that pass the ILD, entropy and no-profile-junk gates there, then scores the held-out city.
+
+| Held-out city | Fold's pick | In-sample (other 4) | Held-out | Old cap |
+|---|---|---|---|---|
+| Minneapolis | key ≤ 1, source ≤ 3, family ≤ 4 | 0.456 | 0.574 | 0.529 |
+| NYC | key ≤ 1, source ≤ 10, family ≤ 4 | 0.530 | 0.393 | 0.373 |
+| Chicago | key ≤ 1, source ≤ 10, family ≤ 3 | 0.485 | 0.451 | 0.482 |
+| Austin | key ≤ 1, source ≤ 10, family ≤ 3 | 0.466 | 0.526 | 0.528 |
+| Seattle | key ≤ 2, source ≤ 3, family ≤ 3 | 0.491 | 0.414 | 0.379 |
+| **Mean** | | | **0.471** | **0.458** |
+
+**Reading the sweep.**
+- The procedure generalizes: held-out +0.013 over the old cap.
+- The folds disagree on the exact caps, so the surface is flat near the top, and all-city in-sample differences of 0.005 are noise.
+- The shipped config is *key ≤ 2, source ≤ 3, family ≤ 3*: in-sample 0.476 against a best of 0.480 among gate-passing configs.
+- Why that one: of the gate-passing configs within 0.005 of the best, it has the smallest worst-city drop vs the old cap (Chicago −0.019; the others drop −0.03 somewhere). The one config with a smaller drop (−0.010) sits exactly on the entropy gate (0.700).
+- Per city (old → new): Minneapolis 0.529 → 0.580, NYC 0.373 → 0.383, Chicago 0.482 → 0.463, Austin 0.528 → 0.539, Seattle 0.379 → 0.414.
+
+**Results, For You top 10** (in-sample over 5 cities × 6 personas; the held-out estimate is the LOCO mean above):
+
+| | v1 | v2 old cap | v2 + I-160 |
+|---|---|---|---|
+| NDCG@10 | 0.510 | 0.458 | **0.476** (held-out 0.471) |
+| P@10 | 0.53 | 0.42 | **0.45** |
+| ILD@10 | 0.61 | 0.90 | 0.90 |
+| Family entropy@10 | 0.33 | 0.73 | 0.73 |
+| Junk@10, no profile | 0.14 | 0.04 | 0.06 |
+| Highlights NDCG@6 | 0.46 | 0.64 | 0.64 |
+
+**Ablation after I-160:**
+
+| Variant | NDCG@10 | ILD@10 | Junk@10 |
+|---|---|---|---|
+| shipped | 0.476 | 0.90 | 0.27 |
+| without the exploration slot | 0.489 | 0.89 | 0.25 |
+| without exploration and the family cap | 0.505 | 0.86 | 0.22 |
+| without exploration and the source, key and family caps | 0.533 | 0.75 | 0.19 |
+| pure v2 score (no caps, no MMR, no exploration) | 0.560 | 0.61 | 0.16 |
+
+**The goal (For You NDCG@10 ≥ v1) is not met.**
+- I-160 closes 0.018 of the 0.052 gap in-sample (0.013 held-out).
+- What's left is the price of the family-entropy gate (≈ 0.016–0.03) and the exploration slot (0.013), not the source cap.
+- Reaching v1 under these labels would mean lowering the entropy gate below 0.7, or dropping exploration. Both are product decisions, not tuning, so they weren't made here.
+- The λ sweep under the new caps still puts λ at 0.85–0.95 in every fold, so λ stays at 0.9.
 
 ---
 
