@@ -1,0 +1,60 @@
+# Curated venue locations for salt_lake_city (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the operator's official locations page (`address_source`,
+# fetched with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+- name: The City Library – Main Library
+  address: 210 East 400 South, Salt Lake City, UT 84111
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.760594
+  lon: -111.885288
+  coords_source: 'U.S. Census geocoder: 210 E 400 S, SALT LAKE CITY, UT, 84111'
+- name: The City Library – Anderson-Foothill Branch
+  address: 1135 South 2100 East, Salt Lake City, UT 84108
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.744224
+  lon: -111.830627
+  coords_source: 'U.S. Census geocoder: 1135 S 2100 E, SALT LAKE CITY, UT, 84108'
+- name: The City Library – Chapman Branch
+  address: 577 South 900 West, Salt Lake City, UT 84104
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.756805
+  lon: -111.916747
+  coords_source: 'U.S. Census geocoder: 577 S 900 W, SALT LAKE CITY, UT, 84104'
+- name: The City Library – Sweet Branch
+  aliases:
+  - The City Library – Corinne & Jack Sweet Branch
+  address: 455 F Street, Salt Lake City, UT 84103
+  address_source: https://www.slcpl.org/locations
+  note: The page lists "455 F Street (9th Ave)"; the cross-street hint is dropped for geocoding.
+  verified_at: '2026-10-27'
+  lat: 40.779693
+  lon: -111.876131
+  coords_source: 'U.S. Census geocoder: 455 F ST, SALT LAKE CITY, UT, 84103'
+- name: The City Library – Day-Riverside Branch
+  address: 1575 West 1000 North, Salt Lake City, UT 84116
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.791012
+  lon: -111.935739
+  coords_source: 'U.S. Census geocoder: 1575 W 1000 N, SALT LAKE CITY, UT, 84116'
+- name: The City Library – Glendale Branch
+  address: 1375 South Concord, Salt Lake City, UT 84104
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.74039
+  lon: -111.92698
+  coords_source: 'U.S. Census geocoder: 1375 S CONCORD ST, SALT LAKE CITY, UT, 84104'
+- name: The City Library – Marmalade Branch
+  address: 280 West 500 North, Salt Lake City, UT 84103
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.780268
+  lon: -111.899127
+  coords_source: 'U.S. Census geocoder: 280 W 500 N, SALT LAKE CITY, UT, 84103'
+- name: The City Library – Sprague Branch
+  address: 2131 South 1100 East, Salt Lake City, UT 84106
+  address_source: https://www.slcpl.org/locations
+  verified_at: '2026-10-27'
