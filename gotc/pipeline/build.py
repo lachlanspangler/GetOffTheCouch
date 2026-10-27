@@ -251,6 +251,14 @@ def build_city(
         v = venue_by_id.get(cl.venue_id or "")
         if v is not None:
             ev.venue_id = v.id
+            if ev.location.lat is None and v.lat is not None and v.lon is not None:
+                # a venue we know (curated config/venues file, or another listing at the same venue) places an event
+                # that only named it: no Nominatim needed
+                ev.location.lat, ev.location.lon = v.lat, v.lon
+                ev.location.address = ev.location.address or v.address
+                ev.location.geocode_method = Method.CURATED if v.capacity_source or v.address else Method.DERIVED
+                ev.location.geocode_confidence = 0.9 if v.address else 0.7
+                stats.geocoded += 1
         snaps = _snapshots(db, city.slug, cl.members)
         ev.tickets, ev.price_trend = ticket_signal(ev, snaps, now)
         reported = next((m.reported_attendance for m in cl.members if m.reported_attendance), None)
