@@ -44,6 +44,7 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
                     return <li key={slug}><a href={url(`${city}/${slug}/`)}>{h.label}</a></li>;
                   })}
                   <li><a href={build({ city, view: "deadlines" })}>Sign-up deadlines</a></li>
+                  <li><a href={url(`${city}/new.xml`)}>New listings (RSS/Atom)</a></li>
                 </ul>
               </>
             ) : (

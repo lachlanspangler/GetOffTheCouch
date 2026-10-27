@@ -91,9 +91,9 @@ export function vonsaleFor(e: Event, now: Date = new Date()): string[] {
 
 export function calendar(
   events: Event[],
-  opts: { mode?: "events" | "deadlines" | "both"; name?: string } = {},
+  opts: { mode?: "events" | "deadlines" | "both"; name?: string; refreshHours?: number; now?: Date } = {},
 ): string {
-  const now = new Date();
+  const now = opts.now ?? new Date();
   const mode = opts.mode ?? "both";
   const body: string[] = [];
   for (const e of events) {
@@ -103,9 +103,11 @@ export function calendar(
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//GetOffTheCouch//ur city made easy//EN",
+    "PRODID:-//Get Off the Couch//Your city, made easy//EN",
     "CALSCALE:GREGORIAN",
-    `X-WR-CALNAME:${esc(opts.name ?? "GetOffTheCouch")}`,
+    `X-WR-CALNAME:${esc(opts.name ?? "Get Off the Couch")}`,
+    // a subscribed calendar (I-116) tells apps how often to re-check
+    ...(opts.refreshHours ? [`REFRESH-INTERVAL;VALUE=DURATION:PT${opts.refreshHours}H`, `X-PUBLISHED-TTL:PT${opts.refreshHours}H`] : []),
     ...body,
     "END:VCALENDAR",
   ]

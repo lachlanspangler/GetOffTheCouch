@@ -35,3 +35,12 @@ describe("on-sale reminders", () => {
     expect(out).toContain("TRIGGER:-PT15M");
   });
 });
+
+describe("subscribed calendars (I-116)", () => {
+  it("tells calendar apps how often to refresh", () => {
+    const text = calendar([], { mode: "deadlines", name: "Testville deadlines", refreshHours: 6 });
+    expect(text).toContain("REFRESH-INTERVAL;VALUE=DURATION:PT6H");
+    expect(text).toContain("X-PUBLISHED-TTL:PT6H");
+    expect(calendar([], {})).not.toContain("REFRESH-INTERVAL");
+  });
+});

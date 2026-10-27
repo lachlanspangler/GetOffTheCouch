@@ -24,3 +24,5 @@ export function render(path: string, index: Index, feed: CityFeed | null, now: D
 
 export { headFor } from "./lib/seo";
 export { eventPath } from "./lib/site";
+export { calendar } from "./lib/ics";
+export { deadlines } from "./lib/filters";

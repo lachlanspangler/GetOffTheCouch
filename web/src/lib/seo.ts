@@ -24,6 +24,7 @@ export interface Head {
   robots: "index,follow" | "noindex,follow";
   ogType: "website" | "article";
   jsonld: object[];
+  feedUrl?: string; // Atom feed of new listings for city pages (I-116)
 }
 
 /** Kinds that are real events a person can attend on a date. Openings, seasons and deadlines never get Event markup. */
@@ -117,7 +118,7 @@ export function headFor(route: Route, index: Index, feed: CityFeed | null, event
     description = clip(`${DEFAULT_DESC} ${index.cities.length} cities.`);
   }
   if (route.unknown) robots = "noindex,follow";
-  return { title: pageTitle(route, feed, event, now), description, canonical, robots, ogType: event ? "article" : "website", jsonld };
+  return { feedUrl: feed ? absolute(`${feed.city}/new.xml`) : undefined, title: pageTitle(route, feed, event, now), description, canonical, robots, ogType: event ? "article" : "website", jsonld };
 }
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -140,6 +141,7 @@ export function headHtml(h: Head, image?: string): string {
     `<meta property="og:url" content="${esc(h.canonical)}" />`,
     ...(image ? [`<meta property="og:image" content="${esc(image)}" />`, `<meta property="og:image:width" content="1200" />`, `<meta property="og:image:height" content="630" />`] : []),
     `<meta name="twitter:card" content="${image ? "summary_large_image" : "summary"}" />`,
+    ...(h.feedUrl ? [`<link rel="alternate" type="application/atom+xml" title="New listings" href="${esc(h.feedUrl)}" />`] : []),
     ...h.jsonld.map((j) => `<script type="application/ld+json">${safeJson(j)}</script>`),
   ];
   return tags.join("\n    ");

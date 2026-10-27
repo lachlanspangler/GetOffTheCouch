@@ -35,6 +35,17 @@ function page(html, head) {
     .replace('<div id="app"></div>', () => `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>`);
 }
 
+const xesc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+function atom(feed, events) {
+  const self = `${origin}${base}${feed.city}/new.xml`;
+  const entries = events.map((e) => {
+    const link = `${origin}${base}${ssr.eventPath(feed.city, e.id, e.title)}`;
+    const when = new Intl.DateTimeFormat("en-US", { timeZone: e.timezone, weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(e.start));
+    return `  <entry><id>${link}</id><title>${xesc(e.title)}</title><link href="${link}"/><updated>${e.first_seen}</updated><summary>${xesc(`${when}${e.location.venue_name ? ` · ${e.location.venue_name}` : ""}`)}</summary></entry>`;
+  });
+  return `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <id>${self}</id>\n  <title>New in ${xesc(feed.city_name)} · Get Off the Couch</title>\n  <link rel="self" href="${self}"/>\n  <link href="${origin}${base}${feed.city}/"/>\n  <updated>${index.generated_at}</updated>\n${entries.join("\n")}\n</feed>\n`;
+}
+
 let files = 0;
 let bytes = 0;
 const sitemap = new Map(); // city ("" for site) → [{loc, lastmod}]
@@ -76,6 +87,14 @@ for (const c of index.cities) {
   if (feed.is_demo) continue;
   const lm = day(feed.generated_at ?? index.generated_at);
   renderPath(`${c.slug}/`, feed, lm);
+  // I-116: subscribable calendar of published sign-up deadlines (refreshes in the user's calendar app)
+  const dl = ssr.deadlines(feed.events, now).filter((d) => !d.derived && d.kind !== "opens");
+  const dlEvents = [...new Map(dl.map((d) => [d.event.id, d.event])).values()];
+  mkdirSync(join(dist, c.slug), { recursive: true });
+  writeFileSync(join(dist, c.slug, "deadlines.ics"), ssr.calendar(dlEvents, { mode: "deadlines", name: `${feed.city_name} sign-up deadlines · Get Off the Couch`, refreshHours: 6, now }));
+  // and an Atom feed of newly listed events
+  const fresh = feed.events.filter((e) => e.is_new && e.kind !== "opening").sort((a, b) => b.first_seen.localeCompare(a.first_seen)).slice(0, 50);
+  writeFileSync(join(dist, c.slug, "new.xml"), atom(feed, fresh));
   for (const h of HUBS) renderPath(`${c.slug}/${h}/`, feed, lm);
   for (const v of VIEWS) renderPath(`${c.slug}/${v}/`, feed, lm);
   const until = now.getTime() + HORIZON_DAYS * 86_400_000;

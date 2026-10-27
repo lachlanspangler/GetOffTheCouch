@@ -13,6 +13,8 @@ import { cardSignals, closesPhrase } from "../lib/signals";
 import { fmtDay } from "../lib/time";
 import type { Event } from "../lib/types";
 import { build } from "../lib/router";
+import { absolute } from "../lib/site";
+import { useState } from "preact/hooks";
 import { displayTitle, isLeadable } from "../lib/curate";
 
 const KIND = { closes: "Registration closes", early_bird: "Early-bird price ends", opens: "Registration opens" };
@@ -95,6 +97,22 @@ function groupRows(items: DeadlineItem[], tz: string): { lead: DeadlineItem; gro
   return out;
 }
 
+/** I-116: a calendar subscription that keeps itself current, instead of a one-off download. */
+function Subscribe({ city, cityName }: { city: string; cityName: string }) {
+  const [msg, setMsg] = useState<string | null>(null);
+  const https = absolute(`${city}/deadlines.ics`);
+  const webcal = https.replace(/^https?:/, "webcal:");
+  return (
+    <div class="actions row">
+      <a class="btn btn-secondary" href={webcal}><Icon name="calendarPlus" size={16} /> Subscribe in your calendar</a>
+      <button class="btn btn-quiet" onClick={async () => { try { await navigator.clipboard.writeText(https); setMsg("Link copied"); } catch { setMsg(https); } }}>
+        {msg ?? "Copy the calendar link"}
+      </button>
+      <span class="small muted">New {cityName} deadlines appear on their own. In Google Calendar: Other calendars → From URL.</span>
+    </div>
+  );
+}
+
 export function Deadlines({ events }: { events: Event[] }) {
   const { feed, now } = useApp();
   if (!feed) return null;
@@ -112,6 +130,7 @@ export function Deadlines({ events }: { events: Event[] }) {
       <header class="page-head inner">
         <h1>Deadlines</h1>
         <p class="lede">League sign-ups, registration cutoffs and early-bird prices in {feed.city_name}, soonest first. Just moved? The <a href="#state">state paperwork deadlines</a> are below.</p>
+        <Subscribe city={feed.city} cityName={feed.city_name} />
       </header>
       {!published.length && (
         <div class="empty">
