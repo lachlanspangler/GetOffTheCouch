@@ -212,6 +212,9 @@ def build_city(
         )
         for r in db.all("SELECT * FROM venue_refs WHERE city = ?", (city.slug,))
     ]
+    # venues learned by earlier builds never shadow a curated name/alias: an alias ("Main Library") may have been
+    # stored as its own venue (own id, no coordinates) before it was curated, and the last entry per norm wins
+    known = {v.id for v in venues} | {v.norm for v in venues}
     venues += [
         VenueEntity(
             r["id"],
@@ -224,7 +227,7 @@ def build_city(
             r["capacity_source"],
         )
         for r in db.all("SELECT * FROM venues WHERE city = ?", (city.slug,))
-        if not any(v.id == r["id"] for v in venues)
+        if r["id"] not in known and r["norm_name"] not in known
     ]
     venue_of = resolve_venues(records, city, venues)
     clusters = cluster_events(records, venue_of, city.timezone)
