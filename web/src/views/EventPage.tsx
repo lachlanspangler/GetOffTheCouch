@@ -15,6 +15,7 @@ import { bandLabel, confidenceWord, count, OFFER_KIND, offerPrice, sourceName } 
 import { calendar, download, slug } from "../lib/ics";
 import { dismiss, recordSignal, similar, undismiss } from "../lib/recommend";
 import { build } from "../lib/router";
+import { DEFAULT_FILTERS } from "../lib/filters";
 import { cardSignals } from "../lib/signals";
 import { absolute, eventPath } from "../lib/site";
 import { age, fmtDateLong, fmtDay, fmtTime, fmtTimeRange, relative } from "../lib/time";
@@ -131,7 +132,16 @@ export function EventPage({ e }: { e: Event }) {
   const shareUrl = absolute(eventPath(city, e.id, e.title));
   const doShare = async () => setShareMsg(await share(e.title, shareUrl));
   const ics = () => (recordSignal(e, "calendar"), download(`${slug(e.title)}.ics`, calendar([e], { name: e.title })));
-  const tags = (e.tags ?? []).map((t) => index.tags[t]).filter(Boolean);
+  const tags = (e.tags ?? []).map((t) => index.tags[t]).filter((t) => t && !/selling fast/i.test(t));
+  // I-147: an organizer's track record with us, from the data (how many upcoming listings, since when)
+  const org = e.organizer
+    ? (() => {
+        const mine = [...byId.values()].filter((x) => x.organizer === e.organizer && new Date(x.end ?? x.start) >= now);
+        const upcoming = new Set(mine.map((x) => x.series_id ?? x.id)).size;
+        const since = mine.reduce((m, x) => (x.first_seen < m ? x.first_seen : m), e.first_seen);
+        return { upcoming, since };
+      })()
+    : null;
   return (
     <div class="container event-page">
       <ol class="breadcrumb">
@@ -168,7 +178,6 @@ export function EventPage({ e }: { e: Event }) {
                 {summary.length > 600 && (
                   <button class="link-btn small" style={{ marginTop: "8px" }} onClick={() => setMore(!more)}>{more ? "Show less" : "Read more"}</button>
                 )}
-                {e.organizer && <p class="small secondary" style={{ marginTop: "12px" }}>Organized by {e.organizer}</p>}
               </section>
             )}
             {why.length > 0 && (
@@ -205,6 +214,18 @@ export function EventPage({ e }: { e: Event }) {
                     <dd>
                       {e.social.score >= 0.75 ? "Very good" : e.social.score >= 0.5 ? "Good" : "So-so"} for meeting people
                       {!!e.social.reasons?.length && <span class="how">{e.social.reasons.map((r) => r.charAt(0).toUpperCase() + r.slice(1)).join(". ")}.</span>}
+                    </dd>
+                  </div>
+                )}
+                {org && (
+                  <div>
+                    <dt>Organizer</dt>
+                    <dd>
+                      {e.organizer}
+                      <span class="how">
+                        {org.upcoming > 1 ? `${org.upcoming} upcoming listings` : "This is their only upcoming listing"} · listed here since {fmtDay(org.since, tz)}
+                        {org.upcoming > 1 && <> · <a href={build({ city, view: "feed", filters: { ...DEFAULT_FILTERS, q: e.organizer ?? "", when: "month" } })}>See them all</a></>}
+                      </span>
                     </dd>
                   </div>
                 )}
