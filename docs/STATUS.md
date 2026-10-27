@@ -1,5 +1,157 @@
 # Status
 
+## Milestone summary: 2026-10-27, end of session 5 ("land it")
+
+**State:** `main` is 229 commits ahead of `origin/main`, the tree is clean, and there are no other branches or
+worktrees. Nothing is pushed. On fresh data (pipeline runs 46–49, 2026-10-27) the site has **35,224 upcoming events
+in 50 cities**. **7 are live** (Boston, Los Angeles, Minneapolis, NYC, San Francisco, San Jose, Seattle) and
+**43 are beta**. Every beta city fails G10 (48 h of green runs in CI), which can't pass before the push.
+- **5 fail only G10:** Atlanta, Baltimore, Charlotte, San Diego and Washington, DC. The gate promotes them by itself
+  about 2 days after the push.
+- **The rest also have breadth gaps:**
+  - G3 categories: 32 cities
+  - G4 newcomer pillars: 27
+  - G5 published deadlines: 23
+  - G1 official sources: 13
+  - G8 geocoding: 10
+
+Beta cities are shown and labeled, not hidden.
+
+**Green on the final tree:**
+- **`make check`:** 679 pytest, 302 vitest and the ranking eval (For you NDCG@10 0.476).
+- **Playwright + axe:** 72/72, desktop and mobile, light and dark.
+- **Production build** (`GOTC_BASE=/GetOffTheCouch/`):
+  - 16,441 pre-rendered pages and 3,834 share cards.
+  - **check-dist:** 0 problems, 697 MB (the guard fails at 800 MB; Pages' limit is 1 GB).
+- **Budgets:** green.
+  - Pre-rendered first view: 29.9 KB of 150 KB.
+  - Client-rendered first view (NYC): 286 KB of 320 KB.
+- **actionlint:** clean.
+
+### What this session did
+1. **Recovered the cut-off session.**
+   - Reviewed and merged the two unmerged agent branches and both locked worktrees, salvaging their uncommitted
+     work: OG share cards (I-115), coverage groups 1, 1b and 3, and the Session 4 SOURCES notes.
+   - Removed every worktree and branch.
+2. **Fresh data, fully green.**
+   - The real causes behind the failures:
+     - stale demo data broke the contract test;
+     - the new Eventbrite unit had never run, so G9 failed in every city;
+     - 5 dead units are now disabled with evidence (robots `/*?`, 403s, a format change, 0 records);
+     - Mesa Arts Center copies the showtime into "on sale", so 62 of 63 Phoenix "opens" deadlines were fake.
+   - **Pre-render horizon:** cut from 60 to 30 days. At 60 days the build was 727 MB with share cards.
+   - **Client-rendered first-view budget:** a measured 320 KB.
+3. **Finished last session's list.**
+   - **Beta cities:** worked city by city with curated venue files (G8). 31 cities now have venue files: library branches,
+     arenas and clubs with cited addresses and Census coordinates.
+   - **Ranking:** I-160 caps by organizer × venue (For you 0.458 → 0.476).
+   - **Share cards:** I-115 OG images.
+   - **Critique items:**
+     - one category vocabulary;
+     - per-source university allowlists;
+     - dated "This weekend" titles.
+   - **Keys-ready:**
+     - The Ticketmaster, SeatGeek, RunSignup and new **Eventbrite** adapters all work the moment a key is in `.env`.
+     - Without one they show "needs KEY", not broken (end-to-end tested).
+     - Secrets are redacted from stored URLs.
+   - **Also built:**
+     - I-116 subscribable `deadlines.ics` and `new.xml`;
+     - I-147 organizer track record;
+     - I-171 `/cities/` coverage page;
+     - "New since your last visit";
+     - a varied dozen per busy day.
+4. **Reviews.**
+   - **Fresh design review:** walked 5 cities as a new resident (Chicago, Atlanta, Phoenix, Seattle, Kansas City),
+     on desktop and phone, light and dark. Full list with statuses: `docs/research/CRITIQUE_round5.md`.
+     - **Fixed:** 5 of 11 must-fixes (fake deadlines, casing, switcher keyboard and focus, phone overflow on
+       /cities/, online events on the map).
+     - **Open:** the other 6 must-fixes and the should-fixes. I stopped there because of the time box.
+   - **Fresh code review (first-push safety):** every must-fix and should-fix is fixed except one, which is
+     documented instead (`max-parallel`, see the post-push checklist).
+5. **First push made safe.**
+   - **CI:** would have gone red on the first push (4 Playwright failures from a footer label clash). Fixed.
+   - **Publish timeout:** 90 min. A cold-cache first run measured about 22 min of build plus 7 min of web build.
+   - **Delta merge:** if every shard delta is refused, publish now fails instead of deploying stale data over the
+     state.
+   - **Raw cache:** one entry per 6 h instead of per run.
+   - **Delta SQL:** cities match exactly.
+   - **Share cards:** a crashed worker fails the build with a clear message.
+   - **Auto-opened issues:** capped at 10 per run.
+   - **Dry-run locally:**
+     - the shard → delta → merge flow, on a copy of the live `pipeline-state` DB (migrations 005/006 apply);
+     - `gotc shards` (13 shards);
+     - a cold-cache publish build;
+     - actionlint.
+
+### After you push: step by step
+The full list is in **`docs/PUSH_CHECKLIST.md`**. In short:
+1. **Before:**
+   - Settings → Pages → Source: **GitHub Actions**.
+   - Settings → Actions → General → Workflow permissions: **Read and write**.
+   - Optional repo secrets: `TICKETMASTER_API_KEY`, `SEATGEEK_CLIENT_ID`, `RUNSIGNUP_API_REG`,
+     `RUNSIGNUP_API_REG_SECRET`, `EVENTBRITE_TOKEN`, `SOCRATA_APP_TOKEN`.
+2. **Push, then watch:** Actions → **CI** goes green (both jobs).
+3. **First refresh:** Actions → **Refresh data** → **Run workflow**.
+   - Expect about 13 shards in 2 waves, then `publish` for 30–45 min (timeout 90).
+   - The job summary shows HEALTH, check-dist (0 problems) and budgets.
+4. **Check:**
+   - `/GetOffTheCouch/`, a city page, an event page and `/GetOffTheCouch/cities/`;
+   - view source for real HTML;
+   - an old `#/` link redirects;
+   - `deadlines.ics` downloads.
+5. **Over 48 h:** hourly runs stay green and beta cities get promoted on their own (watch `/cities/`).
+   - The 10 cities already deployed are incumbents: they stay live for 7 days while they build a record.
+6. **Fallback:** Actions → **Refresh data (monolithic fallback)** → Run workflow. To schedule it instead:
+   - uncomment its `schedule:` line;
+   - comment out the one in `refresh.yml`;
+   - push.
+
+   Both share the same state branch and concurrency group. If the state is ever corrupt, delete the
+   `pipeline-state` branch; the next run starts fresh.
+
+### What I need from you
+1. **Keys.**
+   - `TICKETMASTER_API_KEY` and `SEATGEEK_CLIENT_ID`: free, instant.
+   - `RUNSIGNUP_API_REG` + `_SECRET`: free registration. This alone would give race deadlines in every city, which
+     is G5's biggest gap.
+   - `EVENTBRITE_TOKEN`, plus the organizer ids you want, under `eventbrite.params.organizers` in
+     `config/sources.yaml`. Eventbrite has no public search API.
+   - `SOCRATA_APP_TOKEN` (optional).
+2. **Domain decision:** stay on `lachlanspangler.github.io/GetOffTheCouch/`, or a custom domain. A custom domain
+   means setting `GOTC_BASE=/` in `refresh.yml` and adding a CNAME.
+3. **Judgment calls:**
+   - **weather.gov:** its robots.txt is `Disallow: /`, but its API docs ask apps to call it, so we still do
+     (1 forecast per city every 3 h). Confirm, or I'll turn it off.
+   - **Venue ownership:** Roseland Theater (Portland) and Kentucky Performing Arts are kept as the venue's own
+     sites, despite a "Live Nation Presents" label. Confirm.
+   - **G1 "official" sources:** should library LibCal hosts count? They'd clear G1 in several cities.
+   - **Ranking:** For you scores 0.476 vs v1's 0.51 because of the exploration slot and entropy gate. Keep them for
+     diversity (my call) or drop them for NDCG.
+   - **`max-parallel: 13`** in refresh.yml, for one shard wave, once runs are reliably green.
+4. **Outreach** (unchanged; it unlocks the most coverage):
+   - AEG Presents
+   - LeagueLab
+   - LeagueApps clubs
+   - Simpleview boards
+   - Geeks Who Drink / King Trivia
+   - Galaxy Digital tenants
+   - Volo's partner feed
+
+### What's next
+1. **The rest of design review round 5** (`docs/research/CRITIQUE_round5.md`).
+   - **Classifier precedence:** venue type and source category beat a title keyword. Check it with the ranking eval.
+   - **Category gaps:** sports, comedy, outdoor vs indoor.
+   - **Junk venue strings and Kansas City away games.**
+   - **Duplicate collapse.**
+   - **Honest day counts:** from the whole filtered set.
+   - **Plan audience filter.**
+2. **Beta → live:** G3/G4/G5 breadth gaps (leagues, cons and faires, published deadlines) in the cities that fail
+   them. RunSignup and Eventbrite keys close a lot of that.
+3. **Real-data pre-render in CI:** today satori/resvg and the inline-data path first run on real data in production
+   publish.
+4. **Exact inline data:** only 1,905 of 16,441 pages get it. Widen the partials.
+5. **Slimmer cards (I-219):** bring the NYC client-rendered first view back toward 150 KB.
+
 ## Milestone summary: 2026-10-17, end of session 3 ("big quality leap")
 
 **What's real today:** 36,161 upcoming events in **50 US metros** (the top 50 by population), from 791 configured

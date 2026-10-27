@@ -14,6 +14,7 @@ Nothing in the repo settings needs to change.
   - `TICKETMASTER_API_KEY`
   - `SEATGEEK_CLIENT_ID`
   - `RUNSIGNUP_API_REG` and `RUNSIGNUP_API_REG_SECRET`
+  - `EVENTBRITE_TOKEN`. Eventbrite only reads organizers you list: add their ids under `eventbrite.params.organizers` in `config/sources.yaml`.
   - `SOCRATA_APP_TOKEN`
 
   Each source without its key shows as "Waiting on an API key", not as broken.
@@ -29,8 +30,10 @@ Nothing in the repo settings needs to change.
 - [ ] **`shard (…)`** jobs: each fetches its cities and uploads a `shard-N` artifact.
   - The first run is the slowest: most of the 50 cities have never run in CI. Each shard stops itself at 20 minutes.
   - A red shard doesn't block the deploy. Its units are simply due again next hour.
-- [ ] **`publish`** (expect 15–30 minutes on the first run): merges deltas, then builds, exports and runs the contract tests.
-  - Next, it pre-renders about 20k pages (about 2 min) and deploys Pages.
+- [ ] **`publish`** (expect 30–45 minutes on the first run; the timeout is 90): merges deltas, then builds, exports and runs the contract tests.
+  - The first run is slow because 40 of the 50 cities have no cached geocodes yet (measured about 22 minutes locally).
+  - Next, it renders share cards (about 3–7 min with a cold cache), pre-renders about 18k pages and deploys a ~700 MB site to Pages.
+  - If the job fails with "every shard delta was refused", nothing was deployed and the state wasn't touched. Re-run the workflow.
   - Last, it persists the state to the `pipeline-state` branch.
 - [ ] **Job summary:** HEALTH.md, the `check-dist` result (expect 0 problems) and the budgets.
 
@@ -44,9 +47,12 @@ Nothing in the repo settings needs to change.
 - [ ] `/GetOffTheCouch/chicago/deadlines.ics` downloads a calendar.
 
 ## 4. The next few hours
-- [ ] **Hourly runs:** each one should take under about 30 minutes end to end. If `publish` creeps toward its 45-minute timeout, lower `GOTC_GEOCODE_BUDGET` in refresh.yml (it's 10 now) or raise the shard size.
+- [ ] **Hourly runs:** after the first one, `publish` should take about 15–25 minutes. The whole run takes longer than an hour (13 shards run in 2 waves at `max-parallel: 8`); the next scheduled run queues behind it, so data is refreshed about every 2 hours at first.
+  - Once runs are reliably green, consider `max-parallel: 13` in refresh.yml (one wave).
+  - If `publish` creeps toward its 90-minute timeout, lower `GOTC_GEOCODE_BUDGET` in refresh.yml (it's 10 now) or raise the shard size.
+- [ ] **Pages size:** the site is about 700 MB of Pages' 1 GB. `check-dist` in the job summary fails before 800 MB. If it gets close, lower `HORIZON_DAYS` (30 now) in `web/scripts/prerender.mjs`.
 - [ ] **After 48 hours of green runs,** the go-live gate promotes beta cities that pass every check on its own. Watch `/cities/` and the "gate@…" lines in HEALTH.md.
-- [ ] **Auto-opened issues** labeled `source-health` mean a source broke. They're informational: the site keeps last-known-good data, marked stale.
+- [ ] **Auto-opened issues** labeled `source-health` mean a source broke. They're informational: the site keeps last-known-good data, marked stale. At most 10 open per run.
 
 ## Rollback: if the sharded refresh misbehaves
 1. **Actions → Refresh data (monolithic fallback) → Run workflow.** This is the single-job refresh. It uses the same state branch and the same Pages deploy.

@@ -527,3 +527,42 @@ New units, live counts:
 - 2026-10-27 15:44 UTC · run 47 partial: units[232 disabled, 5 failed, 3 ok, 554 skipped] → 35409 events in 50 cities
 - 2026-10-27 16:38 UTC · run 48 ok: units[50 disabled] → 0 events in 0 cities
 - 2026-10-27 16:40 UTC · run 49 ok: units[287 disabled, 6 ok, 551 skipped] → 0 events in 0 cities
+
+## 2026-10-27 · Session 5 closing entry ("land it")
+
+**Changed:**
+- **Recovery:** merged the cut-off session's work (I-117 week shards, I-115 share cards, coverage groups 1, 1b
+  and 3) and removed every worktree and branch.
+- **Keys-ready:** a new Eventbrite adapter (organizer-scoped; the token goes in a header, never a URL). Ticketmaster,
+  SeatGeek, RunSignup and Eventbrite are tested end to end both with a key and without one.
+- **Data:** 5 dead units disabled with evidence. Mesa Arts Center's placeholder on-sale times no longer become
+  "opens" deadlines; the adapter-level fix applies to every JSON-LD site.
+- **Design review round 5:** fixed 5 of 11 must-fixes. The rest is listed in `docs/research/CRITIQUE_round5.md`.
+- **Code review (first push):**
+  - Fixed the CI e2e failure that would have turned the first push red.
+  - Publish timeout is 90 min.
+  - Publish fails closed when every shard delta is refused.
+  - Raw cache is one entry per 6 h; delta SQL matches cities exactly; the share-card worker fails with a clear
+    error; auto-opened issues are capped at 10 per run.
+
+**Broke:** nothing on main. Every commit was gated with `make check`, and none used `--no-verify`. Three agents
+died on AWS auth errors earlier in the session; their committed work was salvaged and verified on main.
+
+**Decided (and why):**
+- **Stopped at the time box.** The session ran far past 3–4 h on the clock, mostly waiting on 20–30 minute
+  builds on a loaded machine. I didn't start the classifier-precedence change. It touches every city's categories
+  and needs a ranking-eval pass I couldn't finish and commit inside the box.
+- **Pre-render horizon is 30 days, not 60.** At 60 days, share cards pushed the build to 727 MB, too close to
+  Pages' 1 GB.
+- **The client-rendered first-view budget is 320 KB, measured.** The pre-rendered first view, which is what
+  people land on, stays at 150 KB. I-219 is the way to get it back down.
+- **Raw cache is one entry per 6 h, not per day.** Cache keys are immutable, so a daily key would drop most of the
+  day's payloads. LRU already keeps the daily og-* entry hot because every run restores it.
+- **`max-parallel` stays at 8 for the first push.** Going to 13 in one wave is the user's call after a green run.
+
+**Verified (final tree):**
+- `make check`: 679 pytest, 302 vitest and the ranking eval.
+- Playwright + axe: 72/72.
+- Production build: 16,441 pages; check-dist 0 problems at 697 MB; budgets green.
+- actionlint: clean.
+- Gate (dry run): 7 live, 43 beta, on 35,224 events in 50 cities. 5 beta cities fail only G10.
