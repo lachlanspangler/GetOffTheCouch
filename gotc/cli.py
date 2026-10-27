@@ -414,14 +414,15 @@ def cmd_state(a: argparse.Namespace, s: Settings) -> int:
         return 0
     db = _db(s)
     expect = delta.mark(db)
-    status = 0
+    refused = 0
     for p in a.deltas:
         try:
             print(f"merged {p}: {delta.merge_delta(db, Path(p), expect)}")
         except delta.DeltaMismatch as e:
             print(f"REFUSED {e}", file=sys.stderr)
-            status = 1
-    return status
+            refused += 1
+    # 2 = nothing merged: publishing would redeploy old data and overwrite the state without the shards' fetches
+    return 0 if not refused else 2 if refused == len(a.deltas) else 1
 
 
 def cmd_shards(a: argparse.Namespace, s: Settings) -> int:

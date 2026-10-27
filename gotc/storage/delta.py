@@ -39,7 +39,8 @@ def mark(db: Database, now: datetime | None = None) -> dict[str, Any]:
 
 
 def _like(cities: list[str]) -> str:
-    return " OR ".join(f"unit LIKE '%@{c}'" for c in cities) or "0"
+    # exact match on the city part (a LIKE pattern would treat the "_" in "new_orleans" as a wildcard)
+    return f"substr(unit, instr(unit, '@') + 1) IN {_in(cities)}" if cities else "0"
 
 
 def _in(cities: list[str]) -> str:

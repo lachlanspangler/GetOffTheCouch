@@ -92,7 +92,7 @@ jobs:
     needs: [prepare, shard]
     if: ${{ always() && needs.prepare.result == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 60   # build 50 cities + share cards + ~16k pre-rendered pages + a ~700 MB Pages upload
+    timeout-minutes: 90   # first run: 40 cities with a cold geocode cache (~22 min measured) + share cards + ~18k pages + ~700 MB upload
     environment: { name: github-pages, url: "${{ steps.deploy.outputs.page_url }}" }
     steps:
       - uses: actions/checkout@v4
@@ -118,7 +118,9 @@ jobs:
           deltas=()
           for d in shards/delta-*.db.gz; do gunzip -k "$d" && deltas+=("${d%.gz}"); done
           if [ ${#deltas[@]} -eq 0 ]; then echo "::warning::no shard deltas (every shard failed?)"; exit 0; fi
-          .venv/bin/python -m gotc state merge "${deltas[@]}" || echo "::warning::a shard delta was refused (see log)"
+          rc=0; .venv/bin/python -m gotc state merge "${deltas[@]}" || rc=$?
+          if [ "$rc" -eq 2 ]; then echo "::error::every shard delta was refused (state moved under them); not deploying stale data"; exit 1; fi
+          if [ "$rc" -ne 0 ]; then echo "::warning::a shard delta was refused (see log); its units are due again next hour"; fi
       - name: Self-healing loop (build + export; shards already fetched)
         env:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
@@ -180,8 +182,10 @@ jobs:
             && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pipeline-state
       - id: day
         if: always()
-        run: echo "key=raw-${{ github.run_id }}" >> "$GITHUB_OUTPUT"
-      - name: Save raw payloads (per run; restore-keys picks up the newest, retention prunes the store)
+        # cache keys are immutable: one entry per 6 h keeps most payloads (doctor drops rows whose file didn't
+        # survive) without 24 × ~170 MB entries a day churning the 10 GB repo cache
+        run: echo "key=raw-$(date -u +%F)-$(( 10#$(date -u +%H) / 6 ))" >> "$GITHUB_OUTPUT"
+      - name: Save raw payloads (one entry per 6 h; restore-keys picks up the newest, retention prunes the store)
         if: always()
         continue-on-error: true
         uses: actions/cache/save@v4

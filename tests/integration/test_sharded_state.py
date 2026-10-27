@@ -123,3 +123,13 @@ def test_plan_shards_balances_unit_counts():
 def test_bad_slugs_never_reach_sql(tmp_path: Path):
     with pytest.raises(ValueError):
         delta.export_delta(tmp_path / "x.db", {"runs": 0}, ["x'); DROP TABLE runs; --"], tmp_path / "o.db")
+
+
+def test_city_filter_is_exact_not_a_like_pattern():
+    import sqlite3
+
+    con = sqlite3.connect(":memory:")
+    con.execute("CREATE TABLE t (unit TEXT)")
+    con.executemany("INSERT INTO t VALUES (?)", [("a@new_orleans",), ("b@newXorleans",), ("c@x@new_orleans",)])
+    rows = con.execute(f"SELECT unit FROM t WHERE {delta._like(['new_orleans'])} ORDER BY unit").fetchall()
+    assert rows == [("a@new_orleans",)]
