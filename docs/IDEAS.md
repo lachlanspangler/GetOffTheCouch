@@ -5,14 +5,13 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 79 · **doing** 1 · **done** 93 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 77 · **doing** 1 · **done** 95 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
 | I-141 | Per-city state files + sharded matrix refresh + single publish job | infra | 5 | 3 | 1.33 | doing | Monolithic run stops fitting at ~60–70 cities — 2026-10-17 doing: sharded matrix done; per-city state files open |
-| I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | open | Time Out pattern: one URL, fresh dates, high-intent query |
 | I-199 | Probe tooling honors Crawl-delay | infra | 4 | 1 | 3.2 | open | Prevents slips like azleg.gov (Crawl-delay 120) |
 | I-211 | Galaxy Digital tenant sanity check (channel title/state must match city) | data-quality | 4 | 1 | 3.2 | open | Volunteer Now Dallas domain served a California tenant |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
@@ -23,7 +22,6 @@ unless docs/HEALTH.md has something red.
 | I-212 | Trumba custom-field filter (e.g. 'Event Open To' contains Public) | sources | 3 | 1 | 2.4 | open | Emory exposes it; adapter can't filter |
 | I-214 | CivicPlus iCalendar fingerprint in discover | cities | 3 | 1 | 2.4 | open | Works via plain ics adapter (Dallas Parks) |
 | I-168 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
-| I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | open | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
 | I-112 | Event page lifecycle: ended banner → meta-refresh stub → delete | growth | 4 | 2 | 1.6 | open | Pages can't send 301/410; keeps shared links useful and the site bounded |
@@ -123,8 +121,10 @@ unless docs/HEALTH.md has something red.
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
+| I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | done | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. — 2026-10-27 done: session 4: /cities/ coverage table + live/beta chips |
 | I-160 | Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin) | features | 4 | 2 | 1.6 | done | The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness — 2026-10-27 done: 2026-10-27: For You caps on organizer x venue (<=2) + <=3/source backstop + soft <=3/family; NDCG@10 0.458->0.476 (LOCO held-out 0.471), P@10 0.42->0.45, gates pass, Highlights unchanged; still < v1 0.51 (entropy gate + exploration), RANKING.md 7.7 |
 | I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | done | Partiful trust pattern; clarifies we're a guide — 2026-10-17 done: session 3 |
+| I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | done | Time Out pattern: one URL, fresh dates, high-intent query — 2026-10-27 done: session 4: dated weekend titles |
 | I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | done | GitHub disables crons on inactive repos — 2026-10-17 done: session 3 |
 | I-143 | Raw payload retention + price snapshot downsampling | infra | 4 | 2 | 1.6 | done | State file would pass GitHub's 100 MB limit — 2026-10-17 done: session 3 |
 | I-142 | Hash-gated incremental builds and exports | infra | 4 | 2 | 1.6 | done | Only rebuild cities whose inputs changed — 2026-10-17 done: session 3 |
