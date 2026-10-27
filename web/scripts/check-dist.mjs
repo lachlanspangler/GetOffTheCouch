@@ -27,6 +27,8 @@ for (const f of readdirSync(join(dist, "sitemaps"))) {
 
 let events = 0;
 let inlined = 0;
+let withImage = 0;
+const ogSeen = new Map(); // og file → size (each checked once)
 for (const p of pages) {
   const html = readFileSync(p, "utf8");
   const rel = p.slice(dist.length);
@@ -39,6 +41,20 @@ for (const p of pages) {
   if (/href="#\//.test(html)) problems.push(`${rel}: legacy #/ link`);
   if (!html.includes('data-ssr="1"')) problems.push(`${rel}: not pre-rendered`);
   if (robots === "noindex,follow" && canonical && sitemapLocs.has(canonical)) problems.push(`${rel}: noindex page listed in a sitemap`);
+  const image = /<meta property="og:image" content="([^"]+)"/.exec(html)?.[1];
+  if (image) {
+    // I-115: every share card a page points at exists in this build, is absolute and ≤ 100 KB
+    withImage += 1;
+    const file = /\/(og\/[^"?#]+\.png)$/.exec(image)?.[1];
+    if (!/^https:\/\//.test(image) || !file) problems.push(`${rel}: og:image not an absolute og/*.png URL`);
+    else {
+      if (!ogSeen.has(file)) ogSeen.set(file, existsSync(join(dist, file)) ? statSync(join(dist, file)).size : -1);
+      const size = ogSeen.get(file);
+      if (size < 0) problems.push(`${rel}: og:image ${file} missing`);
+      else if (size > 100 * 1024) problems.push(`${rel}: og:image ${file} is ${(size / 1024).toFixed(0)} KB (budget 100 KB)`);
+    }
+    if (!html.includes('<meta name="twitter:card" content="summary_large_image"')) problems.push(`${rel}: og:image without summary_large_image`);
+  }
   const inline = /<script type="application\/json" id="gotc-initial">([\s\S]*?)<\/script>/.exec(html)?.[1];
   if (inline) {
     // I-117: inline first-render data must parse, be the current format and never carry demo events
@@ -62,6 +78,7 @@ for (const p of pages) {
 const size = (function du(d) { let n = 0; for (const f of readdirSync(d)) { const p = join(d, f); const s = statSync(p); n += s.isDirectory() ? du(p) : s.size; } return n; })(dist);
 if (size > 800 * 1024 * 1024) problems.push(`dist is ${(size / 1e6).toFixed(0)} MB (budget 800 MB)`);
 if (pages.length > 60_000) problems.push(`${pages.length} pages (budget 60k files)`);
-console.log(`check-dist: ${pages.length} pages (${inlined} with inline data), ${events} with Event JSON-LD, ${sitemapLocs.size} sitemap URLs, ${(size / 1e6).toFixed(0)} MB, ${problems.length} problems`);
+const ogBytes = [...ogSeen.values()].reduce((n, x) => n + Math.max(0, x), 0);
+console.log(`check-dist: ${pages.length} pages (${inlined} with inline data, ${withImage} with a share card; ${ogSeen.size} cards, ${(ogBytes / 1e6).toFixed(1)} MB), ${events} with Event JSON-LD, ${sitemapLocs.size} sitemap URLs, ${(size / 1e6).toFixed(0)} MB, ${problems.length} problems`);
 for (const p of problems.slice(0, 30)) console.log(`  ✗ ${p}`);
 if (problems.length && !warnOnly) process.exit(1);
