@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 77 · **doing** 1 · **done** 95 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 76 · **doing** 1 · **done** 96 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -25,7 +25,6 @@ unless docs/HEALTH.md has something red.
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
 | I-112 | Event page lifecycle: ended banner → meta-refresh stub → delete | growth | 4 | 2 | 1.6 | open | Pages can't send 301/410; keeps shared links useful and the site bounded |
-| I-116 | Per-city Atom feeds and deadlines.ics subscriptions | features | 4 | 2 | 1.6 | open | Subscribable calendars beat one-off downloads for deadlines |
 | I-135 | Admin-noise flags (room rentals, closures, staff-only, open hours) per source | data-quality | 4 | 2 | 1.6 | open | Biggest junk class in library/city feeds |
 | I-147 | Organizer track record chip (past events, how long listed) | features | 4 | 2 | 1.6 | open | Meetup trust pattern without ratings we don't have |
 | I-161 | Human spot-check >=20% of the ranking judgments, then re-snapshot on a new date as a held-out eval | data-quality | 4 | 2 | 1.6 | open | All 3,360 grades are one agent's; the flags, lambda and interest tweaks were chosen in-sample (RANKING.md 7.6) |
@@ -148,6 +147,7 @@ unless docs/HEALTH.md has something red.
 | I-121 | Card signal budget: one meta line, one status, one tag (cardSignals) | ux | 5 | 2 | 2.0 | done | Removes badge soup with tested logic; enforces no fake urgency |
 | I-120 | Design tokens + self-hosted Inter/Newsreader with metric-matched fallbacks | ux | 5 | 2 | 2.0 | done | Biggest single jump in perceived quality, zero CLS |
 | I-119 | Lighthouse CI + bundle budgets (entry JS ≤60 KB gz, CSS ≤15 KB) | infra | 4 | 2 | 1.6 | done | Performance budgets enforced in CI, not by memory — 2026-10-17 done: session 3 |
+| I-116 | Per-city Atom feeds and deadlines.ics subscriptions | features | 4 | 2 | 1.6 | done | Subscribable calendars beat one-off downloads for deadlines — 2026-10-27 done: session 4 |
 | I-114 | Per-city sitemaps + sitemap index with honest lastmod | growth | 4 | 1 | 3.2 | done | Discovery for ~8k pages; Search Console URL-prefix property — 2026-10-17 done: session 3 |
 | I-113 | schema.org Event JSON-LD for one-off and recurring events only | growth | 4 | 2 | 1.6 | done | Eligible for event rich results; never for openings/deadlines (Google content rules) — 2026-10-17 done: session 3 |
 | I-111 | Pre-render city, hub and event pages at build time (SSR + hydrate) | growth | 5 | 3 | 1.33 | done | Crawlers and social scrapers need real HTML; most first visits come from search — 2026-10-17 done: session 3 |
