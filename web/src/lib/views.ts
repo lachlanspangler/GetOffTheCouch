@@ -6,7 +6,7 @@ import { useEffect, useState } from "preact/hooks";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type Any = FunctionComponent<any>;
-export type LazyName = "about" | "methodology" | "privacy" | "plan" | "health";
+export type LazyName = "about" | "methodology" | "privacy" | "plan" | "health" | "cities";
 
 const registry: Partial<Record<LazyName, Any>> = {};
 const loaders: Record<LazyName, () => Promise<Partial<Record<LazyName, Any>>>> = {
@@ -15,6 +15,7 @@ const loaders: Record<LazyName, () => Promise<Partial<Record<LazyName, Any>>>> =
   privacy: () => loaders.about(),
   plan: () => import("../views/Plan").then((m) => ({ plan: m.Plan })),
   health: () => import("../views/Health").then((m) => ({ health: m.Health })),
+  cities: () => import("../views/Cities").then((m) => ({ cities: m.Cities })),
 };
 
 export function registerViews(views: Partial<Record<LazyName, Any>>): void {

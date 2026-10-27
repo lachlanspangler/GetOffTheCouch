@@ -171,6 +171,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
         {!route.city && view === "methodology" && <Lazy name="methodology" />}
         {!route.city && view === "privacy" && <Lazy name="privacy" />}
         {!route.city && view === "health" && <Lazy name="health" />}
+        {!route.city && view === "cities" && <Lazy name="cities" />}
         {!route.city && view === "feed" && <Home />}
         {unknownCity && (
           <div class="container empty">

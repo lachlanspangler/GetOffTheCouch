@@ -4,6 +4,7 @@ import { Icon } from "../components/Icon";
 import { useApp } from "../lib/ctx";
 import { count } from "../lib/format";
 import { build } from "../lib/router";
+import { url } from "../lib/site";
 import type { CitySummary } from "../lib/types";
 
 function citySub(c: CitySummary): string {
@@ -30,7 +31,7 @@ export function Home() {
         <div class="section-head">
           <div>
             <h2 id="cities">Cities</h2>
-            <p class="small">{count(total)} upcoming events across {index.cities.length} cities.</p>
+            <p class="small">{count(total)} upcoming events across {index.cities.length} cities. <a href={url("cities/")}>See what we cover in each</a></p>
           </div>
         </div>
         {cities.length <= 12 ? (

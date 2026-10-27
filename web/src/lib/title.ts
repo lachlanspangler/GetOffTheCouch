@@ -17,6 +17,7 @@ const VIEW_TITLE: Record<string, string> = {
   about: "About",
   methodology: "How we get the data",
   privacy: "Privacy",
+  cities: "Cities and coverage",
 };
 
 /** "Things to do this weekend in Chicago, Oct 30 – Nov 1": the weekend hub carries its dates (Time Out pattern). */

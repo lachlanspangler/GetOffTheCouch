@@ -31,7 +31,7 @@ export function Footer({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme)
               {[...index.cities].sort((a, b) => b.events - a.events).slice(0, 12).sort((a, b) => a.name.localeCompare(b.name)).map((c) => (
                 <li key={c.slug}><a href={build({ city: c.slug, view: "feed" })}>{c.name}</a></li>
               ))}
-              {index.cities.length > 12 && <li><a href={`${url()}#cities`}>All {index.cities.length} cities</a></li>}
+              <li><a href={url("cities/")}>All {index.cities.length} cities and coverage</a></li>
             </ul>
           </div>
           <div>

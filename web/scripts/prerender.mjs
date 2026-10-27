@@ -64,7 +64,7 @@ function renderPath(path, feed, lastmod) {
 const t0 = Date.now();
 const day = (iso) => iso.slice(0, 10);
 renderPath("", null, day(index.generated_at));
-for (const p of ["about/", "methodology/", "privacy/", "health/"]) renderPath(p, null, day(index.generated_at));
+for (const p of ["about/", "methodology/", "privacy/", "health/", "cities/"]) renderPath(p, null, day(index.generated_at));
 
 const HUBS = ["today", "this-weekend", "free", "concerts", "beer-leagues", "trivia", "nightlife", "volunteering", "festivals", "food-and-drink", "arts", "fitness", "outdoors", "games-to-watch", "cons-and-faires", "classes", "family"];
 const VIEWS = ["deadlines", "calendar", "map", "plan", "saved", "health"];

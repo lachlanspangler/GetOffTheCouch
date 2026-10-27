@@ -9,10 +9,10 @@ import { useEffect, useState } from "preact/hooks";
 import { DEFAULT_FILTERS, type Filters, type Size, type When } from "./filters";
 import { BASE, eventPath, HUB_BY_SLUG, hubFor, idFromEventSegment } from "./site";
 
-export type View = "feed" | "calendar" | "map" | "deadlines" | "plan" | "saved" | "health" | "about" | "privacy" | "methodology";
-export const VIEWS: View[] = ["feed", "deadlines", "calendar", "map", "plan", "saved", "health", "about", "privacy", "methodology"];
+export type View = "feed" | "calendar" | "map" | "deadlines" | "plan" | "saved" | "health" | "about" | "privacy" | "methodology" | "cities";
+export const VIEWS: View[] = ["feed", "deadlines", "calendar", "map", "plan", "saved", "health", "about", "privacy", "methodology", "cities"];
 /** Views that exist without a city (site-wide pages). */
-export const SITE_VIEWS: View[] = ["about", "privacy", "methodology", "health"];
+export const SITE_VIEWS: View[] = ["about", "privacy", "methodology", "health", "cities"];
 
 export interface Route {
   city: string | null;

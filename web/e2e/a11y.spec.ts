@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const ANCHOR = new Date("2026-10-16T15:00:00Z");
-const PAGES = ["", "demoville/", "demoville/deadlines/", "demoville/calendar/", "demoville/map/", "demoville/plan/", "demoville/saved/", "demoville/health/", "about/", "methodology/", "privacy/"];
+const PAGES = ["", "demoville/", "demoville/deadlines/", "demoville/calendar/", "demoville/map/", "demoville/plan/", "demoville/saved/", "demoville/health/", "about/", "methodology/", "privacy/", "cities/"];
 
 for (const scheme of ["light", "dark"] as const) {
   for (const path of PAGES) {

@@ -6,8 +6,9 @@ import { registerViews } from "./lib/views";
 import { About, Methodology, Privacy } from "./views/About";
 import { Health } from "./views/Health";
 import { Plan } from "./views/Plan";
+import { Cities } from "./views/Cities";
 
-registerViews({ about: About, methodology: Methodology, privacy: Privacy, health: Health, plan: Plan });
+registerViews({ about: About, methodology: Methodology, privacy: Privacy, health: Health, plan: Plan, cities: Cities });
 import { parsePath } from "./lib/router";
 import { headFor, headHtml } from "./lib/seo";
 import type { CityFeed, Index } from "./lib/types";
