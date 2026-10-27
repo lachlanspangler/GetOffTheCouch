@@ -111,7 +111,13 @@ Ranking v2 is the default since 2026-10-16. The design is `docs/research/RANKING
 2. *Collapse.* One card per series, multi-site group and fingerprint.
 3. *Features.* 29 features, each in [0, 1], with formulas documented in `features.ts`.
 4. *Score.* A linear sum with a weight table (`weights.ts`). Each feature's contribution is measured against a neutral baseline, so an unknown value contributes exactly 0.
-5. *Diversify.* MMR re-rank with hard caps: ≤ 2 per source and ≤ 1 per series, group or fingerprint in every 10, ≥ 3 families, no kids content for adults, nothing with `lowq ≥ 0.7`, and ≤ 1 library event in Highlights.
+5. *Diversify.* MMR re-rank with hard caps in every 10:
+   - ≤ 2 per organizer × venue, so aggregator feeds (library branches, parks, a trivia company's bars, a volunteer hub's charities) aren't treated as one place.
+   - ≤ 3 per listing source, so one feed can't flood the list. Highlights keeps ≤ 2 per source in its top 6.
+   - ≤ 1 per series, group or fingerprint.
+   - ≥ 3 families, no kids content for adults, nothing with `lowq ≥ 0.7`, and ≤ 1 library event in Highlights.
+
+   For You also has a soft ≤ 3 per family, relaxed only when nothing else is left. The caps were chosen with leave-one-city-out evaluation (RANKING.md §7.7).
 6. *Explain.* At most 3 reasons plus 1 caveat, each literally a score term. A derived deadline never gets a countdown. Estimates say "~" and "estimate". An unknown value is never a reason.
 
 **Personalization is on-device only** (`localStorage`, nothing sent anywhere):

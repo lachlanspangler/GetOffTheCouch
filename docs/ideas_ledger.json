@@ -2386,12 +2386,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-27",
+   "notes": [
+    "2026-10-27 done: 2026-10-27: For You caps on organizer x venue (<=2) + <=3/source backstop + soft <=3/family; NDCG@10 0.458->0.476 (LOCO held-out 0.471), P@10 0.42->0.45, gates pass, Highlights unchanged; still < v1 0.51 (entropy gate + exploration), RANKING.md 7.7"
+   ]
   },
   {
    "id": "I-161",

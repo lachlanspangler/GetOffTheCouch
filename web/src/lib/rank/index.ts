@@ -12,7 +12,7 @@ import { reasons } from "./explain";
 import { family, localDay, wantsFamily } from "./profile";
 import { normalize, score } from "./score";
 import type { FeatureName, RankContext, Reason, Scored } from "./types";
-import { LAMBDA, weightsFor } from "./weights";
+import { CAPS, LAMBDA, weightsFor } from "./weights";
 
 export * from "./types";
 
@@ -45,9 +45,14 @@ export function rankV2(events: Event[], ctx: RankContext, opts: RankOptions = {}
 }
 
 export function capsFor(ctx: RankContext): Caps {
-  const base: Caps = { maxPerSource: 2, minFamilies: 3, maxLowQ: 0.7, excludeKids: !wantsFamily(ctx.profile) };
-  const caps = ctx.surface === "highlights" ? { ...base, maxLibrary: 1, maxPerDay: 3 } : base;
-  return ctx.caps ? ({ ...caps, ...ctx.caps } as Caps) : caps;
+  const base: Caps = { maxPerKey: CAPS.perKey, maxPerSource: CAPS.perSource, minFamilies: 3, maxLowQ: 0.7, excludeKids: !wantsFamily(ctx.profile) };
+  const caps: Caps =
+    ctx.surface === "highlights"
+      ? { ...base, maxPerSource: CAPS.highlightsPerSource, maxLibrary: 1, maxPerDay: 3 }
+      : ctx.surface === "for_you"
+        ? { ...base, maxPerFamily: CAPS.perFamily }
+        : base;
+  return ctx.caps ? { ...caps, ...ctx.caps } : caps;
 }
 
 export function lambdaFor(ctx: RankContext): number {

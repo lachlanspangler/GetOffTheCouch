@@ -3,6 +3,7 @@
 
 import type { Event } from "../types";
 import type { AffinityState } from "./affinity";
+import type { Caps } from "./diversify";
 
 export type Goal = "meet_people" | "stay_active" | "culture" | "party" | "give_back" | "nerd_out";
 export type Budget = "free" | "cheap" | "any";
@@ -42,7 +43,7 @@ export interface RankContext {
   seed?: string;
   /** experiment overrides (eval ablations): MMR λ and cap settings */
   lambda?: number;
-  caps?: Record<string, number | boolean | undefined>;
+  caps?: Partial<Caps>;
   /** weight overrides (eval experiments, learned weights) */
   weights?: Partial<Weights>;
 }

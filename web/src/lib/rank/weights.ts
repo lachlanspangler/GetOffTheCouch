@@ -111,6 +111,18 @@ export const LAMBDA = {
   plan: 0.55,
 } as const;
 
+/**
+ * Diversity caps per 10 slots (§1E; I-160, RANKING.md §7.7). The hard cap is on "who runs it, where"
+ * (diversify.ts capKey: organizer × venue), not on the listing source, so aggregators (library branches, parks,
+ * Volo fields, trivia bars, HandsOn charities) aren't capped as if they were one venue. perSource is the looser
+ * backstop so one feed still can't flood the list. perFamily is a soft For You cap (relaxed only if the pool runs
+ * out) that keeps family entropy ≥ 0.7 once the source cap is loosened: without it every looser config failed the
+ * entropy gate. Chosen with the cap sweep in `npm run eval:ablate`: leave-one-city-out held-out For You NDCG@10
+ * 0.471 vs 0.458 for the old ≤ 2-per-source cap; among gate-passing configs within 0.005 of the in-sample best
+ * (≈ 0.48) this one has the smallest worst-city drop (−0.02). Highlights keeps ≤ 2 per source in its top 6.
+ */
+export const CAPS = { perKey: 2, perSource: 3, perFamily: 3, highlightsPerSource: 2 } as const;
+
 export function weightsFor(over?: Partial<Weights>): Weights {
   return over ? { ...DEFAULT_WEIGHTS, ...over } : DEFAULT_WEIGHTS;
 }

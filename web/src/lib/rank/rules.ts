@@ -2,6 +2,8 @@
 
 import type { Event } from "../types";
 import { excluded } from "./candidates";
+import { capKey } from "./diversify";
+import { CAPS } from "./weights";
 import { honest } from "./explain";
 import { family, isLibrary, primarySource, wantsFamily } from "./profile";
 import type { Profile, Scored } from "./types";
@@ -29,7 +31,10 @@ export function violations(list: Scored[], ctx: RuleContext): string[] {
     }
     return m;
   };
-  for (const [k, n] of count(primarySource)) if (n > 2) out.push(`3 source ${k} ×${n} in top 10`);
+  // I-160: ≤ CAPS.perKey per organizer × venue, ≤ CAPS.perSource per listing source (≤ 2 in Highlights)
+  const perSource = ctx.surface === "highlights" ? CAPS.highlightsPerSource : CAPS.perSource;
+  for (const [k, n] of count(primarySource)) if (n > perSource) out.push(`3 source ${k} ×${n} in top 10`);
+  for (const [k, n] of count(capKey)) if (n > CAPS.perKey) out.push(`3 organizer/venue ${k} ×${n} in top 10`);
   for (const [k, n] of count((e) => e.series_id)) if (n > 1) out.push(`3 series ${k} ×${n}`);
   for (const [k, n] of count((e) => e.rank?.group)) if (n > 1) out.push(`3 multi-site group ${k} ×${n}`);
   if (ctx.surface === "highlights" && top.filter((s) => isLibrary(ev(s))).length > 1) out.push("3 more than one library event in Highlights");

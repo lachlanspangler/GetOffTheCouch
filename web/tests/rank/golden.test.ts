@@ -19,12 +19,12 @@ describe.each(CITIES)("golden rules on the %s snapshot", (city) => {
     expect(violations(list, { now: ctx.now, profile: p, surface: "for_you", pool })).toEqual([]);
     const plan = planV2(s.events, ctx);
     const picks = plan.weeks.flatMap((w) => w.picks);
-    expect(violations(picks, { now: ctx.now, profile: p, surface: "plan" }).filter((v) => !v.startsWith("3 source"))).toEqual([]);
+    expect(violations(picks, { now: ctx.now, profile: p, surface: "plan" }).filter((v) => !v.startsWith("3 source") && !v.startsWith("3 organizer/venue"))).toEqual([]);
     for (const extra of [plan.habits, plan.deadlines, plan.openings]) expect(violations(extra, { now: ctx.now, profile: p, surface: "plan" }).filter((v) => v.startsWith("1") || v.startsWith("6"))).toEqual([]);
     const sims = similarV2(list[0].event, s.events, ctx);
     for (const x of sims) expect(x.id).not.toBe(list[0].event.id);
   });
-  it("Highlights obey every rule (≤ 1 library, ≤ 2 per source, no kids)", () => {
+  it("Highlights obey every rule (≤ 1 library, ≤ 2 per source and per organizer × venue, no kids)", () => {
     const ctx = ctxFor(s, null);
     const h = highlightsV2(s.events, ctx, 6);
     expect(h.length).toBe(6);

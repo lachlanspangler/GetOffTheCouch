@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { affinity, decay, EMPTY, update, A0, B0 } from "../../src/lib/rank/affinity";
 import { collapse } from "../../src/lib/rank/collapse";
 import { candidates, windowFor } from "../../src/lib/rank/candidates";
-import { mmr } from "../../src/lib/rank/diversify";
+import { capKey, mmr } from "../../src/lib/rank/diversify";
 import { betaSample, pickExploration, seededRng } from "../../src/lib/rank/explore";
 import { honest, reasons, template } from "../../src/lib/rank/explain";
 import * as F from "../../src/lib/rank/features";
@@ -130,6 +130,27 @@ describe("similarity and MMR", () => {
     const out = mmr(same, { lambda: 1, k: 4, caps: { maxPerSource: 2 } });
     expect(out).toHaveLength(2);
     expect(new Set(out.map((s) => s.event.series_id ?? s.event.id)).size).toBe(2);
+  });
+  it("I-160 cap key: organizer × venue, falling back to the source only when both are missing", () => {
+    const src = (id: string) => [{ source_id: id, record_id: "r", fetched_at: NOW.toISOString() }];
+    expect(capKey(ev({ organizer: " Volo  Sports ", venue_id: "v1", sources: src("volo") }))).toBe("o:volo sports|v:v1");
+    expect(capKey(ev({ organizer: "Volo Sports", venue_id: "v1" }))).toBe(capKey(ev({ organizer: "volo sports", venue_id: "v1" })));
+    expect(capKey(ev({ organizer: "Volo Sports", venue_id: "v1" }))).not.toBe(capKey(ev({ organizer: "Volo Sports", venue_id: "v2" })));
+    expect(capKey(ev({ organizer: "--", venue_id: null, location: { venue_name: "Online" }, sources: src("feed") }))).toBe("src:feed");
+    expect(capKey(ev({ organizer: null, venue_id: null, location: { venue_name: "Bar Nine" } }))).toBe("o:|v:bar nine");
+  });
+  it("I-160: an aggregator gets ≤ perSource across its venues, a one-room feed stays at ≤ perKey", () => {
+    const src = (id: string) => [{ source_id: id, record_id: "r", fetched_at: NOW.toISOString() }];
+    const trivia = Array.from({ length: 8 }, (_, i) => ev({ category: "trivia_games.trivia", organizer: "Trivia Co", venue_id: `bar${i}`, sources: src("trivia_co") }));
+    const club = Array.from({ length: 8 }, () => ev({ category: "music.concert", organizer: "The Club", venue_id: "club", sources: src("club") }));
+    const items: Scored[] = [...trivia, ...club].map((event, i) => ({ event, score: 1, reasons: [], rel: 1 - i / 100 }));
+    const out = mmr(items, { lambda: 1, k: 10, caps: { maxPerKey: 2, maxPerSource: 3 } });
+    expect(out.filter((s) => s.event.organizer === "Trivia Co")).toHaveLength(3);
+    expect(out.filter((s) => s.event.organizer === "The Club")).toHaveLength(2);
+  });
+  it("the soft family cap yields when nothing else is left", () => {
+    const items: Scored[] = Array.from({ length: 5 }, (_, i) => ({ event: ev({ category: "music.concert", venue_id: `v${i}` }), score: 1, reasons: [], rel: 1 - i / 10 }));
+    expect(mmr(items, { lambda: 1, k: 5, caps: { maxPerFamily: 2 } })).toHaveLength(5);
   });
 });
 
