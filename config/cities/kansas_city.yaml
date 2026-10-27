@@ -160,3 +160,19 @@ sources:
     params:
       url: https://challengeentertainment.com/wp-json/ce/v1/shows
       metros: [kansas-city, kansas]
+
+  # ── big venue via carbonhouse /events/rss (public syndication feed; robots allows; session 4 cov2) ──
+  - id: t_mobile_center_kc
+    adapter: rss_events
+    name: T-Mobile Center (venue calendar)
+    data_type: concerts
+    cadence_hours: 12
+    homepage: https://www.t-mobilecenter.com/events
+    expect_min_records: 5
+    params:
+      spectator_venue: true
+      url: https://www.t-mobilecenter.com/events/rss
+      horizon_days: 180
+      venue: {name: "T-Mobile Center", address: "1407 Grand Boulevard, Kansas City, MO 64106"}
+      organizer: T-Mobile Center
+      default_category: music.concert
