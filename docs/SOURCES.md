@@ -1264,6 +1264,8 @@ PoliteClient (robots.txt first, GetOffTheCouch UA).
 | page / source | city | use | stance / result |
 |---|---|---|---|
 | slcpl.org/locations | salt_lake_city | 8 City Library branch addresses | robots allows. Census has no match for Sprague (2131 South 1100 East) |
+| slcolibrary.org/locations | salt_lake_city | 19 Salt Lake County Library branches (Communico feed names only the branch) | robots allows. Census has no match for Daybreak or Sandy |
+| hcplc.org/locations | tampa | 26 Tampa-Hillsborough branches (Communico feed names only the branch) | robots allows. 78th Street and West Tampa: Census errors, retry with scripts/venue_geocode.py |
 | henricolibrary.org/locations | richmond | 9 Henrico branch addresses | robots allows. Sandston: Census only matched "23 W" for "23 E. Williamsburg Road", so no coordinates |
 | rvalibrary.org/about/locations/main-library/ | richmond | RPL Main Library | robots allows |
 | phoenixpubliclibrary.org/locations (+ /locations/cholla) | phoenix | 17 branch addresses | robots allows. Census has no match for Century or Desert Broom |
@@ -1277,6 +1279,14 @@ PoliteClient (robots.txt first, GetOffTheCouch UA).
 | sandiego.gov/park-and-recreation/centers/... | san_diego | rec-center addresses for Volo venues | **robots.txt disallows** that path |
 | phoenix.gov adult softball pages | phoenix | curated league with a deadline (G5) | robots allows, but the page publishes no season dates or deadline. Nothing curated |
 | volo_phoenix (live, 2026-10-27) | phoenix | leagues | still 0 programs (between seasons) |
+| mesaaz.gov softball / volleyball tournament pages | phoenix | curated league deadline | robots allows those paths, but the pages carry no dates |
+| tempe.gov | phoenix | rec leagues | robots.txt answers 403 (= disallow all) |
+| raleighnc.gov | raleigh | parks/adult leagues | **Cloudflare challenge** on robots.txt, so the host is excluded |
+| rwpzoo.org (Roger Williams Park Zoo, Tribe REST) | providence | outdoors events (~8 in 2 months) | the REST answered, but the homepage serves a **Cloudflare challenge**, so the host is a hard exclude (ADR-0008). Not added |
+| riparks.ri.gov | providence | state park events | **Cloudflare challenge** |
+| providenceparks.org/events (Squarespace) | providence | park events | newest listings are from 2022 (dead) |
+| asri.org (Audubon Society of RI) | providence | nature programs | no feed. The calendar lives on asri.doubleknot.com (no adapter) |
+| red_hat_amphitheater (existing unit) | raleigh | concerts | live run 2026-10-27: `format_changed`, RSS items no longer carry `ev:startdate` |
 
 **Platform note.** In Springshare LibCal iCal feeds, LOCATION is "<room>, <branch>" (Phoenix, Henrico) or
 "<room> - <branch>" (Richmond PL). The `ics` param `venue_part: last` (with `venue_sep`) makes the branch the venue, so
