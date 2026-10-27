@@ -2208,12 +2208,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "Meetup trust pattern without ratings we don't have",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-27",
+   "notes": [
+    "2026-10-27 done: session 4"
+   ]
   },
   {
    "id": "I-148",

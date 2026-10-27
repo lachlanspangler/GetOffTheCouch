@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 76 · **doing** 1 · **done** 96 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 75 · **doing** 1 · **done** 97 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -26,7 +26,6 @@ unless docs/HEALTH.md has something red.
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
 | I-112 | Event page lifecycle: ended banner → meta-refresh stub → delete | growth | 4 | 2 | 1.6 | open | Pages can't send 301/410; keeps shared links useful and the site bounded |
 | I-135 | Admin-noise flags (room rentals, closures, staff-only, open hours) per source | data-quality | 4 | 2 | 1.6 | open | Biggest junk class in library/city feeds |
-| I-147 | Organizer track record chip (past events, how long listed) | features | 4 | 2 | 1.6 | open | Meetup trust pattern without ratings we don't have |
 | I-161 | Human spot-check >=20% of the ranking judgments, then re-snapshot on a new date as a held-out eval | data-quality | 4 | 2 | 1.6 | open | All 3,360 grades are one agent's; the flags, lambda and interest tweaks were chosen in-sample (RANKING.md 7.6) |
 | I-162 | Taxonomy rules for library services and big-name concerts (MNsure Help filed as hike, Drop-in Tech Help as volunteering, Indigo Girls as festival) | data-quality | 4 | 2 | 1.6 | open | Ranking eval error analysis: category mistakes drive more bad picks than any weight |
 | I-163 | UI for rank v2: 'Why am I seeing this?' (whySeeingThis), Not for me + why (dismiss), What we've learned panel with reset (learnedSummary/resetAffinity) | ux | 4 | 2 | 1.6 | open | The lib exposes all of it; nothing renders it yet, and dismisses give the cleanest negative signal |
@@ -122,6 +121,7 @@ unless docs/HEALTH.md has something red.
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | done | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. — 2026-10-27 done: session 4: /cities/ coverage table + live/beta chips |
 | I-160 | Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin) | features | 4 | 2 | 1.6 | done | The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness — 2026-10-27 done: 2026-10-27: For You caps on organizer x venue (<=2) + <=3/source backstop + soft <=3/family; NDCG@10 0.458->0.476 (LOCO held-out 0.471), P@10 0.42->0.45, gates pass, Highlights unchanged; still < v1 0.51 (entropy gate + exploration), RANKING.md 7.7 |
+| I-147 | Organizer track record chip (past events, how long listed) | features | 4 | 2 | 1.6 | done | Meetup trust pattern without ratings we don't have — 2026-10-27 done: session 4 |
 | I-146 | 'Not hosted by us · hosted by {Org}' line on event pages | ux | 4 | 1 | 3.2 | done | Partiful trust pattern; clarifies we're a guide — 2026-10-17 done: session 3 |
 | I-145 | 'This weekend' hub with dated title (Oct 16–18), rewritten weekly | growth | 4 | 1 | 3.2 | done | Time Out pattern: one URL, fresh dates, high-intent query — 2026-10-27 done: session 4: dated weekend titles |
 | I-144 | Keep-alive for scheduled workflows (60-day inactivity disable) | infra | 3 | 1 | 2.4 | done | GitHub disables crons on inactive repos — 2026-10-17 done: session 3 |
