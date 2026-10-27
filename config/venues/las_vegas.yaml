@@ -1,0 +1,135 @@
+# Curated venue locations for las_vegas (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own official page (`address_source`, fetched
+# 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Aliases are the exact venue strings the feeds use.
+# No capacities here: none was citable (CLAUDE.md rule 1: never fabricate).
+- name: Clark County Library
+  aliases:
+  - Las Vegas-Clark County Library District – Clark County Library
+  address: 1401 E. Flamingo Rd., Las Vegas, NV 89119
+  address_source: https://thelibrarydistrict.org/locations/cc/
+  verified_at: '2026-10-27'
+  lat: 36.114427
+  lon: -115.135445
+  coords_source: 'U.S. Census geocoder: 1401 E FLAMINGO RD, LAS VEGAS, NV, 89119'
+- name: Centennial Hills Library
+  aliases:
+  - Las Vegas-Clark County Library District – Centennial Hills Library
+  address: 6711 N. Buffalo Dr., Las Vegas, NV 89131
+  address_source: https://thelibrarydistrict.org/locations/ch/
+  verified_at: '2026-10-27'
+  lat: 36.28305
+  lon: -115.260597
+  coords_source: 'U.S. Census geocoder: 6711 N BUFFALO DR, LAS VEGAS, NV, 89131'
+- name: East Las Vegas Library
+  aliases:
+  - Las Vegas-Clark County Library District – East Las Vegas Library
+  address: 2851 East Bonanza Road, Las Vegas, NV 89101
+  address_source: https://thelibrarydistrict.org/locations/ev/
+  verified_at: '2026-10-27'
+  lat: 36.173737
+  lon: -115.111667
+  coords_source: 'U.S. Census geocoder: 2851 E BONANZA RD, LAS VEGAS, NV, 89101'
+- name: Enterprise Library
+  aliases:
+  - Las Vegas-Clark County Library District – Enterprise Library
+  address: 8310 South Las Vegas Blvd., Las Vegas, NV 89123
+  address_source: https://thelibrarydistrict.org/locations/en/
+  verified_at: '2026-10-27'
+  lat: 36.038625
+  lon: -115.172269
+  coords_source: 'U.S. Census geocoder: 8310 LAS VEGAS BLVD S, LAS VEGAS, NV, 89123'
+- name: Meadows Library
+  aliases:
+  - Las Vegas-Clark County Library District – Meadows Library
+  address: 251 W. Boston Ave., Las Vegas, NV 89102
+  address_source: https://thelibrarydistrict.org/locations/me/
+  verified_at: '2026-10-27'
+  lat: 36.147359
+  lon: -115.159686
+  coords_source: 'U.S. Census geocoder: 251 W BOSTON AVE, LAS VEGAS, NV, 89102'
+- name: Rainbow Library
+  aliases:
+  - Las Vegas-Clark County Library District – Rainbow Library
+  address: 3150 N. Buffalo Dr., Las Vegas, NV 89128
+  address_source: https://thelibrarydistrict.org/locations/rb/
+  verified_at: '2026-10-27'
+  lat: 36.216945
+  lon: -115.2604
+  coords_source: 'U.S. Census geocoder: 3150 N BUFFALO DR, LAS VEGAS, NV, 89128'
+- name: Sahara West Library
+  aliases:
+  - Las Vegas-Clark County Library District – Sahara West Library
+  address: 9600 W. Sahara Ave., Las Vegas, NV 89117
+  address_source: https://thelibrarydistrict.org/locations/sw/
+  verified_at: '2026-10-27'
+  lat: 36.144466
+  lon: -115.304438
+  coords_source: 'U.S. Census geocoder: 9600 W SAHARA AVE, LAS VEGAS, NV, 89117'
+- name: Spring Valley Library
+  aliases:
+  - Las Vegas-Clark County Library District – Spring Valley Library
+  address: 4280 S. Jones Blvd., Las Vegas, NV 89103
+  address_source: https://thelibrarydistrict.org/locations/sv/
+  verified_at: '2026-10-27'
+  lat: 36.111367
+  lon: -115.224843
+  coords_source: 'U.S. Census geocoder: 4280 S JONES BLVD, LAS VEGAS, NV, 89103'
+- name: Summerlin Library
+  aliases:
+  - Las Vegas-Clark County Library District – Summerlin Library
+  address: 1771 Inner Circle Dr., Las Vegas, NV 89134
+  address_source: https://thelibrarydistrict.org/locations/sm/
+  verified_at: '2026-10-27'
+  lat: 36.191237
+  lon: -115.301146
+  coords_source: 'U.S. Census geocoder: 1771 INNER CIR, LAS VEGAS, NV, 89134'
+- name: Sunrise Library
+  aliases:
+  - Las Vegas-Clark County Library District – Sunrise Library
+  address: 5400 Harris Ave., Las Vegas, NV 89110
+  address_source: https://thelibrarydistrict.org/locations/su/
+  verified_at: '2026-10-27'
+  lat: 36.177826
+  lon: -115.055987
+  coords_source: 'U.S. Census geocoder: 5400 E HARRIS AVE, LAS VEGAS, NV, 89110'
+- name: West Charleston Library
+  aliases:
+  - Las Vegas-Clark County Library District – West Charleston Library
+  address: 6301 W. Charleston Blvd., Las Vegas, NV 89146
+  address_source: https://thelibrarydistrict.org/locations/wc/
+  verified_at: '2026-10-27'
+  lat: 36.159064
+  lon: -115.228247
+  coords_source: 'U.S. Census geocoder: 6301 W CHARLESTON BLVD, LAS VEGAS, NV, 89146'
+- name: West Las Vegas Library
+  aliases:
+  - Las Vegas-Clark County Library District – West Las Vegas Library
+  address: 1861 N. Martin Luther King Jr. Blvd, Las Vegas, NV 89106
+  address_source: https://thelibrarydistrict.org/locations/wv/
+  verified_at: '2026-10-27'
+  lat: 36.192456
+  lon: -115.160863
+  coords_source: 'U.S. Census geocoder: 1861 N MARTIN L KING BLVD, LAS VEGAS, NV, 89106'
+- name: Whitney Library
+  aliases:
+  - Las Vegas-Clark County Library District – Whitney Library
+  address: 5175 E. Tropicana Ave., Las Vegas, NV 89122
+  address_source: https://thelibrarydistrict.org/locations/wh/
+  verified_at: '2026-10-27'
+  lat: 36.10025
+  lon: -115.060017
+  coords_source: 'U.S. Census geocoder: 5175 E TROPICANA AVE, LAS VEGAS, NV, 89122'
+- name: Windmill Library
+  aliases:
+  - Las Vegas-Clark County Library District – Windmill Library
+  address: 7060 W. Windmill Ln., Las Vegas, NV 89113
+  address_source: https://thelibrarydistrict.org/locations/wm/
+  verified_at: '2026-10-27'
+  lat: 36.041249
+  lon: -115.246039
+  coords_source: 'U.S. Census geocoder: 7060 W WINDMILL LN, LAS VEGAS, NV, 89113'
+- name: Allegiant Stadium
+  address: 3333 Al Davis Way, Las Vegas, NV 89118
+  address_source: https://www.allegiantstadium.com/
+  verified_at: '2026-10-27'
