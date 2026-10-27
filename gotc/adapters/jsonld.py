@@ -267,7 +267,7 @@ def _avail(v: Any) -> str | None:
 
 
 def _offers(
-    ev: dict[str, Any], ctx: ParseContext, base: str, ev_url: str | None
+    ev: dict[str, Any], ctx: ParseContext, base: str, ev_url: str | None, start: datetime
 ) -> tuple[list[dict[str, Any]], list[float], list[str], list[datetime]]:
     """→ (offer dicts, USD prices seen (incl. 0), offer availabilities, validFrom datetimes)."""
     raw = ev.get("offers")
@@ -296,6 +296,9 @@ def _offers(
         if a:
             avails.append(a)
         vf = parse_dt(o.get("validFrom") or o.get("availabilityStarts"), ctx.city.timezone) if trust_vf else None
+        # an on-sale time at (or after) the show itself is a placeholder copied from startDate (Mesa Arts Center)
+        if vf and vf >= start - timedelta(hours=1):
+            vf = None
         if vf:
             valid_from.append(vf)
         url = _url(o.get("url"), base) or ev_url
@@ -517,7 +520,7 @@ class JsonLdAdapter(Adapter):
         ev_url = ev_url or base
         desc_html = _unescape_html(ev.get("description"))
         desc = clean_text(desc_html, 4000)
-        offers, prices, avails, valid_from = _offers(ev, ctx, base, ev_url)
+        offers, prices, avails, valid_from = _offers(ev, ctx, base, ev_url, start)
         positive = [x for x in prices if x > 0]
         free_flag = ev.get("isAccessibleForFree") in (True, "true", "True", "TRUE")
         zero_free = bool(p.get("zero_is_free")) and prices and not positive

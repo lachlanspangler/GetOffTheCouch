@@ -183,6 +183,8 @@ export function deadlines(events: Event[], now: Date = new Date()): DeadlineItem
       if (!at) continue;
       const hours = (new Date(at).getTime() - now.getTime()) / 3_600_000;
       if (hours < 0) continue;
+      // "opens" at (or after) the event's own start is the doors opening, not sign-ups (Phoenix library lists)
+      if (kind === "opens" && new Date(at).getTime() >= new Date(e.start).getTime() - 3_600_000) continue;
       const k = `${key}:${kind}:${at}`;
       if (seen.has(k)) continue;
       seen.add(k);

@@ -149,7 +149,7 @@ export function Deadlines({ events }: { events: Event[] }) {
           <section key={g.id} class="dl-group" aria-labelledby={`g-${g.id}`}>
             <div class="section-head" style={{ marginBottom: "4px" }}>
               <h2 id={`g-${g.id}`}>{g.title}</h2>
-              {g.id === "week" && (
+              {g.id === "week" && uniqEvents(g.items).length > 0 && (
                 <button class="btn btn-quiet btn-sm" onClick={() => download(`${feed.city}-deadlines-this-week.ics`, calendar(uniqEvents(g.items), { mode: "deadlines", name: `${feed.city_name} deadlines this week` }))}>
                   <Icon name="calendarPlus" size={16} /> Add {uniqEvents(g.items).length === 1 ? "it" : `these ${uniqEvents(g.items).length}`} to your calendar
                 </button>

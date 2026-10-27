@@ -187,6 +187,7 @@ def test_offer_availability_mapping(availability: str, expected: str):
 def test_future_valid_from_is_the_on_sale_date():
     ev = {
         **EV,
+        "startDate": "2026-11-20T20:00:00-06:00",
         "offers": {
             "@type": "Offer",
             "price": 30,
@@ -207,9 +208,19 @@ def test_past_valid_from_is_kept_as_extra_only_and_can_be_distrusted():
     ev = {**EV, "offers": {"@type": "Offer", "price": 30, "validFrom": "2026-07-01T00:00:00+00:00"}}
     rec = _by_title(_parse(_page(ev)))["Low Band"]
     assert rec.registration is None and rec.extras["onsale_at"] == "2026-07-01T00:00:00+00:00"
-    future = {**EV, "offers": {"@type": "Offer", "price": 30, "validFrom": "2026-10-23T10:00:00-05:00"}}
+    future = {
+        **EV,
+        "startDate": "2026-11-20T20:00:00-06:00",
+        "offers": {"@type": "Offer", "price": 30, "validFrom": "2026-10-23T10:00:00-05:00"},
+    }
     rec = _by_title(_parse(_page(future), trust_valid_from=False))["Low Band"]
     assert rec.registration is None and "onsale_at" not in rec.extras and rec.availability.value == "unknown"
+
+
+def test_valid_from_at_the_show_itself_is_a_placeholder_not_an_on_sale_date():
+    ev = {**EV, "offers": {"@type": "Offer", "price": 30, "validFrom": EV["startDate"]}}
+    rec = _by_title(_parse(_page(ev)))["Low Band"]
+    assert rec.registration is None and rec.availability.value != "not_yet_on_sale"
 
 
 def test_price_text_with_two_amounts_and_non_usd_and_zero():

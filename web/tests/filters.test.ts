@@ -48,4 +48,10 @@ describe("deadlines", () => {
     expect(urgency(d[0].hours)).toBe("now");
     expect(urgency(d[1].hours)).toBe("later");
   });
+
+  it("ignores an 'opens' time that is really the event starting", () => {
+    const doors = ev({ start: "2026-11-02T18:00:00Z", registration: { opens_at: "2026-11-02T18:00:00Z" } as never });
+    const signup = ev({ start: "2026-12-01T18:00:00Z", registration: { opens_at: "2026-11-02T18:00:00Z" } as never });
+    expect(deadlines([doors, signup], NOW).map((x) => x.event.id)).toEqual([signup.id]);
+  });
 });
