@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.6.0"
+SCHEMA_VERSION = "1.7.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -477,4 +477,72 @@ class CityDetails(Strict):
     schema_version: str = SCHEMA_VERSION
     generated_at: AwareDatetime
     city: str
+    events: dict[str, EventDetail]
+
+
+# --- week-sharded city data (1.7.0, I-117) ------------------------------------------------------------------------
+# The legacy ``cities/<slug>.json`` + ``.details.json`` stay as they are. Next to them, ``cities/<slug>/`` holds the
+# same cards split by the week an event starts (in the city's timezone), so a visitor downloads the next two weeks
+# first and the rest in idle time. Shard file names carry a content hash, so Pages' 10-minute cache can never serve
+# a stale shard after a deploy; only ``manifest.json`` is unhashed and is always revalidated (``no-cache``).
+
+ShardKind = Literal["ongoing", "deadlines", "week", "openings", "later", "past"]
+
+
+class ShardFile(Strict):
+    file: str  # path relative to ``cities/<slug>/``, e.g. ``w/2026-W44.3f9a1c2b7d.json``
+    sha256: str  # hex digest of the file's bytes (the name carries its first 10 characters)
+    bytes: int = Field(ge=0)
+
+
+class ShardRef(Strict):
+    """One card shard and its matching details shard."""
+
+    key: str  # "ongoing" | "deadlines" | "openings" | "later" | ISO week "2026-W44" | "past-2026-W42"; ".2"… = parts
+    kind: ShardKind
+    starts: date | None = None  # week and past shards: the Monday the ISO week starts (city time)
+    ends: date | None = None  # week shards: the following Monday (exclusive)
+    events: int = Field(ge=0)
+    cards: ShardFile  # CityShard
+    details: ShardFile  # CityShardDetails
+
+
+class CityManifest(Strict):
+    """``web/public/data/cities/<slug>/manifest.json``: which shard files make up the city's feed right now.
+
+    Every card event of ``cities/<slug>.json`` is in exactly one shard, listed in this load order:
+      * ``ongoing``: started before the export's current week and still running (exhibits, multi-week faires)
+      * ``deadlines``: starts after next week but has a registration date the deadline views need now
+      * ``week``: starts in that ISO week, for the current week and the next ``SHARD_WEEKS`` weeks
+      * ``openings``: license signals (``kind: opening``); their start is a filing date, not a date to go
+      * ``later``: everything further out (league seasons and cons planned months ahead)
+      * ``past``: started in an earlier week (key ``past-<week>``) and already over; for saved items and ended pages
+    ``meta`` is the CityFeed with ``events: []`` (city, venues, sources, starter pack, coverage).
+    """
+
+    schema_version: str = SCHEMA_VERSION
+    generated_at: AwareDatetime
+    city: str
+    timezone: str
+    current_week: str  # ISO week of ``generated_at`` in the city's timezone
+    meta: ShardFile
+    shards: list[ShardRef]
+    legacy: str  # the monolithic card file, relative to this manifest (``../<slug>.json``)
+
+
+class CityShard(Strict):
+    """``cities/<slug>/w/<key>.<hash>.json``: the cards of one shard, in feed order."""
+
+    schema_version: str = SCHEMA_VERSION
+    city: str
+    key: str
+    events: list[Event]
+
+
+class CityShardDetails(Strict):
+    """``cities/<slug>/d/<key>.<hash>.json``: EventDetail by event id for one shard."""
+
+    schema_version: str = SCHEMA_VERSION
+    city: str
+    key: str
     events: dict[str, EventDetail]

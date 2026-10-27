@@ -21,7 +21,10 @@ const server = createServer((req, res) => {
   const zip = type !== "font/woff2";
   res.writeHead(found ? 200 : 404, { "content-type": type, ...(zip ? { "content-encoding": "gzip" } : {}), "cache-control": "max-age=600" });
   res.end(zip ? gzipSync(body) : body);
-}).listen(4399);
+});
+// GOTC_PERF_PORT: another local server may already own the default port (it would be measured instead)
+const port = Number(process.env.GOTC_PERF_PORT ?? 4399);
+await new Promise((ok, fail) => server.once("error", fail).listen(port, "127.0.0.1", ok));
 
 const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const paths = args.length ? args : ["", "nyc/", "nyc/concerts/", "minneapolis/deadlines/"];
@@ -41,10 +44,16 @@ for (const path of paths) {
     new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) w.__cls += e.value; }).observe({ type: "layout-shift", buffered: true });
     new PerformanceObserver((l) => { for (const e of l.getEntries()) w.__tbt += Math.max(0, e.duration - 50); }).observe({ type: "longtask", buffered: true });
   });
-  await page.goto(`http://localhost:4399${base}${path}`, { waitUntil: "load" });
+  await page.goto(`http://127.0.0.1:${port}${base}${path}`, { waitUntil: "load" });
   await page.waitForTimeout(6000);
-  const m = await page.evaluate(() => ({ lcp: window.__lcp, cls: window.__cls, tbt: window.__tbt, el: window.__lcpEl }));
-  results.push({ path: `/${path}`, lcp_ms: Math.round(m.lcp), cls: +m.cls.toFixed(3), tbt_ms: Math.round(m.tbt), lcp_el: m.el });
+  const m = await page.evaluate(() => {
+    // hydration: main.tsx marks "gotc:hydrated"; data: JSON under /data/ (encoded bytes) before hydration and in total
+    const hyd = performance.getEntriesByName("gotc:hydrated")[0]?.startTime ?? null;
+    const data = performance.getEntriesByType("resource").filter((r) => r.name.includes("/data/") && r.name.endsWith(".json"));
+    const kb = (rs) => Math.round(rs.reduce((n, r) => n + (r.encodedBodySize || r.transferSize || 0), 0) / 1024);
+    return { lcp: window.__lcp, cls: window.__cls, tbt: window.__tbt, el: window.__lcpEl, hyd, before: hyd == null ? null : kb(data.filter((r) => r.responseEnd <= hyd)), total: kb(data) };
+  });
+  results.push({ path: `/${path}`, lcp_ms: Math.round(m.lcp), cls: +m.cls.toFixed(3), tbt_ms: Math.round(m.tbt), hydrated_ms: m.hyd == null ? null : Math.round(m.hyd), data_kb_before_hydration: m.before, data_kb_6s: m.total, lcp_el: m.el?.slice(0, 24) });
   await ctx.close();
 }
 await b.close();

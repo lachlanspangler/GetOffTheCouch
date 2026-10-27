@@ -1754,12 +1754,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "City JSON is 170–470 KB gz and blocks first render; target ≤30 KB first view",
    "source": "agent",
    "created": "2026-10-16",
-   "updated": "2026-10-16",
-   "notes": []
+   "updated": "2026-10-27",
+   "notes": [
+    "2026-10-27 done: cities/<slug>/manifest.json + content-hashed week shards (ongoing, deadlines, weeks, openings, later, past-weeks; busy weeks split at 400 cards), legacy files kept; data.ts loads current+next week first, rest in idle, legacy fallback; pre-rendered pages inline exactly what the first render shows (memo replay, byte-for-byte verified at build). NYC first view 449 KB gz -> 25 KB (inline+index) / 125 KB (client-rendered)."
+   ]
   },
   {
    "id": "I-118",

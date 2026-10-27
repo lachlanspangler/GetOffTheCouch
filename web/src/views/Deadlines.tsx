@@ -1,4 +1,5 @@
 // Deadlines (DESIGN.md §4.11): the state to-dos first, then published deadlines grouped by how soon.
+import { memo } from "../lib/partial";
 import { DateBox, StatusLine } from "../components/EventRow";
 import { eventHref } from "../components/EventRow";
 import { Icon } from "../components/Icon";
@@ -116,14 +117,19 @@ function Subscribe({ city, cityName }: { city: string; cityName: string }) {
 export function Deadlines({ events }: { events: Event[] }) {
   const { feed, now } = useApp();
   if (!feed) return null;
-  const all = deadlines(events, now);
-  const published = collapse(all.filter((i) => !i.derived && isLeadable(i.event, feed.state)));
-  const groups = [
-    { id: "week", title: "This week", items: published.filter((i) => i.hours <= 24 * 7) },
-    { id: "two", title: "Next two weeks", items: published.filter((i) => i.hours > 24 * 7 && i.hours <= 24 * 21) },
-    { id: "later", title: "Later this season", items: published.filter((i) => i.hours > 24 * 21) },
-  ];
-  const signups = collapse(all.filter((i) => i.derived && i.hours <= 24 * 14 && isLeadable(i.event, feed.state) && i.event.tickets?.spots_left !== 0));
+  // memo(): the pre-rendered page inlines just these rows (lib/partial.ts)
+  const { groups, signups } = memo(feed, "deadlines:lists", () => {
+    const all = deadlines(events, now);
+    const published = collapse(all.filter((i) => !i.derived && isLeadable(i.event, feed.state)));
+    return {
+      groups: [
+        { id: "week", title: "This week", items: published.filter((i) => i.hours <= 24 * 7) },
+        { id: "two", title: "Next two weeks", items: published.filter((i) => i.hours > 24 * 7 && i.hours <= 24 * 21) },
+        { id: "later", title: "Later this season", items: published.filter((i) => i.hours > 24 * 21) },
+      ],
+      signups: collapse(all.filter((i) => i.derived && i.hours <= 24 * 14 && isLeadable(i.event, feed.state) && i.event.tickets?.spots_left !== 0)),
+    };
+  });
   const nSources = (feed.sources ?? []).filter((s) => s.state !== "disabled").length;
   return (
     <div class="container narrow">
@@ -132,7 +138,7 @@ export function Deadlines({ events }: { events: Event[] }) {
         <p class="lede">League sign-ups, registration cutoffs and early-bird prices in {feed.city_name}, soonest first. Just moved? The <a href="#state">state paperwork deadlines</a> are below.</p>
         <Subscribe city={feed.city} cityName={feed.city_name} />
       </header>
-      {!published.length && (
+      {!groups.some((g) => g.items.length) && (
         <div class="empty">
           <h2>No published sign-up deadlines in the next few weeks.</h2>
           <p>We check {nSources} {feed.city_name} sources every few hours. New leagues usually post 4–6 weeks before a season starts.</p>

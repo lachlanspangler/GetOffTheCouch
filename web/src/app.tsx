@@ -4,7 +4,8 @@ import { Header } from "./components/Header";
 import { Icon } from "./components/Icon";
 import { SkeletonRows } from "./components/EventRow";
 import { Ctx, type AppCtx } from "./lib/ctx";
-import { isDemo, loadCity, loadIndex } from "./lib/data";
+import { city, isDemo, loadIndex, needFor, priority } from "./lib/data";
+import { isInline, memo, routeSig, setRenderSig } from "./lib/partial";
 import { applyFilters, deadlines } from "./lib/filters";
 import { recordSignal } from "./lib/recommend";
 import { build, setTitleLookup, useRoute, type Route } from "./lib/router";
@@ -13,13 +14,9 @@ import { usePersistent } from "./lib/store";
 import { pageTitle } from "./lib/title";
 import { useView, type LazyName } from "./lib/views";
 import type { CityFeed, Index } from "./lib/types";
-import { Calendar } from "./views/Calendar";
-import { Deadlines } from "./views/Deadlines";
 import { EventPage } from "./views/EventPage";
 import { Feed } from "./views/Feed";
 import { Home } from "./views/Home";
-import { MapView } from "./views/MapView";
-import { Saved } from "./views/Saved";
 
 function applyTheme(t: Theme): void {
   const dark = t === "dark" || (t === "auto" && typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches);
@@ -36,9 +33,14 @@ export interface Initial {
 export function App({ initial }: { initial?: Initial } = {}) {
   const [route, go] = useRoute(initial?.route);
   const [index, setIndex] = useState<Index | null>(initial?.index ?? null);
-  const [feed, setFeed] = useState<CityFeed | null>(initial?.feed ?? null);
+  const [loaded, setFeed] = useState<CityFeed | null>(initial?.feed ?? null);
+  // true once every shard of the city is in (an inline pre-rendered feed or the first shards are not)
+  const [complete, setComplete] = useState(() => !!initial?.feed && !isInline(initial.feed));
+  // ...including the past weeks' shards, which only saved items and ended events' pages need
+  const [everything, setEverything] = useState(complete);
+  const firstSig = useRef(initial?.route ? routeSig(initial.route) : "");
   const [error, setError] = useState<string | null>(null);
-  const [now, setNow] = useState(() => initial?.now ?? new Date());
+  const [clock, setNow] = useState(() => initial?.now ?? new Date());
   const [lastCity, setLastCity] = usePersistent<string | null>("lastCity", null);
   const [saved, setSaved] = usePersistent<string[]>(`saved:${route.city ?? "_"}`, []);
   const [theme, setTheme] = usePersistent<Theme>("theme", "auto");
@@ -65,21 +67,68 @@ export function App({ initial }: { initial?: Initial } = {}) {
     return () => mq.removeEventListener("change", on);
   }, [theme]);
   useEffect(() => {
+    // the shards this view needs first (current + next week for the default feed), the rest of the city in idle time
     if (!route.city) {
       setFeed(null);
       return;
     }
-    if (feed?.city === route.city) return;
-    setFeed(null);
-    setError(null);
-    loadCity(route.city)
-      .then((f) => {
+    const c = city(route.city);
+    let live = true;
+    const done = (f: CityFeed, all: boolean) => {
+      if (live && all) {
         setFeed(f);
-        setLastCity(f.city);
-      })
-      .catch((e: Error) => setError(e.message));
+        setComplete(true);
+      }
+    };
+    const have = loaded?.city === route.city;
+    if (have && complete) return;
+    setError(null);
+    if (!have) {
+      setFeed(null);
+      setComplete(false);
+      setEverything(false);
+      const need = needFor(route.view, route.filters.when, route.eventId, now);
+      c.ensure(need)
+        .then((f) => {
+          if (!live) return;
+          setFeed((cur) => (cur && cur.city === f.city && cur.events.length >= f.events.length ? cur : f));
+          if (need.all) setComplete(true);
+          if (need.past) setEverything(true);
+        })
+        .catch((e: Error) => live && setError(e.message));
+    }
+    c.prefetch(done, priority(now));
+    return () => {
+      live = false;
+      c.off(done);
+    };
   }, [route.city, retry]);
+  useEffect(() => {
+    // a filter, view or event that needs shards we haven't loaded yet (e.g. "Next 30 days", the calendar)
+    if (!route.city || !loaded || loaded.city !== route.city) return;
+    const need = needFor(route.view, route.filters.when, route.eventId, now);
+    if (complete && (everything || !need.past)) return;
+    if (isInline(loaded) && routeSig(route) === firstSig.current) return; // still the pre-rendered page
+    let live = true;
+    city(route.city)
+      .ensure(need)
+      .then((f) => {
+        if (!live) return;
+        setFeed((cur) => (cur && !isInline(cur) && cur.events.length >= f.events.length ? cur : f));
+        if (need.all) setComplete(true);
+        if (need.past) setEverything(true);
+      })
+      .catch((e: Error) => live && setError(e.message));
+    return () => {
+      live = false;
+    };
+  }, [route, complete]);
 
+  setRenderSig(routeSig(route));
+  // an inline feed holds only what the pre-rendered page showed: on any other page, wait for the real data
+  const feed = isInline(loaded) && routeSig(route) !== firstSig.current ? null : loaded;
+  // ...and keep the server's clock until it has: the inline data was checked against the page at that time only
+  const now = isInline(feed) && initial?.now ? initial.now : clock;
   const ctx = useMemo<AppCtx | null>(() => {
     if (!index) return null;
     const labels = Object.fromEntries(Object.entries(index.taxonomy).map(([k, v]) => [k, v.label]));
@@ -152,7 +201,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
   }
 
   const filtered = feed ? applyFilters(feed.events, route.filters, feed.timezone, ctx.neighborhoods, now) : [];
-  const soon = feed ? new Set(deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7 && !d.derived && d.kind === "closes").map((d) => d.event.series_id ?? d.event.id)).size : 0;
+  const soon = feed ? memo(feed, "hdr:deadlines", () => new Set(deadlines(feed.events, now).filter((d) => d.hours <= 24 * 7 && !d.derived && d.kind === "closes").map((d) => d.event.series_id ?? d.event.id)).size) : 0;
   const view = route.view;
   const unknownCity = route.city && !index.cities.some((c) => c.slug === route.city);
   const unknownHub = !!route.unknown;
@@ -188,7 +237,8 @@ export function App({ initial }: { initial?: Initial } = {}) {
             <button class="btn btn-secondary" onClick={() => setRetry(retry + 1)}>Try again</button>
           </div>
         )}
-        {feed && route.eventId && !event && (
+        {feed && route.eventId && !event && !(complete && everything) && <div class="container" style={{ paddingTop: "32px" }}><SkeletonRows /></div>}
+        {feed && route.eventId && !event && complete && everything && (
           <div class="container empty">
             <h1>This event has ended or moved.</h1>
             <p>It's no longer listed by its source. Here's what's on in {feed.city_name} instead.</p>
@@ -207,11 +257,11 @@ export function App({ initial }: { initial?: Initial } = {}) {
             ) : (
               <>
                 {view === "feed" && <Feed events={filtered} />}
-                {view === "calendar" && <Calendar events={applyFilters(feed.events, { ...route.filters, when: "all" }, feed.timezone, ctx.neighborhoods, now)} />}
-                {view === "map" && <MapView events={filtered} />}
-                {view === "deadlines" && <Deadlines events={feed.events} />}
+                {view === "calendar" && <Lazy name="calendar" props={{ events: applyFilters(feed.events, { ...route.filters, when: "all" }, feed.timezone, ctx.neighborhoods, now) }} />}
+                {view === "map" && <Lazy name="map" props={{ events: filtered }} />}
+                {view === "deadlines" && <Lazy name="deadlines" props={{ events: feed.events }} />}
                 {view === "plan" && <Lazy name="plan" props={{ events: feed.events }} />}
-                {view === "saved" && <Saved />}
+                {view === "saved" && <Lazy name="saved" />}
                 {view === "health" && <Lazy name="health" />}
                 {view === "about" && <Lazy name="about" />}
                 {view === "methodology" && <Lazy name="methodology" />}

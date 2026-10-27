@@ -1790,7 +1790,7 @@
       "type": "object"
     }
   },
-  "$id": "https://getoffthecouch.app/schema/cityfeed-1.6.0.json",
+  "$id": "https://getoffthecouch.app/schema/cityfeed-1.7.0.json",
   "additionalProperties": false,
   "description": "The exported per-city document: ``web/public/data/cities/<slug>.json``.",
   "properties": {
@@ -1852,7 +1852,7 @@
       "type": "array"
     },
     "schema_version": {
-      "default": "1.6.0",
+      "default": "1.7.0",
       "title": "Schema Version",
       "type": "string"
     },
