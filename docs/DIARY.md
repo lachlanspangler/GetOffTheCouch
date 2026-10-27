@@ -524,3 +524,4 @@ New units, live counts:
 
 **Next:** see the top of STATUS.
 - 2026-10-27 08:33 UTC · run 46 partial: units[232 disabled, 5 failed, 554 ok] → 35424 events in 50 cities
+- 2026-10-27 15:44 UTC · run 47 partial: units[232 disabled, 5 failed, 3 ok, 554 skipped] → 35409 events in 50 cities

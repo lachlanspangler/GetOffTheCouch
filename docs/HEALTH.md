@@ -1,570 +1,573 @@
 # Health
 
-_Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenerated every run)._
+_Generated 2026-10-27T15:44:09+00:00 by `gotc` (do not edit by hand — regenerated every run)._
 
-**791 units** — 🟠 degraded: 9 · ⚪ disabled: 232 · 🟢 healthy: 550
+**794 units** — 🟠 degraded: 9 · ⚪ disabled: 232 · 🟢 healthy: 553
 
 | State | Unit | Last success | Records | Fails | Reliability (30d) | Note |
 |---|---|---|---|---|---|---|
-| 🟠 degraded | `chicago_park_adult_classes@chicago` | 3.0h | 10 | 0 | – (2 runs) |  |
-| 🟠 degraded | `fiu_events@miami` | 3.0h | 61 | 0 | – (2 runs) |  |
-| 🟠 degraded | `gallivan_center_events@salt_lake_city` | 248.8h ⚠️ stale | 13 | 1 | – (2 runs) | FetchTimeout: timeout fetching https://thegallivancenter.com/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A0 |
-| 🟠 degraded | `handson_bay_area_south@san_jose` | 248.7h ⚠️ stale | 2 | 1 | – (2 runs) | 0 valid records returned |
-| 🟠 degraded | `mprb_events@minneapolis` | 268.6h ⚠️ stale | 53 | 1 | – (2 runs) | RobotsDisallowed: robots.txt disallows https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?start_date=2026-1 |
-| 🟠 degraded | `nyu_events@nyc` | 3.0h | 19 | 0 | – (2 runs) |  |
-| 🟠 degraded | `red_hat_amphitheater@raleigh` | 249.4h ⚠️ stale | 2 | 1 | – (2 runs) | ValueError: https://www.redhatamphitheater.com/events/rss: RSS items carry no ev:startdate (not an event feed, or the mo |
-| 🟠 degraded | `vanderbilt_events@nashville` | 3.0h | 38 | 0 | – (2 runs) |  |
-| 🟠 degraded | `visit_oakland_events@san_francisco` | 248.7h ⚠️ stale | 98 | 1 | – (2 runs) | HttpStatusError: HTTP 403 for https://www.visitoakland.com/includes/rest_v2/plugins_events_events_by_date/find/?json=%7B |
-| 🟢 healthy | `acl_live@austin` | 2.9h | 96 | 0 | A (100) |  |
-| 🟢 healthy | `afpl_events@atlanta` | 1.8h | 293 | 0 | – (2 runs) |  |
-| 🟢 healthy | `alamodome@san_antonio` | 1.6h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `allegiant_stadium@las_vegas` | 1.8h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `altria_theater@richmond` | 1.6h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `american_airlines_center@dallas` | 2.3h | 87 | 0 | – (2 runs) |  |
-| 🟢 healthy | `analog_nashville@nashville` | 2.8h | 23 | 0 | A (100) |  |
-| 🟢 healthy | `arapahoe_library_events@denver` | 2.9h | 140 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ardmore_music_hall@philadelphia` | 2.3h | 44 | 0 | – (2 runs) |  |
-| 🟢 healthy | `atlanta_botanical_garden@atlanta` | 1.7h | 35 | 0 | – (2 runs) |  |
-| 🟢 healthy | `austin_convention_center_events@austin` | 1.2h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `austin_parks_foundation_events@austin` | 2.9h | 8 | 0 | – (2 runs) |  |
-| 🟢 healthy | `balboa_park_events@san_diego` | 1.9h | 61 | 0 | – (2 runs) |  |
-| 🟢 healthy | `baltimore_county_volunteer@baltimore` | 1.7h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `barclays_center@nyc` | 2.6h | 66 | 0 | A (100) |  |
-| 🟢 healthy | `bartrams_garden_events@philadelphia` | 1.9h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bayfront_park_miami@miami` | 2.9h | 7 | 0 | A (100) |  |
-| 🟢 healthy | `bc_athletics@boston` | 2.7h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `berkeley_events@san_francisco` | 1.6h | 17 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_alabama_theatre@birmingham` | 2.5h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_bjcc_comedy@birmingham` | 2.5h | 3 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_bjcc_concerts@birmingham` | 2.6h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_bjcc_performing_arts@birmingham` | 2.6h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_bjcc_sports@birmingham` | 2.6h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_bpl_events@birmingham` | 2.1h | 101 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_homewood_library_events@birmingham` | 1.8h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_hoover_library_events@birmingham` | 2.2h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_lyric_theatre@birmingham` | 2.6h | 17 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_samford_athletics@birmingham` | 1.8h | 18 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_saturn@birmingham` | 2.6h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_stardome@birmingham` | 2.1h | 69 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_uab_athletics@birmingham` | 1.7h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bham_uab_events@birmingham` | 2.2h | 214 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bird_and_beckett@san_francisco` | 1.8h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `boston_cares@boston` | 3.0h | 526 | 0 | – (2 runs) |  |
-| 🟢 healthy | `boston_food_openings_csv@boston` | 2.9h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bpl_events@boston` | 3.0h | 465 | 0 | – (2 runs) |  |
-| 🟢 healthy | `brackenridge_park_events@san_antonio` | 1.6h | 17 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bridgestone_arena@nashville` | 2.8h | 72 | 0 | A (100) |  |
-| 🟢 healthy | `broadberry_rva@richmond` | 2.4h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `bu_athletics@boston` | 2.9h | 36 | 0 | – (2 runs) |  |
-| 🟢 healthy | `buddy_guys_legends@chicago` | 2.9h | 27 | 0 | A (100) |  |
-| 🟢 healthy | `buffalo_bayou_events@houston` | 1.8h | 31 | 0 | – (2 runs) |  |
-| 🟢 healthy | `butler_athletics@indianapolis` | 2.0h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cal_athletics@san_francisco` | 1.9h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cal_expo_events@sacramento` | 2.1h | 6 | 0 | – (2 runs) |  |
-| 🟢 healthy | `camping_world_stadium@orlando` | 2.2h | 7 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cap_city_comedy@austin` | 2.9h | 104 | 0 | – (2 runs) |  |
-| 🟢 healthy | `capital_one_arena@washington_dc` | 2.3h | 107 | 0 | – (2 runs) |  |
-| 🟢 healthy | `carnegie_museums_events@pittsburgh` | 1.7h | 31 | 0 | – (2 runs) |  |
-| 🟢 healthy | `carousel_lounge@austin` | 2.6h | 55 | 0 | A (100) |  |
-| 🟢 healthy | `carver_cultural_center@san_antonio` | 1.8h | 14 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cbu_athletics@riverside` | 2.0h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ccpl_events@cleveland` | 1.6h | 334 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cedar_cultural_center@minneapolis` | 2.6h | 40 | 0 | A (100) |  |
-| 🟢 healthy | `cervantes_denver@denver` | 2.8h | 40 | 0 | A (100) |  |
-| 🟢 healthy | `challenge_trivia_atlanta@atlanta` | 1.3h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_austin@austin` | 1.5h | 56 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_birmingham@birmingham` | 1.2h | 237 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_dallas@dallas` | 1.4h | 176 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_denver@denver` | 1.5h | 37 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_hampton_roads@hampton_roads` | 1.2h | 108 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_houston@houston` | 1.4h | 86 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_indianapolis@indianapolis` | 1.4h | 212 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_kansas_city@kansas_city` | 1.3h | 18 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_louisville@louisville` | 1.4h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_memphis@memphis` | 1.3h | 84 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_milwaukee@milwaukee` | 1.4h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_nashville@nashville` | 1.5h | 176 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_okc@oklahoma_city` | 1.2h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_orlando@orlando` | 1.4h | 36 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_phoenix@phoenix` | 1.2h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_richmond@richmond` | 1.2h | 54 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_san_antonio@san_antonio` | 1.2h | 236 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_tampa@tampa` | 1.2h | 72 | 0 | – (2 runs) |  |
-| 🟢 healthy | `challenge_trivia_washington_dc@washington_dc` | 1.4h | 58 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chandler_library_events@phoenix` | 1.7h | 126 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chartway_arena@hampton_roads` | 1.6h | 50 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chesapeake_library_events@hampton_roads` | 1.6h | 68 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chicago_liquor_openings@chicago` | 3.0h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chicago_park_adult_leagues@chicago` | 3.0h | 4 | 0 | A (100) |  |
-| 🟢 healthy | `chicago_park_events@chicago` | 3.0h | 311 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chicago_park_permits@chicago` | 3.0h | 62 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chicago_restaurant_openings@chicago` | 3.0h | 112 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chipublib_events@chicago` | 3.0h | 975 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chpl_events@cincinnati` | 1.7h | 373 | 0 | – (2 runs) |  |
-| 🟢 healthy | `chris_jazz_cafe@philadelphia` | 2.4h | 95 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cincinnati_arts@cincinnati` | 2.1h | 68 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cleveland_state_athletics@cleveland` | 2.2h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `cliff_bells@detroit` | 2.5h | 52 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_49ers_athletics@charlotte` | 1.7h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_amos_southend@charlotte` | 2.6h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_blumenthal_arts@charlotte` | 2.2h | 88 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_cmlibrary_events@charlotte` | 1.8h | 452 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_cmpd_community_events@charlotte` | 1.8h | 160 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_comedy_zone@charlotte` | 2.2h | 64 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_spectrum_center@charlotte` | 2.5h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `clt_uncc_events@charlotte` | 1.8h | 92 | 0 | – (2 runs) |  |
-| 🟢 healthy | `club_passim@boston` | 2.8h | 5 | 0 | A (100) |  |
-| 🟢 healthy | `cmu_events@pittsburgh` | 1.5h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 3.0h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `columbia_athletics@nyc` | 2.9h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `columbus_commons@columbus` | 2.1h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `comedy_zone_jax@jacksonville` | 2.6h | 80 | 0 | – (2 runs) |  |
-| 🟢 healthy | `contemporary_austin_events@austin` | 2.9h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `corona_library_events@riverside` | 1.8h | 114 | 0 | – (2 runs) |  |
-| 🟢 healthy | `creative_alliance_events@baltimore` | 1.8h | 87 | 0 | – (2 runs) |  |
-| 🟢 healthy | `crypto_arena@los_angeles` | 2.8h | 113 | 0 | C (75) | ParseError: not well-formed (invalid token): line 68, column 35 |
-| 🟢 healthy | `csusb_athletics@riverside` | 1.8h | 4 | 0 | – (2 runs) |  |
-| 🟢 healthy | `curated_austin@austin` | 2.9h | 1 | 0 | A (100) |  |
-| 🟢 healthy | `curated_boston@boston` | 2.9h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `curated_los_angeles@los_angeles` | 2.9h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `curated_minneapolis@minneapolis` | 3.0h | 23 | 0 | A (100) |  |
-| 🟢 healthy | `curated_nashville@nashville` | 2.9h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `curated_seattle@seattle` | 2.9h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dakota_jazz@minneapolis` | 2.6h | 104 | 0 | A (100) |  |
-| 🟢 healthy | `dallas_arboretum@dallas` | 1.6h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dallas_parks_events@dallas` | 1.8h | 85 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dcpl_events@washington_dc` | 1.5h | 219 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dekalb_library_events@atlanta` | 1.5h | 101 | 0 | – (2 runs) |  |
-| 🟢 healthy | `denver_arts_venues@denver` | 2.9h | 109 | 0 | – (2 runs) |  |
-| 🟢 healthy | `denver_coliseum@denver` | 2.9h | 30 | 0 | – (2 runs) |  |
-| 🟢 healthy | `denver_liquor_openings@denver` | 3.0h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `denver_pending_food_openings@denver` | 3.0h | 72 | 0 | – (2 runs) |  |
-| 🟢 healthy | `denver_pioneers_athletics@denver` | 2.9h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `depaul_athletics@chicago` | 2.9h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `desert_botanical_garden_events@phoenix` | 2.2h | 87 | 0 | – (2 runs) |  |
-| 🟢 healthy | `detroit_titans_athletics@detroit` | 1.8h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dna_lounge@san_francisco` | 2.5h | 57 | 0 | – (2 runs) |  |
-| 🟢 healthy | `dominion_energy_center@richmond` | 1.8h | 37 | 0 | – (2 runs) |  |
-| 🟢 healthy | `downtown_baltimore_events@baltimore` | 1.6h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `downtown_boston_events@boston` | 3.0h | 166 | 0 | – (2 runs) |  |
-| 🟢 healthy | `downtown_dallas_events@dallas` | 1.5h | 168 | 0 | – (2 runs) |  |
-| 🟢 healthy | `downtown_seattle_events@seattle` | 3.0h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `drexel_athletics@philadelphia` | 1.5h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `duquesne_athletics@pittsburgh` | 1.7h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `earshot_jazz@seattle` | 2.9h | 259 | 0 | – (2 runs) |  |
-| 🟢 healthy | `eddies_attic@atlanta` | 2.3h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `emory_events@atlanta` | 1.8h | 56 | 0 | – (2 runs) |  |
-| 🟢 healthy | `enterprise_center@st_louis` | 1.6h | 52 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fabulous_fox@st_louis` | 2.0h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fairytale_town_events@sacramento` | 1.6h | 27 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fiserv_forum@milwaukee` | 2.1h | 18 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fiu_athletics@miami` | 2.9h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fl_dbpr_openings_jacksonville@jacksonville` | 2.2h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fl_dbpr_openings_miami@miami` | 3.0h | 56 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fl_dbpr_openings_orlando@orlando` | 2.0h | 56 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fl_dbpr_openings_tampa@tampa` | 1.9h | 66 | 0 | – (2 runs) |  |
-| 🟢 healthy | `flamingo_cantina@austin` | 2.7h | 9 | 0 | A (100) |  |
-| 🟢 healthy | `florida_theatre_jax@jacksonville` | 2.6h | 111 | 0 | – (2 runs) |  |
-| 🟢 healthy | `folly_theater@kansas_city` | 2.0h | 47 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ford_field@detroit` | 1.8h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fox_theatre_atlanta@atlanta` | 1.6h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `fresno_state_athletics@fresno` | 1.9h | 30 | 0 | – (2 runs) |  |
-| 🟢 healthy | `frost_bank_center@san_antonio` | 2.3h | 49 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gainbridge_fieldhouse@indianapolis` | 1.6h | 64 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gcu_athletics@phoenix` | 1.9h | 35 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gggp_events@san_francisco` | 1.8h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `globe_hall@denver` | 2.9h | 24 | 0 | A (100) |  |
-| 🟢 healthy | `goodnights_comedy@raleigh` | 2.6h | 151 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gophers_athletics@minneapolis` | 2.8h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `grand_casino_arena@minneapolis` | 2.8h | 62 | 0 | A (100) |  |
-| 🟢 healthy | `grandview_library_events@columbus` | 1.7h | 7 | 0 | – (2 runs) |  |
-| 🟢 healthy | `grpl_events@grand_rapids` | 2.1h | 39 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gsu_athletics@atlanta` | 1.6h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gsu_events@atlanta` | 1.6h | 57 | 0 | – (2 runs) |  |
-| 🟢 healthy | `gwu_events@washington_dc` | 1.6h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hands_on_nashville@nashville` | 3.0h | 435 | 0 | – (2 runs) |  |
-| 🟢 healthy | `handson_bay_area@san_francisco` | 2.1h | 119 | 0 | – (2 runs) |  |
-| 🟢 healthy | `handson_phoenix@phoenix` | 1.8h | 47 | 0 | – (2 runs) |  |
-| 🟢 healthy | `handson_rva@richmond` | 1.5h | 200 | 0 | – (2 runs) |  |
-| 🟢 healthy | `handson_twin_cities@minneapolis` | 3.0h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `harlows_sacramento@sacramento` | 2.3h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hawthorne_theatre@portland` | 2.3h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hclib_events@minneapolis` | 3.0h | 282 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hcpl_events@houston` | 1.9h | 267 | 0 | – (2 runs) |  |
-| 🟢 healthy | `headliners_louisville@louisville` | 2.6h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `heb_center@austin` | 2.9h | 50 | 0 | – (2 runs) |  |
-| 🟢 healthy | `heights_libraries_events@cleveland` | 2.1h | 121 | 0 | – (2 runs) |  |
-| 🟢 healthy | `helium_comedy_philly@philadelphia` | 1.7h | 92 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hemisfair_events@san_antonio` | 1.9h | 14 | 0 | – (2 runs) |  |
-| 🟢 healthy | `henderson_food_openings@las_vegas` | 1.7h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `henrico_library_events@richmond` | 1.7h | 101 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hermann_park_events@houston` | 1.5h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_bushnell@hartford` | 2.6h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_comedy_craft_beer@hartford` | 1.9h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_ct_liquor_openings@hartford` | 2.0h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_ct_museum_history@hartford` | 2.2h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_hartford_hawks@hartford` | 2.2h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_mark_twain_house@hartford` | 2.2h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_peoplesbank_arena@hartford` | 2.5h | 63 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_public_library_events@hartford` | 2.0h | 237 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_trinity_arts_events@hartford` | 2.2h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_trinity_bantams@hartford` | 2.2h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hfd_uconn_football_east_hartford@hartford` | 2.1h | 3 | 0 | – (2 runs) |  |
-| 🟢 healthy | `holocene_portland@portland` | 2.4h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `hook_and_ladder@minneapolis` | 2.8h | 40 | 0 | A (100) |  |
-| 🟢 healthy | `houston_arboretum_events@houston` | 1.9h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `icehouse_mpls@minneapolis` | 2.7h | 40 | 0 | A (100) |  |
-| 🟢 healthy | `indypl_events@indianapolis` | 2.0h | 128 | 0 | – (2 runs) |  |
-| 🟢 healthy | `jax_icemen@jacksonville` | 2.2h | 14 | 0 | – (2 runs) |  |
-| 🟢 healthy | `jax_library_events@jacksonville` | 1.8h | 172 | 0 | – (2 runs) |  |
-| 🟢 healthy | `jazz_gallery@nyc` | 2.7h | 21 | 0 | A (100) |  |
-| 🟢 healthy | `jeffco_library_events@denver` | 2.9h | 213 | 0 | – (2 runs) |  |
-| 🟢 healthy | `jhu_athletics@baltimore` | 1.6h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `jocolibrary_events@kansas_city` | 1.9h | 108 | 0 | – (2 runs) |  |
-| 🟢 healthy | `johnny_brendas@philadelphia` | 2.3h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ju_athletics@jacksonville` | 2.1h | 27 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kaseya_center@miami` | 2.8h | 67 | 0 | A (100) |  |
-| 🟢 healthy | `kc_parks_events@kansas_city` | 2.0h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kc_roos_athletics@kansas_city` | 1.8h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kcls_events@seattle` | 2.9h | 226 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kdl_events@grand_rapids` | 2.0h | 199 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kentucky_performing_arts@louisville` | 2.0h | 71 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kfc_yum_center@louisville` | 2.2h | 42 | 0 | – (2 runs) |  |
-| 🟢 healthy | `kia_center@orlando` | 2.5h | 98 | 0 | – (2 runs) |  |
-| 🟢 healthy | `koka_booth_amphitheatre@raleigh` | 2.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `la_business_openings@los_angeles` | 3.0h | 97 | 0 | – (2 runs) |  |
-| 🟢 healthy | `la_works@los_angeles` | 3.0h | 235 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ladbs_special_events@los_angeles` | 3.0h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lan_su_garden@portland` | 1.8h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `larimer_lounge@denver` | 2.8h | 40 | 0 | A (100) |  |
-| 🟢 healthy | `laughing_skull_lounge@atlanta` | 1.5h | 50 | 0 | – (2 runs) |  |
-| 🟢 healthy | `laughs_comedy_seattle@seattle` | 2.9h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lenovo_center_raleigh@raleigh` | 2.5h | 71 | 0 | – (2 runs) |  |
-| 🟢 healthy | `levy_park_events@houston` | 1.6h | 55 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lewis_ginter_events@richmond` | 1.8h | 44 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lincoln_theatre_raleigh@raleigh` | 2.5h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `literary_arts_events@portland` | 2.0h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lost_lake@denver` | 2.7h | 23 | 0 | A (100) |  |
-| 🟢 healthy | `louisville_cardinals_athletics@louisville` | 2.0h | 27 | 0 | – (2 runs) |  |
-| 🟢 healthy | `luma_atx_backgammon@austin` | 2.7h | 0 | 0 | A (100) |  |
-| 🟢 healthy | `luma_corgi_nyc@nyc` | 2.8h | 6 | 0 | A (100) |  |
-| 🟢 healthy | `luma_lit_club_nyc@nyc` | 2.8h | 4 | 0 | A (100) |  |
-| 🟢 healthy | `luma_mana_tech@miami` | 2.6h | 6 | 0 | A (100) |  |
-| 🟢 healthy | `luma_mhub_chicago@chicago` | 2.8h | 1 | 0 | A (100) |  |
-| 🟢 healthy | `luma_minnestar@minneapolis` | 2.6h | 1 | 0 | A (100) |  |
-| 🟢 healthy | `luma_mpls_journaling_club@minneapolis` | 2.9h | 2 | 0 | A (100) |  |
-| 🟢 healthy | `luma_ny_philosophy_club@nyc` | 2.7h | 12 | 0 | A (100) |  |
-| 🟢 healthy | `luma_run_gables@miami` | 2.9h | 4 | 0 | A (100) |  |
-| 🟢 healthy | `luma_sew_it_together@minneapolis` | 2.8h | 16 | 0 | A (100) |  |
-| 🟢 healthy | `luma_startup_boston@boston` | 2.9h | 10 | 0 | A (100) |  |
-| 🟢 healthy | `luma_the_made@san_francisco` | 2.4h | 18 | 0 | – (2 runs) |  |
-| 🟢 healthy | `luma_tiat@san_francisco` | 2.3h | 8 | 0 | – (2 runs) |  |
-| 🟢 healthy | `luma_venice_book_club@los_angeles` | 2.9h | 8 | 0 | A (100) |  |
-| 🟢 healthy | `luma_zoma_house@minneapolis` | 2.8h | 4 | 0 | A (100) |  |
-| 🟢 healthy | `lvccld_events@las_vegas` | 1.8h | 295 | 0 | – (2 runs) |  |
-| 🟢 healthy | `lyric_baltimore@baltimore` | 1.9h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `madrone_art_bar@san_francisco` | 2.5h | 85 | 0 | – (2 runs) |  |
-| 🟢 healthy | `majestic_detroit@detroit` | 2.4h | 48 | 0 | – (2 runs) |  |
-| 🟢 healthy | `marcus_center@milwaukee` | 1.9h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `marquette_athletics@milwaukee` | 1.9h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `martin_marietta_center@raleigh` | 2.1h | 65 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mdpls_events@miami` | 3.0h | 443 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memorial_park_events@houston` | 1.8h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_fedexforum@memphis` | 2.5h | 58 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_gpac@memphis` | 2.2h | 30 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_landers_center@memphis` | 2.5h | 57 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_meddlesome@memphis` | 2.2h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_overton_park_shell@memphis` | 2.0h | 7 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_river_parks@memphis` | 2.2h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_symphony@memphis` | 2.2h | 17 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_tigers_athletics@memphis` | 2.0h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_uw_midsouth_volunteer@memphis` | 2.0h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `memphis_wiseacre@memphis` | 2.0h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mesa_arts_center@phoenix` | 1.6h | 64 | 0 | – (2 runs) |  |
-| 🟢 healthy | `metro_chicago@chicago` | 2.7h | 35 | 0 | A (100) |  |
-| 🟢 healthy | `miami_beach_bandshell@miami` | 2.8h | 26 | 0 | A (100) |  |
-| 🟢 healthy | `milkboy_philly@philadelphia` | 2.3h | 53 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mim_events@phoenix` | 1.9h | 127 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mo_new_liquor_licenses_kc@kansas_city` | 2.2h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mo_new_liquor_licenses_stl@st_louis` | 1.8h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mohai_events@seattle` | 2.9h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `montalvo_arts@san_jose` | 1.9h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `montgomery_volunteer@washington_dc` | 1.6h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `moody_center@austin` | 2.6h | 29 | 0 | A (100) |  |
-| 🟢 healthy | `mount_vernon_triangle_events@washington_dc` | 1.5h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mpl_events@milwaukee` | 1.8h | 209 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mpls_downtown_events@minneapolis` | 3.0h | 111 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mpls_on_sale_liquor_openings@minneapolis` | 3.0h | 476 | 0 | – (2 runs) |  |
-| 🟢 healthy | `mr_tipples@san_francisco` | 2.5h | 81 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 3.0h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nationwide_arena@columbus` | 2.0h | 44 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ncmns_events@raleigh` | 2.2h | 101 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ncsu_athletics@raleigh` | 2.1h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ncsu_events@raleigh` | 2.2h | 166 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nectar_lounge@seattle` | 2.6h | 110 | 0 | A (100) |  |
-| 🟢 healthy | `norfolk_business_openings@hampton_roads` | 1.5h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `norfolk_library_events@hampton_roads` | 1.9h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `northeastern_events@boston` | 3.0h | 52 | 0 | – (2 runs) |  |
-| 🟢 healthy | `notoriety_live@las_vegas` | 1.6h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `now_playing_utah@salt_lake_city` | 1.6h | 349 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nsu_athletics@hampton_roads` | 1.5h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nyc_parks_events@nyc` | 3.0h | 599 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nyc_permitted_events@nyc` | 3.0h | 328 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nyc_service@nyc` | 2.9h | 163 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nys_sla_new_licenses@nyc` | 3.0h | 964 | 0 | – (2 runs) |  |
-| 🟢 healthy | `nys_sla_pending_openings@nyc` | 3.0h | 230 | 0 | – (2 runs) |  |
-| 🟢 healthy | `oakland_library_events@san_francisco` | 1.9h | 188 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ocls_events@orlando` | 1.9h | 582 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ohio_state_athletics@columbus` | 1.9h | 49 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_civic_center@oklahoma_city` | 1.7h | 43 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_cowboy_museum@oklahoma_city` | 2.0h | 10 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_ocu_athletics@oklahoma_city` | 2.0h | 14 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_paycom_center@oklahoma_city` | 2.5h | 67 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_science_museum@oklahoma_city` | 2.2h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_scissortail_park@oklahoma_city` | 2.0h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_uco_athletics@oklahoma_city` | 1.9h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_uco_events@oklahoma_city` | 2.0h | 35 | 0 | – (2 runs) |  |
-| 🟢 healthy | `okc_volunteer_central_ok@oklahoma_city` | 1.7h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `olcc_new_applications_portland@portland` | 1.6h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `old_sacramento_events@sacramento` | 1.9h | 67 | 0 | – (2 runs) |  |
-| 🟢 healthy | `orlando_museum_of_art@orlando` | 2.1h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `orlando_restaurant_openings@orlando` | 2.2h | 7 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ottobar@baltimore` | 2.3h | 9 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pearl_events@san_antonio` | 1.8h | 30 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pechanga_arena@san_diego` | 2.1h | 47 | 0 | – (2 runs) |  |
-| 🟢 healthy | `penn_athletics@philadelphia` | 1.5h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `phl_restaurant_openings@philadelphia` | 1.6h | 119 | 0 | – (2 runs) |  |
-| 🟢 healthy | `phoenix_public_library_events@phoenix` | 2.1h | 402 | 0 | – (2 runs) |  |
-| 🟢 healthy | `piedmont_park_events@atlanta` | 1.6h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pioneer_courthouse_square@portland` | 1.6h | 7 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pitt_athletics@pittsburgh` | 1.8h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pitt_events@pittsburgh` | 1.6h | 48 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pittsburgh_cares@pittsburgh` | 1.9h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pittsburgh_parks_events@pittsburgh` | 1.6h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `playhouse_square@cleveland` | 2.0h | 83 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ponte_vedra_concert_hall@jacksonville` | 2.6h | 51 | 0 | – (2 runs) |  |
-| 🟢 healthy | `portland_art_museum@portland` | 1.6h | 53 | 0 | – (2 runs) |  |
-| 🟢 healthy | `portland_farmers_market@portland` | 2.1h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `portland_pilots_athletics@portland` | 1.8h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `portland_state_athletics@portland` | 1.6h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ppg_paints_arena@pittsburgh` | 2.3h | 58 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pratt_library_events@baltimore` | 1.6h | 181 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_amica_mutual_pavilion@providence` | 2.5h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_as220@providence` | 2.6h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_brown_athletics@providence` | 2.1h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_brown_events@providence` | 1.9h | 25 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_comedy_connection@providence` | 2.5h | 11 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_cranston_library_events@providence` | 2.1h | 114 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_east_providence_library_events@providence` | 2.2h | 108 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_fete_music_hall@providence` | 2.5h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_friars_athletics@providence` | 1.9h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_pawtucket_library_events@providence` | 2.2h | 58 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_ppac@providence` | 2.6h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_ri_convention_center@providence` | 1.8h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_serve_ri_volunteer@providence` | 2.0h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `pvd_the_met@providence` | 2.6h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `raleigh_special_events@raleigh` | 1.9h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `redlands_athletics@riverside` | 2.0h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `rice_athletics@houston` | 1.8h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `rice_events@houston` | 1.7h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `richmond_spiders_athletics@richmond` | 1.9h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `rivers_of_steel_events@pittsburgh` | 1.5h | 5 | 0 | – (2 runs) |  |
-| 🟢 healthy | `rocket_arena@cleveland` | 1.8h | 88 | 0 | – (2 runs) |  |
-| 🟢 healthy | `roseland_theater@portland` | 2.4h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `royal_room_seattle@seattle` | 2.6h | 12 | 0 | A (100) |  |
-| 🟢 healthy | `rpl_events@richmond` | 1.5h | 34 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ryman_auditorium@nashville` | 2.7h | 76 | 0 | A (100) |  |
-| 🟢 healthy | `sacpl_events@sacramento` | 1.7h | 170 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sacramento_business_openings@sacramento` | 1.9h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sacstate_athletics@sacramento` | 1.8h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sacstate_events@sacramento` | 1.6h | 61 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sandler_center@hampton_roads` | 1.7h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sap_center@san_jose` | 1.6h | 44 | 0 | – (2 runs) |  |
-| 🟢 healthy | `saxon_pub@austin` | 2.8h | 165 | 0 | A (100) |  |
-| 🟢 healthy | `sccl_events@san_jose` | 1.8h | 135 | 0 | – (2 runs) |  |
-| 🟢 healthy | `schottenstein_center@columbus` | 1.9h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `scottsdale_city_events@phoenix` | 1.6h | 9 | 0 | – (2 runs) |  |
-| 🟢 healthy | `scottsdale_food_openings@phoenix` | 1.7h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `scu_athletics@san_jose` | 2.1h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sdcl_events@san_diego` | 1.7h | 224 | 0 | – (2 runs) |  |
-| 🟢 healthy | `seattle_business_openings@seattle` | 3.0h | 39 | 0 | – (2 runs) |  |
-| 🟢 healthy | `seattle_city_events@seattle` | 2.8h | 70 | 0 | – (2 runs) |  |
-| 🟢 healthy | `serve_dc_volunteer@washington_dc` | 1.7h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `seven_venues_norfolk@hampton_roads` | 1.6h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sf_business_openings@san_francisco` | 1.8h | 93 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sf_recpark_events@san_francisco` | 1.6h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sf_special_events@san_francisco` | 2.1h | 91 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sjpl_events@san_jose` | 1.7h | 467 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sjsu_events@san_jose` | 1.7h | 181 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sju_athletics@philadelphia` | 1.9h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `slcolibrary_events@salt_lake_city` | 1.8h | 196 | 0 | – (2 runs) |  |
-| 🟢 healthy | `slcpl_events@salt_lake_city` | 1.6h | 89 | 0 | – (2 runs) |  |
-| 🟢 healthy | `slpl_events@st_louis` | 2.0h | 185 | 0 | – (2 runs) |  |
-| 🟢 healthy | `slu_athletics@st_louis` | 1.9h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `smithsonian_events@washington_dc` | 1.6h | 255 | 0 | – (2 runs) |  |
-| 🟢 healthy | `smu_athletics@dallas` | 1.9h | 39 | 0 | – (2 runs) |  |
-| 🟢 healthy | `songbyrd_dc@washington_dc` | 2.4h | 39 | 0 | – (2 runs) |  |
-| 🟢 healthy | `spl_events@seattle` | 3.0h | 184 | 0 | – (2 runs) |  |
-| 🟢 healthy | `standup_live_phoenix@phoenix` | 2.0h | 78 | 0 | – (2 runs) |  |
-| 🟢 healthy | `stanford_events@san_jose` | 1.8h | 282 | 0 | – (2 runs) |  |
-| 🟢 healthy | `state_farm_arena@atlanta` | 2.5h | 65 | 0 | – (2 runs) |  |
-| 🟢 healthy | `state_farm_stadium@phoenix` | 2.2h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `station_inn@nashville` | 2.7h | 57 | 0 | A (100) |  |
-| 🟢 healthy | `stg_presents@seattle` | 2.8h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `stl_volunteer_center@st_louis` | 1.7h | 41 | 0 | – (2 runs) |  |
-| 🟢 healthy | `sweetwater_music_hall@san_francisco` | 2.5h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_new_licenses_austin@austin` | 3.0h | 34 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_new_licenses_dallas@dallas` | 1.7h | 49 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_new_licenses_houston@houston` | 1.6h | 63 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_new_licenses_san_antonio@san_antonio` | 1.6h | 31 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_pending_openings_austin@austin` | 3.0h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_pending_openings_dallas@dallas` | 1.8h | 30 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_pending_openings_houston@houston` | 1.8h | 48 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tabc_pending_openings_san_antonio@san_antonio` | 1.8h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_benchmark_arena@tampa` | 2.6h | 63 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_downtown_events@tampa` | 1.6h | 24 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_hcplc_events@tampa` | 1.7h | 159 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_ruth_eckerd_hall@tampa` | 2.6h | 138 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_usf_athletics@tampa` | 1.7h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_ut_events@tampa` | 2.2h | 8 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_volunteer_suncoast@tampa` | 2.1h | 42 | 0 | – (2 runs) |  |
-| 🟢 healthy | `tampa_yuengling_center@tampa` | 2.5h | 45 | 0 | – (2 runs) |  |
-| 🟢 healthy | `target_center@minneapolis` | 2.8h | 55 | 0 | A (100) |  |
-| 🟢 healthy | `td_garden@boston` | 2.6h | 99 | 0 | A (100) |  |
-| 🟢 healthy | `teamtrivia_atlanta@atlanta` | 1.4h | 346 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_baltimore@baltimore` | 1.5h | 110 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_charlotte@charlotte` | 1.4h | 76 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_dallas@dallas` | 1.4h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_denver@denver` | 1.5h | 120 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_phoenix@phoenix` | 1.3h | 250 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_raleigh@raleigh` | 1.2h | 164 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_st_louis@st_louis` | 1.2h | 159 | 0 | – (2 runs) |  |
-| 🟢 healthy | `teamtrivia_tampa@tampa` | 1.4h | 8 | 0 | – (2 runs) |  |
-| 🟢 healthy | `temple_athletics@philadelphia` | 1.5h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `texas_athletics@austin` | 2.8h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `the_8x10@baltimore` | 2.3h | 47 | 0 | – (2 runs) |  |
-| 🟢 healthy | `the_echo@los_angeles` | 2.8h | 25 | 0 | A (100) |  |
-| 🟢 healthy | `the_space_lv@las_vegas` | 1.6h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `three13_presents@detroit` | 2.4h | 64 | 0 | – (2 runs) |  |
-| 🟢 healthy | `thunderbird_music_hall@pittsburgh` | 2.3h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `town_hall_seattle@seattle` | 2.9h | 53 | 0 | – (2 runs) |  |
-| 🟢 healthy | `towson_athletics@baltimore` | 1.6h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `towson_events@baltimore` | 1.5h | 81 | 0 | – (2 runs) |  |
-| 🟢 healthy | `toyota_center@houston` | 2.4h | 59 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uc_events@cincinnati` | 2.0h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ucf_events@orlando` | 2.0h | 19 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uchicago_events@chicago` | 3.0h | 49 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ucr_athletics@riverside` | 1.8h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ucr_events@riverside` | 1.8h | 209 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ucsd_events@san_diego` | 1.6h | 134 | 0 | – (2 runs) |  |
-| 🟢 healthy | `ucsd_tritons_athletics@san_diego` | 1.7h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uh_athletics@houston` | 1.5h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `umkc_events@kansas_city` | 2.0h | 52 | 0 | – (2 runs) |  |
-| 🟢 healthy | `umn_events@minneapolis` | 3.0h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `underground_arts@philadelphia` | 2.3h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `unexpected_productions@seattle` | 2.7h | 40 | 0 | – (2 runs) |  |
-| 🟢 healthy | `unf_athletics@jacksonville` | 1.9h | 26 | 0 | – (2 runs) |  |
-| 🟢 healthy | `unf_events@jacksonville` | 2.2h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `united_way_sem_volunteer@detroit` | 1.9h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `unlv_athletics@las_vegas` | 1.6h | 35 | 0 | – (2 runs) |  |
-| 🟢 healthy | `up_events@portland` | 2.1h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@atlanta` | 1.1h | 3 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@austin` | 1.2h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@baltimore` | 1.0h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@birmingham` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@boston` | 1.2h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@charlotte` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@chicago` | 1.2h | 2 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@cincinnati` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@cleveland` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@columbus` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@dallas` | 1.1h | 3 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@denver` | 1.2h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@detroit` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@fresno` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@grand_rapids` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@hampton_roads` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@hartford` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@houston` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@indianapolis` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@jacksonville` | 1.0h | 2 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@kansas_city` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@las_vegas` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@los_angeles` | 1.1h | 2 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@louisville` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@memphis` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@miami` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@milwaukee` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@minneapolis` | 1.1h | 3 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@nashville` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@nyc` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@oklahoma_city` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@orlando` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@philadelphia` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@phoenix` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@pittsburgh` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@portland` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@providence` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@raleigh` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@richmond` | 1.0h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@riverside` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@sacramento` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@salt_lake_city` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@san_antonio` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@san_diego` | 1.0h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@san_francisco` | 1.1h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@san_jose` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@seattle` | 1.1h | 2 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@st_louis` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@tampa` | 1.0h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `upcomingcons@washington_dc` | 1.1h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `usc_athletics@los_angeles` | 2.7h | 32 | 0 | – (2 runs) |  |
-| 🟢 healthy | `usc_events@los_angeles` | 3.0h | 225 | 0 | – (2 runs) |  |
-| 🟢 healthy | `usd_toreros_athletics@san_diego` | 1.6h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `usf_athletics@san_francisco` | 1.6h | 22 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uta_events@dallas` | 1.8h | 55 | 0 | – (2 runs) |  |
-| 🟢 healthy | `utah_utes_athletics@salt_lake_city` | 1.9h | 20 | 0 | – (2 runs) |  |
-| 🟢 healthy | `utaustin_events@austin` | 3.0h | 237 | 0 | – (2 runs) |  |
-| 🟢 healthy | `utdallas_events@dallas` | 1.8h | 31 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uw_athletics@seattle` | 2.9h | 21 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uw_austin_volunteer@austin` | 3.0h | 1 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uw_events@seattle` | 3.0h | 60 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uw_nefl_volunteer@jacksonville` | 1.7h | 28 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uwcm_volunteer@baltimore` | 1.9h | 35 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uwkc_volunteer@seattle` | 2.9h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uwm_athletics@milwaukee` | 1.8h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uwsa_volunteer@san_antonio` | 1.5h | 15 | 0 | – (2 runs) |  |
-| 🟢 healthy | `uwsn_volunteer@las_vegas` | 1.6h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `vcu_athletics@richmond` | 1.6h | 12 | 0 | – (2 runs) |  |
-| 🟢 healthy | `venue_1720@los_angeles` | 2.8h | 28 | 0 | A (100) |  |
-| 🟢 healthy | `virginia_zoo_events@hampton_roads` | 1.9h | 37 | 0 | – (2 runs) |  |
-| 🟢 healthy | `visit_ballard_events@seattle` | 2.8h | 76 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_baltimore@baltimore` | 1.7h | 73 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_boston@boston` | 3.0h | 65 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_denver@denver` | 3.0h | 104 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_jacksonville@jacksonville` | 2.2h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_los_angeles@los_angeles` | 3.0h | 33 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_miami@miami` | 3.0h | 16 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_nyc@nyc` | 2.9h | 121 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_philadelphia@philadelphia` | 1.6h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_phoenix@phoenix` | 1.8h | 0 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_san_diego@san_diego` | 2.0h | 49 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_san_francisco@san_francisco` | 2.1h | 45 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_san_jose@san_jose` | 1.8h | 38 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volo_washington_dc@washington_dc` | 1.5h | 96 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volunteer_central_indiana@indianapolis` | 2.2h | 13 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volunteer_houston@houston` | 1.6h | 14 | 0 | – (2 runs) |  |
-| 🟢 healthy | `volunteer_hr@hampton_roads` | 1.6h | 81 | 0 | – (2 runs) |  |
-| 🟢 healthy | `wayne_state_athletics@detroit` | 1.6h | 29 | 0 | – (2 runs) |  |
-| 🟢 healthy | `wccls_events@portland` | 1.8h | 227 | 0 | – (2 runs) |  |
-| 🟢 healthy | `westerville_library_events@columbus` | 1.6h | 37 | 0 | – (2 runs) |  |
-| 🟢 healthy | `wildflower_center_events@austin` | 2.9h | 48 | 0 | – (2 runs) |  |
-| 🟢 healthy | `wintrust_arena@chicago` | 2.6h | 29 | 0 | A (100) |  |
-| 🟢 healthy | `witte_museum_events@san_antonio` | 1.7h | 6 | 0 | – (2 runs) |  |
-| 🟢 healthy | `wonder_ballroom@portland` | 2.5h | 34 | 0 | – (2 runs) |  |
-| 🟢 healthy | `xavier_athletics@cincinnati` | 1.6h | 23 | 0 | – (2 runs) |  |
-| 🟢 healthy | `xfinity_mobile_arena@philadelphia` | 2.3h | 98 | 0 | – (2 runs) |  |
-| 🟢 healthy | `zinc_bar@nyc` | 2.6h | 65 | 0 | A (100) |  |
+| 🟠 degraded | `chicago_park_adult_classes@chicago` | 10.2h | 10 | 0 | – (2 runs) |  |
+| 🟠 degraded | `fiu_events@miami` | 10.2h | 61 | 0 | – (2 runs) |  |
+| 🟠 degraded | `gallivan_center_events@salt_lake_city` | 256.0h ⚠️ stale | 13 | 2 | D (33) | HttpStatusError: HTTP 403 for https://thegallivancenter.com/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A00 |
+| 🟠 degraded | `handson_bay_area_south@san_jose` | 255.9h ⚠️ stale | 2 | 2 | D (33) | 0 valid records returned |
+| 🟠 degraded | `mprb_events@minneapolis` | 275.8h ⚠️ stale | 53 | 2 | D (33) | RobotsDisallowed: robots.txt disallows https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?start_date=2026-1 |
+| 🟠 degraded | `nyu_events@nyc` | 10.2h | 19 | 0 | – (2 runs) |  |
+| 🟠 degraded | `red_hat_amphitheater@raleigh` | 256.6h ⚠️ stale | 2 | 2 | D (33) | ValueError: https://www.redhatamphitheater.com/events/rss: RSS items carry no ev:startdate (not an event feed, or the mo |
+| 🟠 degraded | `vanderbilt_events@nashville` | 10.2h | 38 | 0 | – (2 runs) |  |
+| 🟠 degraded | `visit_oakland_events@san_francisco` | 255.9h ⚠️ stale | 98 | 2 | D (33) | HttpStatusError: HTTP 403 for https://www.visitoakland.com/includes/rest_v2/plugins_events_events_by_date/find/?json=%7B |
+| 🟢 healthy | `acl_live@austin` | 10.1h | 96 | 0 | A (100) |  |
+| 🟢 healthy | `afpl_events@atlanta` | 9.0h | 293 | 0 | – (2 runs) |  |
+| 🟢 healthy | `alamodome@san_antonio` | 8.8h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `allegiant_stadium@las_vegas` | 8.9h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `altria_theater@richmond` | 8.8h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `american_airlines_center@dallas` | 9.4h | 87 | 0 | – (2 runs) |  |
+| 🟢 healthy | `analog_nashville@nashville` | 10.0h | 23 | 0 | A (100) |  |
+| 🟢 healthy | `arapahoe_library_events@denver` | 10.1h | 140 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ardmore_music_hall@philadelphia` | 9.4h | 44 | 0 | – (2 runs) |  |
+| 🟢 healthy | `atlanta_botanical_garden@atlanta` | 8.9h | 35 | 0 | – (2 runs) |  |
+| 🟢 healthy | `austin_convention_center_events@austin` | 8.3h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `austin_parks_foundation_events@austin` | 10.1h | 8 | 0 | – (2 runs) |  |
+| 🟢 healthy | `balboa_park_events@san_diego` | 9.1h | 61 | 0 | – (2 runs) |  |
+| 🟢 healthy | `baltimore_county_volunteer@baltimore` | 8.9h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `barclays_center@nyc` | 9.8h | 66 | 0 | A (100) |  |
+| 🟢 healthy | `bartrams_garden_events@philadelphia` | 9.1h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bayfront_park_miami@miami` | 10.0h | 7 | 0 | A (100) |  |
+| 🟢 healthy | `bc_athletics@boston` | 9.9h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `berkeley_events@san_francisco` | 8.8h | 17 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_alabama_theatre@birmingham` | 9.7h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_bjcc_comedy@birmingham` | 9.7h | 3 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_bjcc_concerts@birmingham` | 9.8h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_bjcc_performing_arts@birmingham` | 9.8h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_bjcc_sports@birmingham` | 9.8h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_bpl_events@birmingham` | 9.2h | 101 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_homewood_library_events@birmingham` | 9.0h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_hoover_library_events@birmingham` | 9.4h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_lyric_theatre@birmingham` | 9.7h | 17 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_samford_athletics@birmingham` | 9.0h | 18 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_saturn@birmingham` | 9.8h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_stardome@birmingham` | 9.2h | 69 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_uab_athletics@birmingham` | 8.9h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bham_uab_events@birmingham` | 9.4h | 214 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bird_and_beckett@san_francisco` | 8.9h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `boston_cares@boston` | 10.2h | 526 | 0 | – (2 runs) |  |
+| 🟢 healthy | `boston_food_openings_csv@boston` | 10.1h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bpl_events@boston` | 10.2h | 465 | 0 | – (2 runs) |  |
+| 🟢 healthy | `brackenridge_park_events@san_antonio` | 8.7h | 17 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bridgestone_arena@nashville` | 10.0h | 72 | 0 | A (100) |  |
+| 🟢 healthy | `broadberry_rva@richmond` | 9.6h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `bu_athletics@boston` | 10.1h | 36 | 0 | – (2 runs) |  |
+| 🟢 healthy | `buddy_guys_legends@chicago` | 10.1h | 27 | 0 | A (100) |  |
+| 🟢 healthy | `buffalo_bayou_events@houston` | 9.0h | 31 | 0 | – (2 runs) |  |
+| 🟢 healthy | `butler_athletics@indianapolis` | 9.2h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cal_athletics@san_francisco` | 9.1h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cal_expo_events@sacramento` | 9.2h | 6 | 0 | – (2 runs) |  |
+| 🟢 healthy | `camping_world_stadium@orlando` | 9.4h | 7 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cap_city_comedy@austin` | 10.1h | 104 | 0 | – (2 runs) |  |
+| 🟢 healthy | `capital_one_arena@washington_dc` | 9.5h | 107 | 0 | – (2 runs) |  |
+| 🟢 healthy | `carnegie_museums_events@pittsburgh` | 8.8h | 31 | 0 | – (2 runs) |  |
+| 🟢 healthy | `carousel_lounge@austin` | 9.8h | 55 | 0 | A (100) |  |
+| 🟢 healthy | `carver_cultural_center@san_antonio` | 9.0h | 14 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cbu_athletics@riverside` | 9.2h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ccpl_events@cleveland` | 8.8h | 334 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cedar_cultural_center@minneapolis` | 9.8h | 40 | 0 | A (100) |  |
+| 🟢 healthy | `cervantes_denver@denver` | 10.0h | 40 | 0 | A (100) |  |
+| 🟢 healthy | `challenge_trivia_atlanta@atlanta` | 8.5h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_austin@austin` | 8.6h | 56 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_birmingham@birmingham` | 8.4h | 237 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_dallas@dallas` | 8.6h | 176 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_denver@denver` | 8.6h | 37 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_hampton_roads@hampton_roads` | 8.3h | 108 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_houston@houston` | 8.6h | 86 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_indianapolis@indianapolis` | 8.6h | 212 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_kansas_city@kansas_city` | 8.5h | 18 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_los_angeles@los_angeles` | 0.2h | 6 | 0 | – (1 runs) |  |
+| 🟢 healthy | `challenge_trivia_louisville@louisville` | 8.6h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_memphis@memphis` | 8.5h | 84 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_miami@miami` | 0.2h | 48 | 0 | – (1 runs) |  |
+| 🟢 healthy | `challenge_trivia_milwaukee@milwaukee` | 8.6h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_nashville@nashville` | 8.6h | 176 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_okc@oklahoma_city` | 8.4h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_orlando@orlando` | 8.6h | 36 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_phoenix@phoenix` | 8.4h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_richmond@richmond` | 8.4h | 54 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_san_antonio@san_antonio` | 8.4h | 236 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_tampa@tampa` | 8.4h | 72 | 0 | – (2 runs) |  |
+| 🟢 healthy | `challenge_trivia_washington_dc@washington_dc` | 8.6h | 58 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chandler_library_events@phoenix` | 8.8h | 126 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chartway_arena@hampton_roads` | 8.8h | 50 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chesapeake_library_events@hampton_roads` | 8.8h | 68 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chicago_liquor_openings@chicago` | 10.2h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chicago_park_adult_leagues@chicago` | 10.2h | 4 | 0 | A (100) |  |
+| 🟢 healthy | `chicago_park_events@chicago` | 10.2h | 311 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chicago_park_permits@chicago` | 10.2h | 62 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chicago_restaurant_openings@chicago` | 10.2h | 112 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chipublib_events@chicago` | 10.2h | 975 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chpl_events@cincinnati` | 8.9h | 373 | 0 | – (2 runs) |  |
+| 🟢 healthy | `chris_jazz_cafe@philadelphia` | 9.6h | 95 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cincinnati_arts@cincinnati` | 9.2h | 68 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cleveland_state_athletics@cleveland` | 9.4h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `cliff_bells@detroit` | 9.7h | 52 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_49ers_athletics@charlotte` | 8.9h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_amos_southend@charlotte` | 9.8h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_blumenthal_arts@charlotte` | 9.4h | 88 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_cmlibrary_events@charlotte` | 8.9h | 452 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_cmpd_community_events@charlotte` | 9.0h | 160 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_comedy_zone@charlotte` | 9.4h | 64 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_spectrum_center@charlotte` | 9.7h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `clt_uncc_events@charlotte` | 9.0h | 92 | 0 | – (2 runs) |  |
+| 🟢 healthy | `club_passim@boston` | 10.0h | 5 | 0 | A (100) |  |
+| 🟢 healthy | `cmu_events@pittsburgh` | 8.7h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `colorado_liquor_openings_denver@denver` | 10.2h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `columbia_athletics@nyc` | 10.1h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `columbus_commons@columbus` | 9.3h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `comedy_zone_jax@jacksonville` | 9.8h | 80 | 0 | – (2 runs) |  |
+| 🟢 healthy | `contemporary_austin_events@austin` | 10.1h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `corona_library_events@riverside` | 8.9h | 114 | 0 | – (2 runs) |  |
+| 🟢 healthy | `creative_alliance_events@baltimore` | 9.0h | 87 | 0 | – (2 runs) |  |
+| 🟢 healthy | `crypto_arena@los_angeles` | 10.0h | 113 | 0 | C (75) | ParseError: not well-formed (invalid token): line 68, column 35 |
+| 🟢 healthy | `csusb_athletics@riverside` | 8.9h | 4 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_austin@austin` | 10.1h | 1 | 0 | A (100) |  |
+| 🟢 healthy | `curated_boston@boston` | 10.1h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_los_angeles@los_angeles` | 10.1h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_minneapolis@minneapolis` | 10.2h | 23 | 0 | A (100) |  |
+| 🟢 healthy | `curated_nashville@nashville` | 10.1h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `curated_seattle@seattle` | 10.1h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dakota_jazz@minneapolis` | 9.8h | 104 | 0 | A (100) |  |
+| 🟢 healthy | `dallas_arboretum@dallas` | 8.8h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dallas_parks_events@dallas` | 9.0h | 85 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dcpl_events@washington_dc` | 8.7h | 219 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dekalb_library_events@atlanta` | 8.7h | 101 | 0 | – (2 runs) |  |
+| 🟢 healthy | `denver_arts_venues@denver` | 10.1h | 109 | 0 | – (2 runs) |  |
+| 🟢 healthy | `denver_coliseum@denver` | 10.1h | 30 | 0 | – (2 runs) |  |
+| 🟢 healthy | `denver_liquor_openings@denver` | 10.2h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `denver_pending_food_openings@denver` | 10.2h | 72 | 0 | – (2 runs) |  |
+| 🟢 healthy | `denver_pioneers_athletics@denver` | 10.1h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `depaul_athletics@chicago` | 10.1h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `desert_botanical_garden_events@phoenix` | 9.3h | 87 | 0 | – (2 runs) |  |
+| 🟢 healthy | `detroit_titans_athletics@detroit` | 8.9h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dna_lounge@san_francisco` | 9.6h | 57 | 0 | – (2 runs) |  |
+| 🟢 healthy | `dominion_energy_center@richmond` | 9.0h | 37 | 0 | – (2 runs) |  |
+| 🟢 healthy | `downtown_baltimore_events@baltimore` | 8.7h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `downtown_boston_events@boston` | 10.2h | 166 | 0 | – (2 runs) |  |
+| 🟢 healthy | `downtown_dallas_events@dallas` | 8.7h | 168 | 0 | – (2 runs) |  |
+| 🟢 healthy | `downtown_seattle_events@seattle` | 10.2h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `drexel_athletics@philadelphia` | 8.7h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `duquesne_athletics@pittsburgh` | 8.9h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `earshot_jazz@seattle` | 10.1h | 259 | 0 | – (2 runs) |  |
+| 🟢 healthy | `eddies_attic@atlanta` | 9.4h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `emory_events@atlanta` | 9.0h | 56 | 0 | – (2 runs) |  |
+| 🟢 healthy | `enterprise_center@st_louis` | 8.8h | 52 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fabulous_fox@st_louis` | 9.2h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fairytale_town_events@sacramento` | 8.7h | 27 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fiserv_forum@milwaukee` | 9.3h | 18 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fiu_athletics@miami` | 10.1h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fl_dbpr_openings_jacksonville@jacksonville` | 9.4h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fl_dbpr_openings_miami@miami` | 10.2h | 56 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fl_dbpr_openings_orlando@orlando` | 9.2h | 56 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fl_dbpr_openings_tampa@tampa` | 9.0h | 66 | 0 | – (2 runs) |  |
+| 🟢 healthy | `flamingo_cantina@austin` | 9.9h | 9 | 0 | A (100) |  |
+| 🟢 healthy | `florida_theatre_jax@jacksonville` | 9.7h | 111 | 0 | – (2 runs) |  |
+| 🟢 healthy | `folly_theater@kansas_city` | 9.2h | 47 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ford_field@detroit` | 8.9h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fox_theatre_atlanta@atlanta` | 8.8h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `fresno_state_athletics@fresno` | 9.1h | 30 | 0 | – (2 runs) |  |
+| 🟢 healthy | `frost_bank_center@san_antonio` | 9.4h | 49 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gainbridge_fieldhouse@indianapolis` | 8.8h | 64 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gcu_athletics@phoenix` | 9.0h | 35 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gggp_events@san_francisco` | 8.9h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `globe_hall@denver` | 10.0h | 24 | 0 | A (100) |  |
+| 🟢 healthy | `goodnights_comedy@raleigh` | 9.8h | 151 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gophers_athletics@minneapolis` | 10.0h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `grand_casino_arena@minneapolis` | 10.0h | 62 | 0 | A (100) |  |
+| 🟢 healthy | `grandview_library_events@columbus` | 8.9h | 7 | 0 | – (2 runs) |  |
+| 🟢 healthy | `grpl_events@grand_rapids` | 9.2h | 39 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gsu_athletics@atlanta` | 8.7h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gsu_events@atlanta` | 8.8h | 57 | 0 | – (2 runs) |  |
+| 🟢 healthy | `gwu_events@washington_dc` | 8.8h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hands_on_nashville@nashville` | 10.1h | 435 | 0 | – (2 runs) |  |
+| 🟢 healthy | `handson_bay_area@san_francisco` | 9.3h | 119 | 0 | – (2 runs) |  |
+| 🟢 healthy | `handson_phoenix@phoenix` | 9.0h | 47 | 0 | – (2 runs) |  |
+| 🟢 healthy | `handson_rva@richmond` | 8.7h | 200 | 0 | – (2 runs) |  |
+| 🟢 healthy | `handson_twin_cities@minneapolis` | 10.1h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `harlows_sacramento@sacramento` | 9.5h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hawthorne_theatre@portland` | 9.5h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hclib_events@minneapolis` | 10.2h | 282 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hcpl_events@houston` | 9.0h | 267 | 0 | – (2 runs) |  |
+| 🟢 healthy | `headliners_louisville@louisville` | 9.7h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `heb_center@austin` | 10.1h | 50 | 0 | – (2 runs) |  |
+| 🟢 healthy | `heights_libraries_events@cleveland` | 9.2h | 121 | 0 | – (2 runs) |  |
+| 🟢 healthy | `helium_comedy_philly@philadelphia` | 8.8h | 92 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hemisfair_events@san_antonio` | 9.1h | 14 | 0 | – (2 runs) |  |
+| 🟢 healthy | `henderson_food_openings@las_vegas` | 8.9h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `henrico_library_events@richmond` | 8.8h | 101 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hermann_park_events@houston` | 8.7h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_bushnell@hartford` | 9.8h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_comedy_craft_beer@hartford` | 9.0h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_ct_liquor_openings@hartford` | 9.2h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_ct_museum_history@hartford` | 9.4h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_hartford_hawks@hartford` | 9.4h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_mark_twain_house@hartford` | 9.4h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_peoplesbank_arena@hartford` | 9.7h | 63 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_public_library_events@hartford` | 9.1h | 237 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_trinity_arts_events@hartford` | 9.4h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_trinity_bantams@hartford` | 9.4h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hfd_uconn_football_east_hartford@hartford` | 9.2h | 3 | 0 | – (2 runs) |  |
+| 🟢 healthy | `holocene_portland@portland` | 9.5h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `hook_and_ladder@minneapolis` | 9.9h | 40 | 0 | A (100) |  |
+| 🟢 healthy | `houston_arboretum_events@houston` | 9.0h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `icehouse_mpls@minneapolis` | 9.9h | 40 | 0 | A (100) |  |
+| 🟢 healthy | `indypl_events@indianapolis` | 9.2h | 128 | 0 | – (2 runs) |  |
+| 🟢 healthy | `jax_icemen@jacksonville` | 9.4h | 14 | 0 | – (2 runs) |  |
+| 🟢 healthy | `jax_library_events@jacksonville` | 8.9h | 172 | 0 | – (2 runs) |  |
+| 🟢 healthy | `jazz_gallery@nyc` | 9.9h | 21 | 0 | A (100) |  |
+| 🟢 healthy | `jeffco_library_events@denver` | 10.1h | 213 | 0 | – (2 runs) |  |
+| 🟢 healthy | `jhu_athletics@baltimore` | 8.7h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `jocolibrary_events@kansas_city` | 9.1h | 108 | 0 | – (2 runs) |  |
+| 🟢 healthy | `johnny_brendas@philadelphia` | 9.5h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ju_athletics@jacksonville` | 9.2h | 27 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kaseya_center@miami` | 10.0h | 67 | 0 | A (100) |  |
+| 🟢 healthy | `kc_parks_events@kansas_city` | 9.2h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kc_roos_athletics@kansas_city` | 9.0h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kcls_events@seattle` | 10.1h | 226 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kdl_events@grand_rapids` | 9.2h | 199 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kentucky_performing_arts@louisville` | 9.2h | 71 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kfc_yum_center@louisville` | 9.4h | 42 | 0 | – (2 runs) |  |
+| 🟢 healthy | `kia_center@orlando` | 9.7h | 98 | 0 | – (2 runs) |  |
+| 🟢 healthy | `koka_booth_amphitheatre@raleigh` | 9.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `la_business_openings@los_angeles` | 10.2h | 97 | 0 | – (2 runs) |  |
+| 🟢 healthy | `la_works@los_angeles` | 10.1h | 235 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ladbs_special_events@los_angeles` | 10.2h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lan_su_garden@portland` | 8.9h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `larimer_lounge@denver` | 9.9h | 40 | 0 | A (100) |  |
+| 🟢 healthy | `laughing_skull_lounge@atlanta` | 8.7h | 50 | 0 | – (2 runs) |  |
+| 🟢 healthy | `laughs_comedy_seattle@seattle` | 10.1h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lenovo_center_raleigh@raleigh` | 9.7h | 71 | 0 | – (2 runs) |  |
+| 🟢 healthy | `levy_park_events@houston` | 8.8h | 55 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lewis_ginter_events@richmond` | 9.0h | 44 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lincoln_theatre_raleigh@raleigh` | 9.6h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `literary_arts_events@portland` | 9.2h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lost_lake@denver` | 9.8h | 23 | 0 | A (100) |  |
+| 🟢 healthy | `louisville_cardinals_athletics@louisville` | 9.2h | 27 | 0 | – (2 runs) |  |
+| 🟢 healthy | `luma_atx_backgammon@austin` | 9.9h | 0 | 0 | A (100) |  |
+| 🟢 healthy | `luma_corgi_nyc@nyc` | 10.0h | 6 | 0 | A (100) |  |
+| 🟢 healthy | `luma_lit_club_nyc@nyc` | 10.0h | 4 | 0 | A (100) |  |
+| 🟢 healthy | `luma_mana_tech@miami` | 9.8h | 6 | 0 | A (100) |  |
+| 🟢 healthy | `luma_mhub_chicago@chicago` | 10.0h | 1 | 0 | A (100) |  |
+| 🟢 healthy | `luma_minnestar@minneapolis` | 9.8h | 1 | 0 | A (100) |  |
+| 🟢 healthy | `luma_mpls_journaling_club@minneapolis` | 10.1h | 2 | 0 | A (100) |  |
+| 🟢 healthy | `luma_ny_philosophy_club@nyc` | 9.9h | 12 | 0 | A (100) |  |
+| 🟢 healthy | `luma_run_gables@miami` | 10.1h | 4 | 0 | A (100) |  |
+| 🟢 healthy | `luma_sew_it_together@minneapolis` | 10.0h | 16 | 0 | A (100) |  |
+| 🟢 healthy | `luma_startup_boston@boston` | 10.1h | 10 | 0 | A (100) |  |
+| 🟢 healthy | `luma_the_made@san_francisco` | 9.6h | 18 | 0 | – (2 runs) |  |
+| 🟢 healthy | `luma_tiat@san_francisco` | 9.5h | 8 | 0 | – (2 runs) |  |
+| 🟢 healthy | `luma_venice_book_club@los_angeles` | 10.1h | 8 | 0 | A (100) |  |
+| 🟢 healthy | `luma_zoma_house@minneapolis` | 10.0h | 4 | 0 | A (100) |  |
+| 🟢 healthy | `lvccld_events@las_vegas` | 9.0h | 295 | 0 | – (2 runs) |  |
+| 🟢 healthy | `lyric_baltimore@baltimore` | 9.1h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `madrone_art_bar@san_francisco` | 9.6h | 85 | 0 | – (2 runs) |  |
+| 🟢 healthy | `majestic_detroit@detroit` | 9.5h | 48 | 0 | – (2 runs) |  |
+| 🟢 healthy | `marcus_center@milwaukee` | 9.0h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `marquette_athletics@milwaukee` | 9.1h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `martin_marietta_center@raleigh` | 9.2h | 65 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mdpls_events@miami` | 10.2h | 443 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memorial_park_events@houston` | 8.9h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_fedexforum@memphis` | 9.7h | 58 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_gpac@memphis` | 9.4h | 30 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_landers_center@memphis` | 9.7h | 57 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_meddlesome@memphis` | 9.4h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_overton_park_shell@memphis` | 9.2h | 7 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_river_parks@memphis` | 9.4h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_symphony@memphis` | 9.3h | 17 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_tigers_athletics@memphis` | 9.1h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_uw_midsouth_volunteer@memphis` | 9.1h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `memphis_wiseacre@memphis` | 9.1h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mesa_arts_center@phoenix` | 8.8h | 64 | 0 | – (2 runs) |  |
+| 🟢 healthy | `metro_chicago@chicago` | 9.9h | 35 | 0 | A (100) |  |
+| 🟢 healthy | `miami_beach_bandshell@miami` | 9.9h | 26 | 0 | A (100) |  |
+| 🟢 healthy | `milkboy_philly@philadelphia` | 9.5h | 53 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mim_events@phoenix` | 9.1h | 127 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mo_new_liquor_licenses_kc@kansas_city` | 9.4h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mo_new_liquor_licenses_stl@st_louis` | 8.9h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mohai_events@seattle` | 10.1h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `montalvo_arts@san_jose` | 9.0h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `montgomery_volunteer@washington_dc` | 8.8h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `moody_center@austin` | 9.8h | 29 | 0 | A (100) |  |
+| 🟢 healthy | `mount_vernon_triangle_events@washington_dc` | 8.7h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mpl_events@milwaukee` | 9.0h | 209 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mpls_downtown_events@minneapolis` | 10.2h | 111 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mpls_on_sale_liquor_openings@minneapolis` | 10.2h | 476 | 0 | – (2 runs) |  |
+| 🟢 healthy | `mr_tipples@san_francisco` | 9.7h | 81 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nashville_beer_permit_openings@nashville` | 10.2h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nationwide_arena@columbus` | 9.2h | 44 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ncmns_events@raleigh` | 9.4h | 101 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ncsu_athletics@raleigh` | 9.2h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ncsu_events@raleigh` | 9.4h | 166 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nectar_lounge@seattle` | 9.8h | 110 | 0 | A (100) |  |
+| 🟢 healthy | `norfolk_business_openings@hampton_roads` | 8.7h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `norfolk_library_events@hampton_roads` | 9.1h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `northeastern_events@boston` | 10.2h | 52 | 0 | – (2 runs) |  |
+| 🟢 healthy | `notoriety_live@las_vegas` | 8.8h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `now_playing_utah@salt_lake_city` | 8.8h | 349 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nsu_athletics@hampton_roads` | 8.7h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nyc_parks_events@nyc` | 10.2h | 599 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nyc_permitted_events@nyc` | 10.2h | 328 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nyc_service@nyc` | 10.1h | 163 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nys_sla_new_licenses@nyc` | 10.2h | 964 | 0 | – (2 runs) |  |
+| 🟢 healthy | `nys_sla_pending_openings@nyc` | 10.2h | 230 | 0 | – (2 runs) |  |
+| 🟢 healthy | `oakland_library_events@san_francisco` | 9.0h | 188 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ocls_events@orlando` | 9.0h | 582 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ohio_state_athletics@columbus` | 9.0h | 49 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_civic_center@oklahoma_city` | 8.9h | 43 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_cowboy_museum@oklahoma_city` | 9.2h | 10 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_ocu_athletics@oklahoma_city` | 9.2h | 14 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_paycom_center@oklahoma_city` | 9.7h | 67 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_science_museum@oklahoma_city` | 9.4h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_scissortail_park@oklahoma_city` | 9.2h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_uco_athletics@oklahoma_city` | 9.1h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_uco_events@oklahoma_city` | 9.2h | 35 | 0 | – (2 runs) |  |
+| 🟢 healthy | `okc_volunteer_central_ok@oklahoma_city` | 8.9h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `olcc_new_applications_portland@portland` | 8.8h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `old_sacramento_events@sacramento` | 9.1h | 67 | 0 | – (2 runs) |  |
+| 🟢 healthy | `orlando_museum_of_art@orlando` | 9.2h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `orlando_restaurant_openings@orlando` | 9.4h | 7 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ottobar@baltimore` | 9.4h | 9 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pearl_events@san_antonio` | 9.0h | 30 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pechanga_arena@san_diego` | 9.2h | 47 | 0 | – (2 runs) |  |
+| 🟢 healthy | `penn_athletics@philadelphia` | 8.7h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `phl_restaurant_openings@philadelphia` | 8.8h | 119 | 0 | – (2 runs) |  |
+| 🟢 healthy | `phoenix_public_library_events@phoenix` | 9.3h | 402 | 0 | – (2 runs) |  |
+| 🟢 healthy | `piedmont_park_events@atlanta` | 8.8h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pioneer_courthouse_square@portland` | 8.8h | 7 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pitt_athletics@pittsburgh` | 8.9h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pitt_events@pittsburgh` | 8.8h | 48 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pittsburgh_cares@pittsburgh` | 9.1h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pittsburgh_parks_events@pittsburgh` | 8.7h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `playhouse_square@cleveland` | 9.2h | 83 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ponte_vedra_concert_hall@jacksonville` | 9.8h | 51 | 0 | – (2 runs) |  |
+| 🟢 healthy | `portland_art_museum@portland` | 8.8h | 53 | 0 | – (2 runs) |  |
+| 🟢 healthy | `portland_farmers_market@portland` | 9.3h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `portland_pilots_athletics@portland` | 9.0h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `portland_state_athletics@portland` | 8.8h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ppg_paints_arena@pittsburgh` | 9.5h | 58 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pratt_library_events@baltimore` | 8.8h | 181 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_amica_mutual_pavilion@providence` | 9.7h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_as220@providence` | 9.7h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_brown_athletics@providence` | 9.2h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_brown_events@providence` | 9.1h | 25 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_comedy_connection@providence` | 9.7h | 11 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_cranston_library_events@providence` | 9.2h | 114 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_east_providence_library_events@providence` | 9.4h | 108 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_fete_music_hall@providence` | 9.7h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_friars_athletics@providence` | 9.0h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_pawtucket_library_events@providence` | 9.4h | 58 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_ppac@providence` | 9.8h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_ri_convention_center@providence` | 9.0h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_serve_ri_volunteer@providence` | 9.2h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `pvd_the_met@providence` | 9.7h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `raleigh_special_events@raleigh` | 9.1h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `redlands_athletics@riverside` | 9.2h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `rice_athletics@houston` | 8.9h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `rice_events@houston` | 8.9h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `richmond_spiders_athletics@richmond` | 9.1h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `rivers_of_steel_events@pittsburgh` | 8.7h | 5 | 0 | – (2 runs) |  |
+| 🟢 healthy | `rocket_arena@cleveland` | 8.9h | 88 | 0 | – (2 runs) |  |
+| 🟢 healthy | `roseland_theater@portland` | 9.6h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `royal_room_seattle@seattle` | 9.8h | 12 | 0 | A (100) |  |
+| 🟢 healthy | `rpl_events@richmond` | 8.7h | 34 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ryman_auditorium@nashville` | 9.9h | 76 | 0 | A (100) |  |
+| 🟢 healthy | `sacpl_events@sacramento` | 8.9h | 170 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sacramento_business_openings@sacramento` | 9.1h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sacstate_athletics@sacramento` | 8.9h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sacstate_events@sacramento` | 8.8h | 61 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sandler_center@hampton_roads` | 8.9h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sap_center@san_jose` | 8.8h | 44 | 0 | – (2 runs) |  |
+| 🟢 healthy | `saxon_pub@austin` | 10.0h | 165 | 0 | A (100) |  |
+| 🟢 healthy | `sccl_events@san_jose` | 8.9h | 135 | 0 | – (2 runs) |  |
+| 🟢 healthy | `schottenstein_center@columbus` | 9.0h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `scottsdale_city_events@phoenix` | 8.8h | 9 | 0 | – (2 runs) |  |
+| 🟢 healthy | `scottsdale_food_openings@phoenix` | 8.8h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `scu_athletics@san_jose` | 9.2h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sdcl_events@san_diego` | 8.8h | 224 | 0 | – (2 runs) |  |
+| 🟢 healthy | `seattle_business_openings@seattle` | 10.2h | 39 | 0 | – (2 runs) |  |
+| 🟢 healthy | `seattle_city_events@seattle` | 10.0h | 70 | 0 | – (2 runs) |  |
+| 🟢 healthy | `serve_dc_volunteer@washington_dc` | 8.8h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `seven_venues_norfolk@hampton_roads` | 8.8h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sf_business_openings@san_francisco` | 9.0h | 93 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sf_recpark_events@san_francisco` | 8.8h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sf_special_events@san_francisco` | 9.3h | 91 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sjpl_events@san_jose` | 8.9h | 467 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sjsu_events@san_jose` | 8.9h | 181 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sju_athletics@philadelphia` | 9.1h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `slcolibrary_events@salt_lake_city` | 9.0h | 196 | 0 | – (2 runs) |  |
+| 🟢 healthy | `slcpl_events@salt_lake_city` | 8.8h | 89 | 0 | – (2 runs) |  |
+| 🟢 healthy | `slpl_events@st_louis` | 9.2h | 185 | 0 | – (2 runs) |  |
+| 🟢 healthy | `slu_athletics@st_louis` | 9.0h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `smithsonian_events@washington_dc` | 8.8h | 255 | 0 | – (2 runs) |  |
+| 🟢 healthy | `smu_athletics@dallas` | 9.1h | 39 | 0 | – (2 runs) |  |
+| 🟢 healthy | `songbyrd_dc@washington_dc` | 9.6h | 39 | 0 | – (2 runs) |  |
+| 🟢 healthy | `spl_events@seattle` | 10.2h | 184 | 0 | – (2 runs) |  |
+| 🟢 healthy | `standup_live_phoenix@phoenix` | 9.2h | 78 | 0 | – (2 runs) |  |
+| 🟢 healthy | `stanford_events@san_jose` | 8.9h | 282 | 0 | – (2 runs) |  |
+| 🟢 healthy | `state_farm_arena@atlanta` | 9.7h | 65 | 0 | – (2 runs) |  |
+| 🟢 healthy | `state_farm_stadium@phoenix` | 9.3h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `station_inn@nashville` | 9.9h | 57 | 0 | A (100) |  |
+| 🟢 healthy | `stg_presents@seattle` | 10.0h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `stl_volunteer_center@st_louis` | 8.9h | 41 | 0 | – (2 runs) |  |
+| 🟢 healthy | `sweetwater_music_hall@san_francisco` | 9.7h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `t_mobile_center_kc@kansas_city` | 0.2h | 23 | 0 | – (1 runs) |  |
+| 🟢 healthy | `tabc_new_licenses_austin@austin` | 10.2h | 34 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_new_licenses_dallas@dallas` | 8.8h | 49 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_new_licenses_houston@houston` | 8.8h | 63 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_new_licenses_san_antonio@san_antonio` | 8.8h | 31 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_pending_openings_austin@austin` | 10.2h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_pending_openings_dallas@dallas` | 9.0h | 30 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_pending_openings_houston@houston` | 9.0h | 48 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tabc_pending_openings_san_antonio@san_antonio` | 8.9h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_benchmark_arena@tampa` | 9.7h | 63 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_downtown_events@tampa` | 8.8h | 24 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_hcplc_events@tampa` | 8.8h | 159 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_ruth_eckerd_hall@tampa` | 9.7h | 138 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_usf_athletics@tampa` | 8.9h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_ut_events@tampa` | 9.4h | 8 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_volunteer_suncoast@tampa` | 9.3h | 42 | 0 | – (2 runs) |  |
+| 🟢 healthy | `tampa_yuengling_center@tampa` | 9.7h | 45 | 0 | – (2 runs) |  |
+| 🟢 healthy | `target_center@minneapolis` | 9.9h | 55 | 0 | A (100) |  |
+| 🟢 healthy | `td_garden@boston` | 9.8h | 99 | 0 | A (100) |  |
+| 🟢 healthy | `teamtrivia_atlanta@atlanta` | 8.6h | 346 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_baltimore@baltimore` | 8.6h | 110 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_charlotte@charlotte` | 8.6h | 76 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_dallas@dallas` | 8.6h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_denver@denver` | 8.7h | 120 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_phoenix@phoenix` | 8.5h | 250 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_raleigh@raleigh` | 8.4h | 164 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_st_louis@st_louis` | 8.4h | 159 | 0 | – (2 runs) |  |
+| 🟢 healthy | `teamtrivia_tampa@tampa` | 8.6h | 8 | 0 | – (2 runs) |  |
+| 🟢 healthy | `temple_athletics@philadelphia` | 8.7h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `texas_athletics@austin` | 10.0h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `the_8x10@baltimore` | 9.5h | 47 | 0 | – (2 runs) |  |
+| 🟢 healthy | `the_echo@los_angeles` | 9.9h | 25 | 0 | A (100) |  |
+| 🟢 healthy | `the_space_lv@las_vegas` | 8.8h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `three13_presents@detroit` | 9.6h | 64 | 0 | – (2 runs) |  |
+| 🟢 healthy | `thunderbird_music_hall@pittsburgh` | 9.5h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `town_hall_seattle@seattle` | 10.1h | 53 | 0 | – (2 runs) |  |
+| 🟢 healthy | `towson_athletics@baltimore` | 8.7h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `towson_events@baltimore` | 8.7h | 81 | 0 | – (2 runs) |  |
+| 🟢 healthy | `toyota_center@houston` | 9.5h | 59 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uc_events@cincinnati` | 9.2h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ucf_events@orlando` | 9.2h | 19 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uchicago_events@chicago` | 10.2h | 49 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ucr_athletics@riverside` | 8.9h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ucr_events@riverside` | 9.0h | 209 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ucsd_events@san_diego` | 8.7h | 134 | 0 | – (2 runs) |  |
+| 🟢 healthy | `ucsd_tritons_athletics@san_diego` | 8.9h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uh_athletics@houston` | 8.7h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `umkc_events@kansas_city` | 9.2h | 52 | 0 | – (2 runs) |  |
+| 🟢 healthy | `umn_events@minneapolis` | 10.2h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `underground_arts@philadelphia` | 9.5h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `unexpected_productions@seattle` | 9.9h | 40 | 0 | – (2 runs) |  |
+| 🟢 healthy | `unf_athletics@jacksonville` | 9.0h | 26 | 0 | – (2 runs) |  |
+| 🟢 healthy | `unf_events@jacksonville` | 9.4h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `united_way_sem_volunteer@detroit` | 9.1h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `unlv_athletics@las_vegas` | 8.8h | 35 | 0 | – (2 runs) |  |
+| 🟢 healthy | `up_events@portland` | 9.3h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@atlanta` | 8.2h | 3 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@austin` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@baltimore` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@birmingham` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@boston` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@charlotte` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@chicago` | 8.3h | 2 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@cincinnati` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@cleveland` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@columbus` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@dallas` | 8.2h | 3 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@denver` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@detroit` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@fresno` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@grand_rapids` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@hampton_roads` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@hartford` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@houston` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@indianapolis` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@jacksonville` | 8.2h | 2 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@kansas_city` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@las_vegas` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@los_angeles` | 8.3h | 2 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@louisville` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@memphis` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@miami` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@milwaukee` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@minneapolis` | 8.3h | 3 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@nashville` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@nyc` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@oklahoma_city` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@orlando` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@philadelphia` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@phoenix` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@pittsburgh` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@portland` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@providence` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@raleigh` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@richmond` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@riverside` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@sacramento` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@salt_lake_city` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@san_antonio` | 8.3h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@san_diego` | 8.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@san_francisco` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@san_jose` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@seattle` | 8.3h | 2 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@st_louis` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@tampa` | 8.2h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `upcomingcons@washington_dc` | 8.3h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `usc_athletics@los_angeles` | 9.9h | 32 | 0 | – (2 runs) |  |
+| 🟢 healthy | `usc_events@los_angeles` | 10.2h | 225 | 0 | – (2 runs) |  |
+| 🟢 healthy | `usd_toreros_athletics@san_diego` | 8.8h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `usf_athletics@san_francisco` | 8.8h | 22 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uta_events@dallas` | 9.0h | 55 | 0 | – (2 runs) |  |
+| 🟢 healthy | `utah_utes_athletics@salt_lake_city` | 9.0h | 20 | 0 | – (2 runs) |  |
+| 🟢 healthy | `utaustin_events@austin` | 10.2h | 237 | 0 | – (2 runs) |  |
+| 🟢 healthy | `utdallas_events@dallas` | 9.0h | 31 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uw_athletics@seattle` | 10.1h | 21 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uw_austin_volunteer@austin` | 10.2h | 1 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uw_events@seattle` | 10.2h | 60 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uw_nefl_volunteer@jacksonville` | 8.9h | 28 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uwcm_volunteer@baltimore` | 9.0h | 35 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uwkc_volunteer@seattle` | 10.1h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uwm_athletics@milwaukee` | 8.9h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uwsa_volunteer@san_antonio` | 8.7h | 15 | 0 | – (2 runs) |  |
+| 🟢 healthy | `uwsn_volunteer@las_vegas` | 8.8h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `vcu_athletics@richmond` | 8.8h | 12 | 0 | – (2 runs) |  |
+| 🟢 healthy | `venue_1720@los_angeles` | 10.0h | 28 | 0 | A (100) |  |
+| 🟢 healthy | `virginia_zoo_events@hampton_roads` | 9.0h | 37 | 0 | – (2 runs) |  |
+| 🟢 healthy | `visit_ballard_events@seattle` | 10.0h | 76 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_baltimore@baltimore` | 8.9h | 73 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_boston@boston` | 10.2h | 65 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_denver@denver` | 10.1h | 104 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_jacksonville@jacksonville` | 9.4h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_los_angeles@los_angeles` | 10.1h | 33 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_miami@miami` | 10.1h | 16 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_nyc@nyc` | 10.1h | 121 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_philadelphia@philadelphia` | 8.7h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_phoenix@phoenix` | 9.0h | 0 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_san_diego@san_diego` | 9.2h | 49 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_san_francisco@san_francisco` | 9.3h | 45 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_san_jose@san_jose` | 8.9h | 38 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volo_washington_dc@washington_dc` | 8.7h | 96 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volunteer_central_indiana@indianapolis` | 9.3h | 13 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volunteer_houston@houston` | 8.8h | 14 | 0 | – (2 runs) |  |
+| 🟢 healthy | `volunteer_hr@hampton_roads` | 8.8h | 81 | 0 | – (2 runs) |  |
+| 🟢 healthy | `wayne_state_athletics@detroit` | 8.8h | 29 | 0 | – (2 runs) |  |
+| 🟢 healthy | `wccls_events@portland` | 9.0h | 227 | 0 | – (2 runs) |  |
+| 🟢 healthy | `westerville_library_events@columbus` | 8.8h | 37 | 0 | – (2 runs) |  |
+| 🟢 healthy | `wildflower_center_events@austin` | 10.1h | 48 | 0 | – (2 runs) |  |
+| 🟢 healthy | `wintrust_arena@chicago` | 9.8h | 29 | 0 | A (100) |  |
+| 🟢 healthy | `witte_museum_events@san_antonio` | 8.8h | 6 | 0 | – (2 runs) |  |
+| 🟢 healthy | `wonder_ballroom@portland` | 9.7h | 34 | 0 | – (2 runs) |  |
+| 🟢 healthy | `xavier_athletics@cincinnati` | 8.8h | 23 | 0 | – (2 runs) |  |
+| 🟢 healthy | `xfinity_mobile_arena@philadelphia` | 9.4h | 98 | 0 | – (2 runs) |  |
+| 🟢 healthy | `zinc_bar@nyc` | 9.8h | 65 | 0 | A (100) |  |
 | ⚪ disabled | `boston_food_openings@boston` | never | – | 0 | – | disabled in config |
 | ⚪ disabled | `boston_special_events@boston` | never | – | 0 | – | disabled in config |
 | ⚪ disabled | `experience_columbus_events@columbus` | never | – | 0 | – | disabled in config |
@@ -579,7 +582,7 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 | ⚪ disabled | `fcpl_woodward_park@fresno` | never | – | 2 | – (2 runs) | disabled in config |
 | ⚪ disabled | `hfd_wethersfield_library_events@hartford` | never | – | 0 | – | disabled in config |
 | ⚪ disabled | `ivanhoe_village_events@orlando` | never | – | 0 | – | disabled in config |
-| ⚪ disabled | `lizard_lounge@boston` | 265.4h | 36 | 3 | D (25) | disabled in config |
+| ⚪ disabled | `lizard_lounge@boston` | 272.6h | 36 | 3 | D (25) | disabled in config |
 | ⚪ disabled | `makerfaire@atlanta` | never | – | 0 | – | disabled in config |
 | ⚪ disabled | `makerfaire@austin` | never | – | 0 | – | disabled in config |
 | ⚪ disabled | `makerfaire@baltimore` | never | – | 0 | – | disabled in config |
@@ -806,7 +809,7 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 - `vanderbilt_events@nashville` — **error**: investigate. Last error: ``
 - `nyu_events@nyc` — **error**: investigate. Last error: ``
 - `red_hat_amphitheater@raleigh` — **format_changed**: payload no longer parses — inspect raw payload, update adapter. Last error: `ValueError: https://www.redhatamphitheater.com/events/rss: RSS items carry no ev:startdate (not an event feed, or the module was dropped)`
-- `gallivan_center_events@salt_lake_city` — **timeout**: upstream slow — usually self-heals. Last error: `FetchTimeout: timeout fetching https://thegallivancenter.com/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A00%3A00&end_date=2026-12-11+23%3A59%3A59&per_page=50&status=publish&page=1`
+- `gallivan_center_events@salt_lake_city` — **forbidden**: 403 — check robots.txt/ToS; we may be blocked or the endpoint moved. Last error: `HttpStatusError: HTTP 403 for https://thegallivancenter.com/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A00%3A00&end_date=2026-12-11+23%3A59%3A59&per_page=50&status=publish&page=1: <!DOCT`
 - `visit_oakland_events@san_francisco` — **forbidden**: 403 — check robots.txt/ToS; we may be blocked or the endpoint moved. Last error: `HttpStatusError: HTTP 403 for https://www.visitoakland.com/includes/rest_v2/plugins_events_events_by_date/find/?json=%7B%22filter%22%3A%7B%22active%22%3Atrue%2C%22%24and%22%3A%5B%7B%22categories.catId`
 - `handson_bay_area_south@san_jose` — **empty_results**: 0 records — layout/API change or a too-strict filter; inspect the latest raw payload. Last error: `0 valid records returned`
 
@@ -816,13 +819,13 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 |---|---|---|---|
 | atlanta | beta | 2026-10-17T00:33:34+00:00 | G10 Stability |
 | austin | beta | 2026-10-16T22:03:24+00:00 | G5 Published deadlines (60 days), G8 Events with coordinates |
-| baltimore | beta | 2026-10-17T00:33:34+00:00 | G8 Events with coordinates, G10 Stability |
-| birmingham | beta | 2026-10-16T23:18:25+00:00 | G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
+| baltimore | beta | 2026-10-17T00:33:34+00:00 | G10 Stability |
+| birmingham | beta | 2026-10-16T23:18:25+00:00 | G5 Published deadlines (60 days), G10 Stability |
 | boston | live | – | – |
 | charlotte | beta | 2026-10-16T23:18:25+00:00 | G10 Stability |
 | chicago | beta | 2026-10-16T22:03:24+00:00 | G7 Largest single-source share |
 | cincinnati | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G7 Largest single-source share, G10 Stability |
-| cleveland | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G8 Events with coordinates, G10 Stability |
+| cleveland | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
 | columbus | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
 | dallas | beta | 2026-10-17T00:33:34+00:00 | G3 Categories with ≥ 3 events (30 days), G5 Published deadlines (60 days), G10 Stability |
 | denver | beta | 2026-10-16T22:03:24+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days) |
@@ -830,23 +833,23 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 | fresno | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G6 Largest category share, G7 Largest single-source share, G10 Stability |
 | grand_rapids | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G6 Largest category share, G7 Largest single-source share, G10 Stability |
 | hampton_roads | beta | 2026-10-17T00:33:34+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
-| hartford | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G8 Events with coordinates, G10 Stability |
+| hartford | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
 | houston | beta | 2026-10-17T00:33:34+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
-| indianapolis | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
+| indianapolis | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G10 Stability |
 | jacksonville | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G8 Events with coordinates, G10 Stability |
-| kansas_city | beta | 2026-10-17T00:03:58+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G5 Published deadlines (60 days), G10 Stability |
-| las_vegas | beta | 2026-10-17T00:03:58+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G6 Largest category share, G7 Largest single-source share, G8 Events with coordinates, G10 Stability |
-| los_angeles | beta | 2026-10-16T22:03:24+00:00 | G4 Newcomer pillars (30 days) |
+| kansas_city | beta | 2026-10-17T00:03:58+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G5 Published deadlines (60 days) |
+| las_vegas | beta | 2026-10-17T00:03:58+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G6 Largest category share, G7 Largest single-source share, G10 Stability |
+| los_angeles | live | – | – |
 | louisville | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
 | memphis | beta | 2026-10-16T23:18:25+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G8 Events with coordinates, G10 Stability |
-| miami | beta | 2026-10-16T22:03:24+00:00 | G3 Categories with ≥ 3 events (30 days), G7 Largest single-source share, G8 Events with coordinates |
-| milwaukee | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G7 Largest single-source share, G8 Events with coordinates, G10 Stability |
+| miami | beta | 2026-10-16T22:03:24+00:00 | G3 Categories with ≥ 3 events (30 days), G7 Largest single-source share |
+| milwaukee | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G7 Largest single-source share, G10 Stability |
 | minneapolis | beta | 2026-10-16T22:03:24+00:00 | G9 Fresh events |
 | nashville | beta | 2026-10-16T22:03:24+00:00 | G3 Categories with ≥ 3 events (30 days), G5 Published deadlines (60 days) |
-| nyc | beta | 2026-10-16T22:03:24+00:00 | G8 Events with coordinates |
+| nyc | live | – | – |
 | oklahoma_city | beta | 2026-10-16T23:18:25+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
 | orlando | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G7 Largest single-source share, G8 Events with coordinates, G10 Stability |
-| philadelphia | beta | 2026-10-17T00:33:34+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G8 Events with coordinates, G10 Stability |
+| philadelphia | beta | 2026-10-17T00:33:34+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
 | phoenix | beta | 2026-10-17T00:03:58+00:00 | G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
 | pittsburgh | beta | 2026-10-17T00:33:34+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
 | portland | beta | 2026-10-17T00:03:58+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G10 Stability |
@@ -855,15 +858,15 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 | richmond | beta | 2026-10-17T00:33:34+00:00 | G1 Healthy sources, G3 Categories with ≥ 3 events (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
 | riverside | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G10 Stability |
 | sacramento | beta | 2026-10-17T00:03:58+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
-| salt_lake_city | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G9 Fresh events, G10 Stability |
-| san_antonio | beta | 2026-10-17T00:33:34+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G6 Largest category share, G7 Largest single-source share, G8 Events with coordinates, G10 Stability |
+| salt_lake_city | beta | 2026-10-17T00:03:58+00:00 | G1 Healthy sources, G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G9 Fresh events |
+| san_antonio | beta | 2026-10-17T00:33:34+00:00 | G2 Events in the next 14 days, G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G6 Largest category share, G7 Largest single-source share, G10 Stability |
 | san_diego | beta | 2026-10-17T00:03:58+00:00 | G10 Stability |
-| san_francisco | beta | 2026-10-17T00:03:58+00:00 | G8 Events with coordinates, G9 Fresh events, G10 Stability |
-| san_jose | beta | 2026-10-17T00:03:58+00:00 | G9 Fresh events, G10 Stability |
+| san_francisco | beta | 2026-10-17T00:03:58+00:00 | G9 Fresh events |
+| san_jose | beta | 2026-10-17T00:03:58+00:00 | G9 Fresh events |
 | seattle | live | – | – |
 | st_louis | beta | 2026-10-17T00:03:58+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G10 Stability |
-| tampa | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G8 Events with coordinates, G10 Stability |
-| washington_dc | beta | 2026-10-17T00:33:34+00:00 | G8 Events with coordinates, G10 Stability |
+| tampa | beta | 2026-10-16T23:18:25+00:00 | G3 Categories with ≥ 3 events (30 days), G4 Newcomer pillars (30 days), G5 Published deadlines (60 days), G10 Stability |
+| washington_dc | beta | 2026-10-17T00:33:34+00:00 | G10 Stability |
 
 ## Rejected records (last 48h)
 
@@ -883,6 +886,13 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 
 ## Recent health log
 
+- 2026-10-27T15:37:21+00:00 · info · `gate@los_angeles` · gate_tier: beta → live: thin: G4 Newcomer pillars (30 days): 4 (soft bar 4 of 5 (hard), 5 of 5 (soft)); missing: outdoors/fitness ≥ 10
+- 2026-10-27T15:32:06+00:00 · warn · `handson_bay_area_south@san_jose` · empty_results: 0 valid records returned
+- 2026-10-27T15:32:03+00:00 · warn · `visit_oakland_events@san_francisco` · forbidden: HttpStatusError: HTTP 403 for https://www.visitoakland.com/includes/rest_v2/plugins_events_events_by_date/find/?json=%7B%22filter%22%3A%7B%22active%22%3Atrue%2C
+- 2026-10-27T15:32:02+00:00 · warn · `gallivan_center_events@salt_lake_city` · forbidden: HttpStatusError: HTTP 403 for https://thegallivancenter.com/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A00%3A00&end_date=2026-12-11+23%3A59%3A59&p
+- 2026-10-27T15:32:01+00:00 · warn · `red_hat_amphitheater@raleigh` · format_changed: ValueError: https://www.redhatamphitheater.com/events/rss: RSS items carry no ev:startdate (not an event feed, or the module was dropped)
+- 2026-10-27T15:32:00+00:00 · warn · `mprb_events@minneapolis` · robots_disallowed: RobotsDisallowed: robots.txt disallows https://www.minneapolisparks.org/wp-json/tribe/events/v1/events?start_date=2026-10-27+00%3A00%3A00&end_date=2026-12-26+23
+- 2026-10-27T08:42:02+00:00 · info · `gate@nyc` · gate_tier: beta → live: thin: G4 Newcomer pillars (30 days): 4 (soft bar 4 of 5 (hard), 5 of 5 (soft)); missing: trivia/games ≥ 5; thin: G8 Events with coordinates: 82% (s
 - 2026-10-27T08:14:57+00:00 · warn · `gate@nyc` · gate_tier: live → beta: G8 Events with coordinates: 79% (needs ≥ 80% (hard), ≥ 90% (soft)); thin: G4 Newcomer pillars (30 days): 4 (soft bar 4 of 5 (hard), 5 of 5 (soft));
 - 2026-10-27T08:14:57+00:00 · warn · `gate@nashville` · gate_tier: live → beta: G3 Categories with ≥ 3 events (30 days): 8 (needs ≥ 10 of 15); G5 Published deadlines (60 days): 0 (needs ≥ 1 (hard), ≥ 10 (soft)); thin: G4 Newcom
 - 2026-10-27T08:14:57+00:00 · warn · `gate@minneapolis` · gate_tier: live → beta: G9 Fresh events: 96% (needs ≥ 90% within SLA; every enabled unit succeeded within max(48 h, 2 × cadence)); no recent success: mprb_events; thin: G8
@@ -901,10 +911,3 @@ _Generated 2026-10-27T08:33:49+00:00 by `gotc` (do not edit by hand — regenera
 - 2026-10-27T06:24:14+00:00 · warn · `red_hat_amphitheater@raleigh` · format_changed: ValueError: https://www.redhatamphitheater.com/events/rss: RSS items carry no ev:startdate (not an event feed, or the module was dropped)
 - 2026-10-27T05:34:41+00:00 · info · `chicago_park_adult_classes@chicago` · healthy->degraded: recovered after 0 failure(s)
 - 2026-10-27T05:34:41+00:00 · warn · `chicago_park_adult_classes@chicago` · volume_drop: 10 records vs usual ~87; kept data, no deletions
-- 2026-10-27T05:34:35+00:00 · info · `nyu_events@nyc` · healthy->degraded: recovered after 0 failure(s)
-- 2026-10-27T05:34:35+00:00 · warn · `nyu_events@nyc` · volume_drop: 19 records vs usual ~92; kept data, no deletions
-- 2026-10-27T05:34:19+00:00 · info · `vanderbilt_events@nashville` · healthy->degraded: recovered after 0 failure(s)
-- 2026-10-27T05:34:19+00:00 · warn · `vanderbilt_events@nashville` · volume_drop: 38 records vs usual ~181; kept data, no deletions
-- 2026-10-27T05:33:37+00:00 · info · `fiu_events@miami` · healthy->degraded: recovered after 0 failure(s)
-- 2026-10-27T05:33:37+00:00 · warn · `fiu_events@miami` · volume_drop: 61 records vs usual ~280; kept data, no deletions
-- 2026-10-27T05:30:53+00:00 · warn · `mprb_events@minneapolis` · healthy->degraded: 1 consecutive failure(s); serving last-known-good

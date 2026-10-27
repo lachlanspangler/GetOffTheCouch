@@ -92,7 +92,7 @@ jobs:
     needs: [prepare, shard]
     if: ${{ always() && needs.prepare.result == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60   # build 50 cities + share cards + ~16k pre-rendered pages + a ~700 MB Pages upload
     environment: { name: github-pages, url: "${{ steps.deploy.outputs.page_url }}" }
     steps:
       - uses: actions/checkout@v4
