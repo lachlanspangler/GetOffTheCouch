@@ -1,0 +1,123 @@
+# Curated venue locations for milwaukee (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: Central Library
+  aliases:
+  - Milwaukee Public Library – Central Library
+  address: 814 W. Wisconsin Ave., Milwaukee, WI 53233
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.038871
+  lon: -87.921949
+  coords_source: 'U.S. Census geocoder: 814 W WISCONSIN AVE, MILWAUKEE, WI, 53233'
+- name: Mitchell Street Branch
+  aliases:
+  - Milwaukee Public Library – Mitchell Street Branch
+  address: 906 W. Historic Mitchell St., Milwaukee, WI 53204
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.012351
+  lon: -87.922857
+  coords_source: 'U.S. Census geocoder: 906 W HISTORIC MITCHELL ST, MILWAUKEE, WI, 53204'
+- name: Good Hope Branch
+  aliases:
+  - Milwaukee Public Library – Good Hope Branch
+  address: 7715 W. Good Hope Road, Milwaukee, WI 53223
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.148666
+  lon: -88.006498
+  coords_source: 'U.S. Census geocoder: 7715 W GOOD HOPE RD, MILWAUKEE, WI, 53223'
+- name: Martin Luther King Branch
+  aliases:
+  - Milwaukee Public Library – Martin Luther King Branch
+  address: 2901 N. Martin Luther King Jr. Dr., Milwaukee, WI 53212
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.071182
+  lon: -87.914101
+  coords_source: 'U.S. Census geocoder: 2901 N DR MARTIN LUTHER KING DR, MILWAUKEE, WI, 53212'
+- name: Center Street Branch
+  aliases:
+  - Milwaukee Public Library – Center Street Branch
+  address: 2727 W. Fond du Lac Ave., Milwaukee, WI 53210
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.06777
+  lon: -87.947969
+  coords_source: 'U.S. Census geocoder: 2727 W FOND DU LAC AVE, MILWAUKEE, WI, 53210'
+- name: Washington Park Branch
+  aliases:
+  - Milwaukee Public Library – Washington Park Branch
+  - Milwaukee Public Library – Washington Park (Washington Park)
+  address: 2121 N. Sherman Blvd., Milwaukee, WI 53208
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.057734
+  lon: -87.967658
+  coords_source: 'U.S. Census geocoder: 2121 N SHERMAN BLVD, MILWAUKEE, WI, 53208'
+- name: Bay View Branch
+  aliases:
+  - Milwaukee Public Library – Bay View Branch
+  address: 2566 S. Kinnickinnic Ave., Milwaukee, WI 53207
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 42.99814
+  lon: -87.900152
+  coords_source: 'U.S. Census geocoder: 2566 S KINNICKINNIC AVE, MILWAUKEE, WI, 53207'
+- name: East Branch
+  aliases:
+  - Milwaukee Public Library – East Branch
+  address: 2320 N. Cramer St., Milwaukee, WI 53211
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.060396
+  lon: -87.88676
+  coords_source: 'U.S. Census geocoder: 2320 N CRAMER ST, MILWAUKEE, WI, 53211'
+- name: Atkinson Branch
+  aliases:
+  - Milwaukee Public Library – Atkinson Branch
+  address: 1960 W. Atkinson Ave., Milwaukee, WI 53209
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.090075
+  lon: -87.936531
+  coords_source: 'U.S. Census geocoder: 1960 W ATKINSON AVE, MILWAUKEE, WI, 53209'
+- name: Capitol Branch
+  aliases:
+  - Milwaukee Public Library – Capitol Branch
+  address: 3969 N. 74th St., Milwaukee, WI 53216
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.089398
+  lon: -88.00484
+  coords_source: 'U.S. Census geocoder: 3969 N 74TH ST, MILWAUKEE, WI, 53216'
+- name: Zablocki Branch
+  aliases:
+  - Milwaukee Public Library – Zablocki Branch
+  address: 3501 W. Oklahoma Ave., Milwaukee, WI 53215
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 42.988401
+  lon: -87.958173
+  coords_source: 'U.S. Census geocoder: 3501 W OKLAHOMA AVE, MILWAUKEE, WI, 53215'
+- name: Villard Square Branch
+  aliases:
+  - Milwaukee Public Library – Villard Square Branch
+  address: 5190 N. 35th St., Milwaukee, WI 53209
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 43.111726
+  lon: -87.956367
+  coords_source: 'U.S. Census geocoder: 5190 N 35TH ST, MILWAUKEE, WI, 53209'
+- name: Tippecanoe Branch
+  aliases:
+  - Milwaukee Public Library – Tippecanoe Branch
+  address: 3912 S. Howell Ave., Milwaukee, WI 53207
+  address_source: https://www.mpl.org/hours_locations/
+  verified_at: '2026-10-27'
+  lat: 42.972863
+  lon: -87.909457
+  coords_source: 'U.S. Census geocoder: 3912 S HOWELL AVE, MILWAUKEE, WI, 53207'
