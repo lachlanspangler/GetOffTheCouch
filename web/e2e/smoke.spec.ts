@@ -62,8 +62,8 @@ test("deadlines view groups by urgency and offers calendar export", async ({ pag
 
 test("new-in-town wizard builds an explained plan", async ({ page }) => {
   await page.goto("/demoville/plan/?demo=1");
-  await page.getByText("Trivia & games", { exact: true }).click();
-  await page.getByText("Rec & beer leagues", { exact: true }).click();
+  await page.getByRole("main").getByText("Trivia & games", { exact: true }).click();
+  await page.getByRole("main").getByText("Rec & beer leagues", { exact: true }).click();
   for (let i = 0; i < 2; i++) await page.getByRole("button", { name: "Continue" }).click();
   await page.getByRole("button", { name: "Make my plan" }).click();
   await expect(page.getByRole("heading", { name: /Your first month in Demoville/ })).toBeVisible();
@@ -88,7 +88,7 @@ test("unknown paths render a friendly page, not a blank one", async ({ page }) =
 
 test("after the wizard, the city page has an explained For you section, and 'Not for me' can be undone", async ({ page }) => {
   await page.goto("/demoville/plan/?demo=1");
-  await page.getByText("Trivia & games", { exact: true }).click();
+  await page.getByRole("main").getByText("Trivia & games", { exact: true }).click();
   for (let i = 0; i < 2; i++) await page.getByRole("button", { name: "Continue" }).click();
   await page.getByRole("button", { name: "Make my plan" }).click();
   await page.goto("/demoville/?demo=1");

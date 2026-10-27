@@ -31,7 +31,7 @@ jobs:
       - run: npm ci
         working-directory: web
       - name: Schema → types are in sync
-        run: .venv/bin/python -m gotc schema && (cd web && npm run gen:types) && git diff --exit-code schema web/src/lib/feed.generated.ts web/src/lib/details.generated.ts
+        run: .venv/bin/python -m gotc schema && (cd web && npm run gen:types) && git diff --exit-code schema web/src/lib/feed.generated.ts web/src/lib/details.generated.ts web/src/lib/manifest.generated.ts
       - name: Demo dataset (fictional, frozen clock)
         run: .venv/bin/python -m gotc demo --anchor 2026-10-16T15:00:00+00:00
       - run: npm run typecheck && npm test && npm run build
