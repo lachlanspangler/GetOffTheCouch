@@ -59,9 +59,7 @@ def trim(e: dict[str, Any]) -> dict[str, Any]:
         out["social"] = {"score": s["score"], "reasons": s.get("reasons", [])[:1]}
     if w := e.get("weather"):
         out["weather"] = {k: w[k] for k in ("short", "precip_pct", "source", "fetched_at") if k in w}
-    out["offers"] = [
-        {"kind": o["kind"], "availability": o.get("availability", "unknown")} for o in e.get("offers", [])
-    ]
+    out["offers"] = [{"kind": o["kind"], "availability": o.get("availability", "unknown")} for o in e.get("offers", [])]
     out["sources"] = [{"source_id": s["source_id"]} for s in e.get("sources", [])]
     if e.get("summary"):
         out["summary"] = e["summary"][:160]  # card summary, for labeling and search; ranking uses rank.desc_len

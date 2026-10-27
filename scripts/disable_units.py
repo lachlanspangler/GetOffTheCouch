@@ -1,5 +1,5 @@
 """Disable units in their city config with a reason comment (used when robots.txt or terms forbid a source).
-   python scripts/disable_units.py "reason" unit@city [unit@city ...]"""
+python scripts/disable_units.py "reason" unit@city [unit@city ...]"""
 
 import re
 import sys
