@@ -10,7 +10,7 @@ version: 1
 
 categories:
   music:
-    label: Music
+    label: Concerts & live music
     icon: music
     social: 0.35
     attendance: [80, 600, 8000]
@@ -59,7 +59,7 @@ categories:
       singles: { label: Singles & mixers, match: [singles, speed dating, mixer, meet new people, make new friends], social: 0.95, attendance: [20, 60, 200] }
 
   community:
-    label: Community & festivals
+    label: Festivals & community
     icon: users
     social: 0.6
     attendance: [100, 800, 10000]
@@ -71,7 +71,7 @@ categories:
       cultural: { label: Cultural celebrations, match: [heritage, diwali, lunar new year, juneteenth, pride, dia de los muertos, día de los muertos, oktoberfest], attendance: [300, 2000, 30000] }
 
   food_drink:
-    label: Food & drink
+    label: Food, drink & openings
     icon: utensils
     social: 0.5
     attendance: [30, 150, 2000]
@@ -82,7 +82,7 @@ categories:
       restaurant_opening: { label: New restaurants & bars, match: [new restaurant, new bar, liquor license], attendance: [30, 100, 400] }
 
   volunteer:
-    label: Volunteer
+    label: Volunteering
     icon: heart
     social: 0.8
     attendance: [5, 25, 150]
@@ -142,7 +142,7 @@ categories:
       park: { label: Park programs, match: [park program, nature center, garden tour, stargazing, astronomy] }
 
   arts:
-    label: Arts & culture
+    label: Arts, theater & comedy
     icon: palette
     social: 0.4
     attendance: [30, 200, 2000]
@@ -154,7 +154,7 @@ categories:
       books: { label: Books & talks, match: [book club, author talk, reading, poetry, lecture, storytime, library], attendance: [10, 40, 300] }
 
   sports_watch:
-    label: Pro & college sports
+    label: Games to watch
     icon: stadium
     social: 0.45
     attendance: [3000, 18000, 65000]
@@ -171,7 +171,7 @@ categories:
       kids: { label: Kids activities, match: [kids, children, family, toddler, teen, storytime] }
 
   learning:
-    label: Learning & professional
+    label: Classes & talks
     icon: book
     social: 0.55
     attendance: [15, 60, 400]

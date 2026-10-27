@@ -117,7 +117,7 @@ export function headFor(route: Route, index: Index, feed: CityFeed | null, event
     description = clip(`${DEFAULT_DESC} ${index.cities.length} cities.`);
   }
   if (route.unknown) robots = "noindex,follow";
-  return { title: pageTitle(route, feed, event), description, canonical, robots, ogType: event ? "article" : "website", jsonld };
+  return { title: pageTitle(route, feed, event, now), description, canonical, robots, ogType: event ? "article" : "website", jsonld };
 }
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

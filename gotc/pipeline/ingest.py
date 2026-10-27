@@ -67,6 +67,19 @@ def campus_catchall(rec: dict[str, Any], params: dict[str, Any]) -> bool:
     return rec.get("category") in (params.get("default_category"), "other.uncategorized")
 
 
+# University calendars are mostly internal (club meetings, office hours, dorm socials). For institution feeds only
+# public-facing families pass unless the source lists its own `allow_families`.
+INSTITUTION_FAMILIES = ("music", "arts", "sports_watch", "learning", "community", "outdoors", "fitness", "niche")
+
+
+def campus_allowlist(category: str, params: dict[str, Any]) -> bool:
+    """True when an institution-feed record should be kept (its family is public-facing)."""
+    if params.get("audience_filter") != "institution":
+        return True
+    allow = params.get("allow_families") or INSTITUTION_FAMILIES
+    return category.split(".", 1)[0] in allow
+
+
 def parse_payloads(
     adapter: Adapter, unit: Unit, payloads: list[tuple[Payload, int | None]], fetched_at: datetime
 ) -> Parsed:
@@ -103,6 +116,9 @@ def parse_payloads(
                     raise ValueError(f"unknown category {ev.category!r}")
                 ev.category = tax.resolve(ev.category)
                 ev.tags = tax.valid_tags(ev.tags)
+                if not campus_allowlist(ev.category, unit.source.params):
+                    out.skipped += 1
+                    continue
             except (ValidationError, ValueError) as e:
                 hint = f"{rec.get('record_id')}: {str(rec.get('title'))[:80]}"
                 out.rejects.append((hint, _short_error(e), raw_id))

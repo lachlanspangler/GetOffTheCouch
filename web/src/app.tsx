@@ -131,7 +131,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
     if (!route.eventId) document.getElementById("main")?.focus({ preventScroll: true });
   }, [route.city, route.view, route.hub, route.eventId]);
   useEffect(() => {
-    document.title = pageTitle(route, feed, event);
+    document.title = pageTitle(route, feed, event, now);
   }, [feed, route, event]);
 
   if (error && !index) {

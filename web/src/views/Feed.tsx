@@ -9,6 +9,7 @@ import { useApp } from "../lib/ctx";
 import { coverage } from "../lib/coverage";
 import { collapseSeries, deadlines, DEFAULT_FILTERS, isOngoing } from "../lib/filters";
 import { count } from "../lib/format";
+import { hubTitle } from "../lib/title";
 import { forYou, highlights, type Profile } from "../lib/recommend";
 import { usePersistent } from "../lib/store";
 import { WhyThis } from "../components/WhyThis";
@@ -22,6 +23,10 @@ import { familyOf } from "../lib/art";
 import { isAdminRole, isCampusOnly, isKids, isLeadable, isUnderway } from "../lib/curate";
 
 const PAGE = 50;
+
+function hubTitleOrCity(hub: string | null | undefined, city: string, now: Date, tz: string): string {
+  return hub ? hubTitle(hub, city, now, tz) : city;
+}
 
 export function cityHeadline(hub: string | null | undefined, city: string): string {
   const h = hub ? HUB_BY_SLUG.get(hub) : undefined;
@@ -138,7 +143,7 @@ export function Feed({ events }: { events: Event[] }) {
           </ol>
         )}
         <h1>
-          {cityHeadline(route.hub, feed.city_name)}
+          {hubTitleOrCity(route.hub, feed.city_name, now, feed.timezone)}
           {summary?.tier === "beta" && <span class="beta-chip" title="We're still adding sources here">Beta</span>}
         </h1>
         <p class="lede">
