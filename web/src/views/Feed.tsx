@@ -17,10 +17,10 @@ import { strongestText } from "../components/Coverage";
 import { build } from "../lib/router";
 import { HUB_BY_SLUG, HUBS, url } from "../lib/site";
 import { closesPhrase } from "../lib/signals";
-import { age, dayKey, dayHeader, weekendRange } from "../lib/time";
+import { age, dayKey, dayHeader, fmtDay, weekendRange } from "../lib/time";
 import type { Event } from "../lib/types";
 import { familyOf } from "../lib/art";
-import { isAdminRole, isCampusOnly, isKids, isLeadable, isUnderway } from "../lib/curate";
+import { displayPlace, isAdminRole, isCampusOnly, isKids, isLeadable, isUnderway } from "../lib/curate";
 
 const PAGE = 50;
 
@@ -112,6 +112,26 @@ export function Feed({ events }: { events: Event[] }) {
   const unfiltered = !hub && !f.q && activeCount(f) === 0 && f.when === DEFAULT_FILTERS.when;
   const tops = useMemo(() => (feed && unfiltered ? highlights(feed.events.filter((e) => isLeadable(e, feed.state)), labels, now, 3) : []), [feed, unfiltered, now]);
   const [profile] = usePersistent<Profile | null>(`profile:${feed?.city ?? "_"}`, null);
+  // "New since your last visit" (on-device only): remember when this device last opened the city page
+  const [lastVisit, setLastVisit] = usePersistent<string | null>(`lastVisit:${feed?.city ?? "_"}`, null);
+  const [prevVisit, setPrevVisit] = useState<string | null>(null);
+  useEffect(() => {
+    if (!feed || !lastVisit || prevVisit) return;
+    setPrevVisit(lastVisit);
+  }, [lastVisit, feed?.city]);
+  useEffect(() => {
+    if (!feed) return;
+    const t = setTimeout(() => setLastVisit(new Date().toISOString()), 8000); // a real visit, not a bounce
+    return () => clearTimeout(t);
+  }, [feed?.city]);
+  const sinceLast = useMemo(() => {
+    if (!feed || !prevVisit || !unfiltered) return [];
+    const since = new Date(prevVisit).getTime();
+    if (now.getTime() - since < 6 * 3600_000) return []; // came back the same afternoon: nothing to say
+    return collapseSeries(feed.events.filter((e) => new Date(e.first_seen).getTime() > since && e.kind !== "opening" && isLeadable(e, feed.state) && !isUnderway(e, now)))
+      .map((g) => g.event)
+      .sort((a, b) => a.start.localeCompare(b.start));
+  }, [feed, prevVisit, unfiltered, now]);
   const { neighborhoods, saved } = useApp();
   const personal = useMemo(() => {
     if (!feed || !unfiltered || !(profile?.interests.length || saved.length)) return [];
@@ -195,6 +215,19 @@ export function Feed({ events }: { events: Event[] }) {
               <FeaturedCard key={s.event.id} e={s.event} scored={s} />
             ))}
           </div>
+        </section>
+      )}
+      {sinceLast.length > 0 && (
+        <section class="section" aria-labelledby="sincelast">
+          <div class="section-head">
+            <div>
+              <h2 id="sincelast">New since your last visit</h2>
+              <p class="small">{sinceLast.length.toLocaleString("en-US")} listings added since {fmtDay(prevVisit!, feed.timezone)}. Remembered on this device only.</p>
+            </div>
+          </div>
+          <ul class="rows">
+            {sinceLast.slice(0, 6).map((e) => <CompactRow key={e.id} e={e} time={fmtDay(e.start, e.timezone)} sub={displayPlace(e, feed.city_name) ?? undefined} />)}
+          </ul>
         </section>
       )}
       {personal.length > 0 && (
