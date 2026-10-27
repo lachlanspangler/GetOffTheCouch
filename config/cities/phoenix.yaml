@@ -42,6 +42,7 @@ sources:
       baseCalendarId). robots: `User-agent: *` Crawl-delay 10 (PoliteClient honors it: ~3 min a day); named
       crawlers are disallowed, we are not on that list. LOCATION is "Room, Branch name".
     params:
+      venue_part: last   # "Meeting Room, Mesquite Library": the venue is the branch (config/venues/phoenix.yaml)
       url:
         - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15413   # Burton Barr Central
         - https://calendar.phoenixpubliclibrary.org/ical_subscribe.php?src=p&cid=15420   # Acacia

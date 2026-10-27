@@ -32,3 +32,18 @@ def test_categories_map_and_utc_times():
     assert concert.start.astimezone(UTC).isoformat() == "2026-10-17T18:00:00+00:00"  # DTSTART:20261017T180000Z
     workshop = evs["An Homage to Home: A Workshop and Reading"]
     assert workshop.category == "arts.workshop"
+
+
+def test_venue_part_last_makes_the_branch_the_venue():
+    # LOCATION "Gellman Room - Main Library" + venue_part: last / venue_sep " - " → the branch is the venue, so one
+    # curated entry (config/venues/richmond.yaml) places every room; the room string stays in the address
+    locs = {(ev.location.venue_name, ev.location.address) for ev, _ in _parse().valid}
+    assert ("Main Library", "Gellman Room - Main Library") in locs
+    assert ("Main", "Main") in locs  # no separator: the whole LOCATION
+
+
+def test_venue_part_defaults_to_the_first_comma_part():
+    from gotc.adapters.ics import _venue_name
+
+    assert _venue_name("Harmon Library, 1325 S 5th Ave", {}) == "Harmon Library"
+    assert _venue_name("Meeting Room, Mesquite Library", {"venue_part": "last"}) == "Mesquite Library"

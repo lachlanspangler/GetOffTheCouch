@@ -1,0 +1,48 @@
+# Curated venue locations for san_diego (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own official page (`address_source`, fetched with
+# the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+# Volo San Diego names these league venues without an address; each school matches Volo's neighborhood label.
+# Not curated: Barnes Tennis Center and the sandiego.gov rec-center pages (robots.txt disallows us).
+- name: Clairemont High School
+  address: 4150 Ute Dr, San Diego, CA 92117
+  address_source: https://clairemont.sandiegounified.org/
+  verified_at: '2026-10-27'
+  lat: 32.809369
+  lon: -117.201302
+  coords_source: 'U.S. Census geocoder: 4150 UTE DR, SAN DIEGO, CA, 92117'
+- name: Madison High School
+  address: 4833 Doliva Drive, San Diego, CA 92117
+  address_source: https://madison.sandiegounified.org/
+  verified_at: '2026-10-27'
+  lat: 32.83105
+  lon: -117.175617
+  coords_source: 'U.S. Census geocoder: 4833 DOLIVA DR, SAN DIEGO, CA, 92117'
+- name: Mira Mesa High School
+  address: 10510 Marauder Way, San Diego, CA 92126
+  address_source: https://miramesa.sandiegounified.org/
+  note: The page writes "10510 Marauder Way, S.D., CA 92126".
+  verified_at: '2026-10-27'
+- name: Correia Middle School
+  address: 4302 Valeta Street, San Diego, CA 92107
+  address_source: https://correia.sandiegounified.org/
+  verified_at: '2026-10-27'
+  lat: 32.748823
+  lon: -117.231381
+  coords_source: 'U.S. Census geocoder: 4302 VALETA ST, SAN DIEGO, CA, 92107'
+- name: Logan Memorial Educational Campus
+  address: 2875 Ocean View Blvd, San Diego, CA 92113
+  address_source: https://logan.sandiegounified.org/
+  verified_at: '2026-10-27'
+  lat: 32.701103
+  lon: -117.132256
+  coords_source: 'U.S. Census geocoder: 2875 OCEAN VIEW BLVD, SAN DIEGO, CA, 92113'
+- name: Jefferson Elementary School
+  aliases:
+  - Jefferson Elementary
+  address: 3770 Utah Street, San Diego, CA 92104
+  address_source: https://jefferson.sandiegounified.org/
+  verified_at: '2026-10-27'
+  lat: 32.747435
+  lon: -117.132865
+  coords_source: 'U.S. Census geocoder: 3770 UTAH ST, SAN DIEGO, CA, 92104'

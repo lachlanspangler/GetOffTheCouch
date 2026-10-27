@@ -14,6 +14,8 @@ a weekly run club doesn't flood the feed. Conditional GET (ETag/Last-Modified) m
         - {match: "(?i)\\btutor", category: family.kids}   # the keyword classifier ("Math Tutor" is a service)
       tags: [outdoor]
       organizer: Minneapolis Park & Recreation Board
+      venue_part: last      # LibCal "Room, Branch" LOCATIONs: the venue is the last part, not the room (default: first)
+      venue_sep: " - "      # separator for venue_part (default ","), e.g. Richmond's "Room - Main Library"
 """
 
 from __future__ import annotations
@@ -114,7 +116,7 @@ class IcsAdapter(Adapter):
                 all_day=all_day,
                 recurrence=_describe_rrule(rrule, start) if rrule else None,
                 location={
-                    "venue_name": location.split(",")[0] if location else None,
+                    "venue_name": _venue_name(location, p) if location else None,
                     "address": location,
                     "lat": lat,
                     "lon": lon,
@@ -127,6 +129,13 @@ class IcsAdapter(Adapter):
                 availability="cancelled" if status == "CANCELLED" else ("free_no_ticket" if free else "unknown"),
                 _html=str(ev.get("X-ALT-DESC") or ev.get("DESCRIPTION") or ""),
             )
+
+
+def _venue_name(location: str, p: dict[str, Any]) -> str:
+    """The venue part of LOCATION: the first comma part by default; ``venue_part: last`` for "Room, Branch"."""
+    if p.get("venue_part") != "last":
+        return location.split(",")[0]
+    return location.split(str(p.get("venue_sep", ",")))[-1].strip() or location
 
 
 #: Rails/ActiveSupport display names some calendar generators put in X-WR-TIMEZONE (Enoch Pratt's calendar sends

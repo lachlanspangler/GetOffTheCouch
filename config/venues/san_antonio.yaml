@@ -1,0 +1,14 @@
+# Curated venue locations for san_antonio (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own site (`address_source`, fetched with the
+# GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py,
+# `coords_source`). Addresses Census can't match stay without coordinates.
+- name: Frost Bank Center
+  address: 1 Frost Bank Center Drive, San Antonio, TX 78219
+  address_source: https://www.frostbankcenter.com/
+  note: No coordinates yet. Census has no match (2026-10-27, Current and Census2020 benchmarks).
+  verified_at: '2026-10-27'
+- name: Alamodome
+  address: 100 Montana St, San Antonio, TX 78203
+  address_source: https://www.alamodome.com/
+  note: No coordinates yet. Census has no match (2026-10-27).
+  verified_at: '2026-10-27'

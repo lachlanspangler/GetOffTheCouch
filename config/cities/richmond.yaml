@@ -45,6 +45,8 @@ sources:
       horizon_days: 14
       max_occurrences: 4
       organizer: Richmond Public Library
+      venue_part: last   # LOCATION is "Room - Main Library": the venue is the branch (config/venues/richmond.yaml)
+      venue_sep: " - "
       default_category: arts.books
       category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
   - id: henrico_library_events
@@ -62,6 +64,7 @@ sources:
       horizon_days: 14
       max_occurrences: 4
       organizer: Henrico County Public Library
+      venue_part: last   # LOCATION is "TU Meeting Room, Tuckahoe Area Library": the venue is the branch
       default_category: arts.books
       category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
 

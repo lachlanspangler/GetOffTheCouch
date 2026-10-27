@@ -1,0 +1,81 @@
+# Curated venue locations for richmond (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the operator's official locations page (`address_source`,
+# fetched with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+# The two LibCal feeds name rooms ("TU Meeting Room, Tuckahoe Area Library", "Gellman Room - Main Library");
+# their `venue_part: last` param makes the branch the venue, so one entry per branch places every room.
+- name: Richmond Public Library – Main Library
+  aliases:
+  - Main Library
+  - Main
+  - Main Children's Dept.
+  address: 101 East Franklin Street, Richmond, VA 23219
+  address_source: https://rvalibrary.org/about/locations/main-library/
+  note: '"Main" and "Main Children''s Dept." are LOCATIONs in the same RPL feed (cid 7469) for the same building.'
+  verified_at: '2026-10-27'
+  lat: 37.543297
+  lon: -77.442655
+  coords_source: 'U.S. Census geocoder: 101 E FRANKLIN ST, RICHMOND, VA, 23219'
+- name: Fairfield Area Library
+  address: 1401 N. Laburnum Avenue, Henrico, VA 23223
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.563719
+  lon: -77.376687
+  coords_source: 'U.S. Census geocoder: 1401 N LABURNUM AVE, RICHMOND, VA, 23223'
+- name: Libbie Mill Area Library
+  aliases:
+  - Libbie Mill Library
+  address: 2100 Libbie Lake East Street, Henrico, VA 23230
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.590783
+  lon: -77.496067
+  coords_source: 'U.S. Census geocoder: 2100 LIBBIE LAKE EAST ST, RICHMOND, VA, 23230'
+- name: Tuckahoe Area Library
+  address: 1901 Starling Drive, Henrico, VA 23229
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.609197
+  lon: -77.564301
+  coords_source: 'U.S. Census geocoder: 1901 STARLING DR, HENRICO, VA, 23229'
+- name: Twin Hickory Area Library
+  address: 5001 Twin Hickory Road, Glen Allen, VA 23059
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.675042
+  lon: -77.595595
+  coords_source: 'U.S. Census geocoder: 5001 TWIN HICKORY RD, GLEN ALLEN, VA, 23059'
+- name: Varina Area Library
+  address: 1875 New Market Road, Henrico, VA 23231
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.461344
+  lon: -77.37896
+  coords_source: 'U.S. Census geocoder: 1875 NEW MARKET RD, HENRICO, VA, 23231'
+- name: Gayton Branch Library
+  address: 10600 Gayton Road, Henrico, VA 23238
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.607522
+  lon: -77.606818
+  coords_source: 'U.S. Census geocoder: 10600 GAYTON RD, HENRICO, VA, 23238'
+- name: Glen Allen Branch Library
+  address: 10501 Staples Mill Road, Glen Allen, VA 23060
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.662136
+  lon: -77.527458
+  coords_source: 'U.S. Census geocoder: 10501 STAPLES MILL RD, GLEN ALLEN, VA, 23060'
+- name: North Park Branch Library
+  address: 8508 Franconia Road, Henrico, VA 23227
+  address_source: https://henricolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 37.64121
+  lon: -77.440185
+  coords_source: 'U.S. Census geocoder: 8508 FRANCONIA RD, RICHMOND, VA, 23227'
+- name: Sandston Branch Library
+  address: 23 E. Williamsburg Road, Sandston, VA 23150
+  address_source: https://henricolibrary.org/locations
+  note: 'No coordinates: Census only matched "23 W WILLIAMSBURG RD" (wrong street direction).'
+  verified_at: '2026-10-27'

@@ -18,12 +18,12 @@ with httpx.Client(headers={"User-Agent": UA}, timeout=30) as c:
     for it in items:
         if it.get("lat") is not None or not it.get("address"):
             continue
-        r = c.get(URL, params={"address": it["address"], "benchmark": "Public_AR_Current", "format": "json"})
         try:
+            r = c.get(URL, params={"address": it["address"], "benchmark": "Public_AR_Current", "format": "json"})
             m = (r.json().get("result") or {}).get("addressMatches") or []
-        except ValueError:  # the Census outage page (302 → HTML): skip, rerun later; never guess
-            print(f"Census unavailable (HTTP {r.status_code}): {it['name']}")
-            time.sleep(2.0)
+        except (httpx.HTTPError, ValueError) as e:  # Census sometimes answers with an HTML error page: skip, rerun later
+            print(f"Census error (retry later): {it['name']}: {type(e).__name__}")
+            time.sleep(5.0)
             continue
         if m:
             it["lat"], it["lon"] = round(m[0]["coordinates"]["y"], 6), round(m[0]["coordinates"]["x"], 6)
@@ -31,7 +31,7 @@ with httpx.Client(headers={"User-Agent": UA}, timeout=30) as c:
             done += 1
         else:
             print(f"no Census match: {it['name']} — {it['address']}")
-        time.sleep(1.0)
+        time.sleep(2.0)
 head = "".join(line for line in path.read_text().splitlines(keepends=True) if line.startswith("#"))
 path.write_text(head + yaml.safe_dump(items, sort_keys=False, allow_unicode=True, width=120))
 print(f"{path}: geocoded {done}")
