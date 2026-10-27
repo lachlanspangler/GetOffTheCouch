@@ -1255,3 +1255,30 @@ Disabled on the first run with the new parser:
 - **Cloudflare challenge:** Lizard Lounge (Boston).
 
 Any further `RobotsDisallowed` failure on the status page means the same thing, and the unit gets disabled in config.
+
+## Session 4 coverage: cov3
+Curated venue locations (config/venues/<slug>.yaml) and probes from the coverage pass on 2026-10-27. Addresses are copied
+from the operator's own page, coordinates come only from the U.S. Census geocoder. Every page was fetched through
+PoliteClient (robots.txt first, GetOffTheCouch UA).
+
+| page / source | city | use | stance / result |
+|---|---|---|---|
+| slcpl.org/locations | salt_lake_city | 8 City Library branch addresses | robots allows. Census has no match for Sprague (2131 South 1100 East) |
+| henricolibrary.org/locations | richmond | 9 Henrico branch addresses | robots allows. Sandston: Census only matched "23 W" for "23 E. Williamsburg Road", so no coordinates |
+| rvalibrary.org/about/locations/main-library/ | richmond | RPL Main Library | robots allows |
+| phoenixpubliclibrary.org/locations (+ /locations/cholla) | phoenix | 17 branch addresses | robots allows. Census has no match for Century or Desert Broom |
+| frostbankcenter.com, alamodome.com | san_antonio | arena addresses | robots allows. Census has no match for either (Current and Census2020 benchmarks), so they stay unplaced |
+| gggp.org/contact-us/ | san_francisco | SF Botanical Garden, 1199 9th Avenue | robots allows |
+| <school>.sandiegounified.org | san_diego | 6 Volo league schools (Volo's neighborhood label matches each one) | robots allows. Census has no match for Mira Mesa HS |
+| lenovocenter.com | raleigh | Lenovo Center address | robots allows. Census has no match, so not curated |
+| dbg.org/visit/ | phoenix | Desert Botanical Garden | **Cloudflare challenge**, not retried. The `desert_botanical_garden_events` unit (Tribe on dbg.org) may now fail too. Census has no match for 1201 N Galvin Pkwy |
+| jccsf.org | san_francisco | JCC SF (Volo venue) | **Cloudflare challenge**, not retried |
+| barnestenniscenter.org | san_diego | Barnes Tennis Center (Volo venue) | **robots.txt disallows** |
+| sandiego.gov/park-and-recreation/centers/... | san_diego | rec-center addresses for Volo venues | **robots.txt disallows** that path |
+| phoenix.gov adult softball pages | phoenix | curated league with a deadline (G5) | robots allows, but the page publishes no season dates or deadline. Nothing curated |
+| volo_phoenix (live, 2026-10-27) | phoenix | leagues | still 0 programs (between seasons) |
+
+**Platform note.** In Springshare LibCal iCal feeds, LOCATION is "<room>, <branch>" (Phoenix, Henrico) or
+"<room> - <branch>" (Richmond PL). The `ics` param `venue_part: last` (with `venue_sep`) makes the branch the venue, so
+one curated entry per branch places every room. HandsOn Connect (`handson_rva`, `handson_bay_area`) publishes only a
+city + ZIP per opportunity. Those events can't be placed without guessing, which caps Richmond's G8 near 74%.
