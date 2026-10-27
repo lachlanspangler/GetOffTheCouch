@@ -28,7 +28,7 @@ import httpx
 from gotc.http.robots import RobotsRules
 from gotc.settings import Settings
 
-REDACT_KEYS = ("apikey", "client_id", "client_secret", "app_id", "token", "key")
+REDACT_KEYS = ("apikey", "client_id", "client_secret", "app_id", "token", "key", "rsu_api_reg", "api_key", "secret")
 
 
 class _NoCookies(DefaultCookiePolicy):
