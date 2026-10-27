@@ -409,6 +409,7 @@ sources:
 
   # ── tourism board (East Bay) ──
   - id: visit_oakland_events
+    enabled: false  # HTTP 403 to our client since 2026-10-17 (bot wall); never bypassed
     adapter: simpleview
     name: Visit Oakland events
     data_type: events

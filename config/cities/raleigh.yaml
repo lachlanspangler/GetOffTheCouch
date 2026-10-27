@@ -185,6 +185,7 @@ sources:
         Speakers: arts.books
         Concerts: music.concert
   - id: red_hat_amphitheater
+    enabled: false  # feed changed: RSS items no longer carry a start date (format_changed since 2026-10-17)
     adapter: rss_events
     name: Red Hat Amphitheater (City of Raleigh venue calendar)
     data_type: concerts

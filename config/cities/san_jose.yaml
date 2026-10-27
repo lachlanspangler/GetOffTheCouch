@@ -198,6 +198,7 @@ sources:
       max_pages: 4
 
   - id: handson_bay_area_south
+    enabled: false  # tenant returns 0 opportunities since 2026-10-17
     adapter: handsonconnect
     name: HandsOn Bay Area (South Bay shifts)
     data_type: volunteer

@@ -24,6 +24,7 @@ neighborhoods:
   - { name: St. Paul (Downtown), lat: 44.9537, lon: -93.0900 }
 sources:
   - id: mprb_events
+    enabled: false  # robots.txt disallows the Tribe API query (Disallow: /*?), 2026-10-27
     adapter: tribe
     name: Minneapolis Park & Recreation Board
     data_type: events

@@ -117,6 +117,7 @@ sources:
 
   # ── city spaces and arenas ──
   - id: gallivan_center_events
+    enabled: false  # HTTP 403 to our client since 2026-10-17 (bot wall); never bypassed
     adapter: tribe
     name: The Gallivan Center (downtown plaza) events
     data_type: events
