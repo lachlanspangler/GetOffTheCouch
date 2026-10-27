@@ -1361,3 +1361,38 @@ PoliteClient (robots.txt first, GetOffTheCouch UA).
 "<room> - <branch>" (Richmond PL). The `ics` param `venue_part: last` (with `venue_sep`) makes the branch the venue, so
 one curated entry per branch places every room. HandsOn Connect (`handson_rva`, `handson_bay_area`) publishes only a
 city + ZIP per opportunity. Those events can't be placed without guessing, which caps Richmond's G8 near 74%.
+
+## Session 4 coverage: cov1b
+
+Location-only venue curation (2026-10-27) for the cov1 cities after washington_dc/philadelphia. Same rules as cov1:
+address copied from the venue's or operator's own page (`address_source`), coordinates only from the U.S. Census
+geocoder (`scripts/venue_geocode.py`, which now also skips timeouts/connection errors instead of crashing; Census
+was intermittently down all session, so rerun it to fill entries still without coordinates). Every page fetched
+once with our UA after its robots.txt, ≥ 2 s per host (Crawl-delay honored).
+
+| page | city | used for | robots / ToS | verified |
+|---|---|---|---|---|
+| https://dekalblibrary.org/locations/ | atlanta | 22 DeKalb County PL branch addresses (`dekalb_library_events` names branches only) | robots allows it | 2026-10-27 |
+| https://the8x10.com/contact-us/ | baltimore | The 8x10 (its Tixr events say only "Baltimore, MD") | robots allows it (Crawl-delay 3) | 2026-10-27 |
+| https://www.volosports.com/baltimore/club-volo/{brewers-hill,baltimore-peninsula} | baltimore | Club Volo venues' addresses (Volo program pages render client-side, no address) | robots allows all but /rfo /admin /staff | 2026-10-27 |
+| https://www.crossstreetpublichouse.com/ | baltimore | Cross Street Public House (Volo venue) | robots allows it | 2026-10-27 |
+| https://www.cobpl.org/locations/ | birmingham | 14 Birmingham PL branches (page gives street + ZIP+4; city taken as Birmingham, ZIP trimmed to 5) | robots allows it | 2026-10-27 |
+| homewoodpubliclibrary.org, hooverlibrary.org (home pages) | birmingham | Homewood and Hoover PL (Communico venue strings) | robots allows them | 2026-10-27 |
+| https://www.bjcc.org/ | birmingham | BJCC campus address for Concert Hall, Legacy Arena, Exhibition Halls, Theatre (`note` says it's the campus address) | robots allows it | 2026-10-27 |
+| https://cuyahogalibrary.org/branches | cleveland | 27 Cuyahoga County PL branches (the page's branch-map JSON) | robots allows it | 2026-10-27 |
+| ghpl.org, schottensteincenter.com (home pages) | columbus | Grandview Heights PL; Schottenstein Center | robots allows them | 2026-10-27 |
+| ✗ bcrp.baltimorecity.gov (Du Burns Arena) | baltimore | — | robots.txt disallows | 2026-10-27 |
+| ✗ levyparkhouston.org (home page) | houston | — | Cloudflare challenge; not retried (the Tribe API unit is unaffected) | 2026-10-27 |
+| ✗ milleroutdoortheatre.com | houston | — | Cloudflare challenge; not retried | 2026-10-27 |
+| ✗ lastconcert.com | houston | — | 403 | 2026-10-27 |
+| ✗ thesaxonpub.com | austin | — | DNS lookups failed all session; Saxon Pub's 117 blank-venue events stay unplaced (a `params.venue` fallback from its footer is the fix) | 2026-10-27 |
+
+Census no-match (kept without coordinates): CCPL Mayfield Branch (500 SOM Center Road, Mayfield Village). The arena
+addresses already in the feeds also don't match Census and were not curated: State Farm Arena (1 State Farm Dr,
+Atlanta), Rocket Arena (1 Center Ct, Cleveland), ACL Live (310 W Willie Nelson Blvd, Austin); Schottenstein Center
+(555 Borror Dr, Columbus) is curated but had no Census answer this session.
+
+Houston feed probes (no usable feed): White Oak Music Hall, Heights Theater, Continental Club, Houston Symphony,
+Houston Parks Board, Houston Zoo have no Tribe API and no Event JSON-LD; 713 Music Hall is a Live Nation venue
+(ToS policy, skipped); houstonbotanicgarden.org fails TLS verification. Volo's sitemap still lists no Houston,
+Dallas, Atlanta, Chicago, Charlotte, Ohio, Detroit, Birmingham, Austin or Fresno market.

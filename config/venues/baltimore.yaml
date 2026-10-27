@@ -1,0 +1,42 @@
+# Curated venues for baltimore (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official page
+# (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: The 8x10
+  aliases:
+  - The 8x10
+  - The 8×10
+  address: 10 E Cross Street, Baltimore, MD 21230
+  address_source: https://the8x10.com/contact-us/
+  verified_at: '2026-10-27'
+  lat: 39.276998
+  lon: -76.613415
+  coords_source: 'U.S. Census geocoder: 10 E CROSS ST, BALTIMORE, MD, 21230'
+- name: Club Volo Brewers Hill
+  aliases:
+  - Club Volo Brewers Hill
+  address: 1201 S Haven St, Baltimore, MD 21224
+  address_source: https://www.volosports.com/baltimore/club-volo/brewers-hill
+  verified_at: '2026-10-27'
+  lat: 39.279522
+  lon: -76.561905
+  coords_source: 'U.S. Census geocoder: 1201 S HAVEN ST, BALTIMORE, MD, 21224'
+- name: Club Volo Baltimore Peninsula
+  aliases:
+  - Club Volo Baltimore Peninsula
+  address: 300 E Cromwell St, Baltimore, MD 21230
+  address_source: https://www.volosports.com/baltimore/club-volo/baltimore-peninsula
+  verified_at: '2026-10-27'
+  lat: 39.262482
+  lon: -76.610561
+  coords_source: 'U.S. Census geocoder: 300 E CROMWELL ST, BALTIMORE, MD, 21230'
+- name: Cross Street Public House
+  aliases:
+  - Cross Street Public House
+  address: 26 E Cross Street, Baltimore, MD 21230
+  address_source: https://www.crossstreetpublichouse.com/
+  verified_at: '2026-10-27'
+  lat: 39.277077
+  lon: -76.612673
+  coords_source: 'U.S. Census geocoder: 26 E CROSS ST, BALTIMORE, MD, 21230'

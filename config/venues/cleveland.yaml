@@ -1,0 +1,245 @@
+# Curated venues for cleveland (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official page
+# (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: CCPL Warrensville Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Warrensville Heights Branch
+  address: 4415 Northfield Road, Warrensville Heights, Ohio 44128
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.43964
+  lon: -81.526187
+  coords_source: 'U.S. Census geocoder: 4415 NORTHFIELD RD, WARRENSVILLE HEIGHTS, OH, 44128'
+- name: CCPL Strongsville Branch
+  aliases:
+  - Cuyahoga County Public Library – Strongsville Branch
+  address: 18700 Westwood Drive, Strongsville, Ohio 44136
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.315822
+  lon: -81.833008
+  coords_source: 'U.S. Census geocoder: 18700 WESTWOOD DR, STRONGSVILLE, OH, 44136'
+- name: CCPL South Euclid-Lyndhurst Branch
+  aliases:
+  - Cuyahoga County Public Library – South Euclid-Lyndhurst Branch
+  address: 1876 South Green Road, South Euclid, Ohio 44121
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.508688
+  lon: -81.519549
+  coords_source: 'U.S. Census geocoder: 1876 S GREEN RD, SOUTH EUCLID, OH, 44121'
+- name: CCPL Solon Branch
+  aliases:
+  - Cuyahoga County Public Library – Solon Branch
+  address: 34125 Portz Parkway, Solon, Ohio 44139
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.37849
+  lon: -81.436956
+  coords_source: 'U.S. Census geocoder: 34125 PORTZ PKWY, SOLON, OH, 44139'
+- name: CCPL Richmond Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Richmond Heights Branch
+  address: 449 Richmond Road, Richmond Heights, Ohio 44143
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.554148
+  lon: -81.496994
+  coords_source: 'U.S. Census geocoder: 449 RICHMOND RD, RICHMOND HEIGHTS, OH, 44143'
+- name: CCPL Parma-Snow Branch
+  aliases:
+  - Cuyahoga County Public Library – Parma-Snow Branch
+  address: 2121 Snow Road, Parma, Ohio 44134
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.405087
+  lon: -81.695112
+  coords_source: 'U.S. Census geocoder: 2121 SNOW RD, PARMA, OH, 44134'
+- name: CCPL Parma-Powers Branch
+  aliases:
+  - Cuyahoga County Public Library – Parma-Powers Branch
+  address: 6996 Powers Boulevard, Parma, Ohio 44129
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.382933
+  lon: -81.732774
+  coords_source: 'U.S. Census geocoder: 6996 POWERS BLVD, PARMA, OH, 44129'
+- name: CCPL Parma Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Parma Heights Branch
+  address: 6188 Pearl Road, Parma Heights, Ohio 44130
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.392675
+  lon: -81.759199
+  coords_source: 'U.S. Census geocoder: 6188 PEARL RD, PARMA HEIGHTS, OH, 44130'
+- name: CCPL Orange Branch
+  aliases:
+  - Cuyahoga County Public Library – Orange Branch
+  address: 31975 Chagrin Boulevard, Pepper Pike, Ohio 44124
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.45887
+  lon: -81.453641
+  coords_source: 'U.S. Census geocoder: 31975 CHAGRIN BLVD, PEPPER PIKE, OH, 44124'
+- name: CCPL Olmsted Falls Branch
+  aliases:
+  - Cuyahoga County Public Library – Olmsted Falls Branch
+  address: 8100 Mapleway Drive, Olmsted Falls, Ohio 44138
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.374437
+  lon: -81.909572
+  coords_source: 'U.S. Census geocoder: 8100 MAPLEWAY DR, OLMSTED FALLS, OH, 44138'
+- name: CCPL North Royalton Branch
+  aliases:
+  - Cuyahoga County Public Library – North Royalton Branch
+  address: 5071 Wallings Road, North Royalton, OH 44133
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.33153
+  lon: -81.722428
+  coords_source: 'U.S. Census geocoder: 5071 WALLINGS RD, NORTH ROYALTON, OH, 44133'
+- name: CCPL North Olmsted Branch
+  aliases:
+  - Cuyahoga County Public Library – North Olmsted Branch
+  address: 27403 Lorain Road, North Olmsted, Ohio 44070
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.4143
+  lon: -81.925934
+  coords_source: 'U.S. Census geocoder: 27403 LORAIN RD, NORTH OLMSTED, OH, 44070'
+- name: CCPL Middleburg Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Middleburg Heights Branch
+  address: 16699 Bagley Road, Middleburg Heights, Ohio 44130
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.371698
+  lon: -81.816374
+  coords_source: 'U.S. Census geocoder: 16699 BAGLEY RD, MIDDLEBURG HEIGHTS, OH, 44130'
+- name: CCPL Mayfield Branch
+  aliases:
+  - Cuyahoga County Public Library – Mayfield Branch
+  address: 500 SOM Center Road, Mayfield Village, Ohio 44143
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+- name: CCPL Maple Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Maple Heights Branch
+  address: 5225 Library Lane, Maple Heights, Ohio 44137
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.417495
+  lon: -81.569617
+  coords_source: 'U.S. Census geocoder: 5225 LIBRARY LN, MAPLE HEIGHTS, OH, 44137'
+- name: CCPL Independence Branch
+  aliases:
+  - Cuyahoga County Public Library – Independence Branch
+  address: 6361 Selig Drive, Independence, Ohio 44131
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.376593
+  lon: -81.647272
+  coords_source: 'U.S. Census geocoder: 6361 SELIG DR, INDEPENDENCE, OH, 44131'
+- name: CCPL Gates Mills Branch
+  aliases:
+  - Cuyahoga County Public Library – Gates Mills Branch
+  address: 1491 Chagrin River Road, Gates Mills, Ohio 44040
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.520134
+  lon: -81.404673
+  coords_source: 'U.S. Census geocoder: 1491 CHAGRIN RIVER RD, GATES MILLS, OH, 44040'
+- name: CCPL Garfield Heights Branch
+  aliases:
+  - Cuyahoga County Public Library – Garfield Heights Branch
+  address: 5409 Turney Road, Garfield Heights, Ohio 44125
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.414824
+  lon: -81.604369
+  coords_source: 'U.S. Census geocoder: 5409 TURNEY RD, GARFIELD HEIGHTS, OH, 44125'
+- name: CCPL Fairview Park Branch
+  aliases:
+  - Cuyahoga County Public Library – Fairview Park Branch
+  address: 21255 Lorain Road, Fairview Park, Ohio 44126
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.445089
+  lon: -81.855647
+  coords_source: 'U.S. Census geocoder: 21255 LORAIN AVE, FAIRVIEW PARK, OH, 44126'
+- name: CCPL Chagrin Falls Branch
+  aliases:
+  - Cuyahoga County Public Library – Chagrin Falls Branch
+  address: 100 East Orange Street, Chagrin Falls, Ohio 44022
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.433006
+  lon: -81.390568
+  coords_source: 'U.S. Census geocoder: 100 E ORANGE ST, CHAGRIN FALLS, OH, 44022'
+- name: CCPL Brooklyn Branch
+  aliases:
+  - Cuyahoga County Public Library – Brooklyn Branch
+  address: 7619 Memphis Avenue, Brooklyn, Ohio 44144
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.439936
+  lon: -81.73862
+  coords_source: 'U.S. Census geocoder: 7619 MEMPHIS AVE, BROOKLYN, OH, 44144'
+- name: CCPL Brook Park Branch
+  aliases:
+  - Cuyahoga County Public Library – Brook Park Branch
+  address: 6155 Engle Road, Brook Park, Ohio 44142
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.398515
+  lon: -81.822975
+  coords_source: 'U.S. Census geocoder: 6155 ENGLE RD, BROOK PARK, OH, 44142'
+- name: CCPL Brecksville Branch
+  aliases:
+  - Cuyahoga County Public Library – Brecksville Branch
+  address: 9089 Brecksville Road, Brecksville, Ohio 44141
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.317424
+  lon: -81.626778
+  coords_source: 'U.S. Census geocoder: 9089 BRECKSVILLE RD, BRECKSVILLE, OH, 44141'
+- name: CCPL Berea Branch
+  aliases:
+  - Cuyahoga County Public Library – Berea Branch
+  address: 7 Berea Commons, Berea, Ohio 44017
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.365457
+  lon: -81.851861
+  coords_source: 'U.S. Census geocoder: 7 BEREA CMNS, BEREA, OH, 44017'
+- name: CCPL Bedford Branch
+  aliases:
+  - Cuyahoga County Public Library – Bedford Branch
+  address: 70 Columbus Road, Bedford, Ohio 44146
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.393502
+  lon: -81.535426
+  coords_source: 'U.S. Census geocoder: 70 COLUMBUS ST, BEDFORD, OH, 44146'
+- name: CCPL Beachwood Branch
+  aliases:
+  - Cuyahoga County Public Library – Beachwood Branch
+  address: 25501 Shaker Boulevard, Beachwood, Ohio 44122
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.479353
+  lon: -81.499049
+  coords_source: 'U.S. Census geocoder: 25501 SHAKER BLVD, BEACHWOOD, OH, 44122'
+- name: CCPL Bay Village Branch
+  aliases:
+  - Cuyahoga County Public Library – Bay Village Branch
+  address: 27400 Wolf Road, Bay Village, Ohio 44140
+  address_source: https://cuyahogalibrary.org/branches
+  verified_at: '2026-10-27'
+  lat: 41.485065
+  lon: -81.922896
+  coords_source: 'U.S. Census geocoder: 27400 WOLF RD, BAY VILLAGE, OH, 44140'
