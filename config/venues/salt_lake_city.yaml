@@ -58,3 +58,135 @@
   address: 2131 South 1100 East, Salt Lake City, UT 84106
   address_source: https://www.slcpl.org/locations
   verified_at: '2026-10-27'
+- name: Salt Lake County Library – Bingham Creek
+  address: 4834 W 9000 S, West Jordan, UT 84081
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.587972
+  lon: -112.006048
+  coords_source: 'U.S. Census geocoder: 4834 W 9000 S, WEST JORDAN, UT, 84081'
+- name: Salt Lake County Library – Daybreak
+  address: 11358 Grandville Ave, South Jordan, UT 84009
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+- name: Salt Lake County Library – Draper
+  address: 1136 E Pioneer Rd, Draper, UT 84020
+  address_source: https://www.slcolibrary.org/locations
+  note: The page lists "1136 E Pioneer Rd (12400 S), Draper, UT 84020"; the parenthetical hint is dropped for geocoding.
+  verified_at: '2026-10-27'
+  lat: 40.525262
+  lon: -111.858874
+  coords_source: 'U.S. Census geocoder: 1136 E PIONEER RD, DRAPER, UT, 84020'
+- name: Salt Lake County Library – Granite
+  address: 3331 S 500 E, South Salt Lake City, UT 84106
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.699464
+  lon: -111.876854
+  coords_source: 'U.S. Census geocoder: 3331 S 500 E, S SALT LAKE, UT, 84106'
+- name: Salt Lake County Library – Herriman
+  address: 5380 W Herriman Main St, Herriman, UT 84096
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.516099
+  lon: -112.018527
+  coords_source: 'U.S. Census geocoder: 5380 MAIN ST, HERRIMAN, UT, 84096'
+- name: Salt Lake County Library – Holladay
+  address: 2150 E Murray Holladay Rd, Holladay, UT 84117
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.666
+  lon: -111.830824
+  coords_source: 'U.S. Census geocoder: 2150 E MURRAY HOLLADAY RD, HOLLADAY, UT, 84117'
+- name: Salt Lake County Library – Hunter
+  address: 4740 W 4100 S, West Valley City, UT 84120
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.682104
+  lon: -112.003234
+  coords_source: 'U.S. Census geocoder: 4740 W 4100 S, WEST VALLEY CITY, UT, 84120'
+- name: Salt Lake County Library – Kearns
+  address: 4275 W 5345 S, Kearns, UT 84118
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.653993
+  lon: -111.992742
+  coords_source: 'U.S. Census geocoder: 4275 W 5345 S, KEARNS, UT, 84118'
+- name: Salt Lake County Library – Magna
+  address: 2675 S 8950 W, Magna, UT 84044
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.711316
+  lon: -112.104888
+  coords_source: 'U.S. Census geocoder: 2675 S 8950 W, MAGNA, UT, 84044'
+- name: Salt Lake County Library – Millcreek
+  address: 2266 E Evergreen Ave, Millcreek, UT 84109
+  address_source: https://www.slcolibrary.org/locations
+  note: The page lists "2266 E Evergreen Ave (3435 S), Millcreek, UT 84109"; the parenthetical hint is dropped for geocoding.
+  verified_at: '2026-10-27'
+  lat: 40.696661
+  lon: -111.82516
+  coords_source: 'U.S. Census geocoder: 2266 E EVERGREEN AVE, MILLCREEK, UT, 84109'
+- name: Salt Lake County Library – Riverton
+  address: 12877 S 1830 W, Riverton, UT 84065
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.516985
+  lon: -111.941088
+  coords_source: 'U.S. Census geocoder: 12877 S 1830 W, RIVERTON, UT, 84065'
+- name: Salt Lake County Library – Sandy
+  address: 10100 S Petunia Way, Sandy, UT 84092
+  address_source: https://www.slcolibrary.org/locations
+  note: The page lists "10100 S Petunia Way (1405 E), Sandy, UT 84092"; the parenthetical hint is dropped for geocoding.
+  verified_at: '2026-10-27'
+- name: Salt Lake County Library – South Jordan
+  address: 10673 S Redwood Rd, South Jordan, UT 84095
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.557433
+  lon: -111.938579
+  coords_source: 'U.S. Census geocoder: 10673 S REDWOOD RD, SOUTH JORDAN, UT, 84095'
+- name: Salt Lake County Library – Taylorsville
+  address: 4870 S 2700 W, Taylorsville, UT 84129
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.663359
+  lon: -111.957981
+  coords_source: 'U.S. Census geocoder: 4870 S 2700 W, TAYLORSVILLE, UT, 84129'
+- name: Salt Lake County Library – Tyler
+  address: 8041 S Wood St, Midvale, UT 84047
+  address_source: https://www.slcolibrary.org/locations
+  note: The page lists "8041 S Wood St (55 W), Midvale, UT 84047"; the parenthetical hint is dropped for geocoding. The page
+    labels it "(Ruth Vine) Tyler".
+  verified_at: '2026-10-27'
+  lat: 40.605273
+  lon: -111.893236
+  coords_source: 'U.S. Census geocoder: 8041 WOOD ST, MIDVALE, UT, 84047'
+- name: Salt Lake County Library – Library’s Viridian Event Center
+  address: 8030 S 1825 W, West Jordan, UT 84088
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.604274
+  lon: -111.941337
+  coords_source: 'U.S. Census geocoder: 8030 S 1825 W, WEST JORDAN, UT, 84088'
+- name: Salt Lake County Library – West Jordan
+  address: 8030 S 1825 W, West Jordan, UT 84088
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.604274
+  lon: -111.941337
+  coords_source: 'U.S. Census geocoder: 8030 S 1825 W, WEST JORDAN, UT, 84088'
+- name: Salt Lake County Library – West Valley
+  address: 2880 W 3650 S, West Valley City, UT 84119
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.692991
+  lon: -111.961222
+  coords_source: 'U.S. Census geocoder: 2880 W 3650 S, WEST VALLEY CITY, UT, 84119'
+- name: Salt Lake County Library – Whitmore
+  address: 2197 E Fort Union Blvd, Cottonwood Heights, UT 84121
+  address_source: https://www.slcolibrary.org/locations
+  verified_at: '2026-10-27'
+  lat: 40.624038
+  lon: -111.827395
+  coords_source: 'U.S. Census geocoder: 2197 FORT UNION BLVD, COTTONWOOD HEIGHTS, UT, 84121'
