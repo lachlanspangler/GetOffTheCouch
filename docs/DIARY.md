@@ -523,3 +523,4 @@ New units, live counts:
 - Live pipeline: 36,161 events in 50 cities.
 
 **Next:** see the top of STATUS.
+- 2026-10-27 08:33 UTC · run 46 partial: units[232 disabled, 5 failed, 554 ok] → 35424 events in 50 cities
