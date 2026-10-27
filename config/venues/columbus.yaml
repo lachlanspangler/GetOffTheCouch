@@ -1,0 +1,17 @@
+# Curated venues for columbus (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official page
+# (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: Grandview Heights Public Library
+  aliases:
+  - Grandview Heights Public Library – Grandview Heights
+  address: 1685 West First Avenue, Columbus, OH 43212
+  address_source: https://www.ghpl.org/
+  verified_at: '2026-10-27'
+- name: Schottenstein Center
+  aliases:
+  - Schottenstein Center
+  address: 555 Borror Drive, Columbus, OH 43210
+  address_source: https://www.schottensteincenter.com/
+  verified_at: '2026-10-27'
