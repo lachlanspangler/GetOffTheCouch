@@ -10,6 +10,7 @@ from gotc.adapters import (  # noqa: F401
     csvfile,
     curated,
     demo,
+    eventbrite,
     galaxydigital,
     handsonconnect,
     ics,

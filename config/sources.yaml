@@ -18,7 +18,7 @@ sources:
     name: Ticketmaster
     data_type: ticket_prices
     scope: all_cities
-    cadence_hours: 6          # 10 cities × ~12 calls = ~480 calls/run, well under 5,000/day at 4 runs/day
+    cadence_hours: 12         # 50 cities × ~12 calls = ~600 calls/run × 2 runs/day ≈ 1,200/day, under the 5,000/day quota
     requires: [TICKETMASTER_API_KEY]
     homepage: https://developer.ticketmaster.com/
     expect_min_records: 5
@@ -34,6 +34,18 @@ sources:
     homepage: https://platform.seatgeek.com/
     expect_min_records: 5
     params: { horizon_days: 120, max_pages: 20 }
+
+  # Eventbrite v3 is organizer-scoped (no public search since 2020): list organizer ids per city to follow.
+  - id: eventbrite
+    adapter: eventbrite
+    name: Eventbrite (followed organizers)
+    data_type: events
+    scope: all_cities
+    cadence_hours: 12
+    requires: [EVENTBRITE_TOKEN]
+    homepage: https://www.eventbrite.com/platform/api
+    expect_min_records: 0
+    params: { max_pages: 5, organizers: {} }   # e.g. { chicago: ["12345678901"] }
 
   # UpcomingCons: national list pages with schema.org Event microdata; each city keeps its own cons (locality +
   # state match against the city name/aliases). One global source instead of 10 identical per-city entries.

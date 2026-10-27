@@ -1,0 +1,17 @@
+{
+  "pagination": {"object_count": 3, "page_number": 1, "page_size": 50, "has_more_items": false},
+  "events": [
+    {"id": "1000000000001", "name": {"text": "SYNTHETIC Rooftop Social Mixer"}, "description": {"text": "Meet new people on the roof. 21+."},
+     "url": "https://www.eventbrite.com/e/synthetic-1000000000001", "start": {"timezone": "America/Chicago", "local": "2026-10-23T19:00:00", "utc": "2026-10-24T00:00:00Z"},
+     "end": {"timezone": "America/Chicago", "local": "2026-10-23T22:00:00", "utc": "2026-10-24T03:00:00Z"}, "status": "live", "is_free": false, "online_event": false,
+     "organizer": {"name": "Example Social Club"},
+     "venue": {"name": "Example Rooftop", "address": {"localized_address_display": "1 Example St, Minneapolis, MN 55401", "latitude": "44.98", "longitude": "-93.27"}},
+     "ticket_availability": {"has_available_tickets": true, "is_sold_out": false, "minimum_ticket_price": {"major_value": "15.00", "currency": "USD"}, "maximum_ticket_price": {"major_value": "25.00", "currency": "USD"}}},
+    {"id": "1000000000002", "name": {"text": "SYNTHETIC Free Park Cleanup"}, "description": {"text": "Volunteer to clean up the park."},
+     "url": "https://www.eventbrite.com/e/synthetic-1000000000002", "start": {"timezone": "America/Chicago", "local": "2026-10-24T09:00:00", "utc": "2026-10-24T14:00:00Z"},
+     "end": {"timezone": "America/Chicago", "local": "2026-10-24T12:00:00", "utc": "2026-10-24T17:00:00Z"}, "status": "live", "is_free": true, "online_event": false,
+     "venue": {"name": "Example Park", "address": {"localized_address_display": "2 Park Ave, Minneapolis, MN 55401"}},
+     "ticket_availability": {"has_available_tickets": true, "is_sold_out": false}},
+    {"id": "1000000000003", "name": {"text": "SYNTHETIC Webinar"}, "start": {"timezone": "America/Chicago", "local": "2026-10-25T12:00:00"}, "online_event": true}
+  ]
+}

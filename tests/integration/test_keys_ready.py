@@ -20,6 +20,7 @@ EMPTY = {
     "ticketmaster": b'{"page": {"size": 200, "totalElements": 0, "totalPages": 0, "number": 0}}',
     "seatgeek": b'{"events": [], "meta": {"total": 0, "per_page": 100, "page": 1}}',
     "runsignup": b'{"races": []}',
+    "eventbrite": b'{"events": [], "pagination": {"has_more_items": false}}',
 }
 
 CASES = {
@@ -36,12 +37,21 @@ CASES = {
         "runsignup/payload_0.json",
         "rsu_api_reg",
     ),
+    # Eventbrite sends its token as a Bearer header, so the check is on the header, not the URL
+    "eventbrite": (
+        ["EVENTBRITE_TOKEN"],
+        r"eventbriteapi\.com/v3/organizers",
+        "synthetic/eventbrite_events.json",
+        "Bearer",
+    ),
 }
 
 
 def unit(source_id: str) -> Unit:
     reg = load_registry()
     src = reg.all_sources()[source_id]
+    if source_id == "eventbrite":  # organizer-scoped: follow one (synthetic) organizer in the test city
+        src = src.model_copy(update={"params": {**src.params, "organizers": {"minneapolis": ["99999999999"]}}})
     return Unit(source=src, city=reg.cities["minneapolis"])
 
 
@@ -85,7 +95,9 @@ def test_with_a_key_the_unit_fetches_parses_and_is_healthy(
     u = unit(source_id)
     r = run_unit(db, load_registry(), u, fast_client(t), settings, NOW, force=True)
     assert seen, "the adapter never called its API"
-    assert any(param in str(q.url) for q in seen), f"the {param} credential wasn't sent"
+    assert any(param in str(q.url) or param in q.headers.get("authorization", "") for q in seen), (
+        f"the {param} credential wasn't sent"
+    )
     assert r.status == "ok" and r.valid > 0, (r.status, r.error)
     assert hstore.load_health(db, u.key).state in ("healthy", "recovering")
     stored = [row["url"] for row in db.all("SELECT url FROM raw_fetches")]
