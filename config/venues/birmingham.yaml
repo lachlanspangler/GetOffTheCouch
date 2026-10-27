@@ -1,0 +1,187 @@
+# Curated venues for birmingham (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official page
+# (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: Birmingham Public Library – Avondale Regional Branch Library
+  aliases:
+  - Birmingham Public Library – Avondale Regional Branch Library
+  address: 509 40th St. S, Birmingham, AL 35222
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.520968
+  lon: -86.774328
+  coords_source: 'U.S. Census geocoder: 509 40TH ST S, BIRMINGHAM, AL, 35222'
+- name: Birmingham Public Library – Central Library
+  aliases:
+  - Birmingham Public Library – Central Library
+  - Birmingham Public Library – Central Library, Art Gallery (East 1st Floor)
+  - Birmingham Public Library – Central Library, Grand Commons Event Area (East 1st Floor)
+  address: 2100 Park Place, Birmingham, AL 35203
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+- name: Birmingham Public Library – East Ensley Branch Library
+  aliases:
+  - Birmingham Public Library – East Ensley Branch Library
+  address: 900 14th St., Birmingham, AL 35218
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.453314
+  lon: -86.950061
+  coords_source: 'U.S. Census geocoder: 900 14TH ST, BIRMINGHAM, AL, 35228'
+- name: Birmingham Public Library – East Lake Branch Library
+  aliases:
+  - Birmingham Public Library – East Lake Branch Library
+  address: 5 Oporto-Madrid Blvd. S., Birmingham, AL 35206
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.560681
+  lon: -86.727716
+  coords_source: 'U.S. Census geocoder: 5 OPORTO-MADRID BLVD S, BIRMINGHAM, AL, 35206'
+- name: Birmingham Public Library – Five Points West Regional Branch Library
+  aliases:
+  - Birmingham Public Library – Five Points West Regional Branch Library
+  address: 4812 Avenue W, Birmingham, AL 35208
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.493612
+  lon: -86.874088
+  coords_source: 'U.S. Census geocoder: 4812 AVENUE W, BIRMINGHAM, AL, 35208'
+- name: Birmingham Public Library – Inglenook Branch Library
+  aliases:
+  - Birmingham Public Library – Inglenook Branch Library
+  address: 4100 40th Terrace N, Birmingham, AL 35217
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.562096
+  lon: -86.776677
+  coords_source: 'U.S. Census geocoder: 4100 40TH TER N, BIRMINGHAM, AL, 35217'
+- name: Birmingham Public Library – North Birmingham Regional Branch Library
+  aliases:
+  - Birmingham Public Library – North Birmingham Regional Branch Library
+  address: 2501 31st Ave. N, Birmingham, AL 35207
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.552291
+  lon: -86.819778
+  coords_source: 'U.S. Census geocoder: 2501 31ST AVE N, BIRMINGHAM, AL, 35207'
+- name: Birmingham Public Library – Powderly Branch Library
+  aliases:
+  - Birmingham Public Library – Powderly Branch Library
+  address: 3301 Jefferson Ave. SW, Birmingham, AL 35221
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.46394
+  lon: -86.887493
+  coords_source: 'U.S. Census geocoder: 3301 JEFFERSON AVE SW, BIRMINGHAM, AL, 35221'
+- name: Birmingham Public Library – Pratt City Branch Library
+  aliases:
+  - Birmingham Public Library – Pratt City Branch Library
+  address: 509 Dugan Ave., Birmingham, AL 35214
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.541215
+  lon: -86.87906
+  coords_source: 'U.S. Census geocoder: 509 DUGAN AVE, BIRMINGHAM, AL, 35214'
+- name: Birmingham Public Library – Smithfield Branch Library
+  aliases:
+  - Birmingham Public Library – Smithfield Branch Library
+  address: 1 8th Ave. W, Birmingham, AL 35204
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.51396
+  lon: -86.836276
+  coords_source: 'U.S. Census geocoder: 1 8TH AVE W, BIRMINGHAM, AL, 35204'
+- name: Birmingham Public Library – Southside Branch Library
+  aliases:
+  - Birmingham Public Library – Southside Branch Library
+  address: 1814 11th Ave. S, Birmingham, AL 35205
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.499388
+  lon: -86.799037
+  coords_source: 'U.S. Census geocoder: 1814 11TH AVE S, BIRMINGHAM, AL, 35205'
+- name: Birmingham Public Library – Springville Road Regional Branch Library
+  aliases:
+  - Birmingham Public Library – Springville Road Regional Branch Library
+  address: 1224 Springville Rd., Birmingham, AL 35215
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.615846
+  lon: -86.676443
+  coords_source: 'U.S. Census geocoder: 1224 SPRINGVILLE RD, BIRMINGHAM, AL, 35215'
+- name: Birmingham Public Library – Titusville Branch Library
+  aliases:
+  - Birmingham Public Library – Titusville Branch Library
+  address: 2 6th Ave. SW, Birmingham, AL 35211
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.492587
+  lon: -86.83108
+  coords_source: 'U.S. Census geocoder: 2 6TH AVE SW, BIRMINGHAM, AL, 35211'
+- name: Birmingham Public Library – West End Branch Library
+  aliases:
+  - Birmingham Public Library – West End Branch Library
+  address: 1348 Tuscaloosa Ave. SW, Birmingham, AL 35211
+  address_source: https://www.cobpl.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.492701
+  lon: -86.854452
+  coords_source: 'U.S. Census geocoder: 1348 TUSCALOOSA AVE SW, BIRMINGHAM, AL, 35211'
+- name: Homewood Public Library
+  aliases:
+  - Homewood Public Library – Homewood Public Library
+  - Homewood Public Library – Bottom Floor of Library (Bottom Floor of Library)
+  - Homewood Public Library – Front Entrance - Flagpole (Front Entrance - Flagpole)
+  address: 1721 Oxmoor Road, Homewood, AL 35209
+  address_source: https://www.homewoodpubliclibrary.org/
+  verified_at: '2026-10-27'
+  lat: 33.475629
+  lon: -86.795005
+  coords_source: 'U.S. Census geocoder: 1721 OXMOOR RD, HOMEWOOD, AL, 35209'
+- name: Hoover Public Library
+  aliases:
+  - Hoover Public Library – Hoover Public Library
+  address: 200 Municipal Drive, Hoover, AL 35216
+  address_source: https://www.hooverlibrary.org/
+  verified_at: '2026-10-27'
+- name: BJCC Concert Hall
+  aliases:
+  - BJCC Concert Hall
+  address: 2100 Richard Arrington, Jr. Blvd. N., Birmingham, AL 35203
+  address_source: https://www.bjcc.org/
+  verified_at: '2026-10-27'
+  note: BJCC campus address (site footer); the hall is on that campus
+  lat: 33.523641
+  lon: -86.81013
+  coords_source: 'U.S. Census geocoder: 2100 RICHARD ARRINGTON JR BLVD N, BIRMINGHAM, AL, 35203'
+- name: Legacy Arena at the BJCC
+  aliases:
+  - Legacy Arena at the BJCC
+  address: 2100 Richard Arrington, Jr. Blvd. N., Birmingham, AL 35203
+  address_source: https://www.bjcc.org/
+  verified_at: '2026-10-27'
+  note: BJCC campus address (site footer); the hall is on that campus
+  lat: 33.523641
+  lon: -86.81013
+  coords_source: 'U.S. Census geocoder: 2100 RICHARD ARRINGTON JR BLVD N, BIRMINGHAM, AL, 35203'
+- name: BJCC Exhibition Halls
+  aliases:
+  - BJCC Exhibition Halls
+  address: 2100 Richard Arrington, Jr. Blvd. N., Birmingham, AL 35203
+  address_source: https://www.bjcc.org/
+  verified_at: '2026-10-27'
+  note: BJCC campus address (site footer); the hall is on that campus
+  lat: 33.523641
+  lon: -86.81013
+  coords_source: 'U.S. Census geocoder: 2100 RICHARD ARRINGTON JR BLVD N, BIRMINGHAM, AL, 35203'
+- name: BJCC Theatre
+  aliases:
+  - BJCC Theatre
+  address: 2100 Richard Arrington, Jr. Blvd. N., Birmingham, AL 35203
+  address_source: https://www.bjcc.org/
+  verified_at: '2026-10-27'
+  note: BJCC campus address (site footer); the hall is on that campus
+  lat: 33.523641
+  lon: -86.81013
+  coords_source: 'U.S. Census geocoder: 2100 RICHARD ARRINGTON JR BLVD N, BIRMINGHAM, AL, 35203'
