@@ -43,7 +43,7 @@ gotc/                         Python pipeline (3.12, pydantic v2, httpx, SQLite)
     enrich.py                 attendance bands, ticket signals, price trend, tags, social score
     deadlines.py              "register by …" extraction with evidence
     geocode.py                Census → Nominatim, cached forever
-    export.py                 events → web/public/data/{index,health}.json + cities/<slug>.json
+    export.py                 events → web/public/data/{index,health}.json + cities/<slug>.json + week shards (ADR-0009)
     run.py                    scheduler: due units → build → export → HEALTH.md
   health/                     state.py (pure state machine) · store.py · report.py (HEALTH.md) · doctor.py
   storage/                    db.py (SQLite + migrations/) · raw.py (gzipped content-addressed payloads)

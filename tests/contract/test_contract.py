@@ -60,6 +60,35 @@ def check_feed(doc: dict, *, demo: bool) -> None:
             assert e.stale_reason
 
 
+def check_shards(legacy: Path) -> None:
+    """I-117: the week shards hold exactly the legacy feed's cards (same order once merged) and details."""
+    from gotc.schema import CityDetails, CityManifest, CityShard, CityShardDetails
+
+    d = legacy.with_suffix("")
+    m = CityManifest.model_validate_json((d / "manifest.json").read_text())
+    doc = json.loads(legacy.read_text())
+    assert m.schema_version == SCHEMA_VERSION and m.city == doc["city"] and (d / m.legacy).resolve() == legacy.resolve()
+    meta = json.loads((d / m.meta.file).read_text())
+    assert meta["events"] == [] and {k: v for k, v in doc.items() if k != "events"} == {
+        k: v for k, v in meta.items() if k != "events"
+    }
+    cards: list[dict] = []
+    details: dict = {}
+    for s in m.shards:
+        raw = (d / s.cards.file).read_bytes()
+        assert len(raw) == s.cards.bytes and s.cards.sha256[:10] in s.cards.file
+        shard = json.loads(raw)
+        CityShard.model_validate(shard)
+        assert len(shard["events"]) == s.events
+        cards += shard["events"]
+        details.update(CityShardDetails.model_validate_json((d / s.details.file).read_text()).events)
+    by_id = {e["id"]: e for e in cards}
+    assert len(by_id) == len(cards), "an event is in more than one shard"
+    assert [by_id[e["id"]] for e in doc["events"]] == doc["events"] and len(cards) == len(doc["events"])
+    legacy_details = CityDetails.model_validate_json(legacy.with_name(legacy.stem + ".details.json").read_text())
+    assert details == legacy_details.events
+
+
 def test_fresh_fixture_export_honours_the_contract(db, settings):
     run(db, REG, settings, client=fast_client(healthy_transport()), geocode=False)
     from gotc.schema import CityDetails
@@ -72,6 +101,7 @@ def test_fresh_fixture_export_honours_the_contract(db, settings):
         assert set(det.events) == {e["id"] for e in doc["events"]}, "every card has details"
         assert all(not e.get("provenance") for e in doc["events"]), "provenance lives in the details file"
         assert any(d.provenance for d in det.events.values())
+        check_shards(f)
     index = json.loads((settings.web_data_dir / "index.json").read_text())
     assert index["schema_version"] == SCHEMA_VERSION and index["cities"]
     from gotc.schema import CityCoverage
@@ -92,6 +122,14 @@ DEMOS = sorted(p for p in (ROOT / "web" / "public" / "demo" / "cities").glob("*.
 @pytest.mark.parametrize("path", EXPORTS, ids=[p.stem for p in EXPORTS])
 def test_real_exports_honour_the_contract(path: Path):
     check_feed(json.loads(path.read_text()), demo=False)
+
+
+SHARDED = [p for p in EXPORTS + DEMOS if (p.with_suffix("") / "manifest.json").exists()]
+
+
+@pytest.mark.parametrize("path", SHARDED, ids=[p.stem for p in SHARDED])
+def test_exported_shards_match_the_legacy_feed(path: Path):
+    check_shards(path)
 
 
 @pytest.mark.parametrize("path", DEMOS, ids=[p.stem for p in DEMOS])

@@ -9,7 +9,8 @@ import { Sparkline } from "../components/Sparkline";
 import { familyOf } from "../lib/art";
 import { catLabel } from "../lib/categories";
 import { useApp } from "../lib/ctx";
-import { loadDetails } from "../lib/data";
+import { loadDetail } from "../lib/data";
+import { memo } from "../lib/partial";
 import type { EventDetail } from "../lib/details.generated";
 import { bandLabel, confidenceWord, count, OFFER_KIND, offerPrice, sourceName } from "../lib/format";
 import { calendar, download, slug } from "../lib/ics";
@@ -89,8 +90,8 @@ export function EventPage({ e }: { e: Event }) {
   const [toast, setToast] = useState<string | null>(null);
   useEffect(() => {
     setDetail(null);
-    loadDetails(e.city)
-      .then((d) => setDetail(d.events[e.id] ?? null))
+    loadDetail(e.city, e.id)
+      .then(setDetail)
       .catch(() => setDetail(null)); // the page still works; provenance just stays summarized
     h1.current?.focus({ preventScroll: true });
     scrollTo(0, 0);
@@ -124,7 +125,7 @@ export function EventPage({ e }: { e: Event }) {
     .filter((d) => d !== e.start)
     .map((d) => [...byId.values()].find((x) => x.series_id === e.series_id && x.start === d))
     .filter(Boolean) as Event[];
-  const sims = similar(e, [...byId.values()], now, 5);
+  const sims = memo(feed, `event:similar:${e.id}`, () => similar(e, [...byId.values()], now, 5));
   const why = whyThis(e, now);
   const sellers = new Set((e.offers ?? []).map((o) => o.seller));
   const when = e.kind === "opening" ? null : isDateOnly(e) ? (e.all_day ? "All day" : "Time not listed") : fmtTimeRange(e.start, e.end, tz);

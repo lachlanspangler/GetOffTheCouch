@@ -6,7 +6,7 @@ import { useEffect, useState } from "preact/hooks";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type Any = FunctionComponent<any>;
-export type LazyName = "about" | "methodology" | "privacy" | "plan" | "health" | "cities";
+export type LazyName = "about" | "methodology" | "privacy" | "plan" | "health" | "cities" | "calendar" | "map" | "saved" | "deadlines";
 
 const registry: Partial<Record<LazyName, Any>> = {};
 const loaders: Record<LazyName, () => Promise<Partial<Record<LazyName, Any>>>> = {
@@ -16,6 +16,11 @@ const loaders: Record<LazyName, () => Promise<Partial<Record<LazyName, Any>>>> =
   plan: () => import("../views/Plan").then((m) => ({ plan: m.Plan })),
   health: () => import("../views/Health").then((m) => ({ health: m.Health })),
   cities: () => import("../views/Cities").then((m) => ({ cities: m.Cities })),
+  // the city's secondary views: out of the entry bundle so it stays inside its 60 KB budget
+  calendar: () => import("../views/Calendar").then((m) => ({ calendar: m.Calendar })),
+  map: () => import("../views/MapView").then((m) => ({ map: m.MapView })),
+  saved: () => import("../views/Saved").then((m) => ({ saved: m.Saved })),
+  deadlines: () => import("../views/Deadlines").then((m) => ({ deadlines: m.Deadlines })),
 };
 
 export function registerViews(views: Partial<Record<LazyName, Any>>): void {

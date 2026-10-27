@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 76 · **doing** 1 · **done** 96 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 75 · **doing** 1 · **done** 97 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -45,7 +45,6 @@ unless docs/HEALTH.md has something red.
 | I-089 | Find a trivia nights source for Los Angeles | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Los Angeles right now |
 | I-090 | Find a cons & faires source for Nashville | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Nashville right now |
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
-| I-117 | Week-sharded city data + inlined initial.json | infra | 5 | 3 | 1.33 | open | City JSON is 170–470 KB gz and blocks first render; target ≤30 KB first view |
 | I-169 | Per-city state files on the pipeline-state branch | infra | 5 | 3 | 1.33 | open | Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2). |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
@@ -147,6 +146,7 @@ unless docs/HEALTH.md has something red.
 | I-121 | Card signal budget: one meta line, one status, one tag (cardSignals) | ux | 5 | 2 | 2.0 | done | Removes badge soup with tested logic; enforces no fake urgency |
 | I-120 | Design tokens + self-hosted Inter/Newsreader with metric-matched fallbacks | ux | 5 | 2 | 2.0 | done | Biggest single jump in perceived quality, zero CLS |
 | I-119 | Lighthouse CI + bundle budgets (entry JS ≤60 KB gz, CSS ≤15 KB) | infra | 4 | 2 | 1.6 | done | Performance budgets enforced in CI, not by memory — 2026-10-17 done: session 3 |
+| I-117 | Week-sharded city data + inlined initial.json | infra | 5 | 3 | 1.33 | done | City JSON is 170–470 KB gz and blocks first render; target ≤30 KB first view — 2026-10-27 done: cities/<slug>/manifest.json + content-hashed week shards (ongoing, deadlines, weeks, openings, later, past-weeks; busy weeks split at 400 cards), legacy files kept; data.ts loads current+next week first, rest in idle, legacy fallback; pre-rendered pages inline exactly what the first render shows (memo replay, byte-for-byte verified at build). NYC first view 449 KB gz -> 25 KB (inline+index) / 125 KB (client-rendered). |
 | I-116 | Per-city Atom feeds and deadlines.ics subscriptions | features | 4 | 2 | 1.6 | done | Subscribable calendars beat one-off downloads for deadlines — 2026-10-27 done: session 4 |
 | I-114 | Per-city sitemaps + sitemap index with honest lastmod | growth | 4 | 1 | 3.2 | done | Discovery for ~8k pages; Search Console URL-prefix property — 2026-10-17 done: session 3 |
 | I-113 | schema.org Event JSON-LD for one-off and recurring events only | growth | 4 | 2 | 1.6 | done | Eligible for event rich results; never for openings/deadlines (Google content rules) — 2026-10-17 done: session 3 |

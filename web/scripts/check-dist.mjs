@@ -26,6 +26,7 @@ for (const f of readdirSync(join(dist, "sitemaps"))) {
 }
 
 let events = 0;
+let inlined = 0;
 for (const p of pages) {
   const html = readFileSync(p, "utf8");
   const rel = p.slice(dist.length);
@@ -38,6 +39,15 @@ for (const p of pages) {
   if (/href="#\//.test(html)) problems.push(`${rel}: legacy #/ link`);
   if (!html.includes('data-ssr="1"')) problems.push(`${rel}: not pre-rendered`);
   if (robots === "noindex,follow" && canonical && sitemapLocs.has(canonical)) problems.push(`${rel}: noindex page listed in a sitemap`);
+  const inline = /<script type="application\/json" id="gotc-initial">([\s\S]*?)<\/script>/.exec(html)?.[1];
+  if (inline) {
+    // I-117: inline first-render data must parse, be the current format and never carry demo events
+    inlined += 1;
+    let d;
+    try { d = JSON.parse(inline); } catch { problems.push(`${rel}: inline data doesn't parse`); }
+    if (d && (d.v !== 1 || typeof d.sig !== "string" || !Array.isArray(d.feed?.events))) problems.push(`${rel}: inline data has the wrong shape`);
+    if (d?.feed?.is_demo || d?.feed?.events?.some((e) => e.is_demo)) problems.push(`${rel}: demo data inlined`);
+  }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     let j;
     try { j = JSON.parse(m[1]); } catch { problems.push(`${rel}: JSON-LD doesn't parse`); continue; }
@@ -52,6 +62,6 @@ for (const p of pages) {
 const size = (function du(d) { let n = 0; for (const f of readdirSync(d)) { const p = join(d, f); const s = statSync(p); n += s.isDirectory() ? du(p) : s.size; } return n; })(dist);
 if (size > 800 * 1024 * 1024) problems.push(`dist is ${(size / 1e6).toFixed(0)} MB (budget 800 MB)`);
 if (pages.length > 60_000) problems.push(`${pages.length} pages (budget 60k files)`);
-console.log(`check-dist: ${pages.length} pages, ${events} with Event JSON-LD, ${sitemapLocs.size} sitemap URLs, ${(size / 1e6).toFixed(0)} MB, ${problems.length} problems`);
+console.log(`check-dist: ${pages.length} pages (${inlined} with inline data), ${events} with Event JSON-LD, ${sitemapLocs.size} sitemap URLs, ${(size / 1e6).toFixed(0)} MB, ${problems.length} problems`);
 for (const p of problems.slice(0, 30)) console.log(`  ✗ ${p}`);
 if (problems.length && !warnOnly) process.exit(1);

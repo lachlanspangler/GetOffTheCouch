@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "ShardFile": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "file",
+        "sha256",
+        "bytes"
+      ],
+      "title": "ShardFile",
+      "type": "object"
+    },
+    "ShardRef": {
+      "additionalProperties": false,
+      "description": "One card shard and its matching details shard.",
+      "properties": {
+        "cards": {
+          "$ref": "#/$defs/ShardFile"
+        },
+        "details": {
+          "$ref": "#/$defs/ShardFile"
+        },
+        "ends": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ends"
+        },
+        "events": {
+          "minimum": 0,
+          "title": "Events",
+          "type": "integer"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ongoing",
+            "deadlines",
+            "week",
+            "openings",
+            "later",
+            "past"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "starts": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Starts"
+        }
+      },
+      "required": [
+        "key",
+        "kind",
+        "events",
+        "cards",
+        "details"
+      ],
+      "title": "ShardRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "``web/public/data/cities/<slug>/manifest.json``: which shard files make up the city's feed right now.\n\nEvery card event of ``cities/<slug>.json`` is in exactly one shard, listed in this load order:\n  * ``ongoing``: started before the export's current week and still running (exhibits, multi-week faires)\n  * ``deadlines``: starts after next week but has a registration date the deadline views need now\n  * ``week``: starts in that ISO week, for the current week and the next ``SHARD_WEEKS`` weeks\n  * ``openings``: license signals (``kind: opening``); their start is a filing date, not a date to go\n  * ``later``: everything further out (league seasons and cons planned months ahead)\n  * ``past``: started in an earlier week (key ``past-<week>``) and already over; for saved items and ended pages\n``meta`` is the CityFeed with ``events: []`` (city, venues, sources, starter pack, coverage).",
+  "properties": {
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "current_week": {
+      "title": "Current Week",
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "legacy": {
+      "title": "Legacy",
+      "type": "string"
+    },
+    "meta": {
+      "$ref": "#/$defs/ShardFile"
+    },
+    "schema_version": {
+      "default": "1.7.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "shards": {
+      "items": {
+        "$ref": "#/$defs/ShardRef"
+      },
+      "title": "Shards",
+      "type": "array"
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "string"
+    }
+  },
+  "required": [
+    "generated_at",
+    "city",
+    "timezone",
+    "current_week",
+    "meta",
+    "shards",
+    "legacy"
+  ],
+  "title": "CityManifest",
+  "type": "object"
+}

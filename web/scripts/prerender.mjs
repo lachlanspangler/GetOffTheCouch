@@ -4,6 +4,7 @@
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gzipSync } from "node:zlib";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const dist = resolve(here, "../dist");
@@ -26,13 +27,13 @@ if (index.is_demo) throw new Error("refusing to pre-render demo data");
 const now = new Date(process.env.GOTC_PRERENDER_NOW ?? index.generated_at);
 const cityslugs = new Set(index.cities.map((c) => c.slug));
 
-function page(html, head) {
+function page(html, head, inline) {
   // function replacers: event text may contain "$&" and friends, which string replacements would interpret
   return template
     .replace(/<title>[\s\S]*?<\/title>\s*/, () => "")
     .replace(/<meta name="description"[^>]*>\s*/, () => "")
     .replace("</head>", () => `  ${head}\n  </head>`)
-    .replace('<div id="app"></div>', () => `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>`);
+    .replace('<div id="app"></div>', () => `<div id="app" data-ssr="1" data-now="${now.toISOString()}">${html}</div>${inline ? `\n    <script type="application/json" id="gotc-initial">${inline}</script>` : ""}`);
 }
 
 const xesc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -49,10 +50,10 @@ function atom(feed, events) {
 let files = 0;
 let bytes = 0;
 const sitemap = new Map(); // city ("" for site) → [{loc, lastmod}]
-function write(path, html, head, lastmod, indexable) {
+function write(path, html, head, lastmod, indexable, inline) {
   const out = join(dist, path, "index.html");
   mkdirSync(dirname(out), { recursive: true });
-  const doc = page(html, head);
+  const doc = page(html, head, inline);
   writeFileSync(out, doc);
   files += 1;
   bytes += Buffer.byteLength(doc);
@@ -65,11 +66,38 @@ function write(path, html, head, lastmod, indexable) {
   }
 }
 
-function renderPath(path, feed, lastmod) {
-  const r = ssr.render(`${base}${path}`, index, feed, now);
+// Inline first-render data (I-117, lib/partial.ts): the events the page shows (plus the whole-feed numbers it
+// computed), so hydration doesn't wait for the city's shards. Inlined only when rendering from that partial data
+// reproduces the page byte for byte; otherwise the page hydrates after loading the full feed, as before.
+const stats = { inlined: 0, mismatch: 0, tooBig: 0, gz: [], cityPages: {} };
+
+function renderPath(path, feed, lastmod, where = new Map()) {
+  const url = `${base}${path}`;
+  const r = ssr.render(url, index, feed, now);
   const indexable = r.status === 200 && r.head.includes('content="index,follow"');
-  write(path, r.html, r.head, lastmod, indexable);
+  const res = feed && r.status === 200 ? ssr.inlineFor(url, index, feed, now, r, where) : null;
+  const inline = res?.json ?? null;
+  if (res && !inline) stats[res.why === "too_big" ? "tooBig" : "mismatch"] += 1;
+  if (inline) {
+    stats.inlined += 1;
+    const gz = gzipSync(inline, { level: 6 }).length;
+    stats.gz.push(gz);
+    if (!path.includes("/events/")) stats.cityPages[path] = gz;
+  }
+  write(path, r.html, r.head, lastmod, indexable, inline);
   return r;
+}
+
+/** event id → shard key from the city's manifest (lets the browser load one card's details without its shard). */
+function shardKeys(slug) {
+  const out = new Map();
+  const m = join(dataDir, "cities", slug, "manifest.json");
+  if (!existsSync(m)) return out;
+  const manifest = JSON.parse(readFileSync(m, "utf8"));
+  for (const s of manifest.shards) {
+    for (const e of JSON.parse(readFileSync(join(dataDir, "cities", slug, s.cards.file), "utf8")).events) out.set(e.id, s.key);
+  }
+  return out;
 }
 
 const t0 = Date.now();
@@ -86,7 +114,8 @@ for (const c of index.cities) {
   const feed = JSON.parse(readFileSync(f, "utf8"));
   if (feed.is_demo) continue;
   const lm = day(feed.generated_at ?? index.generated_at);
-  renderPath(`${c.slug}/`, feed, lm);
+  const where = shardKeys(c.slug);
+  renderPath(`${c.slug}/`, feed, lm, where);
   // I-116: subscribable calendar of published sign-up deadlines (refreshes in the user's calendar app)
   const dl = ssr.deadlines(feed.events, now).filter((d) => !d.derived && d.kind !== "opens");
   const dlEvents = [...new Map(dl.map((d) => [d.event.id, d.event])).values()];
@@ -95,8 +124,8 @@ for (const c of index.cities) {
   // and an Atom feed of newly listed events
   const fresh = feed.events.filter((e) => e.is_new && e.kind !== "opening").sort((a, b) => b.first_seen.localeCompare(a.first_seen)).slice(0, 50);
   writeFileSync(join(dist, c.slug, "new.xml"), atom(feed, fresh));
-  for (const h of HUBS) renderPath(`${c.slug}/${h}/`, feed, lm);
-  for (const v of VIEWS) renderPath(`${c.slug}/${v}/`, feed, lm);
+  for (const h of HUBS) renderPath(`${c.slug}/${h}/`, feed, lm, where);
+  for (const v of VIEWS) renderPath(`${c.slug}/${v}/`, feed, lm, where);
   const until = now.getTime() + HORIZON_DAYS * 86_400_000;
   const seenSeries = new Set();
   const upcoming = [...feed.events]
@@ -109,7 +138,7 @@ for (const c of index.cities) {
       seenSeries.add(e.series_id);
     }
     const path = ssr.eventPath(c.slug, e.id, e.title);
-    renderPath(path, feed, day(e.last_checked ?? lm));
+    renderPath(path, feed, day(e.last_checked ?? lm), where);
     events += 1;
   }
   if (files > MAX_FILES || bytes > MAX_BYTES) throw new Error(`pre-render too big: ${files} files, ${(bytes / 1e6).toFixed(0)} MB`);
@@ -128,7 +157,11 @@ for (const [key, urls] of sitemap) {
 writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${parts.join("\n")}\n</sitemapindex>\n`);
 
 const indexed = [...sitemap.values()].reduce((n, l) => n + l.length, 0);
-const report = { files, events, indexed, mb: +(bytes / 1e6).toFixed(1), seconds: +((Date.now() - t0) / 1000).toFixed(1) };
+const sorted = [...stats.gz].sort((a, b) => a - b);
+const kb = (n) => +((n ?? 0) / 1024).toFixed(1);
+const inline = { pages: stats.inlined, mismatch: stats.mismatch, too_big: stats.tooBig, gz_kb_median: kb(sorted[sorted.length >> 1]), gz_kb_max: kb(sorted[sorted.length - 1]), city_pages_gz_kb: Object.fromEntries(Object.entries(stats.cityPages).filter(([p]) => /^[a-z_]+\/$/.test(p)).map(([p, n]) => [p, kb(n)])) };
+const report = { files, events, indexed, mb: +(bytes / 1e6).toFixed(1), seconds: +((Date.now() - t0) / 1000).toFixed(1), inline };
 writeFileSync(join(dist, "prerender.json"), JSON.stringify({ ...report, generated_at: index.generated_at }, null, 2));
 console.log(`prerendered ${files} pages (${events} events, ${indexed} in sitemaps), ${report.mb} MB in ${report.seconds}s`);
+console.log(`inline first-render data on ${inline.pages} pages (median ${inline.gz_kb_median} KB gz, max ${inline.gz_kb_max} KB); ${inline.mismatch} pages hydrate from the full feed instead (no exact partial), ${inline.too_big} too big`);
 if (!statSync(join(dist, "404.html")).isFile()) throw new Error("missing 404.html shell");
