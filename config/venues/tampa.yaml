@@ -1,0 +1,181 @@
+# Curated venue locations for tampa (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the operator's official locations page (`address_source`,
+# fetched with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the U.S. Census geocoder
+# (scripts/venue_geocode.py, `coords_source`). Addresses Census can't match stay without coordinates.
+# The HCPLC Communico feed names the branch only ("Tampa-Hillsborough County Public Library – <branch>").
+- name: Tampa-Hillsborough County Public Library – John F. Germany Public Library
+  address: 900 N. Ashley Dr., Tampa, FL 33602
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.950779
+  lon: -82.461432
+  coords_source: 'U.S. Census geocoder: 900 N ASHLEY DR, TAMPA, FL, 33602'
+- name: Tampa-Hillsborough County Public Library – Bruton Memorial Library
+  address: 302 W. McLendon St., Plant City, FL 33563
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.018281
+  lon: -82.125708
+  coords_source: 'U.S. Census geocoder: 302 W MCLENDON ST, PLANT CITY, FL, 33563'
+- name: Tampa-Hillsborough County Public Library – Riverview Public Library
+  address: 9951 Balm Riverview Rd., Riverview, FL 33569
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.852518
+  lon: -82.314588
+  coords_source: 'U.S. Census geocoder: 9951 BALM RIVERVIEW RD, RIVERVIEW, FL, 33569'
+- name: Tampa-Hillsborough County Public Library – Seminole Heights Branch Library
+  address: 4711 Central Ave., Tampa, FL 33603
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.988233
+  lon: -82.455201
+  coords_source: 'U.S. Census geocoder: 4711 N CENTRAL AVE, TAMPA, FL, 33603'
+- name: Tampa-Hillsborough County Public Library – Brandon Regional Library
+  address: 619 Vonderburg Dr., Brandon, FL 33511
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.929466
+  lon: -82.287549
+  coords_source: 'U.S. Census geocoder: 619 VONDERBURG DR, BRANDON, FL, 33511'
+- name: Tampa-Hillsborough County Public Library – Ruskin Branch Library
+  address: 26 Dickman Dr. S.E., Ruskin, FL 33570
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.718604
+  lon: -82.433801
+  coords_source: 'U.S. Census geocoder: 26 DICKMAN DR SE, RUSKIN, FL, 33570'
+- name: Tampa-Hillsborough County Public Library – Jan Kaminis Platt Regional Library
+  address: 3910 S. Manhattan Ave., Tampa, FL 33611
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.907431
+  lon: -82.518003
+  coords_source: 'U.S. Census geocoder: 3910 S MANHATTAN AVE, TAMPA, FL, 33611'
+- name: Tampa-Hillsborough County Public Library – Austin Davis Public Library
+  address: 17808 Wayne Rd., Odessa, FL 33556
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.135967
+  lon: -82.575519
+  coords_source: 'U.S. Census geocoder: 17808 WAYNE RD, ODESSA, FL, 33556'
+- name: Tampa-Hillsborough County Public Library – Charles J. Fendig Public Library
+  address: 3909 W. Neptune St., Tampa, FL 33629
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.930283
+  lon: -82.50805
+  coords_source: 'U.S. Census geocoder: 3909 W NEPTUNE ST, TAMPA, FL, 33629'
+- name: Tampa-Hillsborough County Public Library – Bloomingdale Regional Public Library
+  address: 1906 Bloomingdale Ave., Valrico, FL 33596
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.893714
+  lon: -82.254998
+  coords_source: 'U.S. Census geocoder: 1906 BLOOMINGDALE AVE, VALRICO, FL, 33596'
+- name: Tampa-Hillsborough County Public Library – Maureen B. Gauzza Public Library
+  address: 11211 Countryway Blvd., Tampa, FL 33626
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.061708
+  lon: -82.623735
+  coords_source: 'U.S. Census geocoder: 11211 COUNTRYWAY BLVD, TAMPA, FL, 33626'
+- name: Tampa-Hillsborough County Public Library – C. Blythe Andrews, Jr. Public Library
+  address: 2607 E. Dr. MLK, Jr. Blvd., Tampa, FL 33610
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.981409
+  lon: -82.430515
+  coords_source: 'U.S. Census geocoder: 2607 E DR MARTIN LUTHER KING JR BLVD, TAMPA, FL, 33610'
+- name: Tampa-Hillsborough County Public Library – New Tampa Regional Library
+  address: 10001 Cross Creek Blvd., Tampa, FL 33647
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.14204
+  lon: -82.328878
+  coords_source: 'U.S. Census geocoder: 10001 CROSS CREEK BLVD, TAMPA, FL, 33647'
+- name: Tampa-Hillsborough County Public Library – Jimmie B. Keel Regional Library
+  address: 2902 W. Bearss Ave., Tampa, FL 33618
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.087008
+  lon: -82.49333
+  coords_source: 'U.S. Census geocoder: 2902 W BEARSS AVE, TAMPA, FL, 33618'
+- name: Tampa-Hillsborough County Public Library – Town 'N Country Regional Public Library
+  address: 7606 Paula Dr., Suite 120, Tampa, FL 33615
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.999106
+  lon: -82.565586
+  coords_source: 'U.S. Census geocoder: 7606 PAULA DR, TAMPA, FL, 33615'
+- name: Tampa-Hillsborough County Public Library – North Tampa Branch Library
+  address: 8916 North Blvd., Tampa, FL 33604
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.032357
+  lon: -82.46787
+  coords_source: 'U.S. Census geocoder: 8916 N BLVD, TAMPA, FL, 33604'
+- name: Tampa-Hillsborough County Public Library – Robert W. Saunders, Sr. Public Library
+  address: 1505 N. Nebraska Ave., Tampa, FL 33602
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.957855
+  lon: -82.451186
+  coords_source: 'U.S. Census geocoder: 1505 N NEBRASKA AVE, TAMPA, FL, 33602'
+- name: Tampa-Hillsborough County Public Library – Arthenia L. Joyner University Area Community Library
+  address: 13619 N. 22nd St., Tampa, FL 33613
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.070335
+  lon: -82.434472
+  coords_source: 'U.S. Census geocoder: 13619 N 22ND ST, TAMPA, FL, 33613'
+- name: Tampa-Hillsborough County Public Library – Port Tampa City Library
+  address: 4902 W. Commerce St., Tampa, FL 33616
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 27.864439
+  lon: -82.52782
+  coords_source: 'U.S. Census geocoder: 4902 COMMERCE ST, TAMPA, FL, 33616'
+- name: Tampa-Hillsborough County Public Library – Lutz Branch Library
+  address: 101 Lutz-Lake Fern Rd., W. Lutz, FL 33548
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.151003
+  lon: -82.462394
+  coords_source: 'U.S. Census geocoder: 101 W LUTZ LAKE FERN RD, LUTZ, FL, 33548'
+- name: Tampa-Hillsborough County Public Library – Thonotosassa Branch Library
+  address: 10715 Main St., Thonotosassa, FL 33592
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.057944
+  lon: -82.296106
+  coords_source: 'U.S. Census geocoder: 10715 MAIN ST, THONOTOSASSA, FL, 33592'
+- name: Tampa-Hillsborough County Public Library – 78th Street Community Library
+  address: 7625 Palm River Rd., Tampa, FL 33619
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+- name: Tampa-Hillsborough County Public Library – Seffner-Mango Branch Library
+  address: 410 N. Kingsway Rd., Seffner, FL 33584
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.000003
+  lon: -82.277783
+  coords_source: 'U.S. Census geocoder: 410 N KINGSWAY RD, SEFFNER, FL, 33584'
+- name: Tampa-Hillsborough County Public Library – West Tampa Branch Library
+  address: 2312 W. Union St., Tampa, FL 33607
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+- name: Tampa-Hillsborough County Public Library – Egypt Lake Partnership Library
+  address: 3403 W. Lambright St., Tampa, FL 33614
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.007142
+  lon: -82.498894
+  coords_source: 'U.S. Census geocoder: 3403 W LAMBRIGHT ST, TAMPA, FL, 33614'
+- name: Tampa-Hillsborough County Public Library – Temple Terrace Public Library
+  address: 202 Bullard Pkwy., Temple Terrace, FL 33617
+  address_source: https://hcplc.org/locations
+  verified_at: '2026-10-27'
+  lat: 28.032558
+  lon: -82.391566
+  coords_source: 'U.S. Census geocoder: 202 BULLARD PKWY, TEMPLE TERRACE, FL, 33617'
