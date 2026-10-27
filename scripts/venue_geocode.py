@@ -18,7 +18,12 @@ with httpx.Client(headers={"User-Agent": UA}, timeout=30) as c:
     for it in items:
         if it.get("lat") is not None or not it.get("address"):
             continue
-        r = c.get(URL, params={"address": it["address"], "benchmark": "Public_AR_Current", "format": "json"})
+        try:
+            r = c.get(URL, params={"address": it["address"], "benchmark": "Public_AR_Current", "format": "json"})
+        except httpx.HTTPError as e:  # timeouts during Census outages: skip, rerun later; never guess
+            print(f"Census unavailable ({type(e).__name__}): {it['name']}")
+            time.sleep(2.0)
+            continue
         try:
             m = (r.json().get("result") or {}).get("addressMatches") or []
         except ValueError:  # the Census outage page (302 → HTML): skip, rerun later; never guess
