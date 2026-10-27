@@ -1255,3 +1255,47 @@ Disabled on the first run with the new parser:
 - **Cloudflare challenge:** Lizard Lounge (Boston).
 
 Any further `RobotsDisallowed` failure on the status page means the same thing, and the unit gets disabled in config.
+
+## Session 4 coverage: cov2
+
+Added 2026-10-27 (G8 venue curation + small source additions for beta cities). Every page below was fetched once
+with the GetOffTheCouch UA after its robots.txt was read (≥ 2 s between requests per host, Crawl-delay honored).
+Venue addresses are copied into `config/venues/<slug>.yaml` with `address_source`; coordinates come only from the
+U.S. Census geocoder (`scripts/venue_geocode.py`). The Census geocoder was intermittently down on 2026-10-27
+(302 → outage.census.gov); the script now skips those lookups instead of crashing, so rerun it to fill the rest.
+
+| id | city | platform / adapter | URL | auth | rate limits | robots / ToS | fields we use | data_type · cadence | grade | verified |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `challenge_trivia_miami` | miami | Challenge show-finder JSON / `challenge` | https://challengeentertainment.com/wp-json/ce/v1/shows | none | 1 request/48h | robots allows all; no terms page | as `challenge_trivia_nashville`; metro-south-florida within 2× radius (mostly Broward) | recurring · 48h | C (undocumented) | 48 |
+| `challenge_trivia_los_angeles` | los_angeles | Challenge show-finder JSON / `challenge` | same | none | 1 request/48h | same | metro-southern-california within 2× radius | recurring · 48h | C (undocumented) | 6 |
+| `t_mobile_center_kc` | kansas_city | carbonhouse RSS / `rss_events` | https://www.t-mobilecenter.com/events/rss | none | 1 request/12h | robots allows | title, link, ev:startdate; venue address from the site footer | concerts · 12h | B+ | 23 |
+
+**Single-venue calendar fallbacks** (tribe `params.venue`, used only when an event leaves the venue blank; address
+from the venue's own site footer): `zinc_bar` (nyc), `miami_beach_bandshell` (miami), `memphis_meddlesome`
+(memphis), `dakota_jazz` (minneapolis). Wiseacre's blank-venue events were left alone (its calendar also lists
+off-site rides and runs).
+
+**Venue address sources (official operator pages):** thelibrarydistrict.org/locations/<code>/ (LVCCLD, 14
+branches), mpl.org/hours_locations/ (Milwaukee PL, 13), hplct.org/locations-hours/<branch> (Hartford PL, 7),
+ocls.org/locations-hours/ (OCLS, 16), mdpls.org/branch-a-z (Miami-Dade PL, 10), indypl.org/locations/<branch>
+(IndyPL, 24), plus the venues' own home pages for Allegiant Stadium, Mark Twain House, PeoplesBank Arena,
+FedExForum, Landers Center, Wiseacre, Meddlesome, Zinc Bar, Dakota, Miami Beach Bandshell, KFC Yum! Center.
+**Census no-match (kept without coordinates):** Allegiant Stadium, PeoplesBank Arena, FedExForum, Landers Center,
+Wiseacre HQ, Westchester Library H&W Center, OCLS Alafaya and Horizon West, KFC Yum! Center.
+
+**Pipeline fix:** `location_skip` now treats a Communico/library venue string ending in "– Online" / "– Virtual"
+(e.g. "Orange County Library System – Online", 87 Orlando events) as online-only, which the gate already assumes
+are skipped at ingest.
+
+Tried and not used:
+
+| Source | City | Why it isn't used | Evidence |
+|---|---|---|---|
+| thelibrarydistrict.org `/wp-json/wp/v2/locations` | las_vegas | HTTP 401 (not public); used the per-branch HTML pages instead | probe 2026-10-27 |
+| lvccld.bibliocommons.com/locations | las_vegas | allowed but Crawl-delay 120 and addresses render client-side | probe |
+| jaxpubliclibrary.org | jacksonville | robots.txt answers 403 (= disallow all), so no branch addresses | probe 2026-10-27 |
+| chs.org (CT Museum of Culture and History) home page | hartford | Cloudflare "Just a moment" challenge on the HTML site; not attempted further, no venue fallback added | probe 2026-10-27 |
+| Team Trivia regions miami, kansas-city, nashville, virginia, michigan | several | region pages list "All 0 venues" today | probe 2026-10-27 |
+| Galaxy Digital tenants handsonmiami, unitedwaymiami, volunteermiami, miamidade | miami | "Bad Domain" (no such tenant) | probe 2026-10-27 |
+| Knuckleheads, recordBar, Uptown Theater, Kauffman Center Tribe endpoints | kansas_city | `/wp-json/tribe/events/v1/events` answers 404 (no Tribe) | probe 2026-10-27 |
+| Boulevard Bolt (Thanksgiving 5-miler) | nashville | site lists "registration is now open" but no deadline or price on its own pages; registration is off-site | probe 2026-10-27 |
