@@ -1,0 +1,9 @@
+# Curated venue locations for louisville (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: KFC Yum! Center
+  address: 1 Arena Plaza, Louisville, KY 40202
+  address_source: https://www.kfcyumcenter.com/
+  verified_at: '2026-10-27'
