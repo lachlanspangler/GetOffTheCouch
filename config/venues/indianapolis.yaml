@@ -1,0 +1,221 @@
+# Curated venue locations for indianapolis (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: IndyPL Beech Grove Branch
+  aliases:
+  - Indianapolis Public Library – Beech Grove Branch
+  address: 1102 Main Street, Beech Grove, IN 46107
+  address_source: https://www.indypl.org/locations/beech-grove
+  verified_at: '2026-10-27'
+  lat: 39.721698
+  lon: -86.094005
+  coords_source: 'U.S. Census geocoder: 1102 MAIN ST, BEECH GROVE, IN, 46107'
+- name: IndyPL Central Library
+  aliases:
+  - Indianapolis Public Library – Central Library
+  address: 40 East Saint Clair Street, Indianapolis, IN 46204
+  address_source: https://www.indypl.org/locations/central-library
+  verified_at: '2026-10-27'
+  lat: 39.778039
+  lon: -86.156934
+  coords_source: 'U.S. Census geocoder: 40 E ST CLAIR ST, INDIANAPOLIS, IN, 46204'
+- name: IndyPL College Avenue Branch
+  aliases:
+  - Indianapolis Public Library – College Avenue Branch
+  address: 4180 North College Avenue, Indianapolis, IN 46205
+  address_source: https://www.indypl.org/locations/college-avenue
+  verified_at: '2026-10-27'
+  lat: 39.831949
+  lon: -86.14518
+  coords_source: 'U.S. Census geocoder: 4180 N COLLEGE AVE, INDIANAPOLIS, IN, 46205'
+- name: IndyPL Decatur Branch
+  aliases:
+  - Indianapolis Public Library – Decatur Branch
+  address: 5301 Kentucky Avenue, Indianapolis, IN 46221
+  address_source: https://www.indypl.org/locations/decatur
+  verified_at: '2026-10-27'
+  lat: 39.687479
+  lon: -86.278739
+  coords_source: 'U.S. Census geocoder: 5301 KENTUCKY AVE, INDIANAPOLIS, IN, 46221'
+- name: IndyPL Eagle Branch
+  aliases:
+  - Indianapolis Public Library – Eagle Branch
+  address: 3905 Moller Road, Indianapolis, IN 46254
+  address_source: https://www.indypl.org/locations/eagle
+  verified_at: '2026-10-27'
+  lat: 39.826015
+  lon: -86.256139
+  coords_source: 'U.S. Census geocoder: 3905 MOLLER RD, INDIANAPOLIS, IN, 46254'
+- name: IndyPL East 38th Street Branch
+  aliases:
+  - Indianapolis Public Library – East 38th Street Branch
+  address: 5420 East 38th Street, Indianapolis, IN 46218
+  address_source: https://www.indypl.org/locations/east-38th-street
+  verified_at: '2026-10-27'
+  lat: 39.82551
+  lon: -86.076414
+  coords_source: 'U.S. Census geocoder: 5420 38TH ST, INDIANAPOLIS, IN, 46218'
+- name: IndyPL East Washington Branch
+  aliases:
+  - Indianapolis Public Library – East Washington Branch
+  address: 2822 East Washington Street, Indianapolis, IN 46201
+  address_source: https://www.indypl.org/locations/east-washington
+  verified_at: '2026-10-27'
+  lat: 39.768444
+  lon: -86.116109
+  coords_source: 'U.S. Census geocoder: 2822 E WASHINGTON ST, INDIANAPOLIS, IN, 46201'
+- name: IndyPL Fort Ben Branch
+  aliases:
+  - Indianapolis Public Library – Fort Ben Branch
+  address: 9330 East 56th Street, Indianapolis, IN 46216
+  address_source: https://www.indypl.org/locations/fort-ben
+  verified_at: '2026-10-27'
+  lat: 39.855478
+  lon: -86.004826
+  coords_source: 'U.S. Census geocoder: 9330 E 56TH ST, INDIANAPOLIS, IN, 46216'
+- name: IndyPL Franklin Road Branch
+  aliases:
+  - Indianapolis Public Library – Franklin Road Branch
+  address: 5550 South Franklin Road, Indianapolis, IN 46239
+  address_source: https://www.indypl.org/locations/franklin-road
+  verified_at: '2026-10-27'
+  lat: 39.68735
+  lon: -86.018416
+  coords_source: 'U.S. Census geocoder: 5550 S FRANKLIN RD, INDIANAPOLIS, IN, 46239'
+- name: IndyPL Garfield Park Branch
+  aliases:
+  - Indianapolis Public Library – Garfield Park Branch
+  address: 2502 Shelby Street, Indianapolis, IN 46203
+  address_source: https://www.indypl.org/locations/garfield-park
+  verified_at: '2026-10-27'
+  lat: 39.732044
+  lon: -86.139749
+  coords_source: 'U.S. Census geocoder: 2502 SHELBY ST, INDIANAPOLIS, IN, 46203'
+- name: IndyPL Glendale Branch
+  aliases:
+  - Indianapolis Public Library – Glendale Branch
+  address: 3660 East 62nd Street, Indianapolis, IN 46220
+  address_source: https://www.indypl.org/locations/glendale
+  verified_at: '2026-10-27'
+  lat: 39.868747
+  lon: -86.10608
+  coords_source: 'U.S. Census geocoder: 3660 E 62ND ST, INDIANAPOLIS, IN, 46220'
+- name: IndyPL Haughville Branch
+  aliases:
+  - Indianapolis Public Library – Haughville Branch
+  address: 2121 West Michigan Street, Indianapolis, IN 46222
+  address_source: https://www.indypl.org/locations/haughville
+  verified_at: '2026-10-27'
+  lat: 39.774638
+  lon: -86.197251
+  coords_source: 'U.S. Census geocoder: 2121 W MICHIGAN ST, INDIANAPOLIS, IN, 46222'
+- name: IndyPL Irvington Branch
+  aliases:
+  - Indianapolis Public Library – Irvington Branch
+  address: 10 South Audubon Road, Indianapolis, IN 46219
+  address_source: https://www.indypl.org/locations/irvington
+  verified_at: '2026-10-27'
+  lat: 39.770599
+  lon: -86.07036
+  coords_source: 'U.S. Census geocoder: 10 S AUDUBON RD, INDIANAPOLIS, IN, 46219'
+- name: IndyPL Lawrence Branch
+  aliases:
+  - Indianapolis Public Library – Lawrence Branch
+  address: 7898 Hague Road, Indianapolis, IN 46256
+  address_source: https://www.indypl.org/locations/lawrence
+  verified_at: '2026-10-27'
+  lat: 39.898548
+  lon: -86.033093
+  coords_source: 'U.S. Census geocoder: 7898 HAGUE RD, INDIANAPOLIS, IN, 46256'
+- name: IndyPL Martindale-Brightwood Branch
+  aliases:
+  - Indianapolis Public Library – Martindale-Brightwood Branch
+  address: 2434 North Sherman Drive, Indianapolis, IN 46218
+  address_source: https://www.indypl.org/locations/martindale-brightwood
+  verified_at: '2026-10-27'
+  lat: 39.802624
+  lon: -86.102533
+  coords_source: 'U.S. Census geocoder: 2434 N SHERMAN DR, INDIANAPOLIS, IN, 46218'
+- name: IndyPL Michigan Road Branch
+  aliases:
+  - Indianapolis Public Library – Michigan Road Branch
+  address: 6201 Michigan Road, Indianapolis, IN 46268
+  address_source: https://www.indypl.org/locations/michigan-road
+  verified_at: '2026-10-27'
+  lat: 39.868145
+  lon: -86.201705
+  coords_source: 'U.S. Census geocoder: 6201 MICHIGAN RD, INDIANAPOLIS, IN, 46268'
+- name: IndyPL Nora Branch
+  aliases:
+  - Indianapolis Public Library – Nora Branch
+  address: 8625 Guilford Avenue, Indianapolis, IN 46240
+  address_source: https://www.indypl.org/locations/nora
+  verified_at: '2026-10-27'
+  lat: 39.913068
+  lon: -86.142057
+  coords_source: 'U.S. Census geocoder: 8625 GUILFORD AVE, INDIANAPOLIS, IN, 46240'
+- name: IndyPL Pike Branch
+  aliases:
+  - Indianapolis Public Library – Pike Branch
+  address: 6525 Zionsville Road, Indianapolis, IN 46268
+  address_source: https://www.indypl.org/locations/pike
+  verified_at: '2026-10-27'
+  lat: 39.87523
+  lon: -86.259772
+  coords_source: 'U.S. Census geocoder: 6525 ZIONSVILLE RD, INDIANAPOLIS, IN, 46268'
+- name: IndyPL Southport Branch
+  aliases:
+  - Indianapolis Public Library – Southport Branch
+  address: 2630 East Stop 11 Road, Indianapolis, IN 46227
+  address_source: https://www.indypl.org/locations/southport
+  verified_at: '2026-10-27'
+  lat: 39.650342
+  lon: -86.117524
+  coords_source: 'U.S. Census geocoder: 2630 E STOP 11 RD, INDIANAPOLIS, IN, 46227'
+- name: IndyPL Spades Park Branch
+  aliases:
+  - Indianapolis Public Library – Spades Park Branch
+  address: 1801 Nowland Avenue, Indianapolis, IN 46201
+  address_source: https://www.indypl.org/locations/spades-park
+  verified_at: '2026-10-27'
+  lat: 39.785167
+  lon: -86.128311
+  coords_source: 'U.S. Census geocoder: 1801 NOWLAND AVE, INDIANAPOLIS, IN, 46201'
+- name: IndyPL Warren Branch
+  aliases:
+  - Indianapolis Public Library – Warren Branch
+  address: 9701 East 21st Street, Indianapolis, IN 46229
+  address_source: https://www.indypl.org/locations/warren
+  verified_at: '2026-10-27'
+  lat: 39.796801
+  lon: -85.995778
+  coords_source: 'U.S. Census geocoder: 9701 E 21ST ST, INDIANAPOLIS, IN, 46229'
+- name: IndyPL Wayne Branch
+  aliases:
+  - Indianapolis Public Library – Wayne Branch
+  address: 198 South Girls School Road, Indianapolis, IN 46231
+  address_source: https://www.indypl.org/locations/wayne
+  verified_at: '2026-10-27'
+  lat: 39.761293
+  lon: -86.2891
+  coords_source: 'U.S. Census geocoder: 198 S GIRLS SCHOOL RD, INDIANAPOLIS, IN, 46231'
+- name: IndyPL West Indianapolis Branch
+  aliases:
+  - Indianapolis Public Library – West Indianapolis Branch
+  address: 1216 South Kappes Street, Indianapolis, IN 46221
+  address_source: https://www.indypl.org/locations/west-indianapolis
+  verified_at: '2026-10-27'
+  lat: 39.750732
+  lon: -86.194452
+  coords_source: 'U.S. Census geocoder: 1216 KAPPES ST, INDIANAPOLIS, IN, 46221'
+- name: IndyPL West Perry Branch
+  aliases:
+  - Indianapolis Public Library – West Perry Branch
+  address: 6650 South Harding Street, Indianapolis, IN 46217
+  address_source: https://www.indypl.org/locations/west-perry
+  verified_at: '2026-10-27'
+  lat: 39.668137
+  lon: -86.187097
+  coords_source: 'U.S. Census geocoder: 6650 S HARDING ST, INDIANAPOLIS, IN, 46217'
