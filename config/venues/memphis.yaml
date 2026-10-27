@@ -1,0 +1,28 @@
+# Curated venue locations for memphis (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: FedExForum
+  aliases:
+  - FedExForum - Home of the Memphis Grizzlies
+  address: 191 Beale Street, Memphis, TN 38103
+  address_source: https://www.fedexforum.com/
+  verified_at: '2026-10-27'
+- name: Landers Center
+  address: 4560 Venture Drive, Southaven, MS 38671
+  address_source: https://www.landerscenter.com/
+  verified_at: '2026-10-27'
+- name: Wiseacre HQ Taproom
+  aliases:
+  - WISEACRE HQ Taproom
+  address: 398 S B.B. King Blvd, Memphis, TN 38126
+  address_source: https://wiseacrebrew.com/
+  verified_at: '2026-10-27'
+- name: Meddlesome Brewing
+  address: 7750 Trinity Road Ste 114, Cordova, TN 38018
+  address_source: https://meddlesomebrewing.com/
+  verified_at: '2026-10-27'
+  lat: 35.139913
+  lon: -89.803417
+  coords_source: 'U.S. Census geocoder: 7750 TRINITY RD, CORDOVA, TN, 38018'

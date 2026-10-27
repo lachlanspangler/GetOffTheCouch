@@ -8,10 +8,15 @@
   - Icehouse MPLS
   capacity: 800
   capacity_source: https://www.icehousempls.com/private-events/
-  evidence: SPACE OVERVIEW 5,000 Square Feet, Two Levels 800 Guests Capacity* 215 Guests Seated for Dinner* ... *Capacity is 600 guests when the space is configured into separate rooms; all figures depend on configuration.
-  note: Venue's private-events page; whole-building figure incl. terrace/courtyard. Older search snippet of same page said 'room for up to 350 guests'.
+  evidence: SPACE OVERVIEW 5,000 Square Feet, Two Levels 800 Guests Capacity* 215 Guests Seated for Dinner* ... *Capacity
+    is 600 guests when the space is configured into separate rooms; all figures depend on configuration.
+  note: Venue's private-events page; whole-building figure incl. terrace/courtyard. Older search snippet of same page said
+    'room for up to 350 guests'.
   verified_at: '2026-10-16'
   address: 2528 Nicollet Avenue South, Minneapolis, MN 55404
+  lat: 44.956786
+  lon: -93.277948
+  coords_source: 'U.S. Census geocoder: 2528 NICOLLET AVE, MINNEAPOLIS, MN, 55404'
 - name: The Hook and Ladder
   aliases:
   - The Hook and Ladder Theater
@@ -23,6 +28,9 @@
   note: Venue's rentals page; figure spans all rooms (Mainroom + Mission Room), so a single-room show may be smaller.
   verified_at: '2026-10-16'
   address: 3010 Minnehaha Ave, Minneapolis, MN 55406
+  lat: 44.948014
+  lon: -93.234122
+  coords_source: 'U.S. Census geocoder: 3010 MINNEHAHA AVE, MINNEAPOLIS, MN, 55406'
 - name: The Cedar Cultural Center
   aliases:
   - The Cedar
@@ -53,6 +61,9 @@
   evidence: Owner Hennepin Arts Operator Historic Theatre Group Capacity 2,181
   verified_at: '2026-10-16'
   address: 805 Hennepin Avenue, Minneapolis, MN
+  lat: 44.977071
+  lon: -93.275961
+  coords_source: 'U.S. Census geocoder: 805 HENNEPIN AVE, MINNEAPOLIS, MN, 55402'
 - name: Pantages Theatre
   aliases:
   - Pantages Theatre Minneapolis
@@ -78,7 +89,8 @@
   - Berlin Minneapolis
   capacity: 100
   capacity_source: https://www.thecurrent.org/feature/2024/02/06/10-newish-twin-cities-music-venues-worth-checking-out-in-2024
-  evidence: The intimate room has a capacity of around 75-100, and has styled itself in the model of a “European-inspired jazz club.”
+  evidence: The intimate room has a capacity of around 75-100, and has styled itself in the model of a “European-inspired
+    jazz club.”
   note: The Current (MPR) gives a range 75-100; capacity recorded as the upper bound of that reported range.
   verified_at: '2026-10-16'
   lat: 44.9857637
@@ -93,3 +105,12 @@
   lat: 44.9847316
   lon: -93.2600873
   address: 40 Power St, Minneapolis, MN 55401
+- name: Dakota
+  aliases:
+  - Dakota Jazz Club
+  address: 1010 Nicollet Mall, Minneapolis, MN 55403
+  address_source: https://www.dakotacooks.com/
+  verified_at: '2026-10-27'
+  lat: 44.973855
+  lon: -93.274881
+  coords_source: 'U.S. Census geocoder: 1010 NICOLLET AVE, MINNEAPOLIS, MN, 55403'

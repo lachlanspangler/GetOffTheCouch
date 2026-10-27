@@ -82,6 +82,9 @@ def test_online_only_events_are_skipped_globally():
     assert location_skip({"location": {"address": "Online via Zoom"}}, None)
     assert location_skip({"title": "Resume Workshop (Virtual)", "location": {}}, None)
     assert location_skip({"title": "Trivia", "location": {"venue_name": "Virtue Cider"}}, None) is None
+    assert location_skip({"location": {"venue_name": "Orange County Library System – Online"}}, None)
+    assert location_skip({"location": {"venue_name": "Milwaukee Public Library – Virtual"}}, None)
+    assert location_skip({"location": {"venue_name": "Hartford Public Library – Downtown"}}, None) is None
     assert location_skip(
         {"title": "Game", "location": {"venue_name": "Norman, Okla., Tennis Center"}}, r"\b(Okla)\b\.?"
     )

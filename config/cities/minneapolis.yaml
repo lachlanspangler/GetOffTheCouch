@@ -259,6 +259,7 @@ sources:
       per_page: 50
       max_pages: 6
       organizer: Dakota
+      venue: {name: Dakota, address: "1010 Nicollet Mall, Minneapolis, MN 55403"}  # single-venue calendar; dakotacooks.com footer
       default_category: music.concert
       classify_description: false
 

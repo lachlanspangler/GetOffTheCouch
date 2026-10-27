@@ -1,0 +1,86 @@
+# Curated venue locations for hartford (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: Hartford Public Library Downtown
+  aliases:
+  - Hartford Public Library – Downtown
+  - 'Hartford Public Library – HPL: Downtown Library (Youth Program Room)'
+  - Hartford Public Library – Downtown Library (Youth Program Room)
+  - Hartford Public Library – Downtown (Classroom 140)
+  - Hartford Public Library – Downtown Library (Children\'s Department)
+  - Hartford Public Library – Downtown Library (Children's Department)
+  address: 500 Main Street, Hartford, CT 06103
+  address_source: https://www.hplct.org/locations-hours/downtown
+  verified_at: '2026-10-27'
+  lat: 41.758998
+  lon: -72.643839
+  coords_source: 'U.S. Census geocoder: 500 MAIN ST, HARTFORD, CT, 06108'
+- name: Albany Library
+  aliases:
+  - Hartford Public Library – Albany Library
+  address: 1250 Albany Avenue, Hartford, CT 06112
+  address_source: https://www.hplct.org/locations-hours/albany
+  verified_at: '2026-10-27'
+  lat: 41.782452
+  lon: -72.696772
+  coords_source: 'U.S. Census geocoder: 1250 ALBANY AVE, HARTFORD, CT, 06112'
+- name: Ropkins Library
+  aliases:
+  - Hartford Public Library – Ropkins Library
+  address: 1750 Main Street, Hartford, CT 06120
+  address_source: https://www.hplct.org/locations-hours/sand-ropkins
+  verified_at: '2026-10-27'
+  lat: 41.779038
+  lon: -72.676283
+  coords_source: 'U.S. Census geocoder: 1750 MAIN ST, HARTFORD, CT, 06120'
+- name: Camp Field Library
+  aliases:
+  - Hartford Public Library – Camp Field Library
+  address: 30 Campfield Avenue, Hartford, CT 06114
+  address_source: https://www.hplct.org/locations-hours/camp-field
+  verified_at: '2026-10-27'
+  lat: 41.741978
+  lon: -72.682484
+  coords_source: 'U.S. Census geocoder: 30 CAMPFIELD AVE, HARTFORD, CT, 06114'
+- name: Dwight Library
+  aliases:
+  - Hartford Public Library – Dwight Library
+  address: 7 New Park Avenue, Hartford, CT 06106
+  address_source: https://www.hplct.org/locations-hours/dwight
+  verified_at: '2026-10-27'
+  lat: 41.756976
+  lon: -72.706421
+  coords_source: 'U.S. Census geocoder: 7 NEW PARK AVE, HARTFORD, CT, 06106'
+- name: Park Street Library @ The Lyric
+  aliases:
+  - Hartford Public Library – Park Street Library @ The Lyric
+  address: 603 Park Street, Hartford, CT 06106
+  address_source: https://www.hplct.org/locations-hours/park
+  verified_at: '2026-10-27'
+  lat: 41.75797
+  lon: -72.686989
+  coords_source: 'U.S. Census geocoder: 603 PARK ST, HARTFORD, CT, 06106'
+- name: Barbour Library
+  aliases:
+  - Hartford Public Library – Barbour Library
+  address: 261 Barbour Street, Hartford, CT 06120
+  address_source: https://www.hplct.org/locations-hours/barbour
+  verified_at: '2026-10-27'
+  lat: 41.792474
+  lon: -72.677581
+  coords_source: 'U.S. Census geocoder: 261 BARBOUR ST, HARTFORD, CT, 06120'
+- name: Mark Twain House
+  aliases:
+  - The Mark Twain House & Museum
+  address: 351 Farmington Ave., Hartford, CT 06105
+  address_source: https://marktwainhouse.org/
+  verified_at: '2026-10-27'
+  lat: 41.767476
+  lon: -72.701305
+  coords_source: 'U.S. Census geocoder: 351 FARMINGTON AVE, HARTFORD, CT, 06105'
+- name: PeoplesBank Arena
+  address: One Civic Center Plaza, Hartford, CT 06103
+  address_source: https://www.peoplesbankarena.com/
+  verified_at: '2026-10-27'

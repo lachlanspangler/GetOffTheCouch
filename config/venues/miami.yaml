@@ -9,8 +9,10 @@
   - Herbert and Nicole Wertheim Performing Arts Center
   capacity: 545
   capacity_source: https://centralreservations.fiu.edu/venues/profile/wertheim-performing-arts-center.html
-  evidence: 'Room Capacities and Spaces Concert Hall: 545 seats Recital Hall: 80 seats Instrumental Hall - Empty Room: 150 seats - Theater: 100 seats'
-  note: Concert Hall figure (largest room); recital-hall events will be much smaller. FIU student-life page describes a '300-seat main stage'.
+  evidence: 'Room Capacities and Spaces Concert Hall: 545 seats Recital Hall: 80 seats Instrumental Hall - Empty Room: 150
+    seats - Theater: 100 seats'
+  note: Concert Hall figure (largest room); recital-hall events will be much smaller. FIU student-life page describes a '300-seat
+    main stage'.
   verified_at: '2026-10-16'
   lat: 25.752514
   lon: -80.37239
@@ -25,3 +27,100 @@
   evidence: 'The FPL Solar Amphitheater has a seating capacity of 10,000 people: 2,672 fixed benches and 7,328 in the lawn.'
   verified_at: '2026-10-16'
   address: 301 Biscayne Boulevard, Miami, FL 33132
+  lat: 25.771167
+  lon: -80.187191
+  coords_source: 'U.S. Census geocoder: 301 BISCAYNE BLVD, MIAMI, FL, 33132'
+- name: Miami Beach Bandshell
+  address: 7275 Collins Avenue, Miami Beach, FL 33141
+  address_source: https://miamibeachbandshell.com/
+  verified_at: '2026-10-27'
+  lat: 25.856969
+  lon: -80.120467
+  coords_source: 'U.S. Census geocoder: 7275 COLLINS AVE, MIAMI BEACH, FL, 33141'
+- name: Pinecrest Branch Library
+  aliases:
+  - Miami-Dade Public Library – Pinecrest Branch
+  address: 5835 SW 111 St., Pinecrest, FL 33156
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.667795
+  lon: -80.286628
+  coords_source: 'U.S. Census geocoder: 5835 SW 111TH TER, PINECREST, FL, 33156'
+- name: Westchester Library Health and Wellness Information Center
+  aliases:
+  - Miami-Dade Public Library – Westchester Library Health and Wellness Information Center
+  address: 9445 Coral Way, Miami, FL 33165
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+- name: Concord Branch Library
+  aliases:
+  - Miami-Dade Public Library – Concord Branch
+  address: 3882 SW 112 Ave., Miami, FL 33165
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.733214
+  lon: -80.375783
+  coords_source: 'U.S. Census geocoder: 3882 SW 112TH AVE, MIAMI, FL, 33165'
+- name: Kendale Lakes Branch Library
+  aliases:
+  - Miami-Dade Public Library – Kendale Lakes Branch
+  address: 15205 SW 88 St., Miami, FL 33196
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.684661
+  lon: -80.441227
+  coords_source: 'U.S. Census geocoder: 15205 SW 88TH ST, MIAMI, FL, 33196'
+- name: Coral Reef Branch Library
+  aliases:
+  - Miami-Dade Public Library – Coral Reef Branch
+  address: 9211 Coral Reef Drive, Miami, FL 33157
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.628927
+  lon: -80.34283
+  coords_source: 'U.S. Census geocoder: 9211 CORAL REEF DR, MIAMI, FL, 33157'
+- name: Kendall Branch Library
+  aliases:
+  - Miami-Dade Public Library – Kendall Branch
+  address: 9101 SW 97 Ave., Miami, FL 33176
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.684871
+  lon: -80.351334
+  coords_source: 'U.S. Census geocoder: 9101 SW 97TH AVE, MIAMI, FL, 33176'
+- name: Culmer/Overtown Branch Library
+  aliases:
+  - Miami-Dade Public Library – Culmer/Overtown Branch
+  address: 350 NW 13 St., Miami, FL 33136
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.786706
+  lon: -80.200725
+  coords_source: 'U.S. Census geocoder: 350 NW 13TH ST, MIAMI, FL, 33136'
+- name: Little River Branch Library
+  aliases:
+  - Miami-Dade Public Library – Little River Branch
+  address: 160 NE 79 St., Miami, FL 33138
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.847492
+  lon: -80.19379
+  coords_source: 'U.S. Census geocoder: 160 NE 79TH ST, MIAMI, FL, 33138'
+- name: Allapattah Branch Library (Temporary Location)
+  aliases:
+  - Miami-Dade Public Library – Allapattah Branch (Temporary Location)
+  address: 1897 NW 20 St., Miami, FL 33142
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.794707
+  lon: -80.227285
+  coords_source: 'U.S. Census geocoder: 1897 NW 20TH ST, MIAMI, FL, 33142'
+- name: Model City Branch Library
+  aliases:
+  - Miami-Dade Public Library – Model City Branch
+  address: 2211 NW 54 St., Miami, FL 33142
+  address_source: https://mdpls.org/branch-a-z
+  verified_at: '2026-10-27'
+  lat: 25.824225
+  lon: -80.232965
+  coords_source: 'U.S. Census geocoder: 2211 NW 54TH ST, MIAMI, FL, 33142'

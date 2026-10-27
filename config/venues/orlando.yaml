@@ -1,0 +1,143 @@
+# Curated venue locations for orlando (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own or its operator's official page
+# (`address_source`, fetched 2026-10-27 with the GetOffTheCouch UA, robots.txt checked); lat/lon come from the
+# U.S. Census geocoder (scripts/venue_geocode.py, `coords_source`); entries Census can't match keep no
+# coordinates. Aliases are the exact venue strings the feeds use. No capacities: none citable here.
+- name: Alafaya Branch
+  aliases:
+  - Orange County Library System – Alafaya Branch
+  address: 12000 E. Colonial Drive, Orlando, FL 32826
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+- name: Chickasaw Branch
+  aliases:
+  - Orange County Library System – Chickasaw Branch
+  address: 870 N. Chickasaw Trail, Orlando, FL 32825
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.554448
+  lon: -81.27778
+  coords_source: 'U.S. Census geocoder: 870 N CHICKASAW TRL, ORLANDO, FL, 32825'
+- name: Eatonville Branch
+  aliases:
+  - Orange County Library System – Eatonville Branch
+  address: 200 E. Kennedy Blvd., Eatonville, FL 32751
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.618203
+  lon: -81.382802
+  coords_source: 'U.S. Census geocoder: 200 E KENNEDY BLVD, EATONVILLE, FL, 32751'
+- name: Fairview Shores Branch
+  aliases:
+  - Orange County Library System – Fairview Shores Branch
+  address: 902 Lee Road, Suite 26, Orlando, FL 32810
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.606879
+  lon: -81.393396
+  coords_source: 'U.S. Census geocoder: 902 LEE RD, ORLANDO, FL, 32810'
+- name: Hiawassee Branch
+  aliases:
+  - Orange County Library System – Hiawassee Branch
+  address: 7391 W. Colonial Drive, Orlando, FL 32818
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.552183
+  lon: -81.481971
+  coords_source: 'U.S. Census geocoder: 7391 W COLONIAL DR, ORLANDO, FL, 32818'
+- name: Horizon West Branch
+  aliases:
+  - Orange County Library System – Horizon West Branch
+  address: 4657 Hamlin Groves Trail, Winter Garden, FL 34787
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+- name: North Orange Branch
+  aliases:
+  - Orange County Library System – North Orange Branch
+  address: 1211 E. Semoran Blvd., Apopka, FL 32703
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.673175
+  lon: -81.488327
+  coords_source: 'U.S. Census geocoder: 1211 E SEMORAN BLVD, APOPKA, FL, 32703'
+- name: Orlando Public Library
+  aliases:
+  - Orange County Library System – Orlando Public Library
+  address: 101 E. Central Blvd., Orlando, FL 32801
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.542211
+  lon: -81.377396
+  coords_source: 'U.S. Census geocoder: 101 E CENTRAL BLVD, ORLANDO, FL, 32801'
+- name: South Creek Branch
+  aliases:
+  - Orange County Library System – South Creek Branch
+  address: 1702 Deerfield Blvd., Orlando, FL 32837
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.378499
+  lon: -81.400693
+  coords_source: 'U.S. Census geocoder: 1702 DEERFIELD BLVD, ORLANDO, FL, 32837'
+- name: South Trail Branch
+  aliases:
+  - Orange County Library System – South Trail Branch
+  address: 4600 S. Orange Blossom Trail, Orlando, FL 32839
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.496279
+  lon: -81.396916
+  coords_source: 'U.S. Census geocoder: 4600 S ORANGE BLOSSOM TRL, ORLANDO, FL, 32839'
+- name: Southeast Branch
+  aliases:
+  - Orange County Library System – Southeast Branch
+  address: 5575 S. Semoran Blvd., Orlando, FL 32822
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.482469
+  lon: -81.309958
+  coords_source: 'U.S. Census geocoder: 5575 S SEMORAN BLVD, ORLANDO, FL, 32822'
+- name: Southwest Branch
+  aliases:
+  - Orange County Library System – Southwest Branch
+  address: 7255 Della Drive, Orlando, FL 32819
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.456849
+  lon: -81.489813
+  coords_source: 'U.S. Census geocoder: 7255 DELLA DR, ORLANDO, FL, 32819'
+- name: Washington Park Branch
+  aliases:
+  - Orange County Library System – Washington Park Branch
+  address: 5151 Raleigh St., Suite A, Orlando, FL 32811
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.527814
+  lon: -81.447876
+  coords_source: 'U.S. Census geocoder: 5151 RALEIGH ST, ORLANDO, FL, 32811'
+- name: West Oaks Branch and Genealogy Center
+  aliases:
+  - Orange County Library System – West Oaks Branch and Genealogy Center
+  address: 1821 E. Silver Star Road, Ocoee, FL 34761
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.573617
+  lon: -81.513367
+  coords_source: 'U.S. Census geocoder: 1821 E SILVER STAR RD, OCOEE, FL, 34761'
+- name: Windermere Branch
+  aliases:
+  - Orange County Library System – Windermere Branch
+  address: 530 Main St., Windermere, FL 34786
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.495274
+  lon: -81.534892
+  coords_source: 'U.S. Census geocoder: 530 MAIN ST, WINDERMERE, FL, 34786'
+- name: Winter Garden Branch
+  aliases:
+  - Orange County Library System – Winter Garden Branch
+  address: 805 E. Plant St., Winter Garden, FL 34787
+  address_source: https://ocls.org/locations-hours/
+  verified_at: '2026-10-27'
+  lat: 28.567147
+  lon: -81.576513
+  coords_source: 'U.S. Census geocoder: 805 E PLANT ST, WINTER GARDEN, FL, 34787'

@@ -217,5 +217,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: Meddlesome Brewing
+      venue: {name: Meddlesome Brewing, address: "7750 Trinity Road Ste 114, Cordova, TN 38018"}  # meddlesomebrewing.com footer
       default_category: food_drink.tasting
       classify_description: false

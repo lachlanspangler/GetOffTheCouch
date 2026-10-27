@@ -121,6 +121,7 @@ sources:
       per_page: 50
       max_pages: 4
       organizer: Rhythm Foundation
+      venue: {name: Miami Beach Bandshell, address: "7275 Collins Avenue, Miami Beach, FL 33141"}  # miamibeachbandshell.com footer
       default_category: music.concert
       classify_description: false
   - id: bayfront_park_miami
@@ -209,3 +210,16 @@ sources:
       organizer: FIU Athletics
       force_category: sports_watch.game
       exclude_location: '^(?!(Miami)\b)'
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page; session 4 cov2) ──
+  - id: challenge_trivia_miami
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (South Florida)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 5
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-south-florida within 2× the city radius (mostly Broward; 12 weekly shows on 2026-10-27).
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [south-florida]

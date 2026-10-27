@@ -205,3 +205,16 @@ sources:
       organizer: USC Athletics
       force_category: sports_watch.game
       exclude_location: '^(?!(Los Angeles)\b)'
+
+  # ── trivia (Challenge Entertainment show-finder JSON; robots allows all, no terms page; session 4 cov2) ──
+  - id: challenge_trivia_los_angeles
+    adapter: challenge
+    name: Challenge Entertainment trivia & music bingo (Los Angeles)
+    data_type: recurring
+    cadence_hours: 48
+    homepage: https://challengeentertainment.com/
+    expect_min_records: 2
+    notes: One ~0.9 MB JSON for every show nationwide (wp-json/ce/v1/shows); metro-southern-california within 2× the city radius (3 weekly shows on 2026-10-27).
+    params:
+      url: https://challengeentertainment.com/wp-json/ce/v1/shows
+      metros: [southern-california]

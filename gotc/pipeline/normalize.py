@@ -113,7 +113,8 @@ _INTERNAL = re.compile(
 
 _ONLINE = re.compile(
     r"^\s*(virtual|online|zoom|webinar|livestream|live ?stream|microsoft teams|teams meeting|google meet)\b"
-    r"|\b(online only|virtual only|virtual event|zoom meeting)\b",
+    r"|\b(online only|virtual only|virtual event|zoom meeting)\b"
+    r"|\s[–—-]\s*(virtual|online)\s*$",  # "<Library system> – Online": the branch slot names no place
     re.I,
 )
 
