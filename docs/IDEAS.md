@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 75 · **doing** 1 · **done** 97 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 75 · **doing** 1 · **done** 98 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -118,6 +118,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-218 | New since your last visit section on city pages | ux | 4 | 1 | 3.2 | done | Gives returning residents a reason to come back; on-device only |
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | done | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. — 2026-10-27 done: session 4: /cities/ coverage table + live/beta chips |
 | I-160 | Rank v2: cap by organizer/venue instead of listing source for aggregator feeds (visit_ballard_events, challenge_trivia_austin) | features | 4 | 2 | 1.6 | done | The <=2-per-source cap costs For You 0.075 NDCG@10; aggregators list many independent venues, so the source is a poor proxy for sameness — 2026-10-27 done: 2026-10-27: For You caps on organizer x venue (<=2) + <=3/source backstop + soft <=3/family; NDCG@10 0.458->0.476 (LOCO held-out 0.471), P@10 0.42->0.45, gates pass, Highlights unchanged; still < v1 0.51 (entropy gate + exploration), RANKING.md 7.7 |

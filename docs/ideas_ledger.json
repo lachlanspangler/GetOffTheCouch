@@ -3212,6 +3212,20 @@
    "created": "2026-10-17",
    "updated": "2026-10-17",
    "notes": []
+  },
+  {
+   "id": "I-218",
+   "title": "New since your last visit section on city pages",
+   "area": "ux",
+   "value": 4,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "done",
+   "why": "Gives returning residents a reason to come back; on-device only",
+   "source": "agent",
+   "created": "2026-10-27",
+   "updated": "2026-10-27",
+   "notes": []
   }
  ]
 }
