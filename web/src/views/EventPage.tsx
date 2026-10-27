@@ -70,7 +70,7 @@ export function primaryCta(e: Event, sourceNames: Record<string, string>): Cta |
   const offer = e.offers?.find((o) => o.kind === "registration") ?? e.offers?.find((o) => o.kind === "primary") ?? e.offers?.[0];
   const pick = reg ?? (offer ? { url: offer.url, kind: offer.kind, seller: offer.seller } : e.url ? { url: e.url, kind: "info", seller: null } : null);
   if (!pick) return null;
-  const named = pick.seller ?? sourceName(e.sources[0]?.source_id ?? "", sourceNames);
+  const named = pick.seller ?? e.organizer ?? sourceName(e.sources[0]?.source_id ?? "", sourceNames);
   // short, destination-named labels ("View on NYC Parks"), not the whole source title
   const dest = (named ?? "").replace(/\s*\(.*\)$/, "").replace(/\b(public events|events|event calendar|calendar|listings?)\b/gi, "").replace(/\s{2,}/g, " ").trim() || host(pick.url);
   const interest = /does not sign you up|express(ing)? (your )?interest|interest form/i.test(`${e.summary ?? ""} ${e.registration?.evidence ?? ""}`);

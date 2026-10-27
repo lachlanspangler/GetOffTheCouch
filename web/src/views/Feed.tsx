@@ -17,7 +17,7 @@ import { strongestText } from "../components/Coverage";
 import { build } from "../lib/router";
 import { HUB_BY_SLUG, HUBS, url } from "../lib/site";
 import { closesPhrase } from "../lib/signals";
-import { age, dayKey, dayHeader, fmtDay, weekendRange } from "../lib/time";
+import { age, dayKey, dayHeader, fmtDay } from "../lib/time";
 import type { Event } from "../lib/types";
 import { familyOf } from "../lib/art";
 import { displayPlace, isAdminRole, isCampusOnly, isKids, isLeadable, isUnderway } from "../lib/curate";
@@ -151,7 +151,6 @@ export function Feed({ events }: { events: Event[] }) {
   const ongoing = shown.filter((e) => e.kind !== "opening" && isOngoing(e, now));
   const regular = shown.filter((e) => e.kind !== "opening" && !isOngoing(e, now) && !isUnderway(e, now));
   const topIds = new Set(tops.length >= 3 ? tops.map((s) => s.event.id) : []);
-  const wk = weekendRange(now, feed.timezone);
   const stale = (feed.sources ?? []).filter((s) => s.stale && s.state !== "disabled");
   return (
     <div class="container">
@@ -168,7 +167,7 @@ export function Feed({ events }: { events: Event[] }) {
         </h1>
         <p class="lede">
           {hub?.when === "weekend"
-            ? `${wk.label}. Leagues, shows, parties and volunteer shifts, from ${summary?.coverage?.sources_healthy ?? cov.sources} local sources.`
+            ? `Leagues, shows, parties and volunteer shifts, from ${summary?.coverage?.sources_healthy ?? cov.sources} local sources.`
             : hub
               ? `Upcoming ${hub.label.toLowerCase()} in ${feed.city_name}, from official calendars and venues, checked every few hours.`
               : "What's on this week, and what's due."}

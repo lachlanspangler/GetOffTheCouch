@@ -40,3 +40,11 @@ describe("what leads the city page", () => {
     expect(isUnderway(ev({ start: new Date(NOW.getTime() - 2 * 3600_000).toISOString(), end: new Date(NOW.getTime() + 3600_000).toISOString() }), NOW)).toBe(false);
   });
 });
+
+describe("titles don't repeat the date", () => {
+  it("drops a trailing weekday-month-day(-time) phrase", () => {
+    expect(displayTitle("Open Mic Night – Tuesday October 27 at 8:00PM")).toBe("Open Mic Night");
+    expect(displayTitle("Trivia | Wed, Nov 4, 2026")).toBe("Trivia");
+    expect(displayTitle("Friday Night Lights")).toBe("Friday Night Lights");
+  });
+});

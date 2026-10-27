@@ -12,6 +12,11 @@ export function displayTitle(t: string): string {
   let s = t.trim().replace(/\s+/g, " ").replace(/!{2,}/g, "!").replace(/\?{2,}/g, "?");
   s = s.replace(/\s+—\s+new liquor license( application)?$/i, "");
   s = s.replace(/\s+(presented|sponsored) by\s+[^|–—-]+$/i, "").replace(/\s*\((sold out|cancell?ed)\)\s*$/i, "");
+  // the date belongs in the date column, not the title: "Open Mic Night – Tuesday October 27 at 8:00PM"
+  s = s.replace(
+    /\s*[-–—|,:]\s*(mon|tues?|wed(nes)?|thu(rs)?|fri|sat(ur)?|sun)[a-z]*\.?,?\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2}(st|nd|rd|th)?(,?\s+\d{4})?(\s+(at|@)\s+\d{1,2}(:\d{2})?\s*([ap]\.?m\.?)?)?\s*$/i,
+    "",
+  );
   const letters = s.replace(/[^A-Za-z]/g, "");
   const upper = s.replace(/[^A-Z]/g, "").length;
   if (letters.length >= 6 && upper / letters.length > 0.8) {
