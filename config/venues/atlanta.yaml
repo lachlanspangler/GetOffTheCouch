@@ -1,0 +1,200 @@
+# Curated venues for atlanta (loaded by gotc/pipeline/build.py load_curated_venues).
+# Location-only entries: `address` is copied from the venue's own page or its operator's official page
+# (`address_source`, fetched with the GetOffTheCouch UA after checking robots.txt). `aliases` are the exact
+# venue strings the feeds use. lat/lon come from the U.S. Census geocoder (scripts/venue_geocode.py) and say so
+# in `coords_source`; an address Census can't match stays without coordinates (never guessed).
+- name: Brookhaven Library
+  aliases:
+  - DeKalb County Public Library – Brookhaven Library
+  address: 1242 N. Druid Hills Road, Brookhaven, GA 30319
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.857057
+  lon: -84.340039
+  coords_source: 'U.S. Census geocoder: 1242 N DRUID HILLS RD NE, BROOKHAVEN, GA, 30319'
+- name: Chamblee Library
+  aliases:
+  - DeKalb County Public Library – Chamblee Library
+  address: 4115 Clairmont Road, Chamblee, GA 30341
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.882464
+  lon: -84.309361
+  coords_source: 'U.S. Census geocoder: 4115 CLAIRMONT RD, CHAMBLEE, GA, 30341'
+- name: Clarkston Library
+  aliases:
+  - DeKalb County Public Library – Clarkston Library
+  address: 951 N. Indian Creek Drive, Clarkston, GA 30021
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.804497
+  lon: -84.238985
+  coords_source: 'U.S. Census geocoder: 951 N INDIAN CREEK DR, CLARKSTON, GA, 30021'
+- name: County Line-Ellenwood Library
+  aliases:
+  - DeKalb County Public Library – County Line-Ellenwood Library
+  address: 4331 River Road, Ellenwood, GA 30294
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.655147
+  lon: -84.225238
+  coords_source: 'U.S. Census geocoder: 4331 RIVER RD, ELLENWOOD, GA, 30294'
+- name: Covington Library
+  aliases:
+  - DeKalb County Public Library – Covington Library
+  address: 3500 Covington Highway, Decatur, GA 30032
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.766322
+  lon: -84.251319
+  coords_source: 'U.S. Census geocoder: 3500 COVINGTON HWY, DECATUR, GA, 30032'
+- name: Decatur Library
+  aliases:
+  - DeKalb County Public Library – Decatur Library
+  address: 215 Sycamore Street, Decatur, GA 30030
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+- name: Dunwoody Library
+  aliases:
+  - DeKalb County Public Library – Dunwoody Library
+  address: 5339 Chamblee-Dunwoody Road, Dunwoody, GA 30338
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.944351
+  lon: -84.332254
+  coords_source: 'U.S. Census geocoder: 5339 CHAMBLEE DUNWOODY RD, DUNWOODY, GA, 30338'
+- name: Embry Hills Library
+  aliases:
+  - DeKalb County Public Library – Embry Hills Library
+  address: 3733 Chamblee-Tucker Road, Chamblee, GA 30341
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.883746
+  lon: -84.241846
+  coords_source: 'U.S. Census geocoder: 3733 CHAMBLEE TUCKER RD, CHAMBLEE, GA, 30341'
+- name: Flat Shoals Library
+  aliases:
+  - DeKalb County Public Library – Flat Shoals Library
+  address: 4022 Flat Shoals Parkway, Decatur, GA 30034
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.691975
+  lon: -84.25966
+  coords_source: 'U.S. Census geocoder: 4022 FLAT SHOALS PKWY, DECATUR, GA, 30034'
+- name: Gresham Library
+  aliases:
+  - DeKalb County Public Library – Gresham Library
+  address: 2418 Gresham Road SE, Atlanta, GA 30316
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.71747
+  lon: -84.310333
+  coords_source: 'U.S. Census geocoder: 2418 GRESHAM RD SE, ATLANTA, GA, 30316'
+- name: Hairston Crossing Library
+  aliases:
+  - DeKalb County Public Library – Hairston Crossing Library
+  address: 4911 Redan Road, Stone Mountain, GA 30088
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.760255
+  lon: -84.193044
+  coords_source: 'U.S. Census geocoder: 4911 REDAN RD, STONE MOUNTAIN, GA, 30088'
+- name: Lithonia-Davidson Library
+  aliases:
+  - DeKalb County Public Library – Lithonia-Davidson Library
+  address: 6821 Church Street, Lithonia, GA 30058
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.712258
+  lon: -84.109495
+  coords_source: 'U.S. Census geocoder: 6821 CHURCH ST, LITHONIA, GA, 30058'
+- name: Northlake-Barbara Loar Library
+  aliases:
+  - DeKalb County Public Library – Northlake-Barbara Loar Library
+  address: 3772 LaVista Road, Tucker, GA 30084
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.84089
+  lon: -84.261847
+  coords_source: 'U.S. Census geocoder: 3772 LAVISTA RD, TUCKER, GA, 30084'
+- name: Redan-Trotti Library
+  aliases:
+  - DeKalb County Public Library – Redan-Trotti Library
+  address: 1569 Wellborn Road, Lithonia, GA 30058
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.744554
+  lon: -84.141909
+  coords_source: 'U.S. Census geocoder: 1569 WELLBORN RD, LITHONIA, GA, 30058'
+- name: Salem-Panola Library
+  aliases:
+  - DeKalb County Public Library – Salem-Panola Library
+  address: 5137 Salem Road, Stonecrest, GA 30038
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.678504
+  lon: -84.177671
+  coords_source: 'U.S. Census geocoder: 5137 SALEM RD, STONECREST, GA, 30038'
+- name: Scott Candler Library
+  aliases:
+  - DeKalb County Public Library – Scott Candler Library
+  address: 1917 Candler Road, Decatur, GA 30032
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.73451
+  lon: -84.285521
+  coords_source: 'U.S. Census geocoder: 1917 CANDLER RD, DECATUR, GA, 30032'
+- name: Scottdale-Tobie Grant Homework Center
+  aliases:
+  - DeKalb County Public Library – Scottdale-Tobie Grant Homework Center
+  address: 593 Parkdale Drive, Scottdale, GA 30079
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.793643
+  lon: -84.25608
+  coords_source: 'U.S. Census geocoder: 593 PARKDALE DR, SCOTTDALE, GA, 30079'
+- name: Stone Mountain-Sue Kellogg Library
+  aliases:
+  - DeKalb County Public Library – Stone Mountain-Sue Kellogg Library
+  address: 952 Leon Street, Stone Mountain, GA 30083
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.80638
+  lon: -84.171089
+  coords_source: 'U.S. Census geocoder: 952 LEON ST, STONE MOUNTAIN, GA, 30083'
+- name: Stonecrest Library
+  aliases:
+  - DeKalb County Public Library – Stonecrest Library
+  address: 3123 Klondike Road, Stonecrest, GA 30038
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.694497
+  lon: -84.108815
+  coords_source: 'U.S. Census geocoder: 3123 KLONDIKE RD, STONECREST, GA, 30038'
+- name: Toco Hill-Avis G. Williams Library
+  aliases:
+  - DeKalb County Public Library – Toco Hill-Avis G. Williams Library
+  address: 1282 McConnell Drive, Decatur, GA 30033
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.809711
+  lon: -84.308776
+  coords_source: 'U.S. Census geocoder: 1282 MCCONNELL DR, DECATUR, GA, 30033'
+- name: Tucker-Reid H. Cofer Library
+  aliases:
+  - DeKalb County Public Library – Tucker-Reid H. Cofer Library
+  address: 5234 LaVista Road, Tucker, GA 30084
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.856918
+  lon: -84.209217
+  coords_source: 'U.S. Census geocoder: 5234 LAVISTA RD, TUCKER, GA, 30084'
+- name: Wesley Chapel-William C. Brown Library
+  aliases:
+  - DeKalb County Public Library – Wesley Chapel-William C. Brown Library
+  address: 2861 Wesley Chapel Road, Decatur, GA 30034
+  address_source: https://dekalblibrary.org/locations/
+  verified_at: '2026-10-27'
+  lat: 33.705021
+  lon: -84.219906
+  coords_source: 'U.S. Census geocoder: 2861 WESLEY CHAPEL RD, DECATUR, GA, 30034'
