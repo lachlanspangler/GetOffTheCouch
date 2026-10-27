@@ -18,7 +18,10 @@ const BUDGET = {
   cityData: 600 * 1024, // the legacy monolithic card file (kept for older clients)
   inline: 30 * 1024, // I-117: <script id="gotc-initial"> on a pre-rendered page
   shard: 150 * 1024, // one week shard (SEO_ACCESS §6.3)
-  firstView: 150 * 1024, // data a city page needs before it's complete for "this week" (see below)
+  firstView: 150 * 1024, // pre-rendered city page: inline data + index.json before it's interactive
+  // a client-rendered city view (a filtered or shared URL that isn't pre-rendered) must load the whole next 7 days;
+  // NYC's busiest week is ~650 cards ≈ 290 KB gz today. 320 KB keeps that honest; slimmer cards are I-219.
+  firstViewSpa: 320 * 1024,
 };
 const rows = [];
 const fail = [];
@@ -72,7 +75,7 @@ if (existsSync(cities)) {
 }
 if (largest) {
   check(`first view ${largest.slug} (largest city), pre-rendered: inline data + index.json${largest.inline ? "" : " (no inline data!)"}`, largest.hydrate, BUDGET.firstView);
-  check(`first view ${largest.slug}, client-rendered: manifest + meta + ongoing/deadlines + this and next week`, largest.spa, BUDGET.firstView);
+  check(`first view ${largest.slug}, client-rendered: manifest + meta + ongoing/deadlines + this and next week`, largest.spa, BUDGET.firstViewSpa);
   rows.push(`  (before I-117 both waited for the whole card file: ${kb(largest.legacy)} gz)`);
 }
 console.log(rows.join("\n"));

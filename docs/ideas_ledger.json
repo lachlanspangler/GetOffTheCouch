@@ -3228,6 +3228,20 @@
    "created": "2026-10-27",
    "updated": "2026-10-27",
    "notes": []
+  },
+  {
+   "id": "I-219",
+   "title": "Slimmer card payloads (move estimate methods, social reasons, weather metadata to details)",
+   "area": "infra",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "NYC's next-7-days cards are ~290 KB gz; attendance method/inputs, social reasons and weather metadata could move to the lazy details file",
+   "source": "agent",
+   "created": "2026-10-27",
+   "updated": "2026-10-27",
+   "notes": []
   }
  ]
 }

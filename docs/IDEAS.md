@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 74 · **doing** 1 · **done** 99 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 75 · **doing** 1 · **done** 99 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -61,6 +61,7 @@ unless docs/HEALTH.md has something red.
 | I-190 | Curated league registries for league-empty metros | data-quality | 3 | 2 | 1.2 | open | Leagues are empty in Tampa, Hartford and most of batch D |
 | I-205 | Generic jsonfeed adapter (config-mapped JSON) | sources | 3 | 2 | 1.2 | open | Unlocks custom feeds like Wayne State's (~200 events) |
 | I-213 | Chunked/backed-off BiblioCommons fetch for big systems | sources | 3 | 2 | 1.2 | open | Allegheny County Library 504 even for one day |
+| I-219 | Slimmer card payloads (move estimate methods, social reasons, weather metadata to details) | infra | 3 | 2 | 1.2 | open | NYC's next-7-days cards are ~290 KB gz; attendance method/inputs, social reasons and weather metadata could move to the lazy details file |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |

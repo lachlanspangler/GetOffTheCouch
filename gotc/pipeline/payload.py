@@ -1,8 +1,8 @@
 """Per-city payload budgets (SCALING.md §4.6 item 5). Checked by `gotc validate` and the contract tests.
 
 The budgets are for what a visitor downloads on first paint:
-  * the next-14-days slice of a city's card feed (the future ``cards/<slug>/now.json``): warn above 1.5 MB raw
-    or 250 KB gzip — the signal to ship the week-sharded card files (idea in the ledger)
+  * the next-14-days slice of a city's card feed: warn above 1.5 MB raw or 250 KB gzip, but only for a city
+    without week shards (I-117, ADR-0009); sharded first views are budgeted in web/scripts/check-budgets.mjs
   * the whole card feed: warn above 5 MB raw, **fail above 8 MB raw** (the doc's "do item 5 before NYC passes
     ~8 MB" trigger); the details file: fail above 4 MB raw
 Nothing is ever dropped to meet a budget here; failing the budget fails the check so a human decides.
@@ -64,7 +64,8 @@ def check_city(cards: Path, now: datetime) -> PayloadReport:
         warnings=[],
         failures=[],
     )
-    if rep.now_raw > NOW_RAW_WARN or rep.now_gz > NOW_GZ_WARN:
+    sharded = (cards.parent / cards.stem / "manifest.json").exists()  # I-117: browsers load week shards instead
+    if not sharded and (rep.now_raw > NOW_RAW_WARN or rep.now_gz > NOW_GZ_WARN):
         rep.warnings.append(
             f"{rep.city}: next-14-days cards {rep.now_raw / MB:.2f} MB raw / {rep.now_gz / 1000:.0f} KB gz "
             f"(budget {NOW_RAW_WARN / MB:.1f} MB / {NOW_GZ_WARN / 1000:.0f} KB): time for week-sharded card files"
