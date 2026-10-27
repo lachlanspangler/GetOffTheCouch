@@ -17,6 +17,9 @@ HEALTH = Path(__file__).resolve().parent.parent / "web" / "public" / "data" / "h
 LABEL = "source-health"
 
 
+MAX_NEW = 10
+
+
 def gh(*args: str) -> str:
     return subprocess.run(["gh", *args], check=True, capture_output=True, text=True).stdout
 
@@ -32,10 +35,15 @@ def main() -> int:
         gh("issue", "list", "--label", LABEL, "--state", "open", "--json", "number,title", "--limit", "200")
     )
     by_title = {i["title"]: i["number"] for i in open_issues}
+    opened = 0
     for u in units:
         key = f"{u['source_id']}@{u['city']}"
         title = f"Source quarantined: {key}"
         if u["state"] == "quarantined" and title not in by_title:
+            if opened >= MAX_NEW:  # a mass outage (our network, a shared platform) shouldn't open 100 issues at once
+                print(f"skipped (cap of {MAX_NEW} new issues per run):", title)
+                continue
+            opened += 1
             body = (
                 f"**{u['name']}** (`{key}`) failed repeatedly and is quarantined. Its last good data is still served, "
                 f"marked stale after {u['sla_hours']}h.\n\nLast error: `{u.get('last_error') or '?'}`\n\n"

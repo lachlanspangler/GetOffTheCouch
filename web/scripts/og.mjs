@@ -168,7 +168,7 @@ async function main() {
   const n = Math.max(1, Math.min(todo.length, Number(process.env.GOTC_OG_WORKERS ?? Math.min(4, availableParallelism()))));
   let failed = 0;
   if (todo.length) {
-    await new Promise((done) => {
+    await new Promise((done, fail) => {
       let next = 0;
       let busy = 0;
       const workers = Array.from({ length: n }, () => new Worker(fileURLToPath(import.meta.url)));
@@ -191,6 +191,11 @@ async function main() {
             console.error(`og: ${m.out}: ${m.error}`);
           }
           feed(w);
+        });
+        // a crashed worker would otherwise surface as a bare unhandled error (or a pool that never drains)
+        w.on("error", (err) => {
+          workers.forEach((x) => x.terminate());
+          fail(new Error(`og: share-card worker crashed: ${err?.stack ?? err}`));
         });
         feed(w);
       }
