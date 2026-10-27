@@ -10,7 +10,7 @@ const SMALL = new Set(["a", "an", "and", "at", "but", "by", "for", "in", "nor", 
 /** "LAURA VEIRS" → "Laura Veirs"; "VOLUNTEERS NEEDED!!!" → "Volunteers Needed!"; mixed case is left alone. */
 export function displayTitle(t: string): string {
   let s = t.trim().replace(/\s+/g, " ").replace(/!{2,}/g, "!").replace(/\?{2,}/g, "?");
-  s = s.replace(/\s+—\s+new liquor license( application)?$/i, "");
+  s = s.replace(/\s+—\s+new [a-z ]*licen[sc]e( application)?$/i, "");
   s = s.replace(/\s+(presented|sponsored) by\s+[^|–—-]+$/i, "").replace(/\s*\((sold out|cancell?ed)\)\s*$/i, "");
   // the date belongs in the date column, not the title: "Open Mic Night – Tuesday October 27 at 8:00PM"
   s = s.replace(

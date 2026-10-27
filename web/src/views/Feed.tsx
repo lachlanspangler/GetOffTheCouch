@@ -34,6 +34,44 @@ export function cityHeadline(hub: string | null | undefined, city: string): stri
   return h.cats ? `${h.label} in ${city}` : `${h.label} in ${city}`;
 }
 
+const PER_DAY = 12;
+
+/** A busy day shows a varied dozen first (no single feed takes every slot), then "Show all". */
+function pickVaried<T extends { event: Event }>(gs: T[], n: number, perSource = 3): T[] {
+  if (gs.length <= n) return gs;
+  const count = new Map<string, number>();
+  const out: T[] = [];
+  for (const g of gs) {
+    const s = g.event.sources[0]?.source_id ?? "";
+    if ((count.get(s) ?? 0) >= perSource) continue;
+    out.push(g);
+    count.set(s, (count.get(s) ?? 0) + 1);
+    if (out.length >= n) break;
+  }
+  for (const g of gs) {
+    if (out.length >= n) break;
+    if (!out.includes(g)) out.push(g);
+  }
+  return gs.filter((g) => out.includes(g)); // keep time order
+}
+
+function DayRows({ gs, label }: { gs: { event: Event; more: number }[]; label: string }) {
+  const [all, setAll] = useState(false);
+  const shown = all ? gs : pickVaried(gs, PER_DAY);
+  return (
+    <>
+      <ul class="rows">
+        {shown.map((g) => <EventRow key={g.event.id} e={g.event} more={g.more} />)}
+      </ul>
+      {shown.length < gs.length && (
+        <button class="link-btn small" style={{ marginTop: "10px" }} onClick={() => setAll(true)}>
+          Show all {gs.length} for {label.toLowerCase().startsWith("to") ? label.toLowerCase() : label}
+        </button>
+      )}
+    </>
+  );
+}
+
 function DayGroups({ events, limit, hide, onMore }: { events: Event[]; limit: number; hide: Set<string>; onMore: () => void }) {
   const { feed, now } = useApp();
   if (!feed) return null;
@@ -58,9 +96,7 @@ function DayGroups({ events, limit, hide, onMore }: { events: Event[]; limit: nu
               {h.date && <span class="date">{h.date}</span>}
               <span class="n">{gs.length}</span>
             </h2>
-            <ul class="rows">
-              {gs.map((g) => <EventRow key={g.event.id} e={g.event} more={g.more} />)}
-            </ul>
+            <DayRows gs={gs} label={h.label} />
           </section>
         );
       })}
@@ -284,8 +320,9 @@ export function Feed({ events }: { events: Event[] }) {
             <section class="day-group" aria-labelledby="openings">
               <h2 class="day-head" id="openings">New bars and restaurants <span class="date">from new liquor and business licenses</span><span class="n">{openings.length}</span></h2>
               <ul class="rows">
-                {openings.slice(0, 24).map((e) => <EventRow key={e.id} e={e} />)}
+                {openings.slice(0, 8).map((e) => <EventRow key={e.id} e={e} />)}
               </ul>
+              {openings.length > 8 && <p class="small" style={{ marginTop: "10px" }}><a href={url(`${feed.city}/food-and-drink/`)}>See all {openings.length} new licenses</a></p>}
             </section>
           )}
         </div>
