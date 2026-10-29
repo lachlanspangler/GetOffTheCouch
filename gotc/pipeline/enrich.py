@@ -24,7 +24,7 @@ from gotc.schema import (
     SocialScore,
     TicketSignal,
 )
-from gotc.taxonomy import Taxonomy
+from gotc.taxonomy import FALLBACK, Taxonomy
 
 # Fill-rate bands by ticket availability: (low, mid, high) share of capacity.
 FILL = {
@@ -47,7 +47,11 @@ def sig2(x: float) -> float:
 
 def estimate_attendance(
     ev: Event, tax: Taxonomy, capacity: int | None, capacity_source: str | None, reported: int | None
-) -> Estimate:
+) -> Estimate | None:
+    """A crowd band, or None when there's nothing to base one on (the UI says "not enough info to estimate").
+
+    An uncategorized listing gets no category prior: we don't know what it is, so we don't know how big it is.
+    """
     cat = tax.categories[ev.category]
     if reported:
         return Estimate(
@@ -77,6 +81,8 @@ def estimate_attendance(
             },
             confidence=conf,
         )
+    if ev.category == FALLBACK:
+        return None
     p10, p50, p90 = cat.attendance
     return Estimate(
         low=sig2(p10),
@@ -256,7 +262,10 @@ def derive_tags(ev: Event, text: str, tax: Taxonomy) -> list[str]:
     return tax.valid_tags(sorted(tags))
 
 
-def social_score(ev: Event, tax: Taxonomy) -> SocialScore:
+def social_score(ev: Event, tax: Taxonomy) -> SocialScore | None:
+    """The "good for meeting people" score starts from the category's prior, so an uncategorized listing gets no score."""
+    if ev.category == FALLBACK:
+        return None
     cat = tax.categories[ev.category]
     score = cat.social
     reasons = [f"{cat.label}: {_social_word(cat.social)} for meeting people"]

@@ -54,8 +54,10 @@ def test_end_to_end_dedup_export_and_health(db, settings):
     trivia = [e for e in f.events if e.title == "Tuesday Trivia"]
     assert len(trivia) >= 2 and len({e.series_id for e in trivia}) == 1
     assert "solo_friendly" in trivia[0].tags and trivia[0].price.is_free
-    # every event has attendance with a band and method; nothing is demo
-    assert all(e.attendance and e.attendance.method for e in f.events)
+    # every categorized event has attendance with a band and method; an uncategorized one gets no category prior
+    # and no meeting-people score (the UI says "not enough info to estimate"); nothing is demo
+    assert all(e.attendance and e.attendance.method for e in f.events if e.category != "other.uncategorized")
+    assert all(e.attendance is None and e.social is None for e in f.events if e.category == "other.uncategorized")
     assert not any(e.is_demo for e in f.events)
     # ranking hints are precomputed from the full description (before the card feed trims it)
     assert all(e.rank and e.rank.fp for e in f.events)

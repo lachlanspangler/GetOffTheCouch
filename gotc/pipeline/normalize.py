@@ -178,11 +178,13 @@ def fix_category(rec: dict[str, Any]) -> None:
         return
     if _MATCHUP.search(title) and cat.startswith(("music.", "other.", "arts.", "community.")):
         rec["category"] = "sports_watch.game"
+        rec["category_basis"], rec["category_note"] = "classified", "title reads like a matchup ('A vs B')"
         return
     if cat.startswith("music."):
         for pat, new in _NOT_A_CONCERT:
             if pat.search(title):
                 rec["category"] = new
+                rec["category_basis"], rec["category_note"] = "classified", f"title rule {pat.pattern[:40]!r}"
                 return
 
 

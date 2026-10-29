@@ -23,7 +23,7 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
-SCHEMA_VERSION = "1.7.0"
+SCHEMA_VERSION = "1.8.0"
 
 
 def _aware(dt: datetime) -> datetime:
@@ -96,6 +96,21 @@ class Method(StrEnum):
     EXTRACTED = "extracted"  # pulled out of free text (e.g. "register by Oct 3")
     ESTIMATED = "estimated"  # a model — always comes with a band
     CURATED = "curated"  # a human/agent verified it by hand (with a source URL)
+    DEFAULTED = "defaulted"  # set by us (config or fallback), not by the source — the UI must say so
+
+
+class CategoryBasis(StrEnum):
+    """Where a listing's category came from (adapter → pipeline only; exported as provenance ``method`` + note).
+
+    Only ``source_label`` may be shown as "reported by the source". A config default is ``source_kind`` and is
+    allowed only on sources that really are one kind of thing (a comedy club, a trivia company, a license dataset).
+    """
+
+    SOURCE_LABEL = "source_label"  # the source's own category label (mapped through category_map / a typed field)
+    CLASSIFIED = "classified"  # our keyword classifier on the title / labels / text, or a title rule
+    SOURCE_KIND = "source_kind"  # the source's config default_category (single-kind sources only)
+    FALLBACK = "fallback"  # nothing matched: other.uncategorized
+    CURATED = "curated"  # a hand-verified registry entry
 
 
 class SignupType(StrEnum):
@@ -287,7 +302,10 @@ class SourceEvent(Strict):
     url: HttpUrl | None = None
     kind: EventKind = EventKind.ONE_OFF
     category: str  # taxonomy id
+    category_basis: CategoryBasis | None = None  # None only on records stored before schema 1.8 (inferred at build)
+    category_note: str | None = None  # why: the label, the matched phrase, or "config default"
     source_categories: list[str] = Field(default_factory=list)  # raw labels, kept for re-mapping
+    defaulted_fields: list[str] = Field(default_factory=list)  # fields filled from our config, not the source
     tags: list[str] = Field(default_factory=list)
     start: AwareDatetime
     end: AwareDatetime | None = None

@@ -29,6 +29,7 @@ from gotc.config import Registry, Unit
 from gotc.health import store as hstore
 from gotc.health.state import Outcome, disabled, transition
 from gotc.http.client import FetchError, PoliteClient
+from gotc.pipeline.category_basis import ensure_basis
 from gotc.pipeline.normalize import audience_skip, location_skip, normalize_record
 from gotc.schema import SourceEvent
 from gotc.settings import Settings
@@ -111,11 +112,14 @@ def parse_payloads(
                 spectator = unit.source.params.get("spectator_venue")
                 if spectator and str(rec.get("category", "")).startswith("sports_league."):
                     rec["category"] = "sports_watch.game"
+                    rec["category_basis"] = "source_kind"
+                    rec["category_note"] = "a sport at a spectator venue is a game to watch (our config)"
                 ev = SourceEvent.model_validate(rec)
                 if not tax.is_valid(ev.category):
                     raise ValueError(f"unknown category {ev.category!r}")
                 ev.category = tax.resolve(ev.category)
                 ev.tags = tax.valid_tags(ev.tags)
+                ensure_basis(ev, unit.source.params, tax, unit.source.adapter)
                 if not campus_allowlist(ev.category, unit.source.params):
                     out.skipped += 1
                     continue

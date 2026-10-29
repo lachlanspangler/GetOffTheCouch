@@ -20,6 +20,7 @@ import yaml
 
 from gotc.adapters.base import stable_id
 from gotc.config import CityConfig, Registry
+from gotc.pipeline.category_basis import category_method
 from gotc.pipeline.deadlines import extract_deadlines
 from gotc.pipeline.enrich import derive_tags, estimate_attendance, social_score, ticket_signal
 from gotc.pipeline.geocode import Geocoder
@@ -34,6 +35,7 @@ from gotc.pipeline.resolve import (
 from gotc.pipeline.textnorm import norm_venue
 from gotc.schema import (
     Availability,
+    CategoryBasis,
     Event,
     EventKind,
     FieldProvenance,
@@ -106,6 +108,36 @@ def load_live_records(db: Database, city: str, now: datetime, reg: Registry | No
     return out
 
 
+def reconcile_categories(records: list[SourceEvent], reg: Registry, tax: Taxonomy) -> None:
+    """Give every record an honest category basis, and drop config defaults the config no longer has.
+
+    Records stored before schema 1.8 carry no basis; it is inferred from the record and its source's config. A
+    record whose category came from a ``default_category`` that has since been removed (mixed calendars may not
+    guess, ADR-0010) is re-classified from its own text, or left uncategorized, so a rebuild fixes old data
+    without refetching.
+    """
+    from gotc.pipeline.category_basis import ensure_basis
+    from gotc.schema import CategoryBasis
+
+    sources = reg.all_sources()
+    for rec in records:
+        src = sources.get(rec.source_id)
+        params = src.params if src else {}
+        ensure_basis(rec, params, tax, src.adapter if src else None)
+        if rec.category_basis != CategoryBasis.SOURCE_KIND:
+            continue
+        default = params.get("default_category")
+        if default and tax.is_valid(default) and tax.resolve(default) == rec.category:
+            continue
+        hit = tax.classify(rec.title, " ".join(rec.source_categories), rec.description, default=FALLBACK)
+        rec.category = hit.category
+        rec.category_basis = CategoryBasis.CLASSIFIED if hit.matched else CategoryBasis.FALLBACK
+        rec.category_note = f"keyword {hit.matched!r}" if hit.matched else "no category in the listing"
+        rec.defaulted_fields = sorted(
+            {*(f for f in rec.defaulted_fields if f != "category"), *(["category"] if not hit.matched else [])}
+        )
+
+
 def _first_seen_opening_units(reg: Registry) -> set[str]:
     return {u.key for u in reg.units() if u.source.params.get("openings_by_first_seen")}
 
@@ -147,6 +179,7 @@ def build_city(
     tax = tax or taxonomy()
     stats = BuildStats(city.slug)
     records = load_live_records(db, city.slug, now, reg)
+    reconcile_categories(records, reg, tax)
     stats.records = len(records)
 
     if geocoder:
@@ -448,7 +481,10 @@ def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy,
             source=src.source_id, fetched_at=src.fetched_at, method=method, confidence=conf, note=note
         )
 
-    cat_src = next((m for m in ms if m.category != FALLBACK), primary)
+    # the most trustworthy category wins: a source's own label, then a hand check, then our classifier, then a
+    # single-kind source's config default; uncategorized only when nothing else exists
+    cat_rank = {"source_label": 0, "curated": 1, "classified": 2, "source_kind": 3, "fallback": 4}
+    cat_src = min(ms, key=lambda m: (cat_rank.get(m.category_basis or "classified", 2), ms.index(m)))
     loc_src = (
         next((m for m in ms if m.location.lat is not None and m.location.venue_name), None)
         or next((m for m in ms if m.location.lat is not None), None)
@@ -514,13 +550,31 @@ def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy,
     provenance = {
         "title": prov(primary),
         "start": prov(primary),
-        "category": prov(cat_src, Method.REPORTED if cat_src.source_categories else Method.DERIVED, 0.8),
+        "category": prov(
+            cat_src,
+            category_method(cat_src.category_basis),
+            1.0 if cat_src.category_basis == CategoryBasis.SOURCE_LABEL else 0.8,
+            note=cat_src.category_note,
+        ),
         "location": prov(
             loc_src,
             loc_src.location.geocode_method or Method.REPORTED,
             loc_src.location.geocode_confidence or 1.0,
         ),
     }
+    org_src = next((m for m in ms if m.organizer and "organizer" not in m.defaulted_fields), None) or next(
+        (m for m in ms if m.organizer), None
+    )
+    if org_src is not None:
+        provenance["organizer"] = (
+            prov(org_src, Method.DEFAULTED, 0.9, note="the organizer configured for this source, not the listing")
+            if "organizer" in org_src.defaulted_fields
+            else prov(org_src)
+        )
+    if "venue" in loc_src.defaulted_fields:
+        provenance["location"] = prov(
+            loc_src, Method.DEFAULTED, 0.8, note="the venue configured for this source, not the listing"
+        )
     if mins:
         price_src = next(
             (m for m in ms if m.price.min is not None or any(o.price_min is not None for o in m.offers)),
@@ -546,7 +600,7 @@ def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy,
         timezone=city.timezone,
         recurrence=next((m.recurrence for m in ms if m.recurrence), None),
         location=location,
-        organizer=next((m.organizer for m in ms if m.organizer), None),
+        organizer=org_src.organizer if org_src else None,
         price=price,
         offers=sorted(
             offers.values(),

@@ -17,19 +17,14 @@ from typing import Any
 from urllib.parse import urljoin
 
 from gotc.adapters.base import Adapter, FetchContext, FetchResult, ParseContext, Payload, register
-from gotc.adapters.common import clean_text, join_address, money, parse_dt, prices_in_text, says_free
+from gotc.adapters.common import categorize, clean_text, join_address, money, parse_dt, prices_in_text, says_free
 
 
-def _classify(ctx: ParseContext, title: str, cats: list[str], desc: str | None) -> str:
-    cmap: dict[str, str] = ctx.params.get("category_map", {})
-    for c in cats:
-        if c in cmap:
-            return cmap[c]
-    if not ctx.params.get("classify_description", True):
-        desc = None  # venue blurbs ("the band will play…") mislead the keyword classifier; title + labels only
-    return ctx.tax.classify(
-        title, " ".join(cats), desc, default=ctx.params.get("default_category", "other.uncategorized")
-    ).category
+def _classify(ctx: ParseContext, title: str, cats: list[str], desc: str | None) -> dict[str, Any]:
+    """Category fields (category + basis + note) for ``ctx.base(**...)``."""
+    # venue blurbs ("the band will play…") mislead the keyword classifier: optionally title + labels only
+    use_desc = bool(ctx.params.get("classify_description", True))
+    return categorize(ctx.tax, ctx.params, title, cats, desc, use_desc=use_desc)
 
 
 def _price(cost_text: Any, values: list[Any], desc: str | None, title: str) -> tuple[dict[str, Any], str]:
@@ -111,7 +106,7 @@ class TribeEventsAdapter(Adapter):
                 title=title,
                 description=desc,
                 url=ev.get("url") or ev.get("website") or None,
-                category=_classify(ctx, title, cats + tags, desc),
+                **_classify(ctx, title, cats + tags, desc),
                 source_categories=[c for c in cats + tags if c],
                 tags=list(ctx.params.get("tags", [])),
                 start=start,
@@ -202,7 +197,7 @@ class LocalistAdapter(Adapter):
                     description=desc,
                     url=ev.get("localist_url") or ev.get("url") or None,
                     kind="recurring" if len(insts) > 1 else "one_off",
-                    category=_classify(ctx, title, cats, desc),
+                    **_classify(ctx, title, cats, desc),
                     source_categories=cats,
                     tags=list(ctx.params.get("tags", [])),
                     start=start,
@@ -277,7 +272,7 @@ class LiveWhaleAdapter(Adapter):
                 title=title,
                 description=desc,
                 url=ev.get("url") or None,
-                category=_classify(ctx, title, cats, desc),
+                **_classify(ctx, title, cats, desc),
                 source_categories=cats,
                 tags=list(ctx.params.get("tags", [])),
                 start=start,

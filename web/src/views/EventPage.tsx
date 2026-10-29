@@ -31,7 +31,15 @@ const METHOD_WORD: Record<string, string> = {
   extracted: "read from the listing text",
   estimated: "estimated",
   curated: "checked by hand",
+  defaulted: "set by us, not the source",
 };
+
+/** One provenance line: "Category set by us, not the source (no category in the listing; FIU events)". */
+export function provenanceLine(field: string, p: { method?: string | null; note?: string | null; source: string }, name: string): string {
+  const word = METHOD_WORD[p.method ?? "reported"] ?? p.method;
+  const why = p.note && p.method && p.method !== "reported" && p.method !== "estimated" ? `${p.note}; ` : "";
+  return `${field[0].toUpperCase()}${field.slice(1)} ${word} (${why}${name})`;
+}
 
 export async function share(title: string, link: string): Promise<string> {
   try {
@@ -209,12 +217,29 @@ export function EventPage({ e }: { e: Event }) {
                     </dd>
                   </div>
                 )}
-                {e.social && (
+                {!e.attendance && (
+                  <div>
+                    <dt>Expected crowd</dt>
+                    <dd>
+                      Not enough info to estimate
+                      <span class="how">The listing doesn't say what kind of event it is or how many people it holds, so we don't guess.</span>
+                    </dd>
+                  </div>
+                )}
+                {e.social ? (
                   <div>
                     <dt>Meeting people</dt>
                     <dd>
                       {e.social.score >= 0.75 ? "Very good" : e.social.score >= 0.5 ? "Good" : "So-so"} for meeting people
                       {!!e.social.reasons?.length && <span class="how">{e.social.reasons.map((r) => r.charAt(0).toUpperCase() + r.slice(1)).join(". ")}.</span>}
+                    </dd>
+                  </div>
+                ) : (
+                  <div>
+                    <dt>Meeting people</dt>
+                    <dd>
+                      Not enough info to estimate
+                      <span class="how">We score this from the kind of event, and the listing doesn't say what kind it is.</span>
                     </dd>
                   </div>
                 )}
@@ -341,7 +366,7 @@ export function EventPage({ e }: { e: Event }) {
               </ul>
               {provenance && Object.keys(provenance).length > 0 && (
                 <p class="small muted" style={{ marginTop: "12px" }}>
-                  {Object.entries(provenance).map(([field, p]) => `${field[0].toUpperCase()}${field.slice(1)} ${METHOD_WORD[p.method ?? "reported"] ?? p.method} (${sourceName(p.source, sourceNames)})`).join(". ")}.
+                  {Object.entries(provenance).map(([field, p]) => provenanceLine(field, p, sourceName(p.source, sourceNames))).join(". ")}.
                 </p>
               )}
               <p class="small muted" style={{ marginTop: "8px" }}>

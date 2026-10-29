@@ -6,7 +6,7 @@ export type FetchedAt = string;
 /**
  * How a value was obtained. Shown in the UI next to every non-reported value.
  */
-export type Method = "reported" | "derived" | "extracted" | "estimated" | "curated";
+export type Method = "reported" | "derived" | "extracted" | "estimated" | "curated" | "defaulted";
 export type Note = string | null;
 export type Source = string;
 export type Summary = string | null;

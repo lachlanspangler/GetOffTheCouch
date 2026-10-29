@@ -59,7 +59,7 @@ export type GeocodeConfidence = number | null;
  * This interface was referenced by `CityFeed`'s JSON-Schema
  * via the `definition` "Method".
  */
-export type Method1 = "reported" | "derived" | "extracted" | "estimated" | "curated";
+export type Method1 = "reported" | "derived" | "extracted" | "estimated" | "curated" | "defaulted";
 export type Lat = number | null;
 export type Lon = number | null;
 export type Neighborhood = string | null;
@@ -112,7 +112,7 @@ export type FetchedAt1 = string;
 /**
  * How a value was obtained. Shown in the UI next to every non-reported value.
  */
-export type Method2 = "reported" | "derived" | "extracted" | "estimated" | "curated";
+export type Method2 = "reported" | "derived" | "extracted" | "estimated" | "curated" | "defaulted";
 export type Note3 = string | null;
 export type Source = string;
 /**
@@ -159,7 +159,7 @@ export type Evidence = string | null;
 /**
  * How a value was obtained. Shown in the UI next to every non-reported value.
  */
-export type Method3 = "reported" | "derived" | "extracted" | "estimated" | "curated";
+export type Method3 = "reported" | "derived" | "extracted" | "estimated" | "curated" | "defaulted";
 export type OpensAt = string | null;
 /**
  * This interface was referenced by `CityFeed`'s JSON-Schema

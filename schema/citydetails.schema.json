@@ -77,7 +77,8 @@
         "derived",
         "extracted",
         "estimated",
-        "curated"
+        "curated",
+        "defaulted"
       ],
       "title": "Method",
       "type": "string"
@@ -103,7 +104,7 @@
       "type": "string"
     },
     "schema_version": {
-      "default": "1.7.0",
+      "default": "1.8.0",
       "title": "Schema Version",
       "type": "string"
     }

@@ -212,3 +212,30 @@ def dig(obj: Any, path: str, default: Any = None) -> Any:
         else:
             return default
     return default if cur is None else cur
+
+
+def categorize(
+    tax: Any, params: dict[str, Any], title: str, labels: list[str], desc: str | None, *, use_desc: bool = True
+) -> dict[str, Any]:
+    """Category + honest basis for a listing: the source's own label first, then our classifier, then the
+    source's config default (single-kind sources only), else uncategorized. Spread into ``ctx.base(...)``."""
+    cmap: dict[str, str] = params.get("category_map") or {}
+    for label in labels:
+        if label in cmap:
+            return {
+                "category": cmap[label],
+                "category_basis": "source_label",
+                "category_note": f"source label {label!r}",
+            }
+    from gotc.taxonomy import FALLBACK
+
+    hit = tax.classify(title, " ".join(labels), desc if use_desc else None, default=FALLBACK)
+    if hit.matched:
+        return {"category": hit.category, "category_basis": "classified", "category_note": f"keyword {hit.matched!r}"}
+    if (default := params.get("default_category")) and default != FALLBACK:
+        return {
+            "category": default,
+            "category_basis": "source_kind",
+            "category_note": "this source's default category (our config)",
+        }
+    return {"category": FALLBACK, "category_basis": "fallback", "category_note": "no category in the listing"}
