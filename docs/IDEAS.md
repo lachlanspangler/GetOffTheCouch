@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 79 · **doing** 2 · **done** 100 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 78 · **doing** 2 · **done** 101 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -48,7 +48,6 @@ unless docs/HEALTH.md has something red.
 | I-090 | Find a cons & faires source for Nashville | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Nashville right now |
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
 | I-169 | Per-city state files on the pipeline-state branch | infra | 5 | 3 | 1.33 | open | Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2). |
-| I-222 | No catch-all default_category on mixed calendars (+ invariant test) | data-quality | 5 | 3 | 1.33 | open | universities/libraries/city calendars guessed networking/books for anything uncategorized |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
 | I-082 | ics: lift Luma 'Get up-to-date information at' link as the event URL/RSVP offer | sources | 3 | 2 | 1.2 | open | Luma ICS feeds omit URL; descriptions say 'Get up-to-date information at: https://luma.com/...'; lifting it gives every Luma event an RSVP offer |
@@ -123,7 +122,8 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
-| I-220 | Honest category provenance (basis: source label / classified / source kind / fallback) | data-quality | 5 | 3 | 1.33 | done | FIU's withdrawal deadline said 'category reported by the source' when it was our default_category |
+| I-222 | No catch-all default_category on mixed calendars (+ invariant test) | data-quality | 5 | 3 | 1.33 | done | universities/libraries/city calendars guessed networking/books for anything uncategorized — 2026-11-02 done: default audit |
+| I-220 | Honest category provenance (basis: source label / classified / source kind / fallback) | data-quality | 5 | 3 | 1.33 | done | FIU's withdrawal deadline said 'category reported by the source' when it was our default_category — 2026-11-02 done: 6f845a5 |
 | I-218 | New since your last visit section on city pages | ux | 4 | 1 | 3.2 | done | Gives returning residents a reason to come back; on-device only |
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | done | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. — 2026-10-27 done: session 4: /cities/ coverage table + live/beta chips |

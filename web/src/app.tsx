@@ -41,7 +41,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
   const firstSig = useRef(initial?.route ? routeSig(initial.route) : "");
   const [error, setError] = useState<string | null>(null);
   const [clock, setNow] = useState(() => initial?.now ?? new Date());
-  const [lastCity, setLastCity] = usePersistent<string | null>("lastCity", null);
+  const [, setLastCity] = usePersistent<string | null>("lastCity", null);
   const [saved, setSaved] = usePersistent<string[]>(`saved:${route.city ?? "_"}`, []);
   const [theme, setTheme] = usePersistent<Theme>("theme", "auto");
   const [retry, setRetry] = useState(0);
@@ -53,11 +53,7 @@ export function App({ initial }: { initial?: Initial } = {}) {
     const t = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(t);
   }, []);
-  useEffect(() => {
-    if (!route.city && route.view === "feed" && lastCity && index?.cities.some((c) => c.slug === lastCity) && location.pathname === url() && !location.search) {
-      go({ city: lastCity, view: "feed" }, true);
-    }
-  }, [index]);
+  // The homepage stays the homepage (I-225): no automatic jump to the last city. Home offers "Continue with …".
   useEffect(() => {
     applyTheme(theme);
     if (theme !== "auto" || typeof matchMedia !== "function") return;

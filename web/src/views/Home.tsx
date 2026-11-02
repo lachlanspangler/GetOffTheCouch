@@ -5,6 +5,7 @@ import { useApp } from "../lib/ctx";
 import { count } from "../lib/format";
 import { build } from "../lib/router";
 import { url } from "../lib/site";
+import { usePersistent } from "../lib/store";
 import type { CitySummary } from "../lib/types";
 
 function citySub(c: CitySummary): string {
@@ -16,6 +17,8 @@ export function Home() {
   const { index } = useApp();
   const cities = [...index.cities].sort((a, b) => b.events - a.events || a.name.localeCompare(b.name));
   const total = index.cities.reduce((n, c) => n + c.events, 0);
+  const [lastCity] = usePersistent<string | null>("lastCity", null);
+  const last = lastCity ? index.cities.find((c) => c.slug === lastCity) : undefined;
   return (
     <div class="container">
       <section class="hero">
@@ -26,6 +29,13 @@ export function Home() {
           from official calendars and venues, check it every few hours, and tell you where every listing came from.
         </p>
         <CitySearch />
+        {last && (
+          <p class="small" style={{ marginTop: "12px" }}>
+            <a href={build({ city: last.slug, view: "feed" })} data-testid="continue-city">
+              Continue with {last.name} <Icon name="right" size={14} />
+            </a>
+          </p>
+        )}
       </section>
       <section class="section" aria-labelledby="cities" style={{ marginTop: "0" }}>
         <div class="section-head">

@@ -3254,8 +3254,10 @@
    "why": "FIU's withdrawal deadline said 'category reported by the source' when it was our default_category",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
-   "notes": []
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: 6f845a5"
+   ]
   },
   {
    "id": "I-221",
@@ -3278,12 +3280,14 @@
    "value": 5,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "universities/libraries/city calendars guessed networking/books for anything uncategorized",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
-   "notes": []
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: default audit"
+   ]
   },
   {
    "id": "I-223",
