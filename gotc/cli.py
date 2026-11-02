@@ -169,6 +169,29 @@ def cmd_validate(a: argparse.Namespace, s: Settings) -> int:
         for cat in [*(src.params.get("category_map") or {}).values(), src.params.get("default_category")]:
             if cat and not tax.is_valid(cat):
                 errors.append(f"{sid}: unknown category {cat!r}")
+    from gotc.pipeline.category_basis import default_violations
+    from gotc.pipeline.listing_gate import ListingGate
+
+    errors += [
+        f"{v} (ADR-0010: remove it, or add single_kind_reason)"
+        for v in default_violations(list(reg.all_sources().values()))
+    ]
+    try:
+        gate = ListingGate.from_yaml()
+        from gotc.schema import SourceEvent
+
+        probe = SourceEvent.model_validate(
+            {"source_id": "_", "record_id": "_", "city": "_", "title": "probe", "category": "other.uncategorized",
+             "start": utcnow(), "timezone": "UTC", "fetched_at": utcnow()}
+        )  # fmt: skip
+        for sid, src in reg.all_sources().items():
+            if src.params.get("listing_gate"):
+                try:
+                    gate.evaluate(probe.model_copy(update={"source_id": sid}), src.params)
+                except Exception as exc:
+                    errors.append(f"{sid}: listing_gate override: {exc}")
+    except Exception as exc:
+        errors.append(f"config/listing_gate.yaml: {exc}")
     for path in sorted((CONFIG_DIR / "registry").glob("*.yaml")):
         for raw in _yaml.safe_load(path.read_text()) or []:
             try:

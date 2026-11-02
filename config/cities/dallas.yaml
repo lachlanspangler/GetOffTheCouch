@@ -46,7 +46,6 @@ sources:
       per_page: 50
       max_pages: 6
       organizer: Downtown Dallas, Inc.
-      default_category: community.festival
       category_map:   # categories seen in the live feed (checked in order)
         Comedy: nightlife.comedy
         Happy Hour: nightlife.rooftop
@@ -74,7 +73,6 @@ sources:
       horizon_days: 60
       max_occurrences: 4
       organizer: Dallas Park & Recreation
-      default_category: outdoors.park
       exclude_location: '\b(Board|Commission|Committee) Meeting\b'   # governance meetings (matches the title too)
 
   - id: dallas_arboretum
@@ -91,7 +89,6 @@ sources:
       horizon_days: 120
       venue: {name: Dallas Arboretum and Botanical Garden, address: "8525 Garland Rd, Dallas, TX 75218"}
       organizer: Dallas Arboretum
-      default_category: outdoors.park
 
   # ── universities (public items only) ──
   - id: utdallas_events
@@ -108,7 +105,6 @@ sources:
       horizon_days: 30
       max_pages: 4
       organizer: The University of Texas at Dallas
-      default_category: learning.networking
 
   - id: uta_events
     adapter: localist
@@ -124,7 +120,6 @@ sources:
       horizon_days: 30
       max_pages: 4
       organizer: The University of Texas at Arlington
-      default_category: learning.networking
       category_map:   # UTA "event types" (the "Parents & Family" audience label otherwise wins → family.kids)
         Athletics: sports_watch.game
         Arts & Culture: arts.museum   # galleries + recitals; better than the audience label's family.kids

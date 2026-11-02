@@ -47,7 +47,6 @@ sources:
       organizer: Richmond Public Library
       venue_part: last   # LOCATION is "Room - Main Library": the venue is the branch (config/venues/richmond.yaml)
       venue_sep: " - "
-      default_category: arts.books
       category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
   - id: henrico_library_events
     adapter: ics
@@ -65,7 +64,6 @@ sources:
       max_occurrences: 4
       organizer: Henrico County Public Library
       venue_part: last   # LOCATION is "TU Meeting Room, Tuckahoe Area Library": the venue is the branch
-      default_category: arts.books
       category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books, Storytime: family.kids }   # LibCal categories
 
   # ── gardens / parks (The Events Calendar REST) ──
@@ -104,7 +102,6 @@ sources:
       max_pages: 3
       organizer: Lewis Ginter Botanical Garden
       venue: {name: Lewis Ginter Botanical Garden, address: "1800 Lakeside Ave, Henrico, VA 23228"}
-      default_category: outdoors.park
 
   # ── venues ──
   - id: altria_theater

@@ -46,7 +46,6 @@ sources:
       # not events you'd go to: online classes titled "Online: …" (the location is a branch), on-site social-worker
       # office hours, studio reservations (location_skip matches venue + address + title)
       exclude_location: '\bOnline: |\bSocial Worker @ the Library\b|\b(Studio|Melrose) Reservation\b'
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Storytime: family.kids
         "Authors - Books - Writing": arts.books
@@ -86,7 +85,6 @@ sources:
       horizon_days: 45
       max_occurrences: 2
       organizer: University of Central Florida
-      default_category: learning.networking
       audience_filter: institution
       fallback_point: { lat: 28.6024, lon: -81.2001, label: "UCF main campus" }   # unmappable rooms → campus, labeled approximate
 
@@ -104,7 +102,6 @@ sources:
       max_pages: 4
       organizer: Orlando Museum of Art
       venue: {name: Orlando Museum of Art, address: "2416 N Mills Ave, Orlando, FL 32803"}
-      default_category: arts.museum
   - id: ivanhoe_village_events
     adapter: tribe
     name: Ivanhoe Village Main Street events
@@ -202,6 +199,7 @@ sources:
         License signal, not a confirmed opening date. This business ({license_type}) registered a City of Orlando
         business tax receipt with an opening date of {date}.
       default_category: food_drink.restaurant_opening
+      single_kind_reason: "a business-license dataset (openings)"
       default_url: https://data.cityoforlando.net/d/7388-4re5
       extras: { signal: business_tax_receipt }
 

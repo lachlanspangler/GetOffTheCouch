@@ -75,7 +75,6 @@ sources:
       max_pages: 3
       organizer: Bartram's Garden
       venue: {name: Bartram's Garden, address: "5400 Lindbergh Blvd, Philadelphia, PA 19143"}
-      default_category: outdoors.park
       category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
 
   # ── venues ──

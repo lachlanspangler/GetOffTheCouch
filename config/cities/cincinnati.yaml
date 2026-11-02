@@ -53,7 +53,6 @@ sources:
       max_pages: 30
       venue_label: Cincinnati & Hamilton County Public Library
       cities: [Cincinnati, Norwood, St. Bernard, Elmwood Place, Cheviot, Reading, Deer Park, North College Hill]
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Club: arts.books
@@ -99,7 +98,6 @@ sources:
       path: "/live/json/events/max/{max}/response_fields/location,description,event_types,tags,group_title"
       max: 200
       organizer: University of Cincinnati
-      default_category: learning.networking
   - id: xavier_athletics
     adapter: ics
     name: Xavier Musketeers athletics (home games)

@@ -91,7 +91,7 @@ class CommunicoAdapter(Adapter):
             category = (
                 next((cmap[k] for k in cmap if k in cats), None)
                 or ctx.tax.classify(
-                    title, " ".join(cats), desc, default=p.get("default_category", "arts.books")
+                    title, " ".join(cats), desc, default=p.get("default_category", "other.uncategorized")
                 ).category
             )
             reg = str(ev.get("allow_reg")) == "1" or str(ev.get("third_party_reg")) == "1"

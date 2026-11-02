@@ -59,7 +59,6 @@ sources:
         Book Clubs: arts.books
         "Art & Exhibits": arts.museum
         "Arts & Crafts": arts.workshop
-      default_category: arts.books
 
   - id: bham_homewood_library_events
     adapter: communico
@@ -72,7 +71,6 @@ sources:
       base_url: https://homewood.libnet.info
       horizon_days: 7
       venue_label: Homewood Public Library
-      default_category: arts.books
       category_map:
         Computer Classes: learning.tech
         Digital Literacy: learning.tech
@@ -89,7 +87,6 @@ sources:
       base_url: https://events.hooverlibrary.org
       horizon_days: 7
       venue_label: Hoover Public Library
-      default_category: arts.books
       category_map:   # tags here are verbs ("Read, Play, Listen"), so ages decide kids' events
         Preschool: family.kids
         Kids: family.kids
@@ -112,7 +109,6 @@ sources:
       horizon_days: 30
       max_pages: 8
       organizer: University of Alabama at Birmingham
-      default_category: learning.networking
 
   # ── concerts / venues ──
   - id: bham_bjcc_concerts

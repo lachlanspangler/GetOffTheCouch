@@ -49,7 +49,6 @@ sources:
       max_pages: 20
       venue_label: Washington County Libraries
       cities: [Beaverton, Portland, Tigard, Tualatin, Aloha, Hillsboro]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Storytime: family.kids
         Early Literacy: family.kids
@@ -86,7 +85,6 @@ sources:
       horizon_days: 7
       max_pages: 20
       venue_label: Multnomah County Library
-      default_category: arts.books
 
   - id: olcc_new_applications_portland
     adapter: socrata
@@ -137,7 +135,6 @@ sources:
       horizon_days: 45
       max_pages: 3
       organizer: University of Portland
-      default_category: learning.networking
       exclude_location: '\b(vacation|no classes|classes after|special schedule|last day to|deadline)\b'
       category_map:
         Pilot Athletics: sports_watch.game
@@ -280,6 +277,7 @@ sources:
       max_pages: 3
       organizer: Portland Farmers Market
       default_category: community.market
+      single_kind_reason: "a farmers market's own calendar: every listing is a market day"
       classify_description: false
       category_map:
         PSU Farmers Market: community.market
@@ -304,7 +302,6 @@ sources:
       venue: {name: Portland Art Museum}
       organizer: Portland Art Museum
       exclude_location: '\bmembers?( only| exclusive)?\b.*\b(event|preview|reception)\b|\bMember (Event|Preview)'
-      default_category: arts.museum
       category_map:
         "Screenings & experiences": arts.film
         "Screenings &amp; experiences": arts.film
@@ -348,7 +345,6 @@ sources:
       venue: {name: Lan Su Chinese Garden}
       organizer: Lan Su Chinese Garden
       exclude_location: '\bMember Exclusive\b|\bmembers only\b'
-      default_category: arts.museum
       category_map:
         Tea: food_drink.tasting
         Chrysanthemum Festival: community.festival

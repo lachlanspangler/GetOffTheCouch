@@ -86,6 +86,7 @@ sources:
       venue: {name: Overton Park Shell, address: "1928 Poplar Ave, Memphis, TN 38104"}
       organizer: Overton Park Shell
       default_category: music.concert
+      single_kind_reason: "an outdoor music venue's calendar"
   - id: memphis_symphony
     adapter: jsonld
     name: Memphis Symphony Orchestra (concert calendar)
@@ -102,6 +103,7 @@ sources:
       venue: {name: Memphis Symphony Orchestra}
       organizer: Memphis Symphony Orchestra
       default_category: music.classical
+      single_kind_reason: "an orchestra's concert calendar"
   - id: memphis_gpac
     adapter: jsonld
     name: Germantown Performing Arts Centre (venue calendar)
@@ -135,7 +137,6 @@ sources:
       max_follow: 30
       venue: {name: Tom Lee Park, address: "Riverside Dr, Memphis, TN 38103"}
       organizer: Memphis River Parks Partnership
-      default_category: outdoors.park
 
   # ── college athletics, home games only (SIDEARM calendar.ics; robots Crawl-delay 30, path allowed) ──
   - id: memphis_tigers_athletics
@@ -200,7 +201,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: Wiseacre Brewing
-      default_category: food_drink.tasting
       classify_description: false
   - id: memphis_meddlesome
     adapter: tribe
@@ -218,5 +218,4 @@ sources:
       max_pages: 3
       organizer: Meddlesome Brewing
       venue: {name: Meddlesome Brewing, address: "7750 Trinity Road Ste 114, Cordova, TN 38018"}  # meddlesomebrewing.com footer
-      default_category: food_drink.tasting
       classify_description: false

@@ -50,7 +50,6 @@ sources:
       base_url: https://mpl.libnet.info
       horizon_days: 14
       venue_label: Milwaukee Public Library
-      default_category: arts.books
       skip_all_day: true
       category_map:
         Storytime: family.kids
@@ -95,6 +94,7 @@ sources:
       organizer: Marcus Performing Arts Center
       venue: {name: Marcus Performing Arts Center, address: "929 N Water St, Milwaukee, WI 53202"}
       default_category: arts.theater
+      single_kind_reason: "a performing-arts hall's show calendar"
       classify_description: false
   - id: marquette_athletics
     adapter: ics

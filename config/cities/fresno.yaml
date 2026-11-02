@@ -66,7 +66,6 @@ sources:
       base_url: https://www.visitfresnocounty.org
       board: Visit Fresno County
       horizon_days: 21
-      default_category: community.festival
 
   - id: fcpl_woodward_park
     enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
@@ -82,7 +81,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_rules:   # uncategorized items: "Computer Tutor" is help for patrons, not a volunteer opening
         - { match: "(?i)\\btutor", category: learning.tech }
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
@@ -116,7 +114,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -148,7 +145,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -180,7 +176,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -212,7 +207,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -244,7 +238,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -276,7 +269,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids
@@ -308,7 +300,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Fresno County Public Library
-      default_category: arts.books
       category_map:   # LibCal CATEGORIES seen in the live feeds; first match in the event's own order wins
         Storytimes: family.kids
         Read to a Dog: family.kids

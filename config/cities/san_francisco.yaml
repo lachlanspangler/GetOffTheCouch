@@ -62,6 +62,7 @@ sources:
         - { match: "(?i)festival|fair\\b|sunday streets|parade", category: community.festival }
         - { match: "(?i)block part", category: community.block_party }
       default_category: community.block_party
+      single_kind_reason: "a permits dataset of street events (block parties, street fairs, markets)"
       default_url: https://data.sf.gov/d/8x25-yybr
       tags: [outdoor]
 
@@ -123,7 +124,6 @@ sources:
       horizon_days: 60
       organizer: SF Recreation & Parks
       default_url: https://sfrecpark.org/Calendar.aspx
-      default_category: outdoors.park
       exclude_location: "\\b(Veterans|Thanksgiving|Columbus|Presidents'?|Memorial|Labor|Independence|Christmas|New Year'?s|Martin Luther King Jr\\.?|Juneteenth|Cesar Chavez|Indigenous Peoples'?) Day\\b"
 
   # ── parks, gardens, plazas (The Events Calendar REST API) ──
@@ -139,7 +139,6 @@ sources:
       horizon_days: 60
       max_pages: 4
       organizer: Golden Gate Park conservancy (gggp.org)
-      default_category: outdoors.park
       venue: {name: San Francisco Botanical Garden, address: "1199 9th Ave, San Francisco, CA 94122"}
 
   - id: ybg_festival
@@ -157,6 +156,7 @@ sources:
       max_pages: 2
       organizer: Yerba Buena Gardens Festival
       default_category: music.concert
+      single_kind_reason: "a free outdoor performance festival's calendar"
       venue: {name: Yerba Buena Gardens, address: "750 Howard St, San Francisco, CA 94103"}
       tags: [outdoor]
 
@@ -262,7 +262,6 @@ sources:
       max_pages: 20
       venue_label: Oakland Public Library
       cities: [Oakland]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Storytime: family.kids
         Crafts & DIY: arts.workshop
@@ -302,7 +301,6 @@ sources:
       path: "/live/json/events/max/{max}/response_fields/location,event_types,tags,group_title,cost,summary"
       max: 200
       organizer: UC Berkeley
-      default_category: learning.networking
       category_map:
         Performing Arts: arts.theater
         Films: arts.film
@@ -392,6 +390,7 @@ sources:
       horizon_days: 60
       organizer: The MADE
       default_category: trivia_games.board_games
+      single_kind_reason: "a game club's Luma calendar"
 
   - id: luma_tiat
     adapter: ics
@@ -420,4 +419,3 @@ sources:
       base_url: https://www.visitoakland.com
       board: Visit Oakland
       horizon_days: 14
-      default_category: community.festival

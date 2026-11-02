@@ -43,7 +43,6 @@ sources:
       horizon_days: 10
       venue_label: Sacramento Public Library
       exclude_location: '\b(Galt|Isleton|Walnut Grove|Courtland)\b|\bBallot Drop|\bOutreach Library\b|\bHousing (&|and) Resource|\bJob Assistance\b|\bTax (Help|Prep)\b'
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Book Sale: arts.books
         Reading: arts.books
@@ -93,6 +92,7 @@ sources:
         "Live Entertainment": nightlife.opening
         Theatres: nightlife.opening
       default_category: food_drink.restaurant_opening
+      single_kind_reason: "a business-license dataset (openings)"
       default_url: https://data.cityofsacramento.org/
       extras: { signal: business_registration }
 
@@ -114,7 +114,6 @@ sources:
       fallback_point: { lat: 38.5610, lon: -121.4240, label: "Sacramento State campus" }   # unmappable rooms → campus, labeled approximate
       exclude_location: '\((Global|U\.S\.|Cultural|Hindu|Jewish|Muslim|Christian|Buddhist|Sikh|Islamic|Jain|Baha.i)\)|\b(Heritage|History|Awareness) Month\b|\bzoom\b|\bon24\b|\bvirtual\b'
       category_fields: [Event Type]
-      default_category: learning.networking
       category_map:
         Concert: music.concert
         Performance: arts.theater
@@ -216,6 +215,7 @@ sources:
       venue: {name: Fairytale Town}
       organizer: Fairytale Town
       default_category: family.kids
+      single_kind_reason: "a children's park: every listing is a family/kids outing"
 
   - id: visit_sacramento_events
     adapter: simpleview
@@ -233,7 +233,6 @@ sources:
       base_url: https://www.visitsacramento.com
       board: Visit Sacramento
       horizon_days: 7
-      default_category: community.festival
 
   - id: cal_expo_events
     adapter: tribe

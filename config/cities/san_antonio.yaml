@@ -46,7 +46,6 @@ sources:
       max_pages: 3
       organizer: Hemisfair
       venue: {name: Hemisfair, address: "434 S Alamo St, San Antonio, TX 78205"}
-      default_category: community.festival
   - id: carver_cultural_center
     adapter: tribe
     name: Carver Community Cultural Center events
@@ -62,7 +61,6 @@ sources:
       max_pages: 2
       organizer: Carver Community Cultural Center
       venue: {name: Carver Community Cultural Center, address: "226 N Hackberry St, San Antonio, TX 78202"}
-      default_category: arts.theater
   - id: witte_museum_events
     adapter: tribe
     name: Witte Museum events
@@ -78,7 +76,6 @@ sources:
       max_pages: 2
       organizer: Witte Museum
       venue: {name: Witte Museum, address: "3801 Broadway, San Antonio, TX 78209"}
-      default_category: arts.museum
 
   - id: brackenridge_park_events
     adapter: tribe
@@ -95,7 +92,6 @@ sources:
       max_pages: 2
       organizer: Brackenridge Park Conservancy
       venue: {name: Brackenridge Park, address: "3700 N St Mary's St, San Antonio, TX 78212"}
-      default_category: outdoors.park
       category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
   - id: pearl_events
     adapter: jsonld
@@ -115,7 +111,6 @@ sources:
       horizon_days: 60
       venue: {name: Historic Pearl, address: "303 Pearl Pkwy, San Antonio, TX 78215"}
       organizer: Pearl
-      default_category: community.market
       category_map: { Band: music.concert, Concert: music.concert, Live Music: music.concert, Author Visit: arts.books, Find Your Flow: fitness.yoga }   # title keywords
 
   # ── big venues: carbonhouse /events/rss ──
@@ -149,6 +144,7 @@ sources:
       venue: {name: "Alamodome", address: "100 Montana St, San Antonio, TX 78203"}
       organizer: Alamodome
       default_category: sports_watch.game
+      single_kind_reason: "a stadium's event calendar (games and stadium shows)"
 
   # ── volunteering ──
   - id: uwsa_volunteer

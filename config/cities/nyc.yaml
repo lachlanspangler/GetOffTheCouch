@@ -60,6 +60,7 @@ sources:
         Farmers Market: community.market
         Athletic Race / Tour: fitness.race
       default_category: community.block_party
+      single_kind_reason: "a permits dataset of street events (fairs, block parties, parades)"
       tags: [outdoor]
 
   - id: nyc_parks_events
@@ -79,7 +80,6 @@ sources:
       max_pages: 3
       fields: { record_id: guid, title: title, start: starttime, end: endtime, venue: parknames,
                 address: location, category: categories, description: description, url: link, latlon: coordinates }
-      default_category: outdoors.park
       organizer: NYC Parks
 
   - id: nys_sla_pending_openings
@@ -163,7 +163,6 @@ sources:
       path: "/live/json/events/type/Open to the Public/max/{max}/response_fields/location,description,event_types,tags,group_title"
       max: 200
       organizer: New York University
-      default_category: learning.networking
 
   # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: volo_nyc
@@ -260,6 +259,7 @@ sources:
       venue: {name: The Jazz Gallery}
       organizer: The Jazz Gallery
       default_category: music.concert
+      single_kind_reason: "a jazz venue's calendar"
       category_map: {Mentoring Series: music.concert}
 
   # ── big venues via carbonhouse /events/rss (public syndication feed; robots allows; session 2, I-104) ──

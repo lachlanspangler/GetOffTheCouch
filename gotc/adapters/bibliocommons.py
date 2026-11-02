@@ -129,7 +129,7 @@ class BiblioCommonsAdapter(Adapter):
             category = (
                 next((cmap[k] for k in cmap if k in cats), None)
                 or ctx.tax.classify(
-                    title, " ".join(cats), desc, default=p.get("default_category", "arts.books")
+                    title, " ".join(cats), desc, default=p.get("default_category", "other.uncategorized")
                 ).category
             )
             lat, lon = sane_coords(_float(_text(loc, "latitude")), _float(_text(loc, "longitude")), ctx)

@@ -54,7 +54,6 @@ sources:
       # athletics come from pvd_brown_athletics (SIDEARM, home games only); this feed also lists away games
       exclude_location: '\bBrown University (Men|Women)\S*s\b|\b(Mass|Md|Conn|N\.H|N\.J|N\.Y|Pa|Va|Calif|Fla)\.(\s|$)'
       organizer: Brown University
-      default_category: learning.networking
       category_map:
         "Performances, Concerts and Exhibitions": arts.theater
 
@@ -73,7 +72,6 @@ sources:
       url: https://pawtucketlibrary.libcal.com/ical_subscribe.php?src=p&cid=12088
       horizon_days: 30
       organizer: Pawtucket Public Library
-      default_category: arts.books
       fallback_point: { lat: 41.8787, lon: -71.3826, label: "Pawtucket Public Library, 13 Summer St" }
       exclude_location: '\b(ESOL|RIFLI|ILSR|Citizenship|Meeting|Reclaim RI|Registration|Closed|Closing)\b'
       category_map: { "Story Classes": family.kids, "Kids Events": family.kids }
@@ -90,7 +88,6 @@ sources:
       url: https://eplib.libcal.com/ical_subscribe.php?src=p&cid=20146
       horizon_days: 30
       organizer: East Providence Public Library
-      default_category: arts.books
       fallback_point: { lat: 41.8183, lon: -71.3700, label: "East Providence Public Library (Weaver)" }
       exclude_location: '\b(Libraries Closed|Closed|Holiday)\b'
   - id: pvd_cranston_library_events
@@ -106,7 +103,6 @@ sources:
       url: https://events.cranstonlibrary.org/ical_subscribe.php?src=p&cid=15394
       horizon_days: 30
       organizer: Cranston Public Library
-      default_category: arts.books
       fallback_point: { lat: 41.7740, lon: -71.4470, label: "Cranston Public Library (Central)" }
       exclude_location: '\b(Sunday Hours|Closed|Closing)\b'
 
@@ -155,6 +151,7 @@ sources:
       venue: {name: "Providence Performing Arts Center", address: "220 Weybosset St, Providence, RI 02903"}
       organizer: Providence Performing Arts Center
       default_category: arts.theater
+      single_kind_reason: "a performing-arts hall's show calendar"
       classify_description: false
   - id: pvd_ri_convention_center
     adapter: rss_events
@@ -206,6 +203,7 @@ sources:
       venue: {name: AS220, address: "115 Empire St, Providence, RI 02903"}
       organizer: AS220
       default_category: music.concert
+      single_kind_reason: "a music/performance venue's calendar"
   - id: pvd_the_met
     adapter: jsonld
     name: The Met, Pawtucket (venue calendar)

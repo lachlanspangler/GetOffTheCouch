@@ -39,7 +39,6 @@ sources:
       base_url: https://visitdenver.com
       board: Visit Denver
       horizon_days: 7
-      default_category: community.festival
 
   - id: denver_liquor_openings
     adapter: arcgis
@@ -236,7 +235,6 @@ sources:
       max_pages: 20
       venue_label: Jefferson County Public Library
       cities: [Lakewood, Arvada, Wheat Ridge, Golden, Edgewater, Littleton]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Story Times: family.kids
         Book Club: arts.books
@@ -265,7 +263,6 @@ sources:
       venue_label: Arapahoe Libraries
       cities: [Centennial, Denver, Englewood, Littleton, Sheridan, Greenwood Village, Aurora]
       exclude_location: '\b(Board of Trustees|Trustees Meeting)\b'   # governance meetings, not events
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Storytimes: family.kids
         "Book & Movie Clubs": arts.books

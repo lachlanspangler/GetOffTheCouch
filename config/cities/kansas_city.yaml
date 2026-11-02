@@ -50,7 +50,6 @@ sources:
       per_page: 50
       max_pages: 4
       organizer: KC Parks
-      default_category: outdoors.park
   - id: folly_theater
     adapter: tribe
     name: Folly Theater (downtown performing-arts hall)
@@ -68,6 +67,7 @@ sources:
       organizer: Folly Theater
       venue: {name: Folly Theater, address: "300 W 12th St, Kansas City, MO 64105"}
       default_category: music.concert
+      single_kind_reason: "a performing-arts hall's show calendar"
       classify_description: false
   - id: umkc_events
     adapter: livewhale
@@ -82,7 +82,6 @@ sources:
       base_url: https://calendar.umkc.edu
       max: 200
       organizer: UMKC
-      default_category: learning.networking
   - id: kc_roos_athletics
     adapter: ics
     name: Kansas City Roos athletics (home games)
@@ -114,7 +113,6 @@ sources:
       max_pages: 15
       venue_label: Johnson County Library
       cities: [Overland Park, Merriam, Shawnee, Lenexa, Leawood, Mission, Prairie Village, Roeland Park, Olathe, De Soto]
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Club: arts.books
@@ -144,6 +142,7 @@ sources:
         License signal, not a confirmed opening date. Missouri's Division of Alcohol and Tobacco Control lists a new
         "{license_type}" license for this address, original date {date}.
       default_category: food_drink.restaurant_opening
+      single_kind_reason: "a liquor-license dataset (openings)"
       category_rules:
         - { match: "(?i)\\b(bar|pub|tavern|lounge|brewing|brewery|sports|social|club)\\b", category: nightlife.opening }
       default_url: https://data.mo.gov/d/dymb-xy5c

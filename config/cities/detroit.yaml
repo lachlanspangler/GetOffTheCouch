@@ -100,6 +100,7 @@ sources:
       venue: {name: Ford Field, address: "2000 Brush St, Detroit, MI 48226"}
       organizer: Ford Field
       default_category: sports_watch.game
+      single_kind_reason: "a stadium's event calendar (games and stadium shows)"
       category_map:
         "Tour": music.concert
         "Monster Jam": sports_watch.game

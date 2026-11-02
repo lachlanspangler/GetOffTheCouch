@@ -38,7 +38,6 @@ sources:
       horizon_days: 14
       venue_label: Seattle Public Library
       organizer: Seattle Public Library
-      default_category: arts.books
 
   - id: uw_events
     adapter: trumba
@@ -60,7 +59,6 @@ sources:
         Athletics: sports_watch.game
         Workshops: arts.workshop
         Lectures/Seminars: arts.books
-      default_category: learning.networking
 
   - id: seattle_business_openings
     adapter: socrata
@@ -108,7 +106,6 @@ sources:
       base_url: https://downtownseattle.org
       horizon_days: 60
       organizer: Downtown Seattle Association
-      default_category: community.festival
 
   # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: uwkc_volunteer
@@ -201,7 +198,6 @@ sources:
       venue_label: King County Library System
       cities: [Seattle, Shoreline, Lake Forest Park, Kenmore, Bothell, Kirkland, Redmond, Bellevue, Mercer Island,
                Newcastle, Renton, Tukwila, Burien, Seatac, White Center]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Story Times: family.kids
         Early Learning: family.kids
@@ -234,7 +230,6 @@ sources:
       organizer: City of Seattle
       category_fields: [Event Types, Parks Event Category]
       exclude_location: '\b(Council|Councilmember|Committee|Commission|Board of|Advisory (Board|Committee)|Public (Hearing|Meeting)|Task Force|Budget|WebEx)\b'
-      default_category: community.neighborhood
   - id: mohai_events
     adapter: tribe
     name: MOHAI (Museum of History & Industry) events
@@ -249,7 +244,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: MOHAI
-      default_category: arts.museum
   - id: town_hall_seattle
     adapter: tribe
     name: Town Hall Seattle events
@@ -284,7 +278,6 @@ sources:
       per_page: 50
       max_pages: 8
       organizer: Visit Ballard
-      default_category: community.neighborhood
   - id: stg_presents
     adapter: jsonld
     name: STG Presents — Paramount, Moore & Neptune theatres (calendar)
@@ -342,6 +335,7 @@ sources:
       max_pages: 8
       organizer: Earshot Jazz
       default_category: music.concert
+      single_kind_reason: "a jazz listings calendar"
       classify_description: false
       category_map: {Festival: music.concert, Film: arts.film, Education: arts.workshop}   # Earshot Jazz Festival shows are concerts
       exclude_location: '\b(Tacoma|Olympia|Everett|Port Townsend|Bellingham|Gig Harbor|Bremerton|Anacortes|Mount Vernon|Port Angeles|Langley|Whidbey|Vashon|Poulsbo|Lacey|Puyallup|Spokane|Portland)\b'

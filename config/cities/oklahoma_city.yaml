@@ -102,7 +102,6 @@ sources:
       per_page: 50
       max_pages: 12
       organizer: Downtown OKC Partnership
-      default_category: community.festival
 
   - id: okc_science_museum
     adapter: tribe
@@ -123,7 +122,6 @@ sources:
       max_pages: 4
       venue: {name: "Science Museum Oklahoma", address: "2020 Remington Pl, Oklahoma City, OK 73111"}
       organizer: Science Museum Oklahoma
-      default_category: learning.tech
 
   - id: okc_cowboy_museum
     adapter: tribe
@@ -145,7 +143,6 @@ sources:
       max_pages: 4
       venue: {name: "National Cowboy & Western Heritage Museum", address: "1700 NE 63rd St, Oklahoma City, OK 73111"}
       organizer: National Cowboy & Western Heritage Museum
-      default_category: arts.museum
 
   - id: okc_scissortail_park
     adapter: jsonld
@@ -164,7 +161,6 @@ sources:
       horizon_days: 60
       venue: {name: "Scissortail Park", address: "300 SW 7th St, Oklahoma City, OK 73109"}
       organizer: Scissortail Park
-      default_category: community.festival
 
   # ── universities (public calendar, institution-only items skipped) ──
   - id: okc_uco_events
@@ -181,7 +177,6 @@ sources:
       path: "/live/json/events/max/{max}/response_fields/location,summary,event_types,tags,group_title"
       max: 200
       organizer: University of Central Oklahoma
-      default_category: learning.networking
 
   # ── college athletics, home games only (SIDEARM calendar.ics; robots allows) ──
   - id: okc_uco_athletics

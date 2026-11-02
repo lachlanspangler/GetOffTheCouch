@@ -50,7 +50,6 @@ sources:
       venue_label: San Diego County Library
       cities: [El Cajon, La Mesa, Lemon Grove, Spring Valley, Santee, Lakeside, Imperial Beach, Bonita, Del Mar,
                Solana Beach, Poway, Rancho San Diego, Casa de Oro]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Author Visit: arts.books
         Music: music.concert
@@ -83,7 +82,6 @@ sources:
       max_pages: 4
       max_occurrences: 2
       organizer: UC San Diego
-      default_category: learning.networking
 
   - id: balboa_park_events
     adapter: tribe
@@ -98,7 +96,6 @@ sources:
       horizon_days: 21
       max_pages: 12
       organizer: Balboa Park
-      default_category: arts.museum
 
   - id: pechanga_arena
     adapter: tribe

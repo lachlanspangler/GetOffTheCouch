@@ -50,7 +50,6 @@ sources:
       max_pages: 3
       organizer: University of Pittsburgh
       exclude_location: '\b(Greensburg|Johnstown|Bradford|Titusville)\b'   # regional campuses
-      default_category: learning.networking
       category_map:   # Localist event types (checked in the event's order)
         Concerts & Performances: music.concert
         Exhibits: arts.museum
@@ -76,7 +75,6 @@ sources:
       max: 100
       organizer: Carnegie Mellon University
       exclude_location: '\bExclude from Main Calendar\b'
-      default_category: learning.networking
       category_map:   # LiveWhale event types (HTML-escaped as the feed sends them)
         "Arts &amp; Performance": arts.theater
         "Athletics &amp; Recreation": sports_watch.game
@@ -131,7 +129,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: Pittsburgh Parks Conservancy
-      default_category: outdoors.park
       category_map: { Volunteer: volunteer.one_off, Volunteering: volunteer.one_off }
   - id: carnegie_museums_events
     adapter: tribe
@@ -150,7 +147,6 @@ sources:
       max_pages: 4
       organizer: Carnegie Museums of Pittsburgh
       exclude_location: '\b(Rector|Powdermill)\b'
-      default_category: arts.museum
 
   - id: rivers_of_steel_events
     adapter: tribe
@@ -166,7 +162,6 @@ sources:
       per_page: 50
       max_pages: 2
       organizer: Rivers of Steel
-      default_category: arts.workshop
 
   # ── venues ──
   - id: ppg_paints_arena

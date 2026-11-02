@@ -38,7 +38,6 @@ sources:
       horizon_days: 30
       max_pages: 5
       organizer: University of Southern California
-      default_category: learning.networking
 
   - id: la_business_openings
     adapter: socrata

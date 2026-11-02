@@ -57,7 +57,6 @@ sources:
       category_map:
         Neighborhood Block Party: community.block_party
         Race/Walk/Parade: fitness.race
-      default_category: community.festival
       default_url: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Special_Events_Next_31_Days/FeatureServer/0
       extras: { signal: city_special_event_permit }
 
@@ -76,7 +75,6 @@ sources:
       horizon_days: 30
       max_pages: 6
       organizer: NC State University
-      default_category: learning.networking
 
   - id: ncsu_athletics
     adapter: ics
@@ -117,7 +115,6 @@ sources:
       max_pages: 6
       organizer: North Carolina Museum of Art
       fallback_point: { lat: 35.8099, lon: -78.7023, label: "NC Museum of Art, 2110 Blue Ridge Rd" }
-      default_category: arts.museum
       category_map:
         "Performances &amp; Concerts": music.concert
         "Performances & Concerts": music.concert
@@ -139,7 +136,6 @@ sources:
       max_pages: 6
       organizer: NC Museum of Natural Sciences
       fallback_point: { lat: 35.7822, lon: -78.6391, label: "NC Museum of Natural Sciences, 11 W Jones St" }
-      default_category: learning.networking
 
   # ── big venues via carbonhouse /events/rss (public syndication feeds; robots allows) ──
   - id: lenovo_center_raleigh
@@ -200,6 +196,7 @@ sources:
       venue: {name: Red Hat Amphitheater, address: "500 S McDowell St, Raleigh, NC 27601"}
       organizer: Red Hat Amphitheater
       default_category: music.concert
+      single_kind_reason: "an amphitheater's concert calendar"
   - id: koka_booth_amphitheatre
     adapter: rss_events
     name: Koka Booth Amphitheatre (Town of Cary venue calendar)

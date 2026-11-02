@@ -38,7 +38,6 @@ sources:
       base_url: https://events.vanderbilt.edu
       max: 200
       organizer: Vanderbilt University
-      default_category: learning.networking
 
   - id: nashville_beer_permit_openings
     adapter: arcgis

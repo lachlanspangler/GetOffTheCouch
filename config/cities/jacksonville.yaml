@@ -51,7 +51,6 @@ sources:
       base_url: https://jaxpubliclibrary.libnet.info
       horizon_days: 7
       venue_label: Jacksonville Public Library
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Storytime: family.kids
         "Authors, Books, and Writing": arts.books
@@ -84,7 +83,6 @@ sources:
       horizon_days: 30
       max_pages: 5
       organizer: University of North Florida
-      default_category: learning.networking
 
   # ── openings (Florida DBPR alcoholic-beverage license extract; csvfile adapter) ──
   - id: fl_dbpr_openings_jacksonville

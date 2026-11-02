@@ -52,7 +52,6 @@ sources:
       horizon_days: 30
       max_pages: 4
       organizer: UC Riverside
-      default_category: learning.networking
       category_map:
         Music & Concerts: music.concert
         Theatre & Plays: arts.theater
@@ -157,7 +156,6 @@ sources:
       horizon_days: 45
       max_occurrences: 4
       organizer: Corona Public Library
-      default_category: arts.books
       category_rules:   # the feed has no CATEGORIES; "Math Tutor" / "Homework Center" are services, not volunteering
         - { match: "(?i)\\btutor|homework", category: family.kids }
       fallback_point: { lat: 33.8755, lon: -117.5676, label: "Corona Public Library, 650 S Main St" }
@@ -179,4 +177,3 @@ sources:
       base_url: https://riversidecvb.com
       board: Visit Riverside
       horizon_days: 21
-      default_category: community.festival

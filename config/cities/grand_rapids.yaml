@@ -47,7 +47,6 @@ sources:
       horizon_days: 14
       max_pages: 10
       venue_label: Grand Rapids Public Library
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Club: arts.books
@@ -70,7 +69,6 @@ sources:
       max_pages: 20
       venue_label: Kent District Library
       cities: [Grand Rapids, Wyoming, Kentwood, Walker, Grandville, East Grand Rapids, Comstock Park, Cascade, Ada]
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Discussion: arts.books

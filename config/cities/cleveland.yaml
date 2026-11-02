@@ -93,7 +93,6 @@ sources:
       base_url: https://attend.cuyahogalibrary.org
       horizon_days: 7
       venue_label: Cuyahoga County Public Library
-      default_category: arts.books
       skip_all_day: true
       exclude_location: '^(Chagrin Falls|Gates Mills|Brecksville|North Royalton|Olmsted Falls|Strongsville|Solon|Orange)'
       category_map:
@@ -119,7 +118,6 @@ sources:
       horizon_days: 30
       max_occurrences: 4
       organizer: Heights Libraries
-      default_category: arts.books
       exclude_location: '^(Online Event)'
       fallback_point: { lat: 41.5040, lon: -81.5660, label: "Heights Libraries, Lee Road branch (approximate)" }
 

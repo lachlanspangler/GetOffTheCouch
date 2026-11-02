@@ -37,7 +37,6 @@ sources:
       base_url: https://www.austintexas.org
       board: Visit Austin
       horizon_days: 7
-      default_category: community.festival
 
   - id: austin_convention_center_events
     adapter: socrata
@@ -72,7 +71,6 @@ sources:
       horizon_days: 30
       max_pages: 6
       organizer: The University of Texas at Austin
-      default_category: learning.networking
 
   - id: tabc_pending_openings_austin
     adapter: socrata
@@ -246,7 +244,6 @@ sources:
       per_page: 50
       max_pages: 4
       organizer: Lady Bird Johnson Wildflower Center
-      default_category: outdoors.park
       classify_description: false
       exclude_location: '\bMembers? Only\b'   # member-only previews aren't open to newcomers
       category_map:   # The Events Calendar categories seen live (first match in the event's category order wins)
@@ -300,7 +297,6 @@ sources:
     params:
       urls: [https://austinparks.org/event-calendar/]
       organizer: Austin Parks Foundation
-      default_category: outdoors.park
       trust_valid_from: false
       classify_description: true
   - id: acl_live
@@ -335,6 +331,7 @@ sources:
       venue: {name: H-E-B Center at Cedar Park, address: "2100 Avenue of the Stars, Cedar Park, TX 78613"}
       organizer: H-E-B Center
       default_category: music.concert
+      single_kind_reason: "an arena's show calendar (games are caught by the matchup rule)"
       category_map:   # title keywords
         " vs": sports_watch.game
         "Texas Stars": sports_watch.game
@@ -355,6 +352,7 @@ sources:
       horizon_days: 45
       organizer: Cap City Comedy Club
       default_category: nightlife.comedy
+      single_kind_reason: "a comedy club's calendar"
       category_map: {Event: nightlife.comedy}   # every record is a stand-up show
 
   - id: moody_center

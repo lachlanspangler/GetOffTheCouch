@@ -35,7 +35,6 @@ sources:
       base_url: https://www.minneapolisparks.org
       horizon_days: 60
       organizer: Minneapolis Park & Recreation Board
-      default_category: outdoors.park
       category_map:
         Environmental Volunteer Opportunities: volunteer.one_off
         Volunteer Opportunities: volunteer.one_off
@@ -62,7 +61,6 @@ sources:
       per_page: 50
       max_pages: 12
       organizer: Minneapolis Downtown Council
-      default_category: community.festival
 
   - id: hclib_events
     adapter: bibliocommons
@@ -77,7 +75,6 @@ sources:
       venue_label: Hennepin County Library
       cities: [Minneapolis, Edina, St. Louis Park, Saint Louis Park, Richfield, Golden Valley, Robbinsdale,
                Brooklyn Center, Bloomington, Hopkins, Roseville, Columbia Heights, New Hope, Crystal]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Early Learning and Storytimes: family.kids
         Arts and Crafts: arts.workshop
@@ -100,7 +97,6 @@ sources:
       base_url: https://events.tc.umn.edu
       max: 200
       organizer: University of Minnesota
-      default_category: learning.networking
 
   # ── volunteer: Galaxy Digital "Get Connected" (HandsOn Twin Cities). RSS = discovery, detail pages = records.
   - id: handson_twin_cities
@@ -128,7 +124,6 @@ sources:
       url: https://api.lu.ma/ics/get?entity=calendar&id=cal-ZcUa89sLSrEvGwZ
       horizon_days: 60
       organizer: ZOMA House
-      default_category: community.cultural
   - id: luma_mpls_journaling_club
     adapter: ics
     name: Minneapolis Journaling Club (Luma)
@@ -245,6 +240,7 @@ sources:
       venue: {name: The Cedar Cultural Center}
       organizer: The Cedar Cultural Center
       default_category: music.concert
+      single_kind_reason: "a music venue's show calendar"
   - id: dakota_jazz
     adapter: tribe
     name: Dakota (venue calendar)

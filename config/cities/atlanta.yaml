@@ -47,7 +47,6 @@ sources:
       max_pages: 20
       venue_label: Fulton County Library
       cities: [Atlanta, East Point, College Park, Hapeville, Sandy Springs]
-      default_category: arts.books
       category_map:   # labels seen in BiblioCommons feeds; checked in order (event types before audiences)
         Storytime: family.kids
         Book Club: arts.books
@@ -70,7 +69,6 @@ sources:
       base_url: https://events.dekalblibrary.org
       horizon_days: 7
       venue_label: DeKalb County Public Library
-      default_category: arts.books
       category_map: { Storytime: family.kids, Book Club: arts.books, "Arts & Crafts": arts.workshop, Technology: learning.tech, Gaming: trivia_games.board_games }
 
   # ── universities ──
@@ -89,7 +87,6 @@ sources:
       max_pages: 4
       organizer: Georgia State University
       exclude_location: '\b(Alpharetta|Clarkston|Dunwoody|Newton) Campus\b'   # Perimeter College campuses
-      default_category: learning.networking
   - id: emory_events
     adapter: trumba
     name: Emory University events
@@ -107,7 +104,6 @@ sources:
       horizon_days: 14
       organizer: Emory University
       category_fields: [University Event Topic]
-      default_category: learning.networking
       category_map: { Arts: arts.theater, Special Event: community.festival, Community: community.festival }
   - id: gsu_athletics
     adapter: ics
@@ -143,7 +139,6 @@ sources:
       organizer: Atlanta Botanical Garden
       exclude_location: '\bGainesville\b'
       venue: {name: Atlanta Botanical Garden, address: "1345 Piedmont Ave NE, Atlanta, GA 30309"}
-      default_category: outdoors.park
   - id: piedmont_park_events
     adapter: tribe
     name: Piedmont Park Conservancy events
@@ -159,7 +154,6 @@ sources:
       max_pages: 3
       organizer: Piedmont Park Conservancy
       venue: {name: Piedmont Park, address: "400 Park Dr NE, Atlanta, GA 30306"}
-      default_category: outdoors.park
 
   # ── venues ──
   - id: fox_theatre_atlanta

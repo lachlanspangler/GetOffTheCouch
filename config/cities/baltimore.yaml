@@ -46,7 +46,6 @@ sources:
       horizon_days: 10
       max_occurrences: 2
       organizer: Enoch Pratt Free Library
-      default_category: arts.books
 
   # ── university ──
   - id: towson_events
@@ -63,7 +62,6 @@ sources:
       horizon_days: 30
       max_pages: 3
       organizer: Towson University
-      default_category: learning.networking
   - id: towson_athletics
     adapter: ics
     name: Towson Tigers athletics (home games — SECU Arena, Johnny Unitas Stadium)
@@ -113,7 +111,6 @@ sources:
       max_pages: 3
       organizer: Creative Alliance
       venue: {name: Creative Alliance at The Patterson, address: "3134 Eastern Ave, Baltimore, MD 21224"}
-      default_category: arts.theater
   - id: downtown_baltimore_events
     adapter: tribe
     name: Downtown Partnership of Baltimore events
@@ -128,7 +125,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: Downtown Partnership of Baltimore
-      default_category: community.festival
 
   # ── venues ──
   - id: lyric_baltimore

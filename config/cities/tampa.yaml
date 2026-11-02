@@ -47,7 +47,6 @@ sources:
       base_url: https://attend.hcplc.org
       horizon_days: 7
       venue_label: Tampa-Hillsborough County Public Library
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Art Exhibit: arts.museum
         Story Time: family.kids
@@ -82,7 +81,6 @@ sources:
         Theatre: arts.theater
         Music Concerts: music.classical
         Athletics: sports_watch.game
-      default_category: learning.networking
 
   - id: tampa_usf_athletics
     adapter: ics
@@ -120,7 +118,6 @@ sources:
       horizon_days: 120
       venue: {name: Downtown Tampa, address: "Tampa, FL 33602"}
       organizer: Tampa Downtown Partnership
-      default_category: community.festival
 
   # ── big venues ──
   - id: tampa_benchmark_arena

@@ -69,6 +69,7 @@ sources:
       venue: {name: Schottenstein Center, address: "555 Borror Dr, Columbus, OH 43210"}
       organizer: Schottenstein Center
       default_category: music.concert
+      single_kind_reason: "an arena's show calendar (games are caught by the matchup rule)"
       category_map:
         " vs": sports_watch.game
         "Basketball": sports_watch.game
@@ -93,7 +94,6 @@ sources:
       max_pages: 4
       organizer: Columbus Commons
       venue: {name: Columbus Commons, address: "160 S High St, Columbus, OH 43215"}
-      default_category: community.festival
       tags: [outdoor]
 
   # ── libraries ──
@@ -111,7 +111,6 @@ sources:
       horizon_days: 10
       max_pages: 10
       venue_label: Westerville Public Library
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Club: arts.books
@@ -131,7 +130,6 @@ sources:
       base_url: https://ghpl.libnet.info
       horizon_days: 7
       venue_label: Grandview Heights Public Library
-      default_category: arts.books
       skip_all_day: true
 
   # ── college athletics: SIDEARM subscription calendar (home games only) ──
@@ -171,4 +169,3 @@ sources:
       base_url: https://www.experiencecolumbus.com
       board: Experience Columbus
       horizon_days: 7
-      default_category: community.festival

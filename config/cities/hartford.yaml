@@ -45,7 +45,6 @@ sources:
       base_url: https://hplct.libnet.info
       horizon_days: 14
       venue_label: Hartford Public Library
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Storytime: family.kids
         Language: learning.language
@@ -76,7 +75,6 @@ sources:
       horizon_days: 60
       max_occurrences: 4
       organizer: Wethersfield Library
-      default_category: arts.books
       exclude_location: '\bLIBRARY CLOSED\b'
       fallback_point: { lat: 41.7105, lon: -72.6620, label: "Wethersfield Library (approximate)" }
 
@@ -96,7 +94,6 @@ sources:
       max: 200
       organizer: Trinity College   # no audience_filter: the two groups are public-facing by construction
       fallback_point: { lat: 41.7470, lon: -72.6909, label: "Trinity College campus" }
-      default_category: arts.film
       category_map:
         Film: arts.film
         Performance: arts.theater
@@ -114,7 +111,6 @@ sources:
       per_page: 50
       max_pages: 3
       organizer: Connecticut Museum of Culture and History
-      default_category: arts.museum
 
   - id: hfd_mark_twain_house
     adapter: tribe
@@ -128,7 +124,6 @@ sources:
       per_page: 50
       max_pages: 2
       organizer: The Mark Twain House & Museum
-      default_category: arts.museum
       category_map:
         Ghost Tour: arts.museum
         Workshops: arts.workshop
@@ -195,6 +190,7 @@ sources:
       horizon_days: 120
       organizer: Comedy Craft Beer
       default_category: nightlife.comedy
+      single_kind_reason: "a comedy promoter's calendar"
       exclude_location: '^(?!.*\b(Hartford|Wethersfield|Glastonbury|Rocky Hill|Newington|Bloomfield|Windsor)\b)'
 
   # ── college athletics, home games only (SIDEARM calendar.ics; no robots rule on /calendar*) ──

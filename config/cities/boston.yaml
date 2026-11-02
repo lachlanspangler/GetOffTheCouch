@@ -37,7 +37,6 @@ sources:
       base_url: https://www.meetboston.com
       board: Meet Boston
       horizon_days: 7
-      default_category: community.festival
       category_map:   # labels seen in the recorded response; checked in this order (specific first)
         Craft Beer: food_drink.tasting
         "Food & Wine": food_drink.tasting
@@ -57,7 +56,6 @@ sources:
       per_page: 50
       max_pages: 10
       organizer: Downtown Boston BID
-      default_category: community.festival
 
   - id: bpl_events
     adapter: bibliocommons
@@ -70,7 +68,6 @@ sources:
       horizon_days: 10
       max_pages: 40
       venue_label: Boston Public Library
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         "Games / Gaming": trivia_games.board_games
         Book Sale: community.market
@@ -142,7 +139,6 @@ sources:
       horizon_days: 30
       max_pages: 5
       organizer: Northeastern University
-      default_category: learning.networking
 
   # ── leagues / volunteering / Luma (merged from the adapters branch; see docs/sources_additions.md) ──
   - id: volo_boston
@@ -279,6 +275,7 @@ sources:
       venue: {name: "TD Garden", address: "100 Legends Way, Boston, MA 02114"}
       organizer: TD Garden
       default_category: music.concert
+      single_kind_reason: "an arena's show calendar (games are caught by the matchup rule)"
 
   # ── college athletics, home games only (SIDEARM calendar.ics; robots allows; session 2, I-107) ──
   - id: bc_athletics

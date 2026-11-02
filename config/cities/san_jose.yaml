@@ -48,7 +48,6 @@ sources:
       max_pages: 20
       venue_label: San José Public Library
       cities: [San Jose, San José]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Storytime: family.kids
         Crafts & Hobbies: arts.workshop
@@ -78,7 +77,6 @@ sources:
       max_pages: 15
       venue_label: Santa Clara County Library District
       cities: [Campbell, Cupertino, Los Altos, Milpitas, Saratoga, Monte Sereno]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Early Learning & Storytimes: family.kids
         "Crafts, Maker, & DIY": arts.workshop
@@ -106,7 +104,6 @@ sources:
       horizon_days: 30
       max_pages: 6
       organizer: San José State University
-      default_category: learning.networking
 
   - id: stanford_events
     adapter: localist
@@ -125,7 +122,6 @@ sources:
       max_pages: 5
       max_occurrences: 1   # long-running exhibitions repeat daily; keep the next occurrence only
       organizer: Stanford University
-      default_category: learning.networking
 
   - id: scu_athletics
     adapter: ics
@@ -180,7 +176,6 @@ sources:
       ignore_offset: true
       venue: {name: Montalvo Arts Center, address: "15400 Montalvo Rd, Saratoga, CA 95070"}
       organizer: Montalvo Arts Center
-      default_category: music.concert
 
   # ── leagues / volunteering ──
   - id: volo_san_jose

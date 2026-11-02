@@ -64,7 +64,6 @@ sources:
       horizon_days: 14
       max_occurrences: 2
       organizer: Phoenix Public Library
-      default_category: arts.books
       category_map:   # ICS CATEGORIES seen in the live feed
         Storytimes: family.kids
         "Childrens' Programs": family.kids
@@ -93,7 +92,6 @@ sources:
       max_pages: 10
       venue_label: Chandler Public Library
       cities: [Chandler]
-      default_category: arts.books
 
   # ── museums / gardens / arts venues ──
   - id: mim_events
@@ -111,7 +109,6 @@ sources:
       max_pages: 6
       organizer: Musical Instrument Museum
       venue: {name: Musical Instrument Museum, address: "4725 E Mayo Blvd, Phoenix, AZ 85050"}
-      default_category: music.concert
 
   - id: desert_botanical_garden_events
     adapter: tribe
@@ -128,7 +125,6 @@ sources:
       max_pages: 6
       organizer: Desert Botanical Garden
       venue: {name: Desert Botanical Garden, address: "1201 N Galvin Pkwy, Phoenix, AZ 85008"}
-      default_category: outdoors.park
 
   - id: mesa_arts_center
     adapter: jsonld
@@ -147,6 +143,7 @@ sources:
       venue: {name: Mesa Arts Center, address: "1 E Main St, Mesa, AZ 85201"}
       organizer: Mesa Arts Center
       default_category: arts.theater
+      single_kind_reason: "the performances feed of a performing-arts venue"
 
   - id: standup_live_phoenix
     adapter: jsonld
@@ -178,7 +175,6 @@ sources:
       exclude_location: '\b(Meeting|Commission|City Council|Board of|Hearing|Study Session)\b'   # civic meetings (matches titles too)
       horizon_days: 90
       organizer: City of Scottsdale
-      default_category: community.festival
 
   - id: state_farm_stadium
     adapter: rss_events
@@ -233,7 +229,6 @@ sources:
       base_url: https://www.visitphoenix.com
       board: Visit Phoenix
       horizon_days: 7
-      default_category: community.festival
 
   - id: experience_scottsdale_events
     adapter: simpleview
@@ -251,7 +246,6 @@ sources:
       base_url: https://www.experiencescottsdale.com
       board: Experience Scottsdale
       horizon_days: 7
-      default_category: community.festival
 
   # ── openings ──
   - id: scottsdale_food_openings

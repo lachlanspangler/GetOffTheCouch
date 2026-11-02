@@ -47,7 +47,6 @@ sources:
       base_url: https://slcpl.libnet.info
       horizon_days: 14
       venue_label: The City Library
-      default_category: arts.books
       category_map:   # tag labels seen in the live feed; checked in this order
         Used Book Sales: community.market
         Festivals: community.festival
@@ -75,7 +74,6 @@ sources:
       base_url: https://slcls.libnet.info
       horizon_days: 7
       venue_label: Salt Lake County Library
-      default_category: arts.books
       category_map:   # tag/age labels seen in the live feed; checked in this order (types before audiences)
         Storytime: family.kids
         "Play & Learn": family.kids
@@ -111,7 +109,6 @@ sources:
       horizon_days: 7
       max_occurrences: 1
       organizer: Now Playing Utah
-      default_category: community.cultural
       exclude_location: >-
         ^(?!.*\b(Salt Lake City|South Salt Lake|Murray|Millcreek|Holladay)\b, UT)
 
@@ -131,7 +128,6 @@ sources:
       max_pages: 6
       venue: {name: The Gallivan Center, address: "239 S Main St, Salt Lake City, UT 84111"}
       organizer: The Gallivan Center
-      default_category: community.festival
 
   - id: maverik_center
     enabled: false  # robots.txt disallows (RFC 9309 wildcard parse, 2026-10-16)
@@ -152,6 +148,7 @@ sources:
       venue: {name: Maverik Center, address: "3200 S Decker Lake Dr, West Valley City, UT 84119"}
       organizer: Maverik Center
       default_category: sports_watch.game
+      single_kind_reason: "an arena's event calendar (hockey and shows)"
       classify_description: false
       category_map: {Concerts: music.concert, Family: family.kids}
 
@@ -191,4 +188,3 @@ sources:
       board: Visit Salt Lake
       horizon_days: 7
       skip_daily_ongoing_days: 60
-      default_category: community.festival

@@ -45,7 +45,6 @@ sources:
       base_url: https://dclibrary.libnet.info
       horizon_days: 7
       venue_label: DC Public Library
-      default_category: arts.books
       category_map:   # tag labels seen in the live feed; checked in this order (types before audiences)
         Gaming: trivia_games.board_games
         "Arts & Crafts": arts.workshop
@@ -74,7 +73,6 @@ sources:
       organizer: Smithsonian Institution
       venue_label: Smithsonian
       category_fields: [Event Type, Topic]
-      default_category: arts.museum
       exclude_location: '\b(Tucson|Arizona)\b'   # Folklife/affiliate programs held outside DC
 
   - id: gwu_events
@@ -91,7 +89,6 @@ sources:
       horizon_days: 30
       max_pages: 3
       organizer: The George Washington University
-      default_category: learning.networking
 
   # ── business districts ──
   - id: mount_vernon_triangle_events
@@ -109,7 +106,6 @@ sources:
       max_pages: 2
       organizer: Mount Vernon Triangle CID
       venue: {name: Mount Vernon Triangle, address: "450 K St NW, Washington, DC 20001"}
-      default_category: community.market
 
   # ── venues ──
   - id: capital_one_arena
@@ -143,6 +139,7 @@ sources:
       venue: {name: Songbyrd Music House, address: "540 Penn St NE, Washington, DC 20002"}
       organizer: Songbyrd
       default_category: music.concert
+      single_kind_reason: "a music venue's calendar"
       classify_description: false
 
   # ── volunteering ──

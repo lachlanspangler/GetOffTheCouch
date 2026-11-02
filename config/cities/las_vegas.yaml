@@ -43,7 +43,6 @@ sources:
       base_url: https://events.thelibrarydistrict.org
       horizon_days: 7
       venue_label: Las Vegas-Clark County Library District
-      default_category: arts.books
       skip_all_day: true
       exclude_location: '\b(Laughlin|Mesquite|Moapa|Bunkerville|Blue Diamond|Indian Springs|Searchlight|Goodsprings|(Mount|Mt\.) Charleston|Sandy Valley|Overton|Logandale)\b'
 
@@ -111,6 +110,7 @@ sources:
       venue: {name: Notoriety, address: "450 Fremont St, Las Vegas, NV 89101"}
       organizer: Notoriety Live
       default_category: nightlife.comedy
+      single_kind_reason: "a comedy showroom's calendar"
 
   - id: henderson_food_openings
     adapter: arcgis
@@ -140,6 +140,7 @@ sources:
       category_rules:
         - { match: "(?i)liquor", category: nightlife.opening }
       default_category: food_drink.restaurant_opening
+      single_kind_reason: "a business-license dataset (openings)"
       default_url: https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataGovernment/MapServer/0
       extras: { signal: business_license_issued }
 

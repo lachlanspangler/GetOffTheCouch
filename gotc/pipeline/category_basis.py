@@ -9,6 +9,7 @@ source's config. It errs toward *not* claiming the source said so.
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from gotc.schema import CategoryBasis, Method, SourceEvent
@@ -104,3 +105,34 @@ def category_method(basis: CategoryBasis | None) -> Method:
 
 def is_uncategorized(category: str) -> bool:
     return category == FALLBACK
+
+
+#: Names/ids/URLs of calendars that list many kinds of things (ADR-0010). Such a source may only set a
+#: ``default_category`` with a ``single_kind_reason`` saying why it really is one kind of thing.
+MIXED_SOURCE = re.compile(
+    r"universit|college|campus|\bschool\b|librar|\bpl\b|county|city of|\bcity\b|government|parks?\b|recreation|"
+    r"conservancy|botanical|garden|arboretum|\bzoo\b|museum|visit |tourism|\bcvb\b|downtown|district|partnership|"
+    r"chamber|alliance|community center|police|cmpd|neighborhood|historic|cultural|arts center|\bhouse\b|"
+    r"events calendar|calendar \(|calendar$|science center|nature center|wildflower|aquarium|taproom|brewing|"
+    r"brewery|pearl|triangle|special events|permitted",
+    re.IGNORECASE,
+)
+MIXED_ADAPTERS = frozenset({"bibliocommons", "communico", "simpleview", "localist", "livewhale"})
+
+
+def looks_mixed(source_id: str, name: str, adapter: str, params: dict[str, Any], homepage: str | None = None) -> bool:
+    """True when a source looks like a calendar of many kinds of things (library, campus, city, park, museum…)."""
+    if params.get("audience_filter") == "institution" or adapter in MIXED_ADAPTERS:
+        return True
+    return bool(MIXED_SOURCE.search(f"{name} {source_id} {params.get('base_url', '')} {homepage or ''}"))
+
+
+def default_violations(sources: list[Any]) -> list[str]:
+    """Sources that guess a catch-all category for a mixed calendar (doctor + tests)."""
+    bad: list[str] = []
+    for s in sources:
+        if not s.params.get("default_category") or s.params.get("single_kind_reason"):
+            continue
+        if looks_mixed(s.id, s.name, s.adapter, s.params, getattr(s, "homepage", None)):
+            bad.append(f"{s.id}: mixed calendar with default_category {s.params['default_category']!r}")
+    return bad

@@ -46,7 +46,6 @@ sources:
       horizon_days: 14
       max_occurrences: 4
       organizer: Norfolk Public Library
-      default_category: arts.books
       category_map: { Performances: music.concert, Workshops: arts.workshop, Book Clubs: arts.books }   # LibCal categories
 
   - id: chesapeake_library_events
@@ -62,7 +61,6 @@ sources:
       base_url: https://events.chesapeakelibrary.org
       horizon_days: 7
       venue_label: Chesapeake Public Library
-      default_category: arts.books
       category_map: { Storytime: family.kids, Book Club: arts.books, "Arts & Crafts": arts.workshop, Technology: learning.tech }
 
   - id: virginia_zoo_events
@@ -80,7 +78,6 @@ sources:
       max_pages: 3
       organizer: Virginia Zoo
       venue: {name: Virginia Zoo, address: "3500 Granby St, Norfolk, VA 23504"}
-      default_category: family.kids
 
   # ── openings ──
   - id: norfolk_business_openings
@@ -136,6 +133,7 @@ sources:
         Wells Theatre: "110 E Tazewell St, Norfolk, VA 23510"
       organizer: Seven Venues
       default_category: music.concert
+      single_kind_reason: "a city's performance-venue calendar (arena + halls; games are caught by the matchup rule)"
   - id: sandler_center
     adapter: rss_events
     name: Sandler Center for the Performing Arts (Virginia Beach)

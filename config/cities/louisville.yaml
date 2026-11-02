@@ -98,7 +98,6 @@ sources:
       max_pages: 2
       organizer: Waterfront Park
       venue: {name: Waterfront Park, address: "129 River Rd, Louisville, KY 40202"}
-      default_category: community.festival
       tags: [outdoor]
   - id: headliners_louisville
     adapter: jsonld

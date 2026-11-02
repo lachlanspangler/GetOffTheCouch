@@ -49,7 +49,6 @@ sources:
       base_url: https://attend.indypl.org
       horizon_days: 7
       venue_label: Indianapolis Public Library
-      default_category: arts.books
       skip_all_day: true
       category_map:
         Storytime: family.kids

@@ -46,7 +46,6 @@ sources:
       horizon_days: 10
       max_pages: 20
       venue_label: St. Louis Public Library
-      default_category: arts.books
       category_map:
         Storytime: family.kids
         Book Club: arts.books

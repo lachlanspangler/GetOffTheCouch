@@ -424,8 +424,7 @@ class Discoverer:
                 "license and its newness date before promoting.",
                 "default_category": "food_drink.restaurant_opening",
             }
-        else:
-            unit["params"]["default_category"] = "community.festival"
+        # (no default for other event datasets: city calendars are mixed, ADR-0010 — categorize from each listing)
         ev = self._evidence(probe_url, via, name=name, data_updated_at=updated, columns=ds.columns[:25],
                             views_last_month=ds.views_last_month, attribution=ds.publisher)  # fmt: skip
         official = ds.domain.endswith(".gov") or ds.domain.startswith(("data.", "opendata.")) or "gov" in ds.domain
@@ -489,7 +488,7 @@ class Discoverer:
                     "params": {
                         "service_url": layer,
                         "fields": fields,
-                        "default_category": "food_drink.restaurant_opening" if is_opening else "community.festival",
+                        **({"default_category": "food_drink.restaurant_opening"} if is_opening else {}),
                         "notes": "TODO: confirm the layer index and map fields from <service_url>?f=json",
                     },
                 }
@@ -541,7 +540,6 @@ class Discoverer:
                 "library": code,
                 "horizon_days": 14,
                 "venue_label": label or code,
-                "default_category": "arts.books",
             },
         }
         ev = self._evidence(url, via, items_one_day=p.items, channel=p.title, titles=p.sample[:5])
@@ -602,7 +600,7 @@ class Discoverer:
             "adapter": "communico",
             "name": f"{label} events",
             "data_type": "events",
-            "params": {"base_url": base, "horizon_days": 7, "venue_label": label, "default_category": "arts.books"},
+            "params": {"base_url": base, "horizon_days": 7, "venue_label": label},
         }
         ev = self._evidence(url, f"{via} → Communico", events_one_day=p.items, libraries=p.places[:10],
                             titles=p.sample, deadlines=p.note)  # fmt: skip
@@ -634,7 +632,6 @@ class Discoverer:
             "params": {
                 "url": [f"{url}?src=p&cid={c}" for c in cids[:30]],
                 "horizon_days": 30,
-                "default_category": "arts.books",
             },
         }
         ev = self._evidence(url, f"{via} → LibCal {host} ({len(cids)} public calendars; probed cid {cids[0]})",
@@ -656,8 +653,7 @@ class Discoverer:
             "adapter": "trumba",
             "name": f"{label} events",
             "data_type": "events",
-            "params": {"webname": name, "horizon_days": 14, "venue_label": label, "organizer": label,
-                       "default_category": "arts.books" if family == "library" else "learning.networking"},
+            "params": {"webname": name, "horizon_days": 14, "venue_label": label, "organizer": label},
         }  # fmt: skip
         ev = self._evidence(url, via, events_14d=p.items, titles=p.sample)
         self._add(unit, ev, works=p.items >= 3, geo=self.geo_share(p.places), official=True, fresh=True,
@@ -677,7 +673,7 @@ class Discoverer:
             "name": f"{label or host} events",
             "data_type": "events",
             "params": {"base_url": f"https://{host}", "horizon_days": 30, "max_pages": 5,
-                       "audience_filter": "institution", "default_category": "learning.networking"},
+                       "audience_filter": "institution"},
         }  # fmt: skip
         ev = self._evidence(url, f"{via} → Localist", total_14d=p.items, titles=p.sample)
         self._add(unit, ev, works=p.items >= 10, geo=self.geo_share(p.places), official=True, fresh=True,
@@ -695,8 +691,7 @@ class Discoverer:
             "adapter": "livewhale",
             "name": f"{label or host} events",
             "data_type": "events",
-            "params": {"base_url": f"https://{host}", "max": 200, "audience_filter": "institution",
-                       "default_category": "learning.networking"},
+            "params": {"base_url": f"https://{host}", "max": 200, "audience_filter": "institution"},
         }  # fmt: skip
         ev = self._evidence(url, f"{via} → LiveWhale", sample_items=p.items, titles=p.sample)
         self._add(unit, ev, works=p.items >= 1, geo=None, official=True, fresh=True, fills=FAMILY_FILLS["university"])
@@ -739,7 +734,9 @@ class Discoverer:
                             "data_type": "concerts" if seed.kind == "venue" else "events",
                             "params": {"base_url": origin, "horizon_days": 60, "per_page": 50, "max_pages": 6,
                                        "organizer": label,
-                                       "default_category": "music.concert" if seed.kind == "venue" else "outdoors.park"},
+                                       **({"default_category": "music.concert",
+                                           "single_kind_reason": "a music venue's calendar (discovered from a venue seed)"}
+                                          if seed.kind == "venue" else {})},
                         }  # fmt: skip
                         ev = self._evidence(url, f"{seed.kind} seed {seed.url} → wp-json tribe/events/v1",
                                             total=p.items, titles=p.sample)  # fmt: skip
@@ -759,7 +756,8 @@ class Discoverer:
                             "name": label,
                             "data_type": "concerts",
                             "params": {"url": url, "horizon_days": 180, "spectator_venue": True, "organizer": label,
-                                       "venue": {"name": label, "address": "TODO"}, "default_category": "music.concert"},
+                                       "venue": {"name": label, "address": "TODO"}, "default_category": "music.concert",
+                                       "single_kind_reason": "a music venue's calendar (discovered from a venue seed)"},
                         }  # fmt: skip
                         ev = self._evidence(url, f"venue seed {seed.url} → carbonhouse /events/rss", items=p.items,
                                             titles=p.sample)  # fmt: skip
@@ -774,7 +772,7 @@ class Discoverer:
                     "adapter": "jsonld",
                     "name": label,
                     "data_type": "events",
-                    "params": {"urls": [seed.url], "organizer": label, "default_category": "community.festival"},
+                    "params": {"urls": [seed.url], "organizer": label},
                 }
                 ev = self._evidence(seed.url, f"{seed.kind} seed page carries schema.org Event JSON-LD",
                                     jsonld_events=fp.jsonld_events, site_name=fp.site_name)  # fmt: skip

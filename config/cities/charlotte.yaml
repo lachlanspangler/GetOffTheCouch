@@ -47,7 +47,6 @@ sources:
       max_pages: 20
       venue_label: Charlotte Mecklenburg Library
       cities: [Charlotte, Matthews, Mint Hill, Huntersville, Pineville]
-      default_category: arts.books
       category_map:   # labels seen in the live feed; checked in this order (event types before audiences)
         Storytime: family.kids
         Book Club: arts.books
@@ -79,7 +78,6 @@ sources:
       max_pages: 5
       organizer: UNC Charlotte
       exclude_location: '\bCharlotte 49ers (Men|Women)'
-      default_category: learning.networking
 
   - id: clt_49ers_athletics
     adapter: ics
@@ -122,6 +120,7 @@ sources:
                 address: [STREETNUM, STREETDIR, STREETNAME, STREETTYPE], organizer: DEPARTMENTDIVISION }
       title_template: "{title} (CMPD {DIVISION} Division)"
       default_category: community.neighborhood
+      single_kind_reason: "the police department's community-meeting calendar"
       free: true
       default_url: https://www.charlottenc.gov/CMPD
 
