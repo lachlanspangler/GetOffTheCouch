@@ -177,6 +177,9 @@ class ListingGate:
 
     @staticmethod
     def _match(rule: Rule, ev: SourceEvent, title: str, text: str) -> str | None:
+        labels = [_norm(x) for x in ev.source_categories]
+        if rule.labels_none and any(p.search(x) for p in rule.labels_none for x in labels):
+            return None  # e.g. the source also tags it "General Public"
         if rule.basis:
             basis = ev.category_basis.value if ev.category_basis else None
             if basis not in rule.basis:
@@ -189,9 +192,6 @@ class ListingGate:
         for p in rule.text:
             if m := p.search(text):
                 return m.group(0)
-        labels = [_norm(x) for x in ev.source_categories]
-        if rule.labels_none and any(p.search(x) for p in rule.labels_none for x in labels):
-            return None  # e.g. the source also tags it "General Public"
         for p in rule.labels:
             for label in labels:
                 if p.search(label):

@@ -198,6 +198,16 @@ rules:
 
   # campus calendars tag audiences: "Current Students", "Faculty & Staff", "Graduate Students", "Student Organizations".
   # Tagged for insiders only, with no public-facing audience tag, it isn't for a newcomer (FN audit, golden set).
+  - id: campus_term_date
+    family: academic_calendar
+    scope: institution
+    reason: a line on the campus term calendar (registration windows, graduation applications), not an event
+    title:
+      - '^(spring|fall|autumn|summer|winter|j-?term|maymester)( [a-c]| \d{4}| term| semester| session| quarter)?:\s'
+      - '\b(degree-seeking students|assigned registration time|apply for [^.]{0,30}graduation|graduation application|term graduation)\b'
+    unless:
+      - '\b(concert|recital|festival|exhibition|exhibit|lecture|reading|show|performance|game|vs\.?|tour|workshop|class|camp)\b'
+
   - id: campus_internal_audience
     family: internal_only
     scope: institution
@@ -214,5 +224,7 @@ rules:
     scope: institution
     reason: a campus listing with nothing that says it's a public event (no category from its labels or title)
     basis: [fallback, source_kind]
+    labels_none:   # the campus tags it public (UT Austin: "General Public" exhibitions, "Families" festivals)
+      - '\b(general public|the public|public|community|campus & community|campus and community|visitors?|everyone|open to all|all are welcome|families|family|kids|children|teens|youth|neighbors|prospective\w*|alumni & friends|friends|guests|k-12)\b'
     unless:
       - '\b(concert|recital|performance|lecture|talk|reading|exhibit(ion)?|screening|film|festival|fair|market|game|match|tour|open house|symposium|conference|panel|workshop|class|show|play|theater|theatre|dance|music|art|gallery|museum|garden|yoga|run|walk|hike|volunteer\w*|community)\b'
