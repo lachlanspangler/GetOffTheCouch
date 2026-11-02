@@ -54,10 +54,20 @@ export async function share(title: string, link: string): Promise<string> {
   }
 }
 
-/** A prefilled GitHub issue, so corrections need no account system of our own. */
+/** A prefilled GitHub issue form (.github/ISSUE_TEMPLATE/listing-report.yml), so corrections need no account system
+ * of our own, and every report arrives with the fields `gotc reports` needs to turn it into a gate example. */
 export function reportUrl(e: Event): string {
-  const body = `Event: ${e.title}\nLink: ${absolute(eventPath(e.city, e.id, e.title))}\nID: ${e.id}\nCity: ${e.city}\nSources: ${e.sources.map((s) => `${s.source_id} ${s.url ?? ""}`).join(", ")}\n\nWhat's wrong?\n`;
-  return `${REPO}/issues/new?labels=data-report&title=${encodeURIComponent(`Data report: ${e.title}`)}&body=${encodeURIComponent(body)}`;
+  const q = new URLSearchParams({
+    template: "listing-report.yml",
+    labels: "data-report",
+    title: `Data report: ${e.title}`.slice(0, 200),
+    listing: e.title.slice(0, 200),
+    event_id: e.id,
+    city: e.city,
+    link: absolute(eventPath(e.city, e.id, e.title)),
+    sources: e.sources.map((s) => `${s.source_id} ${s.url ?? ""}`.trim()).join(", ").slice(0, 400),
+  });
+  return `${REPO}/issues/new?${q.toString()}`;
 }
 
 function host(u: string): string {

@@ -37,6 +37,7 @@ class Rule:
     title: tuple[re.Pattern[str], ...] = ()
     text: tuple[re.Pattern[str], ...] = ()
     labels: tuple[re.Pattern[str], ...] = ()
+    labels_none: tuple[re.Pattern[str], ...] = ()  # …and none of the source's labels match these
     unless: tuple[re.Pattern[str], ...] = ()
     basis: tuple[str, ...] = ()
 
@@ -92,6 +93,7 @@ class ListingGate:
                 title=_compile(r.get("title")),
                 text=_compile(r.get("text")),
                 labels=_compile(r.get("labels")),
+                labels_none=_compile(r.get("labels_none")),
                 unless=_compile(r.get("unless")),
                 basis=tuple(r.get("basis") or ()),
             )
@@ -187,9 +189,12 @@ class ListingGate:
         for p in rule.text:
             if m := p.search(text):
                 return m.group(0)
+        labels = [_norm(x) for x in ev.source_categories]
+        if rule.labels_none and any(p.search(x) for p in rule.labels_none for x in labels):
+            return None  # e.g. the source also tags it "General Public"
         for p in rule.labels:
-            for label in ev.source_categories:
-                if p.search(_norm(label)):
+            for label in labels:
+                if p.search(label):
                     return f"label {label!r}"
         return None
 

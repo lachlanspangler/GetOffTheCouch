@@ -1,0 +1,4317 @@
+# The listing gate's golden set (ADR-0010): real listings labelled event / not_event, measured on every
+# `make check` (tests/unit/test_listing_gate_golden.py). Audit labels were made blind to the rules.
+- id: g000
+  city: washington_dc
+  source_id: smithsonian_events
+  title: Stamp & Scream
+  category: arts.museum
+  category_basis: classified
+  label: event
+  why: Smithsonian public program
+  origin: audit-2026-11-02 (blind label)
+- id: g001
+  city: riverside
+  source_id: cbu_athletics
+  title: California Baptist University Men's Water Polo vs UC San Diego
+  description: California Baptist University Men's Water Polo vs UC San Diego
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: home college game
+  origin: audit-2026-11-02 (blind label)
+- id: g002
+  city: chicago
+  source_id: chipublib_events
+  title: Mission Moon Exhibit Tour at the Adler
+  description: 'Join us at the Adler Planetarium for a guided tour of the Mission Moon exhibit by Dr. Andrew Johnston,
+    followed by self-guided exploration of the Adler.
+
+
+    How to Attend:
+
+
+    Space is limited, registration is required . This event will be held in person at the Adler Planetarium, 1300
+    S DuSable Lake Shore Drive. Complimentary admission to the museum is included for all registered participants.
+    Attendees'
+  labels:
+  - One Book, One Chicago
+  - Health and Science
+  - Tours
+  - 'Adults: 18 and up'
+  - English
+  category: arts.books
+  category_basis: source_label
+  label: event
+  why: guided public exhibit tour
+  origin: audit-2026-11-02 (blind label)
+- id: g003
+  city: philadelphia
+  source_id: chris_jazz_cafe
+  title: Closed for Holiday
+  description: Merry Christmas and Happy Holidays to all our friends and family!
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure notice
+  origin: audit-2026-11-02 (blind label)
+- id: g004
+  city: columbus
+  source_id: westerville_library_events
+  title: Library Board Meeting
+  description: 'The Board of Trustees of the Westerville Public Library meets in Regular Session. The public is
+    welcome to attend.
+
+
+    The Westerville Public Library complies with the Americans with Disabilities Act [ADA]. Anyone in need of special
+    arrangements to attend the Board Meeting is encouraged to call the Administrative offices at 614-882-7277 ext.
+    2155.
+
+
+    For agenda and meeting minutes, visit this page .'
+  labels:
+  - About Your Library
+  - Adults - Ages 18 +
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: library board business meeting
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g005
+  city: san_francisco
+  source_id: visit_oakland_events
+  title: Gorillaz - The Mountain Tour
+  description: 'Gorillaz hit Oakland Arena with their iconic sound, bold visuals, and fan‑favorite tracks in an
+    electrifying live show. Get your tickets now and plan a stay in Oakland for an unforgettable night.
+
+
+    🎟️: https://www.theoaklandarena.com/events/detail/gorillaz'
+  labels:
+  - Live Concerts & Performances
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: arena concert
+  origin: audit-2026-11-02 (blind label)
+- id: g006
+  city: san_diego
+  source_id: balboa_park_events
+  title: Ikebana International October Meeting
+  description: Join us for our monthly meeting!
+  labels:
+  - Event
+  category: arts.museum
+  category_basis: classified
+  label: event
+  why: hobby club monthly meeting at public park
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g007
+  city: austin
+  source_id: austin_convention_center_events
+  title: 2027 Austin National College Fair
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: public college fair, attendable by families
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g008
+  city: nashville
+  source_id: vanderbilt_events
+  title: Regular Meeting
+  labels:
+  - Student Organizations
+  - AnchorLink
+  - Vanderbilt Pre-Medical Book Club
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: student org business meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g009
+  city: chicago
+  source_id: chipublib_events
+  title: Read and Sign Baby Story Time
+  description: 'Join our 25-minute story time with Miss Evelyn especially for our littlest patrons! We share songs,
+    rhymes and books, plus a simple take-home activity. We learn simple American Sign Language signs in each session.
+
+
+    For children 0 to 2 and their caregivers.
+
+
+    How to Attend
+
+    Registration opens one week prior to the event. Register by 24 hours before the event. Chicago Public Library
+    cannot collect per'
+  labels:
+  - Story Time
+  - 'Babies: 0 to 18 months'
+  - 'Toddlers: 18 to 36 months'
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: library story time
+  origin: audit-2026-11-02 (blind label)
+- id: g010
+  city: hartford
+  source_id: hfd_public_library_events
+  title: 1-on-1 Business Advising with CEDF -
+  description: 'Small businesses find hope & opportunity here
+
+
+    Small businesses find hope and opportunity here. Meet one-on-one with a business advisor from CEDF, Connecticut''s
+    nonprofit small business lender. Free and open to the public.
+
+    On Tuesdays from 11AM to 1PM, bring us the business problems you''re stuck on.
+
+
+    Every Tuesday, CEDF business advisor Steven Adamo sits down one-on-one with Hartford entrepreneurs'
+  labels:
+  - Education
+  - Education
+  - Career
+  - Business
+  - Adults
+  category: learning.networking
+  category_basis: source_label
+  label: not_event
+  why: one-on-one advising appointment
+  origin: audit-2026-11-02 (blind label)
+- id: g011
+  city: cincinnati
+  source_id: chpl_events
+  title: Northside LGBTQIA+ Book Club
+  description: 'Join us in exploring queer identity and culture across various genres. Call 513-369-4449 for this
+    month''s title.
+
+
+    No registration required.'
+  labels:
+  - Book Clubs and Reading
+  - Adults
+  - All Ages
+  - English
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public book club
+  origin: audit-2026-11-02 (blind label)
+- id: g012
+  city: austin
+  source_id: heb_center
+  title: A Very Merry Symphony
+  description: 'H-E-B Center at Cedar Park announced A Very Merry Symphony featuring the Austin Symphony Orchestra
+    , a special festive holiday performance coming to H-E-B Center on December 20, 2026.
+
+
+    For the first time, the Austin Symphony Orchestra will bring its full orchestra to Cedar Park, creating a memorable
+    holiday experience for families and music lovers throughout Central Texas. Guests will enjoy belove'
+  labels:
+  - Music
+  - H-E-B Center
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: symphony holiday concert
+  origin: audit-2026-11-02 (blind label)
+- id: g013
+  city: oklahoma_city
+  source_id: okc_uco_events
+  title: PGA Golf Management Career & Internship Fair
+  description: Network with golf industry professionals and explore internships and other employment opportunities
+    at the PGA Golf Management Career & Internship Fair.
+  labels:
+  - Alumni and Friends
+  - Health and Wellness
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: campus career/internship recruiting fair
+  origin: audit-2026-11-02 (blind label)
+- id: g014
+  city: boston
+  source_id: club_passim
+  title: club closed
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: venue closed notice
+  origin: audit-2026-11-02 (blind label)
+- id: g015
+  city: cincinnati
+  source_id: chpl_events
+  title: Board Game Club
+  description: 'Board games, card games, and snacks for kids and teens, the first Tuesday of every month! Recommended
+    for ages 9 and up.
+
+    Registration optional.'
+  labels:
+  - Games and Gaming
+  - Children
+  - Teens
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids/teens game club
+  origin: audit-2026-11-02 (blind label)
+- id: g016
+  city: houston
+  source_id: rice_events
+  title: 'Rice Global Paris Summer Program: Info Session and Course Fair'
+  description: 'The Rice Global Paris Summer Program offers three-week sessions combining academic rigor with cultural
+    immersion in one of the world’s most inspiring cities.
+
+
+    Join us for a short informational presentation followed by fair-style tabling. Speak to course instructors,
+    student ambassadors, Rice Global staff, and a representative from the Office of Financial Aid!
+
+
+    Free food will be provided while supp'
+  labels:
+  - Academics
+  - free event
+  - Global Rice
+  - Learning
+  - Rice Global
+  - Rice Global Paris Center
+  - undergraduate
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: study-abroad info session for enrolled students
+  origin: audit-2026-11-02 (blind label)
+- id: g017
+  city: birmingham
+  source_id: bham_uab_events
+  title: Virtual Kyoto Tour
+  description: 'Have you ever dreamed of traveling to Japan?
+
+
+    Our new Japanese language instructor, Ai Amemiya, will offer you a Virtual two -day Kyoto, Japan Tour, including
+    UNESCO World Heritage Sites visit and Gion Festival experience, at Language Resource Center on Tuesday, October
+    27 at 5pm.
+
+
+    Ai had her twelve-year educations in Kyoto, is a Japanese government-licensed English tour guide interpreter,
+    and a p'
+  labels:
+  - Current Students
+  - Faculty & Staff
+  - General Public
+  - Arts & Culture
+  - Lectures & Presentations
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: virtual tour open to general public
+  origin: audit-2026-11-02 (blind label)
+- id: g018
+  city: seattle
+  source_id: kcls_events
+  title: 'King County Local Services: Community Vans Office Hours'
+  description: 'Meet current Community Van drivers, learn how the program works, and find out how you can help keep
+    our community moving!
+
+
+    Drop in. Registration not required.'
+  labels:
+  - Social Services & Health
+  - Adults (Ages 24 to 49)
+  - New Adults (Ages 19 to 23)
+  - Older Adults (Ages 50+)
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: office hours, drop-in info table
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g019
+  city: raleigh
+  source_id: martin_marietta_center
+  title: 'Dusty Slay: The Neighborhood Guy Tour'
+  description: You can take the boy out of the trailer park, but you can’t take the trailer park out of the boy…
+    stand-up comedian Dusty Slay grew up on Lot 8 of a mobile home neighborhood in Opelika, Alabama, with a love
+    for both classic country and rock and a career history peppered with jobs like waiting tables and selling pesticides.
+    Now the Alabama native with the “We’re having a Good Time” attitude is hitt
+  labels:
+  - Comedy
+  - Meymandi Concert Hall
+  category: nightlife.comedy
+  category_basis: source_label
+  label: event
+  why: comedy show
+  origin: audit-2026-11-02 (blind label)
+- id: g020
+  city: seattle
+  source_id: seattle_city_events
+  title: Community Office Hours with Director Amy Nguyen
+  description: 'Community Office Hours with Arts & Culture Director, Amy Nguyen, on the last Fridays of the month,
+    10 AM to noon.
+
+
+    Please contact Executive Assistant Allie Lee at Allie.Lee@seattle.gov to schedule a 30-min meeting time slot
+    with Director Nguyen.'
+  labels:
+  - Arts
+  - Community
+  - Dance
+  - Ethnic/Cultural
+  - Film
+  - Museum/Gallery
+  - Music
+  - Theater
+  category: community.neighborhood
+  category_basis: classified
+  label: not_event
+  why: director office hours
+  origin: audit-2026-11-02 (blind label)
+- id: g021
+  city: phoenix
+  source_id: phoenix_public_library_events
+  title: FREE Children's Hearing and Vision Screenings (Ages 1-5 yrs)
+  description: 'Come join us for FREE Children’s Hearing and Vision Screenings (Ages 1-5 yrs). Chicanos por la Causa
+    will be on site offering free screenings for children. No registration necessary.
+
+
+    Únase a nosotros para exámenes de audición y visión GRATIS para niños (de 1 a 5 años). Chicanos por la Causa
+    estará en el lugar ofreciendo exámenes gratuitos para niños. No es necesario registrarse.'
+  labels:
+  - Childrens' Programs
+  - Health & Wellness
+  - Parent Education
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: free public drop-in child screening program
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g022
+  city: charlotte
+  source_id: clt_uncc_events
+  title: 'Jamil Niner Student Pantry: Thursday Volunteer Shift | 12:30pm – 2:45pm'
+  description: 'The Jamil Niner Student Pantry assists UNC Charlotte students and faculty/staff who are having challenges
+    accessing food regularly. Through volunteering, you will be working with the pantry leadership team to provide
+    healthy, culturally appropriate, and emergency foods to students, faculty, and staff on campus. Volunteer activities
+    may include, but are not limited to: checking shoppers in and out,'
+  category: volunteer.one_off
+  category_basis: classified
+  label: not_event
+  why: campus pantry shift for students/staff
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g023
+  city: kansas_city
+  source_id: umkc_events
+  title: Concrete Canoe Aesthetics Meeting
+  category: outdoors.water
+  category_basis: classified
+  label: not_event
+  why: student team internal meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g024
+  city: austin
+  source_id: acl_live
+  title: RuPaul's Drag Race Werq the World Tour
+  description: 'Special guest added to the line-up: Vanessa Vanjie Mateo.
+
+
+    Set in a dystopian future, the stars of RuPaul’s Drag Race must choose between the real world and the artificial
+    world they have come to know. The 2023 show delivers an all-new Sci-Fi production specially designed for large
+    venues and arenas, join Asia O’Hara, Bosco, DeJa Skye, Lady Camden, Rosé, Laganja Estranja, and Mistress Isabelle
+    Bro'
+  labels:
+  - ACL Live at The Moody Theater
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: touring drag show
+  origin: audit-2026-11-02 (blind label)
+- id: g025
+  city: cleveland
+  source_id: rocket_arena
+  title: Cavaliers vs. TBD
+  description: 'The Cleveland Cavaliers will take on the TBD opponent in an NBA regular season game at Rocket Arena
+    between December 4-10. The game date, time, and opponent will be determined following the conclusion of Group
+    Play during the NBA Cup.
+
+
+    For latest news, stats, roster, schedule and more information about the Cavaliers, please visit cavs.com .'
+  labels:
+  - Cavaliers
+  - Rocket Arena
+  category: sports_watch.game
+  category_basis: source_label
+  label: not_event
+  why: game placeholder, opponent and date TBD
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g026
+  city: pittsburgh
+  source_id: cmu_events
+  title: 'Masterclass: Mariam Adam, Valerie Coleman & Monica Ellis'
+  description: 'Mariam Adam , clarinet
+
+
+    Valerie Coleman, flute
+
+
+    Monica Ellis, bassoon'
+  labels:
+  - Arts &amp; Performance
+  - Exclude from Main Calendar
+  - Open to the Public
+  - Masterclass
+  category: arts.theater
+  category_basis: source_label
+  label: event
+  why: masterclass open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g027
+  city: phoenix
+  source_id: phoenix_public_library_events
+  title: ARIZONA@WORK Job Fair
+  description: 'Looking for a new job? Weighing your options and unsure what opportunities are out there?
+
+
+    TTEC is looking to fill positions including:
+
+
+    Customer Services Concierge Support
+
+    B2B Inside Sales Representative (Hybrid)
+
+    B2B Customer Services Representative - Sales Appointments - Outbound (Hybrid)
+
+
+    Please bring copies of your resume and your ID. Dress to impress!
+
+
+    This Job Fair is limited to ages 16 and '
+  labels:
+  - Community Resources & Services
+  - 'PHX Works: Job & Career Support'
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: public job fair at library
+  origin: audit-2026-11-02 (blind label)
+- id: g028
+  city: hampton_roads
+  source_id: volunteer_hr
+  title: Serving Sunday with Auntie Advocate at MLK Park
+  description: '🌟 Serving Sunday at MLK Park – Volunteer Opportunity 🌟
+
+
+    Every Sunday | 12:30–2:30 PM | MLK Park – Norfolk, VA
+
+
+    In partnership with Bruce Jones Love Ministry
+
+
+    Join us each Sunday as we serve 75–100 individuals with warm meals, compassion, and community love. This is
+    an outdoor volunteer activity, and we depend on committed volunteers to help ensure a smooth and successful
+    operation. If you sign up,'
+  labels:
+  - Project
+  - Date & Time Specific
+  - Hunger & Homelessness
+  category: volunteer.one_off
+  category_basis: classified
+  label: event
+  why: public volunteer shift
+  origin: audit-2026-11-02 (blind label)
+- id: g029
+  city: providence
+  source_id: pvd_east_providence_library_events
+  title: One on One Tech Help
+  labels:
+  - Riverside Branch Library
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: one-on-one tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g030
+  city: atlanta
+  source_id: emory_events
+  title: (Last day!) Emory Student Art Show at the High Museum (daily exhibition)
+  description: 'Emory Student Art Show
+
+    Now open through November 1, 2026
+
+    Free to all! Simply say, “I’m here for the Emory Student Art Show.”
+
+    Check hours first at www.high.org'
+  labels:
+  - Arts
+  - Campus Life & Student Orgs
+  - College
+  category: arts.theater
+  category_basis: source_label
+  label: event
+  why: museum exhibition free to all
+  origin: audit-2026-11-02 (blind label)
+- id: g031
+  city: raleigh
+  source_id: goodnights_comedy
+  title: Closed for Private Event
+  description: 'We''re closed for a private event - but in the meantime click the Events tab above to check out
+    all of our great upcoming shows!
+
+
+    Interested in booking the club for your next event? Check out our Groups Events page!'
+  labels:
+  - Event
+  category: nightlife.comedy
+  category_basis: source_kind
+  label: not_event
+  why: closed for private event
+  origin: audit-2026-11-02 (blind label)
+- id: g032
+  city: houston
+  source_id: rice_events
+  title: Holistic Garden Tour
+  description: Enjoy guided tours of the Betty and Jacob Friedman Holistic Garden. Come and go as you please while
+    exploring sustainable agriculture and strolling through organic crops.
+  labels:
+  - Alumni
+  - Alumni Weekend
+  - Alumni Weekend 2026
+  - 'Alumni Weekend 2026: Signature Events'
+  category: outdoors.park
+  category_basis: classified
+  label: event
+  why: garden tour during alumni weekend
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g033
+  city: salt_lake_city
+  source_id: now_playing_utah
+  title: Drawing and Mixed Media Art Classes at the Visual Art Institute
+  description: 'Welcome to Drawing and Mixed Media at the Visual Art Institute!
+
+    In our drawing and mixed media classes, students are invited to learn and expand on the foundations of traditional
+    art. We have classes for beginner and intermediate teens and adults (age 12+). Understanding the simplest forms
+    of expression using fun and easy techniques allows endless possibilities to explore and create no matter how '
+  category: community.cultural
+  category_basis: classified
+  label: event
+  why: art classes open to sign up
+  origin: audit-2026-11-02 (blind label)
+- id: g034
+  city: seattle
+  source_id: visit_ballard_events
+  title: Silent Reading at The Ink Drinker
+  description: Come close your weekend right with a relaxing drink and some quality quiet time with your latest
+    read at The Ink Drinker Sunday from 6 pm to 8 pm. We have cocktails, non-alcoholic creations, wine, beer and
+    cider on tap as well as appetizers, entrées, and desserts.
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public social reading event
+  origin: audit-2026-11-02 (blind label)
+- id: g035
+  city: chicago
+  source_id: chicago_park_events
+  title: Holiday Youth Swim at Mann
+  description: Social fun swim. Some may chose to work on their strokes, while others just float around.
+  labels:
+  - Aquatics - All, Winter Holidays
+  category: outdoors.park
+  category_basis: classified
+  label: event
+  why: public youth swim session
+  origin: audit-2026-11-02 (blind label)
+- id: g036
+  city: san_francisco
+  source_id: mr_tipples
+  title: Closed for Private Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: closed for private event
+  origin: audit-2026-11-02 (blind label)
+- id: g037
+  city: minneapolis
+  source_id: hook_and_ladder
+  title: Cornbread & Friends - Holiday Blues Show
+  description: The Hook and Ladder Theater is proud to again host this very special, intimate Holiday Blues Show
+    with the one and only Cornbread Harris and Friends on Thursday, December 17th at The Hook and Ladder Theater.
+    James Samuel "Cornbread" Harris, Sr. (born April 23, 1927) is an America
+  labels:
+  - MusicEvent
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: blues concert
+  origin: audit-2026-11-02 (blind label)
+- id: g038
+  city: birmingham
+  source_id: bham_alabama_theatre
+  title: Elf – Holiday Film Series
+  description: 'Buy Tickets
+
+
+    Plan Your Visit
+
+
+    2003 | PG | 1h 37m Adventure | Comedy | Family
+
+
+    Raised as an oversized elf, Buddy travels from the North Pole to New York City to meet his biological father,
+    Walter Hobbs, who doesn’t know he exists and is in desperate need of some Christmas spirit.
+
+
+    Children ages two and younger are free of charge. Seating is general admission, first come, first served. Doors
+    open 1 '
+  labels:
+  - Movies
+  category: arts.film
+  category_basis: source_label
+  label: event
+  why: film screening
+  origin: audit-2026-11-02 (blind label)
+- id: g039
+  city: miami
+  source_id: mdpls_events
+  title: 'Drop-in Game Time: Board Games and More'
+  description: Join us for board games and more! Games will be provided. For more information, please contact the
+    branch at 305-385-7135 or lopezp@mdpls.org. Ages 6 - 12 yrs.
+  labels:
+  - In-Person
+  - Games
+  - Tween (8-12)
+  - Children (6-11)
+  category: trivia_games.board_games
+  category_basis: source_label
+  label: event
+  why: kids game program
+  origin: audit-2026-11-02 (blind label)
+- id: g040
+  city: phoenix
+  source_id: mesa_arts_center
+  title: 'Jesse Cook: Forever Live Tour'
+  description: A global artist in every sense of the word, JESSE COOK redefines music’s power to connect people
+    across cultures and continents.
+  labels:
+  - TheaterEvent
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g041
+  city: minneapolis
+  source_id: mprb_events
+  title: Board Meeting
+  description: Board Meeting Agendas and Minutes
+  labels:
+  - Public Meetings
+  category: outdoors.park
+  category_basis: classified
+  label: not_event
+  why: board business meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g042
+  city: boston
+  source_id: downtown_boston_events
+  title: 'Boston: Freedom Trail Insiders Tour with Museum Entry'
+  description: Step inside TWO landmark museums on this exclusive Freedom Trail outing! Enjoy small-group access
+    to the Old State House and Old South Meeting House.
+  category: arts.museum
+  category_basis: classified
+  label: event
+  why: public guided tour
+  origin: audit-2026-11-02 (blind label)
+- id: g043
+  city: raleigh
+  source_id: ncsu_events
+  title: 'Professional Devolopment Series: FAFSA/Financial Aid'
+  description: 'Multicultural Student Affairs will host the FAFSA/Financial Aid workshop to help students understand,
+    navigate and complete the FAFSA, or Free Application for Federal Student Aid, process. By the end of this program,
+    students should complete or be able to complete the FAFSA application on their own for the 2027-28 academic
+    year.
+
+
+    This workshop is part of Multicultural Student Affairs'' Professional'
+  labels:
+  - Students
+  - Career Development
+  - Workshops and Training
+  - Professional Development Series
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: FAFSA workshop for enrolled students
+  origin: audit-2026-11-02 (blind label)
+- id: g044
+  city: kansas_city
+  source_id: umkc_events
+  title: Kansas City Women’s Basketball vs Baker
+  labels:
+  - Athletics
+  - Open to the Public
+  category: sports_league.basketball
+  category_basis: classified
+  label: event
+  why: game open to the public
+  origin: audit-2026-11-02 (blind label)
+- id: g045
+  city: austin
+  source_id: utaustin_events
+  title: '"Shy Longhorns Society" SHARE Community Meeting'
+  description: Are you shy, introverted or socially anxious? All of the above? No worries. At a campus as big as
+    UT, it can be difficult to be shy and make meaningful connections and friendships. At the Shy Longhorns Society,
+    we come together to create a community built upon support and validation for the struggles of being socially
+    anxious or shy at UT. We remind each other that we are not alone and come up wit
+  labels:
+  - Students
+  - Campus & Community
+  - Health & Wellness
+  category: community.neighborhood
+  category_basis: classified
+  label: not_event
+  why: student-only community group
+  origin: audit-2026-11-02 (blind label)
+- id: g046
+  city: atlanta
+  source_id: atlanta_botanical_garden
+  title: Garden Lights, Holiday Nights Volunteer Training
+  description: 'Spread holiday cheer this season during Garden Lights, Holidays Nights ! Training covers the information
+    needed to greet and direct visitors at Garden Lights . Volunteers must attend the introductory orientation and
+    commit to five shifts. They are also invited to a preview event.
+
+
+    For details, contact Volunteer Manager Josh Todd at 404-591-1548 or jtodd@atlantabg.org .'
+  labels:
+  - Adults Programming
+  - Atlanta
+  category: volunteer.one_off
+  category_basis: classified
+  label: event
+  why: volunteer training
+  origin: audit-2026-11-02 (blind label)
+- id: g047
+  city: birmingham
+  source_id: bham_uab_events
+  title: 'UAB Ophthalmology: Grand Rounds Lecture'
+  description: 'Join UAB Ophthalmology residents for a grand rounds lecture covering various topics pertaining to
+    ophthalmology.
+
+
+    Each event is worth 1.5 Continuing Medical Education (CME) credits.'
+  labels:
+  - Faculty & Staff
+  - Research
+  - Science & Technology
+  - Lectures & Presentations
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: faculty grand rounds CME lecture
+  origin: audit-2026-11-02 (blind label)
+- id: g048
+  city: providence
+  source_id: pvd_the_met
+  title: PLAYING DEAD
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: likely band show at venue
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g049
+  city: austin
+  source_id: austin_convention_center_events
+  title: 2027 Affordable Art Fair
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: public art fair
+  origin: audit-2026-11-02 (blind label)
+- id: g050
+  city: charlotte
+  source_id: clt_blumenthal_arts
+  title: 'Charlotte Symphony: Holiday Pops Family'
+  description: The spirit of the holiday season comes alive with the timeless magic of traditional carols and festive
+    cheer -- including a visit from Santa and friends. Joy fills the hall as warm memories of Christmases past ring
+    clear with favorites like "The Twelve Days of Christmas," "We Wish You a Merry Christmas," and many more.
+  labels:
+  - Concerts
+  - Knight Theater
+  category: music.concert
+  category_basis: source_label
+  label: event
+  why: family holiday concert
+  origin: audit-2026-11-02 (blind label)
+- id: g051
+  city: austin
+  source_id: utaustin_events
+  title: 'Gale Family Foundation Fall 2026 Lecture: "The Galveston Movement and the Jewish Question, 1903-1914"
+    by Jeffrey Veidlinger'
+  description: This talk explores the Galveston Movement, a plan initiated in 1907 to redirect Jewish migration
+    from Russia away from New York and the Northeast through the port of Galveston, Texas in an attempt to settle
+    Jews in the Great Plains of the United States. The story sheds important light on contemporary issues related
+    to immigration, Zionism, and race in the United States and around the Jewish world.
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public lecture
+  origin: audit-2026-11-02 (blind label)
+- id: g052
+  city: charlotte
+  source_id: clt_uncc_events
+  title: 'Jamil Niner Student Pantry: Tuesday Volunteer Shift | 2:30pm – 5:15pm'
+  description: 'The Jamil Niner Student Pantry assists UNC Charlotte students and faculty/staff who are having challenges
+    accessing food regularly. Through volunteering, you will be working with the pantry leadership team to provide
+    healthy, culturally appropriate, and emergency foods to students, faculty, and staff on campus. Volunteer activities
+    may include, but are not limited to: checking shoppers in and out,'
+  category: volunteer.one_off
+  category_basis: classified
+  label: not_event
+  why: campus pantry shift for students/staff
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g053
+  city: detroit
+  source_id: cliff_bells
+  title: Closed for the Holiday
+  description: Happy Thanksgiving!
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure notice
+  origin: audit-2026-11-02 (blind label)
+- id: g054
+  city: minneapolis
+  source_id: dakota_jazz
+  title: Private Event
+  description: 'We are booked on DEC 10 for a private event. BOOK YOUR EVENT HERE :'
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: private event placeholder
+  origin: audit-2026-11-02 (blind label)
+- id: g055
+  city: nyc
+  source_id: nyc_permitted_events
+  title: HHFM Hunts Point Market
+  labels:
+  - Farmers Market
+  category: community.market
+  category_basis: source_label
+  label: event
+  why: farmers market
+  origin: audit-2026-11-02 (blind label)
+- id: g056
+  city: raleigh
+  source_id: lincoln_theatre_raleigh
+  title: Tiny Habits w/ TBA
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: band show, opener TBA
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g057
+  city: los_angeles
+  source_id: la_business_openings
+  title: Sakana Times — new business registration
+  description: License signal, not a confirmed opening date. This Limited-Service Restaurants location was registered
+    with the LA Office of Finance with a start date of Nov 1, 2026.
+  labels:
+  - Limited-Service Restaurants
+  category: food_drink.restaurant_opening
+  category_basis: source_kind
+  label: not_event
+  why: business license registration, not an event
+  origin: audit-2026-11-02 (blind label)
+- id: g058
+  city: hartford
+  source_id: hfd_public_library_events
+  title: ESL Classes
+  description: English as a second language classes. Registered students only. Please contact ESL@hplct.org for
+    more information.
+  labels:
+  - Reading & Writing
+  - Language
+  - Civic Engagement
+  - Career
+  - Adults
+  category: learning.language
+  category_basis: source_label
+  label: event
+  why: ESL class series, registration required
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g059
+  city: pittsburgh
+  source_id: cmu_events
+  title: Virtual Residence Hall Tour
+  description: The Virtual Residence Hall Tour, led by our Tartan Ambassadors, offers a look at Carnegie Mellon’s
+    common first-year on-campus housing options.
+  labels:
+  - Admission
+  - Exclude from Main Calendar
+  category: music.concert
+  category_basis: classified
+  label: not_event
+  why: admissions residence hall tour
+  origin: audit-2026-11-02 (blind label)
+- id: g060
+  city: nashville
+  source_id: bridgestone_arena
+  title: Greta Van Fleet INTO THE BEGINNING WORLD TOUR
+  labels:
+  - Concerts
+  - Bridgestone Arena
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: arena concert
+  origin: audit-2026-11-02 (blind label)
+- id: g061
+  city: denver
+  source_id: arapahoe_library_events
+  title: Homework Help at Eloise May Library (3rd-12th Grade)
+  description: Students in grades 3-12 can drop in to receive free homework help in all school subjects. Students
+    are asked to bring their homework assignments and textbooks, if needed. This service is intended to be for general
+    homework help and we do not guarantee individual tutoring support.
+  labels:
+  - Children's Literacy
+  - Events
+  - Kids (5–8)
+  - Teens (12–18)
+  - Tweens (9–12)
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids homework help drop-in program
+  origin: audit-2026-11-02 (blind label)
+- id: g062
+  city: sacramento
+  source_id: sacstate_events
+  title: 'Student Recital: Quinn Vance, piano'
+  description: Junior piano recital of Quinn Vance, student of Richard Cionco.
+  labels:
+  - Concert
+  category: music.concert
+  category_basis: source_label
+  label: event
+  why: student recital, typically public
+  origin: audit-2026-11-02 (blind label)
+- id: g063
+  city: san_jose
+  source_id: sjsu_events
+  title: Men's Basketball - San Jose State vs. Fresno State
+  description: Men's Basketball - San Jose State vs. Fresno State https://sjsuspartans.com/boxscore/8936
+  labels:
+  - Alumni
+  - SJSU Employees
+  - General Public
+  - Students
+  - Current Students
+  - Faculty
+  - Staff
+  - Athletics Events
+  category: sports_league.basketball
+  category_basis: classified
+  label: event
+  why: public basketball game
+  origin: audit-2026-11-02 (blind label)
+- id: g064
+  city: boston
+  source_id: bpl_events
+  title: Tech Help by Appointment
+  description: 'Need basic help on the computer? Questions about using your laptop or cell phone? Looking to get
+    familiar with eBooks, audiobooks, or other BPL online resources? Get one-on-one assistance from a librarian!
+    To make an appointment please call (617) 524-2053 or email kkeleher@bpl.org.
+
+
+    Laptops and public desktops are available for use, or bring your own device.
+
+
+    Accessibility Notice : We strive to ma'
+  labels:
+  - Computers/Technology Classes
+  - All Adults
+  - Older Adults
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: by-appointment tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g065
+  city: san_francisco
+  source_id: sf_recpark_events
+  title: Free Dance Fitness Class by Rae Studios
+  description: Free dance fitness classes https://sfrecpark.org/calendar.aspx?EID=10576
+  category: fitness.yoga
+  category_basis: classified
+  label: event
+  why: free public fitness class
+  origin: audit-2026-11-02 (blind label)
+- id: g066
+  city: san_jose
+  source_id: sap_center
+  title: Educators Appreciation
+  labels:
+  - Sharks Games
+  - SAP Center
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: themed hockey game night
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g067
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: Tabletop Board Games for Teens
+  description: Unplug from screens and dive into the world of tabletop gaming with a variety of board games suitable
+    for ages 12-18 at University City Regional Library. This program offers a fantastic opportunity for customers
+    ages 12-18. Participating in board games encourage cooperation, problem solving, letter and word recognition,
+    and critical thinking skills. Come in and select a game from our board game li
+  labels:
+  - Gaming
+  - Teens (12-18)
+  - English
+  category: trivia_games.board_games
+  category_basis: source_label
+  label: event
+  why: teen board games program
+  origin: audit-2026-11-02 (blind label)
+- id: g068
+  city: portland
+  source_id: portland_art_museum
+  title: The Elk – A Film Screening and Walking Tour
+  description: 'See the award-winning short documentary featuring a beloved Portland icon, then join a post-screening
+    walking tour to view the Thompson Elk and other monuments that shape the story of our city. Part of ADX Fest,
+    a region-wide art and design festival activating venues, studios and spaces across the Portland Metro Area.
+
+
+    Doors Open – 4:00pm
+
+    Event Start – 4:15pm
+
+    Walking Tour – 5:15pm
+
+
+    About the Film:'
+  labels:
+  - PAM CUT @ The Whitsell
+  - Screenings & experiences
+  category: arts.film
+  category_basis: source_label
+  label: event
+  why: screening plus walking tour
+  origin: audit-2026-11-02 (blind label)
+- id: g069
+  city: birmingham
+  source_id: bham_alabama_theatre
+  title: White Christmas presented with Open Movie Captions – Holiday Film Series
+  description: 'Buy Tickets
+
+
+    Plan Your Visit
+
+
+    Open captions display all dialogue and key sounds on the screen for everyone to see, ensuring an inclusive and
+    enjoyable experience for all attendees. We appreciate your understanding and look forward to spending time with
+    you during the 2026 Holiday Film Series presented by Regions!
+
+
+    1954 | Not Rated | 2h Comedy | Musical | Romance
+
+
+    A successful song-and-dance team b'
+  labels:
+  - Movies
+  category: arts.film
+  category_basis: source_label
+  label: event
+  why: film screening
+  origin: audit-2026-11-02 (blind label)
+- id: g070
+  city: seattle
+  source_id: seattle_city_events
+  title: Pioneer Square Preservation Board Meeting
+  labels:
+  - Boards & Commissions
+  category: community.neighborhood
+  category_basis: classified
+  label: not_event
+  why: preservation board meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g071
+  city: san_jose
+  source_id: stanford_events
+  title: 'You Belong Here: A Student Workshop'
+  description: 'You Belong Here: A Student Workshop creates a supportive, reflective space for Black and African
+    students to explore belonging, build confidence, and strengthen connections across campus. Through guided conversation,
+    small-group reflection, and brief skills practice, participants will surface common experiences of self-doubt
+    and imposter feelings while recognizing the accomplishments and resilienc'
+  labels:
+  - Students
+  - Students - Undergraduates
+  - Students - Graduates
+  - Postdocs
+  - Faculty
+  - Staff
+  - Affiliates
+  - Staff - Academic
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: student-only workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g072
+  city: san_jose
+  source_id: sjpl_events
+  title: 'Digital Skills: One-On-One Tech Help for Seniors'
+  description: 'Do you have questions or need assistance with technology? At the Almaden Branch you can make a 30-minute
+    appointment to assist you with:
+
+
+    Learning to use Libby (formerly Overdrive) to read ebooks and listen to e-audiobooks
+
+    Accessing non-Overdrive eBooks and audiobooks from Boundless, CloudLibrary, and Enki
+
+    Using Hoopla to read, listen and watch
+
+    Accessing the New York Times and/or the San Jose Merc'
+  labels:
+  - Computer Help
+  - Seniors, ages 65+
+  - English
+  category: learning.tech
+  category_basis: source_label
+  label: not_event
+  why: one-on-one appointment
+  origin: audit-2026-11-02 (blind label)
+- id: g073
+  city: phoenix
+  source_id: phoenix_public_library_events
+  title: Teen Council
+  description: Come together with your teen peers to discuss library topics important to them! Books, music, movies,
+    and even library programming are just some of the topics you will get to share your opinions on when you join
+    the council. Council hours also count towards service hours needed for school for members between the ages of
+    13-17. Already a teen volunteer at Burton Barr? Be sure to attend Council meet
+  labels:
+  - Teen Programs
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: teen program at library
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g074
+  city: washington_dc
+  source_id: songbyrd_dc
+  title: NATANYA – THE ATTITUDE TOUR
+  description: London-based singer-songwriter and producer Natanya is emerging as one of pop’s most compelling new
+    voices, crafting music that blends emotional candor with sharp, self-assured production. Raised in North West
+    London, she began playing classical piano at just four years old and quickly discovered her perfect pitch, later
+    refining her musicianship at the Julian Joseph Jazz Academy. Early influences
+  labels:
+  - Event
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g075
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: Intro to Candid (formerly Foundation Directory Online) 1-on-1 Support Session
+  description: 'Looking for grants for your nonprofit?
+
+
+    Get 1-on-1 assistance with Candid (formerly the Foundation Directory Online and Guidestar) the most comprehensive
+    prospect research tool for fundraisers, with 140,000 grantsmakers and 4 million grants.
+
+
+    You will learn how to search for grantmakers who have funded organizations working on causes and with communities
+    similar to those you serve.
+
+
+    NOTE: This is '
+  labels:
+  - 1-on-1
+  - Nonprofit Development
+  - Adults
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: one-on-one support session
+  origin: audit-2026-11-02 (blind label)
+- id: g076
+  city: memphis
+  source_id: memphis_fedexforum
+  title: 'Matt Rife: Stay Golden World Tour'
+  description: 'Acclaim comedian Matt Rife just announced his highly successful Stay Golden World Tour will be stopping
+    at FedExForum on Saturday, Jan. 9 .
+
+
+    About Matt Rife:
+
+
+    Comedian/Actor/Producer/Writer/and NY Times Best Selling Author Matt Rife has cemented himself as one of the
+    biggest stand ups in the world through his chart-topping Netflix specials and his remarkable engagement on social
+    media where he has'
+  labels:
+  - Comedy
+  - FedExForum - Home of the Memphis Grizzlies
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: comedy show
+  origin: audit-2026-11-02 (blind label)
+- id: g077
+  city: baltimore
+  source_id: towson_events
+  title: 'STEM for ALL Lecture Series: The Long-Gone Ocean Beneath Baltimore: The Story of the Lapetus and the Appalachians'
+  description: 'Presenter: Dr. George Guice, Department of Physics, Astronomy & Geosciences, Towson University.
+
+
+    Join us for a lecture and reception with Dr. George Guice at 5:30 p.m. in room 2226 of the Science Complex.
+    Parking is free in the Glen Parking Garage.
+
+
+    STEM for ALL is a public lecture series hosted by the Fisher College of Science and Mathematics at Towson University
+    that brings exciting concepts in '
+  labels:
+  - Academic Affairs
+  - Fisher College of Science and Mathematics
+  - Biological Sciences (Department of)
+  - Chemistry & Forensic Science (Department of)
+  - Computer & Information Sciences (Department of)
+  - Mathematics (Department of)
+  - Physics Astronomy and Geosciences (Department of)
+  - Arts & Culture
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public lecture series
+  origin: audit-2026-11-02 (blind label)
+- id: g078
+  city: miami
+  source_id: mdpls_events
+  title: Adult ESOL Classes
+  description: Learn English as a second language through this series of conversational classes taught at an intermediate
+    level. To register and schedule a level placement test, please contact Miami Palmetto Adult and Continuing Education
+    Center at 305-270-2707. For more information, please contact the branch at 305-668-4571 or booke@mdpls.org.
+    Ages 19 yrs.+
+  labels:
+  - Language Learning
+  - In-Person
+  - Conversation Circles
+  - Adult (19+)
+  category: learning.language
+  category_basis: source_label
+  label: event
+  why: adult ESOL classes
+  origin: audit-2026-11-02 (blind label)
+- id: g079
+  city: hampton_roads
+  source_id: norfolk_library_events
+  title: WAITLIST OPEN Holiday Family Portraits
+  description: 'THIS EVENT IS FULL. Please sign up for the waitlist at the link: https://forms.office.com/g/VQnuuFABY2
+
+
+    Get ready for the holiday season with a free professional family portrait session at the library! Community
+    members are invited to reserve a time slot for a mini photo session with a professional photographer. Participants
+    will receive several professionally edited digital images delivered by em'
+  labels:
+  - Holiday
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: free portrait event with waitlist
+  origin: audit-2026-11-02 (blind label)
+- id: g080
+  city: seattle
+  source_id: kcls_events
+  title: Bellevue Community Resource Center
+  description: 'Bellevue Library offers free information and access to a selection of the following services:
+
+
+    Employment and training
+
+    Education
+
+    Housing navigation and homelessness services
+
+    Food assistance
+
+    Health and medical care
+
+    Mental health treatment
+
+    Substance use treatment
+
+    Transportation and ORCA Lift
+
+
+    Not all services will be available every week.
+
+
+    In partnership with the King County District Court and the C'
+  labels:
+  - Social Services & Health
+  - Adults (Ages 24 to 49)
+  - New Adults (Ages 19 to 23)
+  - Older Adults (Ages 50+)
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: ongoing social services desk, not event
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g081
+  city: nyc
+  source_id: nyc_parks_events
+  title: 'Kids In Motion: Austin J. McDonald''s Playground'
+  description: The Kids in Motion program engages children in active, outdoor play. A NYC Parks staff member leads
+    four to seven hours of free activities in NYC's playgrounds, including organized sports, games, fitness demos,
+    board games, water games, and more!Kias in Motion is a free, drop-in program without registration. Children
+    can head to the playground during the listed hours of operation to participate. O
+  labels:
+  - Arts & Crafts | Games | Best for Kids
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: free kids outdoor program
+  origin: audit-2026-11-02 (blind label)
+- id: g082
+  city: birmingham
+  source_id: bham_uab_events
+  title: 'ALD Movie Screening: Join or Die'
+  description: Join ALD for a movie night! Relax, meet members, enjoy a movie, and learn more about our organization.
+    Whether you're interested in joining or just looking for a fun night with friends, we'd love to see you there.
+  labels:
+  - Current Students
+  - Social & Entertainment
+  category: arts.film
+  category_basis: classified
+  label: not_event
+  why: student org social for current students
+  origin: audit-2026-11-02 (blind label)
+- id: g083
+  city: minneapolis
+  source_id: hclib_events
+  title: 55+ Book Club
+  description: 'Join our discussion of new and interesting titles. Bring along your recommendations for future meetings.
+    Lending copies may be picked up at the information desk prior to meeting.
+
+
+    September 2: Council of Dolls
+
+    by Mona Susan Power
+
+
+    October 7: Theo of Golden
+
+    by Allen Levi
+
+
+    November 4: My Friends by Fredrik Backman'
+  labels:
+  - Book Clubs
+  - Adults
+  - Seniors
+  - English
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: book club
+  origin: audit-2026-11-02 (blind label)
+- id: g084
+  city: los_angeles
+  source_id: usc_events
+  title: 'THE TROJAN CONVERSATION: Introducing the USC Open Dialogue Project'
+  description: What does it mean to disagree well at USC? Join Founding Director Neeraj Sood for an introduction
+    to the USC Open Dialogue Project and its work to foster thoughtful conversations across differences. Meet members
+    of the project’s Student Advisory Board and learn how you—or your student—can get involved. Together, we will
+    explore how letting go of winning, remaining curious, and focusing on ideas ra
+  labels:
+  - Students
+  - Alumni
+  - Faculty/Staff
+  - University Park Campus
+  - Lecture / Talk / Workshop
+  - Event Highlights
+  - open dialogue project
+  - opendialogueproject
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: campus talk for students/faculty/alumni
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g085
+  city: chicago
+  source_id: chicago_park_events
+  title: Future Folk Festival at Austin Town Hall
+  description: 'Presented in partnership with Old Town School of Folk Music, featuring Dill Costa Quintet with AKENYA
+    and Shon Dervis
+
+
+    Future Folk Festival draws inspiration from the definition of folk music provided by Folk Alliance International:
+    “Folk is the music of the people, reflective of any community where they are from.”
+
+
+    Old Town School of Folk Music doesn’t limit folk to any one genre or group of inst'
+  labels:
+  - Music, Night Out in the Parks
+  category: community.neighborhood
+  category_basis: classified
+  label: event
+  why: free park music festival
+  origin: audit-2026-11-02 (blind label)
+- id: g086
+  city: dallas
+  source_id: uta_events
+  title: 'The Mystery Continues: Amelia Earhart in UTA Special Collections Mini-Exhibit'
+  description: 'After an expedition to a remote island failed to solve the mystery of Amelia Earhart''s disappearance
+    in 1937, UTA Special Collections is highlighting materials from our collections that reference the famous aviator.
+
+
+    On display are materials from UTA Special Collections relating to Amelia Earhart and her disappearance. Including
+    a map of the projected pacific route and a map of the pacific archipe'
+  labels:
+  - UTA Libraries
+  - Alumni
+  - Local Community
+  - Faculty & Staff
+  - Students, Undergraduates
+  - Students, Graduate
+  - Parents & Family
+  - Retiree
+  category: arts.museum
+  category_basis: source_label
+  label: event
+  why: exhibit open to local community
+  origin: audit-2026-11-02 (blind label)
+- id: g087
+  city: san_jose
+  source_id: sjsu_events
+  title: 'SJSU Theatre presents Sweeney Todd: The Demon Barber of Fleet Street'
+  description: 'SWEENEY TODD
+
+    The Demon Barber of Fleet Street
+
+    A Musical Thriller
+
+
+    Music and Lyrics by STEPHEN SONDHEIM
+
+    Book by HUGH WHEELER
+
+
+    From an Adaptation by
+
+    CHRISTOPHER BOND
+
+
+    Directed by Luis Orozco
+
+
+    Music Director: Fred Cohen
+
+
+    Welcome to Fleet Street, where revenge is served razor-sharp. Stephen Sondheim’s Sweeney Todd: The Demon Barber
+    of Fleet Street is a towering achievement of musical theater—a delicio'
+  labels:
+  - Alumni
+  - SJSU Employees
+  - General Public
+  - Students
+  - Donors
+  - Pacific Time (UTC-08:00)
+  - Art
+  - Musical Performance
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: musical open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g088
+  city: los_angeles
+  source_id: usc_events
+  title: 'Trojan Talk with University of Melbourne - Beyond the Border: Graduate School Abroad'
+  description: 'Thinking about graduate school but want to explore your options beyond the usual path? Join us for
+    an inside look at pursuing a graduate degree abroad. We''ll walk through the admissions process, entry requirements,
+    and what day-to-day life is really like as an international grad student. We will cover programs across a range
+    of countries.
+
+
+    This session will be led by representatives from Universit'
+  labels:
+  - Students
+  - University Park Campus
+  - Lecture / Talk / Workshop
+  - workshop
+  - Info Session
+  - Career Center
+  - careers
+  - careercenter
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: career center info session for students
+  origin: audit-2026-11-02 (blind label)
+- id: g089
+  city: birmingham
+  source_id: bham_uab_events
+  title: 'Holiday Happy Hour: Cocktails for Every Celebration'
+  description: 'Turn your holiday hosting into a unforgettable experience during Holiday Happy Hour: Cocktails for
+    Every Celebration on Tuesday, November 3, 2026, at 7 p.m. (CT). Get ready for a festive, hands-on virtual class
+    designed to add sparkle, flavor, and fun to your holiday season.
+
+
+    This interactive webinar will guide you through four crowd-pleasing cocktails perfect for Thanksgiving, Christmas,
+    and New '
+  labels:
+  - Alumni & Donors
+  - Faculty & Staff
+  - General Public
+  - Lectures & Presentations
+  - Workshop/Educational
+  - Social & Entertainment
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: public cocktail workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g090
+  city: pittsburgh
+  source_id: pitt_events
+  title: Class Piano Fall 2026 Recital
+  description: Nikolai Choubine, coordinator. Students enrolled in Class Piano perform a recital on Friday, November
+    13th, 2026 at 5:00 PM in Bellefield Hall Auditorium. This event is free and open to the public.
+  labels:
+  - Appreciation of the Arts
+  - Undergraduate Students
+  - Staff
+  - Alumni
+  - Prospective Students
+  - Faculty
+  - Graduate Students
+  - Postdocs
+  category: music.concert
+  category_basis: source_label
+  label: event
+  why: class recital, no public tag
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g091
+  city: jacksonville
+  source_id: unf_events
+  title: UNF Online Nutrition for Healthcare Professionals MS Information Session
+  description: 'Join the University of North Florida for a live, 15-minute virtual information session where you’ll
+    learn about the online Master of Science in Nutrition and Dietetics: Nutrition for Healthcare Professionals
+    program. During this session, a live host will provide an overview of the program’s structure, admission criteria,
+    tuition, and the resources available to support your success as an online stu'
+  labels:
+  - Students
+  - Public
+  - Alumni
+  - Main Calendar
+  - Nutrition and Dietetics
+  - Nutrition for Healthcare Professionals (M.S.)
+  - Academics
+  - Education
+  category: volunteer.board
+  category_basis: classified
+  label: not_event
+  why: degree program info session
+  origin: audit-2026-11-02 (blind label)
+- id: g092
+  city: san_francisco
+  source_id: dna_lounge
+  title: SF Goth Holiday Ball
+  description: 'SF GOTH HOLIDAY BALL
+
+
+    Main Room: Death Guild
+
+
+    Decay
+
+    Melting Girl
+
+
+    Lounge: Dark Sparkle
+
+
+    Chat Noir
+
+    Miz Margo
+
+
+    Above DNA: After Life
+
+
+    Sage
+
+    Starr Noir
+
+    Plastic Disease
+
+
+    Dazzle Room: Emo Night
+
+
+    Apollyon
+
+    Selena Catwoman
+
+
+    DNA Lounge and the folks that brought you World Goth Night Present: SF Goth Holiday Ball!
+
+
+    We cordially invite you to ring in the holiday season with your community and chosen fam! Dres'
+  labels:
+  - Performance
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: club night
+  origin: audit-2026-11-02 (blind label)
+- id: g093
+  city: san_francisco
+  source_id: mr_tipples
+  title: Closed for the Holiday
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g094
+  city: nashville
+  source_id: vanderbilt_events
+  title: Study Abroad Mixer
+  labels:
+  - Student Organizations
+  - AnchorLink
+  - study abroad
+  category: nightlife.singles
+  category_basis: classified
+  label: not_event
+  why: student org mixer
+  origin: audit-2026-11-02 (blind label)
+- id: g095
+  city: philadelphia
+  source_id: chris_jazz_cafe
+  title: Closed for Thanksgiving
+  description: Happy Thanksgiving!!
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g096
+  city: portland
+  source_id: wccls_events
+  title: Digital Navigator – One-on-One Tech Help/ Navegador Digital – Apoyo Uno a Uno
+  description: 'Do you have questions about how to use your mobile phone or a computer? Do you want to learn about
+    internet safety and avoiding scams? A Digital Navigator can help with these questions and more!
+
+
+    Schedule a 45-minute appointment to receive digital literacy help from a Digital Navigator at the Shute Park
+    Library or the Brookwood Library. A library card is not required!
+
+
+    Spanish-language support ava'
+  labels:
+  - Computer/Technology
+  - Adults
+  - English
+  - Spanish
+  category: learning.tech
+  category_basis: source_label
+  label: not_event
+  why: one-on-one tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g097
+  city: phoenix
+  source_id: scottsdale_city_events
+  title: Citizens' Bond Oversight Committee - Regular - 11-16-26
+  labels:
+  - Event
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: committee business meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g098
+  city: salt_lake_city
+  source_id: now_playing_utah
+  title: Golden Braid’s Annual Spookytown Party 2026
+  description: 'Come join us for our favorite season of the whole year – Halloween and Dia de los Muertos! We will
+    have craft tables set up throughout the store and ALL sessions with our intuitive readers are 10% off!
+
+    Call us at (801) 322-1162 to book your reading.
+
+
+    This calendar listing is brought to you by NowPlayingUtah.com, Utah’s one-stop, online website for arts and
+    entertainment events, powered by the Utah'
+  category: community.cultural
+  category_basis: classified
+  label: event
+  why: public seasonal party
+  origin: audit-2026-11-02 (blind label)
+- id: g099
+  city: charlotte
+  source_id: clt_cmpd_community_events
+  title: Alexander Place/Holiday Hills (CMPD Eastway Division)
+  labels:
+  - Community Meeting
+  category: community.neighborhood
+  category_basis: classified
+  label: event
+  why: public neighborhood community meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g100
+  city: richmond
+  source_id: henrico_library_events
+  title: Propagating Native Plants
+  description: Brad Davis from Davis Natives will demonstrate techniques for growing natives from seed and cuttings
+    and discuss how to support local wildlife with ecosystem-friendly plantings.
+  labels:
+  - Lectures & Talks
+  - Life & Job Skills
+  - Science & Technology
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public library talk
+  origin: audit-2026-11-02 (blind label)
+- id: g101
+  city: miami
+  source_id: kaseya_center
+  title: Charlotte Hornets vs Miami HEAT
+  description: 'Experience the energy, pace and passion of HEAT Basketball live as Miami hosts the Charlotte Hornets
+    at Kaseya Center.
+
+
+    Interested in becoming a HEAT Season Ticket Member? Visit www.HEATSeasonTickets.com or call 786-777-HOOP.'
+  labels:
+  - Miami HEAT
+  - Kaseya Center
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: NBA game
+  origin: audit-2026-11-02 (blind label)
+- id: g102
+  city: st_louis
+  source_id: teamtrivia_st_louis
+  title: Team Trivia at Gettemeiers St. Peters
+  description: Team Trivia hosted by Team Trivia at Gettemeiers St. Peters, St. Peters, MO.
+  labels:
+  - Team Trivia
+  category: trivia_games.trivia
+  category_basis: classified
+  label: event
+  why: bar trivia
+  origin: audit-2026-11-02 (blind label)
+- id: g103
+  city: austin
+  source_id: heb_center
+  title: Cirque Musica Holiday Wonderland
+  description: TCG Entertainment invites audiences of all ages to step into a world of enchantment this holiday
+    season with the all-new Cirque Musica Holiday Wonderland , the perfect fusion of circus artistry and beloved
+    holiday melodies coming to H-E-B Center at Cedar Park on December 24 th at 2pm . The magical holiday extravaganza
+    filled with music, marvels and merriment will ignite the festive spirit in all w
+  labels:
+  - Family
+  - H-E-B Center
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: family show
+  origin: audit-2026-11-02 (blind label)
+- id: g104
+  city: chicago
+  source_id: buddy_guys_legends
+  title: TBA
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: TBA placeholder
+  origin: audit-2026-11-02 (blind label)
+- id: g105
+  city: nyc
+  source_id: nyc_parks_events
+  title: The Owls of Staten Island
+  description: Join the educators for a fun filled program about owls. Learn about what type of owls live here and
+    their fascinating adaptations. Then dissect an owl pellet and guess what it ate! Weather-permitting, we will
+    take a short hike around the Nature Center trail in search of owl habitats and other fall wonders.All ages of
+    park visitors. We suggest adult caregivers assist children under age 6 (or who ne
+  labels:
+  - Nature | Best for Kids
+  category: outdoors.park
+  category_basis: classified
+  label: event
+  why: kids nature program
+  origin: audit-2026-11-02 (blind label)
+- id: g106
+  city: seattle
+  source_id: uwkc_volunteer
+  title: Board Treasurer (Volunteer), Beta OS
+  description: 'Why this role matters: Your independent oversight keeps every dollar accountable. That''s how donors
+    and funders keep trusting Beta OS, and how money keeps reaching technology that protects the endangered Southern
+    Resident Killer Whales.
+
+    About Beta OS: Beta OS is a Washington nonprofit corporation that builds open source technology. It works with
+    a collaborative group that works on the Orcasound we'
+  category: volunteer.recurring
+  category_basis: classified
+  label: event
+  why: volunteer board role sign-up
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g107
+  city: birmingham
+  source_id: bham_uab_events
+  title: Study Hall
+  description: Bring your coursework and study alongside fellow students in a supportive environment.
+  labels:
+  - Current Students
+  - Workshop/Educational
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: student study hall
+  origin: audit-2026-11-02 (blind label)
+- id: g108
+  city: baltimore
+  source_id: towson_events
+  title: Towson Women's Basketball vs. Frostburg State
+  description: 'The Tigers host the Frostburg State Bobcats at SECU Arena at 11am for the annual STEM Day game.
+
+
+    Free admission for all TU students, faculty and staff! Students can access their tickets on the Towson Tigers
+    gameday app. Faculty and Staff should contact the Athletics ticket office at 410-704-4501.'
+  labels:
+  - Athletics
+  - Athletics
+  - Women's Basketball
+  - Students
+  - Faculty
+  - General Public
+  - Staff
+  - Student Employees
+  category: sports_league.basketball
+  category_basis: classified
+  label: event
+  why: public basketball game
+  origin: audit-2026-11-02 (blind label)
+- id: g109
+  city: orlando
+  source_id: ocls_events
+  title: Driver's Education Simulator Orientation & Assessment
+  description: 'Learn to drive with the Ultra Driving Simulator in realistic road conditions. Practice safety and
+    defensive driving. Instruction will cover the use of the equipment and software.
+
+    After completing the instruction take an assessment that will allow you to reserve the driving simulator during
+    scheduled lab time.
+
+
+    ASSESSMENT REGISTRATION REQUIREMENT: To register for this orientation and/or assessment,'
+  labels:
+  - Vehicle Simulator
+  - Adults
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: library driving simulator program
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g110
+  city: hampton_roads
+  source_id: norfolk_library_events
+  title: 'Caring Conversations: Preparing for Holiday Stress'
+  description: Self-care builds resilience--learn to prepare for the stress that the holidays always bring. Attendees
+    learn signs for depression and how to address them for themselves and others. Utilizing protective factors and
+    building resilience through self-care is introduced and practiced. Good mental health habits are reviewed. For
+    teens and adults. (45-60 min.) This session will have an emphasis on prepar
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public wellness talk
+  origin: audit-2026-11-02 (blind label)
+- id: g111
+  city: san_jose
+  source_id: scu_athletics
+  title: Santa Clara University Men's Basketball vs Milwaukee
+  description: 'Santa Clara University Men''s Basketball vs Milwaukee
+
+    Tickets: https://scubroncos.scu.edu/events/santa-mens-basketball-vs-uw-milwaukee-x8lpl6'
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college basketball game
+  origin: audit-2026-11-02 (blind label)
+- id: g112
+  city: seattle
+  source_id: seattle_city_events
+  title: Green Lake Litter Patrol
+  description: 'We meet at the Bath House Theater parking lot on the NW corner of Green Lake Park every Sunday at
+    8:45 am to sign in. All equipment provided.
+
+
+    We walk the park every Sunday from 9:00am -11:00am. picking up as much litter as we can each week. All are welcome.
+    Litter patrols happen rain or shine. Please dress for the weather & 2+ mile walk.'
+  category: community.neighborhood
+  category_basis: classified
+  label: event
+  why: volunteer litter patrol
+  origin: audit-2026-11-02 (blind label)
+- id: g113
+  city: austin
+  source_id: carousel_lounge
+  title: THANKSGIVING – CLOSED come back tomorrow
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g114
+  city: birmingham
+  source_id: bham_uab_events
+  title: 'Teaching with Technology: Designing and Delivering for Large Classes'
+  description: 'Teaching with Technology: Designing and Delivering for Large Classes
+
+
+    Presented by: Office of Learning Technologies
+
+
+    Description: Teaching a large online class can feel overwhelming—but it doesn’t have to be. This workshop will
+    equip you with practical strategies for designing and delivering engaging, manageable, and inclusive learning
+    experiences at scale. Learn how to streamline communication, f'
+  labels:
+  - Faculty & Staff
+  - Training & Development
+  - Workshop/Educational
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: faculty training
+  origin: audit-2026-11-02 (blind label)
+- id: g115
+  city: atlanta
+  source_id: dekalb_library_events
+  title: Family Storytime
+  description: 'Family (All Ages)
+
+
+    Enjoy stories, fingerplays, rhymes, music, and movement for the entire family.
+
+    Support provided by the DeKalb Library Foundation.'
+  labels:
+  - Storytimes
+  - Fun Activities
+  - Family (All Ages)
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: family storytime
+  origin: audit-2026-11-02 (blind label)
+- id: g116
+  city: orlando
+  source_id: ocls_events
+  title: 'Virtual Event: Sing-Along Tales'
+  description: 'Presented by OCLS'' Professional Storytelling Troupe
+
+
+    Music and songs especially designed for children and babies of all ages.
+
+    Music and songs help children to develop a good sense of rhythm and pitch, as well as slowing down language
+    to help develop speech patterns. Come and join the music and sing along with us.
+
+
+    This event occurs online through Zoom.
+
+
+    Please provide your email and registration. '
+  labels:
+  - Storytime
+  - Music - Movies - Live Performances
+  - Kids
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids virtual storytime
+  origin: audit-2026-11-02 (blind label)
+- id: g117
+  city: portland
+  source_id: hawthorne_theatre
+  title: 'Save Ferris: Happy Skalidays Tour'
+  labels:
+  - Event
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g118
+  city: detroit
+  source_id: detroit_titans_athletics
+  title: University of Detroit Mercy Women's Basketball vs North Dakota - Doubleheader
+  description: University of Detroit Mercy Women's Basketball vs North Dakota - Doubleheader
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college basketball game
+  origin: audit-2026-11-02 (blind label)
+- id: g119
+  city: raleigh
+  source_id: martin_marietta_center
+  title: Holiday Pops
+  description: 'North Carolina Symphony
+
+
+    David Glover, conductor
+
+
+    Back by popular demand after last season’s sold-out success! Join us for an unforgettable celebration filled
+    with joyful holiday hits, timeless festive classics, and plenty of musical sparkle to brighten your season.
+    Don’t miss this magical, heartwarming concert perfect for getting into the holiday spirit!
+
+
+    Come early to meet Santa!
+
+
+    Friday evening'
+  labels:
+  - NC Symphony
+  - Meymandi Concert Hall
+  category: music.classical
+  category_basis: source_label
+  label: event
+  why: symphony concert
+  origin: audit-2026-11-02 (blind label)
+- id: g120
+  city: nashville
+  source_id: bridgestone_arena
+  title: The 60th Annual CMA Awards
+  labels:
+  - Concerts
+  - Bridgestone Arena
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: ticketed awards show
+  origin: audit-2026-11-02 (blind label)
+- id: g121
+  city: providence
+  source_id: pvd_brown_events
+  title: AIT Budapest Computer & Data Science Program Information Session
+  description: 'Aquincum Institute of Technology (AIT) provides a unique English language study abroad experience
+    for North American undergraduates majoring in computer science , software engineering , and related disciplines.
+
+
+    Hungary has a proud tradition of creativity in computing: John von Neumann, who developed the principles of
+    stored-program digital computers, Andy Grove, longtime leader of Intel, and Char'
+  labels:
+  - Advising, Mentorship
+  - History, Cultural Studies, Languages
+  - International, Global Engagement
+  - Mathematics, Technology, Engineering
+  category: community.cultural
+  category_basis: classified
+  label: not_event
+  why: study abroad info session for undergrads
+  origin: audit-2026-11-02 (blind label)
+- id: g122
+  city: hartford
+  source_id: hfd_bushnell
+  title: Holiday Open House
+  description: 'The doors of The Bushnell are open to you and your family this holiday season for our annual Sensory-Friendly/Relaxed
+    Holiday Open House. We hope you will join us for festive crafts, a screening of "Mickey''s Twice Upon a Christmas"
+    and a visit from Santa himself!
+
+
+    *If finances are a barrier, please contact Catt Gruszka Vadala at cgruszka@bushnell.org.'
+  labels:
+  - Sensory-Friendly
+  - The Bushnell
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: public holiday open house
+  origin: audit-2026-11-02 (blind label)
+- id: g123
+  city: atlanta
+  source_id: state_farm_arena
+  title: The Love of Soul Tour
+  description: 'See The Love of Soul Tour with Fantasia, Anthony Hamilton & October London at State Farm Arena on
+    March 26, 2027 at 8:00 PM.
+
+
+    Doors & Entry
+
+
+    7:00 PM for the General Public
+
+
+    Tickets
+
+
+    Tap Buy Tickets to get official tickets at the best price on Ticketmaster , the official ticketing partner of
+    State Farm Arena.
+
+
+    Premium & Groups
+
+
+    Make it unforgettable with all-inclusive club seating or a suite for yo'
+  labels:
+  - Chase Preferred Seating
+  - State Farm Arena
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g124
+  city: san_jose
+  source_id: stanford_events
+  title: 'Autumn Quarter: Democracy Day: day of civic service (no classes)'
+  labels:
+  - Everyone
+  - Medicine
+  - Academic Dates
+  - autumn
+  - SOM academic calendar
+  - 26-27
+  category: volunteer.board
+  category_basis: classified
+  label: not_event
+  why: academic calendar date
+  origin: audit-2026-11-02 (blind label)
+- id: g125
+  city: san_francisco
+  source_id: oakland_library_events
+  title: Neighborhood Business Assistance (by appointment only)
+  description: 'Whether you’re starting a new business, expanding an existing business or facing challenges with
+    your current business model, the City of Oakland''s Neighborhood Business Assistance staff are available to
+    help.
+
+
+    Services are available by appointment only, and appointments must be scheduled at least 48 hours in advance.
+    Please do not arrive at the library without a confirmed appointment.
+
+
+    Learn more'
+  labels:
+  - Jobs & Business
+  - Adults
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: by-appointment service
+  origin: audit-2026-11-02 (blind label)
+- id: g126
+  city: philadelphia
+  source_id: helium_comedy_philly
+  title: Private Event
+  description: 'We''re closed for a private event - but in the meantime click the Events tab above to check out
+    all of our great upcoming shows!
+
+
+    Interested in booking the club for your next event? Check out our Groups Events page!'
+  labels:
+  - Event
+  category: nightlife.comedy
+  category_basis: source_kind
+  label: not_event
+  why: private event closure
+  origin: audit-2026-11-02 (blind label)
+- id: g127
+  city: minneapolis
+  source_id: cedar_cultural_center
+  title: Red Thread’s Holiday Show - Darkness and Dreams with Ponyfolk + Triple Fiddle
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: holiday music show
+  origin: audit-2026-11-02 (blind label)
+- id: g128
+  city: jacksonville
+  source_id: unf_events
+  title: 'The UNF Opera Lab presents Passport to Opera: A Grand Tour on the Operatic Stage'
+  description: 'Travel across borders and centuries through the world of opera with the UNF Opera Lab’s “Passport
+    to Opera: A Grand Tour on the Operatic Stage.” Directed by Dr. John Daugherty, this engaging concert features
+    UNF student singers performing scenes and arias from beloved operas by master composers. From sparkling comic
+    ensembles to powerful dramatic moments, each musical “stop” introduces audiences t'
+  labels:
+  - Students
+  - Faculty
+  - Staff
+  - Public
+  - Alumni
+  - Department Calendar
+  - Music
+  - Performances
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: opera performance open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g129
+  city: phoenix
+  source_id: mim_events
+  title: Holiday Pies and Cookies
+  labels:
+  - Culinary Events
+  - Events
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: museum culinary event
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g130
+  city: minneapolis
+  source_id: mprb_events
+  title: North Mississippi Regional Park Plan Community Advisory Committee Meeting
+  description: 'North Mississippi Regional Park Plan Community Advisory Committee to meet on November 20 at Kroening
+    Nature Center
+
+
+    The Minneapolis Park and Recreation Board (MPRB) is working on a plan to guide improvements and stewardship
+    at North Mississippi Regional Park for the next 20+ years.
+
+
+    The North Mississippi Regional Park Plan is being developed through a collaboration between the project team,
+    adviso'
+  labels:
+  - Public Meetings
+  category: outdoors.park
+  category_basis: classified
+  label: not_event
+  why: advisory committee meeting, possibly public input
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g131
+  city: seattle
+  source_id: uw_events
+  title: CANCELLED - Bloedel Undergraduate Research Fair
+  description: 'Goal: Connect undergraduate students with Bloedel-affiliated research labs, showcase ongoing research,
+    and encourage undergraduate involvement in hearing and neuroscience research.
+
+
+    Questions? Contact Robin Gibson @ vmbevents@uw.edu / 206.221.6438'
+  labels:
+  - Academics
+  - Information Sessions
+  - Special Events
+  - Student Activities
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: cancelled student research fair
+  origin: audit-2026-11-02 (blind label)
+- id: g132
+  city: san_jose
+  source_id: sjpl_events
+  title: 'Family Games: Cards & Board Games'
+  description: 'Children, teens, and their families are invited to play a selection of board games and card games.
+    The games included will be a mix of strategy-based games, educational games, and luck-based games. Come together
+    to have fun with friends and family!
+
+
+    ADA Accommodation Requests'
+  labels:
+  - Games & Family Entertainment
+  - Adults, ages 18+
+  - Kids, ages 5-10
+  - Pre-Teens, ages 10-12
+  - Seniors, ages 65+
+  - Teens, ages 12-18
+  - Young Children, ages 0-5
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: family games program
+  origin: audit-2026-11-02 (blind label)
+- id: g133
+  city: memphis
+  source_id: memphis_gpac
+  title: Step Afrika! Evolution Tour — GPAC | Germantown Performing Arts Center
+  labels:
+  - Event
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: dance performance
+  origin: audit-2026-11-02 (blind label)
+- id: g134
+  city: portland
+  source_id: wccls_events
+  title: Digital Navigator – One-on-One Tech Help
+  description: 'Do you have questions about how to use your mobile phone or a computer? Do you want to learn about
+    internet safety and avoiding scams? A Digital Navigator can help with these questions and more!
+
+
+    Schedule a 45-minute appointment to receive digital literacy help from a Digital Navigator at the Shute Park
+    Library or the Brookwood Library. A library card is not required!
+
+
+    Spanish-language support ava'
+  labels:
+  - Computer/Technology
+  - Adults
+  - English
+  category: learning.tech
+  category_basis: source_label
+  label: not_event
+  why: one-on-one tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g135
+  city: miami
+  source_id: fiu_events
+  title: Virtual Graduate School Fair
+  description: 'Explore FIU’s diverse graduate programs, connect with program representatives, and learn about admissions
+    requirements and funding opportunities. Get your questions answered and take the next step toward earning your
+    graduate degree! RSVP: https://fiugrad.heydays.io/conventions/3925'
+  labels:
+  - Students
+  - Faculty & Staff
+  - General Public
+  - Prospective Students
+  - Admissions
+  - Info Sessions
+  - graduate
+  - graduate school
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: graduate admissions fair
+  origin: audit-2026-11-02 (blind label)
+- id: g136
+  city: nyc
+  source_id: zinc_bar
+  title: Halloween – Closed for the Holiday
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g137
+  city: oklahoma_city
+  source_id: okc_uco_events
+  title: 'Theatre Arts: “Dracula: A Feminist Revenge Fantasy, Really”'
+  description: A bold reimagining of Dracula where the women fight back against one of literature’s most iconic
+    villains.
+  labels:
+  - Arts and Entertainment
+  - Other
+  - Performances
+  - STLR
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: theatre performance
+  origin: audit-2026-11-02 (blind label)
+- id: g138
+  city: houston
+  source_id: hcpl_events
+  title: 'Teen Advisory Board (TAB): Perler Beads Workshop'
+  description: 'Teen Advisory Board will be hosting perler bead workshops. Teens will work together to make Christmas
+    ornament crafts that will be sold by our friends of the library (A.M.I.G.O.S.) group to raise funds for more
+    programs!
+
+
+    The Teen Advisory Board (TAB) is an opportunity for teenagers to voice their ideas and opinions regarding library
+    programs. Participation can be used for community service hours.'
+  labels:
+  - Community & Volunteering
+  - Teens
+  - English
+  - Spanish
+  category: arts.workshop
+  category_basis: classified
+  label: event
+  why: teen craft workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g139
+  city: baltimore
+  source_id: jhu_athletics
+  title: Johns Hopkins University Men's Water Polo vs Washington and Jefferson
+  description: 'Johns Hopkins University Men''s Water Polo vs Washington and Jefferson
+
+    Streaming Video: https://www.overnght.com/'
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college water polo game
+  origin: audit-2026-11-02 (blind label)
+- id: g140
+  city: minneapolis
+  source_id: grand_casino_arena
+  title: Minnesota Frost vs. Las Vegas
+  labels:
+  - Sports
+  - Grand Casino Arena
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: pro hockey game
+  origin: audit-2026-11-02 (blind label)
+- id: g141
+  city: baltimore
+  source_id: towson_events
+  title: Student Composers Concert
+  description: TU composition students present a concert of original works in this collaborative concert performed
+    by fellow students in the Department of Music.
+  labels:
+  - Academic Affairs
+  - Fine Arts & Communication (College of)
+  - Music (Department of)
+  - Arts & Culture
+  - A&C-Free Events
+  - A&C-Music
+  - Students
+  - General Public
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: free public concert
+  origin: audit-2026-11-02 (blind label)
+- id: g142
+  city: seattle
+  source_id: royal_room_seattle
+  title: CLOSED FOR MAINTENANCE
+  description: 'No show tonight – we have some maintenance to complete.
+
+
+    Please check out our web page for our full line-up of events!'
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: closed for maintenance
+  origin: audit-2026-11-02 (blind label)
+- id: g143
+  city: san_jose
+  source_id: sjpl_events
+  title: 1 on 1 Tech Assistance (In-Person)
+  description: 'Do you need to brush up your computer skills? Whether you need assistance putting together a Word
+    document, Excel spreadsheet, or PowerPoint presentation, or receiving help submitting an online job application
+    or other government document to learning a new online tool, our experienced and dedicated tech tutor can help!
+
+
+    Sessions are 30 minutes and appointments are highly encouraged, though drop-in'
+  labels:
+  - Computer Help
+  - Adults, ages 18+
+  - Pre-Teens, ages 10-12
+  - Teens, ages 12-18
+  - English
+  category: learning.tech
+  category_basis: source_label
+  label: not_event
+  why: one-on-one tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g144
+  city: chicago
+  source_id: chicago_park_events
+  title: Holiday Parent and Child Swim at Mann
+  description: Time dedicated for parents and children to enjoy the water together. The number of children permitted
+    per adult may vary by location.
+  labels:
+  - Aquatics - All, Winter Holidays
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: public swim session
+  origin: audit-2026-11-02 (blind label)
+- id: g145
+  city: washington_dc
+  source_id: smithsonian_events
+  title: Cultural Expressions Highlights Tour
+  description: 'This tour introduces visitors to the broad concept of African American and African diaspora culture
+    and five ways through which that culture is expressed. Guests converse with a docent while exploring objects
+    pertaining to Style: Image and Identity, Foodways: Culture and Cuisine, Artistry: Craftsmanship and Creativity,
+    Movement: Social Dance and Gesture and Language: The Power of the Word that are'
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: museum tour
+  origin: audit-2026-11-02 (blind label)
+- id: g146
+  city: seattle
+  source_id: spl_events
+  title: Office Hours with Department of Neighborhoods
+  description: The City of Seattle’s Department of Neighborhoods will be holding office hours as part of their ‘Meeting
+    Community Where They Are At’ Initiative.
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: office hours
+  origin: audit-2026-11-02 (blind label)
+- id: g147
+  city: sacramento
+  source_id: fairytale_town_events
+  title: Closed for Thanksgiving
+  description: Fairytale Town will be closed on Thursday, November 26, in observance of the Thanksgiving Holiday.
+  category: family.kids
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g148
+  city: tampa
+  source_id: tampa_ruth_eckerd_hall
+  title: 'Blippi: Be Like Blippi Tour'
+  description: 'Get ready to see the world more curiously, because Blippi is returning to Ruth Eckerd Hall in the
+    all-new Be Like Blippi Tour !
+
+
+    Join Blippi and Meekah live on stage for a one-of-a-kind interactive adventure that inspires kids to move like,
+    play like, and explore just like Blippi! This brand-new show is packed with high-energy music and surprises,
+    featuring fan-favorite songs like The Excavator So'
+  labels:
+  - Ruth Eckerd Hall
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: family show
+  origin: audit-2026-11-02 (blind label)
+- id: g149
+  city: san_jose
+  source_id: sjpl_events
+  title: 1-on-1 Tech Help-Trợ Giúp Kỹ Năng Máy Tính Bằng Tiếng Việt
+  description: 'This event offered in Vietnamese .
+
+
+    Are you or your loved ones struggling with using a smartphone, downloading apps, or making video calls to see
+    the family?
+
+
+    Come join our Free One-on-One Tech Mentor Support
+
+    sessions. We can help you with:
+
+
+    Basic help for smartphones, tablets, and computers
+
+    Downloading and using everyday apps
+
+    Making video calls (Zoom, FaceTime, Google Meet) to stay connected
+
+    Expl'
+  labels:
+  - Computer Help
+  - Adults, ages 18+
+  - Seniors, ages 65+
+  - Vietnamese
+  category: learning.tech
+  category_basis: source_label
+  label: not_event
+  why: one-on-one tech help
+  origin: audit-2026-11-02 (blind label)
+- id: g150
+  city: san_jose
+  source_id: sjsu_events
+  title: Adobe Portfolio - Create a professional multi-page website to showcase your digital skills and career ready
+    skills.
+  description: 'Adobe Portfolio is a website builder that lets you create professional looking websites with multiple
+    pages, dedicated to different projects, customizable homepage urls, and more. You’ll learn how to add images,
+    videos, embeds, and more in this deep dive.
+
+
+    Note: Please activate your SJSU Adobe license before attending this workshop. You can activate your license
+    at tiny.sjsu.edu/getadobe
+
+
+    Nov 4, 2'
+  labels:
+  - SJSU Employees
+  - Students
+  - Pacific Time (UTC-08:00)
+  - Professional Development
+  - Seminars/Webinars and Training
+  - Conferences, Training, Workshops
+  - adobe
+  - tech training center
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: training for students/employees
+  origin: audit-2026-11-02 (blind label)
+- id: g151
+  city: san_francisco
+  source_id: mr_tipples
+  title: Closed for a Private Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: private event closure
+  origin: audit-2026-11-02 (blind label)
+- id: g152
+  city: las_vegas
+  source_id: notoriety_live
+  title: Jazz Vegas Orchestra Live
+  description: Las Vegas’s hottest big band, the Jazz Vegas Orchestra (formerly JOI Jazz Orchestra) brings high
+    energy big band jazz back to downtown Las Vegas to its home on Fremont Street, Notoriety at Neonopolis! Experience
+    Las Vegas’s top jazz musicians in an exciting presentation of modern, classic, and new arrangements of iconic
+    big band music served with a side of exceptional beer, wine, and cocktails! Th
+  labels:
+  - Event
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: jazz show
+  origin: audit-2026-11-02 (blind label)
+- id: g153
+  city: miami
+  source_id: mdpls_events
+  title: Board Gamer Club
+  description: Join us for board games and more! Games will be provided or you may bring your own. For more information,
+    please contact the branch at 305-233-8324 or quiroslasom@mdpls.org. All ages.
+  labels:
+  - In-Person
+  - Games
+  - All Ages
+  category: trivia_games.board_games
+  category_basis: source_label
+  label: event
+  why: board game club
+  origin: audit-2026-11-02 (blind label)
+- id: g154
+  city: orlando
+  source_id: ocls_events
+  title: High School Advisory Board Meeting
+  description: 'Teen Volunteering
+
+
+    Earn community service by collaborating with your peers to test out new programs, brainstorm new library services,
+    and more! Recommended for students in grades 9-12.
+
+    High schoolers will earn one hour of community service by participating in a virtual board meeting where they''ll
+    have the opportunity to share their input regarding what teens want and need from the library, test ou'
+  labels:
+  - Education & Learning
+  - Community & Citizenship
+  - Teens
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: teen volunteer advisory program
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g155
+  city: austin
+  source_id: utaustin_events
+  title: River Tour with artist Marie Lorenz
+  description: 'Artist Marie Lorenz, one of the artists included in the VAC exhibition How to Grow the Cowpea: Survival
+    Strategies from the U.S. South, leads a canoe tour on the Colorado River.'
+  labels:
+  - COFA
+  - COFA/Visual Arts Center
+  - Students
+  - General Public
+  - Arts & Humanities
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: public canoe tour
+  origin: audit-2026-11-02 (blind label)
+- id: g156
+  city: oklahoma_city
+  source_id: okc_uco_events
+  title: UCO All-State Audition Workshop
+  description: Get ready for All-State auditions with sight-reading strategies, audition tips and coaching from
+    UCO faculty.
+  labels:
+  - Arts and Entertainment
+  - Prospective Students
+  - CFAD - OCAE
+  - CFAD Music
+  category: arts.workshop
+  category_basis: classified
+  label: event
+  why: audition workshop for high schoolers
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g157
+  city: richmond
+  source_id: broadberry_rva
+  title: Private Event
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: private event
+  origin: audit-2026-11-02 (blind label)
+- id: g158
+  city: charlotte
+  source_id: clt_uncc_events
+  title: Writing Intelligently in the Age of GenAI
+  description: 'AI has changed the way we do many things - but it''s important to learn how to use it intelligently,
+    especially as a graduate scholar. This workshop from the Graduate and Postdoctoral Writing Center will cover
+    specific techniques and precepts to keep in mind as you nurture your writing ability in the age of generative
+    AI.
+
+
+    This event is eligible for the Niner Career Challenge!
+
+
+    Facilitator: Paulo F'
+  labels:
+  - Graduate Students
+  - Conferences & Workshops
+  - Lectures & Presentations
+  - Information Session
+  - Professional Development
+  - Virtual
+  - writing
+  - Graduate Students
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: grad-student workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g159
+  city: birmingham
+  source_id: bham_uab_events
+  title: Study Abroad with SOPH in New Zealand
+  description: Ready to take your public health education global? Join us for an information session to learn about
+    SOPH's New Zealand Study Abroad program! Discover how you can earn course credit, explore New Zealand's stunning
+    landscapes, gain a global perspective on public health, and experience a once-in-a-lifetime adventure. 🌏✈️
+  labels:
+  - Current Students
+  - Workshop/Educational
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: study abroad info session
+  origin: audit-2026-11-02 (blind label)
+- id: g160
+  city: charlotte
+  source_id: clt_cmpd_community_events
+  title: Bridlewood Community Meeting (CMPD North Tryon Division)
+  labels:
+  - Community Meeting
+  category: community.neighborhood
+  category_basis: classified
+  label: event
+  why: public neighborhood meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g161
+  city: houston
+  source_id: hcpl_events
+  title: 'Computer Basics: Backing Up and Organizing Photos'
+  description: 'In this class we are going to go over ways to backup your photos and videos off your phone and how
+    best to organize them, utilizing both online and offline methods.
+
+
+    Laptops will be provided, but you are welcome to bring a personal device from home instead.'
+  labels:
+  - Mobile Outreach Librarians
+  - Computers & Technology
+  - Adults
+  - Senior Adults
+  - English
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: library computer class
+  origin: audit-2026-11-02 (blind label)
+- id: g162
+  city: washington_dc
+  source_id: smithsonian_events
+  title: Slavery and Freedom Highlights Tour
+  description: 'Explore the complex story of slavery and freedom. Visitors will view priceless objects, connect
+    to the past, and hear about the actions of ordinary men and women, demanding freedom and transforming our nation.
+
+
+    Photo Credit: NMAAHC'
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: museum tour
+  origin: audit-2026-11-02 (blind label)
+- id: g163
+  city: nashville
+  source_id: vanderbilt_events
+  title: Wellness RePHined Health Fair
+  labels:
+  - Student Organizations
+  - Alpha Kappa Alpha Sorority, Inc.
+  - AnchorLink
+  category: community.festival
+  category_basis: classified
+  label: not_event
+  why: student org health fair
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g164
+  city: raleigh
+  source_id: martin_marietta_center
+  title: 'Denny Love: Show Love Tour'
+  description: 'Introducing Denny Love, a Los Angeles–based actor and comedian whose career seamlessly bridges prestige
+    television, live comedy, and viral digital culture.
+
+
+    A celebrated alumnus of DePaul University’s renowned Theatre School, Denny first broke through with a standout
+    performance in Hulu’s Looking for Alaska, a critically acclaimed series boasting a 92% Rotten Tomatoes rating.
+    He went on to appear '
+  labels:
+  - Comedy
+  - Fletcher Opera Theater
+  category: nightlife.comedy
+  category_basis: source_label
+  label: event
+  why: comedy show
+  origin: audit-2026-11-02 (blind label)
+- id: g165
+  city: providence
+  source_id: pvd_friars_athletics
+  title: Providence College Men's Soccer vs Butler
+  description: 'Providence College Men''s Soccer vs Butler
+
+    Streaming Video: https://friars.com/watch?Live=973&type=Live'
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college soccer game
+  origin: audit-2026-11-02 (blind label)
+- id: g166
+  city: atlanta
+  source_id: dekalb_library_events
+  title: Family Board Games
+  description: 'Family (All Ages)
+
+
+    Come play board games for kids and families.
+
+    Play our games or bring one to share.'
+  labels:
+  - Fun Activities
+  - School Age
+  - Children All Ages (parents welcome)
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: family board games
+  origin: audit-2026-11-02 (blind label)
+- id: g167
+  city: phoenix
+  source_id: phoenix_public_library_events
+  title: 3D Modeling – Monster Heads
+  description: 'Join us in the MACH1 Makerspace and learn the basics of 3D modeling using Tinkercad, a free online
+    3D modeling site. 3D Modeling skills can be applied to video game design, animation, CAD, and more! This program
+    is for children ages 8-17 and their families. Basic keyboard and mouse skills are required. Space is limited
+    - first come, first served.
+
+
+    Do you require an accommodation to participate in '
+  labels:
+  - STEAM
+  category: learning.tech
+  category_basis: source_label
+  label: event
+  why: makerspace class
+  origin: audit-2026-11-02 (blind label)
+- id: g168
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: Drop-In Board Games & Puzzles
+  description: Unplug from screens and dive into the world of tabletop gaming with a variety of board games at Plaza
+    Midwood! Participating in board games encourage cooperation, problem solving, letter and word recognition, and
+    critical thinking skills. This program will be drop-in and located in the Plaza Midwood Community Room. A variety
+    of games will be available to use during the program.
+  labels:
+  - Gaming
+  - Adults
+  - School Age (5-11)
+  - Teens (12-18)
+  - English
+  category: trivia_games.board_games
+  category_basis: source_label
+  label: event
+  why: drop-in games program
+  origin: audit-2026-11-02 (blind label)
+- id: g169
+  city: richmond
+  source_id: lewis_ginter_events
+  title: 'GARDENFEST INTERIORS: FEATURING NATURE TOUR'
+  description: From wreaths to swags to tree decorations, you’ll find amazing examples of how you can use preserved
+    flowers, leaves and fruit to create a “natural holiday décor.” Volunteers from the Dried Decor Team collect
+    materials all year and preserve them using a variety of techniques. Each year, the interior designs change,
+    so every display will be a surprise. Visit the Lora H. Robins Library and Bloemenda
+  labels:
+  - Classes
+  - Tours
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: garden tour/class
+  origin: audit-2026-11-02 (blind label)
+- id: g170
+  city: san_diego
+  source_id: pechanga_arena
+  title: 'Harlem Globetrotters: Rivalry Tour Presented By Sprite'
+  description: Have the Harlem Globetrotters finally met their match? The Washington Generals and new lineup of
+    rivals step onto the court – hungry for a win, and out to prove it! The Harlem Globetrotters – the team that
+    invented basketball culture – brings the Rivalry Tour to San Diego as part of their 2027 world tour, with a
+    roster of stars who turn every possession into showtime, quarter after quarter. This i
+  labels:
+  - Family Shows
+  - Sporting Events
+  category: sports_watch.game
+  category_basis: source_kind
+  label: event
+  why: Globetrotters show
+  origin: audit-2026-11-02 (blind label)
+- id: g171
+  city: birmingham
+  source_id: bham_uab_athletics
+  title: UAB Women's Soccer vs Memphis
+  description: 'UAB Women''s Soccer vs Memphis
+
+    Streaming Video: https://www.espn.com/watch/player/_/id/a3678c68-403e-4d5b-b0b4-9ffd1954758c'
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college soccer game
+  origin: audit-2026-11-02 (blind label)
+- id: g172
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: What's the Word (Teen Book Club) - RUIN ROAD by Lamar Giles
+  description: 'Join us on the last Tuesday of each month at 5:15 PM for the What''s the Word book club! In October,
+    we will be discussing Ruin Road by Lamar Giles.
+
+
+    High school football player Cade Webster buys a ring in a pawn shop, but when his wish that people stop acting
+    scared of him seems to be coming true, he remembers the ring came with a warning--"When the strangeness begins,
+    come back"-- and suddenly pe'
+  labels:
+  - Books/Literature
+  - Teens (12-18)
+  - English
+  category: arts.books
+  category_basis: source_label
+  label: event
+  why: teen book club
+  origin: audit-2026-11-02 (blind label)
+- id: g173
+  city: louisville
+  source_id: headliners_louisville
+  title: 'DAX: The Anger Management Tour w/ Thunderstorm Artis'
+  labels:
+  - Event
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g174
+  city: pittsburgh
+  source_id: cmu_events
+  title: Campus Visit (Info Session + Campus Tour)
+  description: 'Join us in Pittsburgh for an Information Session and Campus Tour to learn more about academics,
+    campus life and more at Carnegie Mellon!
+
+
+    Register now.'
+  labels:
+  - Admission
+  - Exclude from Main Calendar
+  category: music.concert
+  category_basis: classified
+  label: not_event
+  why: admissions campus visit
+  origin: audit-2026-11-02 (blind label)
+- id: g175
+  city: nashville
+  source_id: bridgestone_arena
+  title: 'Olivia Rodrigo: The Unraveled Tour'
+  labels:
+  - Concerts
+  - Bridgestone Arena
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g176
+  city: baltimore
+  source_id: creative_alliance_events
+  title: Baker Artist Office Hours | NOV 2026
+  description: Member Discount covers the cost of the service fees and applies once you add items to your cart.
+  labels:
+  - Meeting - Public
+  - Baker Artist
+  - Visual Arts
+  category: arts.theater
+  category_basis: classified
+  label: not_event
+  why: artist office hours
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g177
+  city: los_angeles
+  source_id: usc_events
+  title: Master of Science in Marriage Family Therapy (MFT / MFT online) Mock Class
+  description: Join us for a mock class of the Master of Science in Marriage and Family Therapy (MFT/MFT online)
+    program, led by Dr. Mary Andres. This session will offer a firsthand look at the interactive and supportive
+    culture of the MFT program, allowing you to see how it may align with your aspirations.
+  labels:
+  - Students
+  - University Park Campus
+  - Lecture / Talk / Workshop
+  - rossiermft
+  - rossierinfo
+  - academics
+  category: family.kids
+  category_basis: classified
+  label: not_event
+  why: prospective-student mock class
+  origin: audit-2026-11-02 (blind label)
+- id: g178
+  city: san_antonio
+  source_id: carver_cultural_center
+  title: San Antonio Dance presents The Nutcracker Ballet
+  description: San Antonio Dance proudly presents is annual production The Nutcracker Ballet—a timeless classic
+    that has enchanted audiences for generations. Join us for this magical performance filled with dazzling costumes,
+    unforgettable music, and the joy of the holiday season. Perfect for families and audiences of all ages, The
+    Nutcracker is sure to brighten your holidays and create memories to last a lifeti
+  labels:
+  - Community Event
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: ballet performance
+  origin: audit-2026-11-02 (blind label)
+- id: g179
+  city: phoenix
+  source_id: mim_events
+  title: Mindi Abair’s I Can’t Wait for Christmas Tour
+  description: 'Two-time Grammy nominee Mindi Abair returns to MIM for a fun-filled holiday concert featuring an
+    incredible group of multitalented smooth jazz musicians.
+
+
+    Over the course of her 25-year career, Abair has made her mark on jazz, pop, rock, R&B, soul, funk, and more.
+    She has topped the jazz and blues charts as a solo artist, been the featured saxophonist on American Idol ,
+    sat in with Paul Shaffer on'
+  labels:
+  - Concerts
+  - Holiday
+  - Jazz
+  - Fall
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g180
+  city: orlando
+  source_id: ucf_events
+  title: 'UCF Space Week: From Orbit to Archives Gallery Talk'
+  description: 'Join David Benjamin, Head of [Special Collections & University Archives](https://library.ucf.edu/about/departments/special-collections-university-archives/),
+    for a Gallery Talk featuring UCF Libraries'' Space Week exhibition: From Orbit to Archives.
+
+
+    Discover UCF''s place in the story of space exploration through photographs, memorabilia and more! A Special
+    Collections & University Archives Exhibit '
+  category: arts.museum
+  category_basis: classified
+  label: event
+  why: gallery talk, audience unstated
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g181
+  city: chicago
+  source_id: chipublib_events
+  title: 'Film Screening: A Complete Unknown (2024)'
+  description: 'Join us for a screening of A Complete Unknown .
+
+
+    A young Bob Dylan shakes up the folk music scene when he plugs in his electric guitar at the Newport Folk Festival
+    in 1965.
+
+
+    Join us for this award winning modern classic!
+
+
+    © Twentieth Century Fox. | 140 minutes | Rated R
+
+
+    Community Cinema is at a branch near you! Check out hundreds of other screenings at libraries across Chicago.
+
+
+    Accessibility
+
+
+    En'
+  labels:
+  - Film Screenings
+  - 'Adults: 18 and up'
+  - 'Seniors: 55 and up'
+  - English
+  category: arts.film
+  category_basis: classified
+  label: event
+  why: film screening
+  origin: audit-2026-11-02 (blind label)
+- id: g182
+  city: cleveland
+  source_id: ccpl_events
+  title: Virtual Audio and Video Studio Orientation
+  description: 'For ages 11 & up
+
+
+    This program will be held virtually in ZOOM.
+
+    Attend an orientation to become a user of the Audio and Video Recording Studios at Cuyahoga County Public Library.
+    Orientation sessions offer time to get acquainted with the studio spaces and policies as well as learn basics
+    steps to start creating. No prior experience required.
+
+
+    Attending this orientation will allow users to utilize t'
+  labels:
+  - General
+  - Teens (Grade 6-12)
+  - Adults
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: studio orientation program
+  origin: audit-2026-11-02 (blind label)
+- id: g183
+  city: cincinnati
+  source_id: chpl_events
+  title: Monday's Career Essentials
+  description: 'Looking for work or ready to level up your career? Join Adult Programs staff for drop-in hours on
+    Mondays! Each week will feature a different theme or job skill:
+
+
+    1st Monday of the Month: Resume Building
+
+
+    2nd Monday of the Month: Interview Tips & Practice
+
+
+    3rd Monday of the Month: Soft Skills in the Workplace
+
+
+    4th Monday of the Month: Digital Skills in the Workplace
+
+
+    No registration required. We''r'
+  labels:
+  - Workforce Development
+  - Adults
+  - Seniors
+  - English
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: themed career drop-in workshop
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g184
+  city: jacksonville
+  source_id: unf_events
+  title: Women's Basketball vs Edward Waters
+  description: 'Cheer on Women''s Basketball as they take on Edward Waters. It is Ozzie''s Field Trip Day.
+
+
+    Students get in free with their Osprey ID.'
+  labels:
+  - Students
+  - Faculty
+  - Staff
+  - Public
+  - Alumni
+  - Department Calendar
+  - Group Calendar
+  - Athletics
+  category: sports_league.basketball
+  category_basis: classified
+  label: event
+  why: game open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g185
+  city: austin
+  source_id: austin_convention_center_events
+  title: Big Ole Queer Market
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: public market
+  origin: audit-2026-11-02 (blind label)
+- id: g186
+  city: san_francisco
+  source_id: berkeley_events
+  title: 'Exhibit Tour: Maren Hassinger: Living Moving Growing'
+  description: Graduate students from the Departments of African American and African Diaspora Studies and History
+    of Art offer exhibition tours on selected Wednesdays at 12:15 PM, Sundays at 2 PM, and Free First Thursdays
+    at 1:15 PM.
+  labels:
+  - Exhibits
+  category: arts.museum
+  category_basis: source_label
+  label: event
+  why: exhibit tour
+  origin: audit-2026-11-02 (blind label)
+- id: g187
+  city: los_angeles
+  source_id: usc_events
+  title: Free Yoga Classes at the URC Fishbowl
+  description: At a time when many of us are juggling competing demands and constant distraction, practices that
+    help us cultivate attention and presence are especially valuable. Moreover, when we skillfully care for and
+    support our inner worlds, we also have a greater capacity to care for the people, communities, and world around
+    us. Your are invited to discover how yoga can support your academic, professional,
+  labels:
+  - Students
+  - Faculty/Staff
+  - University Park Campus
+  - Student Life
+  - Sustainability
+  - Welcome Experience
+  - Sustainability
+  category: fitness.yoga
+  category_basis: classified
+  label: not_event
+  why: yoga for students/faculty only
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g188
+  city: charlotte
+  source_id: clt_uncc_events
+  title: 'Career Ready: A Resume & LinkedIn Workshop with Spectrum'
+  description: A hands-on session where the Spectrum team walks through what catches a recruiter's eye on a resume
+    and LinkedIn profile, followed by live, one-on-one feedback on students' own resume and LinkedIn. Students will
+    leave with practical, immediate edits they can make before their next application. Hosted by Marley Tatum and
+    Charitha Repala, Spectrum Campus Ambassadors.
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: campus career recruiting workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g189
+  city: richmond
+  source_id: broadberry_rva
+  title: Weird Phishes – Performing Radiohead’s “Ok Computer” in the style of Phish
+  labels:
+  - Event
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g190
+  city: richmond
+  source_id: henrico_library_events
+  title: English Conversation Practice
+  description: Practice speaking English in an informal setting. This meet up style program is perfect for ELL (English
+    Language Learner) and ESL (English as a Second Language) adult students who are ready to practice their English
+    conversation skills. Registration is not required, but participants must be 16 years or older and able to speak
+    some English.
+  labels:
+  - Life & Job Skills
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: conversation meetup
+  origin: audit-2026-11-02 (blind label)
+- id: g191
+  city: houston
+  source_id: rice_events
+  title: 'The Owl Stroll: Accessible Campus Highlights Tour 1'
+  description: 'Enjoy the beauty and history of Rice University at a gentle, comfortable pace. Designed for visitors
+    who prefer or require a less strenuous experience, this accessible 45-minute tour follows a smooth, low-impact
+    route highlighting Rice’s new and recently completed spaces, including Sarofim Hall, Brockman Hall for Opera,
+    Lovett College and Chao College.
+
+
+    Led by a Welcome Center guide, the tour incl'
+  labels:
+  - Alumni
+  - Alumni Weekend
+  - Alumni Weekend 2026
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: campus tour at alumni weekend
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g192
+  city: richmond
+  source_id: henrico_library_events
+  title: East End Teen Advisory Board
+  description: Teen Advisory Board Meeting. Visit henricolibrary.org/tab for membership details.
+  labels:
+  - Civic Life
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: teen advisory board program
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g193
+  city: chicago
+  source_id: wintrust_arena
+  title: 'Ali Siddiq: The Custom Fit Tour'
+  description: 'Wintrust Arena is excited to welcome Ali Siddiq: The Custom Fit Tour to Chicago!
+
+
+    Vulture calls Ali Siddiq “stand-up comedy’s most prolific storyteller,” but audiences simply call him one of
+    the best to ever do it.
+
+
+    With unmatched authenticity, unforgettable stories, and a style rooted in truth, resilience, and humor, Ali
+    Siddiq has become the greatest storyteller of his generation — and one of th'
+  labels:
+  - Comedy
+  - Wintrust Arena
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: comedy show
+  origin: audit-2026-11-02 (blind label)
+- id: g194
+  city: nashville
+  source_id: vanderbilt_events
+  title: 'Student Safety & Self-Defense Workshop: Project Safe and VFI'
+  labels:
+  - Student Organizations
+  - AnchorLink
+  - Project Safe
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: student org workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g195
+  city: detroit
+  source_id: cliff_bells
+  title: Drey Skonie and The kLOUDs Vintage Costume Party
+  description: 'Make a Reservation
+
+    Performances are at 7:30p & 9:30p . Doors open at 5pm for dinner. Seating begins at 6p for “Dinner & a Show”.
+    The second show starts seating at 9p.
+
+    ***Costumes and Vintage Attire Highly Encouraged
+
+
+    Drey Skonie and The kLOUDs Band a.k.a. “Skonie and The kLOUDs” emphasis on the loud. Hailing from the motor
+    city, Detroit, MI. Skonie and The kLOUDs are retro style band, with a new f'
+  category: music.concert
+  category_basis: source_kind
+  label: event
+  why: music party
+  origin: audit-2026-11-02 (blind label)
+- id: g196
+  city: providence
+  source_id: pvd_east_providence_library_events
+  title: Pajama Storytime
+  description: Come get cozy at the library! Unwind with stories and songs. There'll even be a cocoa and tea bar!
+    Come in your PJs and whatever makes you feel cozy (blanket, stuffed toy etc.). For families with children ages
+    2-6.
+  labels:
+  - Weaver Library
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: storytime
+  origin: audit-2026-11-02 (blind label)
+- id: g197
+  city: miami
+  source_id: fiu_events
+  title: FIU Emerging Student Composers Concert
+  description: 'FIU School of Music student composers present new works for voices, instruments, electronics, and
+    video, directed by Dr. García.
+
+
+    Student composers from FIU’s Wertheim School of Music & Performing Arts present new works for a variety of instrumental
+    and vocal combinations, with selections that may also incorporate electronics and video. Directed by Orlando
+    J. García, the concert reflects the range'
+  labels:
+  - Students
+  - Faculty & Staff
+  - Alumni
+  - General Public
+  - Prospective Students
+  - Parents & Family
+  - Retirees
+  - Arts & Culture
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g198
+  city: las_vegas
+  source_id: lvccld_events
+  title: Asian Community Development Council Information Session
+  description: 'Learn about ACDC''s resources!
+
+
+    Learn about available resources including a culturally sensitive food bank, SNAP assistance, health care assistance
+    and clinics.
+
+    The mission of the Asian Community Development Council (ACDC) is to improve the general well-being and education
+    of the Asian, Pacific Islander and other ethnic communities in Nevada. The ACDC will promote, foster, champion
+    and advocate for'
+  labels:
+  - Health & Wellness
+  - Community Events
+  - Seniors
+  - Adults
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public community info session
+  origin: audit-2026-11-02 (blind label)
+- id: g199
+  city: seattle
+  source_id: kcls_events
+  title: King County Department of Local Services Office Hours
+  description: 'Get free notary service, support with county building permits, pet license applications and general
+    information about county services.
+
+    Registration not required.
+
+
+    Reasonable accommodation for people with disabilities is available by request. Email access@kcls.org at least
+    seven days before the event. Automated closed captioning is always available for online events.'
+  labels:
+  - Social Services & Health
+  - Adults (Ages 24 to 49)
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: county services office hours
+  origin: audit-2026-11-02 (blind label)
+- id: g200
+  city: providence
+  source_id: pvd_pawtucket_library_events
+  title: Board of Trustees
+  labels:
+  - Meetings
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: board of trustees meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g201
+  city: charlotte
+  source_id: clt_uncc_events
+  title: 'AMD Week - From Strategy to Storytelling: Corporate Communications at Scout Motors'
+  description: Join communications professionals from Scout Motors as they share how strategy and storytelling work
+    together to support organizational goals. Scout Motors is headquartered in Charlotte's Plaza Midwood neighborhood,
+    and their manufacturing facility will be opening 20 minutes outside of Columbia, South Carolina, where they
+    will build the Traveler SUV and Terra Truck.Thursday, October 2712:15 p.m.VI
+  category: community.cultural
+  category_basis: classified
+  label: not_event
+  why: campus career-week employer talk
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g202
+  city: chicago
+  source_id: chipublib_events
+  title: Halloween Green Screen Portraits
+  description: 'Come to the library in costume to get your portrait taken in front of a green screen. We drop your
+    image into an appropriate digital background and send it to you via email.
+
+
+    For kids, teens and families.
+
+
+    Accessibility
+
+    Need sign language interpretation or other accessibility assistance for this event? Please call (312) 747-8184
+    or email access@chipublib.org to request accommodations. Requests mus'
+  labels:
+  - Celebrations
+  - 'Babies: 0 to 18 months'
+  - 'Kids: 6 to 13 years'
+  - 'Preschoolers: 3 to 5 years'
+  - 'Teens: 13 to 19 years'
+  - 'Toddlers: 18 to 36 months'
+  - 'Tweens: 10 to 13 years'
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids holiday program
+  origin: audit-2026-11-02 (blind label)
+- id: g203
+  city: seattle
+  source_id: uw_events
+  title: 'Student Scholarship Showcase: A Celebration of 2025-26 Parvin E’tesami Student Support Fund Recipients'
+  description: 'Join the Middle East Center for a celebration of 2025-26 Parvin E’tesami Student Support Fund recipients.
+    Learn more about the E''tesami Fund here: jsis.washington.edu…
+
+
+    Additional details forthcoming.
+
+
+    Free and open to all. At the Jackson School, opportunities and events are open to all eligible persons regardless
+    of race, sex or other identity.'
+  labels:
+  - Exhibits
+  category: arts.museum
+  category_basis: source_label
+  label: event
+  why: student showcase celebration, likely open
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g204
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: 'Storytime: Listen & Move'
+  description: Bring your whole family out to enjoy stories, songs, movement in dance and activities that support
+    early literacy skill development and help foster a love of books and reading in your child. Parents and caregivers
+    are encouraged to participate.
+  labels:
+  - Storytime
+  - Parents/Caregivers
+  - Preschool (3-5)
+  - School Age (5-11)
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: storytime
+  origin: audit-2026-11-02 (blind label)
+- id: g205
+  city: washington_dc
+  source_id: dcpl_events
+  title: 'Tabletop Tuesday: Pokémon Club'
+  description: 'It''s gamer time!
+
+    Tabletop Tuesday: Pokémon Club Edition!
+
+
+    Pokémon Club is a program that provides younger players with tools to learn and develop skills through playing
+    the Pokémon Trading Card Game and other Pokémon-themed activities. In these friendly, inclusive spaces, players
+    can learn strategic thinking, math, and reading comprehension through their passion for Pokémon.
+
+
+    The Trading Card Game'
+  labels:
+  - Gaming
+  - 5 - 12 Years Old
+  - 13 - 19 Years Old (Teens)
+  category: trivia_games.board_games
+  category_basis: source_label
+  label: event
+  why: kids gaming club
+  origin: audit-2026-11-02 (blind label)
+- id: g206
+  city: richmond
+  source_id: handson_rva
+  title: YMCA Welcome Center ESL Classes
+  description: 'Brief Organizational Description:
+
+
+    The mission of the YMCA is to put Christian principles into practice through programs that build healthy spirit,
+    mind and body for all. As a nonprofit, we are committed to making our community a better place to live, work
+    and play
+
+
+    Volunteer Position Description and Purpose:
+
+
+    The purpose of this volunteer opportunity is to support the YMCA ''s ESL program and help'
+  labels:
+  - Project
+  - Date & Time Specific
+  category: volunteer.one_off
+  category_basis: classified
+  label: event
+  why: volunteer ESL role
+  origin: audit-2026-11-02 (blind label)
+- id: g207
+  city: austin
+  source_id: carousel_lounge
+  title: CLOSED – CHRISTMAS, hope its fabulous
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g208
+  city: sacramento
+  source_id: sacstate_events
+  title: 'Student Recital: Jason Bond, composition'
+  description: 'Graduate composition recital of Jason Bond, student of Shuying Li. View the program HERE
+
+
+    PARKING INFO: From UTAPS: Parking for today''s concert: You may park without a permit in the Student side of
+    Parking Structure 1 (the one next to Capistrano Hall) after 5pm.'
+  labels:
+  - Concert
+  category: music.concert
+  category_basis: source_label
+  label: event
+  why: student recital
+  origin: audit-2026-11-02 (blind label)
+- id: g209
+  city: chicago
+  source_id: chicago_park_events
+  title: Anchor Curatorial Residency Info Session at Garfield
+  description: Join us for an Anchor Curatorial Residency Info Session at Garfield Park to learn more about the
+    residency, meet the park staff, and ask questions.
+  labels:
+  - Tours
+  category: outdoors.park
+  category_basis: classified
+  label: event
+  why: public info session at park
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g210
+  city: jacksonville
+  source_id: unf_events
+  title: 'Illuminate Your Future: Ed.D. Info Sessions'
+  description: 'Learn how a doctoral degree in Educational Leadership or Curriculum and Instruction can advance
+    your career. Join Dr. Kim Cheek and Dr. David Hoppey for virtual information sessions on UNF’s doctoral programs
+    —registration required. Open to all current, former, and prospective students.
+
+
+    All meetings are virtual and will take place from 5:00 p.m. - 6:00 p.m.
+
+
+    Monday, September 21, 2026 with Dr. Ch'
+  labels:
+  - Students
+  - Public
+  - Main Calendar
+  - Academics
+  - Education
+  - Training/Professional Development
+  - Career & Professional Development
+  - Workshop/Seminars
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: degree program info session
+  origin: audit-2026-11-02 (blind label)
+- id: g211
+  city: sacramento
+  source_id: sacstate_events
+  title: 'FeNAM: Student Composers Competition'
+  description: Student composers present new works in a competition at the 49th Annual Festival of New American
+    Music.
+  labels:
+  - Concert
+  category: music.concert
+  category_basis: source_label
+  label: event
+  why: student composers concert
+  origin: audit-2026-11-02 (blind label)
+- id: g212
+  city: cincinnati
+  source_id: xavier_athletics
+  title: Xavier Women's Basketball vs Mercyhurst
+  description: Xavier Women's Basketball vs Mercyhurst
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: college basketball game
+  origin: audit-2026-11-02 (blind label)
+- id: g213
+  city: orlando
+  source_id: ocls_events
+  title: Middle School Advisory Board Meeting
+  description: 'Teen Volunteering
+
+
+    Earn community service by collaborating with your peers to test out new programs, brainstorm new library services,
+    and more! Recommended for students in grades 6-8.
+
+    Middle schoolers will earn one hour of community service by participating in a virtual board meeting where they''ll
+    have the opportunity to share their input regarding what teens want and need from the library, test o'
+  labels:
+  - Education & Learning
+  - Community & Citizenship
+  - Teens
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: teen volunteer advisory program
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g214
+  city: providence
+  source_id: pvd_cranston_library_events
+  title: Cranston Public Library Board of Trustees Meeting @ Central
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: board of trustees meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g215
+  city: charlotte
+  source_id: clt_uncc_events
+  title: Resume Workshop with LandDesign for Civil + Environmental Engineering
+  description: 'Join the Civil and Environmental Engineering team and professionals from LandDesign, a land development
+    firm based in Charlotte, for a resume workshop from 11:30 a.m. to 1 p.m. in EPIC 3344.
+
+    LandDesign is a national collection of land development visionaries and problem solvers who believe in creating
+    places that matter, endure, evolve, engage, inspire, and thrive. Our multi-disciplinary, balanced'
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: departmental career resume workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g216
+  city: nyc
+  source_id: zinc_bar
+  title: Club Closed for the Holiday
+  description: Zinc Bar will be closed on Friday, December 25 , in celebration of the holiday. We look forward to
+    welcoming you back on Saturday, December 26 , for cocktails and good company. Wishing you a joyful and peaceful
+    holiday season!
+  category: music.concert
+  category_basis: source_kind
+  label: not_event
+  why: holiday closure
+  origin: audit-2026-11-02 (blind label)
+- id: g217
+  city: hartford
+  source_id: hfd_public_library_events
+  title: One-on-One Financial Coaching (By Appointment Only)
+  description: 'English & Spanish
+
+
+    Free, confidential one-on-one financial coaching in English and Spanish. Get help with banking, budgeting, credit,
+    and debt, whether or not you have a bank account.
+
+    One-on-One Financial Coaching (English & Spanish)
+
+
+    Take control of your finances with free, confidential one-on-one financial coaching at Hartford Public Library.
+
+
+    Our financial consultant provides personalized guida'
+  labels:
+  - TAP
+  - Education
+  - Education
+  - Business
+  - Teens
+  - Family
+  - Adults
+  category: learning.networking
+  category_basis: source_label
+  label: not_event
+  why: by-appointment coaching
+  origin: audit-2026-11-02 (blind label)
+- id: g218
+  city: kansas_city
+  source_id: kc_parks_events
+  title: KC Parks Board Meeting
+  description: 'KC Parks is governed by a volunteer five-member Board of Parks and Recreation Commissioners who
+    are appointed by the Mayor. The Board of Parks and Recreation holds public meetings once a month on Tuesday
+    at the Parks and Recreation Department headquarters in Swope Park, 4600 E. 63rd St. All meetings are open to
+    the public.
+
+
+    View Board Agenda on City Clerk’s Website under All Meetings section >>'
+  labels:
+  - Public Meeting
+  category: volunteer.one_off
+  category_basis: classified
+  label: not_event
+  why: parks board business meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g219
+  city: phoenix
+  source_id: phoenix_public_library_events
+  title: 'Arizona PBS Presents: Almas Way Explore Your City'
+  description: 'Come explore your city with Arizona PBS and our PBS KIDS friend Alma from Alma’s Way! Presented
+    in partnership with Valley Metro and Phoenix Public Library, this free, family-friendly event will feature a
+    morning filled with stories, music, creativity, and discovery.
+
+
+    Be among the first to see the brand-new Alma’s Way Valley Metro bus during its special unveiling. Families can
+    also enjoy an intera'
+  labels:
+  - Childrens' Programs
+  - Storytimes
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids program
+  origin: audit-2026-11-02 (blind label)
+- id: g220
+  city: kansas_city
+  source_id: jocolibrary_events
+  title: One-on-One Basic Genealogy Help
+  description: For one-on-one help, visit the Johnson County Genealogical Society at jcgsks.org to schedule an appointment.
+    A volunteer will contact you by email to set up an in-person or Zoom session link for you before the scheduled
+    date.
+  labels:
+  - History
+  - Adults
+  - English
+  category: volunteer.one_off
+  category_basis: classified
+  label: not_event
+  why: one-on-one appointment
+  origin: audit-2026-11-02 (blind label)
+- id: g221
+  city: dallas
+  source_id: teamtrivia_dallas
+  title: Soundcheck Music Bingo at Keller Tavern
+  description: Soundcheck Music Bingo hosted by Team Trivia at Keller Tavern, Keller, TX.
+  labels:
+  - Soundcheck Music Bingo
+  category: trivia_games.trivia
+  category_basis: classified
+  label: event
+  why: music bingo
+  origin: audit-2026-11-02 (blind label)
+- id: g222
+  city: boston
+  source_id: td_garden
+  title: Celtics vs. Mavericks
+  description: 'The Boston Celtics take on the Dallas Mavericks.
+
+
+    CELTICS MERCHANDISE
+
+
+    Shop at the ProShop powered by ’47 to pick up the latest Celtics merchandise to rep the team this season. Shop
+    the latest tees, hats, sweatshirts, novelty items, and more. Stop by the store located at The Hub on Causeway
+    (84 Causeway Street) or online at bostonproshop.com.
+
+
+    SHOP NOW'
+  labels:
+  - Celtics
+  - TD Garden
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: NBA game
+  origin: audit-2026-11-02 (blind label)
+- id: g223
+  city: seattle
+  source_id: uw_events
+  title: 'Laboratory Medicine Grand Rounds: David Baker, PhD - Design of Smart Medicines'
+  description: 'David Baker, PhD
+
+    Henrietta and Aubrey Davis Endowed Professor in Biochemistry
+
+    Director, Institute for Protein Design
+
+    Department of Biochemistry
+
+    University of Washington
+
+
+    Objectives: Understand current methods for computational protein design, including AI-based approaches.
+
+    Survey diverse applications of protein design, such as its role in drug development, materials science, and
+    bioremediation.
+
+    Id'
+  labels:
+  - Lectures/Seminars
+  category: arts.books
+  category_basis: source_label
+  label: not_event
+  why: grand rounds, aimed at medical faculty
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g224
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: 1-on-1 Job Help Session
+  description: 'Need assistance with your resume, cover letter, or job search assistance? Book an appointment with
+    Library staff to get 1-on-1 help with your workforce needs Wednesday from 10–11am to help with job searching,
+    online applications, and basic resume and cover letter writing.
+
+
+    This is an in-person session and assistance is provided on a first-come, first-served basis.
+
+
+    Please note: One appointment per'
+  labels:
+  - Career Development
+  - Adults
+  - English
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: one-on-one appointment
+  origin: audit-2026-11-02 (blind label)
+- id: g225
+  city: san_diego
+  source_id: balboa_park_events
+  title: Needle Felting
+  description: 'Hummingbird
+
+    A flash of emerald, a blur of wings — the hummingbird is nature’s tiny miracle!In this 3-hour workshop, we will
+    work together to capture that fleeting magic in wool.
+
+
+    Using copper wire, natural roving and needle felting techniques, you’ll build up layers of colored wool to bring
+    your hummingbird to life, and ready to hang…all it takes is patience, a little wonder, and a lot of wool.
+
+
+    N'
+  labels:
+  - Workshop
+  category: arts.workshop
+  category_basis: classified
+  label: event
+  why: craft workshop
+  origin: audit-2026-11-02 (blind label)
+- id: g226
+  city: san_jose
+  source_id: sccl_events
+  title: Science Sundays for Grades K-2
+  description: 'This November, children in kindergarten to second grade are invited to participate in hands-on science
+    experiments alongside their parents and caregivers.
+
+
+    These programs are designed to be self-paced and child-led. Accompanying adults are expected to facilitate the
+    experiments and activities for their children.
+
+
+    Conduct a new experiment each Sunday!
+
+    November 1 st : The Lost Key – Magnets and Magn'
+  labels:
+  - STEM, Technology, & Science
+  - 'Kids: Grades K-8'
+  - English
+  category: family.kids
+  category_basis: source_label
+  label: event
+  why: kids science program
+  origin: audit-2026-11-02 (blind label)
+- id: g227
+  city: charlotte
+  source_id: clt_cmlibrary_events
+  title: Arabic Tutoring 1-on-1
+  description: 'On Thursdays, in a 30-minute session, practice your Arabic speaking and listening skills in a 1-on-1
+    environment. No lectures, just conversation! Join us in-person. Learn the basic Arabic language through one-on-one
+    tutoring sessions.
+
+
+    This program will be provided by Independence Regional Library staff.
+
+
+    For more information and to register, email hsuliman@cmlibrary.org.
+
+
+    This is an in-person pro'
+  labels:
+  - WelcomeCLT
+  - 1-on-1
+  - Conversation Club
+  - Language Learning
+  - Adults
+  - Older Adults
+  - English
+  - Arabic
+  category: learning.language
+  category_basis: classified
+  label: not_event
+  why: one-on-one tutoring slots
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g228
+  city: nyc
+  source_id: nyu_events
+  title: What’s My Story and How Can I Tell It?
+  description: 'In this session, we will reflect, map, and connect experiences to develop a personal narrative,
+    share your narrative, and receive feedback. It is also an opportunity to build community with peers through
+    the sharing of stories. This event is open to all students, but is particularly relevant to students preparing
+    for an interview, presentation, or speaking engagement.
+
+
+    This workshop takes place in'
+  category: arts.workshop
+  category_basis: classified
+  label: event
+  why: workshop open to public
+  origin: audit-2026-11-02 (blind label)
+- id: g229
+  city: nashville
+  source_id: bridgestone_arena
+  title: Nashville Predators vs Los Angeles Kings
+  labels:
+  - Sports
+  - Bridgestone Arena
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: NHL game
+  origin: audit-2026-11-02 (blind label)
+- id: g230
+  city: nyc
+  source_id: nyc_parks_events
+  title: Kissena Park Forest Restoration
+  description: Volunteer with the Stewardship Team to protect the forested areas in Kissena Park! Volunteers will
+    contribute to ongoing restoration work and learn the importance of species diversity to ecosystem health. Come
+    dressed in sturdy boots or shoes, long sleeves, long pants, and clothing that can get dirty. Face masks may
+    be worn at your discretion. Space is limited and registration is required. Volunte
+  category: volunteer.one_off
+  category_basis: classified
+  label: event
+  why: volunteer restoration
+  origin: audit-2026-11-02 (blind label)
+- id: g231
+  city: charlotte
+  source_id: clt_cmpd_community_events
+  title: Dilworth Community Meeting (CMPD Providence Division)
+  labels:
+  - Community Meeting
+  category: community.neighborhood
+  category_basis: classified
+  label: event
+  why: public neighborhood meeting
+  origin: audit-2026-11-02 (blind label)
+- id: g232
+  city: hartford
+  source_id: hfd_ct_museum_history
+  title: 'Behind-the-Scenes Tour: Remembering G. Fox & Co.'
+  description: 'Join us for a behind-the scenes tour at the Connecticut Museum to see our collection of memorabilia
+    from Hartford’s most iconic department store. Our archives contain hundreds of goods sold over the years at
+    G. Fox & Co., ranging from wedding gowns to toilet paper! You’ll also learn about Beatrice Fox Auerbach, the
+    pioneering businesswoman who led G. Fox & Co. through its golden age.
+
+
+    Tickets must'
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: museum tour
+  origin: audit-2026-11-02 (blind label)
+- id: g233
+  city: phoenix
+  source_id: chandler_library_events
+  title: Encore on Tour with Chandler Children's Choir
+  description: Join us for a 30-minute performance by the Chandler Children's Choir at the Downtown Library. The
+    "Encore on Tour" performance will include a diverse range of choral songs performed by children ages 7 to 11.
+    This performance encourages musical literacy through a variety of styles and language, and includes narration
+    about the history and significance of each song. Adults, kids and families are wel
+  labels:
+  - Art, Culture & Heritage
+  - Performance
+  - Adults
+  - Family
+  - Youth (6-12)
+  - English
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: choir performance
+  origin: audit-2026-11-02 (blind label)
+- id: g234
+  city: providence
+  source_id: pvd_brown_events
+  title: BWell x SHAG Library Tabling
+  description: BWell and SHAG are popping up at the SciLi with lots of goodies and information about how you can
+    access empowering health and wellness resources while at Brown. Stop by to send a SHAG-a-ween condomgram and
+    stock up on free supplies like emergency contraception, safer sex items, fidgets, tea, and more! Now featuring
+    access to a Library x BWell curated selection of Libby audiobooks related to wellb
+  labels:
+  - Libraries
+  category: arts.books
+  category_basis: classified
+  label: not_event
+  why: student wellness tabling
+  origin: audit-2026-11-02 (blind label)
+- id: g235
+  city: richmond
+  source_id: henrico_library_events
+  title: Mocktails for Holiday Entertaining
+  description: Would you like to spice up your parties and gatherings this holiday season? We have just the thing
+    for you! Learn how to make mocktails with Beth Dixon, founder of Salt and Acid and consultant for private bartending
+    and mixology education. Beth will demonstrate mocktail preparation, provide a recipe card for guests, and discuss
+    cocktail versions of the recipes. Registration is required for this ev
+  labels:
+  - Food & Cuisine
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: public cooking class
+  origin: audit-2026-11-02 (blind label)
+- id: g236
+  city: washington_dc
+  source_id: smithsonian_events
+  title: Sketch & Discover Tour
+  description: Join docent Sushmita Mazumdar every first Sunday of the month as she guides you to use pencil and
+    paper to consider the unique ideas and expressions of Asian artists from various traditions spanning the continent
+    across centuries. All materials will be provided. No reservation needed.
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: museum tour
+  origin: audit-2026-11-02 (blind label)
+- id: g237
+  city: baltimore
+  source_id: pratt_library_events
+  title: 1st Grade Home School Fall 2026
+  description: 'Classes for home schooled students (1st Grade). Students will learn:
+
+
+    The basic components of the computerDevelop writing skills using Microsoft Word. To use interactive programs
+    and websites to enhance language, critical thinking, and logic.Class prerequisite - NONE'
+  labels:
+  - Computer Classes
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: homeschool kids class
+  origin: audit-2026-11-02 (blind label)
+- id: g238
+  city: cleveland
+  source_id: ccpl_events
+  title: 'Teen Makers: Session 1 - Grades 6 - 12'
+  description: 'Design Travel Mugs
+
+
+    Join us in the Innovation Center for a chance to explore exciting technology, equipment, and art!
+
+
+    Participants can join us in the Innovation Center to design travel cups. Supplies are provided but limited.
+    Due to limited seating in the Innovation Center, this program will be split into 2 sessions. Please only sign
+    up for only 1 session.
+
+
+    Teens (grades 6-12 / ages 11-18) and th'
+  labels:
+  - Teen Programs
+  - Teens (Grade 6-12)
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: teen maker program
+  origin: audit-2026-11-02 (blind label)
+- id: g239
+  city: detroit
+  source_id: majestic_detroit
+  title: 'The Menzingers: Everything I Ever Saw North American Tour'
+  description: Everything I Ever Saw finds the Menzingers entering a new era in what’s already been a storied career.
+    The Philadelphia punk legends’ eighth album chronicles moments of significant change—the personal, the political,
+    and the universal—while returning to the core creative principles that first put them on the map with listeners
+    the world over. Twenty years in, the Menzingers have discovered that th
+  labels:
+  - Alternative/Punk
+  - The Majestic Theatre
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: concert
+  origin: audit-2026-11-02 (blind label)
+- id: g240
+  city: los_angeles
+  source_id: usc_events
+  title: Global Executive Doctor of Education (Global EdD) Program Alumni Career Pathways
+  description: Learn more about the USC Rossier Global Executive Doctor of Education (Global EdD) program on this
+    webinar.
+  labels:
+  - Students
+  - University Park Campus
+  - Lecture / Talk / Workshop
+  - rossiergedd
+  - rossierinfo
+  - academics
+  category: arts.workshop
+  category_basis: classified
+  label: not_event
+  why: degree program webinar
+  origin: audit-2026-11-02 (blind label)
+- id: g241
+  city: phoenix
+  source_id: mim_events
+  title: Curator-Led Tour of Unearthed Musical Masterpieces from the Southern Kingdoms of Ancient China
+  labels:
+  - Curator Talks
+  - Events
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: curator-led tour
+  origin: audit-2026-11-02 (blind label)
+- id: g242
+  city: nashville
+  source_id: vanderbilt_events
+  title: SAB’s Legends Tour
+  labels:
+  - Alumni Relations - Students
+  category: music.concert
+  category_basis: classified
+  label: not_event
+  why: student/alumni org internal tour
+  unsure: true
+  origin: audit-2026-11-02 (blind label)
+- id: g243
+  city: nyc
+  source_id: nyc_parks_events
+  title: Public Gallery Tour
+  description: Solo and group exhibitions at Glyndor Gallery explore the dynamic relationships between nature, culture,
+    and site. When exhibitions are on view in the spring, summer, and fall, Gallery Greeters lead public exhibition
+    tours on Thursdays and Saturdays at 2PM, certain dates excluded. Visitors can expect an in-depth look at artworks
+    on view in Glyndor Gallery and in the Sunroom Project Space, showcasi
+  labels:
+  - Art | Tours | Workshops | Accessible Activities
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: public gallery tour
+  origin: audit-2026-11-02 (blind label)
+- id: g244
+  city: san_antonio
+  source_id: brackenridge_park_events
+  title: Brackenridge Park Historic Tour – NEW ROUTE!
+  description: 'Join the Brackenridge Park Conservancy on Tuesday, November 17 , as we debut a brand-new route for
+    our Brackenridge Park Historic Tour!
+
+
+    This guided walking tour, led by Theresa Scheets, owner of T’s Tours , this approximately one-mile walking tour
+    will follow the San Antonio River through some of the park’s most historic areas. This approximately one-mile
+    walking tour will explore the east side o'
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: public walking tour
+  origin: audit-2026-11-02 (blind label)

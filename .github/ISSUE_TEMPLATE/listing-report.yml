@@ -1,0 +1,51 @@
+name: Report a listing
+description: Something wrong with one listing (not a real event, wrong category, wrong date or place…)
+title: "Data report: "
+labels: [data-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Reports feed the "is this a real public event?" gate (ADR-0010): each one becomes a labelled
+        example, and patterns become rules. The fields below are prefilled when you come from a listing.
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What's wrong?
+      options:
+        - Not a real event (nobody can go: a deadline, closure, office hours, internal meeting…)
+        - Wrong category
+        - Wrong date or time
+        - Wrong place
+        - Duplicate listing
+        - Cancelled or sold out
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: listing
+    attributes:
+      label: Listing
+      description: Title of the listing
+  - type: input
+    id: event_id
+    attributes:
+      label: Event id
+  - type: input
+    id: city
+    attributes:
+      label: City
+  - type: input
+    id: link
+    attributes:
+      label: Link
+  - type: input
+    id: sources
+    attributes:
+      label: Sources
+      description: source ids and original links
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Anything that helps (what it really is, the right category, a link)

@@ -124,7 +124,7 @@ rules:
       - '\bpublic hearing\b'
       - '\b(planning|zoning|preservation|historic district|landmarks|design review|parks|library|transit|housing|budget|finance|facilities|personnel|audit|governance)( and \w+)? (commission|board|committee)( (regular |special )?meeting\b|\W*$)'
     unless:
-      - '\b(town hall|community meeting|neighborhood meeting|neighbou?rhood watch|public input|input session|listening session|open house|meetup|meet-up|community conversation|meet (the|your)|volunteer\w*|teen|youth|kids|forum|debate|candidates?|book sale|sale)\b'
+      - '\b(town hall|community meeting|neighborhood meeting|neighbou?rhood watch|public input|input session|listening session|open house|meetup|meet-up|community conversation|meet (the|your)|volunteer\w*|teens?|youth|kids|high school|middle school|student advisory|forum|debate|candidates?|book sale|sale)\b'
 
   # ── internal / staff-only / private ──
   - id: internal_only
@@ -172,7 +172,7 @@ rules:
     scope: institution
     reason: an admissions or prospective-student event, not for the public
     title:
-      - '\b(admissions?|admitted students|accepted students|prospective (students|families|undergrad\w*|grad\w*)|campus (visit|tour)s?|preview day|visit day|discover \w+ day|virtual tour|info(rmation)? sessions?|graduate (fair|program info\w*)|grad fair|mba (info|information|preview)|degree program info\w*)\b'
+      - '\b(admissions?|admitted students|accepted students|prospective (students|families|undergrad\w*|grad\w*)|campus (visit|tour)s?|preview day|visit day|discover \w+ day|virtual tour|info(rmation)? sessions?|graduate (school )?(fair|program info\w*|open house)|grad(uate)? school fair|grad fair|mba (info|information|preview)|degree program info\w*|mock class|sample (a )?class)\b'
     unless:
       - '\b(public tour|open house|open to the public|art tour|garden tour|architecture tour|museum)\b'
 
@@ -195,6 +195,19 @@ rules:
       - '\b(commencement|convocation|hooding ceremony|graduation ceremony|pinning ceremony|white coat ceremony)\b'
     unless:
       - '\b(lessons?|class|classes|camp|league|swim|clinic)\b'
+
+  # campus calendars tag audiences: "Current Students", "Faculty & Staff", "Graduate Students", "Student Organizations".
+  # Tagged for insiders only, with no public-facing audience tag, it isn't for a newcomer (FN audit, golden set).
+  - id: campus_internal_audience
+    family: internal_only
+    scope: institution
+    reason: the campus tags it only for its students, faculty or staff, with no public audience
+    labels:
+      - '^(all |current |enrolled |registered )?(students?|undergrad\w*( students)?|graduate( and professional)? students|grad students|professional students|postdocs?|postdoctoral\w*|faculty|staff|faculty ?(&|and|/) ?staff|staff ?(&|and|/) ?faculty|employees?|\w+ employees|affiliates|student organizations?|student orgs?|alumni relations - students|residents|medical students|law students|ph\.?d\.? students|students? - \w+( \w+)?|staff - \w+( \w+)?|faculty - \w+( \w+)?)$'
+    labels_none:
+      - '\b(general public|the public|public|community|campus & community|campus and community|visitors?|everyone|open to all|all are welcome|families|family|kids|children|teens|youth|neighbors|prospective\w*|alumni & friends|friends|guests|k-12)\b'
+    unless:
+      - '\b(concert|recital|opera|symphony|orchestra|choir|choral|ensemble|jazz|exhibition|exhibit|gallery|museum|game|match|tournament|vs\.?|festival|commencement concert|theatre|theater|play|musical|dance performance|lecture|lectures|seminar|colloquium|symposium|reading|readings|conversation with|in conversation|talk|book talk|author|panel)\b'
 
   - id: campus_uncategorized
     family: no_public_signal

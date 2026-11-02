@@ -465,6 +465,26 @@ def cmd_shards(a: argparse.Namespace, s: Settings) -> int:
     return 0
 
 
+def cmd_reports(a: argparse.Namespace, s: Settings) -> int:
+    """Listing reports → gate examples (ADR-0010, I-224). No network: the issues JSON comes from `gh issue list`."""
+    from gotc import reports
+
+    if a.reports_cmd == "import":
+        db = _db(s) if s.db_path.exists() else None
+        from pathlib import Path
+
+        from gotc.settings import ROOT
+
+        added = reports.import_reports(reports.read_issues(Path(a.file)), db)
+        for e in added:
+            print(f"#{e['issue']} {e['problem']:14} {e['status']:13} {e['listing'][:70]}")
+        print(f"{len(added)} new report(s) → {reports.REPORTS_FILE.relative_to(ROOT)}")
+        return 0
+    entry = reports.promote(int(a.issue), a.label)
+    print(f"#{entry['issue']} → golden set as {a.label}")
+    return 0
+
+
 def cmd_status(a: argparse.Namespace, s: Settings) -> int:
     from gotc.health.report import render
 
@@ -658,6 +678,17 @@ def main(argv: list[str] | None = None) -> int:
     d.set_defaults(fn=cmd_doctor)
 
     sub.add_parser("schema", help="write schema/cityfeed.schema.json").set_defaults(fn=cmd_schema)
+
+    rpt = sub.add_parser("reports", help="'Report a problem' issues → listing-gate examples and rule suggestions")
+    rpt_sub = rpt.add_subparsers(dest="reports_cmd", required=True)
+    ri = rpt_sub.add_parser(
+        "import", help="merge `gh issue list --json …` output into config/listing_gate_reports.yaml"
+    )
+    ri.add_argument("file")
+    rpr = rpt_sub.add_parser("promote", help="add a reviewed report to the golden set")
+    rpr.add_argument("issue")
+    rpr.add_argument("--label", required=True, choices=["event", "not_event"])
+    rpt.set_defaults(fn=cmd_reports)
 
     dm = sub.add_parser("demo", help="build the fictional, clearly-labeled demo dataset")
     dm.add_argument("--anchor", help="ISO datetime the demo is relative to (default: now)")
