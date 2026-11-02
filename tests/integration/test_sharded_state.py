@@ -89,6 +89,9 @@ def test_shards_plus_publish_equal_a_monolithic_run(base: Path, tmp_path: Path):
     assert a["health"] == b["health"]
     assert a["events"] == b["events"]
     assert a["raw"] == b["raw"]
+    # the quarantine travels too: ingest-stage rows through the deltas, build-stage rows from the publish build
+    q = "SELECT city, source_id, record_id, stage, rule, reason FROM gated_listings ORDER BY 1, 2, 3, 4"
+    assert [tuple(r) for r in mono.all(q)] == [tuple(r) for r in pub.all(q)]
     # every merged source record points at a raw_fetches row that exists (ids were remapped)
     orphans = pub.one(
         "SELECT COUNT(*) c FROM source_records sr WHERE raw_fetch_id IS NOT NULL AND NOT EXISTS"

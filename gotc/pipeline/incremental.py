@@ -23,7 +23,7 @@ from gotc.config import CityConfig, Registry
 from gotc.settings import CONFIG_DIR
 from gotc.storage.db import Database, iso, parse_iso
 
-BUILD_VERSION = "1"
+BUILD_VERSION = "2"  # 2: listing gate + honest category basis (ADR-0010)
 MAX_AGE = timedelta(hours=3)  # the doc suggests 6 h; 3 h keeps `stale` flags at most 3 h late
 
 
@@ -39,6 +39,7 @@ def inputs_hash(db: Database, reg: Registry, city: CityConfig, config_dir: Path 
     h.update(json.dumps(reg.sources_file.model_dump(mode="json"), sort_keys=True).encode())
     for p in (
         config_dir / "taxonomy.yaml",
+        config_dir / "listing_gate.yaml",
         config_dir / "venues" / f"{city.slug}.yaml",
         config_dir / "registry" / f"{city.slug}.yaml",
     ):

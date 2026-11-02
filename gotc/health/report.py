@@ -105,6 +105,37 @@ def render(db: Database, reg: Registry, now: datetime, extra: list[str] | None =
         for g in gates:
             reasons = [r.split(":")[0] for r in json.loads(g["data"]).get("reasons", []) if not r.startswith("thin:")]
             lines.append(f"| {g['city']} | {g['tier']} | {g['failing_since'] or '–'} | {', '.join(reasons) or '–'} |")
+    held = db.all(
+        "SELECT source_id, city, COUNT(*) n, SUM(stage = 'build') gate, SUM(stage = 'ingest') ingest FROM gated_listings"
+        " GROUP BY source_id, city ORDER BY n DESC"
+    )
+    if held:
+        top = {
+            (r["source_id"], r["city"]): r["rules"]
+            for r in db.all(
+                "SELECT source_id, city, GROUP_CONCAT(rule || ' ' || n, ', ') rules FROM (SELECT source_id, city, rule,"
+                " COUNT(*) n FROM gated_listings GROUP BY source_id, city, rule ORDER BY n DESC) GROUP BY source_id, city"
+            )
+        }
+        total = sum(int(r["n"]) for r in held)
+        lines += [
+            "",
+            "## Held back: not real public events (ADR-0010)",
+            "",
+            f"{total} listings across {len(held)} units are quarantined with a reason, never silently dropped "
+            "(`gated_listings`; audit: `docs/research/NON_EVENTS_AUDIT.md`). *Gate* = the build-time "
+            "real-public-event gate; *ingest* = skipped while parsing (online-only, excluded places, campus-internal).",
+            "",
+            "| Unit | Held back | Gate | Ingest | Rules |",
+            "|---|---|---|---|---|",
+        ]
+        lines += [
+            f"| `{r['source_id']}@{r['city']}` | {r['n']} | {r['gate'] or 0} | {r['ingest'] or 0} | "
+            f"{str(top.get((r['source_id'], r['city']), ''))[:140]} |"
+            for r in held[:60]
+        ]
+        if len(held) > 60:
+            lines.append(f"| … {len(held) - 60} more units | | | | |")
     rej = db.all(
         "SELECT unit, COUNT(*) n, MAX(error) sample FROM rejects WHERE at >= ? GROUP BY unit ORDER BY n DESC LIMIT 15",
         (iso(now - timedelta(days=2)),),

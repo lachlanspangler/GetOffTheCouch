@@ -55,6 +55,7 @@ export interface HealthUnit {
   sla_hours: number;
   stale: boolean;
   records: number;
+  held_back?: number; // quarantined as not real public events (ADR-0010)
   last_error?: string;
   reason?: string;
   reliability?: { grade: string; score: number | null; attempts: number } | null;

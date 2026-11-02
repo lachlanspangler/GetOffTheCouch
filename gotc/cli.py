@@ -112,8 +112,11 @@ def cmd_replay(a: argparse.Namespace, s: Settings) -> int:
             if raw.exists(r["path"])
         ]
         parsed = parse_payloads(get_adapter(u.source.adapter), u, payloads, fetched_at)
+        from gotc.pipeline.ingest import store_ingest_skips
+
         with db.tx():
             upsert_records(db, u, parsed, fetched_at)
+            store_ingest_skips(db, u, parsed.skips, fetched_at)
             if not parsed.rejects:  # same snapshot semantics as a live fetch
                 mark_gone(db, u, {ev.record_id for ev, _ in parsed.valid}, fetched_at)
         print(

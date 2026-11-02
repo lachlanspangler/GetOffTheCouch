@@ -1,0 +1,205 @@
+# The "is this a real public event?" gate (ADR-0010, gotc/pipeline/listing_gate.py).
+#
+# Every listing from every source passes through these rules at build time, before anything is published.
+# A rejected listing is quarantined (table gated_listings) with the rule and the reason, counted per source in
+# docs/HEALTH.md, and never silently dropped. Rules are plain, case-insensitive Python regexes so anyone can read
+# why something was held back.
+#
+# Rule fields
+#   id / family / reason   what it is and the sentence a person reads in the audit
+#   hard: true             nothing rescues it (only a per-source `keep` override in that source's config)
+#   scope: institution     only for campus/institution feeds (`audience_filter: institution`, or
+#                          `listing_gate: {institution: true}` on the source); default scope is every source
+#   title / text / labels  patterns matched against the title / title + description / the source's own labels
+#   unless                 title patterns that rescue a *soft* rule (a league sign-up deadline is real)
+#   unless_families        category families that rescue a soft rule (sports_league, volunteer, …)
+#   basis                  only listings whose category basis is one of these (e.g. uncategorized campus items)
+#
+# Per-source overrides (in the source's params):
+#   listing_gate:
+#     institution: true            # apply the campus rules to a feed that isn't flagged audience_filter
+#     off: [governance_meeting]    # turn rules off for this source
+#     keep: ['\bboard meeting\b']  # always keep titles matching these (beats hard rules; say why in a comment)
+#     reject: [{id: no_tours, pattern: '\btour\b', reason: "this museum's tours are members-only"}]
+version: 1
+
+# soft rules can be rescued by these anywhere (things a newcomer can actually sign up for or show up to)
+unless_families: [sports_league, volunteer]
+unless_categories: [fitness.race]
+
+rules:
+  # ── academic calendars: dates on a term calendar, not something you can go to ──
+  # (no label-only rule: campuses tag real events "Academic Calendar" too — FIU's Festival of the Trees, UNCC talks —
+  #  so the term dates themselves are caught by their titles below)
+  - id: academic_calendar
+    family: academic_calendar
+    hard: true
+    reason: an academic-calendar date (withdraw, drop/add, refunds, grades, finals, term start/end), not an event
+    title:
+      - '\blast day (of|to|for)\b[^.]{0,40}\b(class(es)?|instruction|term|semester|session [a-z0-9]\b|withdraw(al)?|drop|add|refunds?|grade[sd]?|grading|pass/fail|p/f|audit|graduat\w*|incomplete|course|credit)'
+      - '\bfirst day of (class(es)?|instruction|school|the (fall|spring|summer|winter|autumn) (term|semester|session|quarter)|(fall|spring|summer|winter|autumn) (term|semester|session|quarter)|term|semester|quarter)\b'
+      - '\b(withdraw(al)?|course drop|drop|add)\b[^.]{0,40}\bdeadline\b'
+      - '\bdeadline\b[^.]{0,30}\b(to (withdraw|drop|add)|withdraw(al)?|add/drop|drop/add)\b'
+      - '\b(add/drop|drop/add|drop-add|add-drop)\b'
+      - '\brefund of tuition\b'
+      - '\b\d{1,3} ?% (tuition |fee )?refund\b'
+      - '\btuition\b[^.]{0,30}\b(due|deadline|refunds?|payment|purge|cancell?ation)\b'
+      - '\b(student|course|lab|housing|parking|graduation|technology|activity) fees?\b[^.]{0,30}\b(due|deadline|refunds?|payment|purge)\b'
+      - '\b(final |midterm |mid-term )?grades? (are )?(due|posted|available|deadline|submission|submitted)\b'
+      - '\bgrade (submission|posting|deadline|appeals?)\b'
+      - '\b(final exams?|finals week|final examination period|exam(ination)? (period|week|schedule))\b'
+      - '\bclasses (begin|start|end|resume|cancell?ed|dismissed|suspended|do not meet)\b'
+      - '^\W*(\w+ \d{1,2},? )?no[- ](classes|class|school)\b(?![^.]{0,30}\b(camp|camps|fun|program|programs|activities|activity|workshop|adventure|day out)\b)'
+      - '\(no (classes|class|school)\)\W*$'
+      - '^(reading|study) (day|days|period)\b'
+      - '\b(census|drop) date\b'
+      - '\b(priority|course|semester|term) registration\b'
+      - '\bregistration (for|opens for|begins for) (the )?(spring|summer|fall|winter|autumn|j-?term|may) (\d{4} )?(term|semester|session|quarter|classes|courses)\b'
+      - '^(\w+ \d{4}:? )?(spring|fall|autumn|winter|thanksgiving|mid-?term|semester|reading|study) (break|recess)( (begins|ends|starts|begin|end|start|week|day|days))?(\W+(no classes|university closed|campus closed|offices closed))?\W*$'
+      - '\b(degree conferral|intent to graduate|graduation application|apply (to|for) graduation|application for graduation|degree application)\b'
+      - '\bacademic calendar\b'
+      - '\b(fall|spring|summer|winter) [a-c]:'
+
+  # ── closures and holidays: the doors are shut ──
+  - id: closure
+    family: closure
+    hard: true
+    reason: a closure or holiday-hours notice, not an event
+    title:
+      - '^\W*(we are |we''re )?closed\W*($|[-–—:|(]|\b(for|on|today|tonight|until|through|thru|due)\b)'
+      - '[-–—:|]\s*closed\W*($|[-–—(]|\b(come|see|hope|back|reopen)\w*\b)'
+      - '\bclosed (for|on|due to|until|through|thru) (the )?(holiday|holidays|thanksgiving|christmas|new year|private|a private|maintenance|renovation|inventory|repairs|weather|staff|election|veterans|memorial|labor|independence|juneteenth|mlk|presidents|columbus|indigenous|the season|winter break|spring break|winter|construction|an? \w+ event|event)\b'
+      - '\b(library|libraries|branch|branches|office|offices|campus|university|college|school|schools|building|buildings|facility|facilities|museum|pool|club|city hall|all locations|all branches|the center)\s+(is |are |will be )?(closed|closing early|closes early|opens late|opening late)\b'
+      - '\b(holiday|thanksgiving|christmas|new year''?s?( day| eve)?|election day|veterans day|memorial day|labor day|independence day|juneteenth|mlk day|presidents''? day|columbus day|indigenous peoples''? day)\b[^.]{0,20}\b(closure|closed|closing|hours)\b'
+      - '\b(closure|closures|closings?)\s*[-–—:]\s*'
+      - '\b(holiday|early|emergency|weather|facility|branch|library|office) (closure|closing)\b'
+      - '\b(closes|closing) early\b'
+      - '\b(modified|reduced|holiday|special) hours\b'
+      - '\b(university|campus|offices?|library) holiday\b'
+
+  # ── office hours and one-on-one appointments: a service window, not a gathering ──
+  - id: office_hours
+    family: office_hours
+    hard: true
+    reason: office hours (a drop-in service window), not an event
+    title:
+      - '\boffice hours?\b'
+      - '\b(advising|consultation|counseling) hours\b'
+
+  - id: appointment
+    family: appointment
+    reason: a one-on-one appointment slot, not an event you can go to
+    title:
+      - '\b(1|one)[- ]?(on|to)[- ]?(1|one)\b'
+      - '\bby appointment( only)?\b'
+      - '\bappointments? (only|required|available)\b'
+      - '\b(private|individual|personal) (lesson|session|consultation|tutoring|coaching|appointment)s?\b'
+    unless:
+      - '\bvolunteer'
+
+  # ── administrative deadlines: paperwork, not a place to be ──
+  - id: admin_deadline
+    family: admin_deadline
+    reason: an administrative deadline (an application, payment or filing), not an event
+    title:
+      - '\b(application|applications|submission|submissions|nomination|nominations|proposal|proposals|abstract|abstracts|scholarship|scholarships|grant|grants|fellowship|fellowships|award|awards|fafsa|financial aid|tax|taxes|filing|payment|enrollment|enrolment|housing|petition|ballot|voter registration|permit|license renewal|renewal)\b[^.]{0,25}\b(deadline|due|closes?|ends|period ends)\b'
+      - '\bdeadline\b[^.]{0,12}\b(to|for)\b[^.]{0,20}\b(apply|applications?|submit|submissions?|file|filing|pay|payment|enroll|nominat\w*)\b'
+      - '\b(due date|deadline reminder)\b'
+      - '\b(applications?|nominations?|submissions?|proposals?|entries) (are )?(now )?(open|due|accepted|being accepted)\b'
+      - '\bcall for (proposals|papers|artists|submissions|entries|nominations|abstracts|applications)\b'
+      - '\blast day to (register|apply|submit|pay|file|enroll|sign up|request)\b'
+      - '^\W*(registration|enrollment|application) (deadline|closes|opens|ends|begins)\W*$'
+    unless:
+      - '\b(league|leagues|tournament|race|5k|10k|half[- ]marathon|marathon|fun run|turkey trot|triathlon|ride|volunteer\w*|team|teams|camp|festival|tryouts?|class|classes|lessons?|season|swim|clinic|vendor|exhibitor|artists? market|craft fair|parade)\b'
+
+  # ── governance meetings: the public may attend, but it's administration, not something to do ──
+  - id: governance_meeting
+    family: governance_meeting
+    reason: a board, committee or commission business meeting (administration, not a newcomer event)
+    title:
+      - '\b(board|committee|commission|council|trustees|authority|task force|subcommittee|caucus|senate|steering committee|oversight)\b[^.]{0,45}\b(meeting|meetings|regular|special session|retreat|work session|hearing|business session|agenda)\b'
+      - '\b(meeting|session)\b[^.]{0,15}\bof the\b[^.]{0,40}\b(board|committee|commission|council|trustees)\b'
+      - '\bboard of (trustees|directors|commissioners|supervisors|education|regents|governors|library trustees|adjustment|zoning|appeals)\b'
+      - '^\W*(regular|special|annual|monthly|quarterly|general)( board| business| membership)? meeting\W*$'
+      - '\bpublic hearing\b'
+      - '\b(planning|zoning|preservation|historic district|landmarks|design review|parks|library|transit|housing|budget|finance|facilities|personnel|audit|governance)( and \w+)? (commission|board|committee)( (regular |special )?meeting\b|\W*$)'
+    unless:
+      - '\b(town hall|community meeting|neighborhood meeting|neighbou?rhood watch|public input|input session|listening session|open house|meetup|meet-up|community conversation|meet (the|your)|volunteer\w*|teen|youth|kids|forum|debate|candidates?|book sale|sale)\b'
+
+  # ── internal / staff-only / private ──
+  - id: internal_only
+    family: internal_only
+    hard: true
+    reason: an internal, staff-only, invitation-only or private listing, so the public can't go
+    title:
+      - '\b(staff|faculty|employee|employees|department|dept\.?|exec(utive)? board|e-?board|officers?|leadership team|cabinet|admin(istrative)?|all[- ]hands)\s+(meeting|retreat|training|huddle|check-?in|lunch|luncheon|development|planning|orientation|onboarding)\b'
+      - '\b(staff|faculty|employees?|students|residents|invitees|registrants|alumni|affiliates)\s+only\b'
+      - '\bonly for (current |enrolled )?(students|staff|faculty|employees|members|residents)\b'
+      - '\b(invitation|invite)[- ]only\b'
+      - '\bby invitation\b'
+      - '\bprivate (event|party|rental|function|booking|reception|meeting|session|engagement|gathering)\b'
+      - '\bclosed (meeting|session|event|rehearsal|practice|door session)\b'
+      - '\bexecutive session\b'
+      - '\binternal (meeting|training|event|use|only|review)\b'
+    text:
+      - '\bnot open to the (general )?public\b'
+      - '\b(this|the) (event|program|session|workshop|meeting|class|training|talk|lecture|screening|gathering|activity) is (not open|closed) to the (general )?public\b'
+      - '\b(this|the) (event|program|session|workshop|meeting|class|training|talk|lecture|gathering|activity) is (only )?(open|available|restricted|limited) (only )?to (current |enrolled |registered |active )?(\w+ ){0,3}(students|staff|faculty|employees|affiliates)\b(?![^.]{0,60}\b(public|community members|everyone|all are welcome|guests)\b)'
+      - '\b(open|available|restricted|limited) (only )?to (current |enrolled |active )?(\w+ ){0,3}(students|staff|faculty|employees|affiliates)( and (faculty|staff|students|employees|affiliates))? only\b'
+
+  # ── placeholders: a slot on a calendar, not an event ──
+  - id: placeholder
+    family: placeholder
+    hard: true
+    reason: a calendar placeholder (TBA, hold, reserved, private), not an event
+    title:
+      - '^\W*(tba|tbd|tbc|to be (announced|determined|confirmed)|hold|on hold|date hold|reserved|blocked?|placeholder|test( event)?|untitled( event)?|event|events|no events?( scheduled)?( today| tonight)?|n/?a|private|private event|closed|dark|dark night|no show( tonight)?|rental|private rental|venue rental|off-?site|booked|unavailable|cancell?ed)\W*$'
+      - '^\W*(\w+\s){0,2}(placeholder|hold)\W*$'
+
+  # ── campus feeds only (scope: institution) ──
+  - id: campus_meeting
+    family: internal_only
+    scope: institution
+    reason: a campus club or office business meeting, not a public event
+    title:
+      - '\b(general (body|interest|member|membership) meeting|gbm|chapter meeting|club meeting|weekly meeting|bi-?weekly meeting|monthly meeting|regular meeting|planning meeting|design meeting|team meeting|project meeting|kick-?off meeting|interest meeting|info(rmational)? meeting|business meeting|members meeting)\b'
+      - '^\W*(\w+\s){0,6}meeting\W*$'
+    unless:
+      - '\b(public|community|town hall|open to all|everyone|neighborhood|neighbou?rhood)\b'
+
+  - id: campus_admissions
+    family: internal_only
+    scope: institution
+    reason: an admissions or prospective-student event, not for the public
+    title:
+      - '\b(admissions?|admitted students|accepted students|prospective (students|families|undergrad\w*|grad\w*)|campus (visit|tour)s?|preview day|visit day|discover \w+ day|virtual tour|info(rmation)? sessions?|graduate (fair|program info\w*)|grad fair|mba (info|information|preview)|degree program info\w*)\b'
+    unless:
+      - '\b(public tour|open house|open to the public|art tour|garden tour|architecture tour|museum)\b'
+
+  - id: campus_career
+    family: internal_only
+    scope: institution
+    reason: a student career-services event (fairs, recruiting, résumés), not for the public
+    title:
+      - '\b(career (fair|expo|development|services|readiness|coaching|chat|center|week|conversations?)|job fair|internships?|employer (info\w*|spotlight|session|showcase)|recruit(ing|ment|ers?)\b|r[eé]sum[eé] (review|workshop|clinic|critique)|mock interviews?|on-campus interview\w*|interview prep|headshot|linkedin|handshake|co-?op (info|fair)|trojan talk|networking night for students)'
+
+  - id: campus_academic_admin
+    family: internal_only
+    scope: institution
+    reason: campus academic administration (advising, IRB, defenses, orientations, faculty training), not for the public
+    title:
+      - '\b(advising|advisor|registrar|bursar|financial aid|student loans?|fafsa|irb\b|institutional review board|dissertation|thesis (defense|proposal|presentation)|defen[cs]e\s*[:|-]|qualifying exam|comprehensive exam|prospectus|oral exam)'
+      - '\b(faculty (senate|meeting|development|workshop|learning community|forum|council)|staff (development|training|council|senate)|professional development for (faculty|staff)|teaching (workshop|circle|academy)|course design|syllabus|canvas (training|workshop)|curriculum committee|accreditation|promotion and tenure|tenure (review|workshop)|grand rounds)\b'
+      - '\b((new|transfer|international|graduate|first-year|freshman|student|family|parent|faculty|staff) orientation|orientation for (new )?(students|faculty|staff|graduate|transfer|international)|move[- ]in|residence hall|res hall|dorm|study (abroad|break|session|group|hall|room)|tutoring|supplemental instruction|peer mentor\w*|commencement rehearsal|graduation rehearsal|cap and gown|regalia|tabling)\b'
+      - '\b(registration|enrollment) (deadline|period|window|opens|closes|begins|ends)\b'
+      - '\b(commencement|convocation|hooding ceremony|graduation ceremony|pinning ceremony|white coat ceremony)\b'
+    unless:
+      - '\b(lessons?|class|classes|camp|league|swim|clinic)\b'
+
+  - id: campus_uncategorized
+    family: no_public_signal
+    scope: institution
+    reason: a campus listing with nothing that says it's a public event (no category from its labels or title)
+    basis: [fallback, source_kind]
+    unless:
+      - '\b(concert|recital|performance|lecture|talk|reading|exhibit(ion)?|screening|film|festival|fair|market|game|match|tour|open house|symposium|conference|panel|workshop|class|show|play|theater|theatre|dance|music|art|gallery|museum|garden|yoga|run|walk|hike|volunteer\w*|community)\b'

@@ -9,6 +9,7 @@ cities' units (``gotc run --cities … --no-build``) and exports a **delta DB** 
   source_records            every row of the shard's cities (replaces the publish DB's rows for those cities)
   unit_health               every row of the shard's cities
   price_snapshots           rows observed since the mark
+  gated_listings            the shard's cities' ingest-stage quarantine (replaces the publish DB's rows)
 
 The publish job merges every delta into its own copy of the same base DB, then builds and exports once.
 Cities are disjoint across shards, so no two deltas touch the same rows. A delta whose base doesn't match the
@@ -71,6 +72,8 @@ def export_delta(db_path: Path, base: dict[str, Any], cities: list[str], out: Pa
         "source_records": f"SELECT * FROM source_records WHERE city IN {_in(cities)}",
         "unit_health": f"SELECT * FROM unit_health WHERE city IN {_in(cities)}",
         "price_snapshots": f"SELECT * FROM price_snapshots WHERE city IN {_in(cities)} AND observed_at >= ?",
+        # ingest-stage quarantine (ADR-0010); the build-stage rows are written by the publish job's own build
+        "gated_listings": f"SELECT * FROM gated_listings WHERE city IN {_in(cities)} AND stage = 'ingest'",
     }
     counts: dict[str, int] = {}
     with con:
@@ -150,6 +153,11 @@ def merge_delta(db: Database, delta: Path, expect_base: dict[str, Any]) -> dict[
                 _insert(con, "source_records", row)
                 n += 1
             counts["source_records"] = n
+            con.execute(f"DELETE FROM gated_listings WHERE city IN {_in(cities)} AND stage = 'ingest'")
+            cur = con.execute(
+                "INSERT OR REPLACE INTO main.gated_listings SELECT * FROM d.gated_listings WHERE stage = 'ingest'"
+            )
+            counts["gated_listings"] = cur.rowcount
             for table in ("unit_health", "price_snapshots"):
                 cols = [c[1] for c in con.execute(f"PRAGMA d.table_info({table})")]
                 cur = con.execute(

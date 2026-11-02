@@ -396,6 +396,7 @@ class SourceStatus(Strict):
     sla_hours: float
     stale: bool
     records: int
+    held_back: Annotated[int, Field(ge=0)] = 0  # listings quarantined as not real public events (ADR-0010)
     last_error: str | None = None
     reason: str | None = None  # e.g. "needs TICKETMASTER_API_KEY"
 

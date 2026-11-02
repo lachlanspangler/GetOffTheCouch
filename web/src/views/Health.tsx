@@ -56,7 +56,10 @@ function Table({ units, showCity }: { units: HealthUnit[]; showCity: boolean }) 
                 </td>
                 <td data-label="Status"><span class={`state ${st.cls}`} title={st.help}>{st.label}</span></td>
                 <td class="num" data-label="Last success">{u.last_success_at ? age(u.last_success_at, now) : "Never"}{u.stale && u.state !== "disabled" && <div class="small tone-caution">Behind schedule</div>}</td>
-                <td class="num" data-label="Listings">{count(u.records)}</td>
+                <td class="num" data-label="Listings">
+                  {count(u.records)}
+                  {!!u.held_back && <div class="small muted" title="Listings held back because they aren't real public events (closures, academic dates, office hours…). See How we get the data.">{count(u.held_back)} held back</div>}
+                </td>
                 {rel && <td class="num">{u.reliability?.score != null ? `${Math.round(u.reliability.score)}%` : "Not enough runs"}</td>}
                 {notes && <td class="small secondary" data-label="Note">{plainNote(u)}</td>}
               </tr>

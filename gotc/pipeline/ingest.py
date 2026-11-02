@@ -58,6 +58,8 @@ class Parsed:
     valid: list[tuple[SourceEvent, int | None]] = field(default_factory=list)  # (event, raw_fetch_id)
     rejects: list[tuple[str, str, int | None]] = field(default_factory=list)  # (hint, error, raw_fetch_id)
     skipped: int = 0  # valid records deliberately left out (e.g. not open to the public)
+    #: why each skipped record was left out: (record_id, title, start, rule, reason) — quarantined, never silent
+    skips: list[tuple[str, str, str | None, str, str]] = field(default_factory=list)
 
 
 def campus_catchall(rec: dict[str, Any], params: dict[str, Any]) -> bool:
@@ -81,6 +83,54 @@ def campus_allowlist(category: str, params: dict[str, Any]) -> bool:
     return category.split(".", 1)[0] in allow
 
 
+def _iso(v: Any) -> str | None:
+    if v is None:
+        return None
+    return v.isoformat() if isinstance(v, datetime) else str(v)
+
+
+def _ingest_skip(rec: dict[str, Any], params: dict[str, Any]) -> tuple[str, str] | None:
+    """(rule, reason) when a parsed record is left out before storage, else None."""
+    if campus_catchall(rec, params):
+        return (
+            "ingest:campus_catchall",
+            "campus feed: only the feed's catch-all category matched (nothing public-facing)",
+        )
+    if why := audience_skip(rec, params.get("audience_filter")):
+        return "ingest:audience", f"campus feed: {why}"
+    if why := location_skip(rec, params.get("exclude_location")):
+        return "ingest:location", why
+    return None
+
+
+def store_ingest_skips(
+    db: Database, unit: Unit, skips: list[tuple[str, str, str | None, str, str]], now: datetime
+) -> None:
+    """Replace this unit's ingest-stage quarantine with this fetch's skips (snapshot, like source_records)."""
+    db.execute(
+        "DELETE FROM gated_listings WHERE source_id = ? AND city = ? AND stage = 'ingest'",
+        (unit.source.id, unit.city.slug),
+    )
+    for rid, title, start, rule, reason in skips:
+        db.execute(
+            "INSERT OR REPLACE INTO gated_listings (city, source_id, record_id, stage, title, start_at, rule, family,"
+            " reason, evidence, gated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            (
+                unit.city.slug,
+                unit.source.id,
+                rid,
+                "ingest",
+                title or "(untitled)",
+                start,
+                rule,
+                "ingest_filter",
+                reason,
+                None,
+                iso(now),
+            ),
+        )
+
+
 def parse_payloads(
     adapter: Adapter, unit: Unit, payloads: list[tuple[Payload, int | None]], fetched_at: datetime
 ) -> Parsed:
@@ -99,12 +149,12 @@ def parse_payloads(
             if "_reject" in rec:
                 out.rejects.append((str(rec.get("_hint", ""))[:200], str(rec["_reject"]), raw_id))
                 continue
-            if (
-                campus_catchall(rec, unit.source.params)
-                or audience_skip(rec, unit.source.params.get("audience_filter"))
-                or location_skip(rec, unit.source.params.get("exclude_location"))
-            ):
+            why = _ingest_skip(rec, unit.source.params)
+            if why is not None:
                 out.skipped += 1
+                out.skips.append(
+                    (str(rec.get("record_id")), str(rec.get("title") or "")[:300], _iso(rec.get("start")), *why)
+                )
                 continue
             try:
                 rec = normalize_record(rec, unit.source.name)
@@ -122,6 +172,16 @@ def parse_payloads(
                 ensure_basis(ev, unit.source.params, tax, unit.source.adapter)
                 if not campus_allowlist(ev.category, unit.source.params):
                     out.skipped += 1
+                    out.skips.append(
+                        (
+                            ev.record_id,
+                            ev.title,
+                            ev.start.isoformat(),
+                            "ingest:campus_family",
+                            f"campus feed: {ev.category.split('.', 1)[0]} isn't one of this source's public-facing"
+                            " families",
+                        )
+                    )
                     continue
             except (ValidationError, ValueError) as e:
                 hint = f"{rec.get('record_id')}: {str(rec.get('title'))[:80]}"
@@ -209,6 +269,7 @@ def run_unit(
         result.rejected = len(parsed.rejects)
         if parsed.skipped:
             result.notes.append(f"{parsed.skipped} not-public record(s) skipped")
+        store_ingest_skips(db, unit, parsed.skips, now)
         for hint, err, rid in parsed.rejects[:200]:
             db.execute(
                 "INSERT INTO rejects (unit, raw_fetch_id, at, record_hint, error) VALUES (?,?,?,?,?)",

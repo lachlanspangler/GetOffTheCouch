@@ -223,6 +223,7 @@ export type Lon1 = number;
 export type Name = string;
 export type Neighborhoods = NeighborhoodPoint[];
 export type SchemaVersion = string;
+export type HeldBack = number;
 export type LastAttemptAt = string | null;
 export type LastError = string | null;
 export type LastSuccessAt = string | null;
@@ -590,6 +591,7 @@ export interface NeighborhoodPoint {
  * via the `definition` "SourceStatus".
  */
 export interface SourceStatus {
+  held_back?: HeldBack;
   last_attempt_at?: LastAttemptAt;
   last_error?: LastError;
   last_success_at?: LastSuccessAt;

@@ -1368,6 +1368,12 @@
     "SourceStatus": {
       "additionalProperties": false,
       "properties": {
+        "held_back": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Held Back",
+          "type": "integer"
+        },
         "last_attempt_at": {
           "anyOf": [
             {

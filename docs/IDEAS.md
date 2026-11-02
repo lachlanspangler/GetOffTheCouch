@@ -5,15 +5,17 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 75 · **doing** 1 · **done** 99 · **rejected** 28 · **parked** 2 · **blocked** 14
+**open** 79 · **doing** 2 · **done** 100 · **rejected** 28 · **parked** 2 · **blocked** 14
 
 ## Up next (open, by score)
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
 | I-141 | Per-city state files + sharded matrix refresh + single publish job | infra | 5 | 3 | 1.33 | doing | Monolithic run stops fitting at ~60–70 cities — 2026-10-17 doing: sharded matrix done; per-city state files open |
+| I-221 | Real-public-event gate before publish (quarantine + HEALTH counts) | data-quality | 5 | 4 | 1.0 | doing | academic dates, closures, office hours and board meetings were published as events |
 | I-199 | Probe tooling honors Crawl-delay | infra | 4 | 1 | 3.2 | open | Prevents slips like azleg.gov (Crawl-delay 120) |
 | I-211 | Galaxy Digital tenant sanity check (channel title/state must match city) | data-quality | 4 | 1 | 3.2 | open | Volunteer Now Dallas domain served a California tenant |
+| I-225 | Homepage must not auto-open the last city's legacy #/ feed | ux | 4 | 1 | 3.2 | open | user: github.io/GetOffTheCouch opens straight to #/miami/feed |
 | I-075 | Card-level 'why this time is approximate' when a source only gives dates | data-quality | 3 | 1 | 2.4 | open | All-day vs unknown time are different truths |
 | I-185 | SeatEngine/Opendate fingerprints in discover | cities | 3 | 1 | 2.4 | open | Comedy clubs and venues become config-only |
 | I-187 | LiveWhale pagination | sources | 3 | 1 | 2.4 | open | Brown's calendar stops at 100 items (~2–3 days) |
@@ -37,6 +39,7 @@ unless docs/HEALTH.md has something red.
 | I-197 | Squarespace ?format=json events adapter (check ToS first) | sources | 4 | 2 | 1.6 | open | ~a dozen Bay Area venues |
 | I-206 | LibCal date-window support | sources | 4 | 2 | 1.6 | open | Public ICS caps at 500 items starting a month back; Cleveland PL unusable |
 | I-208 | Venue-ownership denylist (Live Nation, AEG/PromoWest, FPC) | cities | 4 | 2 | 1.6 | open | Ownership judged by hand today for several venues |
+| I-224 | Report-a-problem → gate examples/rules loop | data-quality | 4 | 2 | 1.6 | open | reports should teach the gate, not sit in issues |
 | I-096 | Data-quality guard: flag JSON-LD occurrence dates that contradict a posted weekly schedule | data-quality | 2 | 1 | 1.4 | open | Team Trivia's JSON-LD stamped a Thursday game with Friday's date (server rolled over). teamtrivia rejects those; a shared helper could do the same for the jsonld venue-calendar branch and Luma/ICS recurring sources. |
 | I-084 | Find a volunteering source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 volunteering events in Denver right now |
 | I-085 | Find a cons & faires source for Denver | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Denver right now |
@@ -45,6 +48,7 @@ unless docs/HEALTH.md has something red.
 | I-090 | Find a cons & faires source for Nashville | sources | 4 | 2 | 1.4 | open | auto: 0 cons & faires events in Nashville right now |
 | I-091 | Find a trivia nights source for Seattle | sources | 4 | 2 | 1.4 | open | auto: 0 trivia nights events in Seattle right now |
 | I-169 | Per-city state files on the pipeline-state branch | infra | 5 | 3 | 1.33 | open | Deltas carry every source_record of a shard's cities (1.7 MB gz for NYC+Boston) and CI slim state forces a full rebuild hourly; per-city DBs fix both and keep every file far below GitHub's 100 MB limit (§4.6 item 2). |
+| I-222 | No catch-all default_category on mixed calendars (+ invariant test) | data-quality | 5 | 3 | 1.33 | open | universities/libraries/city calendars guessed networking/books for anything uncategorized |
 | I-078 | Health check: flag when distinct listing pages return identical record sets (UpcomingCons) | health | 3 | 2 | 1.2 | open | UpcomingCons category pages returned the anime list for /gaming and /sci-fi within one minute; a guard that flags identical listing-id sets across distinct pages catches this server-side caching bug |
 | I-081 | Share one fetch of national pages across city units in a run | pipeline | 3 | 2 | 1.2 | open | Global sources (upcomingcons, makerfaire) refetch identical national pages once per city; a per-run shared payload cache would cut 10x requests |
 | I-082 | ics: lift Luma 'Get up-to-date information at' link as the event URL/RSVP offer | sources | 3 | 2 | 1.2 | open | Luma ICS feeds omit URL; descriptions say 'Get up-to-date information at: https://luma.com/...'; lifting it gives every Luma event an RSVP offer |
@@ -67,6 +71,7 @@ unless docs/HEALTH.md has something red.
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |
 | I-194 | Vega events adapter (San Diego Public Library moved off BiblioCommons) | sources | 4 | 3 | 1.07 | open | Libraries are migrating to Vega |
 | I-207 | First-seen diff for renewal-dated license files | sources | 4 | 3 | 1.07 | open | Milwaukee/Detroit carry only renewal dates; snapshot diff exposes new licensees |
+| I-223 | Golden set of 200+ labelled listings with gate precision/recall | data-quality | 4 | 3 | 1.07 | open | the gate needs a measured, regression-proof bar |
 | I-036 | Source reliability score computed from health history | health | 3 | 2 | 1.05 | open | SOURCES.md reliability column from data, not vibes |
 | I-088 | Improve geocoding for Denver (61/201 events unmapped) | data-quality | 3 | 2 | 1.05 | open | auto: map view and distance filters miss these |
 | I-093 | Miami events from Florida DBPR temporary alcohol permits (bd4002lic.csv) | sources | 3 | 2 | 1.05 | open | Header CSV with DBA = event name and Expiration Date ~ the event's last day (research MIA-3: Halloween half marathon, seafood festival, PeruFest). The csvfile adapter + window filter already handle it; needs an all-day multi-day mapping and an Owner Name scrub (automatic). |
@@ -118,6 +123,7 @@ unless docs/HEALTH.md has something red.
 
 | ID | Idea | Area | V | E | Score | Status | Why / notes |
 |---|---|---|---|---|---|---|---|
+| I-220 | Honest category provenance (basis: source label / classified / source kind / fallback) | data-quality | 5 | 3 | 1.33 | done | FIU's withdrawal deadline said 'category reported by the source' when it was our default_category |
 | I-218 | New since your last visit section on city pages | ux | 4 | 1 | 3.2 | done | Gives returning residents a reason to come back; on-device only |
 | I-172 | OSM attribution on the dashboard for cached Nominatim coordinates | ux | 4 | 1 | 3.2 | done | The OSMF policy requires visible attribution; ~500 cached Nominatim results still place pins even though new lookups are off. Needs 'Geocoding © OpenStreetMap contributors' in the footer/map. — 2026-10-17 done: session 3 |
 | I-171 | Coverage UI: Live/Beta chip, pillar strip, coverage matrix page | ux | 5 | 2 | 2.0 | done | index.json and every feed now carry coverage (schema 1.5.0) but the dashboard doesn't render it yet, so beta cities look live and thin pillars look like empty lists. — 2026-10-27 done: session 4: /cities/ coverage table + live/beta chips |

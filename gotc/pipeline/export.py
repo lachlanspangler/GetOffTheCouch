@@ -70,6 +70,9 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
             "SELECT COUNT(*) c FROM source_records WHERE unit = ? AND gone_at IS NULL AND start_at >= ?",
             (unit.key, iso(now - timedelta(days=60))),
         )
+        held = db.one(
+            "SELECT COUNT(*) c FROM gated_listings WHERE source_id = ? AND city = ?", (unit.source.id, city.slug)
+        )
         out.append(
             SourceStatus(
                 source_id=unit.source.id,
@@ -80,6 +83,7 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
                 sla_hours=sla,
                 stale=h.last_success_at is None or now - h.last_success_at > timedelta(hours=sla),
                 records=int(n["c"]) if n else 0,
+                held_back=int(held["c"]) if held else 0,
                 last_error=h.last_error,
                 reason=h.reason,
             )

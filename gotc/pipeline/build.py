@@ -71,6 +71,7 @@ class BuildStats:
     stale: int = 0
     weather: int = 0
     outside: int = 0
+    gated: int = 0  # held back by the real-public-event gate (ADR-0010)
 
 
 def load_live_records(db: Database, city: str, now: datetime, reg: Registry | None = None) -> list[SourceEvent]:
@@ -138,6 +139,49 @@ def reconcile_categories(records: list[SourceEvent], reg: Registry, tax: Taxonom
         )
 
 
+def gate_records(
+    db: Database, reg: Registry, city: str, records: list[SourceEvent], now: datetime
+) -> list[SourceEvent]:
+    """The real-public-event gate (ADR-0010): keep what passes, quarantine the rest with its rule and reason.
+
+    The build-stage quarantine is a snapshot like ``events``: every build replaces the city's rows.
+    """
+    from gotc.pipeline.listing_gate import listing_gate
+
+    gate = listing_gate()
+    sources = reg.all_sources()
+    kept: list[SourceEvent] = []
+    held: list[tuple[SourceEvent, Any]] = []
+    for rec in records:
+        src = sources.get(rec.source_id)
+        verdict = gate.evaluate(rec, src.params if src else {}, src.data_type.value if src else None)
+        if verdict.keep:
+            kept.append(rec)
+        else:
+            held.append((rec, verdict))
+    with db.tx():
+        db.execute("DELETE FROM gated_listings WHERE city = ? AND stage = 'build'", (city,))
+        for rec, v in held:
+            db.execute(
+                "INSERT OR REPLACE INTO gated_listings (city, source_id, record_id, stage, title, start_at, rule,"
+                " family, reason, evidence, gated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (
+                    city,
+                    rec.source_id,
+                    rec.record_id,
+                    "build",
+                    rec.title,
+                    iso(rec.start),
+                    v.rule,
+                    v.family,
+                    v.reason,
+                    v.evidence,
+                    iso(now),
+                ),
+            )
+    return kept
+
+
 def _first_seen_opening_units(reg: Registry) -> set[str]:
     return {u.key for u in reg.units() if u.source.params.get("openings_by_first_seen")}
 
@@ -181,6 +225,8 @@ def build_city(
     records = load_live_records(db, city.slug, now, reg)
     reconcile_categories(records, reg, tax)
     stats.records = len(records)
+    records = gate_records(db, reg, city.slug, records, now)
+    stats.gated = stats.records - len(records)
 
     if geocoder:
         geocoder.lookups = 0  # the live-lookup budget is per city, so early cities can't starve later ones
