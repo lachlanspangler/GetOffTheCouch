@@ -490,6 +490,32 @@
           "default": null,
           "title": "Series Id"
         },
+        "series_last": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Series Last"
+        },
+        "series_total": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Series Total"
+        },
         "social": {
           "anyOf": [
             {

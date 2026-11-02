@@ -176,6 +176,8 @@ export type SkillLevels = SkillLevel[];
 export type Url1 = string | null;
 export type SeriesDates = string[];
 export type SeriesId = string | null;
+export type SeriesLast = string | null;
+export type SeriesTotal = number | null;
 export type Reasons1 = string[];
 export type Score = number;
 export type FetchedAt2 = string;
@@ -382,6 +384,8 @@ export interface Event {
   registration?: Registration | null;
   series_dates?: SeriesDates;
   series_id?: SeriesId;
+  series_last?: SeriesLast;
+  series_total?: SeriesTotal;
   social?: SocialScore | null;
   sources: Sources;
   stale?: Stale;

@@ -3408,6 +3408,20 @@
    "created": "2026-11-02",
    "updated": "2026-11-02",
    "notes": []
+  },
+  {
+   "id": "I-231",
+   "title": "doctor --fix: repair dangling raw_fetches in one set-based UPDATE (per-row UPDATE on unindexed raw_fetch_id is O(n²); >1 h on a DB without its raw cache)",
+   "area": "health",
+   "value": 3,
+   "effort": 1,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "found reproducing CI locally without the raw cache",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
   }
  ]
 }

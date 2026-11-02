@@ -361,6 +361,13 @@ export function EventPage({ e }: { e: Event }) {
                     <li key={x.id}><a class="chip" rel="nofollow" href={eventHref(x, city)}>{fmtDay(x.start, tz)}{isDateOnly(x) ? "" : `, ${fmtTime(x.start, tz)}`}</a></li>
                   ))}
                 </ul>
+                {!!e.series_total && e.series_total > seriesEvents.length + 1 && (
+                  <p class="small muted" style={{ marginTop: "8px" }} data-testid="series-more">
+                    {count(e.series_total - seriesEvents.length - 1)} more date{e.series_total - seriesEvents.length - 1 === 1 ? "" : "s"}
+                    {e.series_last ? ` through ${fmtDay(e.series_last, tz)}` : ""}.{" "}
+                    {e.url ? <a href={e.url} target="_blank" rel="noopener noreferrer">See them all on the source ↗</a> : "See the source for every date."}
+                  </p>
+                )}
               </section>
             )}
             <section aria-labelledby="src">

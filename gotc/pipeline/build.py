@@ -72,6 +72,7 @@ class BuildStats:
     weather: int = 0
     outside: int = 0
     gated: int = 0  # held back by the real-public-event gate (ADR-0010)
+    series_folded: int = 0  # occurrences beyond a series' next SERIES_EXPORT_CAP dates (kept in the DB, summarized)
 
 
 def load_live_records(db: Database, city: str, now: datetime, reg: Registry | None = None) -> list[SourceEvent]:
@@ -329,6 +330,9 @@ def build_city(
         base = min((baselines[s.source_id] for s in ev.sources if s.source_id in baselines), default=now)
         ev.is_new = ev.first_seen >= base + timedelta(hours=6) and now - ev.first_seen < timedelta(hours=72)
     assign_series([ev for ev, _ in merged], now)
+    before = len(merged)
+    merged = cap_series(merged, now)
+    stats.series_folded = before - len(merged)
 
     campus_sources = {
         u.source.id for u in reg.units(city=city.slug) if u.source.params.get("audience_filter") == "institution"
@@ -519,6 +523,42 @@ def assign_series(events: list[Event], now: datetime) -> None:
             e.series_dates = dates
             if len(evs) >= 3 and e.kind == EventKind.ONE_OFF:
                 e.kind = EventKind.RECURRING
+
+
+#: a long run (a Broadway show's 8 performances a week, a museum's timed-entry slots) exports its next 8 dates and
+#: a summary ("+118 more dates through Jan 4"); the rest stay in the DB. The event page lists at most 8 anyway.
+SERIES_EXPORT_CAP = 8
+
+
+def cap_series(merged: list[tuple[Event, Cluster]], now: datetime) -> list[tuple[Event, Cluster]]:
+    """Keep each series' next ``SERIES_EXPORT_CAP`` occurrences (plus any with an open registration deadline).
+
+    Without this, Ticketmaster alone put 16k NYC listings in the export (Balloon Museum NYC: 3,401 entry slots) and the
+    card feed hit 42 MB. Every kept occurrence carries the series' true size and last date, so nothing is hidden.
+    """
+    by_series: dict[str, list[tuple[Event, Cluster]]] = {}
+    for item in merged:
+        if item[0].series_id:
+            by_series.setdefault(item[0].series_id, []).append(item)
+    drop: set[str] = set()
+    for items in by_series.values():
+        upcoming = sorted(
+            (it for it in items if (it[0].end or it[0].start) >= now - timedelta(hours=2)), key=lambda it: it[0].start
+        )
+        if len(upcoming) <= SERIES_EXPORT_CAP:
+            continue
+        keep = {it[0].id for it in upcoming[:SERIES_EXPORT_CAP]}
+        keep |= {
+            it[0].id
+            for it in upcoming
+            if it[0].registration and it[0].registration.closes_at and it[0].registration.closes_at >= now
+        }
+        last = upcoming[-1][0].start
+        for ev, _ in items:
+            ev.series_total, ev.series_last = len(upcoming), last
+            if ev.id not in keep and (ev.end or ev.start) >= now - timedelta(hours=2):
+                drop.add(ev.id)
+    return [it for it in merged if it[0].id not in drop]
 
 
 def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy, db: Database, reg: Registry) -> Event:

@@ -61,7 +61,7 @@ export function render(path: string, index: Index, feed: CityFeed | null, now: D
 // smallest first, is accepted only if rendering from exactly that partial data reproduces the page byte for byte.
 // Slimmed fields are all optional in the Event type, so code that runs on the partial feed already handles them
 // missing; the page's own event (event pages) is always complete.
-const SLIM_HARD = ["summary", "rank", "provenance", "attendance", "categories", "is_demo", "is_new", "stale", "offers", "organizer", "price_trend", "recurrence", "registration", "series_dates", "url", "venue_id"];
+const SLIM_HARD = ["summary", "rank", "provenance", "attendance", "categories", "is_demo", "is_new", "stale", "offers", "organizer", "price_trend", "recurrence", "registration", "series_dates", "series_last", "series_total", "url", "venue_id"];
 const SLIM_SOFT = ["summary", "rank", "provenance"];
 const SLIM_MAX = [...SLIM_HARD, "social", "tickets", "tags", "weather"]; // e.g. an event page's "similar" rows
 const META_HARD = ["starter_pack", "coverage", "neighborhoods", "venues"];

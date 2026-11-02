@@ -36,3 +36,25 @@ def test_card_feed_over_the_hard_budget_fails(tmp_path, monkeypatch):
     rep = check_city(_write(tmp_path, 10, 200), NOW)
     assert rep.failures and "card feed" in rep.failures[0]
     assert [r.city for r in check_all(tmp_path, NOW)] == ["testville"]
+
+
+def _shard(tmp_path, name: str, size: int) -> None:
+    d = tmp_path / "cities" / "testville"
+    (d / name).parent.mkdir(parents=True, exist_ok=True)
+    (d / "manifest.json").write_text("{}")
+    (d / name).write_text("x" * size)
+
+
+def test_a_sharded_city_budgets_its_shards_not_the_fallback_file(tmp_path, monkeypatch):
+    # the Oct 27–Nov 2 CI failures: NYC's whole feed hit 42 MB once Ticketmaster was keyed, but browsers load shards
+    monkeypatch.setattr(payload, "CARDS_RAW_FAIL", 100_000)
+    cards = _write(tmp_path, 10, 200)
+    _shard(tmp_path, "w/2026-W45.abc.json", 900_000)
+    _shard(tmp_path, "d/2026-W45.def.json", 300_000)
+    rep = check_city(cards, NOW)
+    assert not rep.failures and any("legacy fallback" in w for w in rep.warnings)
+    _shard(tmp_path, "w/2026-W46.big.json", payload.SHARD_RAW_FAIL + 1)
+    rep = check_city(cards, NOW)
+    assert rep.failures == [
+        f"testville: shard w/2026-W46.big.json {(payload.SHARD_RAW_FAIL + 1) / 1e6:.2f} MB raw > 1.5 MB"
+    ]

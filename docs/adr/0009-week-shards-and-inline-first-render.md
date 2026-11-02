@@ -15,3 +15,16 @@ The whole city file (450 KB gzip for NYC) had to download and parse before a pre
 ## Consequences
 - Pages grow by their inline data (median 2 KB gzip; up to ~20 KB on a city page) and `dist/data` roughly doubles (legacy + shards). Drop the legacy files once nothing reads them, and the dist size halves again.
 - Code that renders a whole-feed number on a pre-rendered page must go through `memo()`. If it doesn't, the build still produces a correct site; that page just stops getting inline data (the pre-render summary counts these as "hydrate from the full feed").
+
+## Amendment (2026-11-02): budget what visitors download; cap long runs
+The hourly publish failed every run from 2026-10-27 to 2026-11-02, so nothing deployed. Once the Ticketmaster key was
+added, the contract test's 8 MB whole-feed budget failed for NYC (42.8 MB), Las Vegas (28 MB), Chicago (15.6 MB) and
+LA (8.2 MB). The loop's two-strike rule then stopped the deploy. Two changes:
+1. **The budget follows the shards.** For a week-sharded city, browsers never download the whole feed (it's a
+   fallback for older clients), so its size only warns. Every week card shard and details shard must be under
+   1.5 MB, and the exporter already splits busy weeks at about 1 MB. Unsharded cities keep the 8 MB hard limit.
+2. **Long runs export their next 8 dates** (`build.cap_series`). Ticketmaster lists every performance and every
+   timed-entry slot as its own event (Balloon Museum NYC: 3,401). A series now exports its next 8 occurrences,
+   plus any with an open registration deadline, each carrying `series_total` and `series_last`. The event page
+   says "118 more dates through Jan 4 · see them all on the source". All occurrences stay in the DB. On the CI data
+   this takes NYC from 19,453 to about 6,700 exported listings.

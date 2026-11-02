@@ -5,6 +5,9 @@ The budgets are for what a visitor downloads on first paint:
     without week shards (I-117, ADR-0009); sharded first views are budgeted in web/scripts/check-budgets.mjs
   * the whole card feed: warn above 5 MB raw, **fail above 8 MB raw** (the doc's "do item 5 before NYC passes
     ~8 MB" trigger); the details file: fail above 4 MB raw
+  * once a city is week-sharded (I-117, ADR-0009) browsers never download the whole feed — it's a fallback for
+    older clients — so its size only *warns*, and the budget moves to what visitors fetch: every week card shard
+    and details shard must stay under ``SHARD_RAW_FAIL`` (the exporter splits a busy week into parts well below it)
 Nothing is ever dropped to meet a budget here; failing the budget fails the check so a human decides.
 """
 
@@ -22,6 +25,7 @@ NOW_GZ_WARN = 250_000
 CARDS_RAW_WARN = 5 * MB
 CARDS_RAW_FAIL = 8 * MB
 DETAILS_RAW_FAIL = 4 * MB
+SHARD_RAW_FAIL = int(1.5 * MB)  # one week card shard or details shard (the exporter splits weeks at ~1 MB)
 
 
 @dataclass
@@ -70,12 +74,28 @@ def check_city(cards: Path, now: datetime) -> PayloadReport:
             f"{rep.city}: next-14-days cards {rep.now_raw / MB:.2f} MB raw / {rep.now_gz / 1000:.0f} KB gz "
             f"(budget {NOW_RAW_WARN / MB:.1f} MB / {NOW_GZ_WARN / 1000:.0f} KB): time for week-sharded card files"
         )
+    big = rep.warnings if sharded else rep.failures  # a sharded city's whole feed is only a fallback
     if rep.cards_raw > CARDS_RAW_FAIL:
-        rep.failures.append(f"{rep.city}: card feed {rep.cards_raw / MB:.1f} MB raw > {CARDS_RAW_FAIL / MB:.0f} MB")
+        big.append(
+            f"{rep.city}: card feed {rep.cards_raw / MB:.1f} MB raw > {CARDS_RAW_FAIL / MB:.0f} MB"
+            + (" (legacy fallback file; browsers load week shards)" if sharded else "")
+        )
     elif rep.cards_raw > CARDS_RAW_WARN:
         rep.warnings.append(f"{rep.city}: card feed {rep.cards_raw / MB:.1f} MB raw > {CARDS_RAW_WARN / MB:.0f} MB")
     if rep.details_raw > DETAILS_RAW_FAIL:
-        rep.failures.append(f"{rep.city}: details {rep.details_raw / MB:.1f} MB raw > {DETAILS_RAW_FAIL / MB:.0f} MB")
+        big.append(
+            f"{rep.city}: details {rep.details_raw / MB:.1f} MB raw > {DETAILS_RAW_FAIL / MB:.0f} MB"
+            + (" (legacy fallback file; browsers load details shards)" if sharded else "")
+        )
+    if sharded:
+        for shard in sorted(
+            [*(cards.parent / cards.stem).glob("w/*.json"), *(cards.parent / cards.stem).glob("d/*.json")]
+        ):
+            size = shard.stat().st_size
+            if size > SHARD_RAW_FAIL:
+                rep.failures.append(
+                    f"{rep.city}: shard {shard.parent.name}/{shard.name} {size / MB:.2f} MB raw > {SHARD_RAW_FAIL / MB:.1f} MB"
+                )
     return rep
 
 

@@ -365,6 +365,10 @@ class Event(Strict):
     recurrence: str | None = None
     series_id: str | None = None  # occurrences of one repeating thing share this (UI shows one card)
     series_dates: list[AwareDatetime] = Field(default_factory=list)  # upcoming starts in the series (≤8)
+    series_total: Annotated[int, Field(ge=1)] | None = (
+        None  # upcoming dates in the whole series (only the next 8 export)
+    )
+    series_last: AwareDatetime | None = None  # the series' last upcoming date ("through Jan 4")
     location: Location
     venue_id: str | None = None
     organizer: str | None = None

@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 79 · **doing** 1 · **done** 105 · **rejected** 28 · **parked** 3 · **blocked** 14
+**open** 80 · **doing** 1 · **done** 105 · **rejected** 28 · **parked** 3 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -21,6 +21,7 @@ unless docs/HEALTH.md has something red.
 | I-198 | Title include/exclude filters for ics, jsonld, tribe, HandsOn | sources | 3 | 1 | 2.4 | open | Stop hacking exclude_location with lookaheads |
 | I-212 | Trumba custom-field filter (e.g. 'Event Open To' contains Public) | sources | 3 | 1 | 2.4 | open | Emory exposes it; adapter can't filter |
 | I-214 | CivicPlus iCalendar fingerprint in discover | cities | 3 | 1 | 2.4 | open | Works via plain ics adapter (Dallas Parks) |
+| I-231 | doctor --fix: repair dangling raw_fetches in one set-based UPDATE (per-row UPDATE on unindexed raw_fetch_id is O(n²); >1 h on a DB without its raw cache) | health | 3 | 1 | 2.4 | open | found reproducing CI locally without the raw cache |
 | I-168 | Backtest gotc discover on the 10 live cities (recall/precision per family) | pipeline | 5 | 2 | 2.0 | open | Discovery found Denver's htyp-tqzh from a cold catalog query; running it blind on all ten hand-built cities gives a measured recall number before we trust it on 40 new metros (SCALING.md §5 #1). |
 | I-064 | Communico adapter for more libraries + exhibit handling | sources | 2 | 1 | 1.6 | open | The communico adapter is generic; other Communico/Attend libraries can be config-only. We skip 'All day' rows (exhibits/displays); an exhibits-only card type could use them. |
 | I-076 | Discover more HandsOn Connect / Galaxy Digital tenants and Volo markets for new cities | sources | 4 | 2 | 1.6 | open | HOC/Galaxy pages only list org calendars; Volo, HOC and Galaxy tenants exist in more cities (Volo: DC, Philly, SF, San Diego; HOC tenants findable via cdn0.handsonconnect.org) |
