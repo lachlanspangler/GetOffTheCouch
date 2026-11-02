@@ -1,10 +1,10 @@
 # Non-events audit (ADR-0010)
 
-_Generated 2026-11-02 20:48 UTC by `scripts/non_events_audit.py` from `gotc.db` after a full build. Re-run after any rule change._
+_Generated 2026-11-02 21:02 UTC by `scripts/non_events_audit.py` from `gotc.db` after a full build. Re-run after any rule change._
 
 ## Summary
 
-- **92,620** listings published (per source membership), **804** held back by the build-time gate, **0** skipped at ingest (online-only, excluded places, campus-internal) — every one quarantined in `gated_listings` with its rule and reason, never silently dropped.
+- **92,706** listings published (per source membership), **705** held back by the build-time gate, **0** skipped at ingest (online-only, excluded places, campus-internal) — every one quarantined in `gated_listings` with its rule and reason, never silently dropped.
 - Golden set (`tests/fixtures/listing_gate/golden.yaml`, labelled blind to the rules): **245 labelled listings · precision 0.987 · recall 0.907** `{'tn': 158, 'tp': 78, 'fn': 8, 'fp': 1}`
 - The FIU withdrawal deadline that started this: see *FIU* below.
 
@@ -13,11 +13,12 @@ _Generated 2026-11-02 20:48 UTC by `scripts/non_events_audit.py` from `gotc.db` 
 | Rule | Held back | Family |
 |---|---|---|
 | `campus_internal_audience` | 329 | internal_only |
-| `campus_uncategorized` | 153 | no_public_signal |
 | `appointment` | 105 | appointment |
 | `closure` | 52 | closure |
+| `campus_uncategorized` | 31 | no_public_signal |
 | `governance_meeting` | 30 | governance_meeting |
 | `campus_admissions` | 25 | internal_only |
+| `campus_term_date` | 23 | academic_calendar |
 | `campus_career` | 21 | internal_only |
 | `internal_only` | 18 | internal_only |
 | `office_hours` | 17 | office_hours |
@@ -32,10 +33,11 @@ _Generated 2026-11-02 20:48 UTC by `scripts/non_events_audit.py` from `gotc.db` 
 | Rule | Matched text | Count |
 |---|---|---|
 | `campus_internal_audience` | label 'students' | 174 |
-| `campus_uncategorized` | category basis fallback | 153 |
 | `campus_internal_audience` | label 'current students' | 48 |
 | `campus_internal_audience` | label 'faculty & staff' | 47 |
 | `appointment` | one-on-one | 46 |
+| `campus_uncategorized` | category basis fallback | 31 |
+| `campus_term_date` | spring: | 23 |
 | `closure` | closed for veterans | 23 |
 | `appointment` | one on one | 21 |
 | `closure` | closed for | 18 |
@@ -70,19 +72,18 @@ _Generated 2026-11-02 20:48 UTC by `scripts/non_events_audit.py` from `gotc.db` 
 | `campus_internal_audience` | label 'students - graduates' | 3 |
 | `governance_meeting` | committee meetings | 2 |
 | `governance_meeting` | oversight committee meeting | 2 |
-| `campus_career` | handshake | 2 |
 
 ## Per source
 
 Kept = published listings from this source; held = quarantined (gate + ingest). Samples are random (seeded):
 read the held-back column for anything real, and the kept column for anything that isn't.
 
-### University (35 units · 1,600 kept · 599 held back)
+### University (35 units · 1,690 kept · 500 held back)
 
 | Unit | Kept | Held | Share held | Top rules |
 |---|---|---|---|---|
-| `utaustin_events@austin` | 168 | 178 | 51% | campus_uncategorized 95, campus_internal_audience 46, governance_meeting 13 |
-| `fiu_events@miami` | 39 | 131 | 77% | campus_uncategorized 56, campus_internal_audience 45, campus_career 11 |
+| `fiu_events@miami` | 61 | 108 | 64% | campus_internal_audience 45, campus_term_date 23, campus_career 11 |
+| `utaustin_events@austin` | 237 | 102 | 30% | campus_internal_audience 46, campus_uncategorized 19, governance_meeting 13 |
 | `bham_uab_events@birmingham` | 43 | 84 | 66% | campus_internal_audience 73, campus_admissions 8, campus_academic_admin 3 |
 | `usc_events@los_angeles` | 98 | 61 | 38% | campus_internal_audience 60, campus_career 1 |
 | `sjsu_events@san_jose` | 54 | 31 | 36% | campus_internal_audience 30, campus_academic_admin 1 |
@@ -94,7 +95,7 @@ read the held-back column for anything real, and the kept column for anything th
 | `pitt_events@pittsburgh` | 49 | 6 | 11% | campus_internal_audience 5, closure 1 |
 | `cmu_events@pittsburgh` | 14 | 4 | 22% | campus_admissions 4 |
 | `northeastern_events@boston` | 13 | 4 | 24% | internal_only 1, campus_admissions 1, campus_career 1 |
-| `nyu_events@nyc` | 7 | 4 | 36% | campus_internal_audience 2, campus_uncategorized 1, governance_meeting 1 |
+| `nyu_events@nyc` | 6 | 4 | 40% | campus_internal_audience 2, campus_uncategorized 1, governance_meeting 1 |
 | `okc_uco_events@oklahoma_city` | 22 | 3 | 12% | campus_internal_audience 2, campus_career 1 |
 | `ucf_events@orlando` | 47 | 3 | 6% | internal_only 2, campus_admissions 1 |
 | `rice_events@houston` | 67 | 2 | 3% | campus_admissions 2 |
@@ -119,68 +120,68 @@ read the held-back column for anything real, and the kept column for anything th
 
 <details><summary>Samples: kept vs held back</summary>
 
-**`utaustin_events@austin`**
-- ✕ Public Assembly — _campus_uncategorized_
-- ✕ The Visit — _campus_uncategorized_
-- ✕ Fortlandia — _campus_uncategorized_
-- ✕ Economic Humanities: What’s That? — _campus_uncategorized_
-- ✓ Tea & Tawla
-- ✓ How to Grow the Cowpea: Artistic and Ecological Pedagogies in Practice
-- ✓ First-Gen Celebration
-
 **`fiu_events@miami`**
-- ✕ Spring: Official registration for degree-seeking students by assigned registration time and day — _campus_uncategorized_
-- ✕ Spring: Official registration for degree-seeking students by assigned registration time and day — _campus_uncategorized_
-- ✕ Panther Shadows: A Day in the Life of Your Future Career — _campus_internal_audience_
-- ✕ CHCI Tech Summit — _campus_uncategorized_
-- ✓ FIU EHS 2026 Walk to End Alzheimer’s
-- ✓ FIU Law Friendsgiving
-- ✓ Diwali Celebration 2026 - A New Kind of Literature and the Emergence of Śiva Devotion: Examining a Dramatic Cu
+- ✕ Mindful Mondays - Workshop — _campus_internal_audience_
+- ✕ TTR: Leadership and Personal Branding in a Tech-Saturated Era — _campus_uncategorized_
+- ✕ AI for Communications Masterclass — _campus_internal_audience_
+- ✕ CEC - Networking, Communication, and Soft Skills workshop — _campus_internal_audience_
+- ✓ FIU Latin Jazz Concert
+- ✓ The Dean’s Perspective: Understanding the Legal Market
+- ✓ Understanding the Midterms: What the Results Reveal and the Road Ahead
+
+**`utaustin_events@austin`**
+- ✕ Student Affairs Meeting — _campus_meeting_
+- ✕ Afternoon Yoga — _campus_internal_audience_
+- ✕ Turkey Trot — _campus_internal_audience_
+- ✕ Campus Open Recovery — _campus_internal_audience_
+- ✓ First-Gen Celebration
+- ✓ AHA BLS Provider (CPR) Certification
+- ✓ 2026 Post-Election Debriefing
 
 **`bham_uab_events@birmingham`**
-- ✕ Walk-In Wednesdays — _campus_internal_audience_
-- ✕ Creating Collaborative Environments — _campus_internal_audience_
-- ✕ Accelerated Masters in Nursing Pathway (AMNP) Virtual Info Session — _campus_admissions_
-- ✕ 3D Printing Workshop — _campus_internal_audience_
-- ✓ BSN Special Interest Session
-- ✓ Acting for Non-Actors (Intermediate) with Brendan Powers
-- ✓ Ask a Historian: Dr. Andrew Keitt
+- ✕ Effective Communication and Respect — _campus_internal_audience_
+- ✕ Be Confident in Your Confidence — _campus_internal_audience_
+- ✕ Fostering International Student Success at UAB - CTL Building Block — _campus_internal_audience_
+- ✕ Healthy Relationship Workshop — _campus_internal_audience_
+- ✓ ASO Masterworks: English Light
+- ✓ Fall Brass Ensembles Concert
+- ✓ Opera Scenes
 
 **`usc_events@los_angeles`**
+- ✕ Free Yoga Classes at the URC Fishbowl — _campus_internal_audience_
 - ✕ Forbidden Pages: Past and Present — _campus_internal_audience_
 - ✕ Free Yoga Classes at the URC Fishbowl — _campus_internal_audience_
-- ✕ Trojan Talk with FIRY — _campus_career_
-- ✕ Forbidden Pages: Past and Present — _campus_internal_audience_
-- ✓ EMSI Renaissance Literature Seminar with Tanya Schmidt Morstein, Caltech
-- ✓ Stewards of the Land: In Conversation with Stevie Ruiz & Jessica Kim
-- ✓ Alice R. Branicio and Alyssa C. Antig: SuperFormal Memoria
+- ✕ Visit the USC Sustainability booth at the Trojan Farmers Market — _campus_internal_audience_
+- ✓ Which Program is Right for Me? Comparing the Educational Counseling (EC) vs. Postsecondary Administration and 
+- ✓ Eco Media Film Fest x Impact Weekend
+- ✓ 2026 Delta Murphy Lecture: “How Free Market Thinking Has Blocked Climate Action”
 
 **`sjsu_events@san_jose`**
-- ✕ SPSS Data Analysis: ANOVA — _campus_internal_audience_
-- ✕ Adobe Portfolio - Create a professional multi-page website to showcase your digital skills and career ready sk — _campus_internal_audience_
-- ✕ Navigating AI Resources — _campus_internal_audience_
-- ✕ Post-Completion OPT Workshop — _campus_internal_audience_
+- ✕ Build Your Own Learning Community with Padlet — _campus_internal_audience_
+- ✕ Crafts of Light: A Diwali, Tihar, Bandi Chhor Divas Celebration — _campus_internal_audience_
+- ✕ Boldly You: Learning How to Make Connections — _campus_internal_audience_
+- ✕ Writing Workshop: Emailing Netiquette: Academic and Professional Communication — _campus_internal_audience_
 - ✓ Finance with AI for SMBs / Hosted by Silicon Valley SBDC x Bizzaly
-- ✓ SJSU Art Galleries Tuesday Night Lecture: Stepan Drunks
-- ✓ Running in Prayer: A Spiritual Journey
+- ✓ Opening Reception - Natalie and James Thompson Gallery: Common Ground
+- ✓ Art of Remembrance Ofrenda Exhibit
 
 **`stanford_events@san_jose`**
-- ✕ Environmental Humanities Project: Graduate Student Work-in-progress Lab — _campus_internal_audience_
+- ✕ A Rift in Time. Reinhart Koselleck and the Theory of History — _campus_internal_audience_
+- ✕ Creative Teaching with AI — _campus_internal_audience_
 - ✕ Big Earth Hackathon: Wildland Fire Challenge — _campus_internal_audience_
-- ✕ Managing Finances as a Postdoc — _campus_internal_audience_
-- ✕ Managing Finances as a Grad Student — _campus_internal_audience_
-- ✓ Tangling the Digital: Weaving, Printmaking, Computing
-- ✓ Green Library Book Display: Witches and Witchcraft
-- ✓ Public Tour / A Closer Look
+- ✕ Environmental Humanities Project: Graduate Student Work-in-progress Lab — _campus_internal_audience_
+- ✓ Gallery Conversations / JANE!
+- ✓ When We Bridge: Indigenous Peoples’ Guardianship, Knowledge, and Global Impact
+- ✓ Electric Contrasts: the Art of the Detail
 
 **`clt_uncc_events@charlotte`**
+- ✕ Part 1: Canvas Accessibility with UDOIT — _campus_internal_audience_
 - ✕ Rock Climbing Night at the SAC — _campus_internal_audience_
-- ✕ Open Swim Q&A: Mastering Google Workspace & Generative AI — _campus_internal_audience_
+- ✕ Part 1: Canvas Accessibility with UDOIT — _campus_internal_audience_
 - ✕ Resume Workshop with LandDesign for Civil + Environmental Engineering — _campus_career_
-- ✕ Writing Effective Prompts Gemini & Copilot for a Smarter To-Do List Workflow — _campus_internal_audience_
+- ✓ Azure Workshop Week 4
 - ✓ SOLD Council Workshop: Transferrable Organization Skills & Celebration
 - ✓ Qualtrics 102
-- ✓ Jeans Thrift & Flip Workshop: Jeans Tote Bag
 
 **`ncsu_events@raleigh`**
 - ✕ Glow Up for Mental Health — _campus_internal_audience_
@@ -301,7 +302,7 @@ read the held-back column for anything real, and the kept column for anything th
 
 </details>
 
-### Library (51 units · 9,415 kept · 157 held back)
+### Library (51 units · 9,405 kept · 157 held back)
 
 | Unit | Kept | Held | Share held | Top rules |
 |---|---|---|---|---|
@@ -312,33 +313,33 @@ read the held-back column for anything real, and the kept column for anything th
 | `pvd_east_providence_library_events@providence` | 80 | 11 | 12% | appointment 11 |
 | `clt_cmlibrary_events@charlotte` | 357 | 8 | 2% | appointment 8 |
 | `bpl_events@boston` | 365 | 7 | 2% | appointment 7 |
-| `kcls_events@seattle` | 210 | 6 | 3% | office_hours 5, appointment 1 |
+| `kcls_events@seattle` | 209 | 6 | 3% | office_hours 5, appointment 1 |
 | `sccl_events@san_jose` | 129 | 6 | 4% | closure 6 |
 | `spl_events@seattle` | 142 | 5 | 3% | office_hours 4, closure 1 |
 | `chipublib_events@chicago` | 922 | 4 | 0% | office_hours 4 |
-| `mdpls_events@miami` | 447 | 4 | 1% | governance_meeting 4 |
+| `mdpls_events@miami` | 446 | 4 | 1% | governance_meeting 4 |
 | `jocolibrary_events@kansas_city` | 80 | 3 | 4% | appointment 2, governance_meeting 1 |
-| `ocls_events@orlando` | 632 | 3 | 0% | office_hours 3 |
-| `bham_hoover_library_events@birmingham` | 22 | 2 | 8% | appointment 2 |
+| `ocls_events@orlando` | 630 | 3 | 0% | office_hours 3 |
+| `bham_hoover_library_events@birmingham` | 21 | 2 | 9% | appointment 2 |
 | `norfolk_library_events@hampton_roads` | 56 | 2 | 3% | closure 2 |
 | `oakland_library_events@san_francisco` | 148 | 2 | 1% | appointment 2 |
 | `westerville_library_events@columbus` | 38 | 2 | 5% | closure 1, governance_meeting 1 |
 | `hcpl_events@houston` | 250 | 1 | 0% | appointment 1 |
-| `heights_libraries_events@cleveland` | 99 | 1 | 1% | governance_meeting 1 |
+| `heights_libraries_events@cleveland` | 98 | 1 | 1% | governance_meeting 1 |
 | `indypl_events@indianapolis` | 148 | 1 | 1% | appointment 1 |
 | `lvccld_events@las_vegas` | 370 | 1 | 0% | appointment 1 |
 | `pvd_cranston_library_events@providence` | 104 | 1 | 1% | governance_meeting 1 |
 | `pvd_pawtucket_library_events@providence` | 49 | 1 | 2% | governance_meeting 1 |
-| `afpl_events@atlanta` | 312 | 0 | 0% |  |
+| `afpl_events@atlanta` | 311 | 0 | 0% |  |
 | `arapahoe_library_events@denver` | 119 | 0 | 0% |  |
-| `bham_bpl_events@birmingham` | 102 | 0 | 0% |  |
+| `bham_bpl_events@birmingham` | 101 | 0 | 0% |  |
 | `bham_homewood_library_events@birmingham` | 25 | 0 | 0% |  |
 | `ccpl_events@cleveland` | 211 | 0 | 0% |  |
 | `chandler_library_events@phoenix` | 121 | 0 | 0% |  |
 | `chesapeake_library_events@hampton_roads` | 41 | 0 | 0% |  |
 | `chpl_events@cincinnati` | 379 | 0 | 0% |  |
 | `corona_library_events@riverside` | 114 | 0 | 0% |  |
-| `dcpl_events@washington_dc` | 196 | 0 | 0% |  |
+| `dcpl_events@washington_dc` | 195 | 0 | 0% |  |
 | `dekalb_library_events@atlanta` | 111 | 0 | 0% |  |
 | `grandview_library_events@columbus` | 7 | 0 | 0% |  |
 | `grpl_events@grand_rapids` | 45 | 0 | 0% |  |
@@ -352,7 +353,7 @@ read the held-back column for anything real, and the kept column for anything th
 | `rpl_events@richmond` | 32 | 0 | 0% |  |
 | `sacpl_events@sacramento` | 99 | 0 | 0% |  |
 | `sdcl_events@san_diego` | 223 | 0 | 0% |  |
-| `slcolibrary_events@salt_lake_city` | 172 | 0 | 0% |  |
+| `slcolibrary_events@salt_lake_city` | 171 | 0 | 0% |  |
 | `slcpl_events@salt_lake_city` | 89 | 0 | 0% |  |
 | `slpl_events@st_louis` | 134 | 0 | 0% |  |
 | `tampa_hcplc_events@tampa` | 173 | 0 | 0% |  |
@@ -427,9 +428,9 @@ read the held-back column for anything real, and the kept column for anything th
 - ✕ King County Department of Local Services Office Hours — _office_hours_
 - ✕ In-person Medicare 1:1 Counseling (Appointment Only) — _appointment_
 - ✕ King County Local Services: Community Vans Office Hours — _office_hours_
-- ✓ Saturday Family Story Time
-- ✓ Lake Forest Park Library Teen Leadership Council
-- ✓ Kandi Bracelets
+- ✓ Tech Help for Seniors
+- ✓ English Language Learning (ELL) Classes
+- ✓ STEAM Family Story Time
 
 **`sccl_events@san_jose`**
 - ✕ Saratoga Library Closed for Veterans Day — _closure_
@@ -463,7 +464,7 @@ read the held-back column for anything real, and the kept column for anything th
 - ✕ The "Board" Meeting — _governance_meeting_
 - ✕ The "Board" Meeting — _governance_meeting_
 - ✕ The "Board" Meeting — _governance_meeting_
-- ✓ Arts & Crafts with Crafty.Korner
+- ✓ Storytime Fun!
 - ✓ Homework Help and Tutoring
 - ✓ Audio Production with Logic Pro: Level 1
 
@@ -479,16 +480,16 @@ read the held-back column for anything real, and the kept column for anything th
 - ✕ District 10 Office Hours — _office_hours_
 - ✕ District 10 Office Hours — _office_hours_
 - ✕ District 35 Office Hours — _office_hours_
-- ✓ Embroidered Paper Bookmarks
-- ✓ Video Studio Control Room 1
-- ✓ From the Pot: Fall Flavors
+- ✓ Baby Tales
+- ✓ Sewing - Fabric Bookmarks
+- ✓ Baby Tales
 
 **`bham_hoover_library_events@birmingham`**
 - ✕ One-on-One Tech Help — _appointment_
 - ✕ One-on-One Tech Help — _appointment_
-- ✓ Story Sprouts
-- ✓ Libby Meet & Greet
-- ✓ Read with Libby!
+- ✓ Beyond Words Book Club
+- ✓ My First Resume Workshop
+- ✓ Sound Bath and Mini-Brain Lecture
 
 **`norfolk_library_events@hampton_roads`**
 - ✕ Holiday Closure - Election Day — _closure_
@@ -519,9 +520,9 @@ read the held-back column for anything real, and the kept column for anything th
 
 **`heights_libraries_events@cleveland`**
 - ✕ Committee Meeting — _governance_meeting_
-- ✓ Intermediate American Sign Language Class
-- ✓ Story Stop
-- ✓ Tree Biology and Planting with Heights Tree People
+- ✓ Afternoon Snack at the Library
+- ✓ Tai Chi and Qigong
+- ✓ Fall Fest at Noble
 
 **`indypl_events@indianapolis`**
 - ✕ Ask a CPA: One-on-One Nonprofit Finance Appointments (Register on Eventbrite) — _appointment_
@@ -692,7 +693,7 @@ read the held-back column for anything real, and the kept column for anything th
 
 </details>
 
-### Venues & Other (474 units · 77,048 kept · 40 held back)
+### Venues & Other (474 units · 77,054 kept · 40 held back)
 
 | Unit | Kept | Held | Share held | Top rules |
 |---|---|---|---|---|
@@ -710,10 +711,10 @@ read the held-back column for anything real, and the kept column for anything th
 | `royal_room_seattle@seattle` | 8 | 1 | 11% | closure 1 |
 | `ticketmaster@atlanta` | 934 | 1 | 0% | academic_calendar 1 |
 | `ticketmaster@charlotte` | 315 | 1 | 0% | internal_only 1 |
-| `ticketmaster@chicago` | 1625 | 1 | 0% | closure 1 |
+| `ticketmaster@chicago` | 1628 | 1 | 0% | closure 1 |
 | `ticketmaster@cincinnati` | 420 | 1 | 0% | governance_meeting 1 |
 | `ticketmaster@columbus` | 512 | 1 | 0% | placeholder 1 |
-| `ticketmaster@las_vegas` | 1949 | 1 | 0% | placeholder 1 |
+| `ticketmaster@las_vegas` | 1952 | 1 | 0% | placeholder 1 |
 | `ticketmaster@philadelphia` | 809 | 1 | 0% | placeholder 1 |
 | `ticketmaster@seattle` | 740 | 1 | 0% | closure 1 |
 | `ticketmaster@washington_dc` | 941 | 1 | 0% | placeholder 1 |
@@ -823,9 +824,9 @@ read the held-back column for anything real, and the kept column for anything th
 
 **`ticketmaster@chicago`**
 - ✕ Closed for Thanksgiving Holiday — _closure_
-- ✓ BEARS (vs Saints) BRUNCH in The SIDEBAR w/ host JACK O'HARA!
-- ✓ ChiTown Drive-In Presents - A Quiet Place (The Original)
-- ✓ Levity Presents Snow Day 3 Octobot (18+ Event)
+- ✓ Pearlsnap
+- ✓ BEARS (vs Buccaneers) GAME on THE PATIO & IN SIDEBAR!
+- ✓ Baz Luhrmanns Romeo & Juliet (NZL)
 
 **`ticketmaster@cincinnati`**
 - ✕ Koffin Kats/ Voodoo Glow Skulls w/ U.S. Daggers, Alex Kasznel & the Board of Directors — _governance_meeting_
@@ -843,7 +844,7 @@ read the held-back column for anything real, and the kept column for anything th
 - ✕ Test — _placeholder_
 - ✓ Lauryn Hill w/ Wyclef Jean
 - ✓ UNLV Rebels Football vs. Nevada Wolfpack Football
-- ✓ BGCC: Derek Richards with Paul Ogata
+- ✓ Michael Yo Clean Not Spotless Comedy at Jimmy Kimmel's Comedy Club
 
 **`ticketmaster@philadelphia`**
 - ✕ Test — _placeholder_
