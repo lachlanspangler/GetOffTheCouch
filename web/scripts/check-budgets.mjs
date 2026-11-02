@@ -54,6 +54,7 @@ const cities = join(dist, "data", "cities");
 const indexGz = existsSync(join(dist, "data", "index.json")) ? gz(join(dist, "data", "index.json")) : 0;
 let largest = null;
 if (existsSync(cities)) {
+  // legacy monolithic files ship only for cities without shards (prune-dist.mjs removes the rest)
   for (const f of readdirSync(cities).filter((f) => f.endsWith(".json") && !f.includes(".details."))) {
     check(`legacy city data ${f}`, gz(join(cities, f)), BUDGET.cityData);
   }
@@ -69,14 +70,15 @@ if (existsSync(cities)) {
     const page = join(dist, slug, "index.html");
     const inline = existsSync(page) ? INLINE.exec(readFileSync(page, "utf8"))?.[1] : undefined;
     const hydrate = (inline ? gzs(inline) : 0) + indexGz;
-    const legacy = gz(join(cities, `${slug}.json`));
-    if (!largest || legacy > largest.legacy) largest = { slug, legacy, spa, hydrate, inline: !!inline };
+    const legacyFile = join(cities, `${slug}.json`);
+    const legacy = existsSync(legacyFile) ? gz(legacyFile) : 0;
+    if (!largest || spa > largest.spa) largest = { slug, legacy, spa, hydrate, inline: !!inline };
   }
 }
 if (largest) {
   check(`first view ${largest.slug} (largest city), pre-rendered: inline data + index.json${largest.inline ? "" : " (no inline data!)"}`, largest.hydrate, BUDGET.firstView);
   check(`first view ${largest.slug}, client-rendered: manifest + meta + ongoing/deadlines + this and next week`, largest.spa, BUDGET.firstViewSpa);
-  rows.push(`  (before I-117 both waited for the whole card file: ${kb(largest.legacy)} gz)`);
+  if (largest.legacy) rows.push(`  (before I-117 both waited for the whole card file: ${kb(largest.legacy)} gz)`);
 }
 console.log(rows.join("\n"));
 if (fail.length && !warnOnly) { console.error(`over budget: ${fail.join(", ")}`); process.exit(1); }

@@ -11,8 +11,9 @@ const dist = resolve(here, "../dist");
 const ssr = await import(resolve(here, "../dist-ssr/entry-server.js"));
 const base = (process.env.GOTC_BASE ?? "/").replace(/\/?$/, "/");
 const origin = process.env.GOTC_SITE_ORIGIN ?? "https://lachlanspangler.github.io";
-// 30 days keeps the Pages artifact well under GitHub's 1 GB limit at 50 cities (60 days measured 727 MB with share cards)
-const HORIZON_DAYS = Number(process.env.GOTC_PRERENDER_DAYS ?? 30);
+// 14 days keeps the Pages artifact under GitHub's 1 GB limit at 50 cities with Ticketmaster + SeatGeek keyed: 30 days
+// measured 28,857 pages / 755 MB of HTML on 2026-11-02 CI data (1.3 GB dist). Later events still open via the SPA shell.
+const HORIZON_DAYS = Number(process.env.GOTC_PRERENDER_DAYS ?? 14);
 const MAX_FILES = 60_000;
 const MAX_BYTES = 800 * 1024 * 1024;
 

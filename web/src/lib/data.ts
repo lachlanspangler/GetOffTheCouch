@@ -238,6 +238,7 @@ export class CityData {
       const d = (await this.file(ref.details.file)) as CityShardDetailsDoc;
       return d.events[id] ?? null;
     }
+    if (m) return null; // sharded city: the legacy details file isn't deployed (ADR-0009 amendment)
     const d = await getJSON<CityDetails>(`cities/${this.slug}.details.json`);
     return d.events[id] ?? null;
   }
