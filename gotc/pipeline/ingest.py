@@ -91,11 +91,8 @@ def _iso(v: Any) -> str | None:
 
 def _ingest_skip(rec: dict[str, Any], params: dict[str, Any]) -> tuple[str, str] | None:
     """(rule, reason) when a parsed record is left out before storage, else None."""
-    if campus_catchall(rec, params):
-        return (
-            "ingest:campus_catchall",
-            "campus feed: only the feed's catch-all category matched (nothing public-facing)",
-        )
+    # (campus_catchall is no longer applied: with catch-all defaults gone, "uncategorized" campus listings are about
+    #  half real events — data review 2026-11-02 — so they publish as uncategorized and the build-time gate judges them)
     if why := audience_skip(rec, params.get("audience_filter")):
         return "ingest:audience", f"campus feed: {why}"
     if why := location_skip(rec, params.get("exclude_location")):

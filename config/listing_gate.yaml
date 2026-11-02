@@ -32,6 +32,7 @@ rules:
   # (no label-only rule: campuses tag real events "Academic Calendar" too — FIU's Festival of the Trees, UNCC talks —
   #  so the term dates themselves are caught by their titles below)
   - id: academic_calendar
+    skip_data_types: [ticket_prices]   # a ticketed show isn't a calendar notice
     family: academic_calendar
     hard: true
     reason: an academic-calendar date (withdraw, drop/add, refunds, grades, finals, term start/end), not an event
@@ -75,7 +76,10 @@ rules:
       - '\b(holiday|early|emergency|weather|facility|branch|library|office) (closure|closing)\b'
       - '\b(closes|closing) early\b'
       - '\b(modified|reduced|holiday|special) hours\b'
-      - '\b(university|campus|offices?|library) holiday\b'
+      - '\b(university|campus|offices?|library) holiday\W*($|[-–—:(]|clos\w*)'
+      - '^\W*closed in observance\b'
+      - '^\W*[\w''’ ]{1,30}\b(is |are )?closed\W*$'
+      - '\bstreet closures?\b'
 
   # ── office hours and one-on-one appointments: a service window, not a gathering ──
   - id: office_hours
@@ -87,18 +91,28 @@ rules:
       - '\b(advising|consultation|counseling) hours\b'
 
   - id: appointment
+    skip_data_types: [ticket_prices]   # a ticketed show isn't a calendar notice
     family: appointment
     reason: a one-on-one appointment slot, not an event you can go to
     title:
       - '\b(1|one)[- ]?(on|to)[- ]?(1|one)\b'
+      - '(?<![\d:])1:1(?![\d:])'
+      - '\b(1 a 1|uno a uno)\b'
       - '\bby appointment( only)?\b'
       - '\bappointments? (only|required|available)\b'
       - '\b(private|individual|personal) (lesson|session|consultation|tutoring|coaching|appointment)s?\b'
     unless:
-      - '\bvolunteer'
+      - '\b(volunteer\w*|tournament|season|league|vs\.?|basketball)\b'
+
+  - id: proctored_testing
+    family: appointment
+    reason: a proctored test sitting (GED, placement, certification), not an event
+    title:
+      - '\b(test(ing)? cent(er|re)|ged test\w*|hiset test\w*|pre-?test(ing)?( session)?|placement (and progress )?test(ing)?|proctor(ed|ing)|certification exam|testing session)\b'
 
   # ── administrative deadlines: paperwork, not a place to be ──
   - id: admin_deadline
+    skip_data_types: [ticket_prices]   # a ticketed show isn't a calendar notice
     family: admin_deadline
     reason: an administrative deadline (an application, payment or filing), not an event
     title:
@@ -114,17 +128,19 @@ rules:
 
   # ── governance meetings: the public may attend, but it's administration, not something to do ──
   - id: governance_meeting
+    skip_data_types: [ticket_prices]   # a ticketed show isn't a calendar notice
     family: governance_meeting
     reason: a board, committee or commission business meeting (administration, not a newcomer event)
     title:
-      - '\b(board|committee|commission|council|trustees|authority|task force|subcommittee|caucus|senate|steering committee|oversight)\b[^.]{0,45}\b(meeting|meetings|regular|special session|retreat|work session|hearing|business session|agenda)\b'
+      - '\b(board|committee|commission|council|trustees|authority|task force|working group|subcommittee|caucus|senate|steering committee|oversight)\b[^.]{0,45}\b(meeting|meetings|regular|special session|retreat|work session|hearing|business session|agenda)\b'
       - '\b(meeting|session)\b[^.]{0,15}\bof the\b[^.]{0,40}\b(board|committee|commission|council|trustees)\b'
       - '\bboard of (trustees|directors|commissioners|supervisors|education|regents|governors|library trustees|adjustment|zoning|appeals)\b'
       - '^\W*(regular|special|annual|monthly|quarterly|general)( board| business| membership)? meeting\W*$'
       - '\bpublic hearing\b'
       - '\b(planning|zoning|preservation|historic district|landmarks|design review|parks|library|transit|housing|budget|finance|facilities|personnel|audit|governance)( and \w+)? (commission|board|committee)( (regular |special )?meeting\b|\W*$)'
     unless:
-      - '\b(town hall|community meeting|neighborhood meeting|neighbou?rhood watch|public input|input session|listening session|open house|meetup|meet-up|community conversation|meet (the|your)|volunteer\w*|teens?|youth|kids|high school|middle school|student advisory|forum|debate|candidates?|book sale|sale)\b'
+      - '\b(town hall|community meeting|neighborhood meeting|neighbou?rhood watch|public input|input session|listening session|open house|meetup|meet-up|community conversation|meet (the|your)|volunteer\w*|teens?|youth|kids|high school|middle school|student advisory|forum|debate|candidates?|book sale|sale|board games?)\b'
+      - '["“”]board["“”]'   # a library's board-games night titled The "Board" Meeting
 
   # ── internal / staff-only / private ──
   - id: internal_only
@@ -164,8 +180,17 @@ rules:
     title:
       - '\b(general (body|interest|member|membership) meeting|gbm|chapter meeting|club meeting|weekly meeting|bi-?weekly meeting|monthly meeting|regular meeting|planning meeting|design meeting|team meeting|project meeting|kick-?off meeting|interest meeting|info(rmational)? meeting|business meeting|members meeting)\b'
       - '^\W*(\w+\s){0,6}meeting\W*$'
+      - '\b(e-?board\b(?! game)|pledge class|systems team meeting|faculty and staff network|staff network|toastmasters club)'
     unless:
       - '\b(public|community|town hall|open to all|everyone|neighborhood|neighbou?rhood)\b'
+
+  - id: campus_support_group
+    family: internal_only
+    scope: institution
+    hard: true
+    reason: a campus counseling or recovery support group for enrolled students, not a public event
+    title:
+      - '\b(support group|recovery group|therapy group|counseling group|share community meeting|process group|healing circle)\b'
 
   - id: campus_admissions
     family: internal_only
@@ -213,18 +238,13 @@ rules:
     scope: institution
     reason: the campus tags it only for its students, faculty or staff, with no public audience
     labels:
-      - '^(all |current |enrolled |registered )?(students?|undergrad\w*( students)?|graduate( and professional)? students|grad students|professional students|postdocs?|postdoctoral\w*|faculty|staff|faculty ?(&|and|/) ?staff|staff ?(&|and|/) ?faculty|employees?|\w+ employees|affiliates|student organizations?|student orgs?|alumni relations - students|residents|medical students|law students|ph\.?d\.? students|students? - \w+( \w+)?|staff - \w+( \w+)?|faculty - \w+( \w+)?)$'
+      - '^(all |current |enrolled |registered )(students?)$'
+      - '^(undergrad\w*( students)?|graduate( and professional)? students|grad students|professional students|postdocs?|postdoctoral\w*|faculty|staff|faculty ?(&|and|/) ?staff|staff ?(&|and|/) ?faculty|employees?|\w+ employees|affiliates|student organizations?|student orgs?|alumni relations - students|residents|medical students|law students|ph\.?d\.? students|students? - \w+( \w+)?|staff - \w+( \w+)?|faculty - \w+( \w+)?)$'
     labels_none:
       - '\b(general public|the public|public|community|campus & community|campus and community|visitors?|everyone|open to all|all are welcome|families|family|kids|children|teens|youth|neighbors|prospective\w*|alumni & friends|friends|guests|k-12)\b'
     unless:
-      - '\b(concert|recital|opera|symphony|orchestra|choir|choral|ensemble|jazz|exhibition|exhibit|gallery|museum|game|match|tournament|vs\.?|festival|commencement concert|theatre|theater|play|musical|dance performance|lecture|lectures|seminar|colloquium|symposium|reading|readings|conversation with|in conversation|talk|book talk|author|panel)\b'
+      - '\b(concert|recital|opera|symphony|orchestra|choir|choral|ensemble|jazz|exhibition|exhibit|gallery|museum|game|match|tournament|vs\.?|festival|commencement concert|theatre|theater|play|musical|dance performance|lecture|lectures|seminar|colloquium|symposium|reading|readings|conversation with|in conversation|talk|book talk|author|panel|speakers?|speaker series|screening|film|celebration|reception|commemorat\w*|discuss(es|ion)|marathon|trot|5k|fun run|farmers market|booth|podcast|fair|kickoff|roundtable|summit|keynote|conference)\b'
+    unless_text: true   # rescue on title + description (a lecture's title often doesn't say "lecture")
 
-  - id: campus_uncategorized
-    family: no_public_signal
-    scope: institution
-    reason: a campus listing with nothing that says it's a public event (no category from its labels or title)
-    basis: [fallback, source_kind]
-    labels_none:   # the campus tags it public (UT Austin: "General Public" exhibitions, "Families" festivals)
-      - '\b(general public|the public|public|community|campus & community|campus and community|visitors?|everyone|open to all|all are welcome|families|family|kids|children|teens|youth|neighbors|prospective\w*|alumni & friends|friends|guests|k-12)\b'
-    unless:
-      - '\b(concert|recital|performance|lecture|talk|reading|exhibit(ion)?|screening|film|festival|fair|market|game|match|tour|open house|symposium|conference|panel|workshop|class|show|play|theater|theatre|dance|music|art|gallery|museum|garden|yoga|run|walk|hike|volunteer\w*|community)\b'
+  # (campus_uncategorized retired 2026-11-02: in the cold data review about 55% of what it held were real talks,
+  #  exhibitions and sales. An uncategorized campus listing now publishes as uncategorized, with no estimates.)

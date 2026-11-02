@@ -117,7 +117,6 @@ CAMPUS_REJECT = [
     ('Friday Fellows: "Ask the IRB: All of Your Burning Questions Answered"', "campus_academic_admin"),
     ("Laboratory Medicine Grand Rounds: Design of Smart Medicines", "campus_academic_admin"),
     ("SJSU Official Syllabus Workshop", "campus_academic_admin"),
-    ("Roar Lounge", "campus_uncategorized"),
 ]
 
 
@@ -258,7 +257,57 @@ def test_every_rule_has_a_reason_a_person_can_read():
         assert len(r.reason) >= 20 and not r.reason.endswith("."), r.id
 
 
-def test_basis_is_used_for_campus_uncategorized():
-    e = ev("OBEX", basis=CategoryBasis.FALLBACK.value)
-    assert not GATE.evaluate(e, CAMPUS).keep
-    assert GATE.evaluate(ev("OBEX Jazz Concert", category="music.concert", basis="classified"), CAMPUS).keep
+def test_uncategorized_campus_listings_are_published_not_held():
+    # campus_uncategorized was retired after the cold data review (about 55% of what it held were real talks and
+    # exhibitions): an uncategorized campus listing publishes as uncategorized, with no estimates
+    for title in ["Adraint Bereal: As It Appears", "Fortlandia", "Roar Lounge"]:
+        assert GATE.evaluate(ev(title, basis=CategoryBasis.FALLBACK.value), CAMPUS).keep
+
+
+# ── data review 2026-11-02: misses and false positives, pinned ──
+REVIEW_REJECT = [
+    ("1:1 Tech Mentor Appointment", "appointment", {}),
+    ("Tutores de Tecnología: Sesión de apoyo 1 a 1", "appointment", {}),
+    ("Pearson Test Center testing", "proctored_testing", {}),
+    ("GED Testing", "proctored_testing", {}),
+    ("ESL Pre-test Session", "proctored_testing", {}),
+    ("Closed in Observance of Thanksgiving Holiday", "closure", {}),
+    ("SLPL Closed", "closure", {}),
+    ("Bar is Closed", "closure", {}),
+    ("Nassau Summer/Fall Street Closures", "closure", {}),
+    ("Community Surveillance Working Group Meeting", "governance_meeting", {}),
+    ("APO Eboard + Chapter + Pledge Class", "campus_meeting", CAMPUS),
+    ('"Shy Longhorns Society" SHARE Community Meeting', "campus_support_group", CAMPUS),
+    ("Christian Faculty and Staff Network hosts UT Women's Prayer Group", "campus_meeting", CAMPUS),
+]
+
+
+@pytest.mark.parametrize(("title", "rule", "params"), REVIEW_REJECT)
+def test_data_review_misses_are_caught(title, rule, params):
+    v = verdict(title, params)
+    assert not v.keep and v.rule == rule, (title, v)
+
+
+def test_ticketed_shows_are_not_calendar_notices():
+    for title in ["Cam Kirk Studios: Night School Final Exam", "2027 Unrivaled Season 1 on 1",
+                  "Koffin Kats w/ Voodoo Glow Skulls & the Board of Directors"]:  # fmt: skip
+        assert verdict(title, {}, "ticket_prices").keep, title
+
+
+def test_board_games_program_and_campus_holiday_concert_wording():
+    assert verdict('The "Board" Meeting', category="trivia_games.board_games", basis="source_label").keep
+    assert (
+        verdict("Heinz Chapel Choir Campus Holiday Concert", category="music.classical", basis="source_label").rule
+        != "closure"
+    )
+
+
+def test_campus_audience_rule_reads_the_description_and_ignores_a_bare_students_tag():
+    # a lecture whose title doesn't say "lecture"
+    e = ev("A Rift in Time. Reinhart Koselleck and the Theory of History", labels=["Faculty & Staff"],
+           desc="A lecture by Prof. X on historical time.")  # fmt: skip
+    assert GATE.evaluate(e, CAMPUS).keep
+    # campuses tag public events "Students" too
+    assert GATE.evaluate(ev("Forbidden Pages: Past and Present", labels=["Students"]), CAMPUS).keep
+    # still held: tagged only for staff, no rescue
+    assert not GATE.evaluate(ev("Canvas: Elements of Teaching - Modules", labels=["Faculty & Staff"]), CAMPUS).keep

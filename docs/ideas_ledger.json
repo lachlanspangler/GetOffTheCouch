@@ -3422,6 +3422,20 @@
    "created": "2026-11-02",
    "updated": "2026-11-02",
    "notes": []
+  },
+  {
+   "id": "I-232",
+   "title": "Away games on campus athletics feeds: hold 'X at Y' only when the venue geocodes outside the metro fence",
+   "area": "data-quality",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "data review: ~80 published away-game titles; title rules can't tell crosstown games",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
   }
  ]
 }

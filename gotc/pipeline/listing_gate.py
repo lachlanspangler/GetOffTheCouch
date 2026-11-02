@@ -39,7 +39,9 @@ class Rule:
     labels: tuple[re.Pattern[str], ...] = ()
     labels_none: tuple[re.Pattern[str], ...] = ()  # …and none of the source's labels match these
     unless: tuple[re.Pattern[str], ...] = ()
+    unless_text: bool = False  # rescue patterns also search the description, not just the title
     basis: tuple[str, ...] = ()
+    skip_data_types: tuple[str, ...] = ()  # e.g. ticket_prices: a ticketed show isn't a calendar notice
 
 
 @dataclass(frozen=True)
@@ -95,7 +97,9 @@ class ListingGate:
                 labels=_compile(r.get("labels")),
                 labels_none=_compile(r.get("labels_none")),
                 unless=_compile(r.get("unless")),
+                unless_text=bool(r.get("unless_text", False)),
                 basis=tuple(r.get("basis") or ()),
+                skip_data_types=tuple(r.get("skip_data_types") or ()),
             )
             if not (rule.title or rule.text or rule.labels or rule.basis):
                 raise ValueError(f"listing gate: rule {rule.id} matches nothing")
@@ -161,6 +165,8 @@ class ListingGate:
         for rule in ordered:
             if rule.id in off or (rule.scope == "institution" and not institution):
                 continue
+            if data_type and data_type in rule.skip_data_types:
+                continue
             evidence = self._match(rule, ev, title, text)
             if evidence is None:
                 continue
@@ -168,7 +174,8 @@ class ListingGate:
                 if trusted and (family in self.unless_families or ev.category in self.unless_categories):
                     rescued_by = rescued_by or f"{rule.id}: category {ev.category}"
                     continue
-                hit = next((p for p in rule.unless if p.search(title)), None)
+                hay = text if rule.unless_text else title
+                hit = next((p for p in rule.unless if p.search(hay)), None)
                 if hit is not None:
                     rescued_by = rescued_by or f"{rule.id}: {hit.pattern[:60]}"
                     continue

@@ -5,7 +5,7 @@ _Generated from `docs/ideas_ledger.json` by `python -m gotc.ideas render`. Edit 
 Score = value × confidence ÷ effort. The loop (docs/WORKFLOW.md) always picks the top **open** idea,
 unless docs/HEALTH.md has something red.
 
-**open** 80 · **doing** 1 · **done** 105 · **rejected** 28 · **parked** 3 · **blocked** 14
+**open** 81 · **doing** 1 · **done** 105 · **rejected** 28 · **parked** 3 · **blocked** 14
 
 ## Up next (open, by score)
 
@@ -67,6 +67,7 @@ unless docs/HEALTH.md has something red.
 | I-226 | Weekly gate review: auto-open a PR with new held-back patterns per source (top new evidence strings) | data-quality | 3 | 2 | 1.2 | open | spot rule drift and new non-event kinds without reading the whole audit |
 | I-229 | Show 'held back' samples on the Health page per source (titles + reason), so anyone can audit | ux | 3 | 2 | 1.2 | open | transparency: quarantine is public, not just in HEALTH.md |
 | I-230 | Mark gone the records that ingest skips on incomplete fetches (capped Localist pages) | pipeline | 3 | 2 | 1.2 | open | FIU's skipped items lingered because 5-page fetches never ran mark_gone; the gate hides them but the DB keeps stale rows |
+| I-232 | Away games on campus athletics feeds: hold 'X at Y' only when the venue geocodes outside the metro fence | data-quality | 3 | 2 | 1.2 | open | data review: ~80 published away-game titles; title rules can't tell crosstown games |
 | I-080 | Dashboard strip: league/volunteer sign-ups closing in the next 7 days | features | 4 | 3 | 1.07 | open | Volo, HOC and Galaxy now give hundreds of shifts/seasons with spots-left and closes_at; a 'closing this week' strip per city is the core 'deadlines you'd otherwise miss' promise |
 | I-170 | Week-sharded card files (now.json + w<ISO-week>.json) | ux | 4 | 3 | 1.07 | open | gotc validate now warns for Boston, Chicago, NYC and Seattle: their next-14-days cards are 1.7–2.5 MB raw / 259–346 KB gz, over the 1.5 MB / 250 KB first-paint budget (§4.6 item 5). |
 | I-181 | Golden Volunteer adapter (Orlando, Raleigh volunteer centers) | sources | 4 | 3 | 1.07 | open | Main volunteer hubs in two metros run it |

@@ -46,7 +46,16 @@ def md(s: str) -> str:
 
 def golden_line() -> tuple[str, list[str]]:
     out = subprocess.run(
-        [sys.executable, "-m", "pytest", "-q", "-s", "tests/unit/test_listing_gate_golden.py", "-p", "no:cacheprovider"],
+        [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-s",
+            "tests/unit/test_listing_gate_golden.py",
+            "-p",
+            "no:cacheprovider",
+        ],
         cwd=ROOT,
         capture_output=True,
         text=True,
@@ -84,6 +93,7 @@ def main() -> int:
     gate_n = sum(1 for r in held if r["stage"] == "build")
     ingest_n = sum(1 for r in held if r["stage"] == "ingest")
     rules = Counter(r["rule"] for r in held)
+    distinct = {rule: len({r["title"] for r in held if r["rule"] == rule}) for rule in rules}
     fams = Counter(r["family"] for r in held)
 
     L: list[str] = []
@@ -99,16 +109,20 @@ def main() -> int:
         f"- **{total_kept:,}** listings published (per source membership), **{gate_n:,}** held back by the build-time"
         f" gate, **{ingest_n:,}** skipped at ingest (online-only, excluded places, campus-internal) — every one"
         " quarantined in `gated_listings` with its rule and reason, never silently dropped.",
-        f"- Golden set (`tests/fixtures/listing_gate/golden.yaml`, labelled blind to the rules): {golden_line()[0]}",
+        f"- Golden set (`tests/fixtures/listing_gate/golden.yaml`, labelled blind to the rules): {golden_line()[0]}."
+        " **Caveat:** 245 listings under-sample the campus audience-tag rule, so the per-rule false-positive rates the"
+        " cold data review measured (below) matter more than this headline number.",
+        "- Ingest-stage counts appear after each source's next fetch. A DB built only from older records shows build-stage"
+        " rows only.",
         "- The FIU withdrawal deadline that started this: see *FIU* below.",
         "",
         "## Top rules",
         "",
-        "| Rule | Held back | Family |",
-        "|---|---|---|",
+        "| Rule | Held back (rows) | Distinct titles | Family |",
+        "|---|---|---|---|",
     ]
     fam_of = {r["rule"]: r["family"] for r in held}
-    L += [f"| `{rule}` | {n:,} | {fam_of[rule]} |" for rule, n in rules.most_common()]
+    L += [f"| `{rule}` | {n:,} | {distinct[rule]:,} | {fam_of[rule]} |" for rule, n in rules.most_common()]
     L += ["", "## Top rejected patterns (matched text)", "", "| Rule | Matched text | Count |", "|---|---|---|"]
     ev = Counter((r["rule"], (r["evidence"] or r["reason"])[:60].lower()) for r in held)
     L += [f"| `{rule}` | {md(e)} | {n} |" for (rule, e), n in ev.most_common(40)]
@@ -148,19 +162,25 @@ def main() -> int:
         L += ["", "<details><summary>Samples: kept vs held back</summary>", ""]
         for k in keys:
             h, kp = by_unit.get(k, []), kept.get(k, [])
-            if not h:
+            if not h and fam == "venues & other":
                 continue
-            hs = rnd.sample(h, min(4, len(h)))
-            ks = rnd.sample(kp, min(3, len(kp)))
+            hc = Counter((x["title"], x["rule"]) for x in h)
+            kc = Counter(kp)
+            hs = rnd.sample(sorted(hc), min(4, len(hc)))
+            ks = rnd.sample(sorted(kc), min(5 if not h else 3, len(kc)))
             L.append(f"**`{k[0]}@{k[1]}`**")
-            L += [f"- ✕ {md(x['title'])[:110]} — _{x['rule']}_" for x in hs]
-            L += [f"- ✓ {md(t)[:110]}" for t in ks]
+            L += [f"- ✕ {md(t)[:110]}{f' ×{hc[(t, r)]}' if hc[(t, r)] > 1 else ''} — _{r}_" for t, r in hs]
+            L += [f"- ✓ {md(t)[:110]}{f' ×{kc[t]}' if kc[t] > 1 else ''}" for t in ks]
             L.append("")
         L += ["</details>"]
 
-    fiu = con.execute("SELECT title, rule, reason FROM gated_listings WHERE source_id = 'fiu_events' AND title LIKE '%withdraw%'").fetchall()
-    fiu_pub = con.execute("SELECT COUNT(*) c FROM events WHERE city = 'miami' AND json_extract(data, '$.title') LIKE '%withdraw%'").fetchone()
-    L += ["", "## FIU", "", f"Published Miami listings mentioning \"withdraw\": **{fiu_pub['c']}**. Held back:", ""]
+    fiu = con.execute(
+        "SELECT title, rule, reason FROM gated_listings WHERE source_id = 'fiu_events' AND title LIKE '%withdraw%'"
+    ).fetchall()
+    fiu_pub = con.execute(
+        "SELECT COUNT(*) c FROM events WHERE city = 'miami' AND json_extract(data, '$.title') LIKE '%withdraw%'"
+    ).fetchone()
+    L += ["", "## FIU", "", f'Published Miami listings mentioning "withdraw": **{fiu_pub["c"]}**. Held back:', ""]
     L += [f"- {md(r['title'])} — `{r['rule']}`: {r['reason']}" for r in fiu] or ["- (none in this DB)"]
     L += [
         "",
@@ -169,17 +189,24 @@ def main() -> int:
         "- **Golden-set disagreements I left as labelled.** Labels are the blind labeller's; where I disagree I say so"
         " here instead of editing the label. See `pytest tests/unit/test_listing_gate_golden.py -s` for the current"
         " misses.",
-        "- **Placeholder opponents** (\"Cavaliers vs. TBD\") are kept: the game happens. The labeller called one a"
+        '- **Placeholder opponents** ("Cavaliers vs. TBD") are kept: the game happens. The labeller called one a'
         " non-event (unsure).",
         "- **Cancelled listings** stay in the export marked cancelled (the city page hides them; a saved event still"
         " says it was cancelled), so the gate doesn't hold them back.",
-        "- **License-signal openings** (\"— new business registration\") are a separate kind (`opening`), shown as"
+        '- **License-signal openings** ("— new business registration") are a separate kind (`opening`), shown as'
         " openings, not events; the gate doesn't apply to them.",
         "- **Public board/commission meetings** are held back as administration (soft rule): a newcomer rarely wants a"
         " zoning board's business meeting. Community and neighborhood meetings, public input sessions, town halls and"
         " candidate forums are kept.",
-        "- **Campus audience tags.** A campus listing tagged only for students/faculty/staff (no public tag) is held"
-        " back unless it's a performance, exhibition, game, lecture, seminar or reading: those are usually open.",
+        "- **Campus audience tags.** A campus listing tagged only for current students / faculty / staff (no public tag)"
+        " is held back unless its title or description says it's a performance, exhibition, game, talk, screening,"
+        ' celebration or fair. A bare "Students" tag doesn\'t count: campuses put it on public events too.',
+        "- **Uncategorized campus listings are published** (as uncategorized, with no estimates). A rule that held them"
+        " back was retired after the cold data review found about 55% of them were real talks and exhibitions.",
+        "- **Same title, different verdicts.** A campus can tag occurrences of one program differently, so one date may"
+        " be held and another published. The audit shows both.",
+        '- **Away games** ("Football at Missouri") on campus athletics feeds aren\'t gated by title: many "X at Y"'
+        " games are crosstown. That needs a venue-distance check (idea ledger).",
     ]
     Path(a.out).write_text("\n".join(L) + "\n")
     print(f"wrote {a.out}: {gate_n} gate + {ingest_n} ingest held back, {total_kept} kept")

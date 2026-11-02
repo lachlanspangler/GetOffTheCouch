@@ -21,7 +21,10 @@ with httpx.Client(headers={"User-Agent": UA}, timeout=30) as c:
         try:
             r = c.get(URL, params={"address": it["address"], "benchmark": "Public_AR_Current", "format": "json"})
             m = (r.json().get("result") or {}).get("addressMatches") or []
-        except (httpx.HTTPError, ValueError) as e:  # Census sometimes answers with an HTML error page: skip, rerun later
+        except (
+            httpx.HTTPError,
+            ValueError,
+        ) as e:  # Census sometimes answers with an HTML error page: skip, rerun later
             print(f"Census error (retry later): {it['name']}: {type(e).__name__}")
             time.sleep(5.0)
             continue
