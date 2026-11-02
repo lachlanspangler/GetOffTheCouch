@@ -416,7 +416,7 @@ def _events_for(db: Database, city: str) -> list[Any]:
     from gotc.schema import Event
 
     out = []
-    for r in db.all("SELECT data FROM events WHERE city = ? ORDER BY start_at", (city,)):
+    for r in db.all("SELECT data FROM events WHERE city = ? AND folded = 0 ORDER BY start_at", (city,)):
         try:
             out.append(Event.model_validate_json(r["data"]))
         except ValueError:

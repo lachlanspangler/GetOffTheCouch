@@ -124,6 +124,18 @@ def doctor(settings: Settings, fix: bool = False) -> int:
                 if r["path"] not in still_used:
                     (raw_root / r["path"]).unlink(missing_ok=True)
         fixed.append(f"pruned {len(old)} raw payloads older than {RAW_RETENTION_DAYS}d")
+    if fix:  # quarantine rows for units that no longer exist (removed or renamed sources) stop counting
+        live = {(u.source.id, u.city.slug) for u in reg.units()}
+        orphans = [
+            (r["source_id"], r["city"])
+            for r in db.all("SELECT DISTINCT source_id, city FROM gated_listings")
+            if (r["source_id"], r["city"]) not in live
+        ]
+        if orphans:
+            with db.tx():
+                for sid, city in orphans:
+                    db.execute("DELETE FROM gated_listings WHERE source_id = ? AND city = ?", (sid, city))
+            fixed.append(f"dropped quarantine rows for {len(orphans)} units no longer in config")
     if fix:
         lc = iso(now - timedelta(days=LOG_RETENTION_DAYS))
         with db.tx():

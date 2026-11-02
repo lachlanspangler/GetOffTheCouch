@@ -232,7 +232,12 @@ export class CityData {
   /** Provenance + the full description for one event: its shard's details file, else the legacy details file. */
   async detail(id: string): Promise<EventDetail | null> {
     const m = await this.manifest.catch(() => null);
-    const key = this.where.get(id);
+    let key = this.where.get(id);
+    if (m && !key) {
+      // the details request beat shard loading: load every shard once so we know where this event lives
+      await this.ensure({ until: Number.POSITIVE_INFINITY, all: true, past: true }).catch(() => null);
+      key = this.where.get(id);
+    }
     const ref = m && key ? m.shards.find((s) => s.key === key) : undefined;
     if (ref) {
       const d = (await this.file(ref.details.file)) as CityShardDetailsDoc;

@@ -111,38 +111,37 @@ def load_live_records(db: Database, city: str, now: datetime, reg: Registry | No
 
 
 def reconcile_categories(records: list[SourceEvent], reg: Registry, tax: Taxonomy) -> None:
-    """Give every record an honest category basis, and drop config defaults the config no longer has.
+    """Give every record an honest category basis; re-derive only the catch-all defaults removed on 2026-11-02.
 
-    Records stored before schema 1.8 carry no basis; it is inferred from the record and its source's config. A
-    record whose category came from a ``default_category`` that has since been removed (mixed calendars may not
-    guess, ADR-0010) is re-classified from its own text, or left uncategorized, so a rebuild fixes old data
-    without refetching.
+    Records stored before schema 1.8 carry no basis, so it is inferred from the record and its source's config
+    (``ensure_basis``). A pre-1.8 record whose category equals the catch-all default its source *used to* have
+    (``REMOVED_DEFAULTS``, frozen) is re-classified from its own text, or left uncategorized, so a rebuild fixes old
+    data without refetching. Nothing else is re-derived: adapter rules, spectator-venue games and typed fields stand.
     """
-    from gotc.pipeline.category_basis import UNEXPLAINED, ensure_basis, looks_mixed
+    from gotc.pipeline.category_basis import ensure_basis
+    from gotc.pipeline.removed_defaults import REMOVED_DEFAULTS
 
     sources = reg.all_sources()
     for rec in records:
         src = sources.get(rec.source_id)
         params = src.params if src else {}
-        ensure_basis(rec, params, tax, src.adapter if src else None)
-        if rec.category_basis == CategoryBasis.CLASSIFIED and rec.category_note in UNEXPLAINED:
-            # a stored category nothing explains, on a mixed calendar: almost always a catch-all default that has
-            # since been removed (FIU's "Networking"), so it's re-derived below rather than trusted
-            if not (src and looks_mixed(src.id, src.name, src.adapter, params, src.homepage)):
-                continue
-        elif rec.category_basis != CategoryBasis.SOURCE_KIND:
-            continue
-        else:
-            default = params.get("default_category")
-            if default and tax.is_valid(default) and tax.resolve(default) == rec.category:
-                continue
-        hit = tax.classify(rec.title, " ".join(rec.source_categories), rec.description, default=FALLBACK)
-        rec.category = hit.category
-        rec.category_basis = CategoryBasis.CLASSIFIED if hit.matched else CategoryBasis.FALLBACK
-        rec.category_note = f"keyword {hit.matched!r}" if hit.matched else "no category in the listing"
-        rec.defaulted_fields = sorted(
-            {*(f for f in rec.defaulted_fields if f != "category"), *(["category"] if not hit.matched else [])}
+        legacy = rec.category_basis is None
+        removed = REMOVED_DEFAULTS.get(rec.source_id) or (
+            "arts.books" if src and src.adapter in ("bibliocommons", "communico") else None  # the adapters' own default
         )
+        if legacy and removed and not params.get("default_category") and _same_cat(tax, removed, rec.category):
+            hit = tax.classify(rec.title, " ".join(rec.source_categories), rec.description, default=FALLBACK)
+            rec.category = hit.category
+            rec.category_basis = CategoryBasis.CLASSIFIED if hit.matched else CategoryBasis.FALLBACK
+            rec.category_note = f"keyword {hit.matched!r}" if hit.matched else "no category in the listing"
+        ensure_basis(rec, params, tax, src.adapter if src else None)
+
+
+def _same_cat(tax: Taxonomy, a: str, b: str) -> bool:
+    try:
+        return tax.resolve(a) == tax.resolve(b)
+    except KeyError:
+        return False
 
 
 def gate_records(
@@ -330,9 +329,8 @@ def build_city(
         base = min((baselines[s.source_id] for s in ev.sources if s.source_id in baselines), default=now)
         ev.is_new = ev.first_seen >= base + timedelta(hours=6) and now - ev.first_seen < timedelta(hours=72)
     assign_series([ev for ev, _ in merged], now)
-    before = len(merged)
-    merged = cap_series(merged, now)
-    stats.series_folded = before - len(merged)
+    merged, folded = cap_series(merged, now)
+    stats.series_folded = len(folded)
 
     campus_sources = {
         u.source.id for u in reg.units(city=city.slug) if u.source.params.get("audience_filter") == "institution"
@@ -397,6 +395,18 @@ def build_city(
                     iso(ev.first_seen),
                     iso(now),
                 ),
+            )
+            for m, score in zip(cl.members, cl.scores, strict=True):
+                db.execute(
+                    "INSERT OR REPLACE INTO event_members (event_id, source_id, record_id, city, match_score)"
+                    " VALUES (?,?,?,?,?)",
+                    (ev.id, m.source_id, m.record_id, city.slug, score),
+                )
+        for ev, cl in folded:  # not exported, but kept so ids stay sticky (assign_ids) and old links resolve
+            db.execute(
+                "INSERT INTO events (id, city, data, start_at, category, first_seen, updated_at, folded)"
+                " VALUES (?,?,?,?,?,?,?,1)",
+                (ev.id, city.slug, ev.model_dump_json(), iso(ev.start), ev.category, iso(ev.first_seen), iso(now)),
             )
             for m, score in zip(cl.members, cl.scores, strict=True):
                 db.execute(
@@ -530,11 +540,14 @@ def assign_series(events: list[Event], now: datetime) -> None:
 SERIES_EXPORT_CAP = 8
 
 
-def cap_series(merged: list[tuple[Event, Cluster]], now: datetime) -> list[tuple[Event, Cluster]]:
+def cap_series(
+    merged: list[tuple[Event, Cluster]], now: datetime
+) -> tuple[list[tuple[Event, Cluster]], list[tuple[Event, Cluster]]]:
     """Keep each series' next ``SERIES_EXPORT_CAP`` occurrences (plus any with an open registration deadline).
 
     Without this, Ticketmaster alone put 16k NYC listings in the export (Balloon Museum NYC: 3,401 entry slots) and the
     card feed hit 42 MB. Every kept occurrence carries the series' true size and last date, so nothing is hidden.
+    Returns (exported, folded); folded occurrences are still stored (``events.folded = 1``) so their ids stay sticky.
     """
     by_series: dict[str, list[tuple[Event, Cluster]]] = {}
     for item in merged:
@@ -554,11 +567,14 @@ def cap_series(merged: list[tuple[Event, Cluster]], now: datetime) -> list[tuple
             if it[0].registration and it[0].registration.closes_at and it[0].registration.closes_at >= now
         }
         last = upcoming[-1][0].start
+        starts = len(
+            {it[0].start for it in upcoming}
+        )  # distinct dates, like series_dates (two slots can share a start)
         for ev, _ in items:
-            ev.series_total, ev.series_last = len(upcoming), last
+            ev.series_total, ev.series_last = starts, last
             if ev.id not in keep and (ev.end or ev.start) >= now - timedelta(hours=2):
                 drop.add(ev.id)
-    return [it for it in merged if it[0].id not in drop]
+    return [it for it in merged if it[0].id not in drop], [it for it in merged if it[0].id in drop]
 
 
 def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy, db: Database, reg: Registry) -> Event:
@@ -662,8 +678,8 @@ def merge(eid: str, cl: Cluster, city: CityConfig, now: datetime, tax: Taxonomy,
             if "organizer" in org_src.defaulted_fields
             else prov(org_src)
         )
-    if "venue" in loc_src.defaulted_fields:
-        provenance["location"] = prov(
+    if "venue" in loc_src.defaulted_fields:  # the geocode method stays on "location"
+        provenance["venue"] = prov(
             loc_src, Method.DEFAULTED, 0.8, note="the venue configured for this source, not the listing"
         )
     if mins:

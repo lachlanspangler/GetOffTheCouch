@@ -118,24 +118,50 @@ def test_uncategorized_listings_get_no_category_prior_and_no_social_score():
     assert estimate_attendance(event("trivia_games.trivia"), TAX, None, None, None) is not None
 
 
-def test_rebuild_rederives_a_stale_catch_all_default_on_a_mixed_calendar():
+def test_rebuild_rederives_only_the_frozen_removed_defaults():
     from gotc.pipeline.build import reconcile_categories
     from tests.conftest import make_city, make_registry, make_source
 
-    fiu = make_source("fiu_events", adapter="localist", audience_filter="institution")  # default removed (ADR-0010)
-    venue = make_source("comedy_club", adapter="jsonld", default_category="nightlife.comedy", single_kind_reason="club")
-    reg = make_registry(make_city("miami", [fiu, venue]))
+    # fiu_events really had default_category learning.networking until 2026-11-02 (REMOVED_DEFAULTS)
+    fiu = make_source("fiu_events", adapter="localist", audience_filter="institution")
+    reg = make_registry(make_city("miami", [fiu]))
     labels = ["Students", "Academic Calendar", "Fall B"]
     stale = rec(
         "Fall B: Last day to withdraw from the University with a 25% refund of tuition", "learning.networking", labels
     )
     talk = rec("Free Lecture: Coral Reefs of Biscayne Bay", "learning.networking", ["Lecture"])
-    club = rec("Late Show", "nightlife.comedy").model_copy(update={"source_id": "comedy_club"})
-    reconcile_categories([stale, talk, club], reg, TAX)
+    reconcile_categories([stale, talk], reg, TAX)
     assert stale.category == FALLBACK and stale.category_basis == CategoryBasis.FALLBACK  # no more "Networking"
-    assert (
-        talk.category_basis == CategoryBasis.CLASSIFIED
-        and talk.category != "learning.networking"
-        or (talk.category_note or "").startswith("keyword")
-    )
-    assert club.category == "nightlife.comedy" and club.category_basis == CategoryBasis.SOURCE_KIND
+    assert talk.category != "learning.networking" and talk.category_basis == CategoryBasis.CLASSIFIED
+
+
+def test_rebuild_never_rederives_adapter_rules_games_or_volunteer_feeds():
+    """Code review 2026-11-02: re-deriving 'unexplained' categories undid 3,265 correct ones across 126 sources."""
+    from gotc.pipeline.build import reconcile_categories
+    from tests.conftest import make_city, make_registry, make_source
+
+    srcs = [
+        make_source("gsu_athletics", adapter="ics"),  # a campus athletics feed: games via the adapter's rules
+        make_source("hands_on_nashville", adapter="handsonconnect", homepage="https://x.org/calendar"),
+        make_source("challenge_trivia_louisville", adapter="challenge"),  # SOURCE_KIND without a config default
+        make_source(
+            "td_garden",
+            adapter="rss_events",
+            default_category="music.concert",
+            single_kind_reason="arena",
+            spectator_venue=True,
+        ),
+        make_source("fox_theatre_atlanta", adapter="rss_events", spectator_venue=True),
+    ]
+    reg = make_registry(make_city("x", srcs))
+    cases = [
+        ("gsu_athletics", "Georgia State Men's Basketball vs Troy", "sports_watch.game", None),
+        ("hands_on_nashville", "Copley Square Farmers Market Volunteer", "volunteer.one_off", None),
+        ("challenge_trivia_louisville", "Singo at Jefferson's", "trivia_games.trivia", None),
+        ("td_garden", "Celtics vs. Nets", "sports_watch.game", None),
+        ("fox_theatre_atlanta", "Austin FC vs. LA Galaxy", "sports_watch.game", "source_kind"),
+    ]
+    recs = [rec(t, c, category_basis=b).model_copy(update={"source_id": sid}) for sid, t, c, b in cases]
+    reconcile_categories(recs, reg, TAX)
+    assert [r.category for r in recs] == [c for _, _, c, _ in cases]
+    assert all(r.category_basis is not None for r in recs)

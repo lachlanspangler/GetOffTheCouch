@@ -4315,3 +4315,608 @@
   label: event
   why: public walking tour
   origin: audit-2026-11-02 (blind label)
+- id: t000
+  city: los_angeles
+  source_id: ticketmaster
+  title: BenDeLaCreme Presents The Jinkx & DeLa Holiday Show
+  description: The greatest holiday show is back with another brand spanking new wintertide wonder! Award-winning
+    comedy icons, writers, actors, and drag queen powerhouses BenDeLaCreme & Jinkx Monsoon are coming back to town
+    with the wildly successful, internationally acclaimed, The Jinkx & DeLa Holiday Show. Throughout the 9-year
+    history, Jinkx and DeLa have met sentient Christmas treats, twisted space-time wit
+  labels:
+  - Arts & Theatre
+  - Performance Art
+  - Performance Art
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Ticketed public theater listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t001
+  city: los_angeles
+  source_id: seatgeek
+  title: TBD at Los Angeles Football Club - MLS Cup Round 1 (Home Game 1)
+  labels:
+  - mls
+  - sports
+  - soccer
+  - mls
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: LAFC home playoff game; opponent TBD but ticketed match
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t002
+  city: detroit
+  source_id: ticketmaster
+  title: Gary Ho Ho Hoey's Rockin??? Holiday Tour
+  labels:
+  - Music
+  - Other
+  - Other
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t003
+  city: minneapolis
+  source_id: ticketmaster
+  title: Glow Holiday Festival 2026
+  labels:
+  - Miscellaneous
+  - Holiday
+  - Holiday
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: Ticketed public festival listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t004
+  city: nyc
+  source_id: ticketmaster
+  title: 'Santa Rave - The Ultimate Holiday Party - Featuring: Holiday Hits, 2000''s, 2010''s Remixes, EDM, Dubstep
+    and Techno'
+  description: This event is 18 and over. Any ticket holder unable to present valid identification indicating that
+    they are at least 18 years of age will not be admitted to this event, and will not be eligible for a refund.
+    Attendance at the Williams Center involves risks associated with live entertainment, including loud sound, flashing
+    lights and strobes, theatrical fog, crowded spaces, dancing, physical conta
+  labels:
+  - Music
+  - Other
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t005
+  city: pittsburgh
+  source_id: ticketmaster
+  title: Pittsburgh Symphony Orchestra presents Highmark Holiday Pops
+  labels:
+  - Music
+  - Classical
+  - Classical/Vocal
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t006
+  city: los_angeles
+  source_id: ticketmaster
+  title: Just Pull Up ft. Dulcé Sloan, Camille Waters, and more TBA
+  description: 'DO NOT PURCHASE TICKETS FROM ANYONE OR ANY OTHER SITE OTHER THAN IMPROV.COM TICKET RESALE IS STRICTLY
+    PROHIBITED. TICKETS SUSPECTED OF BEING PURCHASED FOR THE SOLE PURPOSE OF RESELLING MAY BE CANCELLED AT THE DISCRETION
+    OF THE HOLLYWOOD IMPROV. EVENT INFO: There is a two-item minimum purchase requirement in the showroom for all
+    guests. Seating is general admission, first-come, first-served, with t'
+  labels:
+  - Arts & Theatre
+  - Comedy
+  - Comedy
+  category: nightlife.comedy
+  category_basis: classified
+  label: event
+  why: Ticketed public comedy listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t007
+  city: atlanta
+  source_id: ticketmaster
+  title: 'Blackberry Smoke: Holiday Homecoming'
+  description: 'This is a show has a general admission standing room floor with fully reserved assigned seating
+    balconies. All ages welcome. Box Office Open at 6pm. Doors at 7pm. Show at 8pm. Please be aware our balconies
+    are not ADA accessible. All accommodations are located on the main floor level. There is no elevator in the
+    building. Please ask event staff for any ADA assistance upon arrival. Guests who have '
+  labels:
+  - Music
+  - Rock
+  - Pop
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t008
+  city: raleigh
+  source_id: ticketmaster
+  title: Pullen Park Holiday Express Presented By WRAL
+  description: .
+  labels:
+  - Miscellaneous
+  - Fairs & Festivals
+  - Fairs & Festivals
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: Ticketed public festival listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t009
+  city: los_angeles
+  source_id: ticketmaster
+  title: Tonight at the Improv ft. Brian Monarch and More TBA
+  description: This show will be a phone-free experience. Use of cellphones, smart watches, smart accessories, cameras
+    and recording devices will not be permitted in the performance space. Upon arrival at the venue, all phones
+    and smart watches will be secured in Yondr cases that will be opened at the end of the event. Guests maintain
+    possession of their phones at all times, and can access their phones throughou
+  labels:
+  - Undefined
+  category: nightlife.comedy
+  category_basis: classified
+  label: event
+  why: Ticketed public comedy listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t010
+  city: los_angeles
+  source_id: seatgeek
+  title: TBD at Los Angeles Clippers
+  labels:
+  - nba
+  - sports
+  - basketball
+  - nba
+  category: sports_watch.game
+  category_basis: classified
+  label: not_event
+  why: Opponent/date TBD contingent placeholder game listing
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t011
+  city: phoenix
+  source_id: ticketmaster
+  title: Hi-Fi Holiday Concert
+  labels:
+  - Undefined
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t012
+  city: minneapolis
+  source_id: seatgeek
+  title: Holiday Festival - Saint Paul
+  labels:
+  - broadway
+  - theater
+  - broadway
+  category: community.festival
+  category_basis: classified
+  label: event
+  why: Ticketed public festival listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t013
+  city: nyc
+  source_id: ticketmaster
+  title: Blue Man Group - A New Holiday Surprise
+  labels:
+  - Arts & Theatre
+  - Theatre
+  - Comedy
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Ticketed public theater listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t014
+  city: nyc
+  source_id: ticketmaster
+  title: Student Discount Day
+  labels:
+  - Undefined
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: Discounted admission day at an attraction; attendable
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t015
+  city: nashville
+  source_id: ticketmaster
+  title: Jeremy Lister's Holiday Big Band Show!
+  description: Sponsored by Jody Williams Songs, ASCAP, Pinnacle Financial
+  labels:
+  - Music
+  - Other
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t016
+  city: riverside
+  source_id: seatgeek
+  title: WWE NXT Holiday Live Tour
+  labels:
+  - wwe
+  - sports
+  - fighting
+  - wrestling
+  - wwe
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: Ticketed public game listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t017
+  city: nyc
+  source_id: ticketmaster
+  title: The Stone Cold & Jackal Holiday Show
+  description: 'Celebrate the holidays with General Hospital''s Steve Burton and Bradford Anderson, , "rdquo" ->
+    Stone Cold and the Jackal." With holiday songs, comedy, audience participation, ring in the season with two
+    of your favorite stars of daytime television. Platinum tickets (limited to 50) include early admission, priority
+    seating, selfies, autographs and the sound check before the show plus a great show '
+  labels:
+  - Undefined
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: Ticketed public uncategorized listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t018
+  city: cincinnati
+  source_id: seatgeek
+  title: Jinkx Monsoon and BenDeLaCreme - Holiday Show
+  labels:
+  - concert
+  - concert
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t019
+  city: boston
+  source_id: ticketmaster
+  title: Holiday Pops
+  labels:
+  - Music
+  - Classical
+  - Classical/Vocal
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t020
+  city: pittsburgh
+  source_id: seatgeek
+  title: Who's Holiday! - Pittsburgh
+  labels:
+  - broadway
+  - theater
+  - broadway
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: Ticketed public uncategorized listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t021
+  city: hampton_roads
+  source_id: ticketmaster
+  title: BayPort Credit Union Holiday Trail of Lights
+  description: 'Event series presented by Huffman & Huffman Brothers-In-Law The show is designed to be able to walk
+    it from both directions. You can enter from both the North and the South entrances. There are 700 parking spaces
+    in the North lot (main entrance) and 200 spaces in the South lot (Marsh Pavilion entrance). Is the path ADA
+    accessible? Yes, the path is flat and wheelchair accessible. The aquarium also '
+  labels:
+  - Miscellaneous
+  - Holiday
+  - Holiday
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: Ticketed public uncategorized listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t022
+  city: baltimore
+  source_id: ticketmaster
+  title: 'Unwrapped: An Acoustic Holiday'
+  description: 'Unwrapped: An Acoustic Holiday brings some of the biggest names in rock together for a one of a
+    kind night, stripping away the traditional production and putting the focus where it belongs - on the songs
+    and the artists. Featuring rare acoustic performances, unexpected moments and artists sharing the same stage
+    in a setting unlike their traditional touring shows, each Unwrapped event is created sp'
+  labels:
+  - Music
+  - Rock
+  - Pop
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t023
+  city: minneapolis
+  source_id: seatgeek
+  title: TBD at Minnesota Timberwolves
+  labels:
+  - nba
+  - sports
+  - basketball
+  - nba
+  category: sports_watch.game
+  category_basis: classified
+  label: not_event
+  why: Opponent/date TBD contingent placeholder game listing
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t024
+  city: las_vegas
+  source_id: ticketmaster
+  title: Paranormal Mind Reading Magic
+  description: Watching a performance by Frederic Da Silva is like getting on first-name basis with a mystery without
+    really understanding it. International mentalist Frederic Da Silva brings his renowned show PARANORMAL to Horseshoe.
+    With the powers of his mind, participants feel his touch without his physical presence. Experience an afternoon
+    of mystery, magic, hypnosis and mind-reading that will leave you ast
+  labels:
+  - Miscellaneous
+  - Psychics/Mediums/Hypnotists
+  - Psychics/Mediums/Hypnotists
+  category: arts.books
+  category_basis: classified
+  label: event
+  why: Ticketed public books listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t025
+  city: nashville
+  source_id: ticketmaster
+  title: A Gabe Dixon Holiday Show
+  description: Born and raised in Tennessee, Gabe Dixon is a Nashville based singer-songwriter and multi-instrumentalist.
+    Since he first emerged in 1999, he has been penning honest and heartfelt songs that continue to garner fans
+    and crowds across the globe. Gabe's songs have been covered by many; Garth Brooks, Taj Mahal & Keb Mo (on their
+    Grammy nominated album Room On The Porch) and Ben Rector to name a few. G
+  labels:
+  - Music
+  - Other
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Ticketed public concert listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t026
+  city: san_francisco
+  source_id: ticketmaster
+  title: 'SF Comedy Kings: An Old School Blowout'
+  description: 'Doors open one hour before the show. This show is 18 & over with valid, government-issued photo
+    ID. There is a two beverage minimum per person. Cameras and video/audio recording devices are not permitted.
+    $.25 per each ticket sold for a majority of events at Punch Line benefits Comedy Gives Back, a safety net for
+    the comedy community. For more information, please visit www.comedygivesback.com Our '
+  labels:
+  - Arts & Theatre
+  - Comedy
+  - Comedy
+  category: nightlife.comedy
+  category_basis: classified
+  label: event
+  why: Ticketed public comedy listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t027
+  city: nyc
+  source_id: ticketmaster
+  title: School Girls; Or, the African Mean Girls Play
+  description: (1) Children under 4 years old will not be admitted. (2) No weapons permitted on the premises. No
+    outside food or beverages, electric scooters, e-bikes, or battery-powered transportation devices, except when
+    medically necessary. All items are subject to inspection. Anything brought into the theatre must fit on your
+    lap or completely under your seat without blocking any aisles. Avoid bringing packa
+  labels:
+  - Arts & Theatre
+  - Theatre
+  - Comedy
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Ticketed public theater listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t028
+  city: cleveland
+  source_id: seatgeek
+  title: The Cleveland Orchestra - 2026 Holiday Concert
+  labels:
+  - orchestral
+  - theater
+  - classical
+  - orchestral
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t029
+  city: miami
+  source_id: ticketmaster
+  title: Unrivaled 2027 Season 1 on 1
+  labels:
+  - Sports
+  - Basketball
+  - Women Professional
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: Unrivaled women's basketball 1-on-1 tournament
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t030
+  city: pittsburgh
+  source_id: seatgeek
+  title: Pittsburgh Symphony Orchestra Pops - Holiday Pops
+  labels:
+  - orchestral
+  - theater
+  - classical
+  - orchestral
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t031
+  city: philadelphia
+  source_id: seatgeek
+  title: Mean Girls - High School Edition - Haddon Township
+  labels:
+  - theater
+  - theater
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Public high school musical production with tickets
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t032
+  city: miami
+  source_id: seatgeek
+  title: TBD at Miami Heat
+  labels:
+  - nba
+  - sports
+  - basketball
+  - nba
+  category: sports_watch.game
+  category_basis: classified
+  label: not_event
+  why: Opponent/date TBD contingent placeholder game listing
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t033
+  city: los_angeles
+  source_id: ticketmaster
+  title: Death From Above 1979 Private Lives Tour
+  description: 'THIS IS AN ALL AGES EVENT The Belasco is a STANDING ROOM ONLY venue. We have a dedicated area for
+    guests in wheelchairs and their companions, which is available on a first-come, first-served basis. Please contact
+    us at THEBELASCO@LIVENATION.COM or (213) 531-0580 for questions regarding accessibility at the venue and to
+    request accommodation. TIMES AND SUPPORT ACTS SUBJECT TO CHANGE WITHOUT NOTICE '
+  labels:
+  - Music
+  - Rock
+  - Pop
+  category: music.concert
+  category_basis: classified
+  label: event
+  why: Concert tour; 'Private Lives' is the tour name
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t034
+  city: chicago
+  source_id: seatgeek
+  title: Broadway In Chicago - Blue Man Group "A New Holiday Surprise"
+  labels:
+  - theater
+  - theater
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Ticketed public theater listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t035
+  city: jacksonville
+  source_id: ticketmaster
+  title: 'Jax Symphony: Holiday Pops'
+  description: Holiday Pops The holidays truly begin with the Jacksonville Symphony's treasured Holiday Pops! This
+    spectacular tradition reunites the Symphony with star vocalists Campbell Walker Fields and Carole J. Bufford,
+    under the baton of conductor Tim Hankewich. Joined by the Symphony Chorus and lively dancers from Douglas Anderson
+    School of the Arts, the evening overflows with classic carols, holiday favo
+  labels:
+  - Arts & Theatre
+  - Classical
+  - Symphonic
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t036
+  city: jacksonville
+  source_id: ticketmaster
+  title: 'Jacksonville Jazz Collective: Holiday Big Band'
+  labels:
+  - Undefined
+  category: other.uncategorized
+  category_basis: fallback
+  label: event
+  why: Ticketed public uncategorized listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t037
+  city: miami
+  source_id: seatgeek
+  title: TBD at Inter Miami CF - MLS Cup Conference Finals
+  labels:
+  - mls
+  - sports
+  - soccer
+  - mls
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: Ticketed contingent MLS conference final home match
+  unsure: true
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t038
+  city: baltimore
+  source_id: seatgeek
+  title: Baltimore Symphony Orchestra - Holiday Pops
+  labels:
+  - orchestral
+  - theater
+  - classical
+  - orchestral
+  category: music.classical
+  category_basis: classified
+  label: event
+  why: Ticketed public classical listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t039
+  city: nyc
+  source_id: seatgeek
+  title: 'School Girls: Or, The African Mean Girls - New York'
+  labels:
+  - theater
+  - theater
+  category: arts.theater
+  category_basis: classified
+  label: event
+  why: Ticketed public theater listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t040
+  city: seattle
+  source_id: ticketmaster
+  title: 'Seattle Holiday Classic: SU v WSU and UW v Baylor'
+  description: Please visit our website to view the Arena Guide with Bag Policy and Prohibited Items list.
+  labels:
+  - Sports
+  - Basketball
+  - College
+  category: sports_watch.game
+  category_basis: classified
+  label: event
+  why: Ticketed public game listing
+  origin: audit-2026-11-02 ticketing (blind label)
+- id: t041
+  city: columbus
+  source_id: ticketmaster
+  title: Columbus Clippers Holiday Lights
+  labels:
+  - Miscellaneous
+  - Family
+  - Other
+  category: family.kids
+  category_basis: classified
+  label: event
+  why: Ticketed public kids listing
+  origin: audit-2026-11-02 ticketing (blind label)

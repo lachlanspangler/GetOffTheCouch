@@ -311,3 +311,19 @@ def test_campus_audience_rule_reads_the_description_and_ignores_a_bare_students_
     assert GATE.evaluate(ev("Forbidden Pages: Past and Present", labels=["Students"]), CAMPUS).keep
     # still held: tagged only for staff, no rescue
     assert not GATE.evaluate(ev("Canvas: Elements of Teaching - Modules", labels=["Faculty & Staff"]), CAMPUS).keep
+
+
+def test_code_review_ticketed_and_venue_false_positives():
+    for title, dt in [
+        ("Office Hours: Live Comedy Podcast", "ticket_prices"),
+        ("Final Exam Trivia Night", "concerts"),
+        ("First Day of School Bash", None),
+        ("Reading Day at the Park", None),
+        ("Holiday Hours Market", None),
+        ("Case Closed", "concerts"),
+        ("Street Closure Block Party", None),
+        ("Private Party Night at Club Space", "ticket_prices"),
+    ]:
+        assert verdict(title, {}, dt).keep, title
+    assert not verdict("Closed for a Private Event", {}, "concerts").keep  # venue calendars still post closures
+    assert not verdict("Private Event", {}, "concerts").keep  # placeholder

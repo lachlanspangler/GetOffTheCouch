@@ -80,7 +80,7 @@ def main() -> int:
     held = con.execute("SELECT * FROM gated_listings").fetchall()
     kept_rows = con.execute(
         "SELECT em.source_id, em.city, json_extract(e.data, '$.title') title FROM events e"
-        " JOIN event_members em ON em.event_id = e.id"
+        " JOIN event_members em ON em.event_id = e.id WHERE e.folded = 0"
     ).fetchall()
     kept: dict[tuple[str, str], list[str]] = defaultdict(list)
     for r in kept_rows:

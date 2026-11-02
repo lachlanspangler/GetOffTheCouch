@@ -32,9 +32,8 @@ rules:
   # (no label-only rule: campuses tag real events "Academic Calendar" too — FIU's Festival of the Trees, UNCC talks —
   #  so the term dates themselves are caught by their titles below)
   - id: academic_calendar
-    skip_data_types: [ticket_prices]   # a ticketed show isn't a calendar notice
+    skip_data_types: [ticket_prices, concerts]   # a ticketed show / venue calendar isn't a term calendar
     family: academic_calendar
-    hard: true
     reason: an academic-calendar date (withdraw, drop/add, refunds, grades, finals, term start/end), not an event
     title:
       - '\blast day (of|to|for)\b[^.]{0,40}\b(class(es)?|instruction|term|semester|session [a-z0-9]\b|withdraw(al)?|drop|add|refunds?|grade[sd]?|grading|pass/fail|p/f|audit|graduat\w*|incomplete|course|credit)'
@@ -52,7 +51,6 @@ rules:
       - '\bclasses (begin|start|end|resume|cancell?ed|dismissed|suspended|do not meet)\b'
       - '^\W*(\w+ \d{1,2},? )?no[- ](classes|class|school)\b(?![^.]{0,30}\b(camp|camps|fun|program|programs|activities|activity|workshop|adventure|day out)\b)'
       - '\(no (classes|class|school)\)\W*$'
-      - '^(reading|study) (day|days|period)\b'
       - '\b(census|drop) date\b'
       - '\b(priority|course|semester|term) registration\b'
       - '\bregistration (for|opens for|begins for) (the )?(spring|summer|fall|winter|autumn|j-?term|may) (\d{4} )?(term|semester|session|quarter|classes|courses)\b'
@@ -60,9 +58,12 @@ rules:
       - '\b(degree conferral|intent to graduate|graduation application|apply (to|for) graduation|application for graduation|degree application)\b'
       - '\bacademic calendar\b'
       - '\b(fall|spring|summer|winter) [a-c]:'
+    unless:   # "Final Exam Trivia Night", "First Day of School Bash"
+      - '\b(bash|party|celebration|trivia|night|festival|carnival|parade|show|concert|fair|camp|block party|cookout|picnic)\b'
 
   # ── closures and holidays: the doors are shut ──
   - id: closure
+    skip_data_types: [ticket_prices]   # venue calendars (concerts) still post real closures
     family: closure
     hard: true
     reason: a closure or holiday-hours notice, not an event
@@ -71,18 +72,20 @@ rules:
       - '[-–—:|]\s*closed\W*($|[-–—(]|\b(come|see|hope|back|reopen)\w*\b)'
       - '\bclosed (for|on|due to|until|through|thru) (the )?(holiday|holidays|thanksgiving|christmas|new year|private|a private|maintenance|renovation|inventory|repairs|weather|staff|election|veterans|memorial|labor|independence|juneteenth|mlk|presidents|columbus|indigenous|the season|winter break|spring break|winter|construction|an? \w+ event|event)\b'
       - '\b(library|libraries|branch|branches|office|offices|campus|university|college|school|schools|building|buildings|facility|facilities|museum|pool|club|city hall|all locations|all branches|the center)\s+(is |are |will be )?(closed|closing early|closes early|opens late|opening late)\b'
-      - '\b(holiday|thanksgiving|christmas|new year''?s?( day| eve)?|election day|veterans day|memorial day|labor day|independence day|juneteenth|mlk day|presidents''? day|columbus day|indigenous peoples''? day)\b[^.]{0,20}\b(closure|closed|closing|hours)\b'
+      - '\b(holiday|thanksgiving|christmas|new year''?s?( day| eve)?|election day|veterans day|memorial day|labor day|independence day|juneteenth|mlk day|presidents''? day|columbus day|indigenous peoples''? day)\b[^.]{0,20}\b(closure|closed|closing)\b'
       - '\b(closure|closures|closings?)\s*[-–—:]\s*'
       - '\b(holiday|early|emergency|weather|facility|branch|library|office) (closure|closing)\b'
       - '\b(closes|closing) early\b'
-      - '\b(modified|reduced|holiday|special) hours\b'
+      - '^\W*([\w''’]+ ){0,3}(modified|reduced|holiday|special) hours\W*($|[-–—:(]|\b(for|on|today|this)\b)'
       - '\b(university|campus|offices?|library) holiday\W*($|[-–—:(]|clos\w*)'
       - '^\W*closed in observance\b'
-      - '^\W*[\w''’ ]{1,30}\b(is |are )?closed\W*$'
-      - '\bstreet closures?\b'
+      - '\b(is|are|we''re|we are) closed\W*$'
+      - '\b(library|branch|office|bar|club|venue|museum|pool|center|centre|lounge|pub|taproom|\w+pl) closed\W*$'
+      - '^\W*([\w/&,''’ ]+ )?street closures?\W*$'
 
   # ── office hours and one-on-one appointments: a service window, not a gathering ──
   - id: office_hours
+    skip_data_types: [ticket_prices, concerts]   # "Office Hours: Live Comedy Podcast"
     family: office_hours
     hard: true
     reason: office hours (a drop-in service window), not an event
@@ -144,6 +147,7 @@ rules:
 
   # ── internal / staff-only / private ──
   - id: internal_only
+    skip_data_types: [ticket_prices]   # "Private Party Night at Club Space" is a ticketed party
     family: internal_only
     hard: true
     reason: an internal, staff-only, invitation-only or private listing, so the public can't go
@@ -171,6 +175,14 @@ rules:
     title:
       - '^\W*(tba|tbd|tbc|to be (announced|determined|confirmed)|hold|on hold|date hold|reserved|blocked?|placeholder|test( event)?|untitled( event)?|event|events|no events?( scheduled)?( today| tonight)?|n/?a|private|private event|closed|dark|dark night|no show( tonight)?|rental|private rental|venue rental|off-?site|booked|unavailable|cancell?ed)\W*$'
       - '^\W*(\w+\s){0,2}(placeholder|hold)\W*$'
+
+  - id: placeholder_matchup
+    family: placeholder
+    reason: a game slot with no opponent and no named round (it may not happen), not a scheduled game yet
+    title:
+      - '^\W*(tbd|tba|to be determined)\s+(at|vs\.?|@)\s'
+    unless:
+      - '\b(round|final|finals|semifinal|quarterfinal|playoff|playoffs|game \d|cup|series|bowl|championship|tournament)\b'
 
   # ── campus feeds only (scope: institution) ──
   - id: campus_meeting
@@ -229,6 +241,7 @@ rules:
     reason: a line on the campus term calendar (registration windows, graduation applications), not an event
     title:
       - '^(spring|fall|autumn|summer|winter|j-?term|maymester)( [a-c]| \d{4}| term| semester| session| quarter)?:\s'
+      - '^(reading|study) (day|days|period)\b'
       - '\b(degree-seeking students|assigned registration time|apply for [^.]{0,30}graduation|graduation application|term graduation)\b'
     unless:
       - '\b(concert|recital|festival|exhibition|exhibit|lecture|reading|show|performance|game|vs\.?|tour|workshop|class|camp)\b'

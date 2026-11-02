@@ -93,7 +93,7 @@ def source_statuses(db: Database, reg: Registry, city: CityConfig, now: datetime
 
 def city_feed(db: Database, reg: Registry, city: CityConfig, now: datetime, include_demo: bool = False) -> CityFeed:
     rows = db.all(
-        "SELECT data FROM events WHERE city = ? AND (start_at <= ? OR (start_at <= ? AND (category LIKE 'niche.%'"
+        "SELECT data FROM events WHERE city = ? AND folded = 0 AND (start_at <= ? OR (start_at <= ? AND (category LIKE 'niche.%'"
         " OR category LIKE 'sports_league.%'))) ORDER BY start_at",
         (city.slug, iso(now + timedelta(days=HORIZON_DAYS)), iso(now + timedelta(days=PLAN_AHEAD_DAYS))),
     )

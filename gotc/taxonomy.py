@@ -45,6 +45,7 @@ class Taxonomy:
     categories: dict[str, Category]
     tags: dict[str, str]
     _patterns: list[tuple[re.Pattern[str], str, str]] = field(default_factory=list, repr=False)
+    _cache: dict[tuple[tuple[str | None, ...], str], Classification] = field(default_factory=dict, repr=False)
 
     def __post_init__(self) -> None:
         pats: list[tuple[re.Pattern[str], str, str]] = []
@@ -76,7 +77,19 @@ class Taxonomy:
         return cat_id.split(".", 1)[0]
 
     def classify(self, *texts: str | None, default: str = FALLBACK) -> Classification:
-        """Classify free text. Title should be passed first: matches in earlier texts win ties."""
+        """Classify free text. Title should be passed first: matches in earlier texts win ties.
+
+        Memoized per taxonomy (builds re-classify the same listings: ~1.8 ms each × 140k records, code review).
+        """
+        key = (texts, default)
+        hit = self._cache.get(key)
+        if hit is None:
+            if len(self._cache) > 200_000:
+                self._cache.clear()
+            hit = self._cache[key] = self._classify(*texts, default=default)
+        return hit
+
+    def _classify(self, *texts: str | None, default: str = FALLBACK) -> Classification:
         best: tuple[int, int, int, str, str] | None = None  # (text_rank, -len, -depth, id, phrase)
         for rank, text in enumerate(t for t in texts if t):
             hay = " " + re.sub(r"\s+", " ", text.lower()) + " "

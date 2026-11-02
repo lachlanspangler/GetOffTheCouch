@@ -38,7 +38,7 @@ def propose(db: Database) -> list[tuple[str, str, int, int, str]]:
     for city in reg.cities.values():
         if not city.enabled:
             continue
-        rows = db.all("SELECT data FROM events WHERE city = ?", (city.slug,))
+        rows = db.all("SELECT data FROM events WHERE city = ? AND folded = 0", (city.slug,))
         events = [json.loads(r["data"]) for r in rows]
         fams = Counter(e["category"].split(".")[0] for e in events)
         for fam, label in CORE.items():

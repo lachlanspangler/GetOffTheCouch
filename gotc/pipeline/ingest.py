@@ -149,9 +149,8 @@ def parse_payloads(
             why = _ingest_skip(rec, unit.source.params)
             if why is not None:
                 out.skipped += 1
-                out.skips.append(
-                    (str(rec.get("record_id")), str(rec.get("title") or "")[:300], _iso(rec.get("start")), *why)
-                )
+                rid = rec.get("record_id") or f"_hint:{rec.get('_hint') or rec.get('title') or len(out.skips)}"
+                out.skips.append((str(rid), str(rec.get("title") or "")[:300], _iso(rec.get("start")), *why))
                 continue
             try:
                 rec = normalize_record(rec, unit.source.name)
@@ -266,7 +265,8 @@ def run_unit(
         result.rejected = len(parsed.rejects)
         if parsed.skipped:
             result.notes.append(f"{parsed.skipped} not-public record(s) skipped")
-        store_ingest_skips(db, unit, parsed.skips, now)
+        if fr.complete:  # a partial fetch (capped pages) only saw some records: keep the previous snapshot's skips
+            store_ingest_skips(db, unit, parsed.skips, now)
         for hint, err, rid in parsed.rejects[:200]:
             db.execute(
                 "INSERT INTO rejects (unit, raw_fetch_id, at, record_hint, error) VALUES (?,?,?,?,?)",

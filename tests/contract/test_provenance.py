@@ -56,7 +56,7 @@ def check_event(ev: dict, prov: dict, params_by_source: dict[str, dict]) -> list
         configured = params_by_source.get(org["source"], {}).get("organizer")
         if configured and ev.get("organizer") == configured:
             out.append(f"{ev['id']}: config organizer {configured!r} labelled reported")
-    loc = prov.get("location")
+    loc = prov.get("venue") or prov.get("location")
     if loc and loc["method"] == "reported":
         sp = params_by_source.get(loc["source"], {})
         configured = {sp.get("venue_label"), sp.get("venue_name"), (sp.get("venue") or {}).get("name")} - {None}
@@ -123,7 +123,7 @@ def test_config_filled_fields_are_never_labelled_reported(db):
     provs = {e.id: e.provenance for e in feed.events}
     mic = provs[by_title["Open Mic Night"].id]
     assert mic["category"].method == "defaulted" and "config" in (mic["category"].note or "")
-    assert mic["organizer"].method == "defaulted" and mic["location"].method == "defaulted"
+    assert mic["organizer"].method == "defaulted" and mic["venue"].method == "defaulted"
     mystery = by_title["Mystery listing"]
     assert provs[mystery.id]["category"].method == "defaulted"
     assert mystery.attendance is None and mystery.social is None

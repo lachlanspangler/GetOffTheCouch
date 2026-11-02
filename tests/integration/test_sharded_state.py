@@ -136,3 +136,26 @@ def test_city_filter_is_exact_not_a_like_pattern():
     con.executemany("INSERT INTO t VALUES (?)", [("a@new_orleans",), ("b@newXorleans",), ("c@x@new_orleans",)])
     rows = con.execute(f"SELECT unit FROM t WHERE {delta._like(['new_orleans'])} ORDER BY unit").fetchall()
     assert rows == [("a@new_orleans",)]
+
+
+def test_ingest_quarantine_travels_through_a_delta_and_replaces_the_publish_rows(base: Path, tmp_path: Path):
+    """Code review 2026-11-02: the equality check above passes with 0 rows on both sides; exercise the path for real."""
+    from gotc.config import Unit
+    from gotc.pipeline.ingest import store_ingest_skips
+
+    shard, ss = copy_db(base, tmp_path, "shard_q")
+    mark = delta.mark(shard, LATER)
+    unit = Unit(source=ICS, city=TESTVILLE)
+    store_ingest_skips(shard, unit, [("r1", "Webinar (Virtual)", None, "ingest:location", "online-only")], LATER)
+    shard.close()
+    out = tmp_path / "q.delta.db"
+    counts = delta.export_delta(ss.db_path, mark, ["testville"], out)
+    assert counts["gated_listings"] == 1
+
+    pub, _ = copy_db(base, tmp_path, "publish_q")
+    # a stale ingest row for the shard's city must be replaced, another city's must survive
+    store_ingest_skips(pub, unit, [("old", "Stale skip", None, "ingest:location", "online-only")], NOW)
+    store_ingest_skips(pub, Unit(source=TRIBE, city=MPLS), [("m1", "Keep me", None, "ingest:audience", "x")], NOW)
+    delta.merge_delta(pub, out, delta.mark(pub))
+    rows = {(r["city"], r["record_id"]) for r in pub.all("SELECT city, record_id FROM gated_listings")}
+    assert rows == {("testville", "r1"), ("minneapolis", "m1")}
