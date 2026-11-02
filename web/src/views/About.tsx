@@ -82,7 +82,7 @@ export function Methodology() {
     <Page
       title="How we get the data"
       lede="Where listings come from, how we keep them fresh, and exactly what we estimate."
-      toc={[["sources", "Sources"], ["fresh", "Freshness"], ["dedupe", "Duplicates"], ["deadlines", "Deadlines"], ["estimates", "Estimates"], ["ranking", "How picks are chosen"], ["limits", "Known limits"]]}
+      toc={[["sources", "Sources"], ["real", "Only real events"], ["fresh", "Freshness"], ["dedupe", "Duplicates"], ["deadlines", "Deadlines"], ["estimates", "Estimates"], ["ranking", "How picks are chosen"], ["limits", "Known limits"]]}
     >
       <h2 id="sources">Sources</h2>
       <p>
@@ -94,6 +94,19 @@ export function Methodology() {
       <p>
         Some sources, like Ticketmaster and SeatGeek, need an API key we don't have yet. They're built and tested but switched off, and they
         show as "Not connected" on the <a href={status}>data status page</a>.
+      </p>
+      <h2 id="real">Only real events</h2>
+      <p>
+        Big calendars list a lot that isn't an event: a university's "last day to withdraw", a library's holiday closure, office hours, a
+        board's business meeting, a "TBA" placeholder. Before anything is published, every listing goes through a set of plain rules that
+        hold those back. Each one is set aside with the rule and the reason, never quietly deleted, and the <a href={status}>data status
+        page</a> counts them per source. Things that only sound similar stay: a league's registration deadline, a volunteer sign-up, an
+        open house, a free lecture, a neighborhood meeting.
+      </p>
+      <p>
+        We also say when a detail came from us rather than the source. If a listing doesn't say what kind of event it is, we don't guess:
+        it shows as uncategorized, and we skip the crowd and meeting-people estimates rather than invent them. If something slipped
+        through, the "Report a problem" link on every listing goes straight into those rules.
       </p>
       <h2 id="fresh">Freshness</h2>
       <p>
@@ -116,9 +129,9 @@ export function Methodology() {
       <h2 id="estimates">Estimates</h2>
       <p>Everything we estimate is labeled, comes with a range, and says how we got it.</p>
       <ul>
-        <li><strong>Crowd size.</strong> Venue capacity times a typical fill for the ticket status. Without a known capacity, we use a typical range for that kind of event, at low confidence.</li>
+        <li><strong>Crowd size.</strong> Venue capacity times a typical fill for the ticket status. Without a known capacity, we use a typical range for that kind of event, at low confidence. If we don't know what kind of event it is, we don't estimate.</li>
         <li><strong>Tickets left.</strong> Shown only when a source reports spots (libraries and volunteer shifts often do), or as a labeled signal from resale listings. Listings aren't seats, and we say so.</li>
-        <li><strong>Good for meeting people.</strong> Based on the kind of event (leagues and volunteering score high), whether it repeats, whether the listing says it's fine to come alone, and crowd size.</li>
+        <li><strong>Good for meeting people.</strong> Based on the kind of event (leagues and volunteering score high), whether it repeats, whether the listing says it's fine to come alone, and crowd size. No score when the listing doesn't say what kind of event it is.</li>
         <li><strong>New openings.</strong> New liquor and business licenses are a signal that a place is opening, not a confirmed opening date, and are labeled that way.</li>
       </ul>
       <h2 id="ranking">How picks are chosen</h2>

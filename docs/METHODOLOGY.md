@@ -10,8 +10,41 @@ This doc covers how GetOffTheCouch turns raw listings into the cards you see. Ke
 | `extracted` | Pulled from free text, with the sentence kept as `evidence` | "Register by Nov 3" |
 | `estimated` | A model. Always a low/mid/high band plus a method string | crowd size |
 | `curated` | Verified by hand from a quoted page, re-checked automatically | league dates from a club website |
+| `defaulted` | Set by us, not the source: a config default or "nothing matched" | a comedy club's listings default to Comedy; an unlabelled listing is uncategorized |
 
-Each event carries `provenance[field] = {source, fetched_at, method, confidence}` for title, start, location, category, price and registration.
+Each event carries `provenance[field] = {source, fetched_at, method, confidence, note}` for title, start, location, category, organizer, price and registration.
+
+**Category provenance (ADR-0010).** A category is `reported` only when the source's own label produced it (the note
+quotes the label). Our keyword classifier is `derived` (the note quotes the matched phrase). A config
+`default_category` is `defaulted`, and is allowed only for single-kind sources (a comedy club, a trivia company, a
+license dataset), each with a written `single_kind_reason`. Mixed calendars (universities, libraries, cities, parks,
+museums) never guess: an unmatched listing is uncategorized. An organizer or venue filled from config is `defaulted`
+too. `tests/contract/test_provenance.py` fails if any of these is ever labelled reported.
+
+## The real-public-event gate (`gotc/pipeline/listing_gate.py`, `config/listing_gate.yaml`, ADR-0010)
+Before anything is published, every listing passes a rules gate. It holds back:
+- academic-calendar dates (withdraw, drop/add, refunds, grades, finals, term start/end)
+- closures and holiday-hours notices
+- office hours and one-on-one appointment slots
+- administrative deadlines
+- board, committee and commission business meetings
+- internal, staff-only, invitation-only and private listings
+- calendar placeholders
+
+Campus feeds get stricter rules: club business meetings, admissions info sessions, career-services events, academic
+administration, listings tagged only for students/faculty/staff, and campus items with no category at all.
+
+Look-alikes stay:
+- a league's registration deadline
+- a volunteer sign-up
+- an open house
+- a free lecture
+- a community meeting
+- a game against "TBD"
+
+Held-back listings are quarantined with their rule and reason, never silently dropped. They're counted per source in
+HEALTH.md and on the Health page. Precision and recall are measured on a blind-labelled golden set of 245 real
+listings on every `make check`. The audit with samples per source is `docs/research/NON_EVENTS_AUDIT.md`.
 
 ## Entity resolution (dedup)
 1. **Venues.** Names are normalized: case, accents and "&" are folded, and filler words are dropped ("the", "theatre", "hall"…). Two venues are the same if the normalized names match, or if they're under 150 m apart with ≥ 0.8 name similarity.
@@ -35,6 +68,7 @@ Occurrences from the same source with the same normalized title and the same pla
 | Organizer/source reported a number | ±15% | 0.75 |
 | Venue capacity known | capacity × fill band for ticket status. Sold out: 90–100%. Few left: 75–97%. On sale: 40–88%. Unknown: 20–85% | 0.6 (0.4 if status unknown) |
 | Nothing | the category prior `[p10, p50, p90]` from `config/taxonomy.yaml` | 0.25 |
+| Nothing, and the listing is uncategorized | **no estimate** (the UI says "Not enough info to estimate") | — |
 
 All numbers are rounded to 2 significant figures and capped at capacity. The UI always shows the band and the method.
 
@@ -76,7 +110,8 @@ The score starts from the category prior in `taxonomy.yaml` (leagues 0.9, trivia
 | Over 5,000 expected | −0.15 |
 | Beginner friendly | +0.04 |
 
-The reasons are shown with the score.
+The reasons are shown with the score. An uncategorized listing gets **no score**: the score starts from the
+category, so without one we'd be guessing ("Not enough info to estimate").
 
 ## Freshness
 Every source has an SLA by data type (`config/sources.yaml`):
