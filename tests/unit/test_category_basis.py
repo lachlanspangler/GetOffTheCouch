@@ -116,3 +116,26 @@ def test_uncategorized_listings_get_no_category_prior_and_no_social_score():
     assert estimate_attendance(ev, TAX, 500, "venue file", None) is not None
     # a categorized listing keeps its prior
     assert estimate_attendance(event("trivia_games.trivia"), TAX, None, None, None) is not None
+
+
+def test_rebuild_rederives_a_stale_catch_all_default_on_a_mixed_calendar():
+    from gotc.pipeline.build import reconcile_categories
+    from tests.conftest import make_city, make_registry, make_source
+
+    fiu = make_source("fiu_events", adapter="localist", audience_filter="institution")  # default removed (ADR-0010)
+    venue = make_source("comedy_club", adapter="jsonld", default_category="nightlife.comedy", single_kind_reason="club")
+    reg = make_registry(make_city("miami", [fiu, venue]))
+    labels = ["Students", "Academic Calendar", "Fall B"]
+    stale = rec(
+        "Fall B: Last day to withdraw from the University with a 25% refund of tuition", "learning.networking", labels
+    )
+    talk = rec("Free Lecture: Coral Reefs of Biscayne Bay", "learning.networking", ["Lecture"])
+    club = rec("Late Show", "nightlife.comedy").model_copy(update={"source_id": "comedy_club"})
+    reconcile_categories([stale, talk, club], reg, TAX)
+    assert stale.category == FALLBACK and stale.category_basis == CategoryBasis.FALLBACK  # no more "Networking"
+    assert (
+        talk.category_basis == CategoryBasis.CLASSIFIED
+        and talk.category != "learning.networking"
+        or (talk.category_note or "").startswith("keyword")
+    )
+    assert club.category == "nightlife.comedy" and club.category_basis == CategoryBasis.SOURCE_KIND

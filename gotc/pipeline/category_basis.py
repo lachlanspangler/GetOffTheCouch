@@ -62,8 +62,12 @@ def infer_basis(
         }.get(basis, "")
     if ev.source_categories:
         # a typed label we map in code (e.g. a ticketing segment) or a title rule (e.g. "A vs B" → a game)
-        return CategoryBasis.CLASSIFIED, "worked out from the source's labels and title"
-    return CategoryBasis.CLASSIFIED, "worked out from the title"
+        return CategoryBasis.CLASSIFIED, UNEXPLAINED[0]
+    return CategoryBasis.CLASSIFIED, UNEXPLAINED[1]
+
+
+#: notes infer_basis uses when it can't point at a label, a keyword or a config default
+UNEXPLAINED = ("worked out from the source's labels and title", "worked out from the title")
 
 
 def _same(tax: Taxonomy, a: str, b: str) -> bool:

@@ -117,19 +117,24 @@ def reconcile_categories(records: list[SourceEvent], reg: Registry, tax: Taxonom
     guess, ADR-0010) is re-classified from its own text, or left uncategorized, so a rebuild fixes old data
     without refetching.
     """
-    from gotc.pipeline.category_basis import ensure_basis
-    from gotc.schema import CategoryBasis
+    from gotc.pipeline.category_basis import UNEXPLAINED, ensure_basis, looks_mixed
 
     sources = reg.all_sources()
     for rec in records:
         src = sources.get(rec.source_id)
         params = src.params if src else {}
         ensure_basis(rec, params, tax, src.adapter if src else None)
-        if rec.category_basis != CategoryBasis.SOURCE_KIND:
+        if rec.category_basis == CategoryBasis.CLASSIFIED and rec.category_note in UNEXPLAINED:
+            # a stored category nothing explains, on a mixed calendar: almost always a catch-all default that has
+            # since been removed (FIU's "Networking"), so it's re-derived below rather than trusted
+            if not (src and looks_mixed(src.id, src.name, src.adapter, params, src.homepage)):
+                continue
+        elif rec.category_basis != CategoryBasis.SOURCE_KIND:
             continue
-        default = params.get("default_category")
-        if default and tax.is_valid(default) and tax.resolve(default) == rec.category:
-            continue
+        else:
+            default = params.get("default_category")
+            if default and tax.is_valid(default) and tax.resolve(default) == rec.category:
+                continue
         hit = tax.classify(rec.title, " ".join(rec.source_categories), rec.description, default=FALLBACK)
         rec.category = hit.category
         rec.category_basis = CategoryBasis.CLASSIFIED if hit.matched else CategoryBasis.FALLBACK
