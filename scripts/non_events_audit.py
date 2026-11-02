@@ -96,9 +96,9 @@ def main() -> int:
     distinct = {rule: len({r["title"] for r in held if r["rule"] == rule}) for rule in rules}
     fams = Counter(r["family"] for r in held)
 
-    L: list[str] = []
+    out: list[str] = []
     now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
-    L += [
+    out += [
         "# Non-events audit (ADR-0010)",
         "",
         f"_Generated {now} by `scripts/non_events_audit.py` from `{Path(a.db).name}` after a full build. Re-run after any"
@@ -122,17 +122,17 @@ def main() -> int:
         "|---|---|---|---|",
     ]
     fam_of = {r["rule"]: r["family"] for r in held}
-    L += [f"| `{rule}` | {n:,} | {distinct[rule]:,} | {fam_of[rule]} |" for rule, n in rules.most_common()]
-    L += ["", "## Top rejected patterns (matched text)", "", "| Rule | Matched text | Count |", "|---|---|---|"]
+    out += [f"| `{rule}` | {n:,} | {distinct[rule]:,} | {fam_of[rule]} |" for rule, n in rules.most_common()]
+    out += ["", "## Top rejected patterns (matched text)", "", "| Rule | Matched text | Count |", "|---|---|---|"]
     ev = Counter((r["rule"], (r["evidence"] or r["reason"])[:60].lower()) for r in held)
-    L += [f"| `{rule}` | {md(e)} | {n} |" for (rule, e), n in ev.most_common(40)]
+    out += [f"| `{rule}` | {md(e)} | {n} |" for (rule, e), n in ev.most_common(40)]
 
     # per source, grouped by family, hardest families first
     groups: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for key in set(kept) | set(by_unit):
         groups[family(sources.get(key[0]))].append(key)
     order = ["university", "library", "city & civic calendars", "venues & other"]
-    L += [
+    out += [
         "",
         "## Per source",
         "",
@@ -145,7 +145,7 @@ def main() -> int:
             continue
         n_held = sum(len(by_unit.get(k, [])) for k in keys)
         n_kept = sum(len(kept.get(k, [])) for k in keys)
-        L += [
+        out += [
             "",
             f"### {fam.title()} ({len(keys)} units · {n_kept:,} kept · {n_held:,} held back)",
             "",
@@ -158,8 +158,8 @@ def main() -> int:
                 continue
             share = len(h) / max(1, len(h) + len(kp))
             top = ", ".join(f"{r} {n}" for r, n in Counter(x["rule"] for x in h).most_common(3))
-            L.append(f"| `{k[0]}@{k[1]}` | {len(kp)} | {len(h)} | {share:.0%} | {top} |")
-        L += ["", "<details><summary>Samples: kept vs held back</summary>", ""]
+            out.append(f"| `{k[0]}@{k[1]}` | {len(kp)} | {len(h)} | {share:.0%} | {top} |")
+        out += ["", "<details><summary>Samples: kept vs held back</summary>", ""]
         for k in keys:
             h, kp = by_unit.get(k, []), kept.get(k, [])
             if not h and fam == "venues & other":
@@ -168,11 +168,11 @@ def main() -> int:
             kc = Counter(kp)
             hs = rnd.sample(sorted(hc), min(4, len(hc)))
             ks = rnd.sample(sorted(kc), min(5 if not h else 3, len(kc)))
-            L.append(f"**`{k[0]}@{k[1]}`**")
-            L += [f"- ✕ {md(t)[:110]}{f' ×{hc[(t, r)]}' if hc[(t, r)] > 1 else ''} — _{r}_" for t, r in hs]
-            L += [f"- ✓ {md(t)[:110]}{f' ×{kc[t]}' if kc[t] > 1 else ''}" for t in ks]
-            L.append("")
-        L += ["</details>"]
+            out.append(f"**`{k[0]}@{k[1]}`**")
+            out += [f"- ✕ {md(t)[:110]}{f' ×{hc[(t, r)]}' if hc[(t, r)] > 1 else ''} — _{r}_" for t, r in hs]
+            out += [f"- ✓ {md(t)[:110]}{f' ×{kc[t]}' if kc[t] > 1 else ''}" for t in ks]
+            out.append("")
+        out += ["</details>"]
 
     fiu = con.execute(
         "SELECT title, rule, reason FROM gated_listings WHERE source_id = 'fiu_events' AND title LIKE '%withdraw%'"
@@ -180,9 +180,9 @@ def main() -> int:
     fiu_pub = con.execute(
         "SELECT COUNT(*) c FROM events WHERE city = 'miami' AND json_extract(data, '$.title') LIKE '%withdraw%'"
     ).fetchone()
-    L += ["", "## FIU", "", f'Published Miami listings mentioning "withdraw": **{fiu_pub["c"]}**. Held back:', ""]
-    L += [f"- {md(r['title'])} — `{r['rule']}`: {r['reason']}" for r in fiu] or ["- (none in this DB)"]
-    L += [
+    out += ["", "## FIU", "", f'Published Miami listings mentioning "withdraw": **{fiu_pub["c"]}**. Held back:', ""]
+    out += [f"- {md(r['title'])} — `{r['rule']}`: {r['reason']}" for r in fiu] or ["- (none in this DB)"]
+    out += [
         "",
         "## Known gaps and judgment calls",
         "",
@@ -208,10 +208,11 @@ def main() -> int:
         '- **Away games** ("Football at Missouri") on campus athletics feeds aren\'t gated by title: many "X at Y"'
         " games are crosstown. That needs a venue-distance check (idea ledger).",
     ]
-    Path(a.out).write_text("\n".join(L) + "\n")
+    Path(a.out).write_text("\n".join(out) + "\n")
     print(f"wrote {a.out}: {gate_n} gate + {ingest_n} ingest held back, {total_kept} kept")
-    json.dump({"gate": gate_n, "ingest": ingest_n, "kept": total_kept, "rules": dict(rules), "families": dict(fams)},
-              open(Path(a.out).with_suffix(".json"), "w"), indent=1)  # fmt: skip
+    with open(Path(a.out).with_suffix(".json"), "w") as fh:
+        json.dump({"gate": gate_n, "ingest": ingest_n, "kept": total_kept, "rules": dict(rules), "families": dict(fams)},
+                  fh, indent=1)  # fmt: skip
     return 0
 
 
