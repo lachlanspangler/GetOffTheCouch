@@ -3266,12 +3266,14 @@
    "value": 5,
    "effort": 4,
    "confidence": 0.8,
-   "status": "doing",
+   "status": "done",
    "why": "academic dates, closures, office hours and board meetings were published as events",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
-   "notes": []
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: gate live"
+   ]
   },
   {
    "id": "I-222",
@@ -3296,12 +3298,14 @@
    "value": 4,
    "effort": 3,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "the gate needs a measured, regression-proof bar",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
-   "notes": []
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: 245 items, P .987 R .907"
+   ]
   },
   {
    "id": "I-224",
@@ -3310,12 +3314,14 @@
    "value": 4,
    "effort": 2,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "reports should teach the gate, not sit in issues",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
-   "notes": []
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: issue form + gotc reports"
+   ]
   },
   {
    "id": "I-225",
@@ -3324,11 +3330,83 @@
    "value": 4,
    "effort": 1,
    "confidence": 0.8,
-   "status": "open",
+   "status": "done",
    "why": "user: github.io/GetOffTheCouch opens straight to #/miami/feed",
    "source": "agent",
    "created": "2026-10-29",
-   "updated": "2026-10-29",
+   "updated": "2026-11-02",
+   "notes": [
+    "2026-11-02 done: Continue with <city>"
+   ]
+  },
+  {
+   "id": "I-226",
+   "title": "Weekly gate review: auto-open a PR with new held-back patterns per source (top new evidence strings)",
+   "area": "data-quality",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "spot rule drift and new non-event kinds without reading the whole audit",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
+  },
+  {
+   "id": "I-227",
+   "title": "Learned non-event classifier behind the gate's Verdict interface, trained on golden set + reports",
+   "area": "data-quality",
+   "value": 3,
+   "effort": 4,
+   "confidence": 0.8,
+   "status": "parked",
+   "why": "rules plateau; reports will give labelled data",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
+  },
+  {
+   "id": "I-228",
+   "title": "Per-source gate share alarm: a source whose held-back share jumps >20 pts is degraded in HEALTH",
+   "area": "health",
+   "value": 4,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "a feed that starts publishing its admin calendar should be noticed like a volume drop",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
+  },
+  {
+   "id": "I-229",
+   "title": "Show 'held back' samples on the Health page per source (titles + reason), so anyone can audit",
+   "area": "ux",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "transparency: quarantine is public, not just in HEALTH.md",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
+   "notes": []
+  },
+  {
+   "id": "I-230",
+   "title": "Mark gone the records that ingest skips on incomplete fetches (capped Localist pages)",
+   "area": "pipeline",
+   "value": 3,
+   "effort": 2,
+   "confidence": 0.8,
+   "status": "open",
+   "why": "FIU's skipped items lingered because 5-page fetches never ran mark_gone; the gate hides them but the DB keeps stale rows",
+   "source": "agent",
+   "created": "2026-11-02",
+   "updated": "2026-11-02",
    "notes": []
   }
  ]
