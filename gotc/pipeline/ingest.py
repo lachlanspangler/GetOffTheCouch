@@ -30,7 +30,7 @@ from gotc.health import store as hstore
 from gotc.health.state import Outcome, disabled, transition
 from gotc.http.client import FetchError, PoliteClient
 from gotc.pipeline.category_basis import ensure_basis
-from gotc.pipeline.normalize import audience_skip, location_skip, normalize_record
+from gotc.pipeline.normalize import _MATCHUP, audience_skip, location_skip, normalize_record
 from gotc.schema import SourceEvent
 from gotc.settings import Settings
 from gotc.storage.db import Database, iso
@@ -78,6 +78,10 @@ INSTITUTION_FAMILIES = ("music", "arts", "sports_watch", "learning", "community"
 def campus_allowlist(category: str, params: dict[str, Any]) -> bool:
     """True when an institution-feed record should be kept (its family is public-facing)."""
     if params.get("audience_filter") != "institution":
+        return True
+    if category == "other.uncategorized":
+        # with catch-all defaults gone (ADR-0010), uncategorized campus listings are about half real talks and
+        # exhibitions: the build-time gate judges them on their own text and tags instead of dropping them here
         return True
     allow = params.get("allow_families") or INSTITUTION_FAMILIES
     return category.split(".", 1)[0] in allow
@@ -156,6 +160,14 @@ def parse_payloads(
                 rec = normalize_record(rec, unit.source.name)
                 # an arena's "basketball" is a game to watch, not a rec league
                 spectator = unit.source.params.get("spectator_venue")
+                if (
+                    unit.source.params.get("audience_filter") == "institution"
+                    and str(rec.get("category", "")).startswith("sports_league.")
+                    and _MATCHUP.search(str(rec.get("title") or ""))
+                ):
+                    # a campus "Volleyball vs Ole Miss" is a game to watch, not a rec league to join (2026-11-02)
+                    rec["category"] = "sports_watch.game"
+                    rec["category_basis"], rec["category_note"] = "classified", "a campus matchup ('A vs B') is a game"
                 if spectator and str(rec.get("category", "")).startswith("sports_league."):
                     rec["category"] = "sports_watch.game"
                     rec["category_basis"] = "source_kind"

@@ -566,3 +566,60 @@ died on AWS auth errors earlier in the session; their committed work was salvage
 - Production build: 16,441 pages; check-dist 0 problems at 697 MB; budgets green.
 - actionlint: clean.
 - Gate (dry run): 7 live, 43 beta, on 35,224 events in 50 cities. 5 beta cities fail only G10.
+
+## 2026-11-02 · Session 6: "is this a real public event?" + the publish outage
+
+**The bug that started it.** The live site showed "Fall B: Last day to withdraw from the University with a 25% refund of
+tuition" as a Miami **Networking** event, with a ~60 (15–400) crowd and a 6/10 meeting-people score, and provenance
+"category: reported by the source (FIU events)". There were five causes, each fixed at its root:
+1. **FIU's Localist feed is the whole university calendar.** The fix is a build-time gate every listing passes
+   (ADR-0010).
+2. **`default_category: learning.networking` on a mixed calendar.** Removed from 176 sources. 34 single-kind sources
+   keep a default, with a written `single_kind_reason`.
+3. **Nothing checked whether a listing is attendable.** `config/listing_gate.yaml` now has 17 rules.
+4. **Provenance said "reported" whenever the source sent any label.** Fixed with `CategoryBasis` and
+   `Method.DEFAULTED`, enforced by a contract test.
+5. **Non-events got estimates.** Uncategorized listings now get no category prior and no meeting-people score.
+
+Also found:
+- **The ingest-time campus skip only works on *complete* fetches.** FIU is capped at 5 pages, so stored records were
+  never marked gone. The gate doesn't depend on that.
+
+**The outage.** Every hourly publish failed from Oct 27 to Nov 2, so the live site stayed on an old client-only build.
+That's why the user saw `#/miami/feed`.
+- **Cause:** the contract test's 8 MB whole-feed budget, once the Ticketmaster key was live. NYC hit 42.8 MB: 16k
+  Ticketmaster listings, including 3,401 Balloon Museum entry slots and every Broadway performance. The two-strike
+  loop then blocked the deploy.
+- **Fix, budgets:** the budget follows the week shards.
+- **Fix, series:** long runs export their next 8 dates, with `series_total`/`series_last`; the folded ones are stored
+  with `folded = 1`.
+- **Fix, artifact size:** legacy files are pruned from dist, and event pages pre-render 10 days ahead. That took
+  dist from 1.3 GB to 795 MB.
+- **Verified:** on a copy of the CI pipeline-state DB, with build, contract tests, the site build and check-dist.
+
+**Decided (and why):**
+- **Rules, not a model.** They're transparent, per-source tunable, and every rejection carries a sentence a person
+  can check. A model can come later behind the same `Verdict` interface, using reports (I-224) as labels.
+- **Quarantine, never drop.** Ingest skips are quarantined too (`stage = 'ingest'`, through shard deltas).
+- **The golden set was labelled blind** by a separate agent: 245 listings, plus 42 ticketing listings after the code
+  review. Disagreements are left as labelled and discussed in the audit.
+- **Retired `campus_uncategorized` and the ingest `campus_catchall`.** The cold data review found about 55% of what
+  they held were real talks and exhibitions. An uncategorized campus listing now publishes as uncategorized, with no
+  estimates.
+- **A stored category is re-derived only when it equals a frozen removed default** (`REMOVED_DEFAULTS`). The code
+  review caught my first version re-deriving 3,265 correct categories (games, volunteer shifts, trivia). Now 0 change
+  outside those sources.
+- **The homepage stays the homepage.** It offers "Continue with <city>" instead of jumping to the last city.
+
+**Broke and fixed:**
+- **The gate's per-source cache keyed on id alone.** Tests with different params shared a cache entry.
+- **Dropped the label-only academic rule.** FIU tags real events "Academic Calendar" too.
+- **The first measurement used old logs.** My wait loop read the previous run's files.
+- **My local CI repro ran `doctor --fix` without the raw cache.** Its dangling-row repair is O(n²): over 1 h. Logged
+  as an idea. CI restores the cache, so it isn't affected.
+
+**Verified:** see STATUS. **Ideas:** I-220–I-226 done; I-227–I-232 added (weekly gate review, learned classifier
+(parked), gate-share alarm, held-back samples on the Health page, mark-gone on partial fetches, doctor perf, away
+games by venue distance). Note: commit messages say "I-230" and "I-226" for work that is I-220 and the publish fix.
+The ledger has the right ids.
+- 2026-11-03 00:57 UTC · run 50 ok: units[3 disabled, 40 ok] → 2860 events in 2 cities
