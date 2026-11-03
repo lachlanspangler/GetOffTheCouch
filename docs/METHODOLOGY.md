@@ -31,8 +31,15 @@ Before anything is published, every listing passes a rules gate. It holds back:
 - internal, staff-only, invitation-only and private listings
 - calendar placeholders
 
-Campus feeds get stricter rules: club business meetings, admissions info sessions, career-services events, academic
-administration, listings tagged only for students/faculty/staff, and campus items with no category at all.
+Campus feeds get stricter rules:
+- club business meetings and counseling support groups
+- admissions info sessions and career-services events
+- academic administration and term-calendar lines
+- listings the campus tags only for current students, faculty or staff (unless the title or description says it's a
+  performance, exhibition, game, talk, screening or celebration)
+
+An uncategorized campus listing is published as uncategorized, with no estimates. Ticketed shows are exempt from the
+calendar-word rules.
 
 Look-alikes stay:
 - a league's registration deadline
@@ -43,8 +50,8 @@ Look-alikes stay:
 - a game against "TBD"
 
 Held-back listings are quarantined with their rule and reason, never silently dropped. They're counted per source in
-HEALTH.md and on the Health page. Precision and recall are measured on a blind-labelled golden set of 245 real
-listings on every `make check`. The audit with samples per source is `docs/research/NON_EVENTS_AUDIT.md`.
+HEALTH.md and on the Health page. Precision and recall are measured on a blind-labelled golden set of 287 real
+listings (42 of them ticketing) on every `make check`. The audit with samples per source is `docs/research/NON_EVENTS_AUDIT.md`.
 
 ## Entity resolution (dedup)
 1. **Venues.** Names are normalized: case, accents and "&" are folded, and filler words are dropped ("the", "theatre", "hall"…). Two venues are the same if the normalized names match, or if they're under 150 m apart with ≥ 0.8 name similarity.

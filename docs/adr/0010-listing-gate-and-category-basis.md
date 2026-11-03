@@ -18,9 +18,12 @@ The live site showed "Fall B: Last day to withdraw from the University with a 25
 ## Decision
 1. **Every listing passes a rules gate at build time** (`gotc/pipeline/listing_gate.py`, rules in
    `config/listing_gate.yaml`), after categories are reconciled and before geocoding, clustering and enrichment.
-   - **Rule families:** academic calendar · closure · office hours · appointment · admin deadline · governance meeting
-     · internal only · placeholder, plus campus-only rules (club meetings, admissions, career services, academic
-     admin, uncategorized campus items).
+   - **Rule families:** academic calendar · closure · office hours · appointment (incl. proctored testing) · admin
+     deadline · governance meeting · internal only · placeholder (incl. "TBD at <team>" slots), plus campus-only rules
+     (club meetings, support groups, admissions, career services, academic admin, term-calendar lines, listings
+     tagged only for insiders).
+   - **Ticketed shows are exempt** from the calendar-word rules (`skip_data_types`). "Night School Final Exam" and
+     "Board of Directors" (a band) are shows.
    - **Hard rules** can only be overridden per source (`listing_gate.keep`).
    - **Soft rules** are rescued by `unless` title patterns, or by a sign-up family (leagues, volunteering, races).
      A family only counts when the source reported the category or the source is a league/volunteer source. Our own
@@ -57,6 +60,16 @@ Rules are transparent, testable and per-source tunable. Every rejection carries 
 golden set (`tests/fixtures/listing_gate/golden.yaml`, ≥200 labelled real listings across metros) measures precision
 and recall on every `make check`, so a rule change that starts eating real events fails CI. A learned model can come
 later, behind the same `Verdict` interface, once user reports (I-224) give it labelled data.
+
+## Amendments after review (2026-11-02)
+- **Retired `campus_uncategorized`** and the ingest-time `campus_catchall` / "other"-family skip. The cold data review
+  found about 55% of the uncategorized campus listings they held were real talks, exhibitions and sales. They now
+  publish as uncategorized, with no estimates.
+- **The campus audience rule** ignores a bare "Students" tag, which campuses also put on public events. It rescues on
+  title *or* description (a lecture's title often doesn't say "lecture").
+- **Re-derivation is limited to `REMOVED_DEFAULTS`** (`gotc/pipeline/removed_defaults.py`, frozen from 27ba235). The
+  first version re-derived any "unexplained" stored category and changed 3,265 correct ones (games, volunteer
+  shifts, trivia). Now 0 change outside the 176 sources whose default was removed.
 
 ## Consequences
 - About 1% of live listings are held back at build. More were already skipped at ingest; those are now visible.

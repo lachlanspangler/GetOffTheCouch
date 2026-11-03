@@ -1,5 +1,116 @@
 # Status
 
+## Milestone summary: 2026-11-02, end of session 6 ("only real events", and the publish outage)
+
+**State:** `main` is committed with a clean tree. Nothing is pushed.
+- **Checks:** `make check` is green: 861 pytest (up from 679), 302 vitest and the ranking eval (unchanged). Playwright
+  + axe: 72/72.
+- **Verified on a copy of the live CI pipeline-state DB** (2026-11-02, Ticketmaster + SeatGeek keyed, 50 metros):
+  - the build and contract tests pass, including the new provenance contract;
+  - the site builds at **798 MB** (check-dist: 0 problems);
+  - pre-render takes 300 s.
+
+### 1. Why the live site was stuck (fixed)
+Every hourly **Refresh data → publish** failed from Oct 27 to Nov 2, so nothing deployed. That's why the site still
+showed the old `#/miami/feed` build and the FIU deadline.
+- **Cause:** once your Ticketmaster key went live, NYC's whole-feed file hit 42.8 MB. Las Vegas was 28 MB, Chicago
+  15.6 MB and LA 8.2 MB. The contract test's 8 MB budget failed, and the loop's two-strike rule stopped the deploy.
+- **Budgets:** for week-sharded cities, the budget follows what browsers download (any shard > 1.5 MB fails). The
+  whole feed is only a fallback, so it warns.
+- **Series:** long runs export their next 8 dates plus "N more dates through …" (`series_total`/`series_last`).
+  Ticketmaster listed every timed-entry slot: Balloon Museum NYC had 3,401. Folded dates stay in the DB
+  (`events.folded`), so ids stay sticky.
+  - **NYC:** 19,453 → 6,719 exported listings.
+  - **Las Vegas:** 12,160 → 2,824.
+- **Pages size:** legacy single-file city data is pruned from the site artifact, and event pages pre-render 10 days
+  ahead (was 30). dist went from 1.3 GB to 798 MB.
+- **Homepage:** it stays the homepage, with a "Continue with <city>" link instead of a jump to the last city.
+
+### 2. Only real public events (ADR-0010)
+- **Gate:** every listing passes the real-public-event gate at build (`config/listing_gate.yaml`, 17 rules). It holds
+  back:
+  - academic-calendar dates and term lines
+  - closures and holiday hours
+  - office hours, one-on-one appointments and proctored testing
+  - admin deadlines and governance business meetings
+  - internal, staff-only and private listings
+  - placeholders ("TBA", "TBD at <team>")
+  - campus-only rules
+- **Kept:** look-alikes stay (league and race deadlines, volunteer sign-ups, open houses, lectures, community
+  meetings, ticketed shows). **Nothing is dropped silently:** every held listing is in `gated_listings` with its rule,
+  reason and matched text. Ingest skips are too, and they travel through the shard deltas. They're counted per source
+  in HEALTH.md and as "N held back" on the Health page.
+- **Golden set:** 287 real listings from 46 metros, including 42 ticketing ones, labelled blind by a separate agent.
+  **Precision 0.988, recall 0.888**, gated in `make check` at ≥ 0.95 / ≥ 0.85.
+- **On the CI data:** 588 listings held back at build, across 50 metros. The live run (below) adds the ingest-stage
+  rows.
+- **No catch-all defaults on mixed calendars:** removed from 176 sources (all libraries, universities, museums, parks
+  and gardens, tourism boards, downtown districts and city calendars). 34 single-kind sources keep theirs with a
+  `single_kind_reason`. `gotc validate` and a test enforce it, and the discovery generator stopped emitting them.
+  Old records re-derive only those frozen defaults (`REMOVED_DEFAULTS`). On 141k CI records that's 5,075 changes,
+  and 0 outside those sources.
+- **Honest provenance:** a category is "reported by the source" only when the source's own label produced it. Our
+  classifier is "worked out from the source's data". A config default or nothing is **"set by us, not the source"**
+  (`Method.DEFAULTED`, with a note on the event page). Organizer and venue filled from config are marked defaulted.
+  `tests/contract/test_provenance.py` fails if anything from config is labelled reported, on a fresh build and on
+  every real export.
+- **No fake estimates:** an uncategorized listing gets no category-prior crowd band and no meeting-people score.
+  It shows "Not enough info to estimate".
+- **Audit:** `docs/research/NON_EVENTS_AUDIT.md` covers every metro and source: kept vs held, top rules and patterns,
+  samples with ×N, golden precision/recall, and the judgment calls.
+- **Reports close the loop:** "Report a problem" opens a prefilled issue form (`.github/ISSUE_TEMPLATE/listing-report.yml`).
+  To turn reports into rules:
+  1. `gh issue list -R lachlanspangler/GetOffTheCouch --label data-report --state all --json number,title,body,url,createdAt --limit 500 > reports.json`
+  2. `gotc reports import reports.json`: writes `config/listing_gate_reports.yaml` with each report's current gate
+     verdict and a suggested per-source rule. Ones the gate already holds are marked `already_gated`.
+  3. Generalize good suggestions into `config/listing_gate.yaml`, or keep them as that source's `listing_gate.reject`.
+  4. `gotc reports promote <issue> --label not_event` (or `event`): adds it to the golden set, so `make check` guards
+     the rule from then on.
+
+**Reviews:**
+- **A fresh code reviewer** found a real regression in my first category re-derivation (3,265 correct categories
+  changed), hard rules misfiring on ticketed shows, folded ids losing stickiness, a vacuous shard test, and lint.
+  All are fixed, with tests.
+- **A fresh data reviewer** read the audit cold. They measured about 55% false positives on "uncategorized campus
+  item" (now retired) and about 15% on campus audience tags (now description-aware, with no bare "Students" tag), and
+  found misses ("1:1", proctored testing, "Closed in observance", support groups, eboards). All fixed.
+
+**Live run** (this machine, Miami + Austin, keys from `.env`):
+- 40 units ok, 2,860 events.
+- Miami exports 1,303 listings, and none mention "withdraw".
+- FIU's real events still show: the Cejas Lecture Series, a BFA exhibition, a pep rally…
+- Screenshots: `docs/screenshots/non-events/` (Miami feed, deadlines, an FIU event, an uncategorized event saying
+  "Not enough info to estimate" and "set by us", the Health page with held-back counts, the homepage with "Continue
+  with Miami").
+
+### Eyeball before pushing
+1. **The first publish does a full rebuild.** `BUILD_VERSION` 2 and migrations 007/008 apply to the state DB. Expect
+   about 30–40 min (the timeout is 90). Watch Actions → Refresh data → publish.
+2. **dist is 798 MB against the 800 MB guard.** CI runs check-dist with `--warn`, and GitHub's limit is 1 GB. If data
+   grows, set `GOTC_PRERENDER_DAYS: 7` on the build step.
+3. **The NYC client-rendered first view is 740 KB** (budget 320 KB, warn only). That's I-219, slimmer cards.
+4. **Event pages more than 10 days out** aren't pre-rendered (they still open), so search engines see fewer far-future
+   pages.
+5. **Judgment calls you may want to flip:**
+   - public board/commission business meetings are held back
+   - campus listings tagged only for insiders are held back
+   - "TBD at <team>" slots are held back
+   - cancelled listings stay, marked cancelled
+6. **Old cached browser tabs** of the current (pre-shard) live build may 404 on the removed whole-feed files until
+   they reload.
+
+### What I need from you
+Nothing new. Push when ready (the Pages and Actions settings from session 5 still apply). The earlier list is
+unchanged: domain decision, judgment calls, outreach.
+
+### What's next
+- **I-229:** show held-back samples on the Health page.
+- **I-228:** a gate-share alarm, so a feed that starts publishing its admin calendar is flagged like a volume drop.
+- **I-232:** away games by venue distance.
+- **I-231:** mark gone on partial fetches.
+- **I-219:** slimmer cards for the NYC first view.
+- **Doctor:** set-based dangling-row repair.
+
 ## Milestone summary: 2026-10-27, end of session 5 ("land it")
 
 **State:** `main` is 229 commits ahead of `origin/main`, the tree is clean, and there are no other branches or
